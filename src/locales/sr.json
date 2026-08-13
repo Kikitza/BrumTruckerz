@@ -6,7 +6,8 @@
     "code": "6-cifreni kod",
     "verify": "Potvrdi",
     "codeSentTo": "Kod poslat na {{email}}",
-    "changeEmail": "Promeni imejl"
+    "changeEmail": "Promeni imejl",
+    "noRole": "Nalog nije povezan sa firmom. Obratite se vlasniku."
   },
   "tabs": {
     "trips": "Ture",

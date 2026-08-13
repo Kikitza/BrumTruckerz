@@ -6,7 +6,8 @@
     "code": "6-digit code",
     "verify": "Verify",
     "codeSentTo": "Code sent to {{email}}",
-    "changeEmail": "Change email"
+    "changeEmail": "Change email",
+    "noRole": "Account is not linked to a company. Contact the owner."
   },
   "tabs": {
     "trips": "Trips",
