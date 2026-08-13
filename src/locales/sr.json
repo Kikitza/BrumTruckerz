@@ -71,9 +71,18 @@
     "pendingSync": "{{count}} čeka sinhronizaciju"
   },
   "expense": {
+    "section": "Troškovi",
     "add": "Dodaj trošak",
     "amount": "Iznos (kako piše na računu)",
     "currency": "Valuta",
+    "date": "Datum troška",
+    "liters": "Litara",
+    "country": "Država",
+    "note": "Napomena",
+    "total": "Ukupno (tura)",
+    "empty": "Još nema troškova",
+    "deleteConfirm": "Obrisati ovaj trošak?",
+    "invalidAmount": "Unesi ispravan iznos",
     "categories": {
       "fuel": "Gorivo",
       "toll": "Putarina",

@@ -8,17 +8,23 @@ import {
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../../src/lib/theme";
-import { fmtDateTime } from "../../../src/lib/format";
-import { Field, ModalScaffold } from "../../../src/components/form";
+import { fmtDateTime, fmtDate, fmtMoney } from "../../../src/lib/format";
+import { Field, DateField, ModalScaffold } from "../../../src/components/form";
 import {
   ownerListTrips, ownerCreateTrip, ownerGetTrip, ownerUpdateTripFinance,
   ownerListTripEvents, ownerAddTripEvent, tripTitle,
   type EventType, type DriverPayMode,
 } from "../../../src/features/trips/api";
+import {
+  ownerListTripExpenses, ownerAddExpense, ownerDeleteExpense,
+  EXPENSE_CATEGORIES, type ExpenseCategory,
+} from "../../../src/features/expenses/api";
 import { listDrivers, listVehicles, listTrailers } from "../../../src/features/fleet/api";
 
 const EVENT_TYPES: EventType[] = ["load", "unload", "border", "driving", "rest", "other"];
 const PAY_MODES: DriverPayMode[] = ["per_diem", "percentage", "fixed"];
+// Najčešće valute na evropskim turama (original sa računa). EUR je bazna podrazumevana.
+const CURRENCIES: string[] = ["EUR", "RSD", "PLN", "HUF", "CZK", "RON", "BGN", "CHF", "USD", "GBP", "TRY", "BAM", "MKD"];
 
 // ── Pomoćni parseri (isti stil kao fleet) ──
 const toNum = (s: string): number | null => {
@@ -32,6 +38,10 @@ const toInt = (s: string): number | null => {
   return n == null ? null : Math.round(n);
 };
 const pad = (n: number) => String(n).padStart(2, "0");
+const todayYMD = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+};
 const nowLocalInput = () => {
   const d = new Date();
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
@@ -309,6 +319,59 @@ function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: () => v
     onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
   });
 
+  // ── Troškovi (owner online; kurs za datum troška, base_amount računa kod) ──
+  const expenses = useQuery({ queryKey: ["trip-expenses", tripId], queryFn: () => ownerListTripExpenses(tripId) });
+  const [expCategory, setExpCategory] = useState<ExpenseCategory>("fuel");
+  const [expAmount, setExpAmount] = useState("");
+  const [expCurrency, setExpCurrency] = useState("EUR");
+  const [expDate, setExpDate] = useState<string | null>(todayYMD());
+  const [expLiters, setExpLiters] = useState("");
+  const [expCountry, setExpCountry] = useState("");
+  const [expNote, setExpNote] = useState("");
+
+  const addExpenseM = useMutation({
+    mutationFn: () => {
+      const amount = toNum(expAmount);
+      if (amount == null) throw new Error(t("expense.invalidAmount"));
+      return ownerAddExpense({
+        trip_id: tripId,
+        category: expCategory,
+        original_amount: amount,
+        original_currency: expCurrency,
+        occurred_at: expDate ?? undefined,
+        liters: expCategory === "fuel" ? toNum(expLiters) : null,
+        country: expCountry.trim() || null,
+        note: expNote.trim() || null,
+      });
+    },
+    onSuccess: () => {
+      // P&L (trip_pnl) i zbir zavise od troškova -> osveži i turu
+      qc.invalidateQueries({ queryKey: ["trip-expenses", tripId] });
+      qc.invalidateQueries({ queryKey: ["trip", tripId] });
+      setExpAmount(""); setExpLiters(""); setExpCountry(""); setExpNote("");
+    },
+    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+  });
+
+  const delExpense = useMutation({
+    mutationFn: (id: string) => ownerDeleteExpense(id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["trip-expenses", tripId] });
+      qc.invalidateQueries({ queryKey: ["trip", tripId] });
+    },
+    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+  });
+  const confirmDeleteExpense = (id: string) =>
+    Alert.alert(t("expense.deleteConfirm"), undefined, [
+      { text: t("common.cancel"), style: "cancel" },
+      { text: t("common.delete"), style: "destructive", onPress: () => delExpense.mutate(id) },
+    ]);
+
+  const expenseRows = expenses.data ?? [];
+  const baseCurrency = expenseRows[0]?.base_currency ?? "EUR";
+  const expensesTotal = expenseRows.reduce((s, e) => s + (e.base_amount ?? 0), 0);
+  const amountValid = toNum(expAmount) != null;
+
   const d = trip.data;
 
   return (
@@ -376,6 +439,83 @@ function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: () => v
                 style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: saveFinance.isPending ? 0.6 : 1 }}>
                 <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
                   {saveFinance.isPending ? t("common.saving") : t("common.save")}
+                </Text>
+              </Pressable>
+            </View>
+
+            {/* Troškovi */}
+            <View style={{ gap: 12 }}>
+              <SectionTitle text={t("expense.section")} colors={colors} />
+
+              {expenseRows.length === 0 ? (
+                <Text style={{ color: colors.textMuted }}>{t("expense.empty")}</Text>
+              ) : (
+                <>
+                  {expenseRows.map((e) => (
+                    <View key={e.id} style={{ padding: 12, borderRadius: 8, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, gap: 4 }}>
+                      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                        <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`expense.categories.${e.category}`)}</Text>
+                        <Pressable onPress={() => confirmDeleteExpense(e.id)} hitSlop={8} style={{ padding: 4 }}>
+                          <Text style={{ color: colors.danger, fontSize: 18 }}>×</Text>
+                        </Pressable>
+                      </View>
+                      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                        <Text style={{ color: colors.textMuted }}>{fmtMoney(e.original_amount, e.original_currency)}</Text>
+                        <Text style={{ color: colors.text }}>{fmtMoney(e.base_amount, e.base_currency)}</Text>
+                      </View>
+                      <Text style={{ color: colors.textMuted, fontSize: 12 }}>
+                        {fmtDate(e.occurred_at)}{e.country ? ` · ${e.country}` : ""}{e.liters != null ? ` · ${e.liters} L` : ""}
+                      </Text>
+                      {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
+                    </View>
+                  ))}
+                  <View style={{ flexDirection: "row", justifyContent: "space-between", paddingTop: 4 }}>
+                    <Text style={{ color: colors.text, fontWeight: "700" }}>{t("expense.total")}</Text>
+                    <Text style={{ color: colors.text, fontWeight: "700" }}>{fmtMoney(expensesTotal, baseCurrency)}</Text>
+                  </View>
+                </>
+              )}
+
+              {/* Forma: novi trošak */}
+              <View style={{ gap: 6 }}>
+                <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("expense.category")}</Text>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                  {EXPENSE_CATEGORIES.map((c) => {
+                    const active = expCategory === c;
+                    return (
+                      <Pressable key={c} onPress={() => setExpCategory(c)}
+                        style={{
+                          paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, borderWidth: 1,
+                          borderColor: active ? colors.primary : colors.border,
+                          backgroundColor: active ? colors.primary : colors.surface,
+                        }}>
+                        <Text style={{ color: active ? colors.onPrimary : colors.text }}>{t(`expense.categories.${c}`)}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              </View>
+              <Field label={t("expense.amount")} value={expAmount} onChangeText={setExpAmount}
+                keyboardType="numeric" placeholder="0.00" colors={colors} />
+              <PickerField label={t("expense.currency")} value={expCurrency}
+                options={CURRENCIES.map((c) => ({ value: c, label: c }))}
+                placeholder={t("trip.select")} onSelect={(v) => setExpCurrency(v ?? "EUR")} colors={colors} t={t} />
+              <DateField label={t("expense.date")} value={expDate} onChange={setExpDate}
+                colors={colors} placeholder="—" clearable={false} />
+              {expCategory === "fuel" ? (
+                <Field label={t("expense.liters")} value={expLiters} onChangeText={setExpLiters}
+                  keyboardType="numeric" placeholder="0.0" colors={colors} />
+              ) : null}
+              <Field label={t("expense.country")} value={expCountry} onChangeText={setExpCountry}
+                autoCapitalize="characters" placeholder="DE" colors={colors} />
+              <Field label={t("expense.note")} value={expNote} onChangeText={setExpNote} colors={colors} />
+              <Pressable onPress={() => addExpenseM.mutate()} disabled={addExpenseM.isPending || !amountValid}
+                style={{
+                  backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center",
+                  opacity: addExpenseM.isPending || !amountValid ? 0.6 : 1,
+                }}>
+                <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
+                  {addExpenseM.isPending ? t("common.saving") : t("expense.add")}
                 </Text>
               </Pressable>
             </View>

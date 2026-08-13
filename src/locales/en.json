@@ -71,9 +71,18 @@
     "pendingSync": "{{count}} waiting to sync"
   },
   "expense": {
+    "section": "Expenses",
     "add": "Add expense",
     "amount": "Amount (as on receipt)",
     "currency": "Currency",
+    "date": "Expense date",
+    "liters": "Liters",
+    "country": "Country",
+    "note": "Note",
+    "total": "Trip total",
+    "empty": "No expenses yet",
+    "deleteConfirm": "Delete this expense?",
+    "invalidAmount": "Enter a valid amount",
     "categories": {
       "fuel": "Fuel",
       "toll": "Toll",

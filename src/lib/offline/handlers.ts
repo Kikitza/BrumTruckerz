@@ -9,9 +9,7 @@
 
 import { supabase } from "../supabase";
 import { registerHandler } from "./queue";
-import { getRate } from "../../features/fx/rates";
-
-const round2 = (n: number) => Math.round(n * 100) / 100;
+import { computeBase } from "../../features/fx/rates";
 
 export function registerAllHandlers() {
   // Nov događaj ture (utovar/granica/istovar…)
@@ -60,12 +58,10 @@ export function registerAllHandlers() {
     fx_rate?: number;                      // opciono: ručno unet/korigovan kurs
   }) => {
     const date = p.occurred_at.slice(0, 10);
-    const rate =
-      p.fx_rate ??
-      (p.original_currency === p.base_currency
-        ? 1
-        : await getRate(p.original_currency, p.base_currency, date));
-    if (rate == null) throw new Error(`Nema kursa ${p.original_currency}->${p.base_currency} za ${date}`);
+    // Ista matematika kao owner online putanja (features/expenses/api.ts).
+    const { fx_rate, fx_rate_date, base_amount } = await computeBase(
+      p.original_amount, p.original_currency, p.base_currency, date, p.fx_rate,
+    );
 
     const { error } = await supabase.from("expenses").insert({
       company_id: p.company_id,
@@ -73,9 +69,9 @@ export function registerAllHandlers() {
       category: p.category,
       original_amount: p.original_amount,
       original_currency: p.original_currency,
-      fx_rate: rate,
-      fx_rate_date: date,
-      base_amount: round2(p.original_amount * rate),
+      fx_rate,
+      fx_rate_date,
+      base_amount,
       base_currency: p.base_currency,
       liters: p.liters ?? null,
       country: p.country ?? null,
