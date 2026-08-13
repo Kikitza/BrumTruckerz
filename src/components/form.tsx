@@ -109,6 +109,96 @@ export function DateField({
   );
 }
 
+// ── Custom rokovi ("Ostali rokovi") — reusable, kontrolisana lista ──
+// Ne priča sa API-jem; roditelj drži niz nacrta i snima ga (saveCustomReminders).
+// Namerno reusable: kasnije ide i na formu vozača.
+export type CustomReminderDraft = {
+  key: string; // stabilan UI ključ (React liste)
+  existingId: string | null; // id u bazi ako je već sačuvan, inače null
+  label: string;
+  dueDate: string | null;
+  issuedAt: string | null;
+};
+
+let draftSeq = 0;
+export const newCustomDraft = (): CustomReminderDraft => ({
+  key: `new-${draftSeq++}`,
+  existingId: null,
+  label: "",
+  dueDate: null,
+  issuedAt: null,
+});
+
+export function CustomRemindersSection({
+  title, addLabel, nameLabel, validUntilLabel, fromLabel, items, onChange, colors,
+}: {
+  title: string;
+  addLabel: string;
+  nameLabel: string;
+  validUntilLabel: string;
+  fromLabel: string;
+  items: CustomReminderDraft[];
+  onChange: (next: CustomReminderDraft[]) => void;
+  colors: Palette;
+}) {
+  const update = (key: string, patch: Partial<CustomReminderDraft>) =>
+    onChange(items.map((i) => (i.key === key ? { ...i, ...patch } : i)));
+  const remove = (key: string) => onChange(items.filter((i) => i.key !== key));
+
+  return (
+    <View style={{ gap: 12 }}>
+      <Text style={{ color: colors.text, fontWeight: "700", fontSize: 15 }}>{title}</Text>
+
+      {items.map((it) => (
+        <View
+          key={it.key}
+          style={{
+            gap: 12, borderWidth: 1, borderColor: colors.border, borderRadius: 8,
+            padding: 12, backgroundColor: colors.surface,
+          }}
+        >
+          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+            <Pressable onPress={() => remove(it.key)} hitSlop={8} style={{ padding: 4 }}>
+              <Text style={{ color: colors.danger, fontSize: 20, lineHeight: 20 }}>×</Text>
+            </Pressable>
+          </View>
+          <Field
+            label={nameLabel}
+            value={it.label}
+            onChangeText={(s) => update(it.key, { label: s })}
+            autoCapitalize="sentences"
+            colors={colors}
+          />
+          <DateField
+            label={validUntilLabel}
+            value={it.dueDate}
+            onChange={(v) => update(it.key, { dueDate: v })}
+            colors={colors}
+            placeholder="—"
+          />
+          <DateField
+            label={fromLabel}
+            value={it.issuedAt}
+            onChange={(v) => update(it.key, { issuedAt: v })}
+            colors={colors}
+            placeholder="—"
+          />
+        </View>
+      ))}
+
+      <Pressable
+        onPress={() => onChange([...items, newCustomDraft()])}
+        style={{
+          borderWidth: 1, borderStyle: "dashed", borderColor: colors.primary,
+          borderRadius: 8, padding: 12, alignItems: "center",
+        }}
+      >
+        <Text style={{ color: colors.primary, fontWeight: "600" }}>{addLabel}</Text>
+      </Pressable>
+    </View>
+  );
+}
+
 // Omotač za SVE modale: Modal + KeyboardAvoidingView + safe-area (top).
 export function ModalScaffold({
   colors, onRequestClose, children,

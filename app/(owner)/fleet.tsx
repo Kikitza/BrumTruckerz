@@ -15,14 +15,21 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { fmtNumber, fmtKm, fmtDate } from "../../src/lib/format";
-import { Field, DateField, ModalScaffold } from "../../src/components/form";
+import {
+  Field, DateField, ModalScaffold, CustomRemindersSection,
+  type CustomReminderDraft,
+} from "../../src/components/form";
 import {
   listVehicles, createVehicle, updateVehicle, deleteVehicle,
   listTrailers, createTrailer, updateTrailer, deleteTrailer,
   listDrivers, createDriver, updateDriver, deleteDriver,
   type Vehicle, type Trailer, type Driver, type EmploymentType,
 } from "../../src/features/fleet/api";
-import { getDriverMedicalReminder, setDriverMedicalReminder } from "../../src/features/reminders/api";
+import {
+  getDriverMedicalReminder, setDriverMedicalReminder,
+  setDateReminder, saveCustomReminders, listSubjectReminders,
+  type ReminderSubjectType,
+} from "../../src/features/reminders/api";
 
 type Section = "vehicles" | "trailers" | "drivers";
 type Item = Vehicle | Trailer | Driver;
@@ -228,6 +235,42 @@ function FleetFormModal({
   const [employmentStart, setEmploymentStart] = useState<string | null>(it.employment_start ?? null);
   const [contractEnd, setContractEnd] = useState<string | null>(it.contract_end ?? null);
 
+  // Vozilo/prikolica = subject za rokove; vozač koristi zaseban medical tok (dole).
+  const subjType: ReminderSubjectType | null =
+    section === "vehicles" ? "vehicle" : section === "trailers" ? "trailer" : null;
+
+  // Rokovi vozila/prikolice (reminders): registracija, PP aparat (samo vozilo), custom.
+  const [regValidUntil, setRegValidUntil] = useState<string | null>(null); // category='registration'
+  const [ppIssued, setPpIssued] = useState<string | null>(null);           // fire_extinguisher.issued_at
+  const [ppValidUntil, setPpValidUntil] = useState<string | null>(null);   // fire_extinguisher.due_date
+  const [customItems, setCustomItems] = useState<CustomReminderDraft[]>([]);
+
+  const remindersQ = useQuery({
+    queryKey: ["subject-reminders", section, item?.id ?? "new"],
+    queryFn: () => listSubjectReminders(subjType!, item!.id),
+    enabled: subjType != null && editing,
+  });
+  useEffect(() => {
+    const data = remindersQ.data;
+    if (!data) return;
+    const byCat = (c: string) => data.find((r) => r.category === c) ?? null;
+    setRegValidUntil(byCat("registration")?.due_date ?? null);
+    const pp = byCat("fire_extinguisher");
+    setPpValidUntil(pp?.due_date ?? null);
+    setPpIssued(pp?.issued_at ?? null);
+    setCustomItems(
+      data
+        .filter((r) => r.category === "custom")
+        .map((r) => ({
+          key: `db-${r.id}`,
+          existingId: r.id,
+          label: r.label ?? "",
+          dueDate: r.due_date,
+          issuedAt: r.issued_at,
+        })),
+    );
+  }, [remindersQ.data]);
+
   // Lekarsko uverenje = rok (reminders), NE kolona na drivers. Učitaj postojeći pri izmeni.
   const [medical, setMedical] = useState<string | null>(null);
   const medicalQ = useQuery({
@@ -248,11 +291,21 @@ function FleetFormModal({
           norm_consumption: toNum(norm),
           current_odometer: toInt(odometer),
         };
-        return editing ? updateVehicle(item!.id, input) : createVehicle(input);
+        const saved = editing ? await updateVehicle(item!.id, input) : await createVehicle(input);
+        // Rokovi se upisuju posle create-a (treba nam id novog reda za subject_id).
+        await setDateReminder("vehicle", saved.id, "registration", { dueDate: regValidUntil });
+        await setDateReminder("vehicle", saved.id, "fire_extinguisher", {
+          dueDate: ppValidUntil, issuedAt: ppIssued,
+        });
+        await saveCustomReminders("vehicle", saved.id, customItems);
+        return saved;
       }
       if (section === "trailers") {
         const input = { registration: registration.trim(), type: type.trim() || null };
-        return editing ? updateTrailer(item!.id, input) : createTrailer(input);
+        const saved = editing ? await updateTrailer(item!.id, input) : await createTrailer(input);
+        await setDateReminder("trailer", saved.id, "registration", { dueDate: regValidUntil });
+        await saveCustomReminders("trailer", saved.id, customItems);
+        return saved;
       }
       const input = {
         full_name: fullName.trim(),
@@ -267,6 +320,8 @@ function FleetFormModal({
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["fleet", section] });
+      qc.invalidateQueries({ queryKey: ["reminders"] });
+      qc.invalidateQueries({ queryKey: ["subject-reminders", section] });
       if (item?.id) qc.invalidateQueries({ queryKey: ["driver-medical", item.id] });
       onClose();
     },
@@ -309,6 +364,30 @@ function FleetFormModal({
               onChangeText={setNorm} keyboardType="numeric" placeholder="0.0" colors={colors} />
             <Field label={t("fleet.fields.currentOdometer")} value={odometer}
               onChangeText={setOdometer} keyboardType="numeric" placeholder="0" colors={colors} />
+
+            <DateField label={t("reminders.vehicleReg")} value={regValidUntil}
+              onChange={setRegValidUntil} colors={colors} placeholder="—" />
+
+            <View style={{ gap: 6 }}>
+              <Text style={{ color: colors.text, fontWeight: "700", fontSize: 15 }}>
+                {t("reminders.fireExt")}
+              </Text>
+              <DateField label={t("reminders.fireExtIssued")} value={ppIssued}
+                onChange={setPpIssued} colors={colors} placeholder="—" />
+              <DateField label={t("reminders.fireExtValidUntil")} value={ppValidUntil}
+                onChange={setPpValidUntil} colors={colors} placeholder="—" />
+            </View>
+
+            <CustomRemindersSection
+              title={t("reminders.otherTitle")}
+              addLabel={t("reminders.add")}
+              nameLabel={t("reminders.customName")}
+              validUntilLabel={t("reminders.customValidUntil")}
+              fromLabel={t("reminders.customFrom")}
+              items={customItems}
+              onChange={setCustomItems}
+              colors={colors}
+            />
           </>
         )}
 
@@ -317,6 +396,20 @@ function FleetFormModal({
             <Field label={t("fleet.fields.registration")} value={registration}
               onChangeText={setRegistration} autoCapitalize="characters" colors={colors} />
             <Field label={t("fleet.fields.type")} value={type} onChangeText={setType} colors={colors} />
+
+            <DateField label={t("reminders.vehicleReg")} value={regValidUntil}
+              onChange={setRegValidUntil} colors={colors} placeholder="—" />
+
+            <CustomRemindersSection
+              title={t("reminders.otherTitle")}
+              addLabel={t("reminders.add")}
+              nameLabel={t("reminders.customName")}
+              validUntilLabel={t("reminders.customValidUntil")}
+              fromLabel={t("reminders.customFrom")}
+              items={customItems}
+              onChange={setCustomItems}
+              colors={colors}
+            />
           </>
         )}
 

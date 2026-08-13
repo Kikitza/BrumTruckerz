@@ -83,6 +83,37 @@
       "other": "Ostalo"
     }
   },
+  "reminders": {
+    "vehicleReg": "Registracija važi do",
+    "fireExt": "PP aparat",
+    "fireExtIssued": "Atestiran",
+    "fireExtValidUntil": "Važi do",
+    "otherTitle": "Ostali rokovi",
+    "add": "+ Dodaj rok",
+    "customName": "Naziv roka",
+    "customValidUntil": "Važi do",
+    "customFrom": "Od (opciono)",
+    "empty": "Nema unetih rokova",
+    "today": "danas",
+    "inDays": "za {{count}} dana",
+    "overdue": "kasni {{count}} dana",
+    "group": {
+      "expired": "Isteklo",
+      "soon": "Ističe za ≤30 dana",
+      "other": "Ostali rokovi"
+    },
+    "subject": {
+      "vehicle": "Vozilo",
+      "trailer": "Prikolica",
+      "driver": "Vozač"
+    },
+    "category": {
+      "registration": "Registracija",
+      "fire_extinguisher": "PP aparat",
+      "medical": "Lekarsko uverenje",
+      "custom": "Ostalo"
+    }
+  },
   "fleet": {
     "vehicles": "Vozila",
     "trailers": "Prikolice",
