@@ -20,12 +20,52 @@
   },
   "trip": {
     "status": {
+      "draft": "Draft",
       "loading": "Loading",
       "driving": "Driving",
       "border": "Border",
       "unloading": "Unloading",
       "finished": "Finished"
     },
+    "events": {
+      "load": "Loading",
+      "unload": "Unloading",
+      "border": "Border",
+      "driving": "Driving",
+      "rest": "Rest",
+      "other": "Other"
+    },
+    "payMode": {
+      "per_diem": "Per diem",
+      "percentage": "Percentage",
+      "fixed": "Fixed"
+    },
+    "fields": {
+      "title": "Title",
+      "origin": "Origin",
+      "destination": "Destination",
+      "driver": "Driver",
+      "vehicle": "Vehicle",
+      "trailer": "Trailer",
+      "startOdometer": "Start odometer (km)",
+      "revenue": "Revenue (EUR)",
+      "driverPay": "Driver pay (EUR)",
+      "driverPayMode": "Pay mode",
+      "eventType": "Event type",
+      "occurredAt": "Time",
+      "location": "Location",
+      "note": "Note"
+    },
+    "section": {
+      "info": "Details",
+      "events": "Event log",
+      "finance": "Finance"
+    },
+    "newTrip": "New trip",
+    "detailTitle": "Trip detail",
+    "noEvents": "No events yet",
+    "noTrailer": "No trailer",
+    "select": "Select…",
     "addEvent": "Add event",
     "endOdometer": "End odometer",
     "pendingSync": "{{count}} waiting to sync"
@@ -43,9 +83,52 @@
       "other": "Other"
     }
   },
+  "fleet": {
+    "vehicles": "Vehicles",
+    "trailers": "Trailers",
+    "drivers": "Drivers",
+    "addVehicle": "Add vehicle",
+    "addTrailer": "Add trailer",
+    "addDriver": "Add driver",
+    "editVehicle": "Edit vehicle",
+    "editTrailer": "Edit trailer",
+    "editDriver": "Edit driver",
+    "emptyVehicles": "No vehicles yet",
+    "emptyTrailers": "No trailers yet",
+    "emptyDrivers": "No drivers yet",
+    "deleteVehicle": "Delete this vehicle?",
+    "deleteTrailer": "Delete this trailer?",
+    "deleteDriver": "Delete this driver?",
+    "fields": {
+      "registration": "Registration",
+      "makeModel": "Make / model",
+      "normConsumption": "Norm consumption (L/100km)",
+      "currentOdometer": "Current odometer (km)",
+      "type": "Type",
+      "fullName": "Full name",
+      "employmentType": "Employment type",
+      "employmentStart": "Employment start",
+      "contractEnd": "Contract end",
+      "medicalValidUntil": "Medical valid until"
+    },
+    "employment": {
+      "indefinite": "Indefinite",
+      "fixed_term": "Fixed-term"
+    }
+  },
+  "settings": {
+    "signOut": "Sign out",
+    "signOutConfirm": "Sign out of your account?"
+  },
   "common": {
     "save": "Save",
     "cancel": "Cancel",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "done": "Done",
+    "saving": "Saving…",
+    "error": "Something went wrong",
     "offlineNote": "Saved locally — will sync when online"
   }
 }

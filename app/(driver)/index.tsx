@@ -24,7 +24,7 @@ export default function DriverHome() {
   return (
     <View style={{ flex: 1, padding: 16, gap: 12, backgroundColor: colors.bg }}>
       <Text style={{ fontSize: 20, fontWeight: "700", color: colors.text }}>{active.title ?? active.id.slice(0, 8)}</Text>
-      <Text style={{ color: colors.textMuted }}>{t(`trip.status.${active.status}`, active.status)}</Text>
+      <Text style={{ color: colors.textMuted }}>{String(t(`trip.status.${active.status}`, active.status))}</Text>
       <FlatList
         data={[...STATUSES]}
         keyExtractor={(s) => s}

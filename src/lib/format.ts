@@ -12,4 +12,7 @@ export const fmtNumber = (n: number, digits = 0) =>
 export const fmtDate = (iso: string) =>
   new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(new Date(iso));
 
+export const fmtDateTime = (iso: string) =>
+  new Intl.DateTimeFormat(locale, { dateStyle: "short", timeStyle: "short" }).format(new Date(iso));
+
 export const fmtKm = (n: number) => `${fmtNumber(n)} km`;

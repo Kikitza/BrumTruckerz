@@ -3,17 +3,30 @@
 import { useColorScheme } from "react-native";
 import { create } from "zustand";
 
-export const palettes = {
+// Zajednički oblik palete (obe teme dele isti skup tokena) — tako indeksiranje
+// palettes[scheme] daje čist Palette tip, bez union-a literala.
+export type Palette = {
+  bg: string;
+  surface: string;
+  text: string;
+  textMuted: string;
+  border: string;
+  primary: string;
+  onPrimary: string; // tekst/ikonice na primary podlozi
+  danger: string;
+  warn: string;
+};
+
+export const palettes: Record<"light" | "dark", Palette> = {
   light: {
     bg: "#F6F7F9", surface: "#FFFFFF", text: "#16233B", textMuted: "#5A6B82",
-    border: "#E4E8EF", primary: "#0E7C6B", danger: "#B4291F", warn: "#B4741A",
+    border: "#E4E8EF", primary: "#0E7C6B", onPrimary: "#FFFFFF", danger: "#B4291F", warn: "#B4741A",
   },
   dark: {
     bg: "#0F1520", surface: "#1A2230", text: "#EDF1F7", textMuted: "#9AA7BA",
-    border: "#2A3548", primary: "#3BB79F", danger: "#E06055", warn: "#D9A03F",
+    border: "#2A3548", primary: "#3BB79F", onPrimary: "#FFFFFF", danger: "#E06055", warn: "#D9A03F",
   },
-} as const;
-export type Palette = typeof palettes.light;
+};
 
 type Mode = "system" | "light" | "dark";
 export const useThemeStore = create<{ mode: Mode; setMode: (m: Mode) => void }>((set) => ({

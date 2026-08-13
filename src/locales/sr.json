@@ -20,12 +20,52 @@
   },
   "trip": {
     "status": {
+      "draft": "Nacrt",
       "loading": "Utovar",
       "driving": "Na putu",
       "border": "Granica",
       "unloading": "Istovar",
       "finished": "Završena"
     },
+    "events": {
+      "load": "Utovar",
+      "unload": "Istovar",
+      "border": "Granica",
+      "driving": "Vožnja",
+      "rest": "Pauza",
+      "other": "Ostalo"
+    },
+    "payMode": {
+      "per_diem": "Dnevnice",
+      "percentage": "Procenat",
+      "fixed": "Fiksno"
+    },
+    "fields": {
+      "title": "Naslov",
+      "origin": "Polazno mesto",
+      "destination": "Odredište",
+      "driver": "Vozač",
+      "vehicle": "Vozilo",
+      "trailer": "Prikolica",
+      "startOdometer": "Početna kilometraža (km)",
+      "revenue": "Vozarina (EUR)",
+      "driverPay": "Naknada vozaču (EUR)",
+      "driverPayMode": "Način naknade",
+      "eventType": "Tip događaja",
+      "occurredAt": "Vreme",
+      "location": "Mesto",
+      "note": "Napomena"
+    },
+    "section": {
+      "info": "Podaci",
+      "events": "Dnevnik događaja",
+      "finance": "Finansije"
+    },
+    "newTrip": "Nova tura",
+    "detailTitle": "Detalj ture",
+    "noEvents": "Još nema događaja",
+    "noTrailer": "Bez prikolice",
+    "select": "Izaberi…",
     "addEvent": "Dodaj događaj",
     "endOdometer": "Završna kilometraža",
     "pendingSync": "{{count}} čeka sinhronizaciju"
@@ -43,9 +83,52 @@
       "other": "Ostalo"
     }
   },
+  "fleet": {
+    "vehicles": "Vozila",
+    "trailers": "Prikolice",
+    "drivers": "Vozači",
+    "addVehicle": "Dodaj vozilo",
+    "addTrailer": "Dodaj prikolicu",
+    "addDriver": "Dodaj vozača",
+    "editVehicle": "Izmeni vozilo",
+    "editTrailer": "Izmeni prikolicu",
+    "editDriver": "Izmeni vozača",
+    "emptyVehicles": "Još nema vozila",
+    "emptyTrailers": "Još nema prikolica",
+    "emptyDrivers": "Još nema vozača",
+    "deleteVehicle": "Obrisati ovo vozilo?",
+    "deleteTrailer": "Obrisati ovu prikolicu?",
+    "deleteDriver": "Obrisati ovog vozača?",
+    "fields": {
+      "registration": "Registracija",
+      "makeModel": "Marka / model",
+      "normConsumption": "Normirana potrošnja (L/100km)",
+      "currentOdometer": "Trenutna kilometraža (km)",
+      "type": "Tip",
+      "fullName": "Ime i prezime",
+      "employmentType": "Tip zaposlenja",
+      "employmentStart": "Datum početka rada",
+      "contractEnd": "Kraj ugovora",
+      "medicalValidUntil": "Lekarsko uverenje važi do"
+    },
+    "employment": {
+      "indefinite": "Na neodređeno",
+      "fixed_term": "Na određeno"
+    }
+  },
+  "settings": {
+    "signOut": "Odjava",
+    "signOutConfirm": "Odjaviti se sa naloga?"
+  },
   "common": {
     "save": "Sačuvaj",
     "cancel": "Otkaži",
+    "add": "Dodaj",
+    "edit": "Izmeni",
+    "delete": "Obriši",
+    "done": "Gotovo",
+    "saving": "Čuvanje…",
+    "error": "Nešto je pošlo naopako",
     "offlineNote": "Sačuvano lokalno — sinhronizuje se kad bude mreže"
   }
 }
