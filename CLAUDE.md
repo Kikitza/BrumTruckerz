@@ -48,3 +48,11 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 - Svaka izmena šeme = nova migracija `NNNN_ime.sql`.
 - Testovi za: offline red (enqueue/flush/retry), fx obračun, RLS (firma A ≠ firma B), correct_trip_event lanac verzija.
 - **IZVEŠTAJ (obavezno):** na kraju SVAKOG zadatka upiši kompletan rezime u `IZVESTAJ.md` u korenu projekta, **prepisujući** stari sadržaj (uvek samo poslednji zadatak). Rezime obavezno sadrži: spisak izmena, test matricu (ili test listu), podsetnik za ručnu primenu migracija (ako ih ima) i eventualni HITNI SQL / rollback. `IZVESTAJ.md` je u `.gitignore` (ne commituje se) — služi da preživi reset sesije/Codespace-a.
+
+## KVALITET KODA — važi za svaki zadatak
+1. **Slojevi strogo razdvojeni:** ekrani ne zovu Supabase direktno — samo svoj feature api sloj (`src/features/<domen>/api.ts`); zajednička logika (računanje, validacija) živi u deljenim funkcijama i **NIKAD se ne duplira**.
+2. **Bez špageta:** jedna funkcija = jedna odgovornost; UI koji se ponavlja se izdvaja kao reusable komponenta; fajl koji naraste da radi više nesrodnih stvari se deli (orijentir: preko ~400 linija razmisli o podeli).
+3. **Imenovanje** jasno i dosledno postojećim konvencijama; **bez mrtvog koda** i zakomentarisanih blokova.
+4. **Prati postojeće obrasce** projekta (React Query invalidacije, offline handleri, RPC gde postoji) umesto uvođenja paralelnih rešenja.
+5. Ako zadatak traži nešto što bi ova pravila prekršilo — **ne ćuti:** uradi čistije i obrazloži u `IZVESTAJ.md`, ili stani i pitaj.
+6. Svaki `IZVESTAJ.md` sadrži **jednu liniju**: potvrda da su pravila kvaliteta ispoštovana, ili šta tačno odstupa i zašto.
