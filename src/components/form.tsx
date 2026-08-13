@@ -9,7 +9,7 @@
 // dodaje safe-area padding na vrhu (status bar / sat / baterija) da dugmad u
 // headeru budu ispod status bara i tapabilna.
 import { type ReactNode, useState } from "react";
-import { View, Text, TextInput, Modal, KeyboardAvoidingView, Platform, Pressable } from "react-native";
+import { View, Text, TextInput, Modal, KeyboardAvoidingView, Platform, Pressable, FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import DateTimePicker, { type DateTimePickerEvent } from "@react-native-community/datetimepicker";
@@ -195,6 +195,83 @@ export function CustomRemindersSection({
       >
         <Text style={{ color: colors.primary, fontWeight: "600" }}>{addLabel}</Text>
       </Pressable>
+    </View>
+  );
+}
+
+// Padajući izbor kroz slide modal (vozač/vlasnik dele isti UI). Samo tokeni.
+// value=null -> prikazuje placeholder; clearLabel (opciono) nudi „očisti" stavku.
+export function PickerField({
+  label, value, options, placeholder, clearLabel, onSelect, colors,
+}: {
+  label: string;
+  value: string | null;
+  options: { value: string; label: string }[];
+  placeholder: string;
+  clearLabel?: string;
+  onSelect: (v: string | null) => void;
+  colors: Palette;
+}) {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const current = options.find((o) => o.value === value);
+  return (
+    <View style={{ gap: 6 }}>
+      <Text style={{ color: colors.textMuted, fontSize: 13 }}>{label}</Text>
+      <Pressable
+        onPress={() => setOpen(true)}
+        style={{
+          borderWidth: 1, borderColor: colors.border, borderRadius: 8,
+          padding: 12, backgroundColor: colors.surface,
+        }}
+      >
+        <Text style={{ color: current ? colors.text : colors.textMuted }}>
+          {current ? current.label : placeholder}
+        </Text>
+      </Pressable>
+
+      {open && (
+        <ModalScaffold colors={colors} onRequestClose={() => setOpen(false)}>
+          <View
+            style={{
+              flexDirection: "row", justifyContent: "space-between", alignItems: "center",
+              padding: 16, borderBottomWidth: 1, borderColor: colors.border,
+            }}
+          >
+            <Pressable onPress={() => setOpen(false)} hitSlop={8}>
+              <Text style={{ color: colors.textMuted, fontSize: 16 }}>{t("common.cancel")}</Text>
+            </Pressable>
+            <Text style={{ color: colors.text, fontWeight: "700", fontSize: 16 }}>{label}</Text>
+            <View style={{ width: 48 }} />
+          </View>
+          <FlatList
+            data={options}
+            keyExtractor={(o) => o.value}
+            ListHeaderComponent={
+              clearLabel ? (
+                <Pressable
+                  onPress={() => { onSelect(null); setOpen(false); }}
+                  style={{ padding: 16, borderBottomWidth: 1, borderColor: colors.border }}
+                >
+                  <Text style={{ color: value == null ? colors.primary : colors.textMuted }}>
+                    {clearLabel}
+                  </Text>
+                </Pressable>
+              ) : null
+            }
+            renderItem={({ item }) => (
+              <Pressable
+                onPress={() => { onSelect(item.value); setOpen(false); }}
+                style={{ padding: 16, borderBottomWidth: 1, borderColor: colors.border }}
+              >
+                <Text style={{ color: item.value === value ? colors.primary : colors.text }}>
+                  {item.label}
+                </Text>
+              </Pressable>
+            )}
+          />
+        </ModalScaffold>
+      )}
     </View>
   );
 }

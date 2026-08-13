@@ -9,39 +9,24 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../../src/lib/theme";
 import { fmtDateTime, fmtDate, fmtMoney } from "../../../src/lib/format";
-import { Field, DateField, ModalScaffold } from "../../../src/components/form";
+import { Field, ModalScaffold, PickerField } from "../../../src/components/form";
+import { toNum, toInt } from "../../../src/lib/num";
 import {
   ownerListTrips, ownerCreateTrip, ownerGetTrip, ownerUpdateTripFinance,
   ownerListTripEvents, ownerAddTripEvent, tripTitle,
   type EventType, type DriverPayMode,
 } from "../../../src/features/trips/api";
 import {
-  ownerListTripExpenses, ownerAddExpense, ownerDeleteExpense,
-  EXPENSE_CATEGORIES, type ExpenseCategory,
+  listTripExpenses, ownerAddExpense, ownerDeleteExpense,
 } from "../../../src/features/expenses/api";
+import { ExpenseForm, type ExpenseFormValues } from "../../../src/features/expenses/ExpenseForm";
 import { listDrivers, listVehicles, listTrailers } from "../../../src/features/fleet/api";
 
 const EVENT_TYPES: EventType[] = ["load", "unload", "border", "driving", "rest", "other"];
 const PAY_MODES: DriverPayMode[] = ["per_diem", "percentage", "fixed"];
-// Najčešće valute na evropskim turama (original sa računa). EUR je bazna podrazumevana.
-const CURRENCIES: string[] = ["EUR", "RSD", "PLN", "HUF", "CZK", "RON", "BGN", "CHF", "USD", "GBP", "TRY", "BAM", "MKD"];
 
-// ── Pomoćni parseri (isti stil kao fleet) ──
-const toNum = (s: string): number | null => {
-  const t = s.trim().replace(",", ".");
-  if (!t) return null;
-  const n = Number(t);
-  return Number.isFinite(n) ? n : null;
-};
-const toInt = (s: string): number | null => {
-  const n = toNum(s);
-  return n == null ? null : Math.round(n);
-};
+// ── Pomoćni parseri za datum-vreme događaja ──
 const pad = (n: number) => String(n).padStart(2, "0");
-const todayYMD = () => {
-  const d = new Date();
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-};
 const nowLocalInput = () => {
   const d = new Date();
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
@@ -54,82 +39,6 @@ const parseLocalDateTime = (s: string): string | null => {
   const dt = new Date(Number(y), Number(mo) - 1, Number(d), Number(h), Number(mi));
   return Number.isNaN(dt.getTime()) ? null : dt.toISOString();
 };
-
-// ── Reusable "select" (padajuća lista kroz slide modal — samo tokeni) ──
-function PickerField({
-  label, value, options, placeholder, clearLabel, onSelect, colors, t,
-}: {
-  label: string;
-  value: string | null;
-  options: { value: string; label: string }[];
-  placeholder: string;
-  clearLabel?: string; // ako je zadato, nudi opciju "očisti" (za opcionu prikolicu)
-  onSelect: (v: string | null) => void;
-  colors: Palette;
-  t: (k: string) => string;
-}) {
-  const [open, setOpen] = useState(false);
-  const current = options.find((o) => o.value === value);
-  return (
-    <View style={{ gap: 6 }}>
-      <Text style={{ color: colors.textMuted, fontSize: 13 }}>{label}</Text>
-      <Pressable
-        onPress={() => setOpen(true)}
-        style={{
-          borderWidth: 1, borderColor: colors.border, borderRadius: 8,
-          padding: 12, backgroundColor: colors.surface,
-        }}
-      >
-        <Text style={{ color: current ? colors.text : colors.textMuted }}>
-          {current ? current.label : placeholder}
-        </Text>
-      </Pressable>
-
-      {open && (
-        <ModalScaffold colors={colors} onRequestClose={() => setOpen(false)}>
-          <View
-            style={{
-              flexDirection: "row", justifyContent: "space-between", alignItems: "center",
-              padding: 16, borderBottomWidth: 1, borderColor: colors.border,
-            }}
-          >
-            <Pressable onPress={() => setOpen(false)} hitSlop={8}>
-              <Text style={{ color: colors.textMuted, fontSize: 16 }}>{t("common.cancel")}</Text>
-            </Pressable>
-            <Text style={{ color: colors.text, fontWeight: "700", fontSize: 16 }}>{label}</Text>
-            <View style={{ width: 48 }} />
-          </View>
-          <FlatList
-            data={options}
-            keyExtractor={(o) => o.value}
-            ListHeaderComponent={
-              clearLabel ? (
-                <Pressable
-                  onPress={() => { onSelect(null); setOpen(false); }}
-                  style={{ padding: 16, borderBottomWidth: 1, borderColor: colors.border }}
-                >
-                  <Text style={{ color: value == null ? colors.primary : colors.textMuted }}>
-                    {clearLabel}
-                  </Text>
-                </Pressable>
-              ) : null
-            }
-            renderItem={({ item }) => (
-              <Pressable
-                onPress={() => { onSelect(item.value); setOpen(false); }}
-                style={{ padding: 16, borderBottomWidth: 1, borderColor: colors.border }}
-              >
-                <Text style={{ color: item.value === value ? colors.primary : colors.text }}>
-                  {item.label}
-                </Text>
-              </Pressable>
-            )}
-          />
-        </ModalScaffold>
-      )}
-    </View>
-  );
-}
 
 // ── Ekran ──
 type ModalState = { mode: "none" | "new" | "detail"; tripId?: string };
@@ -241,17 +150,17 @@ function NewTripModal({ onClose }: { onClose: () => void }) {
           placeholder="München" colors={colors} />
         <PickerField label={t("trip.fields.driver")} value={driverId}
           options={(drivers.data ?? []).map((d) => ({ value: d.id, label: d.full_name }))}
-          placeholder={t("trip.select")} onSelect={setDriverId} colors={colors} t={t} />
+          placeholder={t("trip.select")} onSelect={setDriverId} colors={colors} />
         <PickerField label={t("trip.fields.vehicle")} value={vehicleId}
           options={(vehicles.data ?? []).map((v) => ({
             value: v.id,
             label: v.make_model ? `${v.registration} · ${v.make_model}` : v.registration,
           }))}
-          placeholder={t("trip.select")} onSelect={setVehicleId} colors={colors} t={t} />
+          placeholder={t("trip.select")} onSelect={setVehicleId} colors={colors} />
         <PickerField label={t("trip.fields.trailer")} value={trailerId}
           options={(trailers.data ?? []).map((tr) => ({ value: tr.id, label: tr.registration }))}
           placeholder={t("trip.noTrailer")} clearLabel={t("trip.noTrailer")}
-          onSelect={setTrailerId} colors={colors} t={t} />
+          onSelect={setTrailerId} colors={colors} />
         <Field label={t("trip.fields.startOdometer")} value={startOdometer} onChangeText={setStartOdometer}
           keyboardType="numeric" placeholder="0" colors={colors} />
         <Field label={t("trip.fields.revenue")} value={revenue} onChangeText={setRevenue}
@@ -320,38 +229,20 @@ function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: () => v
   });
 
   // ── Troškovi (owner online; kurs za datum troška, base_amount računa kod) ──
-  const expenses = useQuery({ queryKey: ["trip-expenses", tripId], queryFn: () => ownerListTripExpenses(tripId) });
-  const [expCategory, setExpCategory] = useState<ExpenseCategory>("fuel");
-  const [expAmount, setExpAmount] = useState("");
-  const [expCurrency, setExpCurrency] = useState("EUR");
-  const [expDate, setExpDate] = useState<string | null>(todayYMD());
-  const [expLiters, setExpLiters] = useState("");
-  const [expCountry, setExpCountry] = useState("");
-  const [expNote, setExpNote] = useState("");
+  const expenses = useQuery({ queryKey: ["trip-expenses", tripId], queryFn: () => listTripExpenses(tripId) });
 
-  const addExpenseM = useMutation({
-    mutationFn: () => {
-      const amount = toNum(expAmount);
-      if (amount == null) throw new Error(t("expense.invalidAmount"));
-      return ownerAddExpense({
-        trip_id: tripId,
-        category: expCategory,
-        original_amount: amount,
-        original_currency: expCurrency,
-        occurred_at: expDate ?? undefined,
-        liters: expCategory === "fuel" ? toNum(expLiters) : null,
-        country: expCountry.trim() || null,
-        note: expNote.trim() || null,
-      });
-    },
-    onSuccess: () => {
+  // Unos ide kroz deljenu ExpenseForm; na grešku prikaži Alert i re-throw (forma zadrži unos).
+  const submitExpense = async (v: ExpenseFormValues) => {
+    try {
+      await ownerAddExpense({ trip_id: tripId, ...v });
       // P&L (trip_pnl) i zbir zavise od troškova -> osveži i turu
       qc.invalidateQueries({ queryKey: ["trip-expenses", tripId] });
       qc.invalidateQueries({ queryKey: ["trip", tripId] });
-      setExpAmount(""); setExpLiters(""); setExpCountry(""); setExpNote("");
-    },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
-  });
+    } catch (e) {
+      Alert.alert(t("common.error"), String((e as Error).message ?? e));
+      throw e;
+    }
+  };
 
   const delExpense = useMutation({
     mutationFn: (id: string) => ownerDeleteExpense(id),
@@ -370,7 +261,6 @@ function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: () => v
   const expenseRows = expenses.data ?? [];
   const baseCurrency = expenseRows[0]?.base_currency ?? "EUR";
   const expensesTotal = expenseRows.reduce((s, e) => s + (e.base_amount ?? 0), 0);
-  const amountValid = toNum(expAmount) != null;
 
   const d = trip.data;
 
@@ -476,48 +366,8 @@ function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: () => v
                 </>
               )}
 
-              {/* Forma: novi trošak */}
-              <View style={{ gap: 6 }}>
-                <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("expense.category")}</Text>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
-                  {EXPENSE_CATEGORIES.map((c) => {
-                    const active = expCategory === c;
-                    return (
-                      <Pressable key={c} onPress={() => setExpCategory(c)}
-                        style={{
-                          paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, borderWidth: 1,
-                          borderColor: active ? colors.primary : colors.border,
-                          backgroundColor: active ? colors.primary : colors.surface,
-                        }}>
-                        <Text style={{ color: active ? colors.onPrimary : colors.text }}>{t(`expense.categories.${c}`)}</Text>
-                      </Pressable>
-                    );
-                  })}
-                </View>
-              </View>
-              <Field label={t("expense.amount")} value={expAmount} onChangeText={setExpAmount}
-                keyboardType="numeric" placeholder="0.00" colors={colors} />
-              <PickerField label={t("expense.currency")} value={expCurrency}
-                options={CURRENCIES.map((c) => ({ value: c, label: c }))}
-                placeholder={t("trip.select")} onSelect={(v) => setExpCurrency(v ?? "EUR")} colors={colors} t={t} />
-              <DateField label={t("expense.date")} value={expDate} onChange={setExpDate}
-                colors={colors} placeholder="—" clearable={false} />
-              {expCategory === "fuel" ? (
-                <Field label={t("expense.liters")} value={expLiters} onChangeText={setExpLiters}
-                  keyboardType="numeric" placeholder="0.0" colors={colors} />
-              ) : null}
-              <Field label={t("expense.country")} value={expCountry} onChangeText={setExpCountry}
-                autoCapitalize="characters" placeholder="DE" colors={colors} />
-              <Field label={t("expense.note")} value={expNote} onChangeText={setExpNote} colors={colors} />
-              <Pressable onPress={() => addExpenseM.mutate()} disabled={addExpenseM.isPending || !amountValid}
-                style={{
-                  backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center",
-                  opacity: addExpenseM.isPending || !amountValid ? 0.6 : 1,
-                }}>
-                <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
-                  {addExpenseM.isPending ? t("common.saving") : t("expense.add")}
-                </Text>
-              </Pressable>
+              {/* Forma: novi trošak (deljena komponenta) */}
+              <ExpenseForm colors={colors} onSubmit={submitExpense} />
             </View>
 
             {/* Dnevnik događaja */}

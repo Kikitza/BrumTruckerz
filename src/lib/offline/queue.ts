@@ -104,6 +104,22 @@ export async function pendingCount(): Promise<number> {
   return r?.n ?? 0;
 }
 
+export type PendingRow = { id: number; kind: MutationKind; payload: any; attempts: number };
+
+/** Read-only pregled reda (za prikaz stavki koje čekaju sinhronizaciju).
+ *  Ne dira enqueue/flush — samo čita. */
+export async function listPending(kind?: MutationKind): Promise<PendingRow[]> {
+  const d = await getDb();
+  const sql = "select id, kind, payload, attempts from mutations"
+    + (kind ? " where kind = ?" : "") + " order by id";
+  const rows = kind
+    ? await d.getAllAsync<{ id: number; kind: string; payload: string; attempts: number }>(sql, kind)
+    : await d.getAllAsync<{ id: number; kind: string; payload: string; attempts: number }>(sql);
+  return rows.map((r) => ({
+    id: r.id, kind: r.kind as MutationKind, payload: JSON.parse(r.payload), attempts: r.attempts,
+  }));
+}
+
 /** Pozvati jednom iz root layout-a: sync na povratak mreže + periodični pokušaj. */
 export function startSync() {
   NetInfo.addEventListener((state) => {

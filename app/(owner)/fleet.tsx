@@ -15,6 +15,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { fmtNumber, fmtKm, fmtDate } from "../../src/lib/format";
+import { toNum, toInt } from "../../src/lib/num";
 import {
   Field, DateField, ModalScaffold, CustomRemindersSection,
   type CustomReminderDraft,
@@ -53,18 +54,6 @@ const emptyKey: Record<Section, string> = {
 };
 const deleteKey: Record<Section, string> = {
   vehicles: "fleet.deleteVehicle", trailers: "fleet.deleteTrailer", drivers: "fleet.deleteDriver",
-};
-
-// Broj/ceo broj iz teksta (podržava zarez kao decimalni separator); prazno -> null.
-const toNum = (s: string): number | null => {
-  const t = s.trim().replace(",", ".");
-  if (!t) return null;
-  const n = Number(t);
-  return Number.isFinite(n) ? n : null;
-};
-const toInt = (s: string): number | null => {
-  const n = toNum(s);
-  return n == null ? null : Math.round(n);
 };
 
 export default function FleetScreen() {

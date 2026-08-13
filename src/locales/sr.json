@@ -81,8 +81,8 @@
     "note": "Napomena",
     "total": "Ukupno (tura)",
     "empty": "Još nema troškova",
+    "pending": "čeka sinhronizaciju",
     "deleteConfirm": "Obrisati ovaj trošak?",
-    "invalidAmount": "Unesi ispravan iznos",
     "categories": {
       "fuel": "Gorivo",
       "toll": "Putarina",

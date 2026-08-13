@@ -7,7 +7,7 @@
 //     razrešava kurs pri sinhronizaciji.
 //   * VLASNIK — ONLINE (ownerAddExpense/…); kurs se povlači odmah za datum troška.
 import { supabase } from "../../lib/supabase";
-import { enqueue } from "../../lib/offline/queue";
+import { enqueue, listPending } from "../../lib/offline/queue";
 import { computeBase } from "../fx/rates";
 
 export type ExpenseCategory = "fuel" | "toll" | "customs" | "forwarding" | "parking" | "other";
@@ -36,6 +36,19 @@ export type Expense = {
 const EXPENSE_COLS =
   "id, trip_id, category, original_amount, original_currency, base_amount, base_currency, fx_rate, fx_rate_date, liters, country, occurred_at, note, created_at";
 
+// Stavka koja čeka u offline redu (još bez fx/base — kurs se razrešava pri sinhr.).
+export type PendingExpense = {
+  queueId: number;
+  trip_id: string;
+  category: ExpenseCategory;
+  original_amount: number;
+  original_currency: string;
+  occurred_at: string;
+  liters: number | null;
+  country: string | null;
+  note: string | null;
+};
+
 // ── VOZAČ (offline red) — nepromenjeno ──
 export async function addExpense(p: {
   company_id: string; trip_id: string; category: string;
@@ -45,6 +58,25 @@ export async function addExpense(p: {
   fx_rate?: number;                                      // ručna korekcija kursa (opciono)
 }) {
   await enqueue("expense.insert", { occurred_at: new Date().toISOString(), ...p });
+}
+
+// Troškovi ove ture koji čekaju u lokalnom redu (prikaz sa bedžom „čeka sinhr.").
+// Pending stavke NEMAJU baznu valutu/kurs — prikazuje se samo original (bez lokalnog preračuna).
+export async function listPendingExpenses(tripId: string): Promise<PendingExpense[]> {
+  const rows = await listPending("expense.insert");
+  return rows
+    .filter((r) => r.payload?.trip_id === tripId)
+    .map((r) => ({
+      queueId: r.id,
+      trip_id: r.payload.trip_id,
+      category: r.payload.category,
+      original_amount: r.payload.original_amount,
+      original_currency: r.payload.original_currency,
+      occurred_at: r.payload.occurred_at,
+      liters: r.payload.liters ?? null,
+      country: r.payload.country ?? null,
+      note: r.payload.note ?? null,
+    }));
 }
 
 // ── VLASNIK (online) ──
@@ -66,7 +98,15 @@ async function currentCompany(): Promise<{ id: string; base_currency: string }> 
   return { id: cid, base_currency: company?.base_currency ?? "EUR" };
 }
 
-export async function ownerListTripExpenses(tripId: string): Promise<Expense[]> {
+// Bazna valuta firme (vozač je čita ONLINE i kešira — koristi se kao cilj konverzije
+// pri offline unosu; RLS company_read dozvoljava i vozaču da čita svoju firmu).
+export async function getCompanyBaseCurrency(): Promise<string> {
+  return (await currentCompany()).base_currency;
+}
+
+// Sinhronizovani troškovi ture iz baze. Deljeno owner+vozač — RLS ograničava vidljivost
+// (vlasnik: sve u firmi; vozač: samo svoje ture). Bez dupliranja upita.
+export async function listTripExpenses(tripId: string): Promise<Expense[]> {
   const { data, error } = await supabase
     .from("expenses")
     .select(EXPENSE_COLS)

@@ -81,8 +81,8 @@
     "note": "Note",
     "total": "Trip total",
     "empty": "No expenses yet",
+    "pending": "waiting to sync",
     "deleteConfirm": "Delete this expense?",
-    "invalidAmount": "Enter a valid amount",
     "categories": {
       "fuel": "Fuel",
       "toll": "Toll",
