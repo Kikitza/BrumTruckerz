@@ -98,7 +98,16 @@
     "camera": "Kamera",
     "library": "Galerija",
     "empty": "Nema priloga",
-    "deleteConfirm": "Obrisati ovaj prilog?"
+    "deleteConfirm": "Obrisati ovaj prilog?",
+    "documents": "Dokumenti",
+    "kindLabel": "Vrsta dokumenta",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Faktura",
+      "customs": "Carina",
+      "fuel_receipt": "Račun goriva",
+      "other": "Ostalo"
+    }
   },
   "reminders": {
     "vehicleReg": "Registracija važi do",

@@ -98,7 +98,16 @@
     "camera": "Camera",
     "library": "Gallery",
     "empty": "No attachments",
-    "deleteConfirm": "Delete this attachment?"
+    "deleteConfirm": "Delete this attachment?",
+    "documents": "Documents",
+    "kindLabel": "Document type",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Invoice",
+      "customs": "Customs",
+      "fuel_receipt": "Fuel receipt",
+      "other": "Other"
+    }
   },
   "reminders": {
     "vehicleReg": "Registration valid until",

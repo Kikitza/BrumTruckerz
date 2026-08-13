@@ -106,6 +106,14 @@ export async function pendingCount(): Promise<number> {
 
 export type PendingRow = { id: number; kind: MutationKind; payload: any; attempts: number };
 
+/** Ukloni stavku iz reda pre sinhronizacije (npr. vozač obriše pogrešnu pending sliku).
+ *  Minimalno: brisanje jednog reda po id-u. Bezbedno i tokom flush-a (single-flight
+ *  obrađuje jedan po jedan; delete pogađa 0/1 red i ne remeti redosled ostalih). */
+export async function removePending(id: number): Promise<void> {
+  const d = await getDb();
+  await d.runAsync("delete from mutations where id = ?", id);
+}
+
 /** Read-only pregled reda (za prikaz stavki koje čekaju sinhronizaciju).
  *  Ne dira enqueue/flush — samo čita. */
 export async function listPending(kind?: MutationKind): Promise<PendingRow[]> {

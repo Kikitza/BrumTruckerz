@@ -162,6 +162,12 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
               <KV label={t("trip.fields.startOdometer")} value={d.start_odometer != null ? String(d.start_odometer) : "—"} colors={colors} />
             </View>
 
+            {/* Dokumenti ture (CMR/faktura/carina…) */}
+            <View style={{ gap: 12 }}>
+              <SectionTitle text={t("attachment.documents")} colors={colors} />
+              <AttachmentsSection tripId={tripId} pickKind canDelete colors={colors} />
+            </View>
+
             {/* Finansije */}
             <View style={{ gap: 12 }}>
               <SectionTitle text={t("trip.section.finance")} colors={colors} />

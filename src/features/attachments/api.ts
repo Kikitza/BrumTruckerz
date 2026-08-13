@@ -2,11 +2,15 @@
 // U bazi stoji SAMO metapodatak (storage_key); fajl je na Cloudflare R2.
 // Upload IDE KROZ OFFLINE RED (ista putanja owner+vozač) -> handler "attachment.upload".
 // Presigned URL-ovi (upload/download) dolaze iz Edge funkcije "r2-sign" (RLS odlučuje o pristupu).
+import * as FileSystem from "expo-file-system/legacy";
 import { supabase } from "../../lib/supabase";
-import { enqueue, listPending } from "../../lib/offline/queue";
+import { enqueue, listPending, removePending } from "../../lib/offline/queue";
 import type { ExpenseCategory } from "../expenses/api";
 
 export type AttachmentKind = "cmr" | "invoice" | "customs" | "fuel_receipt" | "other";
+
+// Vrste dokumenata (za izbor pri kačenju na turu — sekcija „Dokumenti").
+export const ATTACHMENT_KINDS: AttachmentKind[] = ["cmr", "invoice", "customs", "fuel_receipt", "other"];
 
 // Prilog troška: gorivo -> „fuel_receipt", ostalo -> „invoice" (deljeno owner+vozač).
 export const expenseAttachmentKind = (cat: ExpenseCategory): AttachmentKind =>
@@ -95,8 +99,19 @@ export async function listPendingAttachments(
     }));
 }
 
-// Brisanje priloga (SAMO vlasnik). Briše red u bazi; R2 objekat ostaje siroče (MVP odluka).
+// Brisanje SINHRONIZOVANOG priloga (owner i vozač — RLS attach_* dozvoljava CRUD nad
+// svojim turama). Briše red u bazi; R2 objekat ostaje siroče (MVP odluka, kao do sada).
 export async function deleteAttachment(id: string): Promise<void> {
   const { error } = await supabase.from("attachments").delete().eq("id", id);
   if (error) throw error;
+}
+
+// Brisanje PENDING priloga PRE sinhronizacije: ukloni stavku iz reda + obriši lokalni fajl.
+export async function deletePendingAttachment(queueId: number, localUri: string): Promise<void> {
+  await removePending(queueId);
+  try {
+    await FileSystem.deleteAsync(localUri, { idempotent: true });
+  } catch {
+    // fajl je možda već obrisan/nedostupan — nema posledica po podatke
+  }
 }

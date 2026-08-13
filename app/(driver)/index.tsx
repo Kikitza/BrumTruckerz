@@ -11,6 +11,7 @@ import {
 import { ExpenseForm, type ExpenseFormValues } from "../../src/features/expenses/ExpenseForm";
 import { AttachmentsSection } from "../../src/features/attachments/AttachmentsSection";
 import { expenseAttachmentKind } from "../../src/features/attachments/api";
+import { useSignOut } from "../../src/features/auth/signOut";
 import { pendingCount } from "../../src/lib/offline/queue";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { fmtDate, fmtMoney } from "../../src/lib/format";
@@ -26,6 +27,7 @@ export default function DriverHome() {
   const { t } = useTranslation();
   const { colors } = useTheme();
   const qc = useQueryClient();
+  const signOut = useSignOut();
   const { data } = useQuery({ queryKey: ["driver-trips"], queryFn: driverListTrips });
   const active = data?.find((x: any) => x.status !== "finished");
 
@@ -38,8 +40,9 @@ export default function DriverHome() {
 
   if (!active) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: colors.bg }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 20, backgroundColor: colors.bg }}>
         <Text style={{ color: colors.textMuted }}>—</Text>
+        <SignOutButton colors={colors} onPress={signOut} label={t("settings.signOut")} />
       </View>
     );
   }
@@ -75,8 +78,31 @@ export default function DriverHome() {
       </View>
       <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("common.offlineNote")}</Text>
 
+      {/* Dokumenti ture (CMR/faktura/carina…) — vozač samo dodaje */}
+      <View style={{ gap: 8 }}>
+        <SectionLabel text={t("attachment.documents")} colors={colors} />
+        <AttachmentsSection tripId={active.id} pickKind canDelete colors={colors} />
+      </View>
+
       <DriverExpenses tripId={active.id} companyId={active.company_id} colors={colors} />
+
+      <SignOutButton colors={colors} onPress={signOut} label={t("settings.signOut")} />
     </ScrollView>
+  );
+}
+
+// Dugme „Odjava" (isti izgled/logika kao vlasnički Settings; koristi deljeni useSignOut).
+function SignOutButton({ colors, onPress, label }: { colors: Palette; onPress: () => void; label: string }) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={{
+        backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border,
+        borderRadius: 10, padding: 16, alignItems: "center",
+      }}
+    >
+      <Text style={{ color: colors.danger, fontWeight: "600" }}>{label}</Text>
+    </Pressable>
   );
 }
 
@@ -95,6 +121,11 @@ function PendingBanner({ colors }: { colors: Palette }) {
       <Text style={{ color: colors.warn, fontWeight: "600" }}>{t("trip.pendingSync", { count: n })}</Text>
     </View>
   );
+}
+
+// Naslov sekcije (isti stil na vozačevom ekranu).
+function SectionLabel({ text, colors }: { text: string; colors: Palette }) {
+  return <Text style={{ color: colors.textMuted, fontSize: 13, fontWeight: "700", textTransform: "uppercase" }}>{text}</Text>;
 }
 
 // Troškovi ture: sinhronizovani (baza, RLS = svoje ture) + lokalni koji čekaju u redu.
@@ -143,9 +174,7 @@ function DriverExpenses({ tripId, companyId, colors }: { tripId: string; company
 
   return (
     <View style={{ gap: 12 }}>
-      <Text style={{ color: colors.textMuted, fontSize: 13, fontWeight: "700", textTransform: "uppercase" }}>
-        {t("expense.section")}
-      </Text>
+      <SectionLabel text={t("expense.section")} colors={colors} />
 
       {synced.length === 0 && pending.length === 0 ? (
         <Text style={{ color: colors.textMuted }}>{t("expense.empty")}</Text>
@@ -166,7 +195,7 @@ function DriverExpenses({ tripId, companyId, colors }: { tripId: string; company
               </Text>
               {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
               <AttachmentsSection expenseId={e.id} tripId={tripId} kind={expenseAttachmentKind(e.category)}
-                canDelete={false} colors={colors} />
+                canDelete colors={colors} />
             </View>
           ))}
           {/* Sinhronizovani: original + iznos u baznoj valuti */}
@@ -182,7 +211,7 @@ function DriverExpenses({ tripId, companyId, colors }: { tripId: string; company
               </Text>
               {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
               <AttachmentsSection expenseId={e.id} tripId={tripId} kind={expenseAttachmentKind(e.category)}
-                canDelete={false} colors={colors} />
+                canDelete colors={colors} />
             </View>
           ))}
         </>

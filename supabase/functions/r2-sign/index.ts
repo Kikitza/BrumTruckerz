@@ -72,12 +72,18 @@ Deno.serve(async (req) => {
       company_id = data.company_id;
       trip_id = data.trip_id;
     } else if (body.trip_id) {
-      // C2 (Dokumenti na turi): vlasnik čita trips; vozač ide preko driver_trips view-a.
-      const { data } = await supabase
-        .from("trips").select("id, company_id").eq("id", body.trip_id).maybeSingle();
-      if (!data) return json({ error: "forbidden" }, 403);
-      company_id = data.company_id;
-      trip_id = data.id;
+      // Dokumenti na turi: vlasnik vidi turu kroz `trips` (RLS firme); vozač NE sme na
+      // baznu trips (pravilo #2), pa se za njega proverava kroz `driver_trips` view
+      // (vraća samo NJEGOVE ture). Prolaz kroz bilo koji => pristup dozvoljen.
+      let row = (await supabase
+        .from("trips").select("id, company_id").eq("id", body.trip_id).maybeSingle()).data;
+      if (!row) {
+        row = (await supabase
+          .from("driver_trips").select("id, company_id").eq("id", body.trip_id).maybeSingle()).data;
+      }
+      if (!row) return json({ error: "forbidden" }, 403);
+      company_id = row.company_id;
+      trip_id = row.id;
     } else {
       return json({ error: "expense_id or trip_id required" }, 400);
     }
