@@ -13,6 +13,13 @@ const config: ExpoConfig = {
     "expo-localization",
     "expo-sqlite",
     "@react-native-community/datetimepicker",
+    [
+      "expo-image-picker",
+      {
+        photosPermission: "Aplikaciji je potrebna dozvola za pristup galeriji radi prilaganja dokumenata.",
+        cameraPermission: "Aplikaciji je potrebna dozvola za kameru radi slikanja dokumenata.",
+      },
+    ],
   ],
   ios: { supportsTablet: false, bundleIdentifier: "com.brumtruckerz.app" },
   android: { package: "com.brumtruckerz.app" },

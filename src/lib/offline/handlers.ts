@@ -7,9 +7,12 @@
 // — vozač offline unese samo original (iznos + valuta), bez kursa.
 // base_amount = round(original * rate, 2) računa KOD.
 
+import * as FileSystem from "expo-file-system/legacy";
 import { supabase } from "../supabase";
 import { registerHandler } from "./queue";
 import { computeBase } from "../../features/fx/rates";
+
+const DUP_PK = "23505"; // Postgres unique_violation — ponovljen upis (retry) tretiramo kao uspeh
 
 export function registerAllHandlers() {
   // Nov događaj ture (utovar/granica/istovar…)
@@ -49,8 +52,11 @@ export function registerAllHandlers() {
     if (error) throw error;
   });
 
-  // Trošak (multivaluta): original sa računa; kurs se povlači sad, za datum troška
+  // Trošak (multivaluta): original sa računa; kurs se povlači sad, za datum troška.
+  // id je klijentski (uuid) da bi prilozi mogli da ga referišu i pre sinhronizacije;
+  // ponovni pokušaj (isti id) = konflikt na pk => tretira se kao uspeh (idempotentno).
   registerHandler("expense.insert", async (p: {
+    id?: string;
     company_id: string; trip_id: string; category: string;
     original_amount: number; original_currency: string;
     base_currency: string;                 // bazna valuta firme (kopira se pri unosu)
@@ -64,6 +70,7 @@ export function registerAllHandlers() {
     );
 
     const { error } = await supabase.from("expenses").insert({
+      ...(p.id ? { id: p.id } : {}),
       company_id: p.company_id,
       trip_id: p.trip_id,
       category: p.category,
@@ -78,18 +85,48 @@ export function registerAllHandlers() {
       occurred_at: p.occurred_at,
       note: p.note ?? null,
     });
-    if (error) throw error;
+    if (error && error.code !== DUP_PK) throw error;
   });
 
-  // Slika dokumenta: lokalni fajl -> potpisani URL (Edge) -> PUT na R2 -> red u attachments
-  registerHandler("attachment.upload", async (_p: {
-    company_id: string; trip_id: string; kind: string; local_uri: string;
+  // Slika dokumenta: r2-sign(upload) -> PUT na presigned R2 URL -> insert u attachments -> obriši lokalni fajl.
+  // Neuspeh bilo gde => throw => stavka ostaje u redu (postojeći backoff). FIFO: prilog troška ide
+  // posle expense.insert, pa expense red već postoji kad r2-sign proverava pristup kroz RLS.
+  registerHandler("attachment.upload", async (p: {
+    id: string; trip_id?: string | null; expense_id?: string | null; kind: string; local_uri: string;
   }) => {
-    // TODO (korak 5 iz CLAUDE.md redosleda):
-    //  1) supabase.functions.invoke('sign-upload', { body: { kind, trip_id } }) -> { url, storage_key }
-    //  2) fetch(local_uri) -> blob -> PUT url (Content-Type image/jpeg)
-    //  3) insert into attachments { company_id, trip_id, kind, storage_key }
-    //  4) obriši lokalni fajl (expo-file-system)
-    throw new Error("attachment.upload: implementirati uz Edge funkciju sign-upload (v. CLAUDE.md korak 5)");
+    // 1) presigned PUT + server-generisan storage_key (+ company_id/trip_id iz RLS reda)
+    const { data, error } = await supabase.functions.invoke("r2-sign", {
+      body: { action: "upload", kind: p.kind, trip_id: p.trip_id, expense_id: p.expense_id },
+    });
+    if (error) throw error;
+    const { url, storage_key, company_id, trip_id } = data as {
+      url: string; storage_key: string; company_id: string; trip_id: string | null;
+    };
+
+    // 2) PUT lokalnog fajla na R2 (binarni upload)
+    const put = await FileSystem.uploadAsync(url, p.local_uri, {
+      httpMethod: "PUT",
+      uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
+      headers: { "Content-Type": "image/jpeg" },
+    });
+    if (put.status < 200 || put.status >= 300) throw new Error(`R2 PUT ${put.status}`);
+
+    // 3) insert reda u attachments (id = klijentski uuid; retry -> pk konflikt = uspeh)
+    const { error: insErr } = await supabase.from("attachments").insert({
+      id: p.id,
+      company_id,
+      trip_id: trip_id ?? p.trip_id ?? null,
+      expense_id: p.expense_id ?? null,
+      kind: p.kind,
+      storage_key,
+    });
+    if (insErr && insErr.code !== DUP_PK) throw insErr;
+
+    // 4) obriši lokalni fajl (best-effort — ne obara sinhronizaciju)
+    try {
+      await FileSystem.deleteAsync(p.local_uri, { idempotent: true });
+    } catch {
+      // ignoriši; fajl će ostati u document dir-u, bez posledica po podatke
+    }
   });
 }

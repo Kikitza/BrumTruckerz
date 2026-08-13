@@ -15,16 +15,19 @@ export type Palette = {
   onPrimary: string; // tekst/ikonice na primary podlozi
   danger: string;
   warn: string;
+  overlay: string;   // zatamnjenje iza modala/lightbox-a (pun prikaz slike)
 };
 
 export const palettes: Record<"light" | "dark", Palette> = {
   light: {
     bg: "#F6F7F9", surface: "#FFFFFF", text: "#16233B", textMuted: "#5A6B82",
     border: "#E4E8EF", primary: "#0E7C6B", onPrimary: "#FFFFFF", danger: "#B4291F", warn: "#B4741A",
+    overlay: "rgba(0,0,0,0.9)",
   },
   dark: {
     bg: "#0F1520", surface: "#1A2230", text: "#EDF1F7", textMuted: "#9AA7BA",
     border: "#2A3548", primary: "#3BB79F", onPrimary: "#FFFFFF", danger: "#E06055", warn: "#D9A03F",
+    overlay: "rgba(0,0,0,0.9)",
   },
 };
 

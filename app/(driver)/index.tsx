@@ -9,6 +9,8 @@ import {
   listTripExpenses, listPendingExpenses, addExpense, getCompanyBaseCurrency,
 } from "../../src/features/expenses/api";
 import { ExpenseForm, type ExpenseFormValues } from "../../src/features/expenses/ExpenseForm";
+import { AttachmentsSection } from "../../src/features/attachments/AttachmentsSection";
+import { expenseAttachmentKind } from "../../src/features/attachments/api";
 import { pendingCount } from "../../src/lib/offline/queue";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { fmtDate, fmtMoney } from "../../src/lib/format";
@@ -163,6 +165,8 @@ function DriverExpenses({ tripId, companyId, colors }: { tripId: string; company
                 {fmtDate(e.occurred_at)}{e.country ? ` · ${e.country}` : ""}{e.liters != null ? ` · ${e.liters} L` : ""}
               </Text>
               {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
+              <AttachmentsSection expenseId={e.id} tripId={tripId} kind={expenseAttachmentKind(e.category)}
+                canDelete={false} colors={colors} />
             </View>
           ))}
           {/* Sinhronizovani: original + iznos u baznoj valuti */}
@@ -177,6 +181,8 @@ function DriverExpenses({ tripId, companyId, colors }: { tripId: string; company
                 {fmtDate(e.occurred_at)}{e.country ? ` · ${e.country}` : ""}{e.liters != null ? ` · ${e.liters} L` : ""}
               </Text>
               {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
+              <AttachmentsSection expenseId={e.id} tripId={tripId} kind={expenseAttachmentKind(e.category)}
+                canDelete={false} colors={colors} />
             </View>
           ))}
         </>

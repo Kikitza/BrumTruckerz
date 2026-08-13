@@ -92,6 +92,13 @@
       "other": "Other"
     }
   },
+  "attachment": {
+    "add": "Add photo",
+    "camera": "Camera",
+    "library": "Gallery",
+    "empty": "No attachments",
+    "deleteConfirm": "Delete this attachment?"
+  },
   "reminders": {
     "vehicleReg": "Registration valid until",
     "fireExt": "Fire extinguisher",

@@ -9,6 +9,7 @@
 import { supabase } from "../../lib/supabase";
 import { enqueue, listPending } from "../../lib/offline/queue";
 import { computeBase } from "../fx/rates";
+import { uuidv4 } from "../../lib/uuid";
 
 export type ExpenseCategory = "fuel" | "toll" | "customs" | "forwarding" | "parking" | "other";
 
@@ -37,8 +38,10 @@ const EXPENSE_COLS =
   "id, trip_id, category, original_amount, original_currency, base_amount, base_currency, fx_rate, fx_rate_date, liters, country, occurred_at, note, created_at";
 
 // Stavka koja čeka u offline redu (još bez fx/base — kurs se razrešava pri sinhr.).
+// `id` je klijentski uuid (isti koji dobija red u bazi) — prilozi ga referišu i pre sinhr.
 export type PendingExpense = {
   queueId: number;
+  id: string;
   trip_id: string;
   category: ExpenseCategory;
   original_amount: number;
@@ -49,15 +52,19 @@ export type PendingExpense = {
   note: string | null;
 };
 
-// ── VOZAČ (offline red) — nepromenjeno ──
+// ── VOZAČ (offline red) ──
+// Generiše klijentski id (uuid) i vraća ga, da pozivalac može odmah da veže prilog
+// za (još nesinhronizovan) trošak. Handler ubacuje red baš sa tim id-em (idempotentno).
 export async function addExpense(p: {
   company_id: string; trip_id: string; category: string;
   original_amount: number; original_currency: string;   // ono što piše na računu
   base_currency: string;                                 // bazna valuta firme
   occurred_at?: string; liters?: number; country?: string; note?: string;
   fx_rate?: number;                                      // ručna korekcija kursa (opciono)
-}) {
-  await enqueue("expense.insert", { occurred_at: new Date().toISOString(), ...p });
+}): Promise<string> {
+  const id = uuidv4();
+  await enqueue("expense.insert", { id, occurred_at: new Date().toISOString(), ...p });
+  return id;
 }
 
 // Troškovi ove ture koji čekaju u lokalnom redu (prikaz sa bedžom „čeka sinhr.").
@@ -68,6 +75,7 @@ export async function listPendingExpenses(tripId: string): Promise<PendingExpens
     .filter((r) => r.payload?.trip_id === tripId)
     .map((r) => ({
       queueId: r.id,
+      id: r.payload.id,
       trip_id: r.payload.trip_id,
       category: r.payload.category,
       original_amount: r.payload.original_amount,

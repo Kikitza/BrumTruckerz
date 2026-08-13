@@ -14,6 +14,8 @@ import {
 } from "./api";
 import { listTripExpenses, ownerAddExpense, ownerDeleteExpense } from "../expenses/api";
 import { ExpenseForm, type ExpenseFormValues } from "../expenses/ExpenseForm";
+import { AttachmentsSection } from "../attachments/AttachmentsSection";
+import { expenseAttachmentKind } from "../attachments/api";
 
 const EVENT_TYPES: EventType[] = ["load", "unload", "border", "driving", "rest", "other"];
 const PAY_MODES: DriverPayMode[] = ["per_diem", "percentage", "fixed"];
@@ -219,6 +221,8 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
                         {fmtDate(e.occurred_at)}{e.country ? ` · ${e.country}` : ""}{e.liters != null ? ` · ${e.liters} L` : ""}
                       </Text>
                       {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
+                      <AttachmentsSection expenseId={e.id} tripId={tripId} kind={expenseAttachmentKind(e.category)}
+                        canDelete colors={colors} />
                     </View>
                   ))}
                   <View style={{ flexDirection: "row", justifyContent: "space-between", paddingTop: 4 }}>

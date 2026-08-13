@@ -92,6 +92,13 @@
       "other": "Ostalo"
     }
   },
+  "attachment": {
+    "add": "Dodaj sliku",
+    "camera": "Kamera",
+    "library": "Galerija",
+    "empty": "Nema priloga",
+    "deleteConfirm": "Obrisati ovaj prilog?"
+  },
   "reminders": {
     "vehicleReg": "Registracija važi do",
     "fireExt": "PP aparat",
