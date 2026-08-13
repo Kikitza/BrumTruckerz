@@ -1,0 +1,7 @@
+{
+  "name": "brumtruckerz",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+  "features": { "ghcr.io/devcontainers-community/features/deno:1": {} },
+  "postCreateCommand": "npm install && npm install -g supabase",
+  "customizations": { "vscode": { "extensions": ["denoland.vscode-deno", "expo.vscode-expo-tools", "dbaeumer.vscode-eslint"] } }
+}
