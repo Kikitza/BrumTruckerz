@@ -1,0 +1,51 @@
+{
+  "auth": {
+    "signIn": "Prijava",
+    "email": "Imejl",
+    "sendCode": "Pošalji kod",
+    "code": "6-cifreni kod",
+    "verify": "Potvrdi",
+    "codeSentTo": "Kod poslat na {{email}}",
+    "changeEmail": "Promeni imejl"
+  },
+  "tabs": {
+    "trips": "Ture",
+    "fleet": "Flota",
+    "reminders": "Rokovi",
+    "reports": "Izveštaji",
+    "settings": "Podešavanja",
+    "myTrip": "Moja tura",
+    "documents": "Dokumenti",
+    "resources": "Resursi"
+  },
+  "trip": {
+    "status": {
+      "loading": "Utovar",
+      "driving": "Na putu",
+      "border": "Granica",
+      "unloading": "Istovar",
+      "finished": "Završena"
+    },
+    "addEvent": "Dodaj događaj",
+    "endOdometer": "Završna kilometraža",
+    "pendingSync": "{{count}} čeka sinhronizaciju"
+  },
+  "expense": {
+    "add": "Dodaj trošak",
+    "amount": "Iznos (kako piše na računu)",
+    "currency": "Valuta",
+    "categories": {
+      "fuel": "Gorivo",
+      "toll": "Putarina",
+      "customs": "Carina",
+      "forwarding": "Špedicija",
+      "parking": "Parking",
+      "other": "Ostalo"
+    }
+  },
+  "common": {
+    "save": "Sačuvaj",
+    "cancel": "Otkaži",
+    "offlineNote": "Sačuvano lokalno — sinhronizuje se kad bude mreže"
+  }
+}

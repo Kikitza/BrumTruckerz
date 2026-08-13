@@ -1,0 +1,51 @@
+{
+  "auth": {
+    "signIn": "Sign in",
+    "email": "Email",
+    "sendCode": "Send code",
+    "code": "6-digit code",
+    "verify": "Verify",
+    "codeSentTo": "Code sent to {{email}}",
+    "changeEmail": "Change email"
+  },
+  "tabs": {
+    "trips": "Trips",
+    "fleet": "Fleet",
+    "reminders": "Reminders",
+    "reports": "Reports",
+    "settings": "Settings",
+    "myTrip": "My trip",
+    "documents": "Documents",
+    "resources": "Resources"
+  },
+  "trip": {
+    "status": {
+      "loading": "Loading",
+      "driving": "Driving",
+      "border": "Border",
+      "unloading": "Unloading",
+      "finished": "Finished"
+    },
+    "addEvent": "Add event",
+    "endOdometer": "End odometer",
+    "pendingSync": "{{count}} waiting to sync"
+  },
+  "expense": {
+    "add": "Add expense",
+    "amount": "Amount (as on receipt)",
+    "currency": "Currency",
+    "categories": {
+      "fuel": "Fuel",
+      "toll": "Toll",
+      "customs": "Customs",
+      "forwarding": "Forwarding",
+      "parking": "Parking",
+      "other": "Other"
+    }
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "offlineNote": "Saved locally — will sync when online"
+  }
+}
