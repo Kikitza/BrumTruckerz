@@ -18,6 +18,10 @@ export function useSession() {
 
   useEffect(() => {
     if (!session) { setRole(null); setLoading(false); return; }
+    // Uloga se čita iz app_users (profil). Red mora prethodno postojati —
+    // bootstrap-uje se service-role/ručno; nema klijentskog toka registracije.
+    // TODO (kasnija faza): owner kreira app_users red za vozača (bez firme dok ga
+    // ne veže) i povezuje drivers.user_id; sistem pozivnica se NE gradi sada.
     supabase.from("app_users").select("role").eq("id", session.user.id).single()
       .then(({ data }) => { setRole((data?.role as Role) ?? null); setLoading(false); });
   }, [session?.user.id]);
