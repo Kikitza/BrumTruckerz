@@ -47,6 +47,7 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 - TypeScript strict; funkcionalne komponente; feature-first struktura (`src/features/<domen>/api.ts` je jedini sloj koji priča sa Supabase-om).
 - Svaka izmena šeme = nova migracija `NNNN_ime.sql`.
 - Testovi za: offline red (enqueue/flush/retry), fx obračun, RLS (firma A ≠ firma B), correct_trip_event lanac verzija.
+- **Provere na kraju svakog zadatka (ritual):** `npm run typecheck` **i** `npm test` moraju biti čisti; `npm run lint` bez **grešaka** (upozorenja su dozvoljena). Iste tri provere vrti CI (`.github/workflows/ci.yml`).
 - **IZVEŠTAJ (obavezno):** na kraju SVAKOG zadatka upiši kompletan rezime u `IZVESTAJ.md` u korenu projekta, **prepisujući** stari sadržaj (uvek samo poslednji zadatak). Rezime obavezno sadrži: spisak izmena, test matricu (ili test listu), podsetnik za ručnu primenu migracija (ako ih ima) i eventualni HITNI SQL / rollback. `IZVESTAJ.md` je u `.gitignore` (ne commituje se) — služi da preživi reset sesije/Codespace-a.
 
 ## KVALITET KODA — važi za svaki zadatak
