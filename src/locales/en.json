@@ -69,7 +69,8 @@
     "select": "Select…",
     "addEvent": "Add event",
     "endOdometer": "End odometer",
-    "pendingSync": "{{count}} waiting to sync",
+    "pendingSync_one": "{{count}} waiting to sync",
+    "pendingSync_other": "{{count}} waiting to sync",
     "saveAssignment": "Save changes",
     "assignmentLockedFinished": "Trip is finished — assignment can no longer be changed."
   },
@@ -123,8 +124,10 @@
     "customFrom": "From (optional)",
     "empty": "No reminders yet",
     "today": "today",
-    "inDays": "in {{count}} days",
-    "overdue": "{{count}} days overdue",
+    "inDays_one": "in {{count}} day",
+    "inDays_other": "in {{count}} days",
+    "overdue_one": "{{count}} day overdue",
+    "overdue_other": "{{count}} days overdue",
     "group": {
       "expired": "Expired",
       "soon": "Due in ≤30 days",
