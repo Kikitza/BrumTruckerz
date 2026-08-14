@@ -1,8 +1,9 @@
 import type { ExpoConfig } from "expo/config";
 
 const config: ExpoConfig = {
-  name: "BrumTruckerz",
-  slug: "brumtruckerz",
+  name: "BrumTruckerz",                // vidljivo ime aplikacije
+  slug: "kikitza",                     // EAS projekat-slug (mora da odgovara projectId-u; interni identifikator, ne brend)
+  owner: "kikitzas-team",              // EAS nalog vlasnik projekta (projectId živi pod ovim nalogom)
   scheme: "brumtruckerz",
   version: "0.1.0",
   orientation: "portrait",
@@ -24,5 +25,6 @@ const config: ExpoConfig = {
   ios: { supportsTablet: false, bundleIdentifier: "com.brumtruckerz.app" },
   android: { package: "com.brumtruckerz.app" },
   experiments: { typedRoutes: true },
+  extra: { eas: { projectId: "991f25e9-c8c1-4ba0-b4cf-d7cb4e6d28a0" } },
 };
 export default config;
