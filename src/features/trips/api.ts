@@ -75,6 +75,13 @@ export type TripFinanceInput = {
   driver_pay?: number | null;
 };
 
+// Zamena dodele (vozač/vozilo/prikolica). NE dira finansije (vozarina/valuta/P&L).
+export type TripAssignmentInput = {
+  driver_id: string;
+  vehicle_id: string;
+  trailer_id: string | null;
+};
+
 export type AddEventInput = {
   trip_id: string;
   type: EventType;
@@ -159,6 +166,23 @@ export async function ownerUpdateTripFinance(tripId: string, input: TripFinanceI
   const { data, error } = await supabase
     .from("trips")
     .update(input)
+    .eq("id", tripId)
+    .select()
+    .single();
+  if (error) throw error;
+  return data as Trip;
+}
+
+// Zamena dodele na postojećoj turi. Menja ISKLJUČIVO driver_id/vehicle_id/trailer_id —
+// vozarina, valuta i P&L se ne diraju (pravilo vlasnika proizvoda). RLS vlasnika dozvoljava update.
+export async function ownerUpdateTripAssignment(tripId: string, input: TripAssignmentInput): Promise<Trip> {
+  const { data, error } = await supabase
+    .from("trips")
+    .update({
+      driver_id: input.driver_id,
+      vehicle_id: input.vehicle_id,
+      trailer_id: input.trailer_id,
+    })
     .eq("id", tripId)
     .select()
     .single();

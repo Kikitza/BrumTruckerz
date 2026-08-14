@@ -11,6 +11,9 @@ import * as FileSystem from "expo-file-system/legacy";
 import { supabase } from "../supabase";
 import { registerHandler } from "./queue";
 import { computeBase } from "../../features/fx/rates";
+import { base64ToBytes } from "../base64";
+
+const PRILOZI_BUCKET = "prilozi"; // privatan Supabase Storage bucket (v. migracija 0008)
 
 const DUP_PK = "23505"; // Postgres unique_violation — ponovljen upis (retry) tretiramo kao uspeh
 
@@ -88,41 +91,45 @@ export function registerAllHandlers() {
     if (error && error.code !== DUP_PK) throw error;
   });
 
-  // Slika dokumenta: r2-sign(upload) -> PUT na presigned R2 URL -> insert u attachments -> obriši lokalni fajl.
-  // Neuspeh bilo gde => throw => stavka ostaje u redu (postojeći backoff). FIFO: prilog troška ide
-  // posle expense.insert, pa expense red već postoji kad r2-sign proverava pristup kroz RLS.
+  // Slika dokumenta: upload u Supabase Storage ('prilozi') -> insert u attachments -> obriši lokalni fajl.
+  // Neuspeh bilo gde => throw => stavka ostaje u redu (postojeći backoff). Payload je NEPROMENJEN u odnosu
+  // na R2 varijantu ({id, trip_id, expense_id, kind, local_uri}) — zaostale pending slike prolaze isti put.
+  // Pristup NE proverava kod, već storage policy (0008): owner po prvom segmentu (firma), vozač po drugom
+  // (svoja tura) — isto pravilo kao attach_owner/attach_driver. storage_key je backend-agnostičan.
   registerHandler("attachment.upload", async (p: {
     id: string; trip_id?: string | null; expense_id?: string | null; kind: string; local_uri: string;
   }) => {
-    // 1) presigned PUT + server-generisan storage_key (+ company_id/trip_id iz RLS reda)
-    const { data, error } = await supabase.functions.invoke("r2-sign", {
-      body: { action: "upload", kind: p.kind, trip_id: p.trip_id, expense_id: p.expense_id },
-    });
-    if (error) throw error;
-    const { url, storage_key, company_id, trip_id } = data as {
-      url: string; storage_key: string; company_id: string; trip_id: string | null;
-    };
+    // 1) company_id iz app_users (preko postojećeg RLS helpera) -> prvi segment putanje
+    const { data: company_id, error: cErr } = await supabase.rpc("current_company_id");
+    if (cErr) throw cErr;
+    if (!company_id) throw new Error("nema firme za korisnika");
 
-    // 2) PUT lokalnog fajla na R2 (binarni upload)
-    const put = await FileSystem.uploadAsync(url, p.local_uri, {
-      httpMethod: "PUT",
-      uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
-      headers: { "Content-Type": "image/jpeg" },
-    });
-    if (put.status < 200 || put.status >= 300) throw new Error(`R2 PUT ${put.status}`);
+    // storage_key = company_id/trip_id/uuid.jpg; uuid = id priloga => deterministički (retry idempotentan)
+    const trip_id = p.trip_id ?? null;
+    const storage_key = `${company_id}/${trip_id}/${p.id}.jpg`;
 
-    // 3) insert reda u attachments (id = klijentski uuid; retry -> pk konflikt = uspeh)
+    // 2) lokalni fajl -> base64 -> bajtovi (RN: upload ide preko ArrayBufferView, ne Blob/FormData)
+    const b64 = await FileSystem.readAsStringAsync(p.local_uri, { encoding: "base64" });
+    const bytes = base64ToBytes(b64);
+
+    // 3) upload u privatan bucket (upsert => ponovni pokušaj piše isti ključ, bez siročeta)
+    const { error: upErr } = await supabase.storage
+      .from(PRILOZI_BUCKET)
+      .upload(storage_key, bytes, { contentType: "image/jpeg", upsert: true });
+    if (upErr) throw upErr;
+
+    // 4) insert reda u attachments (id = klijentski uuid; retry -> pk konflikt = uspeh)
     const { error: insErr } = await supabase.from("attachments").insert({
       id: p.id,
       company_id,
-      trip_id: trip_id ?? p.trip_id ?? null,
+      trip_id,
       expense_id: p.expense_id ?? null,
       kind: p.kind,
       storage_key,
     });
     if (insErr && insErr.code !== DUP_PK) throw insErr;
 
-    // 4) obriši lokalni fajl (best-effort — ne obara sinhronizaciju)
+    // 5) obriši lokalni fajl (best-effort — ne obara sinhronizaciju)
     try {
       await FileSystem.deleteAsync(p.local_uri, { idempotent: true });
     } catch {

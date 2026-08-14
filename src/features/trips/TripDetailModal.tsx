@@ -6,12 +6,13 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
 import { fmtDateTime, fmtDate, fmtMoney } from "../../lib/format";
-import { Field, ModalScaffold } from "../../components/form";
+import { Field, ModalScaffold, PickerField } from "../../components/form";
 import { toNum } from "../../lib/num";
 import {
-  ownerGetTrip, ownerUpdateTripFinance, ownerListTripEvents, ownerAddTripEvent, tripTitle,
+  ownerGetTrip, ownerUpdateTripFinance, ownerUpdateTripAssignment, ownerListTripEvents, ownerAddTripEvent, tripTitle,
   type EventType, type DriverPayMode,
 } from "./api";
+import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
 import { listTripExpenses, ownerAddExpense, ownerDeleteExpense } from "../expenses/api";
 import { ExpenseForm, type ExpenseFormValues } from "../expenses/ExpenseForm";
 import { AttachmentsSection } from "../attachments/AttachmentsSection";
@@ -43,6 +44,11 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
   const trip = useQuery({ queryKey: ["trip", tripId], queryFn: () => ownerGetTrip(tripId) });
   const events = useQuery({ queryKey: ["trip-events", tripId], queryFn: () => ownerListTripEvents(tripId) });
 
+  // Flota za zamenu dodele (isti queryKey kao „Nova tura" -> deljen keš).
+  const drivers = useQuery({ queryKey: ["fleet", "drivers"], queryFn: listDrivers });
+  const vehicles = useQuery({ queryKey: ["fleet", "vehicles"], queryFn: listVehicles });
+  const trailers = useQuery({ queryKey: ["fleet", "trailers"], queryFn: listTrailers });
+
   // Finansije (init iz učitane ture)
   const [revenue, setRevenue] = useState("");
   const [payMode, setPayMode] = useState<DriverPayMode | null>(null);
@@ -65,6 +71,43 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
     onSuccess: () => qc.invalidateQueries({ queryKey: ["trip", tripId] }),
     onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
   });
+
+  // ── Dodela (vozač/vozilo/prikolica) — zamena bez uticaja na cenu ture ──
+  const [driverId, setDriverId] = useState<string | null>(null);
+  const [vehicleId, setVehicleId] = useState<string | null>(null);
+  const [trailerId, setTrailerId] = useState<string | null>(null);
+  useEffect(() => {
+    const d = trip.data;
+    if (!d) return;
+    setDriverId(d.driver_id);
+    setVehicleId(d.vehicle_id);
+    setTrailerId(d.trailer_id ?? null);
+  }, [trip.data?.id]);
+
+  // Izmena dozvoljena dok tura nije završena (istorija se ne prepravlja).
+  const assignEditable = !!trip.data && trip.data.status !== "finished";
+  const assignChanged =
+    !!trip.data &&
+    (driverId !== trip.data.driver_id ||
+      vehicleId !== trip.data.vehicle_id ||
+      (trailerId ?? null) !== (trip.data.trailer_id ?? null));
+
+  const saveAssignment = useMutation({
+    mutationFn: () =>
+      ownerUpdateTripAssignment(tripId, {
+        driver_id: driverId!,
+        vehicle_id: vehicleId!,
+        trailer_id: trailerId ?? null,
+      }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["trip", tripId] });
+      qc.invalidateQueries({ queryKey: ["owner-trips"] });
+    },
+    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+  });
+  // Aktivno samo kad je nešto stvarno promenjeno i oba obavezna izabrana.
+  const canSaveAssignment =
+    assignEditable && assignChanged && !!driverId && !!vehicleId && !saveAssignment.isPending;
 
   // Dodavanje događaja
   const [eventType, setEventType] = useState<EventType>("load");
@@ -156,9 +199,36 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
               <View style={{ alignSelf: "flex-start", paddingVertical: 4, paddingHorizontal: 10, borderRadius: 6, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, marginBottom: 4 }}>
                 <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`trip.status.${d.status}`)}</Text>
               </View>
-              <KV label={t("trip.fields.driver")} value={d.driver?.full_name ?? "—"} colors={colors} />
-              <KV label={t("trip.fields.vehicle")} value={d.vehicle?.registration ?? "—"} colors={colors} />
-              <KV label={t("trip.fields.trailer")} value={d.trailer?.registration ?? t("trip.noTrailer")} colors={colors} />
+              {assignEditable ? (
+                <View style={{ gap: 12, marginTop: 4 }}>
+                  <PickerField label={t("trip.fields.driver")} value={driverId}
+                    options={(drivers.data ?? []).map((dr) => ({ value: dr.id, label: dr.full_name }))}
+                    placeholder={t("trip.select")} onSelect={setDriverId} colors={colors} />
+                  <PickerField label={t("trip.fields.vehicle")} value={vehicleId}
+                    options={(vehicles.data ?? []).map((v) => ({
+                      value: v.id,
+                      label: v.make_model ? `${v.registration} · ${v.make_model}` : v.registration,
+                    }))}
+                    placeholder={t("trip.select")} onSelect={setVehicleId} colors={colors} />
+                  <PickerField label={t("trip.fields.trailer")} value={trailerId}
+                    options={(trailers.data ?? []).map((tr) => ({ value: tr.id, label: tr.registration }))}
+                    placeholder={t("trip.noTrailer")} clearLabel={t("trip.noTrailer")}
+                    onSelect={setTrailerId} colors={colors} />
+                  <Pressable onPress={() => saveAssignment.mutate()} disabled={!canSaveAssignment}
+                    style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: canSaveAssignment ? 1 : 0.5 }}>
+                    <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
+                      {saveAssignment.isPending ? t("common.saving") : t("trip.saveAssignment")}
+                    </Text>
+                  </Pressable>
+                </View>
+              ) : (
+                <>
+                  <KV label={t("trip.fields.driver")} value={d.driver?.full_name ?? "—"} colors={colors} />
+                  <KV label={t("trip.fields.vehicle")} value={d.vehicle?.registration ?? "—"} colors={colors} />
+                  <KV label={t("trip.fields.trailer")} value={d.trailer?.registration ?? t("trip.noTrailer")} colors={colors} />
+                  <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("trip.assignmentLockedFinished")}</Text>
+                </>
+              )}
               <KV label={t("trip.fields.startOdometer")} value={d.start_odometer != null ? String(d.start_odometer) : "—"} colors={colors} />
             </View>
 

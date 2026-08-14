@@ -69,7 +69,9 @@
     "select": "Izaberi…",
     "addEvent": "Dodaj događaj",
     "endOdometer": "Završna kilometraža",
-    "pendingSync": "{{count}} čeka sinhronizaciju"
+    "pendingSync": "{{count}} čeka sinhronizaciju",
+    "saveAssignment": "Sačuvaj izmene",
+    "assignmentLockedFinished": "Tura je završena — dodela se više ne menja."
   },
   "expense": {
     "section": "Troškovi",

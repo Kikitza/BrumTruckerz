@@ -1,7 +1,9 @@
 // Prilozi (slike dokumenata) — JEDINO mesto koje priča sa Supabase-om za ovaj domen.
-// U bazi stoji SAMO metapodatak (storage_key); fajl je na Cloudflare R2.
+// U bazi stoji SAMO metapodatak (storage_key); fajl je u Supabase Storage (privatan bucket
+// 'prilozi'). storage_key je backend-agnostičan (company_id/trip_id/uuid.jpg) — R2 je moguća
+// kasnija optimizacija bez migracije podataka.
 // Upload IDE KROZ OFFLINE RED (ista putanja owner+vozač) -> handler "attachment.upload".
-// Presigned URL-ovi (upload/download) dolaze iz Edge funkcije "r2-sign" (RLS odlučuje o pristupu).
+// Pristupom upravljaju storage policy (migracija 0008), ne kod.
 import * as FileSystem from "expo-file-system/legacy";
 import { supabase } from "../../lib/supabase";
 import { enqueue, listPending, removePending } from "../../lib/offline/queue";
@@ -50,14 +52,16 @@ export async function listAttachments(
   return (data ?? []) as Attachment[];
 }
 
-// Presigned GET URL za prikaz slike (kroz r2-sign; RLS proverava vidljivost priloga).
+// Potpisani (privremeni) GET URL za prikaz slike iz privatnog bucketa 'prilozi'.
+// Vidljivost određuje storage policy (0008): owner svoje firme, vozač svoje ture.
+const DOWNLOAD_TTL = 600; // sekundi (~10 min)
 export async function signDownload(storageKey: string): Promise<string> {
-  const { data, error } = await supabase.functions.invoke("r2-sign", {
-    body: { action: "download", storage_key: storageKey },
-  });
+  const { data, error } = await supabase.storage
+    .from("prilozi")
+    .createSignedUrl(storageKey, DOWNLOAD_TTL);
   if (error) throw error;
-  const url = (data as { url?: string })?.url;
-  if (!url) throw new Error("r2-sign: nema URL-a");
+  const url = data?.signedUrl;
+  if (!url) throw new Error("Storage: nema potpisanog URL-a");
   return url;
 }
 
@@ -100,7 +104,7 @@ export async function listPendingAttachments(
 }
 
 // Brisanje SINHRONIZOVANOG priloga (owner i vozač — RLS attach_* dozvoljava CRUD nad
-// svojim turama). Briše red u bazi; R2 objekat ostaje siroče (MVP odluka, kao do sada).
+// svojim turama). Briše red u bazi; objekat u Storage-u ostaje siroče (MVP odluka, kao do sada).
 export async function deleteAttachment(id: string): Promise<void> {
   const { error } = await supabase.from("attachments").delete().eq("id", id);
   if (error) throw error;

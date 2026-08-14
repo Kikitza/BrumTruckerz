@@ -69,7 +69,9 @@
     "select": "Select…",
     "addEvent": "Add event",
     "endOdometer": "End odometer",
-    "pendingSync": "{{count}} waiting to sync"
+    "pendingSync": "{{count}} waiting to sync",
+    "saveAssignment": "Save changes",
+    "assignmentLockedFinished": "Trip is finished — assignment can no longer be changed."
   },
   "expense": {
     "section": "Expenses",

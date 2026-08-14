@@ -1,6 +1,6 @@
 // Reusable sekcija priloga (slike) za trošak (C1) ili turu / „Dokumenti" (C2). Ista putanja
-// owner+vozač: izbor -> kompresija -> offline red -> R2. Sinhronizovani se prikazuju preko presigned
-// GET; pending sa lokalne putanje + bedž „čeka sinhronizaciju". Brisanje samo vlasnik.
+// owner+vozač: izbor -> kompresija -> offline red -> Supabase Storage ('prilozi'). Sinhronizovani se
+// prikazuju preko potpisanog GET URL-a; pending sa lokalne putanje + bedž „čeka sinhronizaciju".
 //
 // Dve upotrebe:
 //  - trošak: fiksan `kind` (npr. fuel_receipt), bez izbora vrste.
@@ -190,7 +190,7 @@ function KindTag({ label, colors }: { label: string; colors: Palette }) {
   );
 }
 
-// Sinhronizovana sličica: povuče presigned GET URL (keširano) pa prikaže Image.
+// Sinhronizovana sličica: povuče potpisani GET URL (keširano) pa prikaže Image.
 function SyncedThumb({
   a, colors, canDelete, showKind, onView, onDelete,
 }: {
@@ -205,7 +205,7 @@ function SyncedThumb({
   const urlQ = useQuery({
     queryKey: ["attachment-url", a.storage_key],
     queryFn: () => signDownload(a.storage_key),
-    staleTime: 8 * 60_000, // presigned GET važi ~10 min
+    staleTime: 8 * 60_000, // potpisani GET važi ~10 min
   });
 
   return (

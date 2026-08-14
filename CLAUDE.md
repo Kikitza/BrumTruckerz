@@ -12,7 +12,7 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 ## Stack (zaključano)
 - **Klijent:** Expo + TypeScript, Expo Router, TanStack Query, Zustand, i18next + expo-localization, expo-sqlite (offline red), EAS build/submit/update.
 - **Bekend:** Supabase — Postgres + RLS, Auth, Edge Functions (Deno). Migracije = verzionisani SQL u `supabase/migrations/` (nikad ručne izmene u dashboardu).
-- **Slike:** Cloudflare R2 preko potpisanih URL-ova iz Edge Function; u bazi SAMO ključ (`attachments.storage_key`). Kompresija na uređaju pre uploada.
+- **Slike:** Supabase Storage — privatan bucket `prilozi`, potpisani (privremeni) URL-ovi; u bazi SAMO ključ (`attachments.storage_key`, oblik `company_id/trip_id/uuid.jpg`). Pristup kroz storage policy (migracija 0008), u duhu `attach_owner/attach_driver`. Kompresija na uređaju pre uploada. `storage_key` je backend-agnostičan → Cloudflare R2 je moguća KASNIJA optimizacija (bez migracije podataka), ne koristi se sada.
 - **Push:** Expo push (tokeni u `push_tokens`). **Naplata (faza 3):** RevenueCat, pretplata po vozilu.
 
 ## Pravila koja se ne krše
@@ -36,7 +36,7 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 2. Auth tok: email OTP / Sign in with Apple + Google; `app_users` bootstrap; gate po ulozi (postoji skica u `app/index.tsx`).
 3. CRUD flote: vozila, prikolice, vozači (owner ekrani).
 4. Tura: kreiranje + dodela trojke (vozač+truk+prikolica), dnevnik događaja (insert + correct RPC), km.
-5. Troškovi (multivaluta kroz offline red — postoji `features/expenses`) + slike (kompresija → potpisani URL → R2 → `attachments`).
+5. Troškovi (multivaluta kroz offline red — postoji `features/expenses`) + slike (kompresija → offline red → Supabase Storage `prilozi` → `attachments`).
 6. P&L ekran vlasnika (čita `trip_pnl`).
 7. Centar rokova + `reminders-cron` Edge Function (skica postoji) + Expo push.
 8. Performans (rollup okidači ili poziv `refresh_driver_month` pri završetku ture; view `driver_performance`). Vozaču SAMO operativne metrike (potrošnja vs norma, urednost, na-vreme) — profit/km isključivo vlasniku.
@@ -45,7 +45,7 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 
 ## Konvencije
 - TypeScript strict; funkcionalne komponente; feature-first struktura (`src/features/<domen>/api.ts` je jedini sloj koji priča sa Supabase-om).
-- Svaka izmena šeme = nova migracija `NNNN_ime.sql`.
+- **Ritual migracija:** svaka izmena šeme = nova migracija `NNNN_ime.sql` u repou **+** `supabase db push` na **DEV** (linkovan projekat `BrumTruckerz-dev`). Na **PROD** ide TEK uz izričito odobrenje (posebna, eksplicitna komanda vlasnika). **SQL Editor se za migracije više NE koristi** — samo za jednokratne DEV pomoćne skripte (npr. `supabase/DEV-SEED.sql`). Edge funkcije = `supabase functions deploy <ime>` (DEV; PROD uz odobrenje).
 - Testovi za: offline red (enqueue/flush/retry), fx obračun, RLS (firma A ≠ firma B), correct_trip_event lanac verzija.
 - **Provere na kraju svakog zadatka (ritual):** `npm run typecheck` **i** `npm test` moraju biti čisti; `npm run lint` bez **grešaka** (upozorenja su dozvoljena). Iste tri provere vrti CI (`.github/workflows/ci.yml`).
 - **IZVEŠTAJ (obavezno):** na kraju SVAKOG zadatka upiši kompletan rezime u `IZVESTAJ.md` u korenu projekta, **prepisujući** stari sadržaj (uvek samo poslednji zadatak). Rezime obavezno sadrži: spisak izmena, test matricu (ili test listu), podsetnik za ručnu primenu migracija (ako ih ima) i eventualni HITNI SQL / rollback. `IZVESTAJ.md` je u `.gitignore` (ne commituje se) — služi da preživi reset sesije/Codespace-a.
