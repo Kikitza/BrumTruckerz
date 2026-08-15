@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} venter på synkronisering",
     "pendingSync_other": "{{count}} venter på synkronisering",
     "saveAssignment": "Gem ændringer",
-    "assignmentLockedFinished": "Turen er afsluttet — tildelingen kan ikke længere ændres."
+    "assignmentLockedFinished": "Turen er afsluttet — tildelingen kan ikke længere ændres.",
+    "assignmentLockedArchived": "Turen er arkiveret — tildelingen kan ikke længere ændres.",
+    "active": "Aktive",
+    "archive": "Arkiv",
+    "loadMore": "Indlæs flere",
+    "noActiveTrips": "Ingen aktive ture",
+    "stops": {
+      "departure": "Afgang",
+      "loading": "Læsning",
+      "unloading": "Losning",
+      "addLoading": "+ Tilføj læsning",
+      "addUnloading": "+ Tilføj losning",
+      "place": "Sted",
+      "deleteConfirm": "Slet dette stop?"
+    },
+    "wizard": {
+      "step1": "Afgang & kilometertæller",
+      "step2": "Læsning & losning",
+      "step3": "Chauffør",
+      "step4": "Køretøj & indtægt",
+      "next": "Næste",
+      "back": "Tilbage",
+      "stepOf": "Trin {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Udgifter",
@@ -141,6 +164,13 @@
       "trailer": "Anhænger",
       "driver": "Chauffør"
     },
+    "groupSubject": {
+      "vehicle": "Køretøjer",
+      "trailer": "Anhængere",
+      "driver": "Chauffører"
+    },
+    "sectionEmpty": "Ingen frister i denne kategori",
+    "summaryA11y": "Udløbet {{expired}}, udløber snart {{soon}}, i alt {{total}}",
     "category": {
       "registration": "Registrering",
       "fire_extinguisher": "Ildslukker",

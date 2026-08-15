@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} wacht op synchronisatie",
     "pendingSync_other": "{{count}} wachten op synchronisatie",
     "saveAssignment": "Wijzigingen opslaan",
-    "assignmentLockedFinished": "De rit is voltooid — de toewijzing kan niet meer worden gewijzigd."
+    "assignmentLockedFinished": "De rit is voltooid — de toewijzing kan niet meer worden gewijzigd.",
+    "assignmentLockedArchived": "De rit is gearchiveerd — de toewijzing kan niet meer worden gewijzigd.",
+    "active": "Actief",
+    "archive": "Archief",
+    "loadMore": "Meer laden",
+    "noActiveTrips": "Geen actieve ritten",
+    "stops": {
+      "departure": "Vertrek",
+      "loading": "Laden",
+      "unloading": "Lossen",
+      "addLoading": "+ Laden toevoegen",
+      "addUnloading": "+ Lossen toevoegen",
+      "place": "Plaats",
+      "deleteConfirm": "Deze stop verwijderen?"
+    },
+    "wizard": {
+      "step1": "Vertrek & kilometerstand",
+      "step2": "Laden & lossen",
+      "step3": "Chauffeur",
+      "step4": "Voertuig & omzet",
+      "next": "Volgende",
+      "back": "Terug",
+      "stepOf": "Stap {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Uitgaven",
@@ -141,6 +164,13 @@
       "trailer": "Aanhanger",
       "driver": "Chauffeur"
     },
+    "groupSubject": {
+      "vehicle": "Voertuigen",
+      "trailer": "Aanhangers",
+      "driver": "Chauffeurs"
+    },
+    "sectionEmpty": "Geen deadlines in deze categorie",
+    "summaryA11y": "Verlopen {{expired}}, binnenkort {{soon}}, totaal {{total}}",
     "category": {
       "registration": "Kenteken",
       "fire_extinguisher": "Brandblusser",

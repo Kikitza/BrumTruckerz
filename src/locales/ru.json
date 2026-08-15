@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} ожидает синхронизации",
     "pendingSync_other": "{{count}} ожидают синхронизации",
     "saveAssignment": "Сохранить изменения",
-    "assignmentLockedFinished": "Рейс завершён — назначение больше нельзя изменить."
+    "assignmentLockedFinished": "Рейс завершён — назначение больше нельзя изменить.",
+    "assignmentLockedArchived": "Рейс в архиве — назначение больше нельзя изменить.",
+    "active": "Активные",
+    "archive": "Архив",
+    "loadMore": "Загрузить ещё",
+    "noActiveTrips": "Нет активных рейсов",
+    "stops": {
+      "departure": "Отправление",
+      "loading": "Погрузка",
+      "unloading": "Разгрузка",
+      "addLoading": "+ Добавить погрузку",
+      "addUnloading": "+ Добавить разгрузку",
+      "place": "Место",
+      "deleteConfirm": "Удалить эту остановку?"
+    },
+    "wizard": {
+      "step1": "Отправление и одометр",
+      "step2": "Погрузка и разгрузка",
+      "step3": "Водитель",
+      "step4": "Транспорт и выручка",
+      "next": "Далее",
+      "back": "Назад",
+      "stepOf": "Шаг {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Расходы",
@@ -141,6 +164,13 @@
       "trailer": "Прицеп",
       "driver": "Водитель"
     },
+    "groupSubject": {
+      "vehicle": "Транспортные средства",
+      "trailer": "Прицепы",
+      "driver": "Водители"
+    },
+    "sectionEmpty": "Нет сроков в этой категории",
+    "summaryA11y": "Просрочено {{expired}}, скоро истекает {{soon}}, всего {{total}}",
     "category": {
       "registration": "Регистрация",
       "fire_extinguisher": "Огнетушитель",

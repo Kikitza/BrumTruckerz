@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} in attesa di sincronizzazione",
     "pendingSync_other": "{{count}} in attesa di sincronizzazione",
     "saveAssignment": "Salva modifiche",
-    "assignmentLockedFinished": "Il viaggio è completato — l'assegnazione non può più essere modificata."
+    "assignmentLockedFinished": "Il viaggio è completato — l'assegnazione non può più essere modificata.",
+    "assignmentLockedArchived": "Il viaggio è archiviato — l'assegnazione non può più essere modificata.",
+    "active": "Attivi",
+    "archive": "Archivio",
+    "loadMore": "Carica altro",
+    "noActiveTrips": "Nessun viaggio attivo",
+    "stops": {
+      "departure": "Partenza",
+      "loading": "Carico",
+      "unloading": "Scarico",
+      "addLoading": "+ Aggiungi carico",
+      "addUnloading": "+ Aggiungi scarico",
+      "place": "Luogo",
+      "deleteConfirm": "Eliminare questa fermata?"
+    },
+    "wizard": {
+      "step1": "Partenza e contachilometri",
+      "step2": "Carico e scarico",
+      "step3": "Autista",
+      "step4": "Veicolo e ricavi",
+      "next": "Avanti",
+      "back": "Indietro",
+      "stepOf": "Passo {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Spese",
@@ -141,6 +164,13 @@
       "trailer": "Rimorchio",
       "driver": "Autista"
     },
+    "groupSubject": {
+      "vehicle": "Veicoli",
+      "trailer": "Rimorchi",
+      "driver": "Autisti"
+    },
+    "sectionEmpty": "Nessuna scadenza in questa categoria",
+    "summaryA11y": "Scaduti {{expired}}, in scadenza {{soon}}, totale {{total}}",
     "category": {
       "registration": "Immatricolazione",
       "fire_extinguisher": "Estintore",

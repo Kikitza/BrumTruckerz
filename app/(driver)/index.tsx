@@ -4,7 +4,8 @@
 import { View, Text, Pressable, ScrollView, Alert } from "react-native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { driverListTrips, driverAddEvent, driverProgress } from "../../src/features/trips/api";
+import { driverListTrips, driverAddEvent, driverProgress, listTripStops } from "../../src/features/trips/api";
+import { RouteView } from "../../src/features/trips/stops";
 import {
   listTripExpenses, listPendingExpenses, addExpense, getCompanyBaseCurrency,
 } from "../../src/features/expenses/api";
@@ -30,6 +31,12 @@ export default function DriverHome() {
   const signOut = useSignOut();
   const { data } = useQuery({ queryKey: ["driver-trips"], queryFn: driverListTrips });
   const active = data?.find((x: any) => x.status !== "finished");
+  // Stanice ture (read-only za vozača; RLS: SELECT samo za svoje ture). km unosi stižu kasnije.
+  const stopsQ = useQuery({
+    queryKey: ["driver-trip-stops", active?.id],
+    queryFn: () => listTripStops(active!.id),
+    enabled: !!active,
+  });
 
   const setStatus = async (s: Status) => {
     if (!active) return;
@@ -59,6 +66,12 @@ export default function DriverHome() {
         </Text>
         <Text style={{ color: colors.textMuted }}>{String(t(`trip.status.${active.status}`, active.status))}</Text>
       </View>
+
+      {(stopsQ.data?.length ?? 0) > 0 && (
+        <View style={{ padding: 12, borderRadius: 10, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <RouteView origin={null} destination={null} stops={stopsQ.data ?? []} colors={colors} />
+        </View>
+      )}
 
       <PendingBanner colors={colors} />
 

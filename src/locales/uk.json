@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} очікує синхронізації",
     "pendingSync_other": "{{count}} очікують синхронізації",
     "saveAssignment": "Зберегти зміни",
-    "assignmentLockedFinished": "Рейс завершено — призначення більше не можна змінити."
+    "assignmentLockedFinished": "Рейс завершено — призначення більше не можна змінити.",
+    "assignmentLockedArchived": "Рейс заархівовано — призначення більше не можна змінити.",
+    "active": "Активні",
+    "archive": "Архів",
+    "loadMore": "Завантажити ще",
+    "noActiveTrips": "Немає активних рейсів",
+    "stops": {
+      "departure": "Відправлення",
+      "loading": "Завантаження",
+      "unloading": "Розвантаження",
+      "addLoading": "+ Додати завантаження",
+      "addUnloading": "+ Додати розвантаження",
+      "place": "Місце",
+      "deleteConfirm": "Видалити цю зупинку?"
+    },
+    "wizard": {
+      "step1": "Відправлення та одометр",
+      "step2": "Завантаження та розвантаження",
+      "step3": "Водій",
+      "step4": "Транспорт і дохід",
+      "next": "Далі",
+      "back": "Назад",
+      "stepOf": "Крок {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Витрати",
@@ -141,6 +164,13 @@
       "trailer": "Причіп",
       "driver": "Водій"
     },
+    "groupSubject": {
+      "vehicle": "Транспортні засоби",
+      "trailer": "Причепи",
+      "driver": "Водії"
+    },
+    "sectionEmpty": "У цій категорії немає термінів",
+    "summaryA11y": "Прострочено {{expired}}, скоро закінчується {{soon}}, усього {{total}}",
     "category": {
       "registration": "Реєстрація",
       "fire_extinguisher": "Вогнегасник",

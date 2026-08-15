@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} väntar på synkronisering",
     "pendingSync_other": "{{count}} väntar på synkronisering",
     "saveAssignment": "Spara ändringar",
-    "assignmentLockedFinished": "Turen är avslutad — tilldelningen kan inte längre ändras."
+    "assignmentLockedFinished": "Turen är avslutad — tilldelningen kan inte längre ändras.",
+    "assignmentLockedArchived": "Turen är arkiverad — tilldelningen kan inte längre ändras.",
+    "active": "Aktiva",
+    "archive": "Arkiv",
+    "loadMore": "Ladda fler",
+    "noActiveTrips": "Inga aktiva turer",
+    "stops": {
+      "departure": "Avgång",
+      "loading": "Lastning",
+      "unloading": "Lossning",
+      "addLoading": "+ Lägg till lastning",
+      "addUnloading": "+ Lägg till lossning",
+      "place": "Plats",
+      "deleteConfirm": "Ta bort detta stopp?"
+    },
+    "wizard": {
+      "step1": "Avgång & vägmätare",
+      "step2": "Lastning & lossning",
+      "step3": "Förare",
+      "step4": "Fordon & intäkt",
+      "next": "Nästa",
+      "back": "Tillbaka",
+      "stepOf": "Steg {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Utgifter",
@@ -141,6 +164,13 @@
       "trailer": "Släp",
       "driver": "Förare"
     },
+    "groupSubject": {
+      "vehicle": "Fordon",
+      "trailer": "Släp",
+      "driver": "Förare"
+    },
+    "sectionEmpty": "Inga tidsfrister i den här kategorin",
+    "summaryA11y": "Utgångna {{expired}}, förfaller snart {{soon}}, totalt {{total}}",
     "category": {
       "registration": "Registrering",
       "fire_extinguisher": "Brandsläckare",

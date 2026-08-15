@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} чека синхронизација",
     "pendingSync_other": "{{count}} чекаат синхронизација",
     "saveAssignment": "Зачувај промени",
-    "assignmentLockedFinished": "Турата е завршена — доделувањето повеќе не може да се менува."
+    "assignmentLockedFinished": "Турата е завршена — доделувањето повеќе не може да се менува.",
+    "assignmentLockedArchived": "Турата е архивирана — доделувањето повеќе не може да се менува.",
+    "active": "Активни",
+    "archive": "Архива",
+    "loadMore": "Вчитај повеќе",
+    "noActiveTrips": "Нема активни тури",
+    "stops": {
+      "departure": "Поаѓање",
+      "loading": "Товарање",
+      "unloading": "Истоварање",
+      "addLoading": "+ Додај товарање",
+      "addUnloading": "+ Додај истоварање",
+      "place": "Место",
+      "deleteConfirm": "Да се избрише овој застанок?"
+    },
+    "wizard": {
+      "step1": "Поаѓање и километража",
+      "step2": "Товарање и истоварање",
+      "step3": "Возач",
+      "step4": "Возило и приход",
+      "next": "Следно",
+      "back": "Назад",
+      "stepOf": "Чекор {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Трошоци",
@@ -141,6 +164,13 @@
       "trailer": "Приколка",
       "driver": "Возач"
     },
+    "groupSubject": {
+      "vehicle": "Возила",
+      "trailer": "Приколки",
+      "driver": "Возачи"
+    },
+    "sectionEmpty": "Нема рокови во оваа категорија",
+    "summaryA11y": "Истечени {{expired}}, наскоро истекуваат {{soon}}, вкупно {{total}}",
     "category": {
       "registration": "Регистрација",
       "fire_extinguisher": "Противпожарен апарат",

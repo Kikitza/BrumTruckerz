@@ -56,6 +56,12 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 3. **Status fajla (`"machine"`/`"verified"`) se NE menja** osim izričitim zadatkom overavanja tog jezika.
 4. **Svaki `IZVESTAJ.md` potvrđuje** da su svi jezici dopunjeni (ili da i18n nije diran).
 
+## REVERZIBILNOST — važi za svaki zadatak
+1. **Svaki višekoračni tok ima „Nazad"** bez gubitka unosa (stanje živi u roditelju, koraci renderuju podskup).
+2. **Svaki sačuvan podatak ima „Izmeni"** — forma sa postojećim vrednostima, kroz api sloj.
+3. **Namerni izuzeci:** dnevnik događaja je append-only (ispravka = novi zapis kroz `correct_trip_event`); dodela na **završenim** turama je zaključana. Novi izuzeci **samo uz izričito odobrenje**.
+4. **Brisanje uvek uz potvrdu** (Alert cancel/destructive).
+
 ## KVALITET KODA — važi za svaki zadatak
 1. **Slojevi strogo razdvojeni:** ekrani ne zovu Supabase direktno — samo svoj feature api sloj (`src/features/<domen>/api.ts`); zajednička logika (računanje, validacija) živi u deljenim funkcijama i **NIKAD se ne duplira**.
 2. **Bez špageta:** jedna funkcija = jedna odgovornost; UI koji se ponavlja se izdvaja kao reusable komponenta; fajl koji naraste da radi više nesrodnih stvari se deli (orijentir: preko ~400 linija razmisli o podeli).

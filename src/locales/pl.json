@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} oczekuje na synchronizację",
     "pendingSync_other": "{{count}} oczekuje na synchronizację",
     "saveAssignment": "Zapisz zmiany",
-    "assignmentLockedFinished": "Trasa zakończona — przypisania nie można już zmienić."
+    "assignmentLockedFinished": "Trasa zakończona — przypisania nie można już zmienić.",
+    "assignmentLockedArchived": "Trasa jest zarchiwizowana — przypisania nie można już zmienić.",
+    "active": "Aktywne",
+    "archive": "Archiwum",
+    "loadMore": "Załaduj więcej",
+    "noActiveTrips": "Brak aktywnych tras",
+    "stops": {
+      "departure": "Wyjazd",
+      "loading": "Załadunek",
+      "unloading": "Rozładunek",
+      "addLoading": "+ Dodaj załadunek",
+      "addUnloading": "+ Dodaj rozładunek",
+      "place": "Miejsce",
+      "deleteConfirm": "Usunąć ten przystanek?"
+    },
+    "wizard": {
+      "step1": "Wyjazd i licznik",
+      "step2": "Załadunek i rozładunek",
+      "step3": "Kierowca",
+      "step4": "Pojazd i przychód",
+      "next": "Dalej",
+      "back": "Wstecz",
+      "stepOf": "Krok {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Koszty",
@@ -141,6 +164,13 @@
       "trailer": "Naczepa",
       "driver": "Kierowca"
     },
+    "groupSubject": {
+      "vehicle": "Pojazdy",
+      "trailer": "Naczepy",
+      "driver": "Kierowcy"
+    },
+    "sectionEmpty": "Brak terminów w tej kategorii",
+    "summaryA11y": "Wygasłe {{expired}}, wkrótce {{soon}}, łącznie {{total}}",
     "category": {
       "registration": "Rejestracja",
       "fire_extinguisher": "Gaśnica",

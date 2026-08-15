@@ -73,7 +73,30 @@
     "pendingSync_one": "{{count}} waiting to sync",
     "pendingSync_other": "{{count}} waiting to sync",
     "saveAssignment": "Save changes",
-    "assignmentLockedFinished": "Trip is finished — assignment can no longer be changed."
+    "assignmentLockedFinished": "Trip is finished — assignment can no longer be changed.",
+    "assignmentLockedArchived": "Trip is archived — assignment can no longer be changed.",
+    "active": "Active",
+    "archive": "Archive",
+    "loadMore": "Load more",
+    "noActiveTrips": "No active trips",
+    "stops": {
+      "departure": "Departure",
+      "loading": "Loading",
+      "unloading": "Unloading",
+      "addLoading": "+ Add loading",
+      "addUnloading": "+ Add unloading",
+      "place": "Place",
+      "deleteConfirm": "Delete this stop?"
+    },
+    "wizard": {
+      "step1": "Departure & odometer",
+      "step2": "Loading & unloading",
+      "step3": "Driver",
+      "step4": "Vehicle & revenue",
+      "next": "Next",
+      "back": "Back",
+      "stepOf": "Step {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Expenses",
@@ -139,6 +162,13 @@
       "trailer": "Trailer",
       "driver": "Driver"
     },
+    "groupSubject": {
+      "vehicle": "Vehicles",
+      "trailer": "Trailers",
+      "driver": "Drivers"
+    },
+    "sectionEmpty": "No deadlines in this category",
+    "summaryA11y": "Expired {{expired}}, due soon {{soon}}, total {{total}}",
     "category": {
       "registration": "Registration",
       "fire_extinguisher": "Fire extinguisher",

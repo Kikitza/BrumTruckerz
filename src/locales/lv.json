@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} gaida sinhronizāciju",
     "pendingSync_other": "{{count}} gaida sinhronizāciju",
     "saveAssignment": "Saglabāt izmaiņas",
-    "assignmentLockedFinished": "Reiss ir pabeigts — piešķīrumu vairs nevar mainīt."
+    "assignmentLockedFinished": "Reiss ir pabeigts — piešķīrumu vairs nevar mainīt.",
+    "assignmentLockedArchived": "Reiss ir arhivēts — piešķīrumu vairs nevar mainīt.",
+    "active": "Aktīvie",
+    "archive": "Arhīvs",
+    "loadMore": "Ielādēt vairāk",
+    "noActiveTrips": "Nav aktīvu reisu",
+    "stops": {
+      "departure": "Izbraukšana",
+      "loading": "Iekraušana",
+      "unloading": "Izkraušana",
+      "addLoading": "+ Pievienot iekraušanu",
+      "addUnloading": "+ Pievienot izkraušanu",
+      "place": "Vieta",
+      "deleteConfirm": "Dzēst šo pieturu?"
+    },
+    "wizard": {
+      "step1": "Izbraukšana un odometrs",
+      "step2": "Iekraušana un izkraušana",
+      "step3": "Vadītājs",
+      "step4": "Transportlīdzeklis un ieņēmumi",
+      "next": "Tālāk",
+      "back": "Atpakaļ",
+      "stepOf": "Solis {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Izdevumi",
@@ -141,6 +164,13 @@
       "trailer": "Piekabe",
       "driver": "Vadītājs"
     },
+    "groupSubject": {
+      "vehicle": "Transportlīdzekļi",
+      "trailer": "Piekabes",
+      "driver": "Vadītāji"
+    },
+    "sectionEmpty": "Šajā kategorijā nav termiņu",
+    "summaryA11y": "Beigušies {{expired}}, drīz beigsies {{soon}}, kopā {{total}}",
     "category": {
       "registration": "Reģistrācija",
       "fire_extinguisher": "Ugunsdzēšamais aparāts",

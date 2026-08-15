@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} odottaa synkronointia",
     "pendingSync_other": "{{count}} odottaa synkronointia",
     "saveAssignment": "Tallenna muutokset",
-    "assignmentLockedFinished": "Kuljetus on valmis — määritystä ei voi enää muuttaa."
+    "assignmentLockedFinished": "Kuljetus on valmis — määritystä ei voi enää muuttaa.",
+    "assignmentLockedArchived": "Kuljetus on arkistoitu — määritystä ei voi enää muuttaa.",
+    "active": "Aktiiviset",
+    "archive": "Arkisto",
+    "loadMore": "Lataa lisää",
+    "noActiveTrips": "Ei aktiivisia kuljetuksia",
+    "stops": {
+      "departure": "Lähtö",
+      "loading": "Lastaus",
+      "unloading": "Purku",
+      "addLoading": "+ Lisää lastaus",
+      "addUnloading": "+ Lisää purku",
+      "place": "Paikka",
+      "deleteConfirm": "Poistetaanko tämä pysähdys?"
+    },
+    "wizard": {
+      "step1": "Lähtö & matkamittari",
+      "step2": "Lastaus & purku",
+      "step3": "Kuljettaja",
+      "step4": "Ajoneuvo & tulot",
+      "next": "Seuraava",
+      "back": "Takaisin",
+      "stepOf": "Vaihe {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Kulut",
@@ -141,6 +164,13 @@
       "trailer": "Perävaunu",
       "driver": "Kuljettaja"
     },
+    "groupSubject": {
+      "vehicle": "Ajoneuvot",
+      "trailer": "Perävaunut",
+      "driver": "Kuljettajat"
+    },
+    "sectionEmpty": "Ei määräaikoja tässä luokassa",
+    "summaryA11y": "Vanhentuneita {{expired}}, erääntyy pian {{soon}}, yhteensä {{total}}",
     "category": {
       "registration": "Rekisteröinti",
       "fire_extinguisher": "Sammutin",

@@ -4,6 +4,12 @@
 // Vlasnik radi ONLINE (bez offline reda) — direktan pristup pod RLS-om.
 import { supabase } from "../../lib/supabase";
 import { enqueue } from "../../lib/offline/queue";
+import { destinationFromStops } from "./stopsMath";
+import type { TripStopKind, TripStopInput } from "./stopsMath";
+
+// Re-export (jedini domen-ulaz je api.ts; čiste funkcije/tipovi žive u ./stopsMath).
+export { destinationFromStops };
+export type { TripStopKind, TripStopInput };
 
 // ── Tipovi (šema: 0001_init.sql) ──
 export type TripStatus = "draft" | "loading" | "driving" | "border" | "unloading" | "finished";
@@ -58,15 +64,25 @@ export type CreateTripInput = {
   vehicle_id: string;
   trailer_id?: string | null;
   origin?: string | null;
-  destination?: string | null;
+  destination?: string | null; // ignoriše se ako su prosleđene stanice (izvodi se iz njih)
   start_odometer?: number | null;
   revenue?: number | null;
+  stops?: TripStopInput[]; // ako postoje: čuvaju se u trip_stops, destination = poslednji istovar
 };
 
 // title = "origin → destination" (jedno od dva ako drugo fali; null ako oba fale).
 export function tripTitle(origin: string | null, destination: string | null): string | null {
   if (origin && destination) return `${origin} → ${destination}`;
   return origin ?? destination ?? null;
+}
+
+// Arhivirana tura = ISKLJUČIVO završena ('finished'). Ture traju danima
+// (npr. BG→Minhen), pa datum polaska NIJE kriterijum — tura u vožnji od prekjuče
+// mora ostati aktivna. Draftovi i sve u toku ostaju aktivni bez obzira na datum.
+// Jedini izvor istine: koristi ga i lista (sekcija "Arhiva") i detalj (dodela read-only).
+// (Auto-arhiviranje po datumu = buduća opcija kad uvedemo planirani datum ture.)
+export function isTripArchived(t: Pick<Trip, "status">): boolean {
+  return t.status === "finished";
 }
 
 export type TripFinanceInput = {
@@ -80,6 +96,17 @@ export type TripAssignmentInput = {
   driver_id: string;
   vehicle_id: string;
   trailer_id: string | null;
+};
+
+// ── Stanice ture (0010): uređen niz utovara/istovara ──
+// Red iz baze (kind/input tipovi + destinationFromStops su u ./stopsMath, re-eksportovani gore).
+export type TripStop = {
+  id: string;
+  trip_id: string;
+  seq: number;
+  kind: TripStopKind;
+  place: string;
+  note: string | null;
 };
 
 export type AddEventInput = {
@@ -129,7 +156,12 @@ export async function ownerListTrips(): Promise<TripListItem[]> {
 export async function ownerCreateTrip(input: CreateTripInput): Promise<Trip> {
   const company_id = await currentCompanyId();
   const origin = input.origin?.trim() || null;
-  const destination = input.destination?.trim() || null;
+  // Sanitizacija stanica: trim mesta, izbaci prazne, zadrži redosled unosa.
+  const stops = (input.stops ?? [])
+    .map((s) => ({ kind: s.kind, place: s.place.trim(), note: s.note?.trim() || null }))
+    .filter((s) => s.place);
+  const destination = stops.length ? destinationFromStops(stops) : input.destination?.trim() || null;
+
   const { data, error } = await supabase
     .from("trips")
     .insert({
@@ -147,7 +179,25 @@ export async function ownerCreateTrip(input: CreateTripInput): Promise<Trip> {
     .select()
     .single();
   if (error) throw error;
-  return data as Trip;
+  const trip = data as Trip;
+
+  if (stops.length) {
+    const rows = stops.map((s, i) => ({ trip_id: trip.id, seq: i + 1, kind: s.kind, place: s.place, note: s.note }));
+    const { error: e2 } = await supabase.from("trip_stops").insert(rows);
+    if (e2) throw e2;
+  }
+  return trip;
+}
+
+// Stanice ture (uređeno po seq). Owner i vozač koriste isti upit — RLS razlučuje pristup.
+export async function listTripStops(tripId: string): Promise<TripStop[]> {
+  const { data, error } = await supabase
+    .from("trip_stops")
+    .select("id, trip_id, seq, kind, place, note")
+    .eq("trip_id", tripId)
+    .order("seq", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as TripStop[];
 }
 
 export async function ownerGetTrip(tripId: string): Promise<TripDetail> {

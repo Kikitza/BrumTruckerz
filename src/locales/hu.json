@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} szinkronizálásra vár",
     "pendingSync_other": "{{count}} szinkronizálásra vár",
     "saveAssignment": "Módosítások mentése",
-    "assignmentLockedFinished": "A fuvar befejeződött — a hozzárendelés már nem módosítható."
+    "assignmentLockedFinished": "A fuvar befejeződött — a hozzárendelés már nem módosítható.",
+    "assignmentLockedArchived": "A fuvar archiválva van — a hozzárendelés már nem módosítható.",
+    "active": "Aktív",
+    "archive": "Archívum",
+    "loadMore": "Továbbiak betöltése",
+    "noActiveTrips": "Nincs aktív fuvar",
+    "stops": {
+      "departure": "Indulás",
+      "loading": "Felrakodás",
+      "unloading": "Lerakodás",
+      "addLoading": "+ Felrakodás hozzáadása",
+      "addUnloading": "+ Lerakodás hozzáadása",
+      "place": "Hely",
+      "deleteConfirm": "Törli ezt a megállót?"
+    },
+    "wizard": {
+      "step1": "Indulás és kilométeróra",
+      "step2": "Fel- és lerakodás",
+      "step3": "Sofőr",
+      "step4": "Jármű és bevétel",
+      "next": "Tovább",
+      "back": "Vissza",
+      "stepOf": "Lépés {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Költségek",
@@ -141,6 +164,13 @@
       "trailer": "Pótkocsi",
       "driver": "Sofőr"
     },
+    "groupSubject": {
+      "vehicle": "Járművek",
+      "trailer": "Pótkocsik",
+      "driver": "Sofőrök"
+    },
+    "sectionEmpty": "Nincs határidő ebben a kategóriában",
+    "summaryA11y": "Lejárt {{expired}}, hamarosan {{soon}}, összesen {{total}}",
     "category": {
       "registration": "Forgalmi engedély",
       "fire_extinguisher": "Tűzoltó készülék",

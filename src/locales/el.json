@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} σε αναμονή συγχρονισμού",
     "pendingSync_other": "{{count}} σε αναμονή συγχρονισμού",
     "saveAssignment": "Αποθήκευση αλλαγών",
-    "assignmentLockedFinished": "Το δρομολόγιο ολοκληρώθηκε — η ανάθεση δεν μπορεί πλέον να αλλάξει."
+    "assignmentLockedFinished": "Το δρομολόγιο ολοκληρώθηκε — η ανάθεση δεν μπορεί πλέον να αλλάξει.",
+    "assignmentLockedArchived": "Το δρομολόγιο αρχειοθετήθηκε — η ανάθεση δεν μπορεί πλέον να αλλάξει.",
+    "active": "Ενεργά",
+    "archive": "Αρχείο",
+    "loadMore": "Φόρτωση περισσότερων",
+    "noActiveTrips": "Δεν υπάρχουν ενεργά δρομολόγια",
+    "stops": {
+      "departure": "Αναχώρηση",
+      "loading": "Φόρτωση",
+      "unloading": "Εκφόρτωση",
+      "addLoading": "+ Προσθήκη φόρτωσης",
+      "addUnloading": "+ Προσθήκη εκφόρτωσης",
+      "place": "Τόπος",
+      "deleteConfirm": "Διαγραφή αυτής της στάσης;"
+    },
+    "wizard": {
+      "step1": "Αναχώρηση & χιλιομετρητής",
+      "step2": "Φόρτωση & εκφόρτωση",
+      "step3": "Οδηγός",
+      "step4": "Όχημα & έσοδα",
+      "next": "Επόμενο",
+      "back": "Πίσω",
+      "stepOf": "Βήμα {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Έξοδα",
@@ -141,6 +164,13 @@
       "trailer": "Ρυμουλκούμενο",
       "driver": "Οδηγός"
     },
+    "groupSubject": {
+      "vehicle": "Οχήματα",
+      "trailer": "Ρυμουλκούμενα",
+      "driver": "Οδηγοί"
+    },
+    "sectionEmpty": "Δεν υπάρχουν προθεσμίες σε αυτήν την κατηγορία",
+    "summaryA11y": "Έληξαν {{expired}}, λήγουν σύντομα {{soon}}, σύνολο {{total}}",
     "category": {
       "registration": "Άδεια κυκλοφορίας",
       "fire_extinguisher": "Πυροσβεστήρας",

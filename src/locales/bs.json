@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} čeka sinhronizaciju",
     "pendingSync_other": "{{count}} čeka sinhronizaciju",
     "saveAssignment": "Sačuvaj izmjene",
-    "assignmentLockedFinished": "Tura je završena — dodjela se više ne može mijenjati."
+    "assignmentLockedFinished": "Tura je završena — dodjela se više ne može mijenjati.",
+    "assignmentLockedArchived": "Tura je arhivirana — dodjela se više ne može mijenjati.",
+    "active": "Aktivne",
+    "archive": "Arhiva",
+    "loadMore": "Učitaj još",
+    "noActiveTrips": "Nema aktivnih tura",
+    "stops": {
+      "departure": "Polazak",
+      "loading": "Utovar",
+      "unloading": "Istovar",
+      "addLoading": "+ Dodaj utovar",
+      "addUnloading": "+ Dodaj istovar",
+      "place": "Mjesto",
+      "deleteConfirm": "Obrisati ovo stajalište?"
+    },
+    "wizard": {
+      "step1": "Polazak i kilometraža",
+      "step2": "Utovar i istovar",
+      "step3": "Vozač",
+      "step4": "Vozilo i prihod",
+      "next": "Dalje",
+      "back": "Nazad",
+      "stepOf": "Korak {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Troškovi",
@@ -141,6 +164,13 @@
       "trailer": "Prikolica",
       "driver": "Vozač"
     },
+    "groupSubject": {
+      "vehicle": "Vozila",
+      "trailer": "Prikolice",
+      "driver": "Vozači"
+    },
+    "sectionEmpty": "Nema rokova u ovoj kategoriji",
+    "summaryA11y": "Isteklo {{expired}}, uskoro ističe {{soon}}, ukupno {{total}}",
     "category": {
       "registration": "Registracija",
       "fire_extinguisher": "Aparat za gašenje požara",

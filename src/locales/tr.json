@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} senkronizasyon bekliyor",
     "pendingSync_other": "{{count}} senkronizasyon bekliyor",
     "saveAssignment": "Değişiklikleri kaydet",
-    "assignmentLockedFinished": "Sefer tamamlandı — atama artık değiştirilemez."
+    "assignmentLockedFinished": "Sefer tamamlandı — atama artık değiştirilemez.",
+    "assignmentLockedArchived": "Sefer arşivlendi — atama artık değiştirilemez.",
+    "active": "Etkin",
+    "archive": "Arşiv",
+    "loadMore": "Daha fazla yükle",
+    "noActiveTrips": "Etkin sefer yok",
+    "stops": {
+      "departure": "Kalkış",
+      "loading": "Yükleme",
+      "unloading": "Boşaltma",
+      "addLoading": "+ Yükleme ekle",
+      "addUnloading": "+ Boşaltma ekle",
+      "place": "Yer",
+      "deleteConfirm": "Bu durak silinsin mi?"
+    },
+    "wizard": {
+      "step1": "Kalkış ve kilometre sayacı",
+      "step2": "Yükleme ve boşaltma",
+      "step3": "Sürücü",
+      "step4": "Araç ve gelir",
+      "next": "İleri",
+      "back": "Geri",
+      "stepOf": "Adım {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Masraflar",
@@ -141,6 +164,13 @@
       "trailer": "Dorse",
       "driver": "Sürücü"
     },
+    "groupSubject": {
+      "vehicle": "Araçlar",
+      "trailer": "Dorseler",
+      "driver": "Sürücüler"
+    },
+    "sectionEmpty": "Bu kategoride son tarih yok",
+    "summaryA11y": "Süresi geçen {{expired}}, yakında dolacak {{soon}}, toplam {{total}}",
     "category": {
       "registration": "Ruhsat",
       "fire_extinguisher": "Yangın söndürücü",

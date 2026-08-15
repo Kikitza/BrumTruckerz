@@ -1,17 +1,20 @@
 // Modal „Detalj ture" (vlasnik): podaci + finansije + troškovi + dnevnik događaja.
 // Izdvojeno iz ekrana tura (app/(owner)/trips/index.tsx) — čisto premeštanje, bez promene logike.
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert } from "react-native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
 import { fmtDateTime, fmtDate, fmtMoney } from "../../lib/format";
 import { Field, ModalScaffold, PickerField } from "../../components/form";
+import { Collapsible } from "../../components/Collapsible";
 import { toNum } from "../../lib/num";
 import {
-  ownerGetTrip, ownerUpdateTripFinance, ownerUpdateTripAssignment, ownerListTripEvents, ownerAddTripEvent, tripTitle,
+  ownerGetTrip, ownerUpdateTripFinance, ownerUpdateTripAssignment, ownerListTripEvents, ownerAddTripEvent,
+  listTripStops, isTripArchived,
   type EventType, type DriverPayMode,
 } from "./api";
+import { RouteView } from "./stops";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
 import { listTripExpenses, ownerAddExpense, ownerDeleteExpense } from "../expenses/api";
 import { ExpenseForm, type ExpenseFormValues } from "../expenses/ExpenseForm";
@@ -43,6 +46,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
 
   const trip = useQuery({ queryKey: ["trip", tripId], queryFn: () => ownerGetTrip(tripId) });
   const events = useQuery({ queryKey: ["trip-events", tripId], queryFn: () => ownerListTripEvents(tripId) });
+  const stops = useQuery({ queryKey: ["trip-stops", tripId], queryFn: () => listTripStops(tripId) });
 
   // Flota za zamenu dodele (isti queryKey kao „Nova tura" -> deljen keš).
   const drivers = useQuery({ queryKey: ["fleet", "drivers"], queryFn: listDrivers });
@@ -84,8 +88,8 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
     setTrailerId(d.trailer_id ?? null);
   }, [trip.data?.id]);
 
-  // Izmena dozvoljena dok tura nije završena (istorija se ne prepravlja).
-  const assignEditable = !!trip.data && trip.data.status !== "finished";
+  // Izmena dozvoljena dok tura nije arhivirana (= završena). Isti predikat kao lista.
+  const assignEditable = !!trip.data && !isTripArchived(trip.data);
   const assignChanged =
     !!trip.data &&
     (driverId !== trip.data.driver_id ||
@@ -189,182 +193,182 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
       {trip.isLoading || !d ? (
         <ActivityIndicator style={{ marginTop: 24 }} color={colors.primary} />
       ) : (
-        <ScrollView contentContainerStyle={{ padding: 16, gap: 20, paddingBottom: 32 }} keyboardShouldPersistTaps="handled">
-            {/* Podaci */}
-            <View style={{ gap: 6 }}>
-              <SectionTitle text={t("trip.section.info")} colors={colors} />
-              <Text style={{ color: colors.text, fontWeight: "700", fontSize: 18 }}>
-                {tripTitle(d.origin, d.destination) ?? d.title ?? d.id.slice(0, 8)}
-              </Text>
-              <View style={{ alignSelf: "flex-start", paddingVertical: 4, paddingHorizontal: 10, borderRadius: 6, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, marginBottom: 4 }}>
-                <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`trip.status.${d.status}`)}</Text>
-              </View>
-              {assignEditable ? (
-                <View style={{ gap: 12, marginTop: 4 }}>
-                  <PickerField label={t("trip.fields.driver")} value={driverId}
-                    options={(drivers.data ?? []).map((dr) => ({ value: dr.id, label: dr.full_name }))}
-                    placeholder={t("trip.select")} onSelect={setDriverId} colors={colors} />
-                  <PickerField label={t("trip.fields.vehicle")} value={vehicleId}
-                    options={(vehicles.data ?? []).map((v) => ({
-                      value: v.id,
-                      label: v.make_model ? `${v.registration} · ${v.make_model}` : v.registration,
-                    }))}
-                    placeholder={t("trip.select")} onSelect={setVehicleId} colors={colors} />
-                  <PickerField label={t("trip.fields.trailer")} value={trailerId}
-                    options={(trailers.data ?? []).map((tr) => ({ value: tr.id, label: tr.registration }))}
-                    placeholder={t("trip.noTrailer")} clearLabel={t("trip.noTrailer")}
-                    onSelect={setTrailerId} colors={colors} />
-                  <Pressable onPress={() => saveAssignment.mutate()} disabled={!canSaveAssignment}
-                    style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: canSaveAssignment ? 1 : 0.5 }}>
-                    <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
-                      {saveAssignment.isPending ? t("common.saving") : t("trip.saveAssignment")}
-                    </Text>
-                  </Pressable>
+        <ScrollView contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 32 }} keyboardShouldPersistTaps="handled">
+            {/* Podaci (OTVOREN) — ruta/stanice, status, dodela, km */}
+            <Collapsible title={t("trip.section.info")} colors={colors} defaultOpen>
+              <SectionBody>
+                <RouteView origin={d.origin} destination={d.destination} stops={stops.data ?? []} colors={colors} />
+                <View style={{ alignSelf: "flex-start", paddingVertical: 4, paddingHorizontal: 10, borderRadius: 6, backgroundColor: colors.bg, borderWidth: 1, borderColor: colors.border }}>
+                  <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`trip.status.${d.status}`)}</Text>
                 </View>
-              ) : (
-                <>
-                  <KV label={t("trip.fields.driver")} value={d.driver?.full_name ?? "—"} colors={colors} />
-                  <KV label={t("trip.fields.vehicle")} value={d.vehicle?.registration ?? "—"} colors={colors} />
-                  <KV label={t("trip.fields.trailer")} value={d.trailer?.registration ?? t("trip.noTrailer")} colors={colors} />
-                  <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("trip.assignmentLockedFinished")}</Text>
-                </>
-              )}
-              <KV label={t("trip.fields.startOdometer")} value={d.start_odometer != null ? String(d.start_odometer) : "—"} colors={colors} />
-            </View>
-
-            {/* Dokumenti ture (CMR/faktura/carina…) */}
-            <View style={{ gap: 12 }}>
-              <SectionTitle text={t("attachment.documents")} colors={colors} />
-              <AttachmentsSection tripId={tripId} pickKind canDelete colors={colors} />
-            </View>
+                {assignEditable ? (
+                  <View style={{ gap: 12 }}>
+                    <PickerField label={t("trip.fields.driver")} value={driverId}
+                      options={(drivers.data ?? []).map((dr) => ({ value: dr.id, label: dr.full_name }))}
+                      placeholder={t("trip.select")} onSelect={setDriverId} colors={colors} />
+                    <PickerField label={t("trip.fields.vehicle")} value={vehicleId}
+                      options={(vehicles.data ?? []).map((v) => ({
+                        value: v.id,
+                        label: v.make_model ? `${v.registration} · ${v.make_model}` : v.registration,
+                      }))}
+                      placeholder={t("trip.select")} onSelect={setVehicleId} colors={colors} />
+                    <PickerField label={t("trip.fields.trailer")} value={trailerId}
+                      options={(trailers.data ?? []).map((tr) => ({ value: tr.id, label: tr.registration }))}
+                      placeholder={t("trip.noTrailer")} clearLabel={t("trip.noTrailer")}
+                      onSelect={setTrailerId} colors={colors} />
+                    <Pressable onPress={() => saveAssignment.mutate()} disabled={!canSaveAssignment}
+                      style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: canSaveAssignment ? 1 : 0.5 }}>
+                      <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
+                        {saveAssignment.isPending ? t("common.saving") : t("trip.saveAssignment")}
+                      </Text>
+                    </Pressable>
+                  </View>
+                ) : (
+                  <>
+                    <KV label={t("trip.fields.driver")} value={d.driver?.full_name ?? "—"} colors={colors} />
+                    <KV label={t("trip.fields.vehicle")} value={d.vehicle?.registration ?? "—"} colors={colors} />
+                    <KV label={t("trip.fields.trailer")} value={d.trailer?.registration ?? t("trip.noTrailer")} colors={colors} />
+                    <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("trip.assignmentLockedFinished")}</Text>
+                  </>
+                )}
+                <KV label={t("trip.fields.startOdometer")} value={d.start_odometer != null ? String(d.start_odometer) : "—"} colors={colors} />
+              </SectionBody>
+            </Collapsible>
 
             {/* Finansije */}
-            <View style={{ gap: 12 }}>
-              <SectionTitle text={t("trip.section.finance")} colors={colors} />
-              <Field label={t("trip.fields.revenue")} value={revenue} onChangeText={setRevenue}
-                keyboardType="numeric" placeholder="0.00" colors={colors} />
-              <View style={{ gap: 6 }}>
-                <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("trip.fields.driverPayMode")}</Text>
-                <View style={{ flexDirection: "row", gap: 8 }}>
-                  {PAY_MODES.map((m) => {
-                    const active = payMode === m;
-                    return (
-                      <Pressable key={m} onPress={() => setPayMode(active ? null : m)}
-                        style={{
-                          flex: 1, paddingVertical: 10, borderRadius: 8, alignItems: "center", borderWidth: 1,
-                          borderColor: active ? colors.primary : colors.border,
-                          backgroundColor: active ? colors.primary : colors.surface,
-                        }}>
-                        <Text style={{ color: active ? colors.onPrimary : colors.text, fontSize: 13 }}>
-                          {t(`trip.payMode.${m}`)}
-                        </Text>
-                      </Pressable>
-                    );
-                  })}
+            <Collapsible title={t("trip.section.finance")} colors={colors}>
+              <SectionBody>
+                <Field label={t("trip.fields.revenue")} value={revenue} onChangeText={setRevenue}
+                  keyboardType="numeric" placeholder="0.00" colors={colors} />
+                <View style={{ gap: 6 }}>
+                  <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("trip.fields.driverPayMode")}</Text>
+                  <View style={{ flexDirection: "row", gap: 8 }}>
+                    {PAY_MODES.map((m) => {
+                      const active = payMode === m;
+                      return (
+                        <Pressable key={m} onPress={() => setPayMode(active ? null : m)}
+                          style={{
+                            flex: 1, paddingVertical: 10, borderRadius: 8, alignItems: "center", borderWidth: 1,
+                            borderColor: active ? colors.primary : colors.border,
+                            backgroundColor: active ? colors.primary : colors.bg,
+                          }}>
+                          <Text style={{ color: active ? colors.onPrimary : colors.text, fontSize: 13 }}>
+                            {t(`trip.payMode.${m}`)}
+                          </Text>
+                        </Pressable>
+                      );
+                    })}
+                  </View>
                 </View>
-              </View>
-              <Field label={t("trip.fields.driverPay")} value={driverPay} onChangeText={setDriverPay}
-                keyboardType="numeric" placeholder="0.00" colors={colors} />
-              <Pressable onPress={() => saveFinance.mutate()} disabled={saveFinance.isPending}
-                style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: saveFinance.isPending ? 0.6 : 1 }}>
-                <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
-                  {saveFinance.isPending ? t("common.saving") : t("common.save")}
-                </Text>
-              </Pressable>
-            </View>
+                <Field label={t("trip.fields.driverPay")} value={driverPay} onChangeText={setDriverPay}
+                  keyboardType="numeric" placeholder="0.00" colors={colors} />
+                <Pressable onPress={() => saveFinance.mutate()} disabled={saveFinance.isPending}
+                  style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: saveFinance.isPending ? 0.6 : 1 }}>
+                  <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
+                    {saveFinance.isPending ? t("common.saving") : t("common.save")}
+                  </Text>
+                </Pressable>
+              </SectionBody>
+            </Collapsible>
 
             {/* Troškovi */}
-            <View style={{ gap: 12 }}>
-              <SectionTitle text={t("expense.section")} colors={colors} />
-
-              {expenseRows.length === 0 ? (
-                <Text style={{ color: colors.textMuted }}>{t("expense.empty")}</Text>
-              ) : (
-                <>
-                  {expenseRows.map((e) => (
-                    <View key={e.id} style={{ padding: 12, borderRadius: 8, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, gap: 4 }}>
-                      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                        <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`expense.categories.${e.category}`)}</Text>
-                        <Pressable onPress={() => confirmDeleteExpense(e.id)} hitSlop={8} style={{ padding: 4 }}>
-                          <Text style={{ color: colors.danger, fontSize: 18 }}>×</Text>
-                        </Pressable>
+            <Collapsible title={t("expense.section")} colors={colors}>
+              <SectionBody>
+                {expenseRows.length === 0 ? (
+                  <Text style={{ color: colors.textMuted }}>{t("expense.empty")}</Text>
+                ) : (
+                  <>
+                    {expenseRows.map((e) => (
+                      <View key={e.id} style={{ padding: 12, borderRadius: 8, backgroundColor: colors.bg, borderWidth: 1, borderColor: colors.border, gap: 4 }}>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                          <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`expense.categories.${e.category}`)}</Text>
+                          <Pressable onPress={() => confirmDeleteExpense(e.id)} hitSlop={8} style={{ padding: 4 }}>
+                            <Text style={{ color: colors.danger, fontSize: 18 }}>×</Text>
+                          </Pressable>
+                        </View>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                          <Text style={{ color: colors.textMuted }}>{fmtMoney(e.original_amount, e.original_currency)}</Text>
+                          <Text style={{ color: colors.text }}>{fmtMoney(e.base_amount, e.base_currency)}</Text>
+                        </View>
+                        <Text style={{ color: colors.textMuted, fontSize: 12 }}>
+                          {fmtDate(e.occurred_at)}{e.country ? ` · ${e.country}` : ""}{e.liters != null ? ` · ${e.liters} L` : ""}
+                        </Text>
+                        {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
+                        <AttachmentsSection expenseId={e.id} tripId={tripId} kind={expenseAttachmentKind(e.category)}
+                          canDelete colors={colors} />
                       </View>
-                      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <Text style={{ color: colors.textMuted }}>{fmtMoney(e.original_amount, e.original_currency)}</Text>
-                        <Text style={{ color: colors.text }}>{fmtMoney(e.base_amount, e.base_currency)}</Text>
-                      </View>
-                      <Text style={{ color: colors.textMuted, fontSize: 12 }}>
-                        {fmtDate(e.occurred_at)}{e.country ? ` · ${e.country}` : ""}{e.liters != null ? ` · ${e.liters} L` : ""}
-                      </Text>
-                      {e.note ? <Text style={{ color: colors.textMuted, fontSize: 12 }}>{e.note}</Text> : null}
-                      <AttachmentsSection expenseId={e.id} tripId={tripId} kind={expenseAttachmentKind(e.category)}
-                        canDelete colors={colors} />
+                    ))}
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", paddingTop: 4 }}>
+                      <Text style={{ color: colors.text, fontWeight: "700" }}>{t("expense.total")}</Text>
+                      <Text style={{ color: colors.text, fontWeight: "700" }}>{fmtMoney(expensesTotal, baseCurrency)}</Text>
                     </View>
-                  ))}
-                  <View style={{ flexDirection: "row", justifyContent: "space-between", paddingTop: 4 }}>
-                    <Text style={{ color: colors.text, fontWeight: "700" }}>{t("expense.total")}</Text>
-                    <Text style={{ color: colors.text, fontWeight: "700" }}>{fmtMoney(expensesTotal, baseCurrency)}</Text>
-                  </View>
-                </>
-              )}
+                  </>
+                )}
+                {/* Forma: novi trošak (deljena komponenta) */}
+                <ExpenseForm colors={colors} onSubmit={submitExpense} />
+              </SectionBody>
+            </Collapsible>
 
-              {/* Forma: novi trošak (deljena komponenta) */}
-              <ExpenseForm colors={colors} onSubmit={submitExpense} />
-            </View>
+            {/* Dokumenti ture (CMR/faktura/carina…) */}
+            <Collapsible title={t("attachment.documents")} colors={colors}>
+              <SectionBody>
+                <AttachmentsSection tripId={tripId} pickKind canDelete colors={colors} />
+              </SectionBody>
+            </Collapsible>
 
             {/* Dnevnik događaja */}
-            <View style={{ gap: 10 }}>
-              <SectionTitle text={t("trip.section.events")} colors={colors} />
-              {(events.data ?? []).length === 0 ? (
-                <Text style={{ color: colors.textMuted }}>{t("trip.noEvents")}</Text>
-              ) : (
-                (events.data ?? []).map((ev) => (
-                  <View key={ev.id} style={{ padding: 12, borderRadius: 8, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                      <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`trip.events.${ev.type}`)}</Text>
-                      <Text style={{ color: colors.textMuted, fontSize: 12 }}>{fmtDateTime(ev.occurred_at)}</Text>
+            <Collapsible title={t("trip.section.events")} colors={colors}>
+              <SectionBody>
+                {(events.data ?? []).length === 0 ? (
+                  <Text style={{ color: colors.textMuted }}>{t("trip.noEvents")}</Text>
+                ) : (
+                  (events.data ?? []).map((ev) => (
+                    <View key={ev.id} style={{ padding: 12, borderRadius: 8, backgroundColor: colors.bg, borderWidth: 1, borderColor: colors.border }}>
+                      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                        <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`trip.events.${ev.type}`)}</Text>
+                        <Text style={{ color: colors.textMuted, fontSize: 12 }}>{fmtDateTime(ev.occurred_at)}</Text>
+                      </View>
+                      {ev.location ? <Text style={{ color: colors.textMuted, marginTop: 2 }}>{ev.location}</Text> : null}
+                      {ev.note ? <Text style={{ color: colors.textMuted, marginTop: 2, fontSize: 12 }}>{ev.note}</Text> : null}
                     </View>
-                    {ev.location ? <Text style={{ color: colors.textMuted, marginTop: 2 }}>{ev.location}</Text> : null}
-                    {ev.note ? <Text style={{ color: colors.textMuted, marginTop: 2, fontSize: 12 }}>{ev.note}</Text> : null}
-                  </View>
-                ))
-              )}
-            </View>
+                  ))
+                )}
+              </SectionBody>
+            </Collapsible>
 
             {/* Dodaj događaj */}
-            <View style={{ gap: 12 }}>
-              <SectionTitle text={t("trip.addEvent")} colors={colors} />
-              <View style={{ gap: 6 }}>
-                <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("trip.fields.eventType")}</Text>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
-                  {EVENT_TYPES.map((et) => {
-                    const active = eventType === et;
-                    return (
-                      <Pressable key={et} onPress={() => setEventType(et)}
-                        style={{
-                          paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, borderWidth: 1,
-                          borderColor: active ? colors.primary : colors.border,
-                          backgroundColor: active ? colors.primary : colors.surface,
-                        }}>
-                        <Text style={{ color: active ? colors.onPrimary : colors.text }}>{t(`trip.events.${et}`)}</Text>
-                      </Pressable>
-                    );
-                  })}
+            <Collapsible title={t("trip.addEvent")} colors={colors}>
+              <SectionBody>
+                <View style={{ gap: 6 }}>
+                  <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("trip.fields.eventType")}</Text>
+                  <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                    {EVENT_TYPES.map((et) => {
+                      const active = eventType === et;
+                      return (
+                        <Pressable key={et} onPress={() => setEventType(et)}
+                          style={{
+                            paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, borderWidth: 1,
+                            borderColor: active ? colors.primary : colors.border,
+                            backgroundColor: active ? colors.primary : colors.bg,
+                          }}>
+                          <Text style={{ color: active ? colors.onPrimary : colors.text }}>{t(`trip.events.${et}`)}</Text>
+                        </Pressable>
+                      );
+                    })}
+                  </View>
                 </View>
-              </View>
-              <Field label={t("trip.fields.occurredAt")} value={occurredAt} onChangeText={setOccurredAt}
-                placeholder="YYYY-MM-DD HH:mm" autoCapitalize="none" colors={colors} />
-              <Field label={t("trip.fields.location")} value={location} onChangeText={setLocation}
-                colors={colors} />
-              <Field label={t("trip.fields.note")} value={note} onChangeText={setNote}
-                colors={colors} />
-              <Pressable onPress={() => addEvent.mutate()} disabled={addEvent.isPending}
-                style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: addEvent.isPending ? 0.6 : 1 }}>
-                <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
-                  {addEvent.isPending ? t("common.saving") : t("trip.addEvent")}
-                </Text>
-              </Pressable>
-            </View>
+                <Field label={t("trip.fields.occurredAt")} value={occurredAt} onChangeText={setOccurredAt}
+                  placeholder="YYYY-MM-DD HH:mm" autoCapitalize="none" colors={colors} />
+                <Field label={t("trip.fields.location")} value={location} onChangeText={setLocation} colors={colors} />
+                <Field label={t("trip.fields.note")} value={note} onChangeText={setNote} colors={colors} />
+                <Pressable onPress={() => addEvent.mutate()} disabled={addEvent.isPending}
+                  style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: addEvent.isPending ? 0.6 : 1 }}>
+                  <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
+                    {addEvent.isPending ? t("common.saving") : t("trip.addEvent")}
+                  </Text>
+                </Pressable>
+              </SectionBody>
+            </Collapsible>
         </ScrollView>
       )}
     </ModalScaffold>
@@ -372,8 +376,9 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
 }
 
 // ── Male reusable komponente (koristi ih detalj ture) ──
-function SectionTitle({ text, colors }: { text: string; colors: Palette }) {
-  return <Text style={{ color: colors.textMuted, fontSize: 13, fontWeight: "700", textTransform: "uppercase" }}>{text}</Text>;
+// Unutrašnji padding sadržaja sekcije (Collapsible telo je bez horizontalnog paddinga).
+function SectionBody({ children }: { children: ReactNode }) {
+  return <View style={{ paddingHorizontal: 14, paddingBottom: 14, paddingTop: 4, gap: 12 }}>{children}</View>;
 }
 
 function KV({ label, value, colors }: { label: string; value: string; colors: Palette }) {

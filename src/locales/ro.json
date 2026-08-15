@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} în așteptarea sincronizării",
     "pendingSync_other": "{{count}} în așteptarea sincronizării",
     "saveAssignment": "Salvează modificările",
-    "assignmentLockedFinished": "Cursa este finalizată — atribuirea nu mai poate fi modificată."
+    "assignmentLockedFinished": "Cursa este finalizată — atribuirea nu mai poate fi modificată.",
+    "assignmentLockedArchived": "Cursa este arhivată — atribuirea nu mai poate fi modificată.",
+    "active": "Active",
+    "archive": "Arhivă",
+    "loadMore": "Încarcă mai multe",
+    "noActiveTrips": "Nicio cursă activă",
+    "stops": {
+      "departure": "Plecare",
+      "loading": "Încărcare",
+      "unloading": "Descărcare",
+      "addLoading": "+ Adaugă încărcare",
+      "addUnloading": "+ Adaugă descărcare",
+      "place": "Loc",
+      "deleteConfirm": "Ștergeți această oprire?"
+    },
+    "wizard": {
+      "step1": "Plecare și kilometraj",
+      "step2": "Încărcare și descărcare",
+      "step3": "Șofer",
+      "step4": "Vehicul și venit",
+      "next": "Înainte",
+      "back": "Înapoi",
+      "stepOf": "Pasul {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Cheltuieli",
@@ -141,6 +164,13 @@
       "trailer": "Remorcă",
       "driver": "Șofer"
     },
+    "groupSubject": {
+      "vehicle": "Vehicule",
+      "trailer": "Remorci",
+      "driver": "Șoferi"
+    },
+    "sectionEmpty": "Niciun termen în această categorie",
+    "summaryA11y": "Expirate {{expired}}, în curând {{soon}}, total {{total}}",
     "category": {
       "registration": "Înmatriculare",
       "fire_extinguisher": "Stingător",

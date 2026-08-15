@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} laukia sinchronizavimo",
     "pendingSync_other": "{{count}} laukia sinchronizavimo",
     "saveAssignment": "Išsaugoti pakeitimus",
-    "assignmentLockedFinished": "Reisas baigtas — priskyrimo nebegalima keisti."
+    "assignmentLockedFinished": "Reisas baigtas — priskyrimo nebegalima keisti.",
+    "assignmentLockedArchived": "Reisas suarchyvuotas — priskyrimo nebegalima keisti.",
+    "active": "Aktyvūs",
+    "archive": "Archyvas",
+    "loadMore": "Įkelti daugiau",
+    "noActiveTrips": "Nėra aktyvių reisų",
+    "stops": {
+      "departure": "Išvykimas",
+      "loading": "Pakrovimas",
+      "unloading": "Iškrovimas",
+      "addLoading": "+ Pridėti pakrovimą",
+      "addUnloading": "+ Pridėti iškrovimą",
+      "place": "Vieta",
+      "deleteConfirm": "Ištrinti šį sustojimą?"
+    },
+    "wizard": {
+      "step1": "Išvykimas ir odometras",
+      "step2": "Pakrovimas ir iškrovimas",
+      "step3": "Vairuotojas",
+      "step4": "Transporto priemonė ir pajamos",
+      "next": "Toliau",
+      "back": "Atgal",
+      "stepOf": "Žingsnis {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Išlaidos",
@@ -141,6 +164,13 @@
       "trailer": "Priekaba",
       "driver": "Vairuotojas"
     },
+    "groupSubject": {
+      "vehicle": "Transporto priemonės",
+      "trailer": "Priekabos",
+      "driver": "Vairuotojai"
+    },
+    "sectionEmpty": "Šioje kategorijoje terminų nėra",
+    "summaryA11y": "Pasibaigę {{expired}}, netrukus baigsis {{soon}}, iš viso {{total}}",
     "category": {
       "registration": "Registracija",
       "fire_extinguisher": "Gesintuvas",

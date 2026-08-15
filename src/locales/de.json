@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} wartet auf Synchronisierung",
     "pendingSync_other": "{{count}} warten auf Synchronisierung",
     "saveAssignment": "Änderungen speichern",
-    "assignmentLockedFinished": "Tour ist abgeschlossen — die Zuweisung kann nicht mehr geändert werden."
+    "assignmentLockedFinished": "Tour ist abgeschlossen — die Zuweisung kann nicht mehr geändert werden.",
+    "assignmentLockedArchived": "Tour ist archiviert — die Zuweisung kann nicht mehr geändert werden.",
+    "active": "Aktiv",
+    "archive": "Archiv",
+    "loadMore": "Mehr laden",
+    "noActiveTrips": "Keine aktiven Touren",
+    "stops": {
+      "departure": "Abfahrt",
+      "loading": "Beladung",
+      "unloading": "Entladung",
+      "addLoading": "+ Beladung hinzufügen",
+      "addUnloading": "+ Entladung hinzufügen",
+      "place": "Ort",
+      "deleteConfirm": "Diesen Stopp löschen?"
+    },
+    "wizard": {
+      "step1": "Abfahrt & Kilometerstand",
+      "step2": "Beladung & Entladung",
+      "step3": "Fahrer",
+      "step4": "Fahrzeug & Umsatz",
+      "next": "Weiter",
+      "back": "Zurück",
+      "stepOf": "Schritt {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Ausgaben",
@@ -141,6 +164,13 @@
       "trailer": "Anhänger",
       "driver": "Fahrer"
     },
+    "groupSubject": {
+      "vehicle": "Fahrzeuge",
+      "trailer": "Anhänger",
+      "driver": "Fahrer"
+    },
+    "sectionEmpty": "Keine Fristen in dieser Kategorie",
+    "summaryA11y": "Abgelaufen {{expired}}, bald fällig {{soon}}, gesamt {{total}}",
     "category": {
       "registration": "Zulassung",
       "fire_extinguisher": "Feuerlöscher",

@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} чака синхронизиране",
     "pendingSync_other": "{{count}} чакат синхронизиране",
     "saveAssignment": "Запази промените",
-    "assignmentLockedFinished": "Курсът е приключен — разпределението вече не може да се променя."
+    "assignmentLockedFinished": "Курсът е приключен — разпределението вече не може да се променя.",
+    "assignmentLockedArchived": "Курсът е архивиран — разпределението вече не може да се променя.",
+    "active": "Активни",
+    "archive": "Архив",
+    "loadMore": "Зареди още",
+    "noActiveTrips": "Няма активни курсове",
+    "stops": {
+      "departure": "Тръгване",
+      "loading": "Товарене",
+      "unloading": "Разтоварване",
+      "addLoading": "+ Добави товарене",
+      "addUnloading": "+ Добави разтоварване",
+      "place": "Място",
+      "deleteConfirm": "Да се изтрие ли тази спирка?"
+    },
+    "wizard": {
+      "step1": "Тръгване и километраж",
+      "step2": "Товарене и разтоварване",
+      "step3": "Шофьор",
+      "step4": "Превозно средство и приход",
+      "next": "Напред",
+      "back": "Назад",
+      "stepOf": "Стъпка {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Разходи",
@@ -141,6 +164,13 @@
       "trailer": "Ремарке",
       "driver": "Шофьор"
     },
+    "groupSubject": {
+      "vehicle": "Превозни средства",
+      "trailer": "Ремаркета",
+      "driver": "Шофьори"
+    },
+    "sectionEmpty": "Няма срокове в тази категория",
+    "summaryA11y": "Изтекли {{expired}}, скоро {{soon}}, общо {{total}}",
     "category": {
       "registration": "Регистрация",
       "fire_extinguisher": "Пожарогасител",

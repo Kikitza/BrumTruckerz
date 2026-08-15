@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} ootab sünkroonimist",
     "pendingSync_other": "{{count}} ootab sünkroonimist",
     "saveAssignment": "Salvesta muudatused",
-    "assignmentLockedFinished": "Reis on lõpetatud — määramist ei saa enam muuta."
+    "assignmentLockedFinished": "Reis on lõpetatud — määramist ei saa enam muuta.",
+    "assignmentLockedArchived": "Reis on arhiveeritud — määramist ei saa enam muuta.",
+    "active": "Aktiivsed",
+    "archive": "Arhiiv",
+    "loadMore": "Laadi rohkem",
+    "noActiveTrips": "Aktiivseid reise ei ole",
+    "stops": {
+      "departure": "Väljumine",
+      "loading": "Laadimine",
+      "unloading": "Mahalaadimine",
+      "addLoading": "+ Lisa laadimine",
+      "addUnloading": "+ Lisa mahalaadimine",
+      "place": "Koht",
+      "deleteConfirm": "Kustutada see peatus?"
+    },
+    "wizard": {
+      "step1": "Väljumine ja odomeeter",
+      "step2": "Laadimine ja mahalaadimine",
+      "step3": "Juht",
+      "step4": "Sõiduk ja tulu",
+      "next": "Edasi",
+      "back": "Tagasi",
+      "stepOf": "Samm {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Kulud",
@@ -141,6 +164,13 @@
       "trailer": "Haagis",
       "driver": "Juht"
     },
+    "groupSubject": {
+      "vehicle": "Sõidukid",
+      "trailer": "Haagised",
+      "driver": "Juhid"
+    },
+    "sectionEmpty": "Selles kategoorias pole tähtaegu",
+    "summaryA11y": "Aegunud {{expired}}, aegumas {{soon}}, kokku {{total}}",
     "category": {
       "registration": "Registreerimine",
       "fire_extinguisher": "Tulekustuti",

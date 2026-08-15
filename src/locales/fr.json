@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} en attente de synchronisation",
     "pendingSync_other": "{{count}} en attente de synchronisation",
     "saveAssignment": "Enregistrer les modifications",
-    "assignmentLockedFinished": "Le trajet est terminé — l'affectation ne peut plus être modifiée."
+    "assignmentLockedFinished": "Le trajet est terminé — l'affectation ne peut plus être modifiée.",
+    "assignmentLockedArchived": "Le trajet est archivé — l'affectation ne peut plus être modifiée.",
+    "active": "Actifs",
+    "archive": "Archives",
+    "loadMore": "Charger plus",
+    "noActiveTrips": "Aucun trajet actif",
+    "stops": {
+      "departure": "Départ",
+      "loading": "Chargement",
+      "unloading": "Déchargement",
+      "addLoading": "+ Ajouter un chargement",
+      "addUnloading": "+ Ajouter un déchargement",
+      "place": "Lieu",
+      "deleteConfirm": "Supprimer cet arrêt ?"
+    },
+    "wizard": {
+      "step1": "Départ et compteur kilométrique",
+      "step2": "Chargement et déchargement",
+      "step3": "Chauffeur",
+      "step4": "Véhicule et revenus",
+      "next": "Suivant",
+      "back": "Retour",
+      "stepOf": "Étape {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Dépenses",
@@ -141,6 +164,13 @@
       "trailer": "Remorque",
       "driver": "Chauffeur"
     },
+    "groupSubject": {
+      "vehicle": "Véhicules",
+      "trailer": "Remorques",
+      "driver": "Chauffeurs"
+    },
+    "sectionEmpty": "Aucune échéance dans cette catégorie",
+    "summaryA11y": "Expirés {{expired}}, bientôt dus {{soon}}, total {{total}}",
     "category": {
       "registration": "Immatriculation",
       "fire_extinguisher": "Extincteur",

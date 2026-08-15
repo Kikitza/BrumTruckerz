@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} venter på synkronisering",
     "pendingSync_other": "{{count}} venter på synkronisering",
     "saveAssignment": "Lagre endringer",
-    "assignmentLockedFinished": "Turen er fullført — tildelingen kan ikke lenger endres."
+    "assignmentLockedFinished": "Turen er fullført — tildelingen kan ikke lenger endres.",
+    "assignmentLockedArchived": "Turen er arkivert — tildelingen kan ikke lenger endres.",
+    "active": "Aktive",
+    "archive": "Arkiv",
+    "loadMore": "Last inn mer",
+    "noActiveTrips": "Ingen aktive turer",
+    "stops": {
+      "departure": "Avreise",
+      "loading": "Lasting",
+      "unloading": "Lossing",
+      "addLoading": "+ Legg til lasting",
+      "addUnloading": "+ Legg til lossing",
+      "place": "Sted",
+      "deleteConfirm": "Slette dette stoppet?"
+    },
+    "wizard": {
+      "step1": "Avreise og kilometerteller",
+      "step2": "Lasting og lossing",
+      "step3": "Sjåfør",
+      "step4": "Kjøretøy og inntekt",
+      "next": "Neste",
+      "back": "Tilbake",
+      "stepOf": "Steg {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Utgifter",
@@ -141,6 +164,13 @@
       "trailer": "Tilhenger",
       "driver": "Sjåfør"
     },
+    "groupSubject": {
+      "vehicle": "Kjøretøy",
+      "trailer": "Tilhengere",
+      "driver": "Sjåfører"
+    },
+    "sectionEmpty": "Ingen frister i denne kategorien",
+    "summaryA11y": "Utløpt {{expired}}, snart forfaller {{soon}}, totalt {{total}}",
     "category": {
       "registration": "Registrering",
       "fire_extinguisher": "Brannslukningsapparat",

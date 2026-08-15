@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} në pritje të sinkronizimit",
     "pendingSync_other": "{{count}} në pritje të sinkronizimit",
     "saveAssignment": "Ruaj ndryshimet",
-    "assignmentLockedFinished": "Udhëtimi ka përfunduar — caktimi nuk mund të ndryshohet më."
+    "assignmentLockedFinished": "Udhëtimi ka përfunduar — caktimi nuk mund të ndryshohet më.",
+    "assignmentLockedArchived": "Udhëtimi është arkivuar — caktimi nuk mund të ndryshohet më.",
+    "active": "Aktive",
+    "archive": "Arkivi",
+    "loadMore": "Ngarko më shumë",
+    "noActiveTrips": "Nuk ka udhëtime aktive",
+    "stops": {
+      "departure": "Nisja",
+      "loading": "Ngarkimi",
+      "unloading": "Shkarkimi",
+      "addLoading": "+ Shto ngarkim",
+      "addUnloading": "+ Shto shkarkim",
+      "place": "Vendi",
+      "deleteConfirm": "Të fshihet kjo ndalesë?"
+    },
+    "wizard": {
+      "step1": "Nisja dhe kilometrazhi",
+      "step2": "Ngarkimi dhe shkarkimi",
+      "step3": "Shoferi",
+      "step4": "Automjeti dhe të ardhurat",
+      "next": "Tjetër",
+      "back": "Prapa",
+      "stepOf": "Hapi {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Shpenzimet",
@@ -141,6 +164,13 @@
       "trailer": "Rimorkio",
       "driver": "Shoferi"
     },
+    "groupSubject": {
+      "vehicle": "Automjetet",
+      "trailer": "Rimorkiot",
+      "driver": "Shoferët"
+    },
+    "sectionEmpty": "Nuk ka afate në këtë kategori",
+    "summaryA11y": "Skaduar {{expired}}, skadon së shpejti {{soon}}, gjithsej {{total}}",
     "category": {
       "registration": "Regjistrimi",
       "fire_extinguisher": "Fikës zjarri",

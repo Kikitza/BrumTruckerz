@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} pendiente de sincronizar",
     "pendingSync_other": "{{count}} pendientes de sincronizar",
     "saveAssignment": "Guardar cambios",
-    "assignmentLockedFinished": "El viaje ha finalizado — la asignación ya no se puede cambiar."
+    "assignmentLockedFinished": "El viaje ha finalizado — la asignación ya no se puede cambiar.",
+    "assignmentLockedArchived": "El viaje está archivado — la asignación ya no se puede cambiar.",
+    "active": "Activos",
+    "archive": "Archivo",
+    "loadMore": "Cargar más",
+    "noActiveTrips": "No hay viajes activos",
+    "stops": {
+      "departure": "Salida",
+      "loading": "Carga",
+      "unloading": "Descarga",
+      "addLoading": "+ Añadir carga",
+      "addUnloading": "+ Añadir descarga",
+      "place": "Lugar",
+      "deleteConfirm": "¿Eliminar esta parada?"
+    },
+    "wizard": {
+      "step1": "Salida y cuentakilómetros",
+      "step2": "Carga y descarga",
+      "step3": "Conductor",
+      "step4": "Vehículo e ingresos",
+      "next": "Siguiente",
+      "back": "Atrás",
+      "stepOf": "Paso {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Gastos",
@@ -141,6 +164,13 @@
       "trailer": "Remolque",
       "driver": "Conductor"
     },
+    "groupSubject": {
+      "vehicle": "Vehículos",
+      "trailer": "Remolques",
+      "driver": "Conductores"
+    },
+    "sectionEmpty": "No hay vencimientos en esta categoría",
+    "summaryA11y": "Vencidos {{expired}}, próximos {{soon}}, total {{total}}",
     "category": {
       "registration": "Matriculación",
       "fire_extinguisher": "Extintor",

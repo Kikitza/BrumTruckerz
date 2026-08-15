@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} a aguardar sincronização",
     "pendingSync_other": "{{count}} a aguardar sincronização",
     "saveAssignment": "Guardar alterações",
-    "assignmentLockedFinished": "A viagem está concluída — a atribuição já não pode ser alterada."
+    "assignmentLockedFinished": "A viagem está concluída — a atribuição já não pode ser alterada.",
+    "assignmentLockedArchived": "A viagem está arquivada — a atribuição já não pode ser alterada.",
+    "active": "Ativas",
+    "archive": "Arquivo",
+    "loadMore": "Carregar mais",
+    "noActiveTrips": "Nenhuma viagem ativa",
+    "stops": {
+      "departure": "Partida",
+      "loading": "Carga",
+      "unloading": "Descarga",
+      "addLoading": "+ Adicionar carga",
+      "addUnloading": "+ Adicionar descarga",
+      "place": "Local",
+      "deleteConfirm": "Eliminar esta paragem?"
+    },
+    "wizard": {
+      "step1": "Partida e conta-quilómetros",
+      "step2": "Carga e descarga",
+      "step3": "Motorista",
+      "step4": "Veículo e receita",
+      "next": "Seguinte",
+      "back": "Voltar",
+      "stepOf": "Passo {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Despesas",
@@ -141,6 +164,13 @@
       "trailer": "Reboque",
       "driver": "Motorista"
     },
+    "groupSubject": {
+      "vehicle": "Veículos",
+      "trailer": "Reboques",
+      "driver": "Motoristas"
+    },
+    "sectionEmpty": "Nenhum prazo nesta categoria",
+    "summaryA11y": "Expirados {{expired}}, a vencer {{soon}}, total {{total}}",
     "category": {
       "registration": "Matrícula",
       "fire_extinguisher": "Extintor",

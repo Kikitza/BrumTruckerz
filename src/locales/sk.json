@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} čaká na synchronizáciu",
     "pendingSync_other": "{{count}} čaká na synchronizáciu",
     "saveAssignment": "Uložiť zmeny",
-    "assignmentLockedFinished": "Jazda je dokončená — priradenie už nie je možné zmeniť."
+    "assignmentLockedFinished": "Jazda je dokončená — priradenie už nie je možné zmeniť.",
+    "assignmentLockedArchived": "Jazda je archivovaná — priradenie už nie je možné zmeniť.",
+    "active": "Aktívne",
+    "archive": "Archív",
+    "loadMore": "Načítať ďalšie",
+    "noActiveTrips": "Žiadne aktívne jazdy",
+    "stops": {
+      "departure": "Odjazd",
+      "loading": "Nakládka",
+      "unloading": "Vykládka",
+      "addLoading": "+ Pridať nakládku",
+      "addUnloading": "+ Pridať vykládku",
+      "place": "Miesto",
+      "deleteConfirm": "Odstrániť túto zastávku?"
+    },
+    "wizard": {
+      "step1": "Odjazd a tachometer",
+      "step2": "Nakládka a vykládka",
+      "step3": "Vodič",
+      "step4": "Vozidlo a tržba",
+      "next": "Ďalej",
+      "back": "Späť",
+      "stepOf": "Krok {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Náklady",
@@ -141,6 +164,13 @@
       "trailer": "Náves",
       "driver": "Vodič"
     },
+    "groupSubject": {
+      "vehicle": "Vozidlá",
+      "trailer": "Návesy",
+      "driver": "Vodiči"
+    },
+    "sectionEmpty": "V tejto kategórii nie sú žiadne termíny",
+    "summaryA11y": "Expirované {{expired}}, čoskoro {{soon}}, spolu {{total}}",
     "category": {
       "registration": "Registrácia",
       "fire_extinguisher": "Hasiaci prístroj",

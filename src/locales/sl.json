@@ -75,7 +75,30 @@
     "pendingSync_one": "{{count}} čaka na sinhronizacijo",
     "pendingSync_other": "{{count}} čaka na sinhronizacijo",
     "saveAssignment": "Shrani spremembe",
-    "assignmentLockedFinished": "Tura je zaključena — dodelitve ni več mogoče spremeniti."
+    "assignmentLockedFinished": "Tura je zaključena — dodelitve ni več mogoče spremeniti.",
+    "assignmentLockedArchived": "Tura je arhivirana — dodelitve ni več mogoče spremeniti.",
+    "active": "Aktivne",
+    "archive": "Arhiv",
+    "loadMore": "Naloži več",
+    "noActiveTrips": "Ni aktivnih tur",
+    "stops": {
+      "departure": "Odhod",
+      "loading": "Natovarjanje",
+      "unloading": "Raztovarjanje",
+      "addLoading": "+ Dodaj natovarjanje",
+      "addUnloading": "+ Dodaj raztovarjanje",
+      "place": "Kraj",
+      "deleteConfirm": "Izbrišem to postajo?"
+    },
+    "wizard": {
+      "step1": "Odhod in kilometrina",
+      "step2": "Natovarjanje in raztovarjanje",
+      "step3": "Voznik",
+      "step4": "Vozilo in prihodek",
+      "next": "Naprej",
+      "back": "Nazaj",
+      "stepOf": "Korak {{current}}/{{total}}"
+    }
   },
   "expense": {
     "section": "Stroški",
@@ -141,6 +164,13 @@
       "trailer": "Priklopnik",
       "driver": "Voznik"
     },
+    "groupSubject": {
+      "vehicle": "Vozila",
+      "trailer": "Priklopniki",
+      "driver": "Vozniki"
+    },
+    "sectionEmpty": "Ni rokov v tej kategoriji",
+    "summaryA11y": "Poteklo {{expired}}, kmalu poteče {{soon}}, skupaj {{total}}",
     "category": {
       "registration": "Registracija",
       "fire_extinguisher": "Gasilni aparat",
