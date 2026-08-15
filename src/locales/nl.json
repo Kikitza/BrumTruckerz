@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Inloggen",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "sendCode": "Code verzenden",
+    "code": "6-cijferige code",
+    "verify": "Verifiëren",
+    "codeSentTo": "Code verzonden naar {{email}}",
+    "changeEmail": "E-mail wijzigen",
+    "noRole": "Account is niet gekoppeld aan een bedrijf. Neem contact op met de eigenaar."
+  },
+  "tabs": {
+    "trips": "Ritten",
+    "fleet": "Wagenpark",
+    "reminders": "Herinneringen",
+    "reports": "Rapporten",
+    "settings": "Instellingen",
+    "myTrip": "Mijn rit",
+    "documents": "Documenten",
+    "resources": "Bronnen"
+  },
+  "trip": {
+    "status": {
+      "draft": "Concept",
+      "loading": "Laden",
+      "driving": "Onderweg",
+      "border": "Grens",
+      "unloading": "Lossen",
+      "finished": "Voltooid"
+    },
+    "events": {
+      "load": "Laden",
+      "unload": "Lossen",
+      "border": "Grens",
+      "driving": "Onderweg",
+      "rest": "Rust",
+      "other": "Overig"
+    },
+    "payMode": {
+      "per_diem": "Dagvergoeding",
+      "percentage": "Percentage",
+      "fixed": "Vast bedrag"
+    },
+    "fields": {
+      "title": "Titel",
+      "origin": "Vertrek",
+      "destination": "Bestemming",
+      "driver": "Chauffeur",
+      "vehicle": "Voertuig",
+      "trailer": "Aanhanger",
+      "startOdometer": "Kilometerstand begin (km)",
+      "revenue": "Omzet (EUR)",
+      "driverPay": "Chauffeursvergoeding (EUR)",
+      "driverPayMode": "Betalingswijze",
+      "eventType": "Type gebeurtenis",
+      "occurredAt": "Tijd",
+      "location": "Locatie",
+      "note": "Notitie"
+    },
+    "section": {
+      "info": "Details",
+      "events": "Gebeurtenislogboek",
+      "finance": "Financiën"
+    },
+    "newTrip": "Nieuwe rit",
+    "detailTitle": "Ritdetails",
+    "noEvents": "Nog geen gebeurtenissen",
+    "noTrailer": "Geen aanhanger",
+    "select": "Selecteren…",
+    "addEvent": "Gebeurtenis toevoegen",
+    "endOdometer": "Kilometerstand einde",
+    "pendingSync_one": "{{count}} wacht op synchronisatie",
+    "pendingSync_other": "{{count}} wachten op synchronisatie",
+    "saveAssignment": "Wijzigingen opslaan",
+    "assignmentLockedFinished": "De rit is voltooid — de toewijzing kan niet meer worden gewijzigd."
+  },
+  "expense": {
+    "section": "Uitgaven",
+    "add": "Uitgave toevoegen",
+    "amount": "Bedrag (zoals op de bon)",
+    "currency": "Valuta",
+    "date": "Datum van uitgave",
+    "liters": "Liters",
+    "country": "Land",
+    "note": "Notitie",
+    "total": "Rittotaal",
+    "empty": "Nog geen uitgaven",
+    "pending": "wacht op synchronisatie",
+    "deleteConfirm": "Deze uitgave verwijderen?",
+    "categories": {
+      "fuel": "Brandstof",
+      "toll": "Tol",
+      "customs": "Douane",
+      "forwarding": "Expeditie",
+      "parking": "Parkeren",
+      "other": "Overig"
+    }
+  },
+  "attachment": {
+    "add": "Foto toevoegen",
+    "camera": "Camera",
+    "library": "Galerij",
+    "empty": "Geen bijlagen",
+    "deleteConfirm": "Deze bijlage verwijderen?",
+    "documents": "Documenten",
+    "kindLabel": "Documenttype",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Factuur",
+      "customs": "Douane",
+      "fuel_receipt": "Brandstofbon",
+      "other": "Overig"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Kenteken geldig tot",
+    "fireExt": "Brandblusser",
+    "fireExtIssued": "Gecertificeerd",
+    "fireExtValidUntil": "Geldig tot",
+    "otherTitle": "Overige herinneringen",
+    "add": "+ Herinnering toevoegen",
+    "customName": "Naam van herinnering",
+    "customValidUntil": "Geldig tot",
+    "customFrom": "Vanaf (optioneel)",
+    "empty": "Nog geen herinneringen",
+    "today": "vandaag",
+    "inDays_one": "over {{count}} dag",
+    "inDays_other": "over {{count}} dagen",
+    "overdue_one": "{{count}} dag te laat",
+    "overdue_other": "{{count}} dagen te laat",
+    "group": {
+      "expired": "Verlopen",
+      "soon": "Vervalt binnen ≤30 dagen",
+      "other": "Later"
+    },
+    "subject": {
+      "vehicle": "Voertuig",
+      "trailer": "Aanhanger",
+      "driver": "Chauffeur"
+    },
+    "category": {
+      "registration": "Kenteken",
+      "fire_extinguisher": "Brandblusser",
+      "medical": "Medische keuring",
+      "custom": "Overig"
+    }
+  },
+  "fleet": {
+    "vehicles": "Voertuigen",
+    "trailers": "Aanhangers",
+    "drivers": "Chauffeurs",
+    "addVehicle": "Voertuig toevoegen",
+    "addTrailer": "Aanhanger toevoegen",
+    "addDriver": "Chauffeur toevoegen",
+    "editVehicle": "Voertuig bewerken",
+    "editTrailer": "Aanhanger bewerken",
+    "editDriver": "Chauffeur bewerken",
+    "emptyVehicles": "Nog geen voertuigen",
+    "emptyTrailers": "Nog geen aanhangers",
+    "emptyDrivers": "Nog geen chauffeurs",
+    "deleteVehicle": "Dit voertuig verwijderen?",
+    "deleteTrailer": "Deze aanhanger verwijderen?",
+    "deleteDriver": "Deze chauffeur verwijderen?",
+    "fields": {
+      "registration": "Kenteken",
+      "makeModel": "Merk / model",
+      "normConsumption": "Normverbruik (L/100km)",
+      "currentOdometer": "Huidige kilometerstand (km)",
+      "type": "Type",
+      "fullName": "Volledige naam",
+      "employmentType": "Type dienstverband",
+      "employmentStart": "Begin dienstverband",
+      "contractEnd": "Einde contract",
+      "medicalValidUntil": "Medische keuring geldig tot"
+    },
+    "employment": {
+      "indefinite": "Onbepaalde tijd",
+      "fixed_term": "Bepaalde tijd"
+    }
+  },
+  "settings": {
+    "signOut": "Uitloggen",
+    "signOutConfirm": "Uitloggen bij uw account?"
+  },
+  "language": {
+    "title": "Taal",
+    "beta": "bèta"
+  },
+  "common": {
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "add": "Toevoegen",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "done": "Klaar",
+    "saving": "Opslaan…",
+    "error": "Er is iets misgegaan",
+    "offlineNote": "Lokaal opgeslagen — wordt gesynchroniseerd zodra er verbinding is"
+  }
+}

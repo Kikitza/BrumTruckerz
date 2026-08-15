@@ -38,3 +38,6 @@ Za štampu/final: konvertovati tekst u krive (outline) pre predaje.
 - **iOS:** `app-icon.svg` izvesti u PNG 1024×1024 (Apple sam zaobljuje — izvor je pun kvadrat; naš rx=228 je za pregled/marketing).
 - **Android (adaptive):** foreground = znak (beli kamion + teal linije) na transparentnoj podlozi sa ~66% safe-zone, background = puna `#16233B`. Ne koristiti gotov zaobljeni kvadrat kao adaptive.
 - Favicon/monohrom (Android 13+ themed icon): `logo-mark-mono.svg`.
+
+## Zastave (izbor jezika)
+Zastave za izbor jezika NISU brend-asset — dolaze iz paketa **flag-icons** (MIT). Smeštene su odvojeno u `assets/flags/` sa atribucijom u `assets/flags/README.md`. Mapiranje jezik→zastava je u `src/i18n/languages.ts`.

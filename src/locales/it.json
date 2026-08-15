@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Accedi",
+    "email": "E-mail",
+    "password": "Password",
+    "sendCode": "Invia codice",
+    "code": "Codice a 6 cifre",
+    "verify": "Verifica",
+    "codeSentTo": "Codice inviato a {{email}}",
+    "changeEmail": "Cambia e-mail",
+    "noRole": "L'account non è collegato a nessuna azienda. Contatta il titolare."
+  },
+  "tabs": {
+    "trips": "Viaggi",
+    "fleet": "Flotta",
+    "reminders": "Promemoria",
+    "reports": "Report",
+    "settings": "Impostazioni",
+    "myTrip": "Il mio viaggio",
+    "documents": "Documenti",
+    "resources": "Risorse"
+  },
+  "trip": {
+    "status": {
+      "draft": "Bozza",
+      "loading": "Carico",
+      "driving": "In marcia",
+      "border": "Confine",
+      "unloading": "Scarico",
+      "finished": "Completato"
+    },
+    "events": {
+      "load": "Carico",
+      "unload": "Scarico",
+      "border": "Confine",
+      "driving": "In marcia",
+      "rest": "Riposo",
+      "other": "Altro"
+    },
+    "payMode": {
+      "per_diem": "Diaria",
+      "percentage": "Percentuale",
+      "fixed": "Fisso"
+    },
+    "fields": {
+      "title": "Titolo",
+      "origin": "Partenza",
+      "destination": "Destinazione",
+      "driver": "Autista",
+      "vehicle": "Veicolo",
+      "trailer": "Rimorchio",
+      "startOdometer": "Chilometraggio iniziale (km)",
+      "revenue": "Ricavo (EUR)",
+      "driverPay": "Compenso autista (EUR)",
+      "driverPayMode": "Modalità di pagamento",
+      "eventType": "Tipo di evento",
+      "occurredAt": "Ora",
+      "location": "Luogo",
+      "note": "Nota"
+    },
+    "section": {
+      "info": "Dettagli",
+      "events": "Registro eventi",
+      "finance": "Finanze"
+    },
+    "newTrip": "Nuovo viaggio",
+    "detailTitle": "Dettaglio viaggio",
+    "noEvents": "Nessun evento finora",
+    "noTrailer": "Nessun rimorchio",
+    "select": "Seleziona…",
+    "addEvent": "Aggiungi evento",
+    "endOdometer": "Chilometraggio finale",
+    "pendingSync_one": "{{count}} in attesa di sincronizzazione",
+    "pendingSync_other": "{{count}} in attesa di sincronizzazione",
+    "saveAssignment": "Salva modifiche",
+    "assignmentLockedFinished": "Il viaggio è completato — l'assegnazione non può più essere modificata."
+  },
+  "expense": {
+    "section": "Spese",
+    "add": "Aggiungi spesa",
+    "amount": "Importo (come sulla ricevuta)",
+    "currency": "Valuta",
+    "date": "Data della spesa",
+    "liters": "Litri",
+    "country": "Paese",
+    "note": "Nota",
+    "total": "Totale viaggio",
+    "empty": "Nessuna spesa finora",
+    "pending": "in attesa di sincronizzazione",
+    "deleteConfirm": "Eliminare questa spesa?",
+    "categories": {
+      "fuel": "Carburante",
+      "toll": "Pedaggio",
+      "customs": "Dogana",
+      "forwarding": "Spedizione",
+      "parking": "Parcheggio",
+      "other": "Altro"
+    }
+  },
+  "attachment": {
+    "add": "Aggiungi foto",
+    "camera": "Fotocamera",
+    "library": "Galleria",
+    "empty": "Nessun allegato",
+    "deleteConfirm": "Eliminare questo allegato?",
+    "documents": "Documenti",
+    "kindLabel": "Tipo di documento",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Fattura",
+      "customs": "Dogana",
+      "fuel_receipt": "Ricevuta carburante",
+      "other": "Altro"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Immatricolazione valida fino al",
+    "fireExt": "Estintore",
+    "fireExtIssued": "Certificato",
+    "fireExtValidUntil": "Valido fino al",
+    "otherTitle": "Altri promemoria",
+    "add": "+ Aggiungi promemoria",
+    "customName": "Nome del promemoria",
+    "customValidUntil": "Valido fino al",
+    "customFrom": "Da (facoltativo)",
+    "empty": "Nessun promemoria finora",
+    "today": "oggi",
+    "inDays_one": "tra {{count}} giorno",
+    "inDays_other": "tra {{count}} giorni",
+    "overdue_one": "{{count}} giorno di ritardo",
+    "overdue_other": "{{count}} giorni di ritardo",
+    "group": {
+      "expired": "Scaduto",
+      "soon": "In scadenza tra ≤30 giorni",
+      "other": "Più avanti"
+    },
+    "subject": {
+      "vehicle": "Veicolo",
+      "trailer": "Rimorchio",
+      "driver": "Autista"
+    },
+    "category": {
+      "registration": "Immatricolazione",
+      "fire_extinguisher": "Estintore",
+      "medical": "Certificato medico",
+      "custom": "Altro"
+    }
+  },
+  "fleet": {
+    "vehicles": "Veicoli",
+    "trailers": "Rimorchi",
+    "drivers": "Autisti",
+    "addVehicle": "Aggiungi veicolo",
+    "addTrailer": "Aggiungi rimorchio",
+    "addDriver": "Aggiungi autista",
+    "editVehicle": "Modifica veicolo",
+    "editTrailer": "Modifica rimorchio",
+    "editDriver": "Modifica autista",
+    "emptyVehicles": "Nessun veicolo finora",
+    "emptyTrailers": "Nessun rimorchio finora",
+    "emptyDrivers": "Nessun autista finora",
+    "deleteVehicle": "Eliminare questo veicolo?",
+    "deleteTrailer": "Eliminare questo rimorchio?",
+    "deleteDriver": "Eliminare questo autista?",
+    "fields": {
+      "registration": "Immatricolazione",
+      "makeModel": "Marca / modello",
+      "normConsumption": "Consumo di riferimento (L/100km)",
+      "currentOdometer": "Chilometraggio attuale (km)",
+      "type": "Tipo",
+      "fullName": "Nome completo",
+      "employmentType": "Tipo di contratto",
+      "employmentStart": "Inizio del rapporto",
+      "contractEnd": "Fine del contratto",
+      "medicalValidUntil": "Certificato medico valido fino al"
+    },
+    "employment": {
+      "indefinite": "Indeterminato",
+      "fixed_term": "Determinato"
+    }
+  },
+  "settings": {
+    "signOut": "Esci",
+    "signOutConfirm": "Uscire dal tuo account?"
+  },
+  "language": {
+    "title": "Lingua",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "add": "Aggiungi",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "done": "Fatto",
+    "saving": "Salvataggio…",
+    "error": "Qualcosa è andato storto",
+    "offlineNote": "Salvato localmente — verrà sincronizzato quando sarai online"
+  }
+}

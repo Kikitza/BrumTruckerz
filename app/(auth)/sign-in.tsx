@@ -2,12 +2,15 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { router } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { supabase } from "../../src/lib/supabase";
 import { useTheme } from "../../src/lib/theme";
+import { LanguagePicker } from "../../src/i18n/LanguagePicker";
 import LogoLight from "../../assets/brand/logo-horizontal.svg";
 import LogoDark from "../../assets/brand/logo-horizontal-dark.svg";
 
 export default function SignIn() {
+  const { t } = useTranslation();
   const { colors, scheme } = useTheme();
   const Logo = scheme === "dark" ? LogoDark : LogoLight;
   const [email, setEmail] = useState("");
@@ -20,7 +23,7 @@ export default function SignIn() {
       email: email.trim(), password,
     });
     setBusy(false);
-    if (error) return Alert.alert("Greška", error.message);
+    if (error) return Alert.alert(t("common.error"), error.message);
     router.replace("/");
   };
 
@@ -31,15 +34,16 @@ export default function SignIn() {
 
   return (
     <View style={{ flex: 1, justifyContent: "center", padding: 24, backgroundColor: colors.bg, gap: 12 }}>
-      <Logo width={224} height={40} style={{ alignSelf: "center", marginBottom: 20 }} />
-      <Text style={{ fontSize: 24, fontWeight: "700", color: colors.text }}>Prijava</Text>
-      <TextInput placeholder="Imejl" autoCapitalize="none" keyboardType="email-address"
+      <LanguagePicker />
+      <Logo width={224} height={40} style={{ alignSelf: "center", marginTop: 16, marginBottom: 20 }} />
+      <Text style={{ fontSize: 24, fontWeight: "700", color: colors.text }}>{t("auth.signIn")}</Text>
+      <TextInput placeholder={t("auth.email")} autoCapitalize="none" keyboardType="email-address"
         value={email} onChangeText={setEmail} placeholderTextColor={colors.textMuted} style={input} />
-      <TextInput placeholder="Lozinka" secureTextEntry
+      <TextInput placeholder={t("auth.password")} secureTextEntry
         value={password} onChangeText={setPassword} placeholderTextColor={colors.textMuted} style={input} />
       <Pressable onPress={signIn} disabled={busy || !email.includes("@") || password.length < 6}
         style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 14, alignItems: "center", opacity: busy ? 0.6 : 1 }}>
-        <Text style={{ color: "#fff", fontWeight: "600" }}>Prijavi se</Text>
+        <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("auth.signIn")}</Text>
       </Pressable>
     </View>
   );

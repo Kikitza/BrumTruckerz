@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Войти",
+    "email": "Эл. почта",
+    "password": "Пароль",
+    "sendCode": "Отправить код",
+    "code": "6-значный код",
+    "verify": "Подтвердить",
+    "codeSentTo": "Код отправлен на {{email}}",
+    "changeEmail": "Изменить эл. почту",
+    "noRole": "Аккаунт не привязан к компании. Обратитесь к владельцу."
+  },
+  "tabs": {
+    "trips": "Рейсы",
+    "fleet": "Автопарк",
+    "reminders": "Напоминания",
+    "reports": "Отчёты",
+    "settings": "Настройки",
+    "myTrip": "Мой рейс",
+    "documents": "Документы",
+    "resources": "Ресурсы"
+  },
+  "trip": {
+    "status": {
+      "draft": "Черновик",
+      "loading": "Погрузка",
+      "driving": "В пути",
+      "border": "Граница",
+      "unloading": "Разгрузка",
+      "finished": "Завершён"
+    },
+    "events": {
+      "load": "Погрузка",
+      "unload": "Разгрузка",
+      "border": "Граница",
+      "driving": "В пути",
+      "rest": "Отдых",
+      "other": "Другое"
+    },
+    "payMode": {
+      "per_diem": "Суточные",
+      "percentage": "Процент",
+      "fixed": "Фиксированная"
+    },
+    "fields": {
+      "title": "Название",
+      "origin": "Пункт отправления",
+      "destination": "Пункт назначения",
+      "driver": "Водитель",
+      "vehicle": "Транспортное средство",
+      "trailer": "Прицеп",
+      "startOdometer": "Начальный пробег (km)",
+      "revenue": "Выручка (EUR)",
+      "driverPay": "Оплата водителю (EUR)",
+      "driverPayMode": "Режим оплаты",
+      "eventType": "Тип события",
+      "occurredAt": "Время",
+      "location": "Местоположение",
+      "note": "Примечание"
+    },
+    "section": {
+      "info": "Детали",
+      "events": "Журнал событий",
+      "finance": "Финансы"
+    },
+    "newTrip": "Новый рейс",
+    "detailTitle": "Детали рейса",
+    "noEvents": "Событий пока нет",
+    "noTrailer": "Без прицепа",
+    "select": "Выбрать…",
+    "addEvent": "Добавить событие",
+    "endOdometer": "Конечный пробег",
+    "pendingSync_one": "{{count}} ожидает синхронизации",
+    "pendingSync_other": "{{count}} ожидают синхронизации",
+    "saveAssignment": "Сохранить изменения",
+    "assignmentLockedFinished": "Рейс завершён — назначение больше нельзя изменить."
+  },
+  "expense": {
+    "section": "Расходы",
+    "add": "Добавить расход",
+    "amount": "Сумма (как в чеке)",
+    "currency": "Валюта",
+    "date": "Дата расхода",
+    "liters": "Литры",
+    "country": "Страна",
+    "note": "Примечание",
+    "total": "Итого по рейсу",
+    "empty": "Расходов пока нет",
+    "pending": "ожидает синхронизации",
+    "deleteConfirm": "Удалить этот расход?",
+    "categories": {
+      "fuel": "Топливо",
+      "toll": "Дорожный сбор",
+      "customs": "Таможня",
+      "forwarding": "Экспедирование",
+      "parking": "Парковка",
+      "other": "Другое"
+    }
+  },
+  "attachment": {
+    "add": "Добавить фото",
+    "camera": "Камера",
+    "library": "Галерея",
+    "empty": "Вложений нет",
+    "deleteConfirm": "Удалить это вложение?",
+    "documents": "Документы",
+    "kindLabel": "Тип документа",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Счёт-фактура",
+      "customs": "Таможня",
+      "fuel_receipt": "Чек за топливо",
+      "other": "Другое"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Регистрация действительна до",
+    "fireExt": "Огнетушитель",
+    "fireExtIssued": "Сертифицирован",
+    "fireExtValidUntil": "Действителен до",
+    "otherTitle": "Другие напоминания",
+    "add": "+ Добавить напоминание",
+    "customName": "Название напоминания",
+    "customValidUntil": "Действительно до",
+    "customFrom": "С (необязательно)",
+    "empty": "Напоминаний пока нет",
+    "today": "сегодня",
+    "inDays_one": "через {{count}} день",
+    "inDays_other": "через {{count}} дней",
+    "overdue_one": "просрочено на {{count}} день",
+    "overdue_other": "просрочено на {{count}} дней",
+    "group": {
+      "expired": "Просрочено",
+      "soon": "Срок ≤30 дней",
+      "other": "Позже"
+    },
+    "subject": {
+      "vehicle": "Транспортное средство",
+      "trailer": "Прицеп",
+      "driver": "Водитель"
+    },
+    "category": {
+      "registration": "Регистрация",
+      "fire_extinguisher": "Огнетушитель",
+      "medical": "Медицинская справка",
+      "custom": "Другое"
+    }
+  },
+  "fleet": {
+    "vehicles": "Транспортные средства",
+    "trailers": "Прицепы",
+    "drivers": "Водители",
+    "addVehicle": "Добавить транспортное средство",
+    "addTrailer": "Добавить прицеп",
+    "addDriver": "Добавить водителя",
+    "editVehicle": "Изменить транспортное средство",
+    "editTrailer": "Изменить прицеп",
+    "editDriver": "Изменить водителя",
+    "emptyVehicles": "Транспортных средств пока нет",
+    "emptyTrailers": "Прицепов пока нет",
+    "emptyDrivers": "Водителей пока нет",
+    "deleteVehicle": "Удалить это транспортное средство?",
+    "deleteTrailer": "Удалить этот прицеп?",
+    "deleteDriver": "Удалить этого водителя?",
+    "fields": {
+      "registration": "Регистрация",
+      "makeModel": "Марка / модель",
+      "normConsumption": "Нормативный расход (L/100km)",
+      "currentOdometer": "Текущий пробег (km)",
+      "type": "Тип",
+      "fullName": "Полное имя",
+      "employmentType": "Тип занятости",
+      "employmentStart": "Начало работы",
+      "contractEnd": "Окончание договора",
+      "medicalValidUntil": "Медсправка действительна до"
+    },
+    "employment": {
+      "indefinite": "Бессрочный",
+      "fixed_term": "Срочный"
+    }
+  },
+  "settings": {
+    "signOut": "Выйти",
+    "signOutConfirm": "Выйти из аккаунта?"
+  },
+  "language": {
+    "title": "Язык",
+    "beta": "бета"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "add": "Добавить",
+    "edit": "Изменить",
+    "delete": "Удалить",
+    "done": "Готово",
+    "saving": "Сохранение…",
+    "error": "Что-то пошло не так",
+    "offlineNote": "Сохранено локально — синхронизируется при подключении"
+  }
+}

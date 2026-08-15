@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Se connecter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "sendCode": "Envoyer le code",
+    "code": "Code à 6 chiffres",
+    "verify": "Vérifier",
+    "codeSentTo": "Code envoyé à {{email}}",
+    "changeEmail": "Modifier l'e-mail",
+    "noRole": "Le compte n'est associé à aucune entreprise. Contactez le propriétaire."
+  },
+  "tabs": {
+    "trips": "Trajets",
+    "fleet": "Flotte",
+    "reminders": "Rappels",
+    "reports": "Rapports",
+    "settings": "Paramètres",
+    "myTrip": "Mon trajet",
+    "documents": "Documents",
+    "resources": "Ressources"
+  },
+  "trip": {
+    "status": {
+      "draft": "Brouillon",
+      "loading": "Chargement",
+      "driving": "En route",
+      "border": "Frontière",
+      "unloading": "Déchargement",
+      "finished": "Terminé"
+    },
+    "events": {
+      "load": "Chargement",
+      "unload": "Déchargement",
+      "border": "Frontière",
+      "driving": "En route",
+      "rest": "Repos",
+      "other": "Autre"
+    },
+    "payMode": {
+      "per_diem": "Indemnité journalière",
+      "percentage": "Pourcentage",
+      "fixed": "Forfait"
+    },
+    "fields": {
+      "title": "Titre",
+      "origin": "Départ",
+      "destination": "Destination",
+      "driver": "Chauffeur",
+      "vehicle": "Véhicule",
+      "trailer": "Remorque",
+      "startOdometer": "Kilométrage de départ (km)",
+      "revenue": "Recette (EUR)",
+      "driverPay": "Rémunération du chauffeur (EUR)",
+      "driverPayMode": "Mode de rémunération",
+      "eventType": "Type d'événement",
+      "occurredAt": "Heure",
+      "location": "Lieu",
+      "note": "Note"
+    },
+    "section": {
+      "info": "Détails",
+      "events": "Journal des événements",
+      "finance": "Finances"
+    },
+    "newTrip": "Nouveau trajet",
+    "detailTitle": "Détail du trajet",
+    "noEvents": "Aucun événement pour le moment",
+    "noTrailer": "Aucune remorque",
+    "select": "Sélectionner…",
+    "addEvent": "Ajouter un événement",
+    "endOdometer": "Kilométrage d'arrivée",
+    "pendingSync_one": "{{count}} en attente de synchronisation",
+    "pendingSync_other": "{{count}} en attente de synchronisation",
+    "saveAssignment": "Enregistrer les modifications",
+    "assignmentLockedFinished": "Le trajet est terminé — l'affectation ne peut plus être modifiée."
+  },
+  "expense": {
+    "section": "Dépenses",
+    "add": "Ajouter une dépense",
+    "amount": "Montant (tel qu'indiqué sur le reçu)",
+    "currency": "Devise",
+    "date": "Date de la dépense",
+    "liters": "Litres",
+    "country": "Pays",
+    "note": "Note",
+    "total": "Total du trajet",
+    "empty": "Aucune dépense pour le moment",
+    "pending": "en attente de synchronisation",
+    "deleteConfirm": "Supprimer cette dépense ?",
+    "categories": {
+      "fuel": "Carburant",
+      "toll": "Péage",
+      "customs": "Douane",
+      "forwarding": "Transit",
+      "parking": "Stationnement",
+      "other": "Autre"
+    }
+  },
+  "attachment": {
+    "add": "Ajouter une photo",
+    "camera": "Appareil photo",
+    "library": "Galerie",
+    "empty": "Aucune pièce jointe",
+    "deleteConfirm": "Supprimer cette pièce jointe ?",
+    "documents": "Documents",
+    "kindLabel": "Type de document",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Facture",
+      "customs": "Douane",
+      "fuel_receipt": "Reçu de carburant",
+      "other": "Autre"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Immatriculation valable jusqu'au",
+    "fireExt": "Extincteur",
+    "fireExtIssued": "Certifié",
+    "fireExtValidUntil": "Valable jusqu'au",
+    "otherTitle": "Autres rappels",
+    "add": "+ Ajouter un rappel",
+    "customName": "Nom du rappel",
+    "customValidUntil": "Valable jusqu'au",
+    "customFrom": "À partir de (facultatif)",
+    "empty": "Aucun rappel pour le moment",
+    "today": "aujourd'hui",
+    "inDays_one": "dans {{count}} jour",
+    "inDays_other": "dans {{count}} jours",
+    "overdue_one": "{{count}} jour de retard",
+    "overdue_other": "{{count}} jours de retard",
+    "group": {
+      "expired": "Expiré",
+      "soon": "À échéance dans ≤30 jours",
+      "other": "Plus tard"
+    },
+    "subject": {
+      "vehicle": "Véhicule",
+      "trailer": "Remorque",
+      "driver": "Chauffeur"
+    },
+    "category": {
+      "registration": "Immatriculation",
+      "fire_extinguisher": "Extincteur",
+      "medical": "Certificat médical",
+      "custom": "Autre"
+    }
+  },
+  "fleet": {
+    "vehicles": "Véhicules",
+    "trailers": "Remorques",
+    "drivers": "Chauffeurs",
+    "addVehicle": "Ajouter un véhicule",
+    "addTrailer": "Ajouter une remorque",
+    "addDriver": "Ajouter un chauffeur",
+    "editVehicle": "Modifier le véhicule",
+    "editTrailer": "Modifier la remorque",
+    "editDriver": "Modifier le chauffeur",
+    "emptyVehicles": "Aucun véhicule pour le moment",
+    "emptyTrailers": "Aucune remorque pour le moment",
+    "emptyDrivers": "Aucun chauffeur pour le moment",
+    "deleteVehicle": "Supprimer ce véhicule ?",
+    "deleteTrailer": "Supprimer cette remorque ?",
+    "deleteDriver": "Supprimer ce chauffeur ?",
+    "fields": {
+      "registration": "Immatriculation",
+      "makeModel": "Marque / modèle",
+      "normConsumption": "Consommation normée (L/100km)",
+      "currentOdometer": "Kilométrage actuel (km)",
+      "type": "Type",
+      "fullName": "Nom complet",
+      "employmentType": "Type de contrat",
+      "employmentStart": "Début du contrat",
+      "contractEnd": "Fin du contrat",
+      "medicalValidUntil": "Certificat médical valable jusqu'au"
+    },
+    "employment": {
+      "indefinite": "Durée indéterminée",
+      "fixed_term": "Durée déterminée"
+    }
+  },
+  "settings": {
+    "signOut": "Se déconnecter",
+    "signOutConfirm": "Se déconnecter de votre compte ?"
+  },
+  "language": {
+    "title": "Langue",
+    "beta": "bêta"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "done": "Terminé",
+    "saving": "Enregistrement…",
+    "error": "Une erreur s'est produite",
+    "offlineNote": "Enregistré localement — sera synchronisé une fois en ligne"
+  }
+}

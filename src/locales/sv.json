@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Logga in",
+    "email": "E-post",
+    "password": "Lösenord",
+    "sendCode": "Skicka kod",
+    "code": "6-siffrig kod",
+    "verify": "Verifiera",
+    "codeSentTo": "Kod skickad till {{email}}",
+    "changeEmail": "Byt e-post",
+    "noRole": "Kontot är inte kopplat till ett företag. Kontakta ägaren."
+  },
+  "tabs": {
+    "trips": "Turer",
+    "fleet": "Fordonsflotta",
+    "reminders": "Påminnelser",
+    "reports": "Rapporter",
+    "settings": "Inställningar",
+    "myTrip": "Min tur",
+    "documents": "Dokument",
+    "resources": "Resurser"
+  },
+  "trip": {
+    "status": {
+      "draft": "Utkast",
+      "loading": "Lastning",
+      "driving": "Körning",
+      "border": "Gräns",
+      "unloading": "Lossning",
+      "finished": "Avslutad"
+    },
+    "events": {
+      "load": "Lastning",
+      "unload": "Lossning",
+      "border": "Gräns",
+      "driving": "Körning",
+      "rest": "Vila",
+      "other": "Övrigt"
+    },
+    "payMode": {
+      "per_diem": "Dagtraktamente",
+      "percentage": "Procent",
+      "fixed": "Fast"
+    },
+    "fields": {
+      "title": "Titel",
+      "origin": "Avsändningsort",
+      "destination": "Destination",
+      "driver": "Förare",
+      "vehicle": "Fordon",
+      "trailer": "Släp",
+      "startOdometer": "Startmätarställning (km)",
+      "revenue": "Intäkt (EUR)",
+      "driverPay": "Förarlön (EUR)",
+      "driverPayMode": "Betalningssätt",
+      "eventType": "Händelsetyp",
+      "occurredAt": "Tid",
+      "location": "Plats",
+      "note": "Anteckning"
+    },
+    "section": {
+      "info": "Detaljer",
+      "events": "Händelselogg",
+      "finance": "Ekonomi"
+    },
+    "newTrip": "Ny tur",
+    "detailTitle": "Turdetaljer",
+    "noEvents": "Inga händelser ännu",
+    "noTrailer": "Inget släp",
+    "select": "Välj…",
+    "addEvent": "Lägg till händelse",
+    "endOdometer": "Slutmätarställning",
+    "pendingSync_one": "{{count}} väntar på synkronisering",
+    "pendingSync_other": "{{count}} väntar på synkronisering",
+    "saveAssignment": "Spara ändringar",
+    "assignmentLockedFinished": "Turen är avslutad — tilldelningen kan inte längre ändras."
+  },
+  "expense": {
+    "section": "Utgifter",
+    "add": "Lägg till utgift",
+    "amount": "Belopp (som på kvittot)",
+    "currency": "Valuta",
+    "date": "Utgiftsdatum",
+    "liters": "Liter",
+    "country": "Land",
+    "note": "Anteckning",
+    "total": "Totalt för turen",
+    "empty": "Inga utgifter ännu",
+    "pending": "väntar på synkronisering",
+    "deleteConfirm": "Radera denna utgift?",
+    "categories": {
+      "fuel": "Bränsle",
+      "toll": "Vägtull",
+      "customs": "Tull",
+      "forwarding": "Spedition",
+      "parking": "Parkering",
+      "other": "Övrigt"
+    }
+  },
+  "attachment": {
+    "add": "Lägg till foto",
+    "camera": "Kamera",
+    "library": "Galleri",
+    "empty": "Inga bilagor",
+    "deleteConfirm": "Radera denna bilaga?",
+    "documents": "Dokument",
+    "kindLabel": "Dokumenttyp",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Faktura",
+      "customs": "Tull",
+      "fuel_receipt": "Bränslekvitto",
+      "other": "Övrigt"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Registrering giltig till",
+    "fireExt": "Brandsläckare",
+    "fireExtIssued": "Certifierad",
+    "fireExtValidUntil": "Giltig till",
+    "otherTitle": "Andra påminnelser",
+    "add": "+ Lägg till påminnelse",
+    "customName": "Påminnelsens namn",
+    "customValidUntil": "Giltig till",
+    "customFrom": "Från (valfritt)",
+    "empty": "Inga påminnelser ännu",
+    "today": "idag",
+    "inDays_one": "om {{count}} dag",
+    "inDays_other": "om {{count}} dagar",
+    "overdue_one": "{{count}} dag försenad",
+    "overdue_other": "{{count}} dagar försenad",
+    "group": {
+      "expired": "Utgången",
+      "soon": "Förfaller inom ≤30 dagar",
+      "other": "Senare"
+    },
+    "subject": {
+      "vehicle": "Fordon",
+      "trailer": "Släp",
+      "driver": "Förare"
+    },
+    "category": {
+      "registration": "Registrering",
+      "fire_extinguisher": "Brandsläckare",
+      "medical": "Läkarintyg",
+      "custom": "Övrigt"
+    }
+  },
+  "fleet": {
+    "vehicles": "Fordon",
+    "trailers": "Släp",
+    "drivers": "Förare",
+    "addVehicle": "Lägg till fordon",
+    "addTrailer": "Lägg till släp",
+    "addDriver": "Lägg till förare",
+    "editVehicle": "Redigera fordon",
+    "editTrailer": "Redigera släp",
+    "editDriver": "Redigera förare",
+    "emptyVehicles": "Inga fordon ännu",
+    "emptyTrailers": "Inga släp ännu",
+    "emptyDrivers": "Inga förare ännu",
+    "deleteVehicle": "Radera detta fordon?",
+    "deleteTrailer": "Radera detta släp?",
+    "deleteDriver": "Radera denna förare?",
+    "fields": {
+      "registration": "Registrering",
+      "makeModel": "Märke / modell",
+      "normConsumption": "Normförbrukning (L/100km)",
+      "currentOdometer": "Aktuell mätarställning (km)",
+      "type": "Typ",
+      "fullName": "Fullständigt namn",
+      "employmentType": "Anställningsform",
+      "employmentStart": "Anställningsstart",
+      "contractEnd": "Kontraktets slut",
+      "medicalValidUntil": "Läkarintyg giltigt till"
+    },
+    "employment": {
+      "indefinite": "Tillsvidare",
+      "fixed_term": "Tidsbegränsad"
+    }
+  },
+  "settings": {
+    "signOut": "Logga ut",
+    "signOutConfirm": "Logga ut från ditt konto?"
+  },
+  "language": {
+    "title": "Språk",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "add": "Lägg till",
+    "edit": "Redigera",
+    "delete": "Radera",
+    "done": "Klar",
+    "saving": "Sparar…",
+    "error": "Något gick fel",
+    "offlineNote": "Sparat lokalt — synkroniseras när du är online"
+  }
+}

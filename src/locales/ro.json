@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Autentificare",
+    "email": "E-mail",
+    "password": "Parolă",
+    "sendCode": "Trimite codul",
+    "code": "Cod din 6 cifre",
+    "verify": "Verifică",
+    "codeSentTo": "Cod trimis la {{email}}",
+    "changeEmail": "Schimbă e-mailul",
+    "noRole": "Contul nu este asociat unei firme. Contactează proprietarul."
+  },
+  "tabs": {
+    "trips": "Curse",
+    "fleet": "Flotă",
+    "reminders": "Memento-uri",
+    "reports": "Rapoarte",
+    "settings": "Setări",
+    "myTrip": "Cursa mea",
+    "documents": "Documente",
+    "resources": "Resurse"
+  },
+  "trip": {
+    "status": {
+      "draft": "Ciornă",
+      "loading": "Încărcare",
+      "driving": "În cursă",
+      "border": "Vamă",
+      "unloading": "Descărcare",
+      "finished": "Finalizată"
+    },
+    "events": {
+      "load": "Încărcare",
+      "unload": "Descărcare",
+      "border": "Vamă",
+      "driving": "Condus",
+      "rest": "Pauză",
+      "other": "Altele"
+    },
+    "payMode": {
+      "per_diem": "Diurnă",
+      "percentage": "Procent",
+      "fixed": "Sumă fixă"
+    },
+    "fields": {
+      "title": "Denumire",
+      "origin": "Loc de încărcare",
+      "destination": "Loc de descărcare",
+      "driver": "Șofer",
+      "vehicle": "Vehicul",
+      "trailer": "Remorcă",
+      "startOdometer": "Kilometraj inițial (km)",
+      "revenue": "Venit (EUR)",
+      "driverPay": "Plata șoferului (EUR)",
+      "driverPayMode": "Mod de plată",
+      "eventType": "Tip eveniment",
+      "occurredAt": "Ora",
+      "location": "Locație",
+      "note": "Notă"
+    },
+    "section": {
+      "info": "Detalii",
+      "events": "Jurnal evenimente",
+      "finance": "Finanțe"
+    },
+    "newTrip": "Cursă nouă",
+    "detailTitle": "Detalii cursă",
+    "noEvents": "Încă niciun eveniment",
+    "noTrailer": "Fără remorcă",
+    "select": "Selectează…",
+    "addEvent": "Adaugă eveniment",
+    "endOdometer": "Kilometraj final",
+    "pendingSync_one": "{{count}} în așteptarea sincronizării",
+    "pendingSync_other": "{{count}} în așteptarea sincronizării",
+    "saveAssignment": "Salvează modificările",
+    "assignmentLockedFinished": "Cursa este finalizată — atribuirea nu mai poate fi modificată."
+  },
+  "expense": {
+    "section": "Cheltuieli",
+    "add": "Adaugă cheltuială",
+    "amount": "Sumă (ca pe bon)",
+    "currency": "Monedă",
+    "date": "Data cheltuielii",
+    "liters": "Litri",
+    "country": "Țară",
+    "note": "Notă",
+    "total": "Total cursă",
+    "empty": "Încă nicio cheltuială",
+    "pending": "în așteptarea sincronizării",
+    "deleteConfirm": "Ștergi această cheltuială?",
+    "categories": {
+      "fuel": "Combustibil",
+      "toll": "Taxă de drum",
+      "customs": "Vamă",
+      "forwarding": "Expediție",
+      "parking": "Parcare",
+      "other": "Altele"
+    }
+  },
+  "attachment": {
+    "add": "Adaugă foto",
+    "camera": "Cameră",
+    "library": "Galerie",
+    "empty": "Niciun atașament",
+    "deleteConfirm": "Ștergi acest atașament?",
+    "documents": "Documente",
+    "kindLabel": "Tip document",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Factură",
+      "customs": "Vamă",
+      "fuel_receipt": "Bon combustibil",
+      "other": "Altele"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Înmatriculare valabilă până la",
+    "fireExt": "Stingător",
+    "fireExtIssued": "Certificat",
+    "fireExtValidUntil": "Valabil până la",
+    "otherTitle": "Alte memento-uri",
+    "add": "+ Adaugă memento",
+    "customName": "Nume memento",
+    "customValidUntil": "Valabil până la",
+    "customFrom": "De la (opțional)",
+    "empty": "Încă niciun memento",
+    "today": "azi",
+    "inDays_one": "peste {{count}} zi",
+    "inDays_other": "peste {{count}} zile",
+    "overdue_one": "expirat de {{count}} zi",
+    "overdue_other": "expirat de {{count}} zile",
+    "group": {
+      "expired": "Expirate",
+      "soon": "Expiră în ≤30 zile",
+      "other": "Mai târziu"
+    },
+    "subject": {
+      "vehicle": "Vehicul",
+      "trailer": "Remorcă",
+      "driver": "Șofer"
+    },
+    "category": {
+      "registration": "Înmatriculare",
+      "fire_extinguisher": "Stingător",
+      "medical": "Aviz medical",
+      "custom": "Altele"
+    }
+  },
+  "fleet": {
+    "vehicles": "Vehicule",
+    "trailers": "Remorci",
+    "drivers": "Șoferi",
+    "addVehicle": "Adaugă vehicul",
+    "addTrailer": "Adaugă remorcă",
+    "addDriver": "Adaugă șofer",
+    "editVehicle": "Editează vehicul",
+    "editTrailer": "Editează remorcă",
+    "editDriver": "Editează șofer",
+    "emptyVehicles": "Încă niciun vehicul",
+    "emptyTrailers": "Încă nicio remorcă",
+    "emptyDrivers": "Încă niciun șofer",
+    "deleteVehicle": "Ștergi acest vehicul?",
+    "deleteTrailer": "Ștergi această remorcă?",
+    "deleteDriver": "Ștergi acest șofer?",
+    "fields": {
+      "registration": "Număr de înmatriculare",
+      "makeModel": "Marcă / model",
+      "normConsumption": "Consum normat (L/100km)",
+      "currentOdometer": "Kilometraj curent (km)",
+      "type": "Tip",
+      "fullName": "Nume complet",
+      "employmentType": "Tip de angajare",
+      "employmentStart": "Începutul angajării",
+      "contractEnd": "Sfârșitul contractului",
+      "medicalValidUntil": "Aviz medical valabil până la"
+    },
+    "employment": {
+      "indefinite": "Pe perioadă nedeterminată",
+      "fixed_term": "Pe perioadă determinată"
+    }
+  },
+  "settings": {
+    "signOut": "Deconectare",
+    "signOutConfirm": "Te deconectezi de la cont?"
+  },
+  "language": {
+    "title": "Limbă",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Salvează",
+    "cancel": "Anulează",
+    "add": "Adaugă",
+    "edit": "Editează",
+    "delete": "Șterge",
+    "done": "Gata",
+    "saving": "Se salvează…",
+    "error": "Ceva nu a mers bine",
+    "offlineNote": "Salvat local — se va sincroniza când ești online"
+  }
+}

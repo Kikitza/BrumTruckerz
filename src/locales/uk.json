@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Увійти",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "sendCode": "Надіслати код",
+    "code": "6-значний код",
+    "verify": "Підтвердити",
+    "codeSentTo": "Код надіслано на {{email}}",
+    "changeEmail": "Змінити пошту",
+    "noRole": "Обліковий запис не пов’язаний із компанією. Зверніться до власника."
+  },
+  "tabs": {
+    "trips": "Рейси",
+    "fleet": "Автопарк",
+    "reminders": "Нагадування",
+    "reports": "Звіти",
+    "settings": "Налаштування",
+    "myTrip": "Мій рейс",
+    "documents": "Документи",
+    "resources": "Ресурси"
+  },
+  "trip": {
+    "status": {
+      "draft": "Чернетка",
+      "loading": "Завантаження",
+      "driving": "У дорозі",
+      "border": "Кордон",
+      "unloading": "Розвантаження",
+      "finished": "Завершено"
+    },
+    "events": {
+      "load": "Завантаження",
+      "unload": "Розвантаження",
+      "border": "Кордон",
+      "driving": "У дорозі",
+      "rest": "Відпочинок",
+      "other": "Інше"
+    },
+    "payMode": {
+      "per_diem": "Добові",
+      "percentage": "Відсоток",
+      "fixed": "Фіксована"
+    },
+    "fields": {
+      "title": "Назва",
+      "origin": "Пункт відправлення",
+      "destination": "Пункт призначення",
+      "driver": "Водій",
+      "vehicle": "Транспортний засіб",
+      "trailer": "Причіп",
+      "startOdometer": "Початковий пробіг (km)",
+      "revenue": "Дохід (EUR)",
+      "driverPay": "Оплата водію (EUR)",
+      "driverPayMode": "Спосіб оплати",
+      "eventType": "Тип події",
+      "occurredAt": "Час",
+      "location": "Місце",
+      "note": "Примітка"
+    },
+    "section": {
+      "info": "Деталі",
+      "events": "Журнал подій",
+      "finance": "Фінанси"
+    },
+    "newTrip": "Новий рейс",
+    "detailTitle": "Деталі рейсу",
+    "noEvents": "Подій ще немає",
+    "noTrailer": "Без причепа",
+    "select": "Вибрати…",
+    "addEvent": "Додати подію",
+    "endOdometer": "Кінцевий пробіг",
+    "pendingSync_one": "{{count}} очікує синхронізації",
+    "pendingSync_other": "{{count}} очікують синхронізації",
+    "saveAssignment": "Зберегти зміни",
+    "assignmentLockedFinished": "Рейс завершено — призначення більше не можна змінити."
+  },
+  "expense": {
+    "section": "Витрати",
+    "add": "Додати витрату",
+    "amount": "Сума (як у чеку)",
+    "currency": "Валюта",
+    "date": "Дата витрати",
+    "liters": "Літри",
+    "country": "Країна",
+    "note": "Примітка",
+    "total": "Всього за рейс",
+    "empty": "Витрат ще немає",
+    "pending": "очікує синхронізації",
+    "deleteConfirm": "Видалити цю витрату?",
+    "categories": {
+      "fuel": "Паливо",
+      "toll": "Дорожній збір",
+      "customs": "Митниця",
+      "forwarding": "Експедирування",
+      "parking": "Паркування",
+      "other": "Інше"
+    }
+  },
+  "attachment": {
+    "add": "Додати фото",
+    "camera": "Камера",
+    "library": "Галерея",
+    "empty": "Немає вкладень",
+    "deleteConfirm": "Видалити це вкладення?",
+    "documents": "Документи",
+    "kindLabel": "Тип документа",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Рахунок-фактура",
+      "customs": "Митниця",
+      "fuel_receipt": "Чек за паливо",
+      "other": "Інше"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Реєстрація дійсна до",
+    "fireExt": "Вогнегасник",
+    "fireExtIssued": "Сертифіковано",
+    "fireExtValidUntil": "Дійсний до",
+    "otherTitle": "Інші нагадування",
+    "add": "+ Додати нагадування",
+    "customName": "Назва нагадування",
+    "customValidUntil": "Дійсний до",
+    "customFrom": "Від (необов’язково)",
+    "empty": "Нагадувань ще немає",
+    "today": "сьогодні",
+    "inDays_one": "через {{count}} день",
+    "inDays_other": "через {{count}} днів",
+    "overdue_one": "прострочено на {{count}} день",
+    "overdue_other": "прострочено на {{count}} днів",
+    "group": {
+      "expired": "Прострочено",
+      "soon": "Термін ≤30 днів",
+      "other": "Пізніше"
+    },
+    "subject": {
+      "vehicle": "Транспортний засіб",
+      "trailer": "Причіп",
+      "driver": "Водій"
+    },
+    "category": {
+      "registration": "Реєстрація",
+      "fire_extinguisher": "Вогнегасник",
+      "medical": "Медична довідка",
+      "custom": "Інше"
+    }
+  },
+  "fleet": {
+    "vehicles": "Транспортні засоби",
+    "trailers": "Причепи",
+    "drivers": "Водії",
+    "addVehicle": "Додати транспортний засіб",
+    "addTrailer": "Додати причіп",
+    "addDriver": "Додати водія",
+    "editVehicle": "Редагувати транспортний засіб",
+    "editTrailer": "Редагувати причіп",
+    "editDriver": "Редагувати водія",
+    "emptyVehicles": "Транспортних засобів ще немає",
+    "emptyTrailers": "Причепів ще немає",
+    "emptyDrivers": "Водіїв ще немає",
+    "deleteVehicle": "Видалити цей транспортний засіб?",
+    "deleteTrailer": "Видалити цей причіп?",
+    "deleteDriver": "Видалити цього водія?",
+    "fields": {
+      "registration": "Реєстрація",
+      "makeModel": "Марка / модель",
+      "normConsumption": "Норма витрати (L/100km)",
+      "currentOdometer": "Поточний пробіг (km)",
+      "type": "Тип",
+      "fullName": "Повне ім’я",
+      "employmentType": "Тип працевлаштування",
+      "employmentStart": "Початок працевлаштування",
+      "contractEnd": "Кінець договору",
+      "medicalValidUntil": "Медична довідка дійсна до"
+    },
+    "employment": {
+      "indefinite": "Безстроковий",
+      "fixed_term": "Строковий"
+    }
+  },
+  "settings": {
+    "signOut": "Вийти",
+    "signOutConfirm": "Вийти з облікового запису?"
+  },
+  "language": {
+    "title": "Мова",
+    "beta": "бета"
+  },
+  "common": {
+    "save": "Зберегти",
+    "cancel": "Скасувати",
+    "add": "Додати",
+    "edit": "Редагувати",
+    "delete": "Видалити",
+    "done": "Готово",
+    "saving": "Збереження…",
+    "error": "Щось пішло не так",
+    "offlineNote": "Збережено локально — синхронізується онлайн"
+  }
+}

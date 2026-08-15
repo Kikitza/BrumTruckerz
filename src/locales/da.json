@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Log ind",
+    "email": "E-mail",
+    "password": "Adgangskode",
+    "sendCode": "Send kode",
+    "code": "6-cifret kode",
+    "verify": "Bekræft",
+    "codeSentTo": "Kode sendt til {{email}}",
+    "changeEmail": "Skift e-mail",
+    "noRole": "Kontoen er ikke knyttet til et firma. Kontakt ejeren."
+  },
+  "tabs": {
+    "trips": "Ture",
+    "fleet": "Vognpark",
+    "reminders": "Påmindelser",
+    "reports": "Rapporter",
+    "settings": "Indstillinger",
+    "myTrip": "Min tur",
+    "documents": "Dokumenter",
+    "resources": "Ressourcer"
+  },
+  "trip": {
+    "status": {
+      "draft": "Kladde",
+      "loading": "Læsning",
+      "driving": "Kørsel",
+      "border": "Grænse",
+      "unloading": "Aflæsning",
+      "finished": "Afsluttet"
+    },
+    "events": {
+      "load": "Læsning",
+      "unload": "Aflæsning",
+      "border": "Grænse",
+      "driving": "Kørsel",
+      "rest": "Hvile",
+      "other": "Andet"
+    },
+    "payMode": {
+      "per_diem": "Dagpenge",
+      "percentage": "Procent",
+      "fixed": "Fast"
+    },
+    "fields": {
+      "title": "Titel",
+      "origin": "Afgangssted",
+      "destination": "Destination",
+      "driver": "Chauffør",
+      "vehicle": "Køretøj",
+      "trailer": "Anhænger",
+      "startOdometer": "Startkilometerstand (km)",
+      "revenue": "Indtægt (EUR)",
+      "driverPay": "Chaufførløn (EUR)",
+      "driverPayMode": "Betalingsform",
+      "eventType": "Hændelsestype",
+      "occurredAt": "Tidspunkt",
+      "location": "Placering",
+      "note": "Note"
+    },
+    "section": {
+      "info": "Detaljer",
+      "events": "Hændelseslog",
+      "finance": "Økonomi"
+    },
+    "newTrip": "Ny tur",
+    "detailTitle": "Turdetaljer",
+    "noEvents": "Ingen hændelser endnu",
+    "noTrailer": "Ingen anhænger",
+    "select": "Vælg…",
+    "addEvent": "Tilføj hændelse",
+    "endOdometer": "Slutkilometerstand",
+    "pendingSync_one": "{{count}} venter på synkronisering",
+    "pendingSync_other": "{{count}} venter på synkronisering",
+    "saveAssignment": "Gem ændringer",
+    "assignmentLockedFinished": "Turen er afsluttet — tildelingen kan ikke længere ændres."
+  },
+  "expense": {
+    "section": "Udgifter",
+    "add": "Tilføj udgift",
+    "amount": "Beløb (som på kvitteringen)",
+    "currency": "Valuta",
+    "date": "Udgiftsdato",
+    "liters": "Liter",
+    "country": "Land",
+    "note": "Note",
+    "total": "Tur i alt",
+    "empty": "Ingen udgifter endnu",
+    "pending": "venter på synkronisering",
+    "deleteConfirm": "Slet denne udgift?",
+    "categories": {
+      "fuel": "Brændstof",
+      "toll": "Vejafgift",
+      "customs": "Told",
+      "forwarding": "Spedition",
+      "parking": "Parkering",
+      "other": "Andet"
+    }
+  },
+  "attachment": {
+    "add": "Tilføj foto",
+    "camera": "Kamera",
+    "library": "Galleri",
+    "empty": "Ingen vedhæftninger",
+    "deleteConfirm": "Slet denne vedhæftning?",
+    "documents": "Dokumenter",
+    "kindLabel": "Dokumenttype",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Faktura",
+      "customs": "Told",
+      "fuel_receipt": "Brændstofkvittering",
+      "other": "Andet"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Registrering gyldig til",
+    "fireExt": "Ildslukker",
+    "fireExtIssued": "Certificeret",
+    "fireExtValidUntil": "Gyldig til",
+    "otherTitle": "Andre påmindelser",
+    "add": "+ Tilføj påmindelse",
+    "customName": "Påmindelsens navn",
+    "customValidUntil": "Gyldig til",
+    "customFrom": "Fra (valgfrit)",
+    "empty": "Ingen påmindelser endnu",
+    "today": "i dag",
+    "inDays_one": "om {{count}} dag",
+    "inDays_other": "om {{count}} dage",
+    "overdue_one": "{{count}} dag forsinket",
+    "overdue_other": "{{count}} dage forsinket",
+    "group": {
+      "expired": "Udløbet",
+      "soon": "Forfalder om ≤30 dage",
+      "other": "Senere"
+    },
+    "subject": {
+      "vehicle": "Køretøj",
+      "trailer": "Anhænger",
+      "driver": "Chauffør"
+    },
+    "category": {
+      "registration": "Registrering",
+      "fire_extinguisher": "Ildslukker",
+      "medical": "Lægeerklæring",
+      "custom": "Andet"
+    }
+  },
+  "fleet": {
+    "vehicles": "Køretøjer",
+    "trailers": "Anhængere",
+    "drivers": "Chauffører",
+    "addVehicle": "Tilføj køretøj",
+    "addTrailer": "Tilføj anhænger",
+    "addDriver": "Tilføj chauffør",
+    "editVehicle": "Rediger køretøj",
+    "editTrailer": "Rediger anhænger",
+    "editDriver": "Rediger chauffør",
+    "emptyVehicles": "Ingen køretøjer endnu",
+    "emptyTrailers": "Ingen anhængere endnu",
+    "emptyDrivers": "Ingen chauffører endnu",
+    "deleteVehicle": "Slet dette køretøj?",
+    "deleteTrailer": "Slet denne anhænger?",
+    "deleteDriver": "Slet denne chauffør?",
+    "fields": {
+      "registration": "Registrering",
+      "makeModel": "Mærke / model",
+      "normConsumption": "Normforbrug (L/100km)",
+      "currentOdometer": "Aktuel kilometerstand (km)",
+      "type": "Type",
+      "fullName": "Fulde navn",
+      "employmentType": "Ansættelsestype",
+      "employmentStart": "Ansættelsesstart",
+      "contractEnd": "Kontraktophør",
+      "medicalValidUntil": "Lægeerklæring gyldig til"
+    },
+    "employment": {
+      "indefinite": "Tidsubegrænset",
+      "fixed_term": "Tidsbegrænset"
+    }
+  },
+  "settings": {
+    "signOut": "Log ud",
+    "signOutConfirm": "Log ud af din konto?"
+  },
+  "language": {
+    "title": "Sprog",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Gem",
+    "cancel": "Annuller",
+    "add": "Tilføj",
+    "edit": "Rediger",
+    "delete": "Slet",
+    "done": "Færdig",
+    "saving": "Gemmer…",
+    "error": "Noget gik galt",
+    "offlineNote": "Gemt lokalt — synkroniseres, når du er online"
+  }
+}

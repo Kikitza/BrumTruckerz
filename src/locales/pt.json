@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Entrar",
+    "email": "E-mail",
+    "password": "Palavra-passe",
+    "sendCode": "Enviar código",
+    "code": "Código de 6 dígitos",
+    "verify": "Verificar",
+    "codeSentTo": "Código enviado para {{email}}",
+    "changeEmail": "Alterar e-mail",
+    "noRole": "A conta não está associada a nenhuma empresa. Contacte o proprietário."
+  },
+  "tabs": {
+    "trips": "Viagens",
+    "fleet": "Frota",
+    "reminders": "Lembretes",
+    "reports": "Relatórios",
+    "settings": "Definições",
+    "myTrip": "A minha viagem",
+    "documents": "Documentos",
+    "resources": "Recursos"
+  },
+  "trip": {
+    "status": {
+      "draft": "Rascunho",
+      "loading": "Carga",
+      "driving": "Em rota",
+      "border": "Fronteira",
+      "unloading": "Descarga",
+      "finished": "Concluída"
+    },
+    "events": {
+      "load": "Carga",
+      "unload": "Descarga",
+      "border": "Fronteira",
+      "driving": "Em rota",
+      "rest": "Descanso",
+      "other": "Outro"
+    },
+    "payMode": {
+      "per_diem": "Ajuda de custo diária",
+      "percentage": "Percentagem",
+      "fixed": "Fixo"
+    },
+    "fields": {
+      "title": "Título",
+      "origin": "Origem",
+      "destination": "Destino",
+      "driver": "Motorista",
+      "vehicle": "Veículo",
+      "trailer": "Reboque",
+      "startOdometer": "Quilometragem inicial (km)",
+      "revenue": "Receita (EUR)",
+      "driverPay": "Pagamento ao motorista (EUR)",
+      "driverPayMode": "Modo de pagamento",
+      "eventType": "Tipo de evento",
+      "occurredAt": "Hora",
+      "location": "Local",
+      "note": "Nota"
+    },
+    "section": {
+      "info": "Detalhes",
+      "events": "Registo de eventos",
+      "finance": "Finanças"
+    },
+    "newTrip": "Nova viagem",
+    "detailTitle": "Detalhe da viagem",
+    "noEvents": "Ainda não há eventos",
+    "noTrailer": "Sem reboque",
+    "select": "Selecionar…",
+    "addEvent": "Adicionar evento",
+    "endOdometer": "Quilometragem final",
+    "pendingSync_one": "{{count}} a aguardar sincronização",
+    "pendingSync_other": "{{count}} a aguardar sincronização",
+    "saveAssignment": "Guardar alterações",
+    "assignmentLockedFinished": "A viagem está concluída — a atribuição já não pode ser alterada."
+  },
+  "expense": {
+    "section": "Despesas",
+    "add": "Adicionar despesa",
+    "amount": "Valor (conforme o recibo)",
+    "currency": "Moeda",
+    "date": "Data da despesa",
+    "liters": "Litros",
+    "country": "País",
+    "note": "Nota",
+    "total": "Total da viagem",
+    "empty": "Ainda não há despesas",
+    "pending": "a aguardar sincronização",
+    "deleteConfirm": "Eliminar esta despesa?",
+    "categories": {
+      "fuel": "Combustível",
+      "toll": "Portagem",
+      "customs": "Alfândega",
+      "forwarding": "Transitário",
+      "parking": "Estacionamento",
+      "other": "Outro"
+    }
+  },
+  "attachment": {
+    "add": "Adicionar foto",
+    "camera": "Câmara",
+    "library": "Galeria",
+    "empty": "Sem anexos",
+    "deleteConfirm": "Eliminar este anexo?",
+    "documents": "Documentos",
+    "kindLabel": "Tipo de documento",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Fatura",
+      "customs": "Alfândega",
+      "fuel_receipt": "Recibo de combustível",
+      "other": "Outro"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Matrícula válida até",
+    "fireExt": "Extintor",
+    "fireExtIssued": "Certificado",
+    "fireExtValidUntil": "Válido até",
+    "otherTitle": "Outros lembretes",
+    "add": "+ Adicionar lembrete",
+    "customName": "Nome do lembrete",
+    "customValidUntil": "Válido até",
+    "customFrom": "A partir de (opcional)",
+    "empty": "Ainda não há lembretes",
+    "today": "hoje",
+    "inDays_one": "em {{count}} dia",
+    "inDays_other": "em {{count}} dias",
+    "overdue_one": "{{count}} dia em atraso",
+    "overdue_other": "{{count}} dias em atraso",
+    "group": {
+      "expired": "Expirado",
+      "soon": "Vence em ≤30 dias",
+      "other": "Mais tarde"
+    },
+    "subject": {
+      "vehicle": "Veículo",
+      "trailer": "Reboque",
+      "driver": "Motorista"
+    },
+    "category": {
+      "registration": "Matrícula",
+      "fire_extinguisher": "Extintor",
+      "medical": "Atestado médico",
+      "custom": "Outro"
+    }
+  },
+  "fleet": {
+    "vehicles": "Veículos",
+    "trailers": "Reboques",
+    "drivers": "Motoristas",
+    "addVehicle": "Adicionar veículo",
+    "addTrailer": "Adicionar reboque",
+    "addDriver": "Adicionar motorista",
+    "editVehicle": "Editar veículo",
+    "editTrailer": "Editar reboque",
+    "editDriver": "Editar motorista",
+    "emptyVehicles": "Ainda não há veículos",
+    "emptyTrailers": "Ainda não há reboques",
+    "emptyDrivers": "Ainda não há motoristas",
+    "deleteVehicle": "Eliminar este veículo?",
+    "deleteTrailer": "Eliminar este reboque?",
+    "deleteDriver": "Eliminar este motorista?",
+    "fields": {
+      "registration": "Matrícula",
+      "makeModel": "Marca / modelo",
+      "normConsumption": "Consumo de referência (L/100km)",
+      "currentOdometer": "Quilometragem atual (km)",
+      "type": "Tipo",
+      "fullName": "Nome completo",
+      "employmentType": "Tipo de contrato",
+      "employmentStart": "Início do contrato",
+      "contractEnd": "Fim do contrato",
+      "medicalValidUntil": "Atestado médico válido até"
+    },
+    "employment": {
+      "indefinite": "Sem termo",
+      "fixed_term": "A termo certo"
+    }
+  },
+  "settings": {
+    "signOut": "Terminar sessão",
+    "signOutConfirm": "Terminar sessão da sua conta?"
+  },
+  "language": {
+    "title": "Idioma",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "add": "Adicionar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "done": "Concluído",
+    "saving": "A guardar…",
+    "error": "Algo correu mal",
+    "offlineNote": "Guardado localmente — será sincronizado quando estiver online"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Giriş yap",
+    "email": "E-posta",
+    "password": "Şifre",
+    "sendCode": "Kod gönder",
+    "code": "6 haneli kod",
+    "verify": "Doğrula",
+    "codeSentTo": "Kod {{email}} adresine gönderildi",
+    "changeEmail": "E-postayı değiştir",
+    "noRole": "Hesap bir şirkete bağlı değil. Sahibiyle iletişime geçin."
+  },
+  "tabs": {
+    "trips": "Seferler",
+    "fleet": "Filo",
+    "reminders": "Hatırlatmalar",
+    "reports": "Raporlar",
+    "settings": "Ayarlar",
+    "myTrip": "Seferim",
+    "documents": "Belgeler",
+    "resources": "Kaynaklar"
+  },
+  "trip": {
+    "status": {
+      "draft": "Taslak",
+      "loading": "Yükleme",
+      "driving": "Yolda",
+      "border": "Sınır",
+      "unloading": "Boşaltma",
+      "finished": "Tamamlandı"
+    },
+    "events": {
+      "load": "Yükleme",
+      "unload": "Boşaltma",
+      "border": "Sınır",
+      "driving": "Yolda",
+      "rest": "Mola",
+      "other": "Diğer"
+    },
+    "payMode": {
+      "per_diem": "Günlük harcırah",
+      "percentage": "Yüzde",
+      "fixed": "Sabit"
+    },
+    "fields": {
+      "title": "Başlık",
+      "origin": "Çıkış noktası",
+      "destination": "Varış noktası",
+      "driver": "Sürücü",
+      "vehicle": "Araç",
+      "trailer": "Dorse",
+      "startOdometer": "Başlangıç kilometresi (km)",
+      "revenue": "Gelir (EUR)",
+      "driverPay": "Sürücü ücreti (EUR)",
+      "driverPayMode": "Ödeme türü",
+      "eventType": "Olay türü",
+      "occurredAt": "Zaman",
+      "location": "Konum",
+      "note": "Not"
+    },
+    "section": {
+      "info": "Ayrıntılar",
+      "events": "Olay günlüğü",
+      "finance": "Finans"
+    },
+    "newTrip": "Yeni sefer",
+    "detailTitle": "Sefer ayrıntısı",
+    "noEvents": "Henüz olay yok",
+    "noTrailer": "Dorse yok",
+    "select": "Seç…",
+    "addEvent": "Olay ekle",
+    "endOdometer": "Bitiş kilometresi",
+    "pendingSync_one": "{{count}} senkronizasyon bekliyor",
+    "pendingSync_other": "{{count}} senkronizasyon bekliyor",
+    "saveAssignment": "Değişiklikleri kaydet",
+    "assignmentLockedFinished": "Sefer tamamlandı — atama artık değiştirilemez."
+  },
+  "expense": {
+    "section": "Masraflar",
+    "add": "Masraf ekle",
+    "amount": "Tutar (fişteki gibi)",
+    "currency": "Para birimi",
+    "date": "Masraf tarihi",
+    "liters": "Litre",
+    "country": "Ülke",
+    "note": "Not",
+    "total": "Sefer toplamı",
+    "empty": "Henüz masraf yok",
+    "pending": "senkronizasyon bekliyor",
+    "deleteConfirm": "Bu masraf silinsin mi?",
+    "categories": {
+      "fuel": "Yakıt",
+      "toll": "Geçiş ücreti",
+      "customs": "Gümrük",
+      "forwarding": "Nakliye komisyonu",
+      "parking": "Park",
+      "other": "Diğer"
+    }
+  },
+  "attachment": {
+    "add": "Fotoğraf ekle",
+    "camera": "Kamera",
+    "library": "Galeri",
+    "empty": "Ek yok",
+    "deleteConfirm": "Bu ek silinsin mi?",
+    "documents": "Belgeler",
+    "kindLabel": "Belge türü",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Fatura",
+      "customs": "Gümrük",
+      "fuel_receipt": "Yakıt fişi",
+      "other": "Diğer"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Ruhsat geçerlilik tarihi",
+    "fireExt": "Yangın söndürücü",
+    "fireExtIssued": "Sertifikalı",
+    "fireExtValidUntil": "Geçerlilik tarihi",
+    "otherTitle": "Diğer hatırlatmalar",
+    "add": "+ Hatırlatma ekle",
+    "customName": "Hatırlatma adı",
+    "customValidUntil": "Geçerlilik tarihi",
+    "customFrom": "Başlangıç (isteğe bağlı)",
+    "empty": "Henüz hatırlatma yok",
+    "today": "bugün",
+    "inDays_one": "{{count}} gün içinde",
+    "inDays_other": "{{count}} gün içinde",
+    "overdue_one": "{{count}} gün gecikmiş",
+    "overdue_other": "{{count}} gün gecikmiş",
+    "group": {
+      "expired": "Süresi doldu",
+      "soon": "≤30 gün içinde",
+      "other": "Daha sonra"
+    },
+    "subject": {
+      "vehicle": "Araç",
+      "trailer": "Dorse",
+      "driver": "Sürücü"
+    },
+    "category": {
+      "registration": "Ruhsat",
+      "fire_extinguisher": "Yangın söndürücü",
+      "medical": "Sağlık raporu",
+      "custom": "Diğer"
+    }
+  },
+  "fleet": {
+    "vehicles": "Araçlar",
+    "trailers": "Dorseler",
+    "drivers": "Sürücüler",
+    "addVehicle": "Araç ekle",
+    "addTrailer": "Dorse ekle",
+    "addDriver": "Sürücü ekle",
+    "editVehicle": "Aracı düzenle",
+    "editTrailer": "Dorseyi düzenle",
+    "editDriver": "Sürücüyü düzenle",
+    "emptyVehicles": "Henüz araç yok",
+    "emptyTrailers": "Henüz dorse yok",
+    "emptyDrivers": "Henüz sürücü yok",
+    "deleteVehicle": "Bu araç silinsin mi?",
+    "deleteTrailer": "Bu dorse silinsin mi?",
+    "deleteDriver": "Bu sürücü silinsin mi?",
+    "fields": {
+      "registration": "Ruhsat",
+      "makeModel": "Marka / model",
+      "normConsumption": "Norm tüketim (L/100km)",
+      "currentOdometer": "Güncel kilometre (km)",
+      "type": "Tür",
+      "fullName": "Ad soyad",
+      "employmentType": "İstihdam türü",
+      "employmentStart": "İşe başlama",
+      "contractEnd": "Sözleşme bitişi",
+      "medicalValidUntil": "Sağlık raporu geçerlilik tarihi"
+    },
+    "employment": {
+      "indefinite": "Belirsiz süreli",
+      "fixed_term": "Belirli süreli"
+    }
+  },
+  "settings": {
+    "signOut": "Çıkış yap",
+    "signOutConfirm": "Hesabınızdan çıkış yapılsın mı?"
+  },
+  "language": {
+    "title": "Dil",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "add": "Ekle",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "done": "Tamam",
+    "saving": "Kaydediliyor…",
+    "error": "Bir şeyler ters gitti",
+    "offlineNote": "Yerel olarak kaydedildi — çevrimiçi olunca senkronize edilecek"
+  }
+}

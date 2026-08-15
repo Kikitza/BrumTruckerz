@@ -50,6 +50,12 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 - **Provere na kraju svakog zadatka (ritual):** `npm run typecheck` **i** `npm test` moraju biti čisti; `npm run lint` bez **grešaka** (upozorenja su dozvoljena). Iste tri provere vrti CI (`.github/workflows/ci.yml`).
 - **IZVEŠTAJ (obavezno):** na kraju SVAKOG zadatka upiši kompletan rezime u `IZVESTAJ.md` u korenu projekta, **prepisujući** stari sadržaj (uvek samo poslednji zadatak). Rezime obavezno sadrži: spisak izmena, test matricu (ili test listu), podsetnik za ručnu primenu migracija (ako ih ima) i eventualni HITNI SQL / rollback. `IZVESTAJ.md` je u `.gitignore` (ne commituje se) — služi da preživi reset sesije/Codespace-a.
 
+## JEZICI — važi za svaki zadatak
+1. **Svaki novi i18n ključ se u ISTOM zadatku dodaje u SVE jezičke fajlove** (`src/locales/*.json`): `sr` i `en` autorski (verified), svi ostali mašinski prevod. Lista jezika je u `src/i18n/languages.ts`.
+2. **`en` ostaje fallback** — nijedan ključ ne sme da postoji samo u nekom drugom jeziku a da fali u `en`.
+3. **Status fajla (`"machine"`/`"verified"`) se NE menja** osim izričitim zadatkom overavanja tog jezika.
+4. **Svaki `IZVESTAJ.md` potvrđuje** da su svi jezici dopunjeni (ili da i18n nije diran).
+
 ## KVALITET KODA — važi za svaki zadatak
 1. **Slojevi strogo razdvojeni:** ekrani ne zovu Supabase direktno — samo svoj feature api sloj (`src/features/<domen>/api.ts`); zajednička logika (računanje, validacija) živi u deljenim funkcijama i **NIKAD se ne duplira**.
 2. **Bez špageta:** jedna funkcija = jedna odgovornost; UI koji se ponavlja se izdvaja kao reusable komponenta; fajl koji naraste da radi više nesrodnih stvari se deli (orijentir: preko ~400 linija razmisli o podeli).

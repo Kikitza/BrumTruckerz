@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Kirjaudu sisään",
+    "email": "Sähköposti",
+    "password": "Salasana",
+    "sendCode": "Lähetä koodi",
+    "code": "6-numeroinen koodi",
+    "verify": "Vahvista",
+    "codeSentTo": "Koodi lähetetty osoitteeseen {{email}}",
+    "changeEmail": "Vaihda sähköposti",
+    "noRole": "Tiliä ei ole liitetty yritykseen. Ota yhteyttä omistajaan."
+  },
+  "tabs": {
+    "trips": "Kuljetukset",
+    "fleet": "Kalusto",
+    "reminders": "Muistutukset",
+    "reports": "Raportit",
+    "settings": "Asetukset",
+    "myTrip": "Oma kuljetukseni",
+    "documents": "Asiakirjat",
+    "resources": "Resurssit"
+  },
+  "trip": {
+    "status": {
+      "draft": "Luonnos",
+      "loading": "Lastaus",
+      "driving": "Ajo",
+      "border": "Raja",
+      "unloading": "Purku",
+      "finished": "Valmis"
+    },
+    "events": {
+      "load": "Lastaus",
+      "unload": "Purku",
+      "border": "Raja",
+      "driving": "Ajo",
+      "rest": "Tauko",
+      "other": "Muu"
+    },
+    "payMode": {
+      "per_diem": "Päiväraha",
+      "percentage": "Prosentti",
+      "fixed": "Kiinteä"
+    },
+    "fields": {
+      "title": "Otsikko",
+      "origin": "Lähtöpaikka",
+      "destination": "Määränpää",
+      "driver": "Kuljettaja",
+      "vehicle": "Ajoneuvo",
+      "trailer": "Perävaunu",
+      "startOdometer": "Alkumatkamittari (km)",
+      "revenue": "Tuotto (EUR)",
+      "driverPay": "Kuljettajan palkka (EUR)",
+      "driverPayMode": "Palkkiotapa",
+      "eventType": "Tapahtuman tyyppi",
+      "occurredAt": "Aika",
+      "location": "Sijainti",
+      "note": "Muistiinpano"
+    },
+    "section": {
+      "info": "Tiedot",
+      "events": "Tapahtumaloki",
+      "finance": "Talous"
+    },
+    "newTrip": "Uusi kuljetus",
+    "detailTitle": "Kuljetuksen tiedot",
+    "noEvents": "Ei vielä tapahtumia",
+    "noTrailer": "Ei perävaunua",
+    "select": "Valitse…",
+    "addEvent": "Lisää tapahtuma",
+    "endOdometer": "Loppumatkamittari",
+    "pendingSync_one": "{{count}} odottaa synkronointia",
+    "pendingSync_other": "{{count}} odottaa synkronointia",
+    "saveAssignment": "Tallenna muutokset",
+    "assignmentLockedFinished": "Kuljetus on valmis — määritystä ei voi enää muuttaa."
+  },
+  "expense": {
+    "section": "Kulut",
+    "add": "Lisää kulu",
+    "amount": "Summa (kuten kuitissa)",
+    "currency": "Valuutta",
+    "date": "Kulun päivämäärä",
+    "liters": "Litraa",
+    "country": "Maa",
+    "note": "Muistiinpano",
+    "total": "Kuljetus yhteensä",
+    "empty": "Ei vielä kuluja",
+    "pending": "odottaa synkronointia",
+    "deleteConfirm": "Poistetaanko tämä kulu?",
+    "categories": {
+      "fuel": "Polttoaine",
+      "toll": "Tietulli",
+      "customs": "Tulli",
+      "forwarding": "Huolinta",
+      "parking": "Pysäköinti",
+      "other": "Muu"
+    }
+  },
+  "attachment": {
+    "add": "Lisää valokuva",
+    "camera": "Kamera",
+    "library": "Galleria",
+    "empty": "Ei liitteitä",
+    "deleteConfirm": "Poistetaanko tämä liite?",
+    "documents": "Asiakirjat",
+    "kindLabel": "Asiakirjatyyppi",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Lasku",
+      "customs": "Tulli",
+      "fuel_receipt": "Polttoainekuitti",
+      "other": "Muu"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Rekisteröinti voimassa saakka",
+    "fireExt": "Sammutin",
+    "fireExtIssued": "Tarkastettu",
+    "fireExtValidUntil": "Voimassa saakka",
+    "otherTitle": "Muut muistutukset",
+    "add": "+ Lisää muistutus",
+    "customName": "Muistutuksen nimi",
+    "customValidUntil": "Voimassa saakka",
+    "customFrom": "Alkaen (valinnainen)",
+    "empty": "Ei vielä muistutuksia",
+    "today": "tänään",
+    "inDays_one": "{{count}} päivän kuluttua",
+    "inDays_other": "{{count}} päivän kuluttua",
+    "overdue_one": "{{count}} päivä myöhässä",
+    "overdue_other": "{{count}} päivää myöhässä",
+    "group": {
+      "expired": "Vanhentunut",
+      "soon": "Erääntyy ≤30 päivässä",
+      "other": "Myöhemmin"
+    },
+    "subject": {
+      "vehicle": "Ajoneuvo",
+      "trailer": "Perävaunu",
+      "driver": "Kuljettaja"
+    },
+    "category": {
+      "registration": "Rekisteröinti",
+      "fire_extinguisher": "Sammutin",
+      "medical": "Lääkärintodistus",
+      "custom": "Muu"
+    }
+  },
+  "fleet": {
+    "vehicles": "Ajoneuvot",
+    "trailers": "Perävaunut",
+    "drivers": "Kuljettajat",
+    "addVehicle": "Lisää ajoneuvo",
+    "addTrailer": "Lisää perävaunu",
+    "addDriver": "Lisää kuljettaja",
+    "editVehicle": "Muokkaa ajoneuvoa",
+    "editTrailer": "Muokkaa perävaunua",
+    "editDriver": "Muokkaa kuljettajaa",
+    "emptyVehicles": "Ei vielä ajoneuvoja",
+    "emptyTrailers": "Ei vielä perävaunuja",
+    "emptyDrivers": "Ei vielä kuljettajia",
+    "deleteVehicle": "Poistetaanko tämä ajoneuvo?",
+    "deleteTrailer": "Poistetaanko tämä perävaunu?",
+    "deleteDriver": "Poistetaanko tämä kuljettaja?",
+    "fields": {
+      "registration": "Rekisteröinti",
+      "makeModel": "Merkki / malli",
+      "normConsumption": "Normikulutus (L/100km)",
+      "currentOdometer": "Nykyinen matkamittari (km)",
+      "type": "Tyyppi",
+      "fullName": "Koko nimi",
+      "employmentType": "Työsuhteen tyyppi",
+      "employmentStart": "Työsuhteen alku",
+      "contractEnd": "Sopimuksen päättyminen",
+      "medicalValidUntil": "Lääkärintodistus voimassa saakka"
+    },
+    "employment": {
+      "indefinite": "Toistaiseksi voimassa oleva",
+      "fixed_term": "Määräaikainen"
+    }
+  },
+  "settings": {
+    "signOut": "Kirjaudu ulos",
+    "signOutConfirm": "Kirjaudutaanko ulos tililtäsi?"
+  },
+  "language": {
+    "title": "Kieli",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Tallenna",
+    "cancel": "Peruuta",
+    "add": "Lisää",
+    "edit": "Muokkaa",
+    "delete": "Poista",
+    "done": "Valmis",
+    "saving": "Tallennetaan…",
+    "error": "Jotain meni pieleen",
+    "offlineNote": "Tallennettu paikallisesti — synkronoidaan verkkoon palatessa"
+  }
+}

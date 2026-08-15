@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Bejelentkezés",
+    "email": "E-mail",
+    "password": "Jelszó",
+    "sendCode": "Kód küldése",
+    "code": "6 jegyű kód",
+    "verify": "Ellenőrzés",
+    "codeSentTo": "A kódot elküldtük ide: {{email}}",
+    "changeEmail": "E-mail módosítása",
+    "noRole": "A fiók nincs céghez rendelve. Vedd fel a kapcsolatot a tulajdonossal."
+  },
+  "tabs": {
+    "trips": "Fuvarok",
+    "fleet": "Flotta",
+    "reminders": "Emlékeztetők",
+    "reports": "Kimutatások",
+    "settings": "Beállítások",
+    "myTrip": "Fuvarom",
+    "documents": "Dokumentumok",
+    "resources": "Erőforrások"
+  },
+  "trip": {
+    "status": {
+      "draft": "Piszkozat",
+      "loading": "Rakodás",
+      "driving": "Úton",
+      "border": "Határ",
+      "unloading": "Lerakodás",
+      "finished": "Befejezve"
+    },
+    "events": {
+      "load": "Felrakodás",
+      "unload": "Lerakodás",
+      "border": "Határ",
+      "driving": "Vezetés",
+      "rest": "Pihenő",
+      "other": "Egyéb"
+    },
+    "payMode": {
+      "per_diem": "Napidíj",
+      "percentage": "Százalék",
+      "fixed": "Fix díj"
+    },
+    "fields": {
+      "title": "Megnevezés",
+      "origin": "Felrakóhely",
+      "destination": "Lerakóhely",
+      "driver": "Sofőr",
+      "vehicle": "Jármű",
+      "trailer": "Pótkocsi",
+      "startOdometer": "Kezdő kilométeróra (km)",
+      "revenue": "Bevétel (EUR)",
+      "driverPay": "Sofőr díjazása (EUR)",
+      "driverPayMode": "Díjazás módja",
+      "eventType": "Eseménytípus",
+      "occurredAt": "Idő",
+      "location": "Helyszín",
+      "note": "Megjegyzés"
+    },
+    "section": {
+      "info": "Részletek",
+      "events": "Eseménynapló",
+      "finance": "Pénzügyek"
+    },
+    "newTrip": "Új fuvar",
+    "detailTitle": "Fuvar részletei",
+    "noEvents": "Még nincs esemény",
+    "noTrailer": "Nincs pótkocsi",
+    "select": "Válassz…",
+    "addEvent": "Esemény hozzáadása",
+    "endOdometer": "Záró kilométeróra",
+    "pendingSync_one": "{{count}} szinkronizálásra vár",
+    "pendingSync_other": "{{count}} szinkronizálásra vár",
+    "saveAssignment": "Módosítások mentése",
+    "assignmentLockedFinished": "A fuvar befejeződött — a hozzárendelés már nem módosítható."
+  },
+  "expense": {
+    "section": "Költségek",
+    "add": "Költség hozzáadása",
+    "amount": "Összeg (a bizonylat szerint)",
+    "currency": "Pénznem",
+    "date": "Költség dátuma",
+    "liters": "Liter",
+    "country": "Ország",
+    "note": "Megjegyzés",
+    "total": "Fuvar összesen",
+    "empty": "Még nincs költség",
+    "pending": "szinkronizálásra vár",
+    "deleteConfirm": "Törlöd ezt a költséget?",
+    "categories": {
+      "fuel": "Üzemanyag",
+      "toll": "Útdíj",
+      "customs": "Vám",
+      "forwarding": "Szállítmányozás",
+      "parking": "Parkolás",
+      "other": "Egyéb"
+    }
+  },
+  "attachment": {
+    "add": "Fénykép hozzáadása",
+    "camera": "Kamera",
+    "library": "Galéria",
+    "empty": "Nincs melléklet",
+    "deleteConfirm": "Törlöd ezt a mellékletet?",
+    "documents": "Dokumentumok",
+    "kindLabel": "Dokumentum típusa",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Számla",
+      "customs": "Vám",
+      "fuel_receipt": "Üzemanyag-bizonylat",
+      "other": "Egyéb"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Forgalmi érvényes eddig",
+    "fireExt": "Tűzoltó készülék",
+    "fireExtIssued": "Tanúsítva",
+    "fireExtValidUntil": "Érvényes eddig",
+    "otherTitle": "Egyéb emlékeztetők",
+    "add": "+ Emlékeztető hozzáadása",
+    "customName": "Emlékeztető neve",
+    "customValidUntil": "Érvényes eddig",
+    "customFrom": "Kezdete (nem kötelező)",
+    "empty": "Még nincs emlékeztető",
+    "today": "ma",
+    "inDays_one": "{{count}} nap múlva",
+    "inDays_other": "{{count}} nap múlva",
+    "overdue_one": "{{count}} napja lejárt",
+    "overdue_other": "{{count}} napja lejárt",
+    "group": {
+      "expired": "Lejárt",
+      "soon": "Lejár ≤30 napon belül",
+      "other": "Később"
+    },
+    "subject": {
+      "vehicle": "Jármű",
+      "trailer": "Pótkocsi",
+      "driver": "Sofőr"
+    },
+    "category": {
+      "registration": "Forgalmi engedély",
+      "fire_extinguisher": "Tűzoltó készülék",
+      "medical": "Orvosi alkalmasság",
+      "custom": "Egyéb"
+    }
+  },
+  "fleet": {
+    "vehicles": "Járművek",
+    "trailers": "Pótkocsik",
+    "drivers": "Sofőrök",
+    "addVehicle": "Jármű hozzáadása",
+    "addTrailer": "Pótkocsi hozzáadása",
+    "addDriver": "Sofőr hozzáadása",
+    "editVehicle": "Jármű szerkesztése",
+    "editTrailer": "Pótkocsi szerkesztése",
+    "editDriver": "Sofőr szerkesztése",
+    "emptyVehicles": "Még nincs jármű",
+    "emptyTrailers": "Még nincs pótkocsi",
+    "emptyDrivers": "Még nincs sofőr",
+    "deleteVehicle": "Törlöd ezt a járművet?",
+    "deleteTrailer": "Törlöd ezt a pótkocsit?",
+    "deleteDriver": "Törlöd ezt a sofőrt?",
+    "fields": {
+      "registration": "Rendszám",
+      "makeModel": "Gyártmány / típus",
+      "normConsumption": "Norma szerinti fogyasztás (L/100km)",
+      "currentOdometer": "Jelenlegi kilométeróra (km)",
+      "type": "Típus",
+      "fullName": "Teljes név",
+      "employmentType": "Foglalkoztatás típusa",
+      "employmentStart": "Foglalkoztatás kezdete",
+      "contractEnd": "Szerződés vége",
+      "medicalValidUntil": "Orvosi alkalmasság érvényes eddig"
+    },
+    "employment": {
+      "indefinite": "Határozatlan idejű",
+      "fixed_term": "Határozott idejű"
+    }
+  },
+  "settings": {
+    "signOut": "Kijelentkezés",
+    "signOutConfirm": "Kijelentkezel a fiókodból?"
+  },
+  "language": {
+    "title": "Nyelv",
+    "beta": "béta"
+  },
+  "common": {
+    "save": "Mentés",
+    "cancel": "Mégse",
+    "add": "Hozzáadás",
+    "edit": "Szerkesztés",
+    "delete": "Törlés",
+    "done": "Kész",
+    "saving": "Mentés…",
+    "error": "Valami hiba történt",
+    "offlineNote": "Helyileg mentve — szinkronizálódik, ha online leszel"
+  }
+}

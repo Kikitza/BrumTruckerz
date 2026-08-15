@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Hyr",
+    "email": "Email",
+    "password": "Fjalëkalimi",
+    "sendCode": "Dërgo kodin",
+    "code": "Kodi 6-shifror",
+    "verify": "Verifiko",
+    "codeSentTo": "Kodi u dërgua te {{email}}",
+    "changeEmail": "Ndrysho email-in",
+    "noRole": "Llogaria nuk është e lidhur me një kompani. Kontaktoni pronarin."
+  },
+  "tabs": {
+    "trips": "Udhëtimet",
+    "fleet": "Flota",
+    "reminders": "Kujtesat",
+    "reports": "Raportet",
+    "settings": "Cilësimet",
+    "myTrip": "Udhëtimi im",
+    "documents": "Dokumentet",
+    "resources": "Burimet"
+  },
+  "trip": {
+    "status": {
+      "draft": "Draft",
+      "loading": "Ngarkim",
+      "driving": "Në rrugë",
+      "border": "Kufi",
+      "unloading": "Shkarkim",
+      "finished": "Përfunduar"
+    },
+    "events": {
+      "load": "Ngarkim",
+      "unload": "Shkarkim",
+      "border": "Kufi",
+      "driving": "Në rrugë",
+      "rest": "Pushim",
+      "other": "Tjetër"
+    },
+    "payMode": {
+      "per_diem": "Dietë ditore",
+      "percentage": "Përqindje",
+      "fixed": "Fikse"
+    },
+    "fields": {
+      "title": "Titulli",
+      "origin": "Nisja",
+      "destination": "Destinacioni",
+      "driver": "Shoferi",
+      "vehicle": "Automjeti",
+      "trailer": "Rimorkio",
+      "startOdometer": "Kilometrazhi fillestar (km)",
+      "revenue": "Të ardhurat (EUR)",
+      "driverPay": "Pagesa e shoferit (EUR)",
+      "driverPayMode": "Mënyra e pagesës",
+      "eventType": "Lloji i ngjarjes",
+      "occurredAt": "Koha",
+      "location": "Vendndodhja",
+      "note": "Shënim"
+    },
+    "section": {
+      "info": "Detajet",
+      "events": "Regjistri i ngjarjeve",
+      "finance": "Financat"
+    },
+    "newTrip": "Udhëtim i ri",
+    "detailTitle": "Detaji i udhëtimit",
+    "noEvents": "Ende asnjë ngjarje",
+    "noTrailer": "Pa rimorkio",
+    "select": "Zgjidh…",
+    "addEvent": "Shto ngjarje",
+    "endOdometer": "Kilometrazhi përfundimtar",
+    "pendingSync_one": "{{count}} në pritje të sinkronizimit",
+    "pendingSync_other": "{{count}} në pritje të sinkronizimit",
+    "saveAssignment": "Ruaj ndryshimet",
+    "assignmentLockedFinished": "Udhëtimi ka përfunduar — caktimi nuk mund të ndryshohet më."
+  },
+  "expense": {
+    "section": "Shpenzimet",
+    "add": "Shto shpenzim",
+    "amount": "Shuma (si në faturë)",
+    "currency": "Valuta",
+    "date": "Data e shpenzimit",
+    "liters": "Litra",
+    "country": "Shteti",
+    "note": "Shënim",
+    "total": "Totali i udhëtimit",
+    "empty": "Ende asnjë shpenzim",
+    "pending": "në pritje të sinkronizimit",
+    "deleteConfirm": "Ta fshini këtë shpenzim?",
+    "categories": {
+      "fuel": "Karburant",
+      "toll": "Pedazh",
+      "customs": "Doganë",
+      "forwarding": "Spedicion",
+      "parking": "Parkim",
+      "other": "Tjetër"
+    }
+  },
+  "attachment": {
+    "add": "Shto foto",
+    "camera": "Kamera",
+    "library": "Galeria",
+    "empty": "Asnjë bashkëngjitje",
+    "deleteConfirm": "Ta fshini këtë bashkëngjitje?",
+    "documents": "Dokumentet",
+    "kindLabel": "Lloji i dokumentit",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Faturë",
+      "customs": "Doganë",
+      "fuel_receipt": "Faturë karburanti",
+      "other": "Tjetër"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Regjistrimi vlen deri më",
+    "fireExt": "Fikës zjarri",
+    "fireExtIssued": "Certifikuar",
+    "fireExtValidUntil": "Vlen deri më",
+    "otherTitle": "Kujtesa të tjera",
+    "add": "+ Shto kujtesë",
+    "customName": "Emri i kujtesës",
+    "customValidUntil": "Vlen deri më",
+    "customFrom": "Nga (opsionale)",
+    "empty": "Ende asnjë kujtesë",
+    "today": "sot",
+    "inDays_one": "për {{count}} ditë",
+    "inDays_other": "për {{count}} ditë",
+    "overdue_one": "{{count}} ditë vonesë",
+    "overdue_other": "{{count}} ditë vonesë",
+    "group": {
+      "expired": "Skaduar",
+      "soon": "Skadon për ≤30 ditë",
+      "other": "Më vonë"
+    },
+    "subject": {
+      "vehicle": "Automjeti",
+      "trailer": "Rimorkio",
+      "driver": "Shoferi"
+    },
+    "category": {
+      "registration": "Regjistrimi",
+      "fire_extinguisher": "Fikës zjarri",
+      "medical": "Çertifikatë mjekësore",
+      "custom": "Tjetër"
+    }
+  },
+  "fleet": {
+    "vehicles": "Automjetet",
+    "trailers": "Rimorkiot",
+    "drivers": "Shoferët",
+    "addVehicle": "Shto automjet",
+    "addTrailer": "Shto rimorkio",
+    "addDriver": "Shto shofer",
+    "editVehicle": "Ndrysho automjetin",
+    "editTrailer": "Ndrysho rimorkion",
+    "editDriver": "Ndrysho shoferin",
+    "emptyVehicles": "Ende asnjë automjet",
+    "emptyTrailers": "Ende asnjë rimorkio",
+    "emptyDrivers": "Ende asnjë shofer",
+    "deleteVehicle": "Ta fshini këtë automjet?",
+    "deleteTrailer": "Ta fshini këtë rimorkio?",
+    "deleteDriver": "Ta fshini këtë shofer?",
+    "fields": {
+      "registration": "Regjistrimi",
+      "makeModel": "Marka / modeli",
+      "normConsumption": "Konsumi normë (L/100km)",
+      "currentOdometer": "Kilometrazhi aktual (km)",
+      "type": "Lloji",
+      "fullName": "Emri i plotë",
+      "employmentType": "Lloji i punësimit",
+      "employmentStart": "Fillimi i punësimit",
+      "contractEnd": "Mbarimi i kontratës",
+      "medicalValidUntil": "Çertifikata mjekësore vlen deri më"
+    },
+    "employment": {
+      "indefinite": "Pa afat",
+      "fixed_term": "Me afat"
+    }
+  },
+  "settings": {
+    "signOut": "Dil",
+    "signOutConfirm": "Të dilni nga llogaria juaj?"
+  },
+  "language": {
+    "title": "Gjuha",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Ruaj",
+    "cancel": "Anulo",
+    "add": "Shto",
+    "edit": "Ndrysho",
+    "delete": "Fshi",
+    "done": "U krye",
+    "saving": "Duke ruajtur…",
+    "error": "Diçka shkoi keq",
+    "offlineNote": "U ruajt lokalisht — do të sinkronizohet kur të jesh online"
+  }
+}

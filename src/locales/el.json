@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Σύνδεση",
+    "email": "Email",
+    "password": "Κωδικός",
+    "sendCode": "Αποστολή κωδικού",
+    "code": "6ψήφιος κωδικός",
+    "verify": "Επαλήθευση",
+    "codeSentTo": "Ο κωδικός στάλθηκε στο {{email}}",
+    "changeEmail": "Αλλαγή email",
+    "noRole": "Ο λογαριασμός δεν συνδέεται με εταιρεία. Επικοινωνήστε με τον ιδιοκτήτη."
+  },
+  "tabs": {
+    "trips": "Δρομολόγια",
+    "fleet": "Στόλος",
+    "reminders": "Υπενθυμίσεις",
+    "reports": "Αναφορές",
+    "settings": "Ρυθμίσεις",
+    "myTrip": "Το δρομολόγιό μου",
+    "documents": "Έγγραφα",
+    "resources": "Πόροι"
+  },
+  "trip": {
+    "status": {
+      "draft": "Πρόχειρο",
+      "loading": "Φόρτωση",
+      "driving": "Οδήγηση",
+      "border": "Σύνορα",
+      "unloading": "Εκφόρτωση",
+      "finished": "Ολοκληρώθηκε"
+    },
+    "events": {
+      "load": "Φόρτωση",
+      "unload": "Εκφόρτωση",
+      "border": "Σύνορα",
+      "driving": "Οδήγηση",
+      "rest": "Ανάπαυση",
+      "other": "Άλλο"
+    },
+    "payMode": {
+      "per_diem": "Ημερήσια αποζημίωση",
+      "percentage": "Ποσοστό",
+      "fixed": "Σταθερό"
+    },
+    "fields": {
+      "title": "Τίτλος",
+      "origin": "Αφετηρία",
+      "destination": "Προορισμός",
+      "driver": "Οδηγός",
+      "vehicle": "Όχημα",
+      "trailer": "Ρυμουλκούμενο",
+      "startOdometer": "Αρχική ένδειξη χιλιομετρητή (km)",
+      "revenue": "Έσοδα (EUR)",
+      "driverPay": "Αμοιβή οδηγού (EUR)",
+      "driverPayMode": "Τρόπος αμοιβής",
+      "eventType": "Τύπος συμβάντος",
+      "occurredAt": "Ώρα",
+      "location": "Τοποθεσία",
+      "note": "Σημείωση"
+    },
+    "section": {
+      "info": "Λεπτομέρειες",
+      "events": "Ημερολόγιο συμβάντων",
+      "finance": "Οικονομικά"
+    },
+    "newTrip": "Νέο δρομολόγιο",
+    "detailTitle": "Λεπτομέρειες δρομολογίου",
+    "noEvents": "Δεν υπάρχουν ακόμη συμβάντα",
+    "noTrailer": "Χωρίς ρυμουλκούμενο",
+    "select": "Επιλογή…",
+    "addEvent": "Προσθήκη συμβάντος",
+    "endOdometer": "Τελική ένδειξη χιλιομετρητή",
+    "pendingSync_one": "{{count}} σε αναμονή συγχρονισμού",
+    "pendingSync_other": "{{count}} σε αναμονή συγχρονισμού",
+    "saveAssignment": "Αποθήκευση αλλαγών",
+    "assignmentLockedFinished": "Το δρομολόγιο ολοκληρώθηκε — η ανάθεση δεν μπορεί πλέον να αλλάξει."
+  },
+  "expense": {
+    "section": "Έξοδα",
+    "add": "Προσθήκη εξόδου",
+    "amount": "Ποσό (όπως στην απόδειξη)",
+    "currency": "Νόμισμα",
+    "date": "Ημερομηνία εξόδου",
+    "liters": "Λίτρα",
+    "country": "Χώρα",
+    "note": "Σημείωση",
+    "total": "Σύνολο δρομολογίου",
+    "empty": "Δεν υπάρχουν ακόμη έξοδα",
+    "pending": "σε αναμονή συγχρονισμού",
+    "deleteConfirm": "Διαγραφή αυτού του εξόδου;",
+    "categories": {
+      "fuel": "Καύσιμα",
+      "toll": "Διόδια",
+      "customs": "Τελωνείο",
+      "forwarding": "Διαμεταφορά",
+      "parking": "Στάθμευση",
+      "other": "Άλλο"
+    }
+  },
+  "attachment": {
+    "add": "Προσθήκη φωτογραφίας",
+    "camera": "Κάμερα",
+    "library": "Συλλογή",
+    "empty": "Δεν υπάρχουν συνημμένα",
+    "deleteConfirm": "Διαγραφή αυτού του συνημμένου;",
+    "documents": "Έγγραφα",
+    "kindLabel": "Τύπος εγγράφου",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Τιμολόγιο",
+      "customs": "Τελωνείο",
+      "fuel_receipt": "Απόδειξη καυσίμων",
+      "other": "Άλλο"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Άδεια κυκλοφορίας ισχύει έως",
+    "fireExt": "Πυροσβεστήρας",
+    "fireExtIssued": "Πιστοποιημένο",
+    "fireExtValidUntil": "Ισχύει έως",
+    "otherTitle": "Άλλες υπενθυμίσεις",
+    "add": "+ Προσθήκη υπενθύμισης",
+    "customName": "Όνομα υπενθύμισης",
+    "customValidUntil": "Ισχύει έως",
+    "customFrom": "Από (προαιρετικό)",
+    "empty": "Δεν υπάρχουν ακόμη υπενθυμίσεις",
+    "today": "σήμερα",
+    "inDays_one": "σε {{count}} ημέρα",
+    "inDays_other": "σε {{count}} ημέρες",
+    "overdue_one": "{{count}} ημέρα σε καθυστέρηση",
+    "overdue_other": "{{count}} ημέρες σε καθυστέρηση",
+    "group": {
+      "expired": "Έληξε",
+      "soon": "Λήγει σε ≤30 ημέρες",
+      "other": "Αργότερα"
+    },
+    "subject": {
+      "vehicle": "Όχημα",
+      "trailer": "Ρυμουλκούμενο",
+      "driver": "Οδηγός"
+    },
+    "category": {
+      "registration": "Άδεια κυκλοφορίας",
+      "fire_extinguisher": "Πυροσβεστήρας",
+      "medical": "Πιστοποιητικό υγείας",
+      "custom": "Άλλο"
+    }
+  },
+  "fleet": {
+    "vehicles": "Οχήματα",
+    "trailers": "Ρυμουλκούμενα",
+    "drivers": "Οδηγοί",
+    "addVehicle": "Προσθήκη οχήματος",
+    "addTrailer": "Προσθήκη ρυμουλκούμενου",
+    "addDriver": "Προσθήκη οδηγού",
+    "editVehicle": "Επεξεργασία οχήματος",
+    "editTrailer": "Επεξεργασία ρυμουλκούμενου",
+    "editDriver": "Επεξεργασία οδηγού",
+    "emptyVehicles": "Δεν υπάρχουν ακόμη οχήματα",
+    "emptyTrailers": "Δεν υπάρχουν ακόμη ρυμουλκούμενα",
+    "emptyDrivers": "Δεν υπάρχουν ακόμη οδηγοί",
+    "deleteVehicle": "Διαγραφή αυτού του οχήματος;",
+    "deleteTrailer": "Διαγραφή αυτού του ρυμουλκούμενου;",
+    "deleteDriver": "Διαγραφή αυτού του οδηγού;",
+    "fields": {
+      "registration": "Άδεια κυκλοφορίας",
+      "makeModel": "Μάρκα / μοντέλο",
+      "normConsumption": "Κανονική κατανάλωση (L/100km)",
+      "currentOdometer": "Τρέχουσα ένδειξη χιλιομετρητή (km)",
+      "type": "Τύπος",
+      "fullName": "Ονοματεπώνυμο",
+      "employmentType": "Τύπος απασχόλησης",
+      "employmentStart": "Έναρξη απασχόλησης",
+      "contractEnd": "Λήξη σύμβασης",
+      "medicalValidUntil": "Ιατρικό ισχύει έως"
+    },
+    "employment": {
+      "indefinite": "Αορίστου",
+      "fixed_term": "Ορισμένου χρόνου"
+    }
+  },
+  "settings": {
+    "signOut": "Αποσύνδεση",
+    "signOutConfirm": "Αποσύνδεση από τον λογαριασμό σας;"
+  },
+  "language": {
+    "title": "Γλώσσα",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Αποθήκευση",
+    "cancel": "Ακύρωση",
+    "add": "Προσθήκη",
+    "edit": "Επεξεργασία",
+    "delete": "Διαγραφή",
+    "done": "Έτοιμο",
+    "saving": "Αποθήκευση…",
+    "error": "Κάτι πήγε στραβά",
+    "offlineNote": "Αποθηκεύτηκε τοπικά — θα συγχρονιστεί όταν είστε συνδεδεμένοι"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Zaloguj się",
+    "email": "E-mail",
+    "password": "Hasło",
+    "sendCode": "Wyślij kod",
+    "code": "6-cyfrowy kod",
+    "verify": "Zweryfikuj",
+    "codeSentTo": "Kod wysłano na {{email}}",
+    "changeEmail": "Zmień e-mail",
+    "noRole": "Konto nie jest powiązane z firmą. Skontaktuj się z właścicielem."
+  },
+  "tabs": {
+    "trips": "Trasy",
+    "fleet": "Flota",
+    "reminders": "Przypomnienia",
+    "reports": "Raporty",
+    "settings": "Ustawienia",
+    "myTrip": "Moja trasa",
+    "documents": "Dokumenty",
+    "resources": "Zasoby"
+  },
+  "trip": {
+    "status": {
+      "draft": "Szkic",
+      "loading": "Załadunek",
+      "driving": "W trasie",
+      "border": "Granica",
+      "unloading": "Rozładunek",
+      "finished": "Zakończona"
+    },
+    "events": {
+      "load": "Załadunek",
+      "unload": "Rozładunek",
+      "border": "Granica",
+      "driving": "Jazda",
+      "rest": "Odpoczynek",
+      "other": "Inne"
+    },
+    "payMode": {
+      "per_diem": "Dieta dzienna",
+      "percentage": "Procent",
+      "fixed": "Stała stawka"
+    },
+    "fields": {
+      "title": "Nazwa",
+      "origin": "Miejsce załadunku",
+      "destination": "Miejsce rozładunku",
+      "driver": "Kierowca",
+      "vehicle": "Pojazd",
+      "trailer": "Naczepa",
+      "startOdometer": "Licznik początkowy (km)",
+      "revenue": "Przychód (EUR)",
+      "driverPay": "Wynagrodzenie kierowcy (EUR)",
+      "driverPayMode": "Tryb wynagrodzenia",
+      "eventType": "Typ zdarzenia",
+      "occurredAt": "Czas",
+      "location": "Lokalizacja",
+      "note": "Notatka"
+    },
+    "section": {
+      "info": "Szczegóły",
+      "events": "Dziennik zdarzeń",
+      "finance": "Finanse"
+    },
+    "newTrip": "Nowa trasa",
+    "detailTitle": "Szczegóły trasy",
+    "noEvents": "Brak zdarzeń",
+    "noTrailer": "Bez naczepy",
+    "select": "Wybierz…",
+    "addEvent": "Dodaj zdarzenie",
+    "endOdometer": "Licznik końcowy",
+    "pendingSync_one": "{{count}} oczekuje na synchronizację",
+    "pendingSync_other": "{{count}} oczekuje na synchronizację",
+    "saveAssignment": "Zapisz zmiany",
+    "assignmentLockedFinished": "Trasa zakończona — przypisania nie można już zmienić."
+  },
+  "expense": {
+    "section": "Koszty",
+    "add": "Dodaj koszt",
+    "amount": "Kwota (jak na paragonie)",
+    "currency": "Waluta",
+    "date": "Data kosztu",
+    "liters": "Litry",
+    "country": "Kraj",
+    "note": "Notatka",
+    "total": "Suma trasy",
+    "empty": "Brak kosztów",
+    "pending": "oczekuje na synchronizację",
+    "deleteConfirm": "Usunąć ten koszt?",
+    "categories": {
+      "fuel": "Paliwo",
+      "toll": "Opłata drogowa",
+      "customs": "Cło",
+      "forwarding": "Spedycja",
+      "parking": "Parking",
+      "other": "Inne"
+    }
+  },
+  "attachment": {
+    "add": "Dodaj zdjęcie",
+    "camera": "Aparat",
+    "library": "Galeria",
+    "empty": "Brak załączników",
+    "deleteConfirm": "Usunąć ten załącznik?",
+    "documents": "Dokumenty",
+    "kindLabel": "Typ dokumentu",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Faktura",
+      "customs": "Cło",
+      "fuel_receipt": "Paragon za paliwo",
+      "other": "Inne"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Rejestracja ważna do",
+    "fireExt": "Gaśnica",
+    "fireExtIssued": "Certyfikowano",
+    "fireExtValidUntil": "Ważna do",
+    "otherTitle": "Inne przypomnienia",
+    "add": "+ Dodaj przypomnienie",
+    "customName": "Nazwa przypomnienia",
+    "customValidUntil": "Ważne do",
+    "customFrom": "Od (opcjonalnie)",
+    "empty": "Brak przypomnień",
+    "today": "dziś",
+    "inDays_one": "za {{count}} dzień",
+    "inDays_other": "za {{count}} dni",
+    "overdue_one": "{{count}} dzień po terminie",
+    "overdue_other": "{{count}} dni po terminie",
+    "group": {
+      "expired": "Wygasłe",
+      "soon": "Termin w ≤30 dni",
+      "other": "Później"
+    },
+    "subject": {
+      "vehicle": "Pojazd",
+      "trailer": "Naczepa",
+      "driver": "Kierowca"
+    },
+    "category": {
+      "registration": "Rejestracja",
+      "fire_extinguisher": "Gaśnica",
+      "medical": "Badanie lekarskie",
+      "custom": "Inne"
+    }
+  },
+  "fleet": {
+    "vehicles": "Pojazdy",
+    "trailers": "Naczepy",
+    "drivers": "Kierowcy",
+    "addVehicle": "Dodaj pojazd",
+    "addTrailer": "Dodaj naczepę",
+    "addDriver": "Dodaj kierowcę",
+    "editVehicle": "Edytuj pojazd",
+    "editTrailer": "Edytuj naczepę",
+    "editDriver": "Edytuj kierowcę",
+    "emptyVehicles": "Brak pojazdów",
+    "emptyTrailers": "Brak naczep",
+    "emptyDrivers": "Brak kierowców",
+    "deleteVehicle": "Usunąć ten pojazd?",
+    "deleteTrailer": "Usunąć tę naczepę?",
+    "deleteDriver": "Usunąć tego kierowcę?",
+    "fields": {
+      "registration": "Rejestracja",
+      "makeModel": "Marka / model",
+      "normConsumption": "Zużycie normatywne (L/100km)",
+      "currentOdometer": "Aktualny licznik (km)",
+      "type": "Typ",
+      "fullName": "Imię i nazwisko",
+      "employmentType": "Rodzaj zatrudnienia",
+      "employmentStart": "Początek zatrudnienia",
+      "contractEnd": "Koniec umowy",
+      "medicalValidUntil": "Badanie ważne do"
+    },
+    "employment": {
+      "indefinite": "Na czas nieokreślony",
+      "fixed_term": "Na czas określony"
+    }
+  },
+  "settings": {
+    "signOut": "Wyloguj się",
+    "signOutConfirm": "Wylogować się z konta?"
+  },
+  "language": {
+    "title": "Język",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "add": "Dodaj",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "done": "Gotowe",
+    "saving": "Zapisywanie…",
+    "error": "Coś poszło nie tak",
+    "offlineNote": "Zapisano lokalnie — synchronizacja po połączeniu z siecią"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Prijava",
+    "email": "E-pošta",
+    "password": "Geslo",
+    "sendCode": "Pošlji kodo",
+    "code": "6-mestna koda",
+    "verify": "Potrdi",
+    "codeSentTo": "Koda poslana na {{email}}",
+    "changeEmail": "Spremeni e-pošto",
+    "noRole": "Račun ni povezan s podjetjem. Obrnite se na lastnika."
+  },
+  "tabs": {
+    "trips": "Ture",
+    "fleet": "Vozni park",
+    "reminders": "Opomniki",
+    "reports": "Poročila",
+    "settings": "Nastavitve",
+    "myTrip": "Moja tura",
+    "documents": "Dokumenti",
+    "resources": "Viri"
+  },
+  "trip": {
+    "status": {
+      "draft": "Osnutek",
+      "loading": "Nakladanje",
+      "driving": "Vožnja",
+      "border": "Meja",
+      "unloading": "Razkladanje",
+      "finished": "Zaključeno"
+    },
+    "events": {
+      "load": "Nakladanje",
+      "unload": "Razkladanje",
+      "border": "Meja",
+      "driving": "Vožnja",
+      "rest": "Počitek",
+      "other": "Drugo"
+    },
+    "payMode": {
+      "per_diem": "Dnevnica",
+      "percentage": "Odstotek",
+      "fixed": "Fiksno"
+    },
+    "fields": {
+      "title": "Naziv",
+      "origin": "Izhodišče",
+      "destination": "Cilj",
+      "driver": "Voznik",
+      "vehicle": "Vozilo",
+      "trailer": "Priklopnik",
+      "startOdometer": "Začetno stanje števca (km)",
+      "revenue": "Prihodek (EUR)",
+      "driverPay": "Plačilo vozniku (EUR)",
+      "driverPayMode": "Način obračuna",
+      "eventType": "Vrsta dogodka",
+      "occurredAt": "Čas",
+      "location": "Lokacija",
+      "note": "Opomba"
+    },
+    "section": {
+      "info": "Podrobnosti",
+      "events": "Dnevnik dogodkov",
+      "finance": "Finance"
+    },
+    "newTrip": "Nova tura",
+    "detailTitle": "Podrobnosti ture",
+    "noEvents": "Še ni dogodkov",
+    "noTrailer": "Brez priklopnika",
+    "select": "Izberi…",
+    "addEvent": "Dodaj dogodek",
+    "endOdometer": "Končno stanje števca",
+    "pendingSync_one": "{{count}} čaka na sinhronizacijo",
+    "pendingSync_other": "{{count}} čaka na sinhronizacijo",
+    "saveAssignment": "Shrani spremembe",
+    "assignmentLockedFinished": "Tura je zaključena — dodelitve ni več mogoče spremeniti."
+  },
+  "expense": {
+    "section": "Stroški",
+    "add": "Dodaj strošek",
+    "amount": "Znesek (kot je na računu)",
+    "currency": "Valuta",
+    "date": "Datum stroška",
+    "liters": "Litri",
+    "country": "Država",
+    "note": "Opomba",
+    "total": "Skupaj za turo",
+    "empty": "Še ni stroškov",
+    "pending": "čaka na sinhronizacijo",
+    "deleteConfirm": "Izbrišem ta strošek?",
+    "categories": {
+      "fuel": "Gorivo",
+      "toll": "Cestnina",
+      "customs": "Carina",
+      "forwarding": "Špedicija",
+      "parking": "Parkirnina",
+      "other": "Drugo"
+    }
+  },
+  "attachment": {
+    "add": "Dodaj fotografijo",
+    "camera": "Kamera",
+    "library": "Galerija",
+    "empty": "Ni prilog",
+    "deleteConfirm": "Izbrišem to prilogo?",
+    "documents": "Dokumenti",
+    "kindLabel": "Vrsta dokumenta",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Račun",
+      "customs": "Carina",
+      "fuel_receipt": "Račun za gorivo",
+      "other": "Drugo"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Registracija velja do",
+    "fireExt": "Gasilni aparat",
+    "fireExtIssued": "Overjeno",
+    "fireExtValidUntil": "Velja do",
+    "otherTitle": "Drugi opomniki",
+    "add": "+ Dodaj opomnik",
+    "customName": "Naziv opomnika",
+    "customValidUntil": "Velja do",
+    "customFrom": "Od (neobvezno)",
+    "empty": "Še ni opomnikov",
+    "today": "danes",
+    "inDays_one": "čez {{count}} dan",
+    "inDays_other": "čez {{count}} dni",
+    "overdue_one": "{{count}} dan zamude",
+    "overdue_other": "{{count}} dni zamude",
+    "group": {
+      "expired": "Poteklo",
+      "soon": "Zapade v ≤30 dneh",
+      "other": "Pozneje"
+    },
+    "subject": {
+      "vehicle": "Vozilo",
+      "trailer": "Priklopnik",
+      "driver": "Voznik"
+    },
+    "category": {
+      "registration": "Registracija",
+      "fire_extinguisher": "Gasilni aparat",
+      "medical": "Zdravniško potrdilo",
+      "custom": "Drugo"
+    }
+  },
+  "fleet": {
+    "vehicles": "Vozila",
+    "trailers": "Priklopniki",
+    "drivers": "Vozniki",
+    "addVehicle": "Dodaj vozilo",
+    "addTrailer": "Dodaj priklopnik",
+    "addDriver": "Dodaj voznika",
+    "editVehicle": "Uredi vozilo",
+    "editTrailer": "Uredi priklopnik",
+    "editDriver": "Uredi voznika",
+    "emptyVehicles": "Še ni vozil",
+    "emptyTrailers": "Še ni priklopnikov",
+    "emptyDrivers": "Še ni voznikov",
+    "deleteVehicle": "Izbrišem to vozilo?",
+    "deleteTrailer": "Izbrišem ta priklopnik?",
+    "deleteDriver": "Izbrišem tega voznika?",
+    "fields": {
+      "registration": "Registracija",
+      "makeModel": "Znamka / model",
+      "normConsumption": "Normirana poraba (L/100km)",
+      "currentOdometer": "Trenutno stanje števca (km)",
+      "type": "Tip",
+      "fullName": "Ime in priimek",
+      "employmentType": "Vrsta zaposlitve",
+      "employmentStart": "Začetek zaposlitve",
+      "contractEnd": "Konec pogodbe",
+      "medicalValidUntil": "Zdravniško velja do"
+    },
+    "employment": {
+      "indefinite": "Nedoločen čas",
+      "fixed_term": "Določen čas"
+    }
+  },
+  "settings": {
+    "signOut": "Odjava",
+    "signOutConfirm": "Se odjavim iz računa?"
+  },
+  "language": {
+    "title": "Jezik",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Shrani",
+    "cancel": "Prekliči",
+    "add": "Dodaj",
+    "edit": "Uredi",
+    "delete": "Izbriši",
+    "done": "Končano",
+    "saving": "Shranjevanje…",
+    "error": "Nekaj je šlo narobe",
+    "offlineNote": "Shranjeno lokalno — sinhronizirano bo, ko boste na spletu"
+  }
+}

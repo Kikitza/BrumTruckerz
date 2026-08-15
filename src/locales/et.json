@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Logi sisse",
+    "email": "E-post",
+    "password": "Parool",
+    "sendCode": "Saada kood",
+    "code": "6-kohaline kood",
+    "verify": "Kinnita",
+    "codeSentTo": "Kood saadeti aadressile {{email}}",
+    "changeEmail": "Muuda e-posti",
+    "noRole": "Konto ei ole seotud ühegi ettevõttega. Võtke ühendust omanikuga."
+  },
+  "tabs": {
+    "trips": "Reisid",
+    "fleet": "Autopark",
+    "reminders": "Meeldetuletused",
+    "reports": "Aruanded",
+    "settings": "Seaded",
+    "myTrip": "Minu reis",
+    "documents": "Dokumendid",
+    "resources": "Ressursid"
+  },
+  "trip": {
+    "status": {
+      "draft": "Mustand",
+      "loading": "Laadimine",
+      "driving": "Sõitmine",
+      "border": "Piir",
+      "unloading": "Mahalaadimine",
+      "finished": "Lõpetatud"
+    },
+    "events": {
+      "load": "Laadimine",
+      "unload": "Mahalaadimine",
+      "border": "Piir",
+      "driving": "Sõitmine",
+      "rest": "Puhkus",
+      "other": "Muu"
+    },
+    "payMode": {
+      "per_diem": "Päevaraha",
+      "percentage": "Protsent",
+      "fixed": "Fikseeritud"
+    },
+    "fields": {
+      "title": "Pealkiri",
+      "origin": "Lähtekoht",
+      "destination": "Sihtkoht",
+      "driver": "Juht",
+      "vehicle": "Sõiduk",
+      "trailer": "Haagis",
+      "startOdometer": "Alguse läbisõit (km)",
+      "revenue": "Tulu (EUR)",
+      "driverPay": "Juhi tasu (EUR)",
+      "driverPayMode": "Tasustamise viis",
+      "eventType": "Sündmuse tüüp",
+      "occurredAt": "Aeg",
+      "location": "Asukoht",
+      "note": "Märkus"
+    },
+    "section": {
+      "info": "Üksikasjad",
+      "events": "Sündmuste logi",
+      "finance": "Rahandus"
+    },
+    "newTrip": "Uus reis",
+    "detailTitle": "Reisi üksikasjad",
+    "noEvents": "Sündmusi veel ei ole",
+    "noTrailer": "Haagis puudub",
+    "select": "Vali…",
+    "addEvent": "Lisa sündmus",
+    "endOdometer": "Lõpu läbisõit",
+    "pendingSync_one": "{{count}} ootab sünkroonimist",
+    "pendingSync_other": "{{count}} ootab sünkroonimist",
+    "saveAssignment": "Salvesta muudatused",
+    "assignmentLockedFinished": "Reis on lõpetatud — määramist ei saa enam muuta."
+  },
+  "expense": {
+    "section": "Kulud",
+    "add": "Lisa kulu",
+    "amount": "Summa (nagu kviitungil)",
+    "currency": "Valuuta",
+    "date": "Kulu kuupäev",
+    "liters": "Liitrid",
+    "country": "Riik",
+    "note": "Märkus",
+    "total": "Reisi kokku",
+    "empty": "Kulusid veel ei ole",
+    "pending": "ootab sünkroonimist",
+    "deleteConfirm": "Kustutada see kulu?",
+    "categories": {
+      "fuel": "Kütus",
+      "toll": "Teemaks",
+      "customs": "Toll",
+      "forwarding": "Ekspedeerimine",
+      "parking": "Parkimine",
+      "other": "Muu"
+    }
+  },
+  "attachment": {
+    "add": "Lisa foto",
+    "camera": "Kaamera",
+    "library": "Galerii",
+    "empty": "Manuseid ei ole",
+    "deleteConfirm": "Kustutada see manus?",
+    "documents": "Dokumendid",
+    "kindLabel": "Dokumendi tüüp",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Arve",
+      "customs": "Toll",
+      "fuel_receipt": "Kütusekviitung",
+      "other": "Muu"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Registreerimine kehtib kuni",
+    "fireExt": "Tulekustuti",
+    "fireExtIssued": "Sertifitseeritud",
+    "fireExtValidUntil": "Kehtib kuni",
+    "otherTitle": "Muud meeldetuletused",
+    "add": "+ Lisa meeldetuletus",
+    "customName": "Meeldetuletuse nimi",
+    "customValidUntil": "Kehtib kuni",
+    "customFrom": "Alates (valikuline)",
+    "empty": "Meeldetuletusi veel ei ole",
+    "today": "täna",
+    "inDays_one": "{{count}} päeva pärast",
+    "inDays_other": "{{count}} päeva pärast",
+    "overdue_one": "{{count}} päev üle tähtaja",
+    "overdue_other": "{{count}} päeva üle tähtaja",
+    "group": {
+      "expired": "Aegunud",
+      "soon": "Tähtaeg ≤30 päeva",
+      "other": "Hiljem"
+    },
+    "subject": {
+      "vehicle": "Sõiduk",
+      "trailer": "Haagis",
+      "driver": "Juht"
+    },
+    "category": {
+      "registration": "Registreerimine",
+      "fire_extinguisher": "Tulekustuti",
+      "medical": "Tervisetõend",
+      "custom": "Muu"
+    }
+  },
+  "fleet": {
+    "vehicles": "Sõidukid",
+    "trailers": "Haagised",
+    "drivers": "Juhid",
+    "addVehicle": "Lisa sõiduk",
+    "addTrailer": "Lisa haagis",
+    "addDriver": "Lisa juht",
+    "editVehicle": "Muuda sõidukit",
+    "editTrailer": "Muuda haagist",
+    "editDriver": "Muuda juhti",
+    "emptyVehicles": "Sõidukeid veel ei ole",
+    "emptyTrailers": "Haagiseid veel ei ole",
+    "emptyDrivers": "Juhte veel ei ole",
+    "deleteVehicle": "Kustutada see sõiduk?",
+    "deleteTrailer": "Kustutada see haagis?",
+    "deleteDriver": "Kustutada see juht?",
+    "fields": {
+      "registration": "Registreerimine",
+      "makeModel": "Mark / mudel",
+      "normConsumption": "Normtarbimine (L/100km)",
+      "currentOdometer": "Praegune läbisõit (km)",
+      "type": "Tüüp",
+      "fullName": "Täisnimi",
+      "employmentType": "Töösuhte tüüp",
+      "employmentStart": "Töösuhte algus",
+      "contractEnd": "Lepingu lõpp",
+      "medicalValidUntil": "Tervisetõend kehtib kuni"
+    },
+    "employment": {
+      "indefinite": "Tähtajatu",
+      "fixed_term": "Tähtajaline"
+    }
+  },
+  "settings": {
+    "signOut": "Logi välja",
+    "signOutConfirm": "Logida oma kontolt välja?"
+  },
+  "language": {
+    "title": "Keel",
+    "beta": "beeta"
+  },
+  "common": {
+    "save": "Salvesta",
+    "cancel": "Tühista",
+    "add": "Lisa",
+    "edit": "Muuda",
+    "delete": "Kustuta",
+    "done": "Valmis",
+    "saving": "Salvestamine…",
+    "error": "Midagi läks valesti",
+    "offlineNote": "Salvestatud lokaalselt — sünkroonitakse võrgus olles"
+  }
+}

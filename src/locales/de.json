@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Anmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "sendCode": "Code senden",
+    "code": "6-stelliger Code",
+    "verify": "Bestätigen",
+    "codeSentTo": "Code gesendet an {{email}}",
+    "changeEmail": "E-Mail ändern",
+    "noRole": "Konto ist keinem Unternehmen zugeordnet. Wenden Sie sich an den Eigentümer."
+  },
+  "tabs": {
+    "trips": "Touren",
+    "fleet": "Fuhrpark",
+    "reminders": "Erinnerungen",
+    "reports": "Berichte",
+    "settings": "Einstellungen",
+    "myTrip": "Meine Tour",
+    "documents": "Dokumente",
+    "resources": "Ressourcen"
+  },
+  "trip": {
+    "status": {
+      "draft": "Entwurf",
+      "loading": "Beladung",
+      "driving": "Fahrt",
+      "border": "Grenze",
+      "unloading": "Entladung",
+      "finished": "Abgeschlossen"
+    },
+    "events": {
+      "load": "Beladung",
+      "unload": "Entladung",
+      "border": "Grenze",
+      "driving": "Fahrt",
+      "rest": "Pause",
+      "other": "Sonstiges"
+    },
+    "payMode": {
+      "per_diem": "Tagegeld",
+      "percentage": "Prozentsatz",
+      "fixed": "Festbetrag"
+    },
+    "fields": {
+      "title": "Titel",
+      "origin": "Startort",
+      "destination": "Zielort",
+      "driver": "Fahrer",
+      "vehicle": "Fahrzeug",
+      "trailer": "Anhänger",
+      "startOdometer": "Kilometerstand Start (km)",
+      "revenue": "Umsatz (EUR)",
+      "driverPay": "Fahrervergütung (EUR)",
+      "driverPayMode": "Vergütungsart",
+      "eventType": "Ereignistyp",
+      "occurredAt": "Zeit",
+      "location": "Ort",
+      "note": "Notiz"
+    },
+    "section": {
+      "info": "Details",
+      "events": "Ereignisprotokoll",
+      "finance": "Finanzen"
+    },
+    "newTrip": "Neue Tour",
+    "detailTitle": "Tourdetails",
+    "noEvents": "Noch keine Ereignisse",
+    "noTrailer": "Kein Anhänger",
+    "select": "Auswählen…",
+    "addEvent": "Ereignis hinzufügen",
+    "endOdometer": "Kilometerstand Ende",
+    "pendingSync_one": "{{count}} wartet auf Synchronisierung",
+    "pendingSync_other": "{{count}} warten auf Synchronisierung",
+    "saveAssignment": "Änderungen speichern",
+    "assignmentLockedFinished": "Tour ist abgeschlossen — die Zuweisung kann nicht mehr geändert werden."
+  },
+  "expense": {
+    "section": "Ausgaben",
+    "add": "Ausgabe hinzufügen",
+    "amount": "Betrag (wie auf dem Beleg)",
+    "currency": "Währung",
+    "date": "Ausgabendatum",
+    "liters": "Liter",
+    "country": "Land",
+    "note": "Notiz",
+    "total": "Tour gesamt",
+    "empty": "Noch keine Ausgaben",
+    "pending": "wartet auf Synchronisierung",
+    "deleteConfirm": "Diese Ausgabe löschen?",
+    "categories": {
+      "fuel": "Kraftstoff",
+      "toll": "Maut",
+      "customs": "Zoll",
+      "forwarding": "Spedition",
+      "parking": "Parken",
+      "other": "Sonstiges"
+    }
+  },
+  "attachment": {
+    "add": "Foto hinzufügen",
+    "camera": "Kamera",
+    "library": "Galerie",
+    "empty": "Keine Anhänge",
+    "deleteConfirm": "Diesen Anhang löschen?",
+    "documents": "Dokumente",
+    "kindLabel": "Dokumenttyp",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Rechnung",
+      "customs": "Zoll",
+      "fuel_receipt": "Tankbeleg",
+      "other": "Sonstiges"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Zulassung gültig bis",
+    "fireExt": "Feuerlöscher",
+    "fireExtIssued": "Zertifiziert",
+    "fireExtValidUntil": "Gültig bis",
+    "otherTitle": "Weitere Erinnerungen",
+    "add": "+ Erinnerung hinzufügen",
+    "customName": "Name der Erinnerung",
+    "customValidUntil": "Gültig bis",
+    "customFrom": "Von (optional)",
+    "empty": "Noch keine Erinnerungen",
+    "today": "heute",
+    "inDays_one": "in {{count}} Tag",
+    "inDays_other": "in {{count}} Tagen",
+    "overdue_one": "{{count}} Tag überfällig",
+    "overdue_other": "{{count}} Tage überfällig",
+    "group": {
+      "expired": "Abgelaufen",
+      "soon": "Fällig in ≤30 Tagen",
+      "other": "Später"
+    },
+    "subject": {
+      "vehicle": "Fahrzeug",
+      "trailer": "Anhänger",
+      "driver": "Fahrer"
+    },
+    "category": {
+      "registration": "Zulassung",
+      "fire_extinguisher": "Feuerlöscher",
+      "medical": "Ärztliches Attest",
+      "custom": "Sonstiges"
+    }
+  },
+  "fleet": {
+    "vehicles": "Fahrzeuge",
+    "trailers": "Anhänger",
+    "drivers": "Fahrer",
+    "addVehicle": "Fahrzeug hinzufügen",
+    "addTrailer": "Anhänger hinzufügen",
+    "addDriver": "Fahrer hinzufügen",
+    "editVehicle": "Fahrzeug bearbeiten",
+    "editTrailer": "Anhänger bearbeiten",
+    "editDriver": "Fahrer bearbeiten",
+    "emptyVehicles": "Noch keine Fahrzeuge",
+    "emptyTrailers": "Noch keine Anhänger",
+    "emptyDrivers": "Noch keine Fahrer",
+    "deleteVehicle": "Dieses Fahrzeug löschen?",
+    "deleteTrailer": "Diesen Anhänger löschen?",
+    "deleteDriver": "Diesen Fahrer löschen?",
+    "fields": {
+      "registration": "Zulassung",
+      "makeModel": "Marke / Modell",
+      "normConsumption": "Normverbrauch (L/100km)",
+      "currentOdometer": "Aktueller Kilometerstand (km)",
+      "type": "Typ",
+      "fullName": "Vollständiger Name",
+      "employmentType": "Beschäftigungsart",
+      "employmentStart": "Beschäftigungsbeginn",
+      "contractEnd": "Vertragsende",
+      "medicalValidUntil": "Ärztliches Attest gültig bis"
+    },
+    "employment": {
+      "indefinite": "Unbefristet",
+      "fixed_term": "Befristet"
+    }
+  },
+  "settings": {
+    "signOut": "Abmelden",
+    "signOutConfirm": "Von Ihrem Konto abmelden?"
+  },
+  "language": {
+    "title": "Sprache",
+    "beta": "Beta"
+  },
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "add": "Hinzufügen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "done": "Fertig",
+    "saving": "Wird gespeichert…",
+    "error": "Etwas ist schiefgelaufen",
+    "offlineNote": "Lokal gespeichert — wird synchronisiert, sobald online"
+  }
+}

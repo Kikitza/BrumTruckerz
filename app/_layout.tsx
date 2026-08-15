@@ -6,11 +6,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { startSync } from "../src/lib/offline/queue";
 import { registerAllHandlers } from "../src/lib/offline/handlers";
+import { initStoredLanguage } from "../src/i18n/useLanguage";
 
 const qc = new QueryClient();
 
 export default function RootLayout() {
   useEffect(() => {
+    initStoredLanguage();
     registerAllHandlers();
     startSync();
   }, []);

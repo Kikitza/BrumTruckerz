@@ -2,6 +2,7 @@
   "auth": {
     "signIn": "Sign in",
     "email": "Email",
+    "password": "Password",
     "sendCode": "Send code",
     "code": "6-digit code",
     "verify": "Verify",
@@ -181,6 +182,10 @@
   "settings": {
     "signOut": "Sign out",
     "signOutConfirm": "Sign out of your account?"
+  },
+  "language": {
+    "title": "Language",
+    "beta": "beta"
   },
   "common": {
     "save": "Save",

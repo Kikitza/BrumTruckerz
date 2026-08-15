@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Prisijungti",
+    "email": "El. paštas",
+    "password": "Slaptažodis",
+    "sendCode": "Siųsti kodą",
+    "code": "6 skaitmenų kodas",
+    "verify": "Patvirtinti",
+    "codeSentTo": "Kodas išsiųstas į {{email}}",
+    "changeEmail": "Keisti el. paštą",
+    "noRole": "Paskyra nesusieta su įmone. Susisiekite su savininku."
+  },
+  "tabs": {
+    "trips": "Reisai",
+    "fleet": "Automobilių parkas",
+    "reminders": "Priminimai",
+    "reports": "Ataskaitos",
+    "settings": "Nustatymai",
+    "myTrip": "Mano reisas",
+    "documents": "Dokumentai",
+    "resources": "Ištekliai"
+  },
+  "trip": {
+    "status": {
+      "draft": "Juodraštis",
+      "loading": "Pakrovimas",
+      "driving": "Vairavimas",
+      "border": "Siena",
+      "unloading": "Iškrovimas",
+      "finished": "Baigta"
+    },
+    "events": {
+      "load": "Pakrovimas",
+      "unload": "Iškrovimas",
+      "border": "Siena",
+      "driving": "Vairavimas",
+      "rest": "Poilsis",
+      "other": "Kita"
+    },
+    "payMode": {
+      "per_diem": "Dienpinigiai",
+      "percentage": "Procentai",
+      "fixed": "Fiksuotas"
+    },
+    "fields": {
+      "title": "Pavadinimas",
+      "origin": "Išvykimo vieta",
+      "destination": "Paskirties vieta",
+      "driver": "Vairuotojas",
+      "vehicle": "Transporto priemonė",
+      "trailer": "Priekaba",
+      "startOdometer": "Pradinis rida (km)",
+      "revenue": "Pajamos (EUR)",
+      "driverPay": "Vairuotojo atlygis (EUR)",
+      "driverPayMode": "Atlygio būdas",
+      "eventType": "Įvykio tipas",
+      "occurredAt": "Laikas",
+      "location": "Vieta",
+      "note": "Pastaba"
+    },
+    "section": {
+      "info": "Išsami informacija",
+      "events": "Įvykių žurnalas",
+      "finance": "Finansai"
+    },
+    "newTrip": "Naujas reisas",
+    "detailTitle": "Reiso informacija",
+    "noEvents": "Įvykių dar nėra",
+    "noTrailer": "Nėra priekabos",
+    "select": "Pasirinkti…",
+    "addEvent": "Pridėti įvykį",
+    "endOdometer": "Galutinė rida",
+    "pendingSync_one": "{{count}} laukia sinchronizavimo",
+    "pendingSync_other": "{{count}} laukia sinchronizavimo",
+    "saveAssignment": "Išsaugoti pakeitimus",
+    "assignmentLockedFinished": "Reisas baigtas — priskyrimo nebegalima keisti."
+  },
+  "expense": {
+    "section": "Išlaidos",
+    "add": "Pridėti išlaidą",
+    "amount": "Suma (kaip kvite)",
+    "currency": "Valiuta",
+    "date": "Išlaidos data",
+    "liters": "Litrai",
+    "country": "Šalis",
+    "note": "Pastaba",
+    "total": "Reiso iš viso",
+    "empty": "Išlaidų dar nėra",
+    "pending": "laukia sinchronizavimo",
+    "deleteConfirm": "Ištrinti šią išlaidą?",
+    "categories": {
+      "fuel": "Kuras",
+      "toll": "Kelių mokestis",
+      "customs": "Muitinė",
+      "forwarding": "Ekspedijavimas",
+      "parking": "Stovėjimas",
+      "other": "Kita"
+    }
+  },
+  "attachment": {
+    "add": "Pridėti nuotrauką",
+    "camera": "Kamera",
+    "library": "Galerija",
+    "empty": "Priedų nėra",
+    "deleteConfirm": "Ištrinti šį priedą?",
+    "documents": "Dokumentai",
+    "kindLabel": "Dokumento tipas",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Sąskaita faktūra",
+      "customs": "Muitinė",
+      "fuel_receipt": "Kuro kvitas",
+      "other": "Kita"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Registracija galioja iki",
+    "fireExt": "Gesintuvas",
+    "fireExtIssued": "Sertifikuotas",
+    "fireExtValidUntil": "Galioja iki",
+    "otherTitle": "Kiti priminimai",
+    "add": "+ Pridėti priminimą",
+    "customName": "Priminimo pavadinimas",
+    "customValidUntil": "Galioja iki",
+    "customFrom": "Nuo (neprivaloma)",
+    "empty": "Priminimų dar nėra",
+    "today": "šiandien",
+    "inDays_one": "po {{count}} dienos",
+    "inDays_other": "po {{count}} dienų",
+    "overdue_one": "vėluoja {{count}} dieną",
+    "overdue_other": "vėluoja {{count}} dienų",
+    "group": {
+      "expired": "Pasibaigę",
+      "soon": "Terminas per ≤30 dienų",
+      "other": "Vėliau"
+    },
+    "subject": {
+      "vehicle": "Transporto priemonė",
+      "trailer": "Priekaba",
+      "driver": "Vairuotojas"
+    },
+    "category": {
+      "registration": "Registracija",
+      "fire_extinguisher": "Gesintuvas",
+      "medical": "Medicininė pažyma",
+      "custom": "Kita"
+    }
+  },
+  "fleet": {
+    "vehicles": "Transporto priemonės",
+    "trailers": "Priekabos",
+    "drivers": "Vairuotojai",
+    "addVehicle": "Pridėti transporto priemonę",
+    "addTrailer": "Pridėti priekabą",
+    "addDriver": "Pridėti vairuotoją",
+    "editVehicle": "Redaguoti transporto priemonę",
+    "editTrailer": "Redaguoti priekabą",
+    "editDriver": "Redaguoti vairuotoją",
+    "emptyVehicles": "Transporto priemonių dar nėra",
+    "emptyTrailers": "Priekabų dar nėra",
+    "emptyDrivers": "Vairuotojų dar nėra",
+    "deleteVehicle": "Ištrinti šią transporto priemonę?",
+    "deleteTrailer": "Ištrinti šią priekabą?",
+    "deleteDriver": "Ištrinti šį vairuotoją?",
+    "fields": {
+      "registration": "Registracija",
+      "makeModel": "Markė / modelis",
+      "normConsumption": "Norminės sąnaudos (L/100km)",
+      "currentOdometer": "Dabartinė rida (km)",
+      "type": "Tipas",
+      "fullName": "Vardas ir pavardė",
+      "employmentType": "Įdarbinimo tipas",
+      "employmentStart": "Įdarbinimo pradžia",
+      "contractEnd": "Sutarties pabaiga",
+      "medicalValidUntil": "Medicininė pažyma galioja iki"
+    },
+    "employment": {
+      "indefinite": "Neterminuota",
+      "fixed_term": "Terminuota"
+    }
+  },
+  "settings": {
+    "signOut": "Atsijungti",
+    "signOutConfirm": "Atsijungti nuo paskyros?"
+  },
+  "language": {
+    "title": "Kalba",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Išsaugoti",
+    "cancel": "Atšaukti",
+    "add": "Pridėti",
+    "edit": "Redaguoti",
+    "delete": "Ištrinti",
+    "done": "Atlikta",
+    "saving": "Išsaugoma…",
+    "error": "Kažkas nepavyko",
+    "offlineNote": "Išsaugota vietoje — bus sinchronizuota prisijungus"
+  }
+}

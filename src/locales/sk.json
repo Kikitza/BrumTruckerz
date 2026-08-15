@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Prihlásiť sa",
+    "email": "E-mail",
+    "password": "Heslo",
+    "sendCode": "Odoslať kód",
+    "code": "6-miestny kód",
+    "verify": "Overiť",
+    "codeSentTo": "Kód odoslaný na {{email}}",
+    "changeEmail": "Zmeniť e-mail",
+    "noRole": "Účet nie je prepojený s firmou. Kontaktujte majiteľa."
+  },
+  "tabs": {
+    "trips": "Jazdy",
+    "fleet": "Vozový park",
+    "reminders": "Pripomienky",
+    "reports": "Prehľady",
+    "settings": "Nastavenia",
+    "myTrip": "Moja jazda",
+    "documents": "Dokumenty",
+    "resources": "Zdroje"
+  },
+  "trip": {
+    "status": {
+      "draft": "Koncept",
+      "loading": "Nakládka",
+      "driving": "Na ceste",
+      "border": "Hranica",
+      "unloading": "Vykládka",
+      "finished": "Dokončené"
+    },
+    "events": {
+      "load": "Nakládka",
+      "unload": "Vykládka",
+      "border": "Hranica",
+      "driving": "Jazda",
+      "rest": "Odpočinok",
+      "other": "Iné"
+    },
+    "payMode": {
+      "per_diem": "Diéty",
+      "percentage": "Percentá",
+      "fixed": "Pevná sadzba"
+    },
+    "fields": {
+      "title": "Názov",
+      "origin": "Miesto nakládky",
+      "destination": "Miesto vykládky",
+      "driver": "Vodič",
+      "vehicle": "Vozidlo",
+      "trailer": "Náves",
+      "startOdometer": "Počiatočný stav tachometra (km)",
+      "revenue": "Tržba (EUR)",
+      "driverPay": "Odmena vodiča (EUR)",
+      "driverPayMode": "Spôsob odmeny",
+      "eventType": "Typ udalosti",
+      "occurredAt": "Čas",
+      "location": "Miesto",
+      "note": "Poznámka"
+    },
+    "section": {
+      "info": "Podrobnosti",
+      "events": "Denník udalostí",
+      "finance": "Financie"
+    },
+    "newTrip": "Nová jazda",
+    "detailTitle": "Detail jazdy",
+    "noEvents": "Zatiaľ žiadne udalosti",
+    "noTrailer": "Bez návesu",
+    "select": "Vybrať…",
+    "addEvent": "Pridať udalosť",
+    "endOdometer": "Konečný stav tachometra",
+    "pendingSync_one": "{{count}} čaká na synchronizáciu",
+    "pendingSync_other": "{{count}} čaká na synchronizáciu",
+    "saveAssignment": "Uložiť zmeny",
+    "assignmentLockedFinished": "Jazda je dokončená — priradenie už nie je možné zmeniť."
+  },
+  "expense": {
+    "section": "Náklady",
+    "add": "Pridať náklad",
+    "amount": "Suma (ako na účtenke)",
+    "currency": "Mena",
+    "date": "Dátum nákladu",
+    "liters": "Litre",
+    "country": "Krajina",
+    "note": "Poznámka",
+    "total": "Spolu za jazdu",
+    "empty": "Zatiaľ žiadne náklady",
+    "pending": "čaká na synchronizáciu",
+    "deleteConfirm": "Odstrániť tento náklad?",
+    "categories": {
+      "fuel": "Palivo",
+      "toll": "Mýto",
+      "customs": "Clo",
+      "forwarding": "Špedícia",
+      "parking": "Parkovanie",
+      "other": "Iné"
+    }
+  },
+  "attachment": {
+    "add": "Pridať fotku",
+    "camera": "Fotoaparát",
+    "library": "Galéria",
+    "empty": "Žiadne prílohy",
+    "deleteConfirm": "Odstrániť túto prílohu?",
+    "documents": "Dokumenty",
+    "kindLabel": "Typ dokumentu",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Faktúra",
+      "customs": "Clo",
+      "fuel_receipt": "Účtenka za palivo",
+      "other": "Iné"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Registrácia platná do",
+    "fireExt": "Hasiaci prístroj",
+    "fireExtIssued": "Certifikované",
+    "fireExtValidUntil": "Platné do",
+    "otherTitle": "Ďalšie pripomienky",
+    "add": "+ Pridať pripomienku",
+    "customName": "Názov pripomienky",
+    "customValidUntil": "Platné do",
+    "customFrom": "Od (nepovinné)",
+    "empty": "Zatiaľ žiadne pripomienky",
+    "today": "dnes",
+    "inDays_one": "o {{count}} deň",
+    "inDays_other": "o {{count}} dní",
+    "overdue_one": "{{count}} deň po termíne",
+    "overdue_other": "{{count}} dní po termíne",
+    "group": {
+      "expired": "Prošlé",
+      "soon": "Do ≤30 dní",
+      "other": "Neskôr"
+    },
+    "subject": {
+      "vehicle": "Vozidlo",
+      "trailer": "Náves",
+      "driver": "Vodič"
+    },
+    "category": {
+      "registration": "Registrácia",
+      "fire_extinguisher": "Hasiaci prístroj",
+      "medical": "Lekárska prehliadka",
+      "custom": "Iné"
+    }
+  },
+  "fleet": {
+    "vehicles": "Vozidlá",
+    "trailers": "Návesy",
+    "drivers": "Vodiči",
+    "addVehicle": "Pridať vozidlo",
+    "addTrailer": "Pridať náves",
+    "addDriver": "Pridať vodiča",
+    "editVehicle": "Upraviť vozidlo",
+    "editTrailer": "Upraviť náves",
+    "editDriver": "Upraviť vodiča",
+    "emptyVehicles": "Zatiaľ žiadne vozidlá",
+    "emptyTrailers": "Zatiaľ žiadne návesy",
+    "emptyDrivers": "Zatiaľ žiadni vodiči",
+    "deleteVehicle": "Odstrániť toto vozidlo?",
+    "deleteTrailer": "Odstrániť tento náves?",
+    "deleteDriver": "Odstrániť tohto vodiča?",
+    "fields": {
+      "registration": "Registrácia",
+      "makeModel": "Značka / model",
+      "normConsumption": "Normovaná spotreba (L/100km)",
+      "currentOdometer": "Aktuálny stav tachometra (km)",
+      "type": "Typ",
+      "fullName": "Celé meno",
+      "employmentType": "Typ zamestnania",
+      "employmentStart": "Začiatok zamestnania",
+      "contractEnd": "Koniec zmluvy",
+      "medicalValidUntil": "Lekárska prehliadka platná do"
+    },
+    "employment": {
+      "indefinite": "Na dobu neurčitú",
+      "fixed_term": "Na dobu určitú"
+    }
+  },
+  "settings": {
+    "signOut": "Odhlásiť sa",
+    "signOutConfirm": "Odhlásiť sa z účtu?"
+  },
+  "language": {
+    "title": "Jazyk",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Uložiť",
+    "cancel": "Zrušiť",
+    "add": "Pridať",
+    "edit": "Upraviť",
+    "delete": "Odstrániť",
+    "done": "Hotovo",
+    "saving": "Ukladá sa…",
+    "error": "Niečo sa pokazilo",
+    "offlineNote": "Uložené lokálne — synchronizuje sa po pripojení k sieti"
+  }
+}

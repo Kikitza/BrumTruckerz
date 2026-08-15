@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Pieteikties",
+    "email": "E-pasts",
+    "password": "Parole",
+    "sendCode": "Nosūtīt kodu",
+    "code": "6 ciparu kods",
+    "verify": "Apstiprināt",
+    "codeSentTo": "Kods nosūtīts uz {{email}}",
+    "changeEmail": "Mainīt e-pastu",
+    "noRole": "Konts nav saistīts ar uzņēmumu. Sazinieties ar īpašnieku."
+  },
+  "tabs": {
+    "trips": "Reisi",
+    "fleet": "Autoparks",
+    "reminders": "Atgādinājumi",
+    "reports": "Pārskati",
+    "settings": "Iestatījumi",
+    "myTrip": "Mans reiss",
+    "documents": "Dokumenti",
+    "resources": "Resursi"
+  },
+  "trip": {
+    "status": {
+      "draft": "Melnraksts",
+      "loading": "Iekraušana",
+      "driving": "Braukšana",
+      "border": "Robeža",
+      "unloading": "Izkraušana",
+      "finished": "Pabeigts"
+    },
+    "events": {
+      "load": "Iekraušana",
+      "unload": "Izkraušana",
+      "border": "Robeža",
+      "driving": "Braukšana",
+      "rest": "Atpūta",
+      "other": "Cits"
+    },
+    "payMode": {
+      "per_diem": "Dienas nauda",
+      "percentage": "Procenti",
+      "fixed": "Fiksēts"
+    },
+    "fields": {
+      "title": "Nosaukums",
+      "origin": "Sākumpunkts",
+      "destination": "Galamērķis",
+      "driver": "Vadītājs",
+      "vehicle": "Transportlīdzeklis",
+      "trailer": "Piekabe",
+      "startOdometer": "Sākuma odometrs (km)",
+      "revenue": "Ieņēmumi (EUR)",
+      "driverPay": "Vadītāja atlīdzība (EUR)",
+      "driverPayMode": "Atlīdzības veids",
+      "eventType": "Notikuma veids",
+      "occurredAt": "Laiks",
+      "location": "Atrašanās vieta",
+      "note": "Piezīme"
+    },
+    "section": {
+      "info": "Informācija",
+      "events": "Notikumu žurnāls",
+      "finance": "Finanses"
+    },
+    "newTrip": "Jauns reiss",
+    "detailTitle": "Reisa informācija",
+    "noEvents": "Vēl nav notikumu",
+    "noTrailer": "Nav piekabes",
+    "select": "Izvēlēties…",
+    "addEvent": "Pievienot notikumu",
+    "endOdometer": "Beigu odometrs",
+    "pendingSync_one": "{{count}} gaida sinhronizāciju",
+    "pendingSync_other": "{{count}} gaida sinhronizāciju",
+    "saveAssignment": "Saglabāt izmaiņas",
+    "assignmentLockedFinished": "Reiss ir pabeigts — piešķīrumu vairs nevar mainīt."
+  },
+  "expense": {
+    "section": "Izdevumi",
+    "add": "Pievienot izdevumu",
+    "amount": "Summa (kā uz čeka)",
+    "currency": "Valūta",
+    "date": "Izdevuma datums",
+    "liters": "Litri",
+    "country": "Valsts",
+    "note": "Piezīme",
+    "total": "Reisa kopsumma",
+    "empty": "Vēl nav izdevumu",
+    "pending": "gaida sinhronizāciju",
+    "deleteConfirm": "Dzēst šo izdevumu?",
+    "categories": {
+      "fuel": "Degviela",
+      "toll": "Ceļa nodeva",
+      "customs": "Muita",
+      "forwarding": "Ekspedīcija",
+      "parking": "Stāvvieta",
+      "other": "Cits"
+    }
+  },
+  "attachment": {
+    "add": "Pievienot fotoattēlu",
+    "camera": "Kamera",
+    "library": "Galerija",
+    "empty": "Nav pielikumu",
+    "deleteConfirm": "Dzēst šo pielikumu?",
+    "documents": "Dokumenti",
+    "kindLabel": "Dokumenta veids",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Rēķins",
+      "customs": "Muita",
+      "fuel_receipt": "Degvielas čeks",
+      "other": "Cits"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Reģistrācija derīga līdz",
+    "fireExt": "Ugunsdzēšamais aparāts",
+    "fireExtIssued": "Sertificēts",
+    "fireExtValidUntil": "Derīgs līdz",
+    "otherTitle": "Citi atgādinājumi",
+    "add": "+ Pievienot atgādinājumu",
+    "customName": "Atgādinājuma nosaukums",
+    "customValidUntil": "Derīgs līdz",
+    "customFrom": "No (neobligāti)",
+    "empty": "Vēl nav atgādinājumu",
+    "today": "šodien",
+    "inDays_one": "pēc {{count}} dienas",
+    "inDays_other": "pēc {{count}} dienām",
+    "overdue_one": "{{count}} dienu nokavēts",
+    "overdue_other": "{{count}} dienas nokavēts",
+    "group": {
+      "expired": "Beidzies termiņš",
+      "soon": "Termiņš ≤30 dienās",
+      "other": "Vēlāk"
+    },
+    "subject": {
+      "vehicle": "Transportlīdzeklis",
+      "trailer": "Piekabe",
+      "driver": "Vadītājs"
+    },
+    "category": {
+      "registration": "Reģistrācija",
+      "fire_extinguisher": "Ugunsdzēšamais aparāts",
+      "medical": "Medicīniskā izziņa",
+      "custom": "Cits"
+    }
+  },
+  "fleet": {
+    "vehicles": "Transportlīdzekļi",
+    "trailers": "Piekabes",
+    "drivers": "Vadītāji",
+    "addVehicle": "Pievienot transportlīdzekli",
+    "addTrailer": "Pievienot piekabi",
+    "addDriver": "Pievienot vadītāju",
+    "editVehicle": "Rediģēt transportlīdzekli",
+    "editTrailer": "Rediģēt piekabi",
+    "editDriver": "Rediģēt vadītāju",
+    "emptyVehicles": "Vēl nav transportlīdzekļu",
+    "emptyTrailers": "Vēl nav piekabju",
+    "emptyDrivers": "Vēl nav vadītāju",
+    "deleteVehicle": "Dzēst šo transportlīdzekli?",
+    "deleteTrailer": "Dzēst šo piekabi?",
+    "deleteDriver": "Dzēst šo vadītāju?",
+    "fields": {
+      "registration": "Reģistrācija",
+      "makeModel": "Marka / modelis",
+      "normConsumption": "Normatīvais patēriņš (L/100km)",
+      "currentOdometer": "Pašreizējais odometrs (km)",
+      "type": "Veids",
+      "fullName": "Pilns vārds",
+      "employmentType": "Nodarbinātības veids",
+      "employmentStart": "Nodarbinātības sākums",
+      "contractEnd": "Līguma beigas",
+      "medicalValidUntil": "Medicīniskā izziņa derīga līdz"
+    },
+    "employment": {
+      "indefinite": "Beztermiņa",
+      "fixed_term": "Uz noteiktu laiku"
+    }
+  },
+  "settings": {
+    "signOut": "Iziet",
+    "signOutConfirm": "Iziet no sava konta?"
+  },
+  "language": {
+    "title": "Valoda",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Saglabāt",
+    "cancel": "Atcelt",
+    "add": "Pievienot",
+    "edit": "Rediģēt",
+    "delete": "Dzēst",
+    "done": "Gatavs",
+    "saving": "Saglabā…",
+    "error": "Kaut kas nogāja greizi",
+    "offlineNote": "Saglabāts lokāli — sinhronizēsies, kad būs tiešsaiste"
+  }
+}

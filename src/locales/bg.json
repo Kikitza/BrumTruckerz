@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Вход",
+    "email": "Имейл",
+    "password": "Парола",
+    "sendCode": "Изпрати код",
+    "code": "6-цифрен код",
+    "verify": "Потвърди",
+    "codeSentTo": "Кодът е изпратен на {{email}}",
+    "changeEmail": "Смени имейла",
+    "noRole": "Акаунтът не е свързан с фирма. Свържете се със собственика."
+  },
+  "tabs": {
+    "trips": "Курсове",
+    "fleet": "Автопарк",
+    "reminders": "Напомняния",
+    "reports": "Отчети",
+    "settings": "Настройки",
+    "myTrip": "Моят курс",
+    "documents": "Документи",
+    "resources": "Ресурси"
+  },
+  "trip": {
+    "status": {
+      "draft": "Чернова",
+      "loading": "Товарене",
+      "driving": "В движение",
+      "border": "Граница",
+      "unloading": "Разтоварване",
+      "finished": "Приключен"
+    },
+    "events": {
+      "load": "Товарене",
+      "unload": "Разтоварване",
+      "border": "Граница",
+      "driving": "Шофиране",
+      "rest": "Почивка",
+      "other": "Друго"
+    },
+    "payMode": {
+      "per_diem": "Дневни",
+      "percentage": "Процент",
+      "fixed": "Фиксирана сума"
+    },
+    "fields": {
+      "title": "Наименование",
+      "origin": "Място на товарене",
+      "destination": "Място на разтоварване",
+      "driver": "Шофьор",
+      "vehicle": "Превозно средство",
+      "trailer": "Ремарке",
+      "startOdometer": "Начален километраж (km)",
+      "revenue": "Приход (EUR)",
+      "driverPay": "Заплащане на шофьора (EUR)",
+      "driverPayMode": "Начин на заплащане",
+      "eventType": "Вид събитие",
+      "occurredAt": "Час",
+      "location": "Местоположение",
+      "note": "Бележка"
+    },
+    "section": {
+      "info": "Детайли",
+      "events": "Дневник на събитията",
+      "finance": "Финанси"
+    },
+    "newTrip": "Нов курс",
+    "detailTitle": "Детайли за курса",
+    "noEvents": "Все още няма събития",
+    "noTrailer": "Без ремарке",
+    "select": "Избери…",
+    "addEvent": "Добави събитие",
+    "endOdometer": "Краен километраж",
+    "pendingSync_one": "{{count}} чака синхронизиране",
+    "pendingSync_other": "{{count}} чакат синхронизиране",
+    "saveAssignment": "Запази промените",
+    "assignmentLockedFinished": "Курсът е приключен — разпределението вече не може да се променя."
+  },
+  "expense": {
+    "section": "Разходи",
+    "add": "Добави разход",
+    "amount": "Сума (както е на касовия бон)",
+    "currency": "Валута",
+    "date": "Дата на разхода",
+    "liters": "Литри",
+    "country": "Държава",
+    "note": "Бележка",
+    "total": "Общо за курса",
+    "empty": "Все още няма разходи",
+    "pending": "чака синхронизиране",
+    "deleteConfirm": "Да се изтрие ли този разход?",
+    "categories": {
+      "fuel": "Гориво",
+      "toll": "Пътна такса",
+      "customs": "Митница",
+      "forwarding": "Спедиция",
+      "parking": "Паркинг",
+      "other": "Друго"
+    }
+  },
+  "attachment": {
+    "add": "Добави снимка",
+    "camera": "Камера",
+    "library": "Галерия",
+    "empty": "Няма прикачени файлове",
+    "deleteConfirm": "Да се изтрие ли този прикачен файл?",
+    "documents": "Документи",
+    "kindLabel": "Вид документ",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Фактура",
+      "customs": "Митница",
+      "fuel_receipt": "Бон за гориво",
+      "other": "Друго"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Регистрация валидна до",
+    "fireExt": "Пожарогасител",
+    "fireExtIssued": "Сертифициран",
+    "fireExtValidUntil": "Валиден до",
+    "otherTitle": "Други напомняния",
+    "add": "+ Добави напомняне",
+    "customName": "Име на напомнянето",
+    "customValidUntil": "Валидно до",
+    "customFrom": "От (по избор)",
+    "empty": "Все още няма напомняния",
+    "today": "днес",
+    "inDays_one": "след {{count}} ден",
+    "inDays_other": "след {{count}} дни",
+    "overdue_one": "просрочено с {{count}} ден",
+    "overdue_other": "просрочено с {{count}} дни",
+    "group": {
+      "expired": "Изтекли",
+      "soon": "Изтичат до ≤30 дни",
+      "other": "По-късно"
+    },
+    "subject": {
+      "vehicle": "Превозно средство",
+      "trailer": "Ремарке",
+      "driver": "Шофьор"
+    },
+    "category": {
+      "registration": "Регистрация",
+      "fire_extinguisher": "Пожарогасител",
+      "medical": "Медицинско свидетелство",
+      "custom": "Друго"
+    }
+  },
+  "fleet": {
+    "vehicles": "Превозни средства",
+    "trailers": "Ремаркета",
+    "drivers": "Шофьори",
+    "addVehicle": "Добави превозно средство",
+    "addTrailer": "Добави ремарке",
+    "addDriver": "Добави шофьор",
+    "editVehicle": "Редактирай превозно средство",
+    "editTrailer": "Редактирай ремарке",
+    "editDriver": "Редактирай шофьор",
+    "emptyVehicles": "Все още няма превозни средства",
+    "emptyTrailers": "Все още няма ремаркета",
+    "emptyDrivers": "Все още няма шофьори",
+    "deleteVehicle": "Да се изтрие ли това превозно средство?",
+    "deleteTrailer": "Да се изтрие ли това ремарке?",
+    "deleteDriver": "Да се изтрие ли този шофьор?",
+    "fields": {
+      "registration": "Регистрационен номер",
+      "makeModel": "Марка / модел",
+      "normConsumption": "Нормативен разход (L/100km)",
+      "currentOdometer": "Текущ километраж (km)",
+      "type": "Тип",
+      "fullName": "Пълно име",
+      "employmentType": "Вид заетост",
+      "employmentStart": "Начало на заетостта",
+      "contractEnd": "Край на договора",
+      "medicalValidUntil": "Медицинско валидно до"
+    },
+    "employment": {
+      "indefinite": "Безсрочен",
+      "fixed_term": "Срочен"
+    }
+  },
+  "settings": {
+    "signOut": "Изход",
+    "signOutConfirm": "Изход от акаунта?"
+  },
+  "language": {
+    "title": "Език",
+    "beta": "бета"
+  },
+  "common": {
+    "save": "Запази",
+    "cancel": "Отказ",
+    "add": "Добави",
+    "edit": "Редактирай",
+    "delete": "Изтрий",
+    "done": "Готово",
+    "saving": "Запазване…",
+    "error": "Нещо се обърка",
+    "offlineNote": "Запазено локално — ще се синхронизира при връзка с интернет"
+  }
+}

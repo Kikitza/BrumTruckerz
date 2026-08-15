@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Најави се",
+    "email": "Е-пошта",
+    "password": "Лозинка",
+    "sendCode": "Испрати код",
+    "code": "6-цифрен код",
+    "verify": "Потврди",
+    "codeSentTo": "Кодот е испратен на {{email}}",
+    "changeEmail": "Промени е-пошта",
+    "noRole": "Сметката не е поврзана со компанија. Контактирајте го сопственикот."
+  },
+  "tabs": {
+    "trips": "Тури",
+    "fleet": "Возен парк",
+    "reminders": "Потсетници",
+    "reports": "Извештаи",
+    "settings": "Поставки",
+    "myTrip": "Мојата тура",
+    "documents": "Документи",
+    "resources": "Ресурси"
+  },
+  "trip": {
+    "status": {
+      "draft": "Нацрт",
+      "loading": "Товарање",
+      "driving": "Во движење",
+      "border": "Граница",
+      "unloading": "Растоварање",
+      "finished": "Завршена"
+    },
+    "events": {
+      "load": "Товарање",
+      "unload": "Растоварање",
+      "border": "Граница",
+      "driving": "Во движење",
+      "rest": "Одмор",
+      "other": "Друго"
+    },
+    "payMode": {
+      "per_diem": "Дневница",
+      "percentage": "Процент",
+      "fixed": "Фиксно"
+    },
+    "fields": {
+      "title": "Наслов",
+      "origin": "Поаѓање",
+      "destination": "Дестинација",
+      "driver": "Возач",
+      "vehicle": "Возило",
+      "trailer": "Приколка",
+      "startOdometer": "Почетна километража (km)",
+      "revenue": "Приход (EUR)",
+      "driverPay": "Плата на возачот (EUR)",
+      "driverPayMode": "Начин на плаќање",
+      "eventType": "Тип на настан",
+      "occurredAt": "Време",
+      "location": "Локација",
+      "note": "Забелешка"
+    },
+    "section": {
+      "info": "Детали",
+      "events": "Дневник на настани",
+      "finance": "Финансии"
+    },
+    "newTrip": "Нова тура",
+    "detailTitle": "Детали за турата",
+    "noEvents": "Сè уште нема настани",
+    "noTrailer": "Без приколка",
+    "select": "Избери…",
+    "addEvent": "Додади настан",
+    "endOdometer": "Крајна километража",
+    "pendingSync_one": "{{count}} чека синхронизација",
+    "pendingSync_other": "{{count}} чекаат синхронизација",
+    "saveAssignment": "Зачувај промени",
+    "assignmentLockedFinished": "Турата е завршена — доделувањето повеќе не може да се менува."
+  },
+  "expense": {
+    "section": "Трошоци",
+    "add": "Додади трошок",
+    "amount": "Износ (како на сметката)",
+    "currency": "Валута",
+    "date": "Датум на трошок",
+    "liters": "Литри",
+    "country": "Држава",
+    "note": "Забелешка",
+    "total": "Вкупно за турата",
+    "empty": "Сè уште нема трошоци",
+    "pending": "чека синхронизација",
+    "deleteConfirm": "Да се избрише овој трошок?",
+    "categories": {
+      "fuel": "Гориво",
+      "toll": "Патарина",
+      "customs": "Царина",
+      "forwarding": "Шпедиција",
+      "parking": "Паркинг",
+      "other": "Друго"
+    }
+  },
+  "attachment": {
+    "add": "Додади фотографија",
+    "camera": "Камера",
+    "library": "Галерија",
+    "empty": "Нема прилози",
+    "deleteConfirm": "Да се избрише овој прилог?",
+    "documents": "Документи",
+    "kindLabel": "Тип на документ",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Фактура",
+      "customs": "Царина",
+      "fuel_receipt": "Сметка за гориво",
+      "other": "Друго"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Регистрацијата важи до",
+    "fireExt": "Противпожарен апарат",
+    "fireExtIssued": "Сертифициран",
+    "fireExtValidUntil": "Важи до",
+    "otherTitle": "Други потсетници",
+    "add": "+ Додади потсетник",
+    "customName": "Име на потсетникот",
+    "customValidUntil": "Важи до",
+    "customFrom": "Од (незадолжително)",
+    "empty": "Сè уште нема потсетници",
+    "today": "денес",
+    "inDays_one": "за {{count}} ден",
+    "inDays_other": "за {{count}} дена",
+    "overdue_one": "{{count}} ден задоцнето",
+    "overdue_other": "{{count}} дена задоцнето",
+    "group": {
+      "expired": "Истечено",
+      "soon": "Истекува за ≤30 дена",
+      "other": "Подоцна"
+    },
+    "subject": {
+      "vehicle": "Возило",
+      "trailer": "Приколка",
+      "driver": "Возач"
+    },
+    "category": {
+      "registration": "Регистрација",
+      "fire_extinguisher": "Противпожарен апарат",
+      "medical": "Лекарско уверение",
+      "custom": "Друго"
+    }
+  },
+  "fleet": {
+    "vehicles": "Возила",
+    "trailers": "Приколки",
+    "drivers": "Возачи",
+    "addVehicle": "Додади возило",
+    "addTrailer": "Додади приколка",
+    "addDriver": "Додади возач",
+    "editVehicle": "Измени возило",
+    "editTrailer": "Измени приколка",
+    "editDriver": "Измени возач",
+    "emptyVehicles": "Сè уште нема возила",
+    "emptyTrailers": "Сè уште нема приколки",
+    "emptyDrivers": "Сè уште нема возачи",
+    "deleteVehicle": "Да се избрише ова возило?",
+    "deleteTrailer": "Да се избрише оваа приколка?",
+    "deleteDriver": "Да се избрише овој возач?",
+    "fields": {
+      "registration": "Регистрација",
+      "makeModel": "Марка / модел",
+      "normConsumption": "Нормирана потрошувачка (L/100km)",
+      "currentOdometer": "Тековна километража (km)",
+      "type": "Тип",
+      "fullName": "Име и презиме",
+      "employmentType": "Тип на вработување",
+      "employmentStart": "Почеток на вработување",
+      "contractEnd": "Крај на договор",
+      "medicalValidUntil": "Лекарско уверение важи до"
+    },
+    "employment": {
+      "indefinite": "На неопределено",
+      "fixed_term": "На определено"
+    }
+  },
+  "settings": {
+    "signOut": "Одјави се",
+    "signOutConfirm": "Да се одјавите од вашата сметка?"
+  },
+  "language": {
+    "title": "Јазик",
+    "beta": "бета"
+  },
+  "common": {
+    "save": "Зачувај",
+    "cancel": "Откажи",
+    "add": "Додади",
+    "edit": "Измени",
+    "delete": "Избриши",
+    "done": "Готово",
+    "saving": "Се зачувува…",
+    "error": "Нешто тргна наопаку",
+    "offlineNote": "Зачувано локално — ќе се синхронизира кога ќе бидете онлајн"
+  }
+}

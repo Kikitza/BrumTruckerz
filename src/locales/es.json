@@ -1,0 +1,203 @@
+{
+  "_status": "machine",
+  "_note": "prevod u pripremi",
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "sendCode": "Enviar código",
+    "code": "Código de 6 dígitos",
+    "verify": "Verificar",
+    "codeSentTo": "Código enviado a {{email}}",
+    "changeEmail": "Cambiar correo electrónico",
+    "noRole": "La cuenta no está vinculada a ninguna empresa. Contacte con el propietario."
+  },
+  "tabs": {
+    "trips": "Viajes",
+    "fleet": "Flota",
+    "reminders": "Recordatorios",
+    "reports": "Informes",
+    "settings": "Ajustes",
+    "myTrip": "Mi viaje",
+    "documents": "Documentos",
+    "resources": "Recursos"
+  },
+  "trip": {
+    "status": {
+      "draft": "Borrador",
+      "loading": "Carga",
+      "driving": "En ruta",
+      "border": "Frontera",
+      "unloading": "Descarga",
+      "finished": "Finalizado"
+    },
+    "events": {
+      "load": "Carga",
+      "unload": "Descarga",
+      "border": "Frontera",
+      "driving": "En ruta",
+      "rest": "Descanso",
+      "other": "Otro"
+    },
+    "payMode": {
+      "per_diem": "Dieta",
+      "percentage": "Porcentaje",
+      "fixed": "Fijo"
+    },
+    "fields": {
+      "title": "Título",
+      "origin": "Origen",
+      "destination": "Destino",
+      "driver": "Conductor",
+      "vehicle": "Vehículo",
+      "trailer": "Remolque",
+      "startOdometer": "Cuentakilómetros inicial (km)",
+      "revenue": "Ingresos (EUR)",
+      "driverPay": "Pago al conductor (EUR)",
+      "driverPayMode": "Modo de pago",
+      "eventType": "Tipo de evento",
+      "occurredAt": "Hora",
+      "location": "Ubicación",
+      "note": "Nota"
+    },
+    "section": {
+      "info": "Detalles",
+      "events": "Registro de eventos",
+      "finance": "Finanzas"
+    },
+    "newTrip": "Nuevo viaje",
+    "detailTitle": "Detalle del viaje",
+    "noEvents": "Aún no hay eventos",
+    "noTrailer": "Sin remolque",
+    "select": "Seleccionar…",
+    "addEvent": "Añadir evento",
+    "endOdometer": "Cuentakilómetros final",
+    "pendingSync_one": "{{count}} pendiente de sincronizar",
+    "pendingSync_other": "{{count}} pendientes de sincronizar",
+    "saveAssignment": "Guardar cambios",
+    "assignmentLockedFinished": "El viaje ha finalizado — la asignación ya no se puede cambiar."
+  },
+  "expense": {
+    "section": "Gastos",
+    "add": "Añadir gasto",
+    "amount": "Importe (según el recibo)",
+    "currency": "Moneda",
+    "date": "Fecha del gasto",
+    "liters": "Litros",
+    "country": "País",
+    "note": "Nota",
+    "total": "Total del viaje",
+    "empty": "Aún no hay gastos",
+    "pending": "pendiente de sincronizar",
+    "deleteConfirm": "¿Eliminar este gasto?",
+    "categories": {
+      "fuel": "Combustible",
+      "toll": "Peaje",
+      "customs": "Aduana",
+      "forwarding": "Transitario",
+      "parking": "Aparcamiento",
+      "other": "Otro"
+    }
+  },
+  "attachment": {
+    "add": "Añadir foto",
+    "camera": "Cámara",
+    "library": "Galería",
+    "empty": "Sin adjuntos",
+    "deleteConfirm": "¿Eliminar este adjunto?",
+    "documents": "Documentos",
+    "kindLabel": "Tipo de documento",
+    "kind": {
+      "cmr": "CMR",
+      "invoice": "Factura",
+      "customs": "Aduana",
+      "fuel_receipt": "Recibo de combustible",
+      "other": "Otro"
+    }
+  },
+  "reminders": {
+    "vehicleReg": "Matriculación válida hasta",
+    "fireExt": "Extintor",
+    "fireExtIssued": "Certificado",
+    "fireExtValidUntil": "Válido hasta",
+    "otherTitle": "Otros recordatorios",
+    "add": "+ Añadir recordatorio",
+    "customName": "Nombre del recordatorio",
+    "customValidUntil": "Válido hasta",
+    "customFrom": "Desde (opcional)",
+    "empty": "Aún no hay recordatorios",
+    "today": "hoy",
+    "inDays_one": "en {{count}} día",
+    "inDays_other": "en {{count}} días",
+    "overdue_one": "{{count}} día de retraso",
+    "overdue_other": "{{count}} días de retraso",
+    "group": {
+      "expired": "Vencido",
+      "soon": "Vence en ≤30 días",
+      "other": "Más adelante"
+    },
+    "subject": {
+      "vehicle": "Vehículo",
+      "trailer": "Remolque",
+      "driver": "Conductor"
+    },
+    "category": {
+      "registration": "Matriculación",
+      "fire_extinguisher": "Extintor",
+      "medical": "Certificado médico",
+      "custom": "Otro"
+    }
+  },
+  "fleet": {
+    "vehicles": "Vehículos",
+    "trailers": "Remolques",
+    "drivers": "Conductores",
+    "addVehicle": "Añadir vehículo",
+    "addTrailer": "Añadir remolque",
+    "addDriver": "Añadir conductor",
+    "editVehicle": "Editar vehículo",
+    "editTrailer": "Editar remolque",
+    "editDriver": "Editar conductor",
+    "emptyVehicles": "Aún no hay vehículos",
+    "emptyTrailers": "Aún no hay remolques",
+    "emptyDrivers": "Aún no hay conductores",
+    "deleteVehicle": "¿Eliminar este vehículo?",
+    "deleteTrailer": "¿Eliminar este remolque?",
+    "deleteDriver": "¿Eliminar este conductor?",
+    "fields": {
+      "registration": "Matriculación",
+      "makeModel": "Marca / modelo",
+      "normConsumption": "Consumo normativo (L/100km)",
+      "currentOdometer": "Cuentakilómetros actual (km)",
+      "type": "Tipo",
+      "fullName": "Nombre completo",
+      "employmentType": "Tipo de contrato",
+      "employmentStart": "Inicio del contrato",
+      "contractEnd": "Fin del contrato",
+      "medicalValidUntil": "Certificado médico válido hasta"
+    },
+    "employment": {
+      "indefinite": "Indefinido",
+      "fixed_term": "Temporal"
+    }
+  },
+  "settings": {
+    "signOut": "Cerrar sesión",
+    "signOutConfirm": "¿Cerrar sesión de su cuenta?"
+  },
+  "language": {
+    "title": "Idioma",
+    "beta": "beta"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "add": "Añadir",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "done": "Hecho",
+    "saving": "Guardando…",
+    "error": "Algo salió mal",
+    "offlineNote": "Guardado localmente — se sincronizará cuando haya conexión"
+  }
+}
