@@ -229,6 +229,10 @@
     "title": "Dil",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Son tarih bildirimleri",
+    "rationaleBody": "Ruhsatların, sertifikaların ve diğer son tarihlerin dolmasından önce sizi hatırlatabilmemiz için bildirimlere izin verin."
+  },
   "common": {
     "save": "Kaydet",
     "cancel": "İptal",

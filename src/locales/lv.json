@@ -229,6 +229,10 @@
     "title": "Valoda",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Termiņu paziņojumi",
+    "rationaleBody": "Atļaujiet paziņojumus, lai mēs varētu jums atgādināt, pirms beidzas reģistrāciju, sertifikātu un citu termiņu derīgums."
+  },
   "common": {
     "save": "Saglabāt",
     "cancel": "Atcelt",

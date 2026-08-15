@@ -230,6 +230,10 @@
     "title": "Jezik",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Obaveštenja o rokovima",
+    "rationaleBody": "Dozvolite obaveštenja da vas na vreme podsetimo pre isteka registracija, atesta i drugih rokova."
+  },
   "common": {
     "save": "Sačuvaj",
     "cancel": "Otkaži",

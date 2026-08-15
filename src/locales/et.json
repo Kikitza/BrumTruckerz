@@ -229,6 +229,10 @@
     "title": "Keel",
     "beta": "beeta"
   },
+  "notif": {
+    "rationaleTitle": "Tähtaegade teavitused",
+    "rationaleBody": "Luba teavitused, et saaksime sind meelde tuletada enne registreeringute, sertifikaatide ja muude tähtaegade aegumist."
+  },
   "common": {
     "save": "Salvesta",
     "cancel": "Tühista",

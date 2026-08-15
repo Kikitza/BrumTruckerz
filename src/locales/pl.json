@@ -229,6 +229,10 @@
     "title": "Język",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Powiadomienia o terminach",
+    "rationaleBody": "Zezwól na powiadomienia, abyśmy mogli przypomnieć Ci przed upływem terminów rejestracji, certyfikatów i innych ważności."
+  },
   "common": {
     "save": "Zapisz",
     "cancel": "Anuluj",

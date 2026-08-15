@@ -229,6 +229,10 @@
     "title": "Jazyk",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Upozornění na termíny",
+    "rationaleBody": "Povolte oznámení, abychom vám mohli připomenout blížící se konec platnosti registrací, certifikátů a dalších termínů."
+  },
   "common": {
     "save": "Uložit",
     "cancel": "Zrušit",

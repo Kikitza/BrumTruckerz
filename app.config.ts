@@ -13,6 +13,7 @@ const config: ExpoConfig = {
     "expo-router",
     "expo-asset",
     "expo-localization",
+    "expo-notifications",
     "expo-sqlite",
     "@react-native-community/datetimepicker",
     [

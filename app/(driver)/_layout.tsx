@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { LanguagePicker } from "../../src/i18n/LanguagePicker";
 import { useTabsScreenOptions } from "../../src/components/navOptions";
+import { usePushRegistration } from "../../src/features/notifications/usePushRegistration";
 
 // Zastava trenutnog jezika gore desno na PRVOM ekranu vozača (promena u hodu).
 // U nativnom headeru (koji poštuje gornji safe-area inset) — ne ulazi pod statusnu traku.
@@ -17,6 +18,7 @@ function LanguageHeaderRight() {
 export default function DriverTabs() {
   const { t } = useTranslation();
   const screenOptions = useTabsScreenOptions();
+  usePushRegistration();
   return (
     <Tabs screenOptions={screenOptions}>
       <Tabs.Screen name="index" options={{ title: t("tabs.myTrip"), headerRight: LanguageHeaderRight }} />

@@ -229,6 +229,10 @@
     "title": "Idioma",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Notificações de prazos",
+    "rationaleBody": "Permita as notificações para que possamos lembrá-lo antes de as matrículas, os certificados e outros prazos expirarem."
+  },
   "common": {
     "save": "Guardar",
     "cancel": "Cancelar",

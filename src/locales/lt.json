@@ -229,6 +229,10 @@
     "title": "Kalba",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Pranešimai apie terminus",
+    "rationaleBody": "Leiskite pranešimus, kad galėtume jums priminti prieš baigiantis registracijų, sertifikatų ir kitų terminų galiojimui."
+  },
   "common": {
     "save": "Išsaugoti",
     "cancel": "Atšaukti",

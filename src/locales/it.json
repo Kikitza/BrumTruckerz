@@ -229,6 +229,10 @@
     "title": "Lingua",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Notifiche delle scadenze",
+    "rationaleBody": "Consenti le notifiche così possiamo ricordarti prima che scadano immatricolazioni, certificati e altre scadenze."
+  },
   "common": {
     "save": "Salva",
     "cancel": "Annulla",

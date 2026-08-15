@@ -229,6 +229,10 @@
     "title": "Idioma",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Notificaciones de vencimientos",
+    "rationaleBody": "Permita las notificaciones para que podamos avisarle antes de que caduquen las matriculaciones, los certificados y otros vencimientos."
+  },
   "common": {
     "save": "Guardar",
     "cancel": "Cancelar",

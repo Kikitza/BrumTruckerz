@@ -229,6 +229,10 @@
     "title": "Sprache",
     "beta": "Beta"
   },
+  "notif": {
+    "rationaleTitle": "Benachrichtigungen zu Fristen",
+    "rationaleBody": "Erlauben Sie Benachrichtigungen, damit wir Sie erinnern können, bevor Zulassungen, Zertifikate und andere Fristen ablaufen."
+  },
   "common": {
     "save": "Speichern",
     "cancel": "Abbrechen",

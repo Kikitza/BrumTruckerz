@@ -229,6 +229,10 @@
     "title": "Gjuha",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Njoftime për afatet",
+    "rationaleBody": "Lejoni njoftimet që të mund t'ju kujtojmë përpara se të skadojnë regjistrimet, certifikatat dhe afatet e tjera."
+  },
   "common": {
     "save": "Ruaj",
     "cancel": "Anulo",

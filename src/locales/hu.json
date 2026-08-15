@@ -229,6 +229,10 @@
     "title": "Nyelv",
     "beta": "béta"
   },
+  "notif": {
+    "rationaleTitle": "Határidő-értesítések",
+    "rationaleBody": "Engedélyezd az értesítéseket, hogy emlékeztethessünk a regisztrációk, tanúsítványok és egyéb határidők lejárta előtt."
+  },
   "common": {
     "save": "Mentés",
     "cancel": "Mégse",

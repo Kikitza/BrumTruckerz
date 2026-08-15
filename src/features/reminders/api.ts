@@ -103,7 +103,7 @@ export async function setDateReminder(
   if (existing) {
     const { error } = await supabase
       .from("reminders")
-      .update({ due_date: dueDate, issued_at, label })
+      .update({ due_date: dueDate, issued_at, label, notified_stage: null }) // nov datum -> opomene iznova
       .eq("id", existing.id);
     if (error) throw error;
     return;
@@ -169,7 +169,7 @@ export async function saveCustomReminders(
     if (d.existingId) {
       const { error } = await supabase
         .from("reminders")
-        .update({ label, due_date: d.dueDate, issued_at: d.issuedAt ?? null })
+        .update({ label, due_date: d.dueDate, issued_at: d.issuedAt ?? null, notified_stage: null }) // nov datum -> opomene iznova
         .eq("id", d.existingId);
       if (error) throw error;
     } else {

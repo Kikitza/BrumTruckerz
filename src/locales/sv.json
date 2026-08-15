@@ -229,6 +229,10 @@
     "title": "Språk",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Aviseringar om tidsfrister",
+    "rationaleBody": "Tillåt aviseringar så att vi kan påminna dig innan registreringar, intyg och andra tidsfrister löper ut."
+  },
   "common": {
     "save": "Spara",
     "cancel": "Avbryt",

@@ -229,6 +229,10 @@
     "title": "Limbă",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Notificări pentru termene",
+    "rationaleBody": "Permite notificările ca să te putem anunța înainte de expirarea înmatriculărilor, certificatelor și a altor termene."
+  },
   "common": {
     "save": "Salvează",
     "cancel": "Anulează",

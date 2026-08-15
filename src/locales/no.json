@@ -229,6 +229,10 @@
     "title": "Språk",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Varsler om frister",
+    "rationaleBody": "Tillat varsler så vi kan minne deg på før registreringer, sertifikater og andre frister utløper."
+  },
   "common": {
     "save": "Lagre",
     "cancel": "Avbryt",

@@ -229,6 +229,10 @@
     "title": "Taal",
     "beta": "bèta"
   },
+  "notif": {
+    "rationaleTitle": "Meldingen voor deadlines",
+    "rationaleBody": "Sta meldingen toe zodat we u kunnen herinneren voordat kentekens, certificaten en andere deadlines verlopen."
+  },
   "common": {
     "save": "Opslaan",
     "cancel": "Annuleren",

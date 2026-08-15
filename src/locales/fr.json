@@ -229,6 +229,10 @@
     "title": "Langue",
     "beta": "bêta"
   },
+  "notif": {
+    "rationaleTitle": "Notifications d'échéances",
+    "rationaleBody": "Autorisez les notifications afin que nous puissions vous rappeler avant l'expiration des immatriculations, des certificats et des autres échéances."
+  },
   "common": {
     "save": "Enregistrer",
     "cancel": "Annuler",

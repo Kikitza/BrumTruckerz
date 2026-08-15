@@ -229,6 +229,10 @@
     "title": "Kieli",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Määräaikojen ilmoitukset",
+    "rationaleBody": "Salli ilmoitukset, jotta voimme muistuttaa sinua ennen kuin rekisteröinnit, todistukset ja muut määräajat umpeutuvat."
+  },
   "common": {
     "save": "Tallenna",
     "cancel": "Peruuta",

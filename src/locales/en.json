@@ -227,6 +227,10 @@
     "title": "Language",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Deadline notifications",
+    "rationaleBody": "Allow notifications so we can remind you before registrations, certificates and other deadlines expire."
+  },
   "common": {
     "save": "Save",
     "cancel": "Cancel",

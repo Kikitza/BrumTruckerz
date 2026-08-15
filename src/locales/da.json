@@ -229,6 +229,10 @@
     "title": "Sprog",
     "beta": "beta"
   },
+  "notif": {
+    "rationaleTitle": "Notifikationer om frister",
+    "rationaleBody": "Tillad notifikationer, så vi kan minde dig om det, før registreringer, attester og andre frister udløber."
+  },
   "common": {
     "save": "Gem",
     "cancel": "Annuller",
