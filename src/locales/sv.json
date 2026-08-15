@@ -233,6 +233,16 @@
     "rationaleTitle": "Aviseringar om tidsfrister",
     "rationaleBody": "Tillåt aviseringar så att vi kan påminna dig innan registreringar, intyg och andra tidsfrister löper ut."
   },
+  "account": {
+    "title": "Förarkonto",
+    "create": "Skapa konto",
+    "delete": "Ta bort konto",
+    "deleteConfirm": "Ta bort denna förares konto? Historik (händelser, utgifter) behålls.",
+    "hasAccount": "Kontot aktivt",
+    "passwordHint": "Lämna tomt för att skapa ett lösenord automatiskt.",
+    "credsTitle": "Inloggningsuppgifter (visas en gång)",
+    "credsNote": "Ge dessa till föraren. De visas inte igen."
+  },
   "common": {
     "save": "Spara",
     "cancel": "Avbryt",

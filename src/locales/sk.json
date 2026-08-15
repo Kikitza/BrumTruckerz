@@ -233,6 +233,16 @@
     "rationaleTitle": "Upozornenia na termíny",
     "rationaleBody": "Povoľte oznámenia, aby sme vám mohli pripomenúť blížiaci sa koniec platnosti registrácií, certifikátov a ďalších termínov."
   },
+  "account": {
+    "title": "Účet vodiča",
+    "create": "Vytvoriť účet",
+    "delete": "Odstrániť účet",
+    "deleteConfirm": "Odstrániť účet tohto vodiča? História (udalosti, výdavky) zostane zachovaná.",
+    "hasAccount": "Účet aktívny",
+    "passwordHint": "Ponechajte prázdne na automatické vygenerovanie hesla.",
+    "credsTitle": "Prihlasovacie údaje (zobrazené raz)",
+    "credsNote": "Odovzdajte ich vodičovi. Znova sa už nezobrazia."
+  },
   "common": {
     "save": "Uložiť",
     "cancel": "Zrušiť",

@@ -233,6 +233,16 @@
     "rationaleTitle": "Upozornění na termíny",
     "rationaleBody": "Povolte oznámení, abychom vám mohli připomenout blížící se konec platnosti registrací, certifikátů a dalších termínů."
   },
+  "account": {
+    "title": "Účet řidiče",
+    "create": "Vytvořit účet",
+    "delete": "Smazat účet",
+    "deleteConfirm": "Smazat účet tohoto řidiče? Historie (události, výdaje) zůstane zachována.",
+    "hasAccount": "Účet aktivní",
+    "passwordHint": "Ponechte prázdné pro automatické vygenerování hesla.",
+    "credsTitle": "Přihlašovací údaje (zobrazeno jednou)",
+    "credsNote": "Předejte je řidiči. Znovu se již nezobrazí."
+  },
   "common": {
     "save": "Uložit",
     "cancel": "Zrušit",

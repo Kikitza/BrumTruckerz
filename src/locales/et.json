@@ -233,6 +233,16 @@
     "rationaleTitle": "Tähtaegade teavitused",
     "rationaleBody": "Luba teavitused, et saaksime sind meelde tuletada enne registreeringute, sertifikaatide ja muude tähtaegade aegumist."
   },
+  "account": {
+    "title": "Juhi konto",
+    "create": "Loo konto",
+    "delete": "Kustuta konto",
+    "deleteConfirm": "Kustutada selle juhi konto? Ajalugu (sündmused, kulud) säilitatakse.",
+    "hasAccount": "Konto aktiivne",
+    "passwordHint": "Jäta tühjaks, et parool automaatselt genereerida.",
+    "credsTitle": "Juurdepääsuandmed (näidatakse üks kord)",
+    "credsNote": "Anna need juhile. Neid enam ei näidata."
+  },
   "common": {
     "save": "Salvesta",
     "cancel": "Tühista",

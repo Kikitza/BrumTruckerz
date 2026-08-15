@@ -233,6 +233,16 @@
     "rationaleTitle": "Njoftime për afatet",
     "rationaleBody": "Lejoni njoftimet që të mund t'ju kujtojmë përpara se të skadojnë regjistrimet, certifikatat dhe afatet e tjera."
   },
+  "account": {
+    "title": "Llogaria e shoferit",
+    "create": "Krijo llogari",
+    "delete": "Fshi llogarinë",
+    "deleteConfirm": "Të fshihet llogaria e këtij shoferi? Historiku (ngjarjet, shpenzimet) ruhet.",
+    "hasAccount": "Llogaria aktive",
+    "passwordHint": "Lëreni bosh për të gjeneruar automatikisht një fjalëkalim.",
+    "credsTitle": "Kredencialet (shfaqen një herë)",
+    "credsNote": "Jepni këto shoferit. Nuk do të shfaqen përsëri."
+  },
   "common": {
     "save": "Ruaj",
     "cancel": "Anulo",

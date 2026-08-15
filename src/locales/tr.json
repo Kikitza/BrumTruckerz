@@ -233,6 +233,16 @@
     "rationaleTitle": "Son tarih bildirimleri",
     "rationaleBody": "Ruhsatların, sertifikaların ve diğer son tarihlerin dolmasından önce sizi hatırlatabilmemiz için bildirimlere izin verin."
   },
+  "account": {
+    "title": "Sürücü hesabı",
+    "create": "Hesap oluştur",
+    "delete": "Hesabı sil",
+    "deleteConfirm": "Bu sürücünün hesabı silinsin mi? Geçmiş (olaylar, giderler) korunur.",
+    "hasAccount": "Hesap etkin",
+    "passwordHint": "Otomatik parola oluşturmak için boş bırakın.",
+    "credsTitle": "Kimlik bilgileri (bir kez gösterilir)",
+    "credsNote": "Bunları sürücüye verin. Tekrar gösterilmeyecek."
+  },
   "common": {
     "save": "Kaydet",
     "cancel": "İptal",

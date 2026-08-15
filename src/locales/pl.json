@@ -233,6 +233,16 @@
     "rationaleTitle": "Powiadomienia o terminach",
     "rationaleBody": "Zezwól na powiadomienia, abyśmy mogli przypomnieć Ci przed upływem terminów rejestracji, certyfikatów i innych ważności."
   },
+  "account": {
+    "title": "Konto kierowcy",
+    "create": "Utwórz konto",
+    "delete": "Usuń konto",
+    "deleteConfirm": "Usunąć konto tego kierowcy? Historia (zdarzenia, wydatki) zostanie zachowana.",
+    "hasAccount": "Konto aktywne",
+    "passwordHint": "Pozostaw puste, aby automatycznie wygenerować hasło.",
+    "credsTitle": "Dane logowania (pokazane raz)",
+    "credsNote": "Przekaż je kierowcy. Nie zostaną wyświetlone ponownie."
+  },
   "common": {
     "save": "Zapisz",
     "cancel": "Anuluj",

@@ -233,6 +233,16 @@
     "rationaleTitle": "Notificações de prazos",
     "rationaleBody": "Permita as notificações para que possamos lembrá-lo antes de as matrículas, os certificados e outros prazos expirarem."
   },
+  "account": {
+    "title": "Conta do motorista",
+    "create": "Criar conta",
+    "delete": "Eliminar conta",
+    "deleteConfirm": "Eliminar a conta deste motorista? O histórico (eventos, despesas) é mantido.",
+    "hasAccount": "Conta ativa",
+    "passwordHint": "Deixe em branco para gerar uma palavra-passe automaticamente.",
+    "credsTitle": "Credenciais (mostradas uma vez)",
+    "credsNote": "Entregue-as ao motorista. Não serão mostradas novamente."
+  },
   "common": {
     "save": "Guardar",
     "cancel": "Cancelar",

@@ -233,6 +233,16 @@
     "rationaleTitle": "Notificări pentru termene",
     "rationaleBody": "Permite notificările ca să te putem anunța înainte de expirarea înmatriculărilor, certificatelor și a altor termene."
   },
+  "account": {
+    "title": "Cont șofer",
+    "create": "Creează cont",
+    "delete": "Șterge contul",
+    "deleteConfirm": "Ștergi contul acestui șofer? Istoricul (evenimente, cheltuieli) se păstrează.",
+    "hasAccount": "Cont activ",
+    "passwordHint": "Lasă gol pentru a genera automat o parolă.",
+    "credsTitle": "Date de autentificare (afișate o singură dată)",
+    "credsNote": "Transmite-le șoferului. Nu vor mai fi afișate din nou."
+  },
   "common": {
     "save": "Salvează",
     "cancel": "Anulează",

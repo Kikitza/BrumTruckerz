@@ -233,6 +233,16 @@
     "rationaleTitle": "Obavještenja o rokovima",
     "rationaleBody": "Dozvolite obavještenja kako bismo vas mogli podsjetiti prije nego što isteknu registracije, certifikati i drugi rokovi."
   },
+  "account": {
+    "title": "Račun vozača",
+    "create": "Kreiraj račun",
+    "delete": "Obriši račun",
+    "deleteConfirm": "Obrisati račun ovog vozača? Historija (događaji, troškovi) se zadržava.",
+    "hasAccount": "Račun aktivan",
+    "passwordHint": "Ostavite prazno za automatsko generisanje lozinke.",
+    "credsTitle": "Pristupni podaci (prikazani jednom)",
+    "credsNote": "Dajte ih vozaču. Neće biti ponovo prikazani."
+  },
   "common": {
     "save": "Sačuvaj",
     "cancel": "Otkaži",

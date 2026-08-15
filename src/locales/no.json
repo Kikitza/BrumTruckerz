@@ -233,6 +233,16 @@
     "rationaleTitle": "Varsler om frister",
     "rationaleBody": "Tillat varsler så vi kan minne deg på før registreringer, sertifikater og andre frister utløper."
   },
+  "account": {
+    "title": "Sjåførkonto",
+    "create": "Opprett konto",
+    "delete": "Slett konto",
+    "deleteConfirm": "Slette denne sjåførens konto? Historikk (hendelser, utgifter) beholdes.",
+    "hasAccount": "Konto aktiv",
+    "passwordHint": "La stå tomt for å generere passord automatisk.",
+    "credsTitle": "Innloggingsdetaljer (vises én gang)",
+    "credsNote": "Gi disse til sjåføren. De vises ikke igjen."
+  },
   "common": {
     "save": "Lagre",
     "cancel": "Avbryt",

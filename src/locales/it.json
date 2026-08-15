@@ -233,6 +233,16 @@
     "rationaleTitle": "Notifiche delle scadenze",
     "rationaleBody": "Consenti le notifiche così possiamo ricordarti prima che scadano immatricolazioni, certificati e altre scadenze."
   },
+  "account": {
+    "title": "Account del conducente",
+    "create": "Crea account",
+    "delete": "Elimina account",
+    "deleteConfirm": "Eliminare l'account di questo conducente? La cronologia (eventi, spese) viene conservata.",
+    "hasAccount": "Account attivo",
+    "passwordHint": "Lascia vuoto per generare automaticamente una password.",
+    "credsTitle": "Credenziali (mostrate una sola volta)",
+    "credsNote": "Consegnale al conducente. Non verranno mostrate di nuovo."
+  },
   "common": {
     "save": "Salva",
     "cancel": "Annulla",

@@ -231,6 +231,16 @@
     "rationaleTitle": "Deadline notifications",
     "rationaleBody": "Allow notifications so we can remind you before registrations, certificates and other deadlines expire."
   },
+  "account": {
+    "title": "Driver account",
+    "create": "Create account",
+    "delete": "Delete account",
+    "deleteConfirm": "Delete this driver's account? History (events, expenses) is kept.",
+    "hasAccount": "Account active",
+    "passwordHint": "Leave blank to auto-generate a password.",
+    "credsTitle": "Credentials (shown once)",
+    "credsNote": "Give these to the driver. They won't be shown again."
+  },
   "common": {
     "save": "Save",
     "cancel": "Cancel",

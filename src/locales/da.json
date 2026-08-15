@@ -233,6 +233,16 @@
     "rationaleTitle": "Notifikationer om frister",
     "rationaleBody": "Tillad notifikationer, så vi kan minde dig om det, før registreringer, attester og andre frister udløber."
   },
+  "account": {
+    "title": "Førerkonto",
+    "create": "Opret konto",
+    "delete": "Slet konto",
+    "deleteConfirm": "Slet denne førers konto? Historik (hændelser, udgifter) bevares.",
+    "hasAccount": "Konto aktiv",
+    "passwordHint": "Lad feltet stå tomt for at generere en adgangskode automatisk.",
+    "credsTitle": "Loginoplysninger (vises én gang)",
+    "credsNote": "Giv dem til føreren. De vises ikke igen."
+  },
   "common": {
     "save": "Gem",
     "cancel": "Annuller",

@@ -233,6 +233,16 @@
     "rationaleTitle": "Pranešimai apie terminus",
     "rationaleBody": "Leiskite pranešimus, kad galėtume jums priminti prieš baigiantis registracijų, sertifikatų ir kitų terminų galiojimui."
   },
+  "account": {
+    "title": "Vairuotojo paskyra",
+    "create": "Sukurti paskyrą",
+    "delete": "Ištrinti paskyrą",
+    "deleteConfirm": "Ištrinti šio vairuotojo paskyrą? Istorija (įvykiai, išlaidos) išsaugoma.",
+    "hasAccount": "Paskyra aktyvi",
+    "passwordHint": "Palikite tuščią, kad slaptažodis būtų sugeneruotas automatiškai.",
+    "credsTitle": "Prisijungimo duomenys (rodomi vieną kartą)",
+    "credsNote": "Perduokite juos vairuotojui. Jie daugiau nebus rodomi."
+  },
   "common": {
     "save": "Išsaugoti",
     "cancel": "Atšaukti",

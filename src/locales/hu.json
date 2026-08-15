@@ -233,6 +233,16 @@
     "rationaleTitle": "Határidő-értesítések",
     "rationaleBody": "Engedélyezd az értesítéseket, hogy emlékeztethessünk a regisztrációk, tanúsítványok és egyéb határidők lejárta előtt."
   },
+  "account": {
+    "title": "Sofőr fiók",
+    "create": "Fiók létrehozása",
+    "delete": "Fiók törlése",
+    "deleteConfirm": "Törlöd ennek a sofőrnek a fiókját? Az előzmények (események, költségek) megmaradnak.",
+    "hasAccount": "Fiók aktív",
+    "passwordHint": "Hagyd üresen a jelszó automatikus generálásához.",
+    "credsTitle": "Belépési adatok (egyszer jelennek meg)",
+    "credsNote": "Add át ezeket a sofőrnek. Többé nem jelennek meg."
+  },
   "common": {
     "save": "Mentés",
     "cancel": "Mégse",

@@ -233,6 +233,16 @@
     "rationaleTitle": "Notificaciones de vencimientos",
     "rationaleBody": "Permita las notificaciones para que podamos avisarle antes de que caduquen las matriculaciones, los certificados y otros vencimientos."
   },
+  "account": {
+    "title": "Cuenta del conductor",
+    "create": "Crear cuenta",
+    "delete": "Eliminar cuenta",
+    "deleteConfirm": "¿Eliminar la cuenta de este conductor? El historial (eventos, gastos) se conserva.",
+    "hasAccount": "Cuenta activa",
+    "passwordHint": "Deje en blanco para generar una contraseña automáticamente.",
+    "credsTitle": "Credenciales (se muestran una sola vez)",
+    "credsNote": "Entrégueselas al conductor. No se volverán a mostrar."
+  },
   "common": {
     "save": "Guardar",
     "cancel": "Cancelar",

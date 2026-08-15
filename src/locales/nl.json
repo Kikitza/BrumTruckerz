@@ -233,6 +233,16 @@
     "rationaleTitle": "Meldingen voor deadlines",
     "rationaleBody": "Sta meldingen toe zodat we u kunnen herinneren voordat kentekens, certificaten en andere deadlines verlopen."
   },
+  "account": {
+    "title": "Chauffeursaccount",
+    "create": "Account aanmaken",
+    "delete": "Account verwijderen",
+    "deleteConfirm": "Account van deze chauffeur verwijderen? De geschiedenis (gebeurtenissen, uitgaven) blijft behouden.",
+    "hasAccount": "Account actief",
+    "passwordHint": "Laat leeg om automatisch een wachtwoord te genereren.",
+    "credsTitle": "Inloggegevens (eenmalig getoond)",
+    "credsNote": "Geef deze aan de chauffeur. Ze worden niet opnieuw getoond."
+  },
   "common": {
     "save": "Opslaan",
     "cancel": "Annuleren",

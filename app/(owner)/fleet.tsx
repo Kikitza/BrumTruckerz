@@ -24,7 +24,8 @@ import {
   listVehicles, createVehicle, updateVehicle, deleteVehicle,
   listTrailers, createTrailer, updateTrailer, deleteTrailer,
   listDrivers, createDriver, updateDriver, deleteDriver,
-  type Vehicle, type Trailer, type Driver, type EmploymentType,
+  createDriverAccount, deleteDriverAccount, getDriverEmail,
+  type Vehicle, type Trailer, type Driver, type EmploymentType, type DriverCredentials,
 } from "../../src/features/fleet/api";
 import {
   getDriverMedicalReminder, setDriverMedicalReminder,
@@ -438,9 +439,98 @@ function FleetFormModal({
               onChange={setContractEnd} colors={colors} placeholder="—" />
             <DateField label={t("fleet.fields.medicalValidUntil")} value={medical}
               onChange={setMedical} colors={colors} placeholder="—" />
+
+            {/* Nalog vozača — tek za sačuvanog vozača (treba postojeći drivers red). */}
+            {editing && (
+              <DriverAccountSection driverId={item!.id} userId={(item as Driver).user_id} colors={colors} />
+            )}
           </>
         )}
       </ScrollView>
     </ModalScaffold>
+  );
+}
+
+// ── Nalog vozača (Edge funkcije; owner pravi/briše iz aplikacije) ──
+function DriverAccountSection({
+  driverId, userId, colors,
+}: { driverId: string; userId: string | null; colors: Palette }) {
+  const { t } = useTranslation();
+  const qc = useQueryClient();
+  const [hasAccount, setHasAccount] = useState(!!userId);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [creds, setCreds] = useState<DriverCredentials | null>(null);
+
+  const emailQ = useQuery({
+    queryKey: ["driver-email", driverId],
+    queryFn: () => getDriverEmail(driverId),
+    enabled: hasAccount && !creds,
+  });
+
+  const create = useMutation({
+    mutationFn: () => createDriverAccount(driverId, email.trim(), password.trim() || undefined),
+    onSuccess: (res) => {
+      setCreds(res); setHasAccount(true); setEmail(""); setPassword("");
+      qc.invalidateQueries({ queryKey: ["fleet", "drivers"] });
+    },
+    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+  });
+
+  const del = useMutation({
+    mutationFn: () => deleteDriverAccount(driverId),
+    onSuccess: () => {
+      setHasAccount(false); setCreds(null);
+      qc.invalidateQueries({ queryKey: ["fleet", "drivers"] });
+      qc.invalidateQueries({ queryKey: ["driver-email", driverId] });
+    },
+    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+  });
+
+  const confirmDelete = () =>
+    Alert.alert(t("account.deleteConfirm"), undefined, [
+      { text: t("common.cancel"), style: "cancel" },
+      { text: t("common.delete"), style: "destructive", onPress: () => del.mutate() },
+    ]);
+
+  const validEmail = email.includes("@");
+
+  return (
+    <View style={{ gap: 10, borderTopWidth: 1, borderColor: colors.border, paddingTop: 16 }}>
+      <Text style={{ color: colors.text, fontWeight: "700", fontSize: 15 }}>{t("account.title")}</Text>
+
+      {creds ? (
+        <View style={{ gap: 6, padding: 12, borderRadius: 8, borderWidth: 1, borderColor: colors.warn, backgroundColor: colors.surface }}>
+          <Text style={{ color: colors.text, fontWeight: "700" }}>{t("account.credsTitle")}</Text>
+          <Text selectable style={{ color: colors.text }}>{t("auth.email")}: {creds.email}</Text>
+          <Text selectable style={{ color: colors.text }}>{t("auth.password")}: {creds.password}</Text>
+          <Text style={{ color: colors.warn, fontSize: 12 }}>{t("account.credsNote")}</Text>
+        </View>
+      ) : hasAccount ? (
+        <>
+          <Text style={{ color: colors.textMuted }}>{t("account.hasAccount")}: {emailQ.data ?? "…"}</Text>
+          <Pressable
+            onPress={confirmDelete}
+            disabled={del.isPending}
+            style={{ borderWidth: 1, borderColor: colors.danger, borderRadius: 8, padding: 12, alignItems: "center" }}
+          >
+            <Text style={{ color: colors.danger, fontWeight: "600" }}>{del.isPending ? t("common.saving") : t("account.delete")}</Text>
+          </Pressable>
+        </>
+      ) : (
+        <>
+          <Field label={t("auth.email")} value={email} onChangeText={setEmail} autoCapitalize="none" colors={colors} />
+          <Field label={t("auth.password")} value={password} onChangeText={setPassword} autoCapitalize="none" colors={colors} />
+          <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("account.passwordHint")}</Text>
+          <Pressable
+            onPress={() => create.mutate()}
+            disabled={!validEmail || create.isPending}
+            style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: !validEmail || create.isPending ? 0.5 : 1 }}
+          >
+            <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{create.isPending ? t("common.saving") : t("account.create")}</Text>
+          </Pressable>
+        </>
+      )}
+    </View>
   );
 }

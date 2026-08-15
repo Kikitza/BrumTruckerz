@@ -183,3 +183,37 @@ export async function deleteDriver(id: string): Promise<void> {
   const { error } = await supabase.from("drivers").delete().eq("id", id);
   if (error) throw error;
 }
+
+// ── Nalog vozača (Edge funkcije; owner upravlja iz aplikacije) ──
+// Izvuci poruku greške iz Edge funkcije (telo { error }) — inače generička.
+async function fnError(error: unknown, fallback: string): Promise<Error> {
+  const ctx = (error as { context?: { json?: () => Promise<{ error?: string }> } })?.context;
+  try {
+    const body = await ctx?.json?.();
+    if (body?.error) return new Error(body.error);
+  } catch { /* telo nije JSON */ }
+  return new Error((error as Error)?.message ?? fallback);
+}
+
+export type DriverCredentials = { email: string; password: string; user_id: string };
+
+// Napravi nalog za postojećeg vozača (bez user_id). Vraća kredencijale (prikazati JEDNOM).
+export async function createDriverAccount(driverId: string, email: string, password?: string): Promise<DriverCredentials> {
+  const { data, error } = await supabase.functions.invoke("create-driver-account", {
+    body: { driver_id: driverId, email, ...(password ? { password } : {}) },
+  });
+  if (error) throw await fnError(error, "Neuspešno kreiranje naloga");
+  return data as DriverCredentials;
+}
+
+export async function deleteDriverAccount(driverId: string): Promise<void> {
+  const { error } = await supabase.functions.invoke("delete-driver-account", { body: { driver_id: driverId } });
+  if (error) throw await fnError(error, "Neuspešno brisanje naloga");
+}
+
+// Email naloga vozača (za prikaz). Vraća null ako nema naloga / greška.
+export async function getDriverEmail(driverId: string): Promise<string | null> {
+  const { data, error } = await supabase.functions.invoke("get-driver-email", { body: { driver_id: driverId } });
+  if (error) return null;
+  return (data as { email: string | null })?.email ?? null;
+}

@@ -233,6 +233,16 @@
     "rationaleTitle": "Notifications d'échéances",
     "rationaleBody": "Autorisez les notifications afin que nous puissions vous rappeler avant l'expiration des immatriculations, des certificats et des autres échéances."
   },
+  "account": {
+    "title": "Compte du chauffeur",
+    "create": "Créer un compte",
+    "delete": "Supprimer le compte",
+    "deleteConfirm": "Supprimer le compte de ce chauffeur ? L'historique (événements, dépenses) est conservé.",
+    "hasAccount": "Compte actif",
+    "passwordHint": "Laissez vide pour générer un mot de passe automatiquement.",
+    "credsTitle": "Identifiants (affichés une seule fois)",
+    "credsNote": "Donnez-les au chauffeur. Ils ne seront plus affichés."
+  },
   "common": {
     "save": "Enregistrer",
     "cancel": "Annuler",

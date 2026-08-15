@@ -233,6 +233,16 @@
     "rationaleTitle": "Määräaikojen ilmoitukset",
     "rationaleBody": "Salli ilmoitukset, jotta voimme muistuttaa sinua ennen kuin rekisteröinnit, todistukset ja muut määräajat umpeutuvat."
   },
+  "account": {
+    "title": "Kuljettajan tili",
+    "create": "Luo tili",
+    "delete": "Poista tili",
+    "deleteConfirm": "Poistetaanko tämän kuljettajan tili? Historia (tapahtumat, kulut) säilytetään.",
+    "hasAccount": "Tili aktiivinen",
+    "passwordHint": "Jätä tyhjäksi luodaksesi salasanan automaattisesti.",
+    "credsTitle": "Kirjautumistiedot (näytetään kerran)",
+    "credsNote": "Anna nämä kuljettajalle. Niitä ei näytetä uudelleen."
+  },
   "common": {
     "save": "Tallenna",
     "cancel": "Peruuta",

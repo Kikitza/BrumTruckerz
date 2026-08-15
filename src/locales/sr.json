@@ -234,6 +234,16 @@
     "rationaleTitle": "Obaveštenja o rokovima",
     "rationaleBody": "Dozvolite obaveštenja da vas na vreme podsetimo pre isteka registracija, atesta i drugih rokova."
   },
+  "account": {
+    "title": "Nalog vozača",
+    "create": "Napravi nalog",
+    "delete": "Obriši nalog",
+    "deleteConfirm": "Obrisati nalog ovog vozača? Istorija (događaji, troškovi) ostaje.",
+    "hasAccount": "Nalog aktivan",
+    "passwordHint": "Ostavi prazno da se lozinka generiše.",
+    "credsTitle": "Kredencijali (prikazano jednom)",
+    "credsNote": "Prosledi vozaču. Neće se ponovo prikazati."
+  },
   "common": {
     "save": "Sačuvaj",
     "cancel": "Otkaži",

@@ -233,6 +233,16 @@
     "rationaleTitle": "Termiņu paziņojumi",
     "rationaleBody": "Atļaujiet paziņojumus, lai mēs varētu jums atgādināt, pirms beidzas reģistrāciju, sertifikātu un citu termiņu derīgums."
   },
+  "account": {
+    "title": "Vadītāja konts",
+    "create": "Izveidot kontu",
+    "delete": "Dzēst kontu",
+    "deleteConfirm": "Dzēst šī vadītāja kontu? Vēsture (notikumi, izdevumi) tiek saglabāta.",
+    "hasAccount": "Konts aktīvs",
+    "passwordHint": "Atstājiet tukšu, lai paroli ģenerētu automātiski.",
+    "credsTitle": "Piekļuves dati (rādīti vienu reizi)",
+    "credsNote": "Nododiet tos vadītājam. Tie vairs netiks rādīti."
+  },
   "common": {
     "save": "Saglabāt",
     "cancel": "Atcelt",

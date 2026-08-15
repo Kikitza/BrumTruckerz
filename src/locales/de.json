@@ -233,6 +233,16 @@
     "rationaleTitle": "Benachrichtigungen zu Fristen",
     "rationaleBody": "Erlauben Sie Benachrichtigungen, damit wir Sie erinnern können, bevor Zulassungen, Zertifikate und andere Fristen ablaufen."
   },
+  "account": {
+    "title": "Fahrerkonto",
+    "create": "Konto erstellen",
+    "delete": "Konto löschen",
+    "deleteConfirm": "Konto dieses Fahrers löschen? Der Verlauf (Ereignisse, Ausgaben) bleibt erhalten.",
+    "hasAccount": "Konto aktiv",
+    "passwordHint": "Leer lassen, um ein Passwort automatisch zu generieren.",
+    "credsTitle": "Zugangsdaten (nur einmal angezeigt)",
+    "credsNote": "Geben Sie diese dem Fahrer. Sie werden nicht erneut angezeigt."
+  },
   "common": {
     "save": "Speichern",
     "cancel": "Abbrechen",
