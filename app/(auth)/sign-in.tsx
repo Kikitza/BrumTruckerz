@@ -4,9 +4,12 @@ import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { router } from "expo-router";
 import { supabase } from "../../src/lib/supabase";
 import { useTheme } from "../../src/lib/theme";
+import LogoLight from "../../assets/brand/logo-horizontal.svg";
+import LogoDark from "../../assets/brand/logo-horizontal-dark.svg";
 
 export default function SignIn() {
-  const { colors } = useTheme();
+  const { colors, scheme } = useTheme();
+  const Logo = scheme === "dark" ? LogoDark : LogoLight;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -28,6 +31,7 @@ export default function SignIn() {
 
   return (
     <View style={{ flex: 1, justifyContent: "center", padding: 24, backgroundColor: colors.bg, gap: 12 }}>
+      <Logo width={224} height={40} style={{ alignSelf: "center", marginBottom: 20 }} />
       <Text style={{ fontSize: 24, fontWeight: "700", color: colors.text }}>Prijava</Text>
       <TextInput placeholder="Imejl" autoCapitalize="none" keyboardType="email-address"
         value={email} onChangeText={setEmail} placeholderTextColor={colors.textMuted} style={input} />
