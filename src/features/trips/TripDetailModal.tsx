@@ -8,13 +8,13 @@ import { useTheme, type Palette } from "../../lib/theme";
 import { fmtDateTime, fmtDate, fmtMoney } from "../../lib/format";
 import { Field, ModalScaffold, PickerField } from "../../components/form";
 import { Collapsible } from "../../components/Collapsible";
-import { toNum } from "../../lib/num";
+import { toNum, toInt } from "../../lib/num";
 import {
   ownerGetTrip, ownerUpdateTripFinance, ownerUpdateTripAssignment, ownerListTripEvents, ownerAddTripEvent,
-  listTripStops, isTripArchived,
+  listTripStops, ownerUpdateTripRoute, isTripArchived,
   type EventType, type DriverPayMode,
 } from "./api";
-import { RouteView } from "./stops";
+import { RouteView, StopsEditor, stopsToDrafts, type StopDraft } from "./stops";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
 import { listTripExpenses, ownerAddExpense, ownerDeleteExpense } from "../expenses/api";
 import { ExpenseForm, type ExpenseFormValues } from "../expenses/ExpenseForm";
@@ -113,6 +113,39 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
   const canSaveAssignment =
     assignEditable && assignChanged && !!driverId && !!vehicleId && !saveAssignment.isPending;
 
+  // ── Izmena RUTE (polazno mesto, početna km, stanice) — reverzibilnost #2 ──
+  // Dozvoljeno dok tura nije arhivirana; vozarina i dodela se ovim tokom NE diraju.
+  const [routeEditing, setRouteEditing] = useState(false);
+  const [editOrigin, setEditOrigin] = useState("");
+  const [editStartOdo, setEditStartOdo] = useState("");
+  const [editStops, setEditStops] = useState<StopDraft[]>([]);
+
+  const startRouteEdit = () => {
+    const dd = trip.data;
+    if (!dd) return;
+    setEditOrigin(dd.origin ?? "");
+    setEditStartOdo(dd.start_odometer != null ? String(dd.start_odometer) : "");
+    setEditStops(stopsToDrafts(stops.data ?? []));
+    setRouteEditing(true);
+  };
+
+  const saveRoute = useMutation({
+    mutationFn: () =>
+      ownerUpdateTripRoute(tripId, {
+        origin: editOrigin.trim() || null,
+        startOdometer: toInt(editStartOdo),
+        stops: editStops.map((d) => ({ existingId: d.existingId, kind: d.kind, place: d.place, note: d.note })),
+      }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["trip", tripId] });
+      qc.invalidateQueries({ queryKey: ["trip-stops", tripId] });
+      qc.invalidateQueries({ queryKey: ["owner-trips"] });
+      qc.invalidateQueries({ queryKey: ["driver-trip-stops"] }); // vozačev prikaz rute
+      setRouteEditing(false);
+    },
+    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+  });
+
   // Dodavanje događaja
   const [eventType, setEventType] = useState<EventType>("load");
   const [occurredAt, setOccurredAt] = useState(nowLocalInput());
@@ -197,7 +230,36 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
             {/* Podaci (OTVOREN) — ruta/stanice, status, dodela, km */}
             <Collapsible title={t("trip.section.info")} colors={colors} defaultOpen>
               <SectionBody>
-                <RouteView origin={d.origin} destination={d.destination} stops={stops.data ?? []} colors={colors} />
+                {routeEditing ? (
+                  <View style={{ gap: 12 }}>
+                    <Field label={t("trip.fields.origin")} value={editOrigin} onChangeText={setEditOrigin}
+                      autoCapitalize="sentences" placeholder="Beograd" colors={colors} />
+                    <Field label={t("trip.fields.startOdometer")} value={editStartOdo} onChangeText={setEditStartOdo}
+                      keyboardType="numeric" placeholder="0" colors={colors} />
+                    <StopsEditor items={editStops} onChange={setEditStops} colors={colors} />
+                    <View style={{ flexDirection: "row", gap: 8 }}>
+                      <Pressable onPress={() => setRouteEditing(false)}
+                        style={{ flex: 1, borderWidth: 1, borderColor: colors.border, borderRadius: 8, padding: 12, alignItems: "center" }}>
+                        <Text style={{ color: colors.text, fontWeight: "600" }}>{t("common.cancel")}</Text>
+                      </Pressable>
+                      <Pressable onPress={() => saveRoute.mutate()} disabled={saveRoute.isPending}
+                        style={{ flex: 1, backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: saveRoute.isPending ? 0.6 : 1 }}>
+                        <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>
+                          {saveRoute.isPending ? t("common.saving") : t("common.save")}
+                        </Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                ) : (
+                  <View style={{ gap: 8 }}>
+                    <RouteView origin={d.origin} destination={d.destination} stops={stops.data ?? []} colors={colors} />
+                    {assignEditable && (
+                      <Pressable onPress={startRouteEdit} hitSlop={8} style={{ alignSelf: "flex-start" }}>
+                        <Text style={{ color: colors.primary, fontWeight: "600" }}>{t("common.edit")}</Text>
+                      </Pressable>
+                    )}
+                  </View>
+                )}
                 <View style={{ alignSelf: "flex-start", paddingVertical: 4, paddingHorizontal: 10, borderRadius: 6, backgroundColor: colors.bg, borderWidth: 1, borderColor: colors.border }}>
                   <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`trip.status.${d.status}`)}</Text>
                 </View>
@@ -231,7 +293,9 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
                     <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("trip.assignmentLockedFinished")}</Text>
                   </>
                 )}
-                <KV label={t("trip.fields.startOdometer")} value={d.start_odometer != null ? String(d.start_odometer) : "—"} colors={colors} />
+                {!routeEditing && (
+                  <KV label={t("trip.fields.startOdometer")} value={d.start_odometer != null ? String(d.start_odometer) : "—"} colors={colors} />
+                )}
               </SectionBody>
             </Collapsible>
 

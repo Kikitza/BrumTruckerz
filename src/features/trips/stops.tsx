@@ -10,14 +10,19 @@ import type { Palette } from "../../lib/theme";
 import { tripTitle, type TripStop, type TripStopKind, type TripStopInput } from "./api";
 
 // ── Unos (nacrti) ──
-export type StopDraft = { key: string; kind: TripStopKind; place: string; note: string };
+// existingId = veza ka redu u bazi (za „Izmeni turu"); null = nova stanica.
+export type StopDraft = { key: string; existingId: string | null; kind: TripStopKind; place: string; note: string };
 
 let stopSeq = 0;
 export const newStopDraft = (kind: TripStopKind): StopDraft => ({
-  key: `stop-${stopSeq++}`, kind, place: "", note: "",
+  key: `stop-${stopSeq++}`, existingId: null, kind, place: "", note: "",
 });
 // Podrazumevano: jedan utovar + jedan istovar.
 export const defaultStopDrafts = (): StopDraft[] => [newStopDraft("loading"), newStopDraft("unloading")];
+
+// Postojeće stanice -> nacrti (popunjavanje forme „Izmeni turu").
+export const stopsToDrafts = (stops: TripStop[]): StopDraft[] =>
+  stops.map((s) => ({ key: `existing-${s.id}`, existingId: s.id, kind: s.kind, place: s.place, note: s.note ?? "" }));
 
 // Nacrti -> ulaz za api (redosled = redosled u nizu; sanitizacija je u ownerCreateTrip).
 export const draftsToInput = (drafts: StopDraft[]): TripStopInput[] =>

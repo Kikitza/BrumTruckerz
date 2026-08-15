@@ -4,8 +4,8 @@
 // Vlasnik radi ONLINE (bez offline reda) — direktan pristup pod RLS-om.
 import { supabase } from "../../lib/supabase";
 import { enqueue } from "../../lib/offline/queue";
-import { destinationFromStops } from "./stopsMath";
-import type { TripStopKind, TripStopInput } from "./stopsMath";
+import { destinationFromStops, reconcileStops } from "./stopsMath";
+import type { TripStopKind, TripStopInput, StopDraftLike } from "./stopsMath";
 
 // Re-export (jedini domen-ulaz je api.ts; čiste funkcije/tipovi žive u ./stopsMath).
 export { destinationFromStops };
@@ -198,6 +198,45 @@ export async function listTripStops(tripId: string): Promise<TripStop[]> {
     .order("seq", { ascending: true });
   if (error) throw error;
   return (data ?? []) as TripStop[];
+}
+
+// Izmena RUTE ture (reverzibilnost): polazno mesto, početna km i stanice.
+// Reconcile stanica (obriši uklonjene, ubaci nove, ažuriraj postojeće; seq po novom
+// redosledu). trips.destination se ponovo izračuna. VOZARINA I DODELA se NE diraju.
+export type UpdateTripRouteInput = {
+  origin: string | null;
+  startOdometer?: number | null; // undefined = ne diraj
+  stops: StopDraftLike[];
+};
+
+export async function ownerUpdateTripRoute(tripId: string, input: UpdateTripRouteInput): Promise<void> {
+  const existing = await listTripStops(tripId);
+  const plan = reconcileStops(existing.map((s) => s.id), input.stops);
+
+  if (plan.toDelete.length) {
+    const { error } = await supabase.from("trip_stops").delete().in("id", plan.toDelete);
+    if (error) throw error;
+  }
+  for (const u of plan.toUpdate) {
+    const { error } = await supabase
+      .from("trip_stops")
+      .update({ seq: u.seq, kind: u.kind, place: u.place, note: u.note })
+      .eq("id", u.id);
+    if (error) throw error;
+  }
+  if (plan.toInsert.length) {
+    const rows = plan.toInsert.map((r) => ({ trip_id: tripId, seq: r.seq, kind: r.kind, place: r.place, note: r.note }));
+    const { error } = await supabase.from("trip_stops").insert(rows);
+    if (error) throw error;
+  }
+
+  const origin = input.origin?.trim() || null;
+  const destination = destinationFromStops(input.stops.map((d) => ({ kind: d.kind, place: d.place, note: d.note })));
+  const patch: Record<string, unknown> = { origin, destination, title: tripTitle(origin, destination) };
+  if (input.startOdometer !== undefined) patch.start_odometer = input.startOdometer;
+
+  const { error } = await supabase.from("trips").update(patch).eq("id", tripId);
+  if (error) throw error;
 }
 
 export async function ownerGetTrip(tripId: string): Promise<TripDetail> {
