@@ -233,6 +233,11 @@
     "rationaleTitle": "Határidő-értesítések",
     "rationaleBody": "Engedélyezd az értesítéseket, hogy emlékeztethessünk a regisztrációk, tanúsítványok és egyéb határidők lejárta előtt."
   },
+  "plan": {
+    "title": "Csomag",
+    "vehicles": "{{used}}/{{limit}} jármű",
+    "limitReached": "Elérted a csomagod korlátját ({{limit}} jármű) — vedd fel velünk a kapcsolatot a bővítéshez."
+  },
   "account": {
     "title": "Sofőr fiók",
     "create": "Fiók létrehozása",

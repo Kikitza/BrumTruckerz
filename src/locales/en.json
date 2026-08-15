@@ -231,6 +231,11 @@
     "rationaleTitle": "Deadline notifications",
     "rationaleBody": "Allow notifications so we can remind you before registrations, certificates and other deadlines expire."
   },
+  "plan": {
+    "title": "Plan",
+    "vehicles": "{{used}}/{{limit}} vehicles",
+    "limitReached": "You've reached your plan limit ({{limit}} vehicles) — contact us to upgrade."
+  },
   "account": {
     "title": "Driver account",
     "create": "Create account",

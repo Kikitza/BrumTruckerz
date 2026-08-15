@@ -233,6 +233,11 @@
     "rationaleTitle": "Varsler om frister",
     "rationaleBody": "Tillat varsler så vi kan minne deg på før registreringer, sertifikater og andre frister utløper."
   },
+  "plan": {
+    "title": "Abonnement",
+    "vehicles": "{{used}}/{{limit}} kjøretøy",
+    "limitReached": "Du har nådd grensen for abonnementet ditt ({{limit}} kjøretøy) — kontakt oss for å oppgradere."
+  },
   "account": {
     "title": "Sjåførkonto",
     "create": "Opprett konto",

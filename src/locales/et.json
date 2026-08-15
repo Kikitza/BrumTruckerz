@@ -233,6 +233,11 @@
     "rationaleTitle": "Tähtaegade teavitused",
     "rationaleBody": "Luba teavitused, et saaksime sind meelde tuletada enne registreeringute, sertifikaatide ja muude tähtaegade aegumist."
   },
+  "plan": {
+    "title": "Pakett",
+    "vehicles": "{{used}}/{{limit}} sõidukit",
+    "limitReached": "Olete jõudnud oma paketi piirini ({{limit}} sõidukit) — võtke meiega ühendust, et paketti täiendada."
+  },
   "account": {
     "title": "Juhi konto",
     "create": "Loo konto",

@@ -233,6 +233,11 @@
     "rationaleTitle": "Njoftime për afatet",
     "rationaleBody": "Lejoni njoftimet që të mund t'ju kujtojmë përpara se të skadojnë regjistrimet, certifikatat dhe afatet e tjera."
   },
+  "plan": {
+    "title": "Plani",
+    "vehicles": "{{used}}/{{limit}} automjete",
+    "limitReached": "Keni arritur kufirin e planit tuaj ({{limit}} automjete) — na kontaktoni për ta përmirësuar."
+  },
   "account": {
     "title": "Llogaria e shoferit",
     "create": "Krijo llogari",

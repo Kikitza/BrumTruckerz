@@ -73,6 +73,24 @@ async function currentCompanyId(): Promise<string> {
   return cid;
 }
 
+// ── Paket firme (plan + limit vozila) ──
+export type CompanyPlan = { plan: string; vehicle_limit: number };
+
+// Owner čita SVOJU firmu (RLS company_read). Menja SAMO platforma (nema update policy).
+export async function getCompanyPlan(): Promise<CompanyPlan> {
+  const company_id = await currentCompanyId();
+  const { data, error } = await supabase
+    .from("companies").select("plan, vehicle_limit").eq("id", company_id).single();
+  if (error) throw error;
+  return data as CompanyPlan;
+}
+
+export async function countVehicles(): Promise<number> {
+  const { count, error } = await supabase.from("vehicles").select("id", { count: "exact", head: true });
+  if (error) throw error;
+  return count ?? 0;
+}
+
 // ── Vozila ──
 export async function listVehicles(): Promise<Vehicle[]> {
   const { data, error } = await supabase

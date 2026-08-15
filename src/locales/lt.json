@@ -233,6 +233,11 @@
     "rationaleTitle": "Pranešimai apie terminus",
     "rationaleBody": "Leiskite pranešimus, kad galėtume jums priminti prieš baigiantis registracijų, sertifikatų ir kitų terminų galiojimui."
   },
+  "plan": {
+    "title": "Planas",
+    "vehicles": "{{used}}/{{limit}} transporto priemonių",
+    "limitReached": "Pasiekėte savo plano ribą ({{limit}} transporto priemonės) — susisiekite su mumis, kad atnaujintumėte."
+  },
   "account": {
     "title": "Vairuotojo paskyra",
     "create": "Sukurti paskyrą",

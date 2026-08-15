@@ -233,6 +233,11 @@
     "rationaleTitle": "Powiadomienia o terminach",
     "rationaleBody": "Zezwól na powiadomienia, abyśmy mogli przypomnieć Ci przed upływem terminów rejestracji, certyfikatów i innych ważności."
   },
+  "plan": {
+    "title": "Plan",
+    "vehicles": "{{used}}/{{limit}} pojazdów",
+    "limitReached": "Osiągnąłeś limit swojego planu ({{limit}} pojazdów) — skontaktuj się z nami, aby zwiększyć limit."
+  },
   "account": {
     "title": "Konto kierowcy",
     "create": "Utwórz konto",

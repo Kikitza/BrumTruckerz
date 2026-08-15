@@ -233,6 +233,11 @@
     "rationaleTitle": "Notificações de prazos",
     "rationaleBody": "Permita as notificações para que possamos lembrá-lo antes de as matrículas, os certificados e outros prazos expirarem."
   },
+  "plan": {
+    "title": "Plano",
+    "vehicles": "{{used}}/{{limit}} veículos",
+    "limitReached": "Atingiu o limite do seu plano ({{limit}} veículos) — contacte-nos para fazer o upgrade."
+  },
   "account": {
     "title": "Conta do motorista",
     "create": "Criar conta",

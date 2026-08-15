@@ -233,6 +233,11 @@
     "rationaleTitle": "Upozornění na termíny",
     "rationaleBody": "Povolte oznámení, abychom vám mohli připomenout blížící se konec platnosti registrací, certifikátů a dalších termínů."
   },
+  "plan": {
+    "title": "Plán",
+    "vehicles": "{{used}}/{{limit}} vozidel",
+    "limitReached": "Dosáhli jste limitu svého plánu ({{limit}} vozidel) — kontaktujte nás pro navýšení."
+  },
   "account": {
     "title": "Účet řidiče",
     "create": "Vytvořit účet",

@@ -233,6 +233,11 @@
     "rationaleTitle": "Notifications d'échéances",
     "rationaleBody": "Autorisez les notifications afin que nous puissions vous rappeler avant l'expiration des immatriculations, des certificats et des autres échéances."
   },
+  "plan": {
+    "title": "Forfait",
+    "vehicles": "{{used}}/{{limit}} véhicules",
+    "limitReached": "Vous avez atteint la limite de votre forfait ({{limit}} véhicules) — contactez-nous pour une mise à niveau."
+  },
   "account": {
     "title": "Compte du chauffeur",
     "create": "Créer un compte",

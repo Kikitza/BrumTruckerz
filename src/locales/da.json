@@ -233,6 +233,11 @@
     "rationaleTitle": "Notifikationer om frister",
     "rationaleBody": "Tillad notifikationer, så vi kan minde dig om det, før registreringer, attester og andre frister udløber."
   },
+  "plan": {
+    "title": "Plan",
+    "vehicles": "{{used}}/{{limit}} køretøjer",
+    "limitReached": "Du har nået din plangrænse ({{limit}} køretøjer) — kontakt os for at opgradere."
+  },
   "account": {
     "title": "Førerkonto",
     "create": "Opret konto",

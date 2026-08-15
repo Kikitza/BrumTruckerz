@@ -233,6 +233,11 @@
     "rationaleTitle": "Benachrichtigungen zu Fristen",
     "rationaleBody": "Erlauben Sie Benachrichtigungen, damit wir Sie erinnern können, bevor Zulassungen, Zertifikate und andere Fristen ablaufen."
   },
+  "plan": {
+    "title": "Tarif",
+    "vehicles": "{{used}}/{{limit}} Fahrzeuge",
+    "limitReached": "Sie haben Ihr Tariflimit erreicht ({{limit}} Fahrzeuge) — kontaktieren Sie uns für ein Upgrade."
+  },
   "account": {
     "title": "Fahrerkonto",
     "create": "Konto erstellen",

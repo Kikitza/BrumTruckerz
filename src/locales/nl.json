@@ -233,6 +233,11 @@
     "rationaleTitle": "Meldingen voor deadlines",
     "rationaleBody": "Sta meldingen toe zodat we u kunnen herinneren voordat kentekens, certificaten en andere deadlines verlopen."
   },
+  "plan": {
+    "title": "Abonnement",
+    "vehicles": "{{used}}/{{limit}} voertuigen",
+    "limitReached": "Je hebt de limiet van je abonnement bereikt ({{limit}} voertuigen) — neem contact met ons op om te upgraden."
+  },
   "account": {
     "title": "Chauffeursaccount",
     "create": "Account aanmaken",

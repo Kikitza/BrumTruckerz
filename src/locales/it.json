@@ -233,6 +233,11 @@
     "rationaleTitle": "Notifiche delle scadenze",
     "rationaleBody": "Consenti le notifiche così possiamo ricordarti prima che scadano immatricolazioni, certificati e altre scadenze."
   },
+  "plan": {
+    "title": "Piano",
+    "vehicles": "{{used}}/{{limit}} veicoli",
+    "limitReached": "Hai raggiunto il limite del tuo piano ({{limit}} veicoli) — contattaci per l'upgrade."
+  },
   "account": {
     "title": "Account del conducente",
     "create": "Crea account",

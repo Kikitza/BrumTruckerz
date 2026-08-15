@@ -233,6 +233,11 @@
     "rationaleTitle": "Määräaikojen ilmoitukset",
     "rationaleBody": "Salli ilmoitukset, jotta voimme muistuttaa sinua ennen kuin rekisteröinnit, todistukset ja muut määräajat umpeutuvat."
   },
+  "plan": {
+    "title": "Tilaus",
+    "vehicles": "{{used}}/{{limit}} ajoneuvoa",
+    "limitReached": "Olet saavuttanut tilauksesi rajan ({{limit}} ajoneuvoa) — ota yhteyttä meihin päivittääksesi."
+  },
   "account": {
     "title": "Kuljettajan tili",
     "create": "Luo tili",

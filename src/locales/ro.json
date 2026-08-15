@@ -233,6 +233,11 @@
     "rationaleTitle": "Notificări pentru termene",
     "rationaleBody": "Permite notificările ca să te putem anunța înainte de expirarea înmatriculărilor, certificatelor și a altor termene."
   },
+  "plan": {
+    "title": "Plan",
+    "vehicles": "{{used}}/{{limit}} vehicule",
+    "limitReached": "Ai atins limita planului tău ({{limit}} vehicule) — contactează-ne pentru a face upgrade."
+  },
   "account": {
     "title": "Cont șofer",
     "create": "Creează cont",

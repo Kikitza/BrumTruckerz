@@ -233,6 +233,11 @@
     "rationaleTitle": "Termiņu paziņojumi",
     "rationaleBody": "Atļaujiet paziņojumus, lai mēs varētu jums atgādināt, pirms beidzas reģistrāciju, sertifikātu un citu termiņu derīgums."
   },
+  "plan": {
+    "title": "Plāns",
+    "vehicles": "{{used}}/{{limit}} transportlīdzekļi",
+    "limitReached": "Jūs esat sasniedzis sava plāna ierobežojumu ({{limit}} transportlīdzekļi) — sazinieties ar mums, lai to jauninātu."
+  },
   "account": {
     "title": "Vadītāja konts",
     "create": "Izveidot kontu",

@@ -233,6 +233,11 @@
     "rationaleTitle": "Obavještenja o rokovima",
     "rationaleBody": "Dozvolite obavještenja kako bismo vas mogli podsjetiti prije nego što isteknu registracije, certifikati i drugi rokovi."
   },
+  "plan": {
+    "title": "Plan",
+    "vehicles": "{{used}}/{{limit}} vozila",
+    "limitReached": "Dostigli ste limit svog plana ({{limit}} vozila) — kontaktirajte nas za nadogradnju."
+  },
   "account": {
     "title": "Račun vozača",
     "create": "Kreiraj račun",

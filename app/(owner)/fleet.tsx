@@ -25,8 +25,10 @@ import {
   listTrailers, createTrailer, updateTrailer, deleteTrailer,
   listDrivers, createDriver, updateDriver, deleteDriver,
   createDriverAccount, deleteDriverAccount, getDriverEmail,
+  getCompanyPlan, countVehicles,
   type Vehicle, type Trailer, type Driver, type EmploymentType, type DriverCredentials,
 } from "../../src/features/fleet/api";
+import { canAddVehicle, isVehicleLimitError } from "../../src/features/fleet/plan";
 import {
   getDriverMedicalReminder, setDriverMedicalReminder,
   setDateReminder, saveCustomReminders, listSubjectReminders,
@@ -66,11 +68,26 @@ export default function FleetScreen() {
 
   const list = useQuery({ queryKey: ["fleet", section], queryFn: () => listFns[section]() });
 
+  // Paket + iskorišćenost vozila (limit se proverava i u bazi kroz trigger).
+  const planQ = useQuery({ queryKey: ["company-plan"], queryFn: getCompanyPlan });
+  const vehCountQ = useQuery({ queryKey: ["vehicle-count"], queryFn: countVehicles });
+  const limit = planQ.data?.vehicle_limit ?? null;
+  const atVehicleLimit = section === "vehicles" && limit != null && !canAddVehicle(vehCountQ.data ?? 0, limit);
+
   const del = useMutation({
     mutationFn: (id: string) => deleteFns[section](id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["fleet", section] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["fleet", section] });
+      if (section === "vehicles") qc.invalidateQueries({ queryKey: ["vehicle-count"] });
+    },
     onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
   });
+
+  // Dodavanje vozila preko limita: ljubazna poruka umesto forme (bazni trigger je tvrda brana).
+  const onAdd = () => {
+    if (atVehicleLimit && limit != null) { Alert.alert(t("plan.limitReached", { limit })); return; }
+    setModal({ open: true, item: null });
+  };
 
   const confirmDelete = (item: Item) =>
     Alert.alert(t(deleteKey[section]), undefined, [
@@ -106,11 +123,16 @@ export default function FleetScreen() {
       {/* Dodavanje nove stavke u aktivnoj sekciji */}
       <View style={{ paddingHorizontal: 12, paddingBottom: 8 }}>
         <Pressable
-          onPress={() => setModal({ open: true, item: null })}
+          onPress={onAdd}
           style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center" }}
         >
           <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t(addKey[section])}</Text>
         </Pressable>
+        {section === "vehicles" && limit != null && (
+          <Text style={{ color: colors.textMuted, fontSize: 12, textAlign: "center", marginTop: 6 }}>
+            {t("plan.vehicles", { used: vehCountQ.data ?? 0, limit })}
+          </Text>
+        )}
       </View>
 
       {list.isLoading ? (
@@ -140,6 +162,7 @@ export default function FleetScreen() {
         <FleetFormModal
           section={section}
           item={modal.item}
+          vehicleLimit={limit}
           onClose={() => setModal({ open: false, item: null })}
         />
       )}
@@ -203,10 +226,11 @@ function Row({
 
 // ── Modal forma (create + edit) ──
 function FleetFormModal({
-  section, item, onClose,
+  section, item, vehicleLimit, onClose,
 }: {
   section: Section;
   item: Item | null;
+  vehicleLimit: number | null;
   onClose: () => void;
 }) {
   const { colors } = useTheme();
@@ -312,10 +336,16 @@ function FleetFormModal({
       qc.invalidateQueries({ queryKey: ["fleet", section] });
       qc.invalidateQueries({ queryKey: ["reminders"] });
       qc.invalidateQueries({ queryKey: ["subject-reminders", section] });
+      if (section === "vehicles") qc.invalidateQueries({ queryKey: ["vehicle-count"] });
       if (item?.id) qc.invalidateQueries({ queryKey: ["driver-medical", item.id] });
       onClose();
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => {
+      const msg = String((e as Error).message ?? e);
+      // Bazni trigger (limit paketa) -> ljubazna poruka; ostalo -> generička.
+      if (isVehicleLimitError(msg) && vehicleLimit != null) Alert.alert(t("plan.limitReached", { limit: vehicleLimit }));
+      else Alert.alert(t("common.error"), msg);
+    },
   });
 
   const valid =

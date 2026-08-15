@@ -233,6 +233,11 @@
     "rationaleTitle": "Obvestila o rokih",
     "rationaleBody": "Dovolite obvestila, da vas lahko opomnimo pred iztekom registracij, atestov in drugih rokov."
   },
+  "plan": {
+    "title": "Paket",
+    "vehicles": "{{used}}/{{limit}} vozil",
+    "limitReached": "Dosegli ste omejitev svojega paketa ({{limit}} vozil) — obrnite se na nas za nadgradnjo."
+  },
   "account": {
     "title": "Vozniški račun",
     "create": "Ustvari račun",

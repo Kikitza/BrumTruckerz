@@ -234,6 +234,11 @@
     "rationaleTitle": "Obaveštenja o rokovima",
     "rationaleBody": "Dozvolite obaveštenja da vas na vreme podsetimo pre isteka registracija, atesta i drugih rokova."
   },
+  "plan": {
+    "title": "Paket",
+    "vehicles": "{{used}}/{{limit}} vozila",
+    "limitReached": "Dostigli ste limit paketa ({{limit}} vozila) — za veći paket kontaktirajte nas."
+  },
   "account": {
     "title": "Nalog vozača",
     "create": "Napravi nalog",

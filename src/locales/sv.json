@@ -233,6 +233,11 @@
     "rationaleTitle": "Aviseringar om tidsfrister",
     "rationaleBody": "Tillåt aviseringar så att vi kan påminna dig innan registreringar, intyg och andra tidsfrister löper ut."
   },
+  "plan": {
+    "title": "Plan",
+    "vehicles": "{{used}}/{{limit}} fordon",
+    "limitReached": "Du har nått din plangräns ({{limit}} fordon) — kontakta oss för att uppgradera."
+  },
   "account": {
     "title": "Förarkonto",
     "create": "Skapa konto",

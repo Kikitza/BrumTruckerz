@@ -233,6 +233,11 @@
     "rationaleTitle": "Son tarih bildirimleri",
     "rationaleBody": "Ruhsatların, sertifikaların ve diğer son tarihlerin dolmasından önce sizi hatırlatabilmemiz için bildirimlere izin verin."
   },
+  "plan": {
+    "title": "Plan",
+    "vehicles": "{{used}}/{{limit}} araç",
+    "limitReached": "Plan sınırınıza ulaştınız ({{limit}} araç) — yükseltmek için bizimle iletişime geçin."
+  },
   "account": {
     "title": "Sürücü hesabı",
     "create": "Hesap oluştur",
