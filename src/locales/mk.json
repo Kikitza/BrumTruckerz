@@ -5,6 +5,8 @@
     "signIn": "Најави се",
     "email": "Е-пошта",
     "password": "Лозинка",
+    "showPassword": "Прикажи лозинка",
+    "hidePassword": "Сокриј лозинка",
     "sendCode": "Испрати код",
     "code": "6-цифрен код",
     "verify": "Потврди",

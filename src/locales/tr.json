@@ -5,6 +5,8 @@
     "signIn": "Giriş yap",
     "email": "E-posta",
     "password": "Şifre",
+    "showPassword": "Şifreyi göster",
+    "hidePassword": "Şifreyi gizle",
     "sendCode": "Kod gönder",
     "code": "6 haneli kod",
     "verify": "Doğrula",

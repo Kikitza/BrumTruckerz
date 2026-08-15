@@ -5,6 +5,8 @@
     "signIn": "Inloggen",
     "email": "E-mail",
     "password": "Wachtwoord",
+    "showPassword": "Wachtwoord tonen",
+    "hidePassword": "Wachtwoord verbergen",
     "sendCode": "Code verzenden",
     "code": "6-cijferige code",
     "verify": "Verifiëren",

@@ -5,6 +5,8 @@
     "signIn": "Log ind",
     "email": "E-mail",
     "password": "Adgangskode",
+    "showPassword": "Vis adgangskode",
+    "hidePassword": "Skjul adgangskode",
     "sendCode": "Send kode",
     "code": "6-cifret kode",
     "verify": "Bekræft",

@@ -5,6 +5,8 @@
     "signIn": "Přihlásit se",
     "email": "E-mail",
     "password": "Heslo",
+    "showPassword": "Zobrazit heslo",
+    "hidePassword": "Skrýt heslo",
     "sendCode": "Odeslat kód",
     "code": "6místný kód",
     "verify": "Ověřit",

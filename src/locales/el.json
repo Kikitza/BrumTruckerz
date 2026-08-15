@@ -5,6 +5,8 @@
     "signIn": "Σύνδεση",
     "email": "Email",
     "password": "Κωδικός",
+    "showPassword": "Εμφάνιση κωδικού",
+    "hidePassword": "Απόκρυψη κωδικού",
     "sendCode": "Αποστολή κωδικού",
     "code": "6ψήφιος κωδικός",
     "verify": "Επαλήθευση",

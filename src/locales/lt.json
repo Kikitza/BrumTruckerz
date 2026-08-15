@@ -5,6 +5,8 @@
     "signIn": "Prisijungti",
     "email": "El. paštas",
     "password": "Slaptažodis",
+    "showPassword": "Rodyti slaptažodį",
+    "hidePassword": "Slėpti slaptažodį",
     "sendCode": "Siųsti kodą",
     "code": "6 skaitmenų kodas",
     "verify": "Patvirtinti",

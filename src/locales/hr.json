@@ -5,6 +5,8 @@
     "signIn": "Prijava",
     "email": "E-pošta",
     "password": "Lozinka",
+    "showPassword": "Prikaži lozinku",
+    "hidePassword": "Sakrij lozinku",
     "sendCode": "Pošalji kod",
     "code": "6-znamenkasti kod",
     "verify": "Potvrdi",

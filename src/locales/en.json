@@ -3,6 +3,8 @@
     "signIn": "Sign in",
     "email": "Email",
     "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
     "sendCode": "Send code",
     "code": "6-digit code",
     "verify": "Verify",

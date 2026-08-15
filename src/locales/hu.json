@@ -5,6 +5,8 @@
     "signIn": "Bejelentkezés",
     "email": "E-mail",
     "password": "Jelszó",
+    "showPassword": "Jelszó megjelenítése",
+    "hidePassword": "Jelszó elrejtése",
     "sendCode": "Kód küldése",
     "code": "6 jegyű kód",
     "verify": "Ellenőrzés",

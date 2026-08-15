@@ -5,6 +5,8 @@
     "signIn": "Autentificare",
     "email": "E-mail",
     "password": "Parolă",
+    "showPassword": "Arată parola",
+    "hidePassword": "Ascunde parola",
     "sendCode": "Trimite codul",
     "code": "Cod din 6 cifre",
     "verify": "Verifică",

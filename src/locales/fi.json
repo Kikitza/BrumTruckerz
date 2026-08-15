@@ -5,6 +5,8 @@
     "signIn": "Kirjaudu sisään",
     "email": "Sähköposti",
     "password": "Salasana",
+    "showPassword": "Näytä salasana",
+    "hidePassword": "Piilota salasana",
     "sendCode": "Lähetä koodi",
     "code": "6-numeroinen koodi",
     "verify": "Vahvista",

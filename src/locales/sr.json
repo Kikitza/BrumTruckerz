@@ -3,6 +3,8 @@
     "signIn": "Prijava",
     "email": "Imejl",
     "password": "Lozinka",
+    "showPassword": "Prikaži lozinku",
+    "hidePassword": "Sakrij lozinku",
     "sendCode": "Pošalji kod",
     "code": "6-cifreni kod",
     "verify": "Potvrdi",

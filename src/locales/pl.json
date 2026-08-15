@@ -5,6 +5,8 @@
     "signIn": "Zaloguj się",
     "email": "E-mail",
     "password": "Hasło",
+    "showPassword": "Pokaż hasło",
+    "hidePassword": "Ukryj hasło",
     "sendCode": "Wyślij kod",
     "code": "6-cyfrowy kod",
     "verify": "Zweryfikuj",

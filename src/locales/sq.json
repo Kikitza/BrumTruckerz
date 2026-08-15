@@ -5,6 +5,8 @@
     "signIn": "Hyr",
     "email": "Email",
     "password": "Fjalëkalimi",
+    "showPassword": "Shfaq fjalëkalimin",
+    "hidePassword": "Fshih fjalëkalimin",
     "sendCode": "Dërgo kodin",
     "code": "Kodi 6-shifror",
     "verify": "Verifiko",

@@ -5,6 +5,8 @@
     "signIn": "Pieteikties",
     "email": "E-pasts",
     "password": "Parole",
+    "showPassword": "Rādīt paroli",
+    "hidePassword": "Slēpt paroli",
     "sendCode": "Nosūtīt kodu",
     "code": "6 ciparu kods",
     "verify": "Apstiprināt",

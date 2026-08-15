@@ -5,6 +5,8 @@
     "signIn": "Вход",
     "email": "Имейл",
     "password": "Парола",
+    "showPassword": "Покажи паролата",
+    "hidePassword": "Скрий паролата",
     "sendCode": "Изпрати код",
     "code": "6-цифрен код",
     "verify": "Потвърди",

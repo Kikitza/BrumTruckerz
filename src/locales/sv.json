@@ -5,6 +5,8 @@
     "signIn": "Logga in",
     "email": "E-post",
     "password": "Lösenord",
+    "showPassword": "Visa lösenord",
+    "hidePassword": "Dölj lösenord",
     "sendCode": "Skicka kod",
     "code": "6-siffrig kod",
     "verify": "Verifiera",

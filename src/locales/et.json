@@ -5,6 +5,8 @@
     "signIn": "Logi sisse",
     "email": "E-post",
     "password": "Parool",
+    "showPassword": "Näita parooli",
+    "hidePassword": "Peida parool",
     "sendCode": "Saada kood",
     "code": "6-kohaline kood",
     "verify": "Kinnita",
