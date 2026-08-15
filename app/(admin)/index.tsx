@@ -9,6 +9,7 @@ import { fmtDate } from "../../src/lib/format";
 import { adminListCompanies, type AdminCompany } from "../../src/features/admin/api";
 import { isPastDue, limitState, platformTotals } from "../../src/features/admin/adminMath";
 import { CompanyDetailModal } from "../../src/features/admin/CompanyDetailModal";
+import { useSignOut } from "../../src/features/auth/signOut";
 
 const todayYMD = () => {
   const d = new Date();
@@ -18,6 +19,7 @@ const todayYMD = () => {
 export default function AdminHome() {
   const { colors } = useTheme();
   const { t } = useTranslation();
+  const signOut = useSignOut();
   const [selected, setSelected] = useState<AdminCompany | null>(null);
 
   const q = useQuery({ queryKey: ["admin-companies"], queryFn: adminListCompanies });
@@ -45,6 +47,14 @@ export default function AdminHome() {
           renderItem={({ item }) => (
             <CompanyRow company={item} today={today} colors={colors} onPress={() => setSelected(item)} />
           )}
+          ListFooterComponent={
+            <Pressable
+              onPress={signOut}
+              style={{ margin: 16, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16, alignItems: "center" }}
+            >
+              <Text style={{ color: colors.danger, fontWeight: "600" }}>{t("settings.signOut")}</Text>
+            </Pressable>
+          }
         />
       )}
 
