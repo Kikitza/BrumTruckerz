@@ -35,7 +35,9 @@
       "border": "Granica",
       "driving": "Vožnja",
       "rest": "Pauza",
-      "other": "Ostalo"
+      "other": "Ostalo",
+      "departure": "Polazak",
+      "stop_arrival": "Dolazak"
     },
     "payMode": {
       "per_diem": "Dnevnice",
@@ -97,6 +99,14 @@
       "next": "Dalje",
       "back": "Nazad",
       "stepOf": "Korak {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometraža",
+      "current": "Trenutna kilometraža (km)",
+      "departure": "Polazak",
+      "arrived": "Stigao",
+      "border": "Granica",
+      "needKm": "Unesite kilometražu"
     }
   },
   "expense": {

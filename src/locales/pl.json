@@ -37,7 +37,9 @@
       "border": "Granica",
       "driving": "Jazda",
       "rest": "Odpoczynek",
-      "other": "Inne"
+      "other": "Inne",
+      "departure": "Wyjazd",
+      "stop_arrival": "Przyjazd"
     },
     "payMode": {
       "per_diem": "Dieta dzienna",
@@ -98,6 +100,14 @@
       "next": "Dalej",
       "back": "Wstecz",
       "stepOf": "Krok {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Licznik",
+      "current": "Aktualny stan licznika (km)",
+      "departure": "Wyjazd",
+      "arrived": "Przyjazd",
+      "border": "Granica",
+      "needKm": "Wprowadź stan licznika"
     }
   },
   "expense": {

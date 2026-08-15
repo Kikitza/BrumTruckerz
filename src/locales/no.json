@@ -37,7 +37,9 @@
       "border": "Grense",
       "driving": "Kjøring",
       "rest": "Hvile",
-      "other": "Annet"
+      "other": "Annet",
+      "departure": "Avreise",
+      "stop_arrival": "Ankomst"
     },
     "payMode": {
       "per_diem": "Dagpenger",
@@ -98,6 +100,14 @@
       "next": "Neste",
       "back": "Tilbake",
       "stepOf": "Steg {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometerteller",
+      "current": "Nåværende kilometerstand (km)",
+      "departure": "Avreise",
+      "arrived": "Ankommet",
+      "border": "Grense",
+      "needKm": "Angi kilometerstanden"
     }
   },
   "expense": {

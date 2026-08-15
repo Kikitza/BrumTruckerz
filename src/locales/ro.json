@@ -37,7 +37,9 @@
       "border": "Vamă",
       "driving": "Condus",
       "rest": "Pauză",
-      "other": "Altele"
+      "other": "Altele",
+      "departure": "Plecare",
+      "stop_arrival": "Sosire"
     },
     "payMode": {
       "per_diem": "Diurnă",
@@ -98,6 +100,14 @@
       "next": "Înainte",
       "back": "Înapoi",
       "stepOf": "Pasul {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometraj",
+      "current": "Kilometraj curent (km)",
+      "departure": "Plecare",
+      "arrived": "Sosire",
+      "border": "Frontieră",
+      "needKm": "Introduceți kilometrajul"
     }
   },
   "expense": {

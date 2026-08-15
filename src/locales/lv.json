@@ -37,7 +37,9 @@
       "border": "Robeža",
       "driving": "Braukšana",
       "rest": "Atpūta",
-      "other": "Cits"
+      "other": "Cits",
+      "departure": "Izbraukšana",
+      "stop_arrival": "Ierašanās"
     },
     "payMode": {
       "per_diem": "Dienas nauda",
@@ -98,6 +100,14 @@
       "next": "Tālāk",
       "back": "Atpakaļ",
       "stepOf": "Solis {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Odometrs",
+      "current": "Pašreizējais odometrs (km)",
+      "departure": "Izbraukšana",
+      "arrived": "Ieradies",
+      "border": "Robeža",
+      "needKm": "Ievadiet odometra rādījumu"
     }
   },
   "expense": {

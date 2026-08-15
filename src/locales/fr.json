@@ -37,7 +37,9 @@
       "border": "Frontière",
       "driving": "En route",
       "rest": "Repos",
-      "other": "Autre"
+      "other": "Autre",
+      "departure": "Départ",
+      "stop_arrival": "Arrivée"
     },
     "payMode": {
       "per_diem": "Indemnité journalière",
@@ -98,6 +100,14 @@
       "next": "Suivant",
       "back": "Retour",
       "stepOf": "Étape {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilométrage",
+      "current": "Kilométrage actuel (km)",
+      "departure": "Départ",
+      "arrived": "Arrivé",
+      "border": "Frontière",
+      "needKm": "Saisir le kilométrage"
     }
   },
   "expense": {

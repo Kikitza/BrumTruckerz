@@ -37,7 +37,9 @@
       "border": "Hranice",
       "driving": "Jízda",
       "rest": "Odpočinek",
-      "other": "Jiné"
+      "other": "Jiné",
+      "departure": "Odjezd",
+      "stop_arrival": "Příjezd"
     },
     "payMode": {
       "per_diem": "Diety",
@@ -98,6 +100,14 @@
       "next": "Další",
       "back": "Zpět",
       "stepOf": "Krok {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Tachometr",
+      "current": "Aktuální stav tachometru (km)",
+      "departure": "Odjezd",
+      "arrived": "Příjezd",
+      "border": "Hranice",
+      "needKm": "Zadejte stav tachometru"
     }
   },
   "expense": {

@@ -85,9 +85,13 @@ function AddStopButton({ label, onPress, colors }: { label: string; onPress: () 
 }
 
 // ── Prikaz (read-only, uređen redosled) ──
+// arrivals: stop_id -> km (✓ + km uz stigle stanice); prazno = bez oznaka.
 export function RouteView({
-  origin, destination, stops, colors,
-}: { origin: string | null; destination: string | null; stops: TripStop[]; colors: Palette }) {
+  origin, destination, stops, colors, arrivals,
+}: {
+  origin: string | null; destination: string | null; stops: TripStop[];
+  colors: Palette; arrivals?: Record<string, number>;
+}) {
   const { t } = useTranslation();
 
   // Stare ture bez stanica: origin → destination kao do sada.
@@ -99,19 +103,23 @@ export function RouteView({
     <View style={{ gap: 6 }}>
       {origin ? <RouteRow place={origin} label={t("trip.stops.departure")} accent={colors.textMuted} colors={colors} /> : null}
       {stops.map((s) => (
-        <RouteRow key={s.id} place={s.place} note={s.note} label={t(`trip.stops.${s.kind}`)} accent={kindAccent(s.kind, colors)} colors={colors} />
+        <RouteRow key={s.id} place={s.place} note={s.note} label={t(`trip.stops.${s.kind}`)}
+          accent={kindAccent(s.kind, colors)} colors={colors} arrivedKm={arrivals?.[s.id]} />
       ))}
     </View>
   );
 }
 
 function RouteRow({
-  place, note, label, accent, colors,
-}: { place: string; note?: string | null; label: string; accent: string; colors: Palette }) {
+  place, note, label, accent, colors, arrivedKm,
+}: { place: string; note?: string | null; label: string; accent: string; colors: Palette; arrivedKm?: number }) {
   return (
     <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
       <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: accent }} />
       <Text style={{ flex: 1, color: colors.text }}>{place}{note ? ` · ${note}` : ""}</Text>
+      {arrivedKm != null && (
+        <Text style={{ color: colors.primary, fontSize: 12, fontWeight: "700" }}>✓ {arrivedKm} km</Text>
+      )}
       <Text style={{ color: colors.textMuted, fontSize: 12 }}>{label}</Text>
     </View>
   );

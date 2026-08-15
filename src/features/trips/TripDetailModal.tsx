@@ -15,6 +15,7 @@ import {
   type EventType, type DriverPayMode,
 } from "./api";
 import { RouteView, StopsEditor, stopsToDrafts, type StopDraft } from "./stops";
+import { arrivalsByStop } from "./eventsMath";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
 import { listTripExpenses, ownerAddExpense, ownerDeleteExpense } from "../expenses/api";
 import { ExpenseForm, type ExpenseFormValues } from "../expenses/ExpenseForm";
@@ -206,6 +207,11 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
   const baseCurrency = expenseRows[0]?.base_currency ?? "EUR";
   const expensesTotal = expenseRows.reduce((s, e) => s + (e.base_amount ?? 0), 0);
 
+  // Km po stanici (✓ + km u ruti) + brzo traženje imena stanice u Dnevniku.
+  const eventRows = events.data ?? [];
+  const arrivals = arrivalsByStop(eventRows.map((e) => ({ type: e.type, km: e.km, stop_id: e.stop_id })));
+  const stopById = new Map((stops.data ?? []).map((s) => [s.id, s]));
+
   const d = trip.data;
 
   return (
@@ -252,7 +258,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
                   </View>
                 ) : (
                   <View style={{ gap: 8 }}>
-                    <RouteView origin={d.origin} destination={d.destination} stops={stops.data ?? []} colors={colors} />
+                    <RouteView origin={d.origin} destination={d.destination} stops={stops.data ?? []} colors={colors} arrivals={arrivals} />
                     {assignEditable && (
                       <Pressable onPress={startRouteEdit} hitSlop={8} style={{ alignSelf: "flex-start" }}>
                         <Text style={{ color: colors.primary, fontWeight: "600" }}>{t("common.edit")}</Text>
@@ -383,15 +389,20 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
             {/* Dnevnik događaja */}
             <Collapsible title={t("trip.section.events")} colors={colors}>
               <SectionBody>
-                {(events.data ?? []).length === 0 ? (
+                {eventRows.length === 0 ? (
                   <Text style={{ color: colors.textMuted }}>{t("trip.noEvents")}</Text>
                 ) : (
-                  (events.data ?? []).map((ev) => (
+                  eventRows.map((ev) => (
                     <View key={ev.id} style={{ padding: 12, borderRadius: 8, backgroundColor: colors.bg, borderWidth: 1, borderColor: colors.border }}>
                       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <Text style={{ color: colors.text, fontWeight: "600" }}>{t(`trip.events.${ev.type}`)}</Text>
                         <Text style={{ color: colors.textMuted, fontSize: 12 }}>{fmtDateTime(ev.occurred_at)}</Text>
                       </View>
+                      {ev.km != null ? (
+                        <Text style={{ color: colors.text, marginTop: 2, fontSize: 12 }}>
+                          {ev.km} km{ev.stop_id && stopById.get(ev.stop_id) ? ` · ${stopById.get(ev.stop_id)!.place}` : ""}
+                        </Text>
+                      ) : null}
                       {ev.location ? <Text style={{ color: colors.textMuted, marginTop: 2 }}>{ev.location}</Text> : null}
                       {ev.note ? <Text style={{ color: colors.textMuted, marginTop: 2, fontSize: 12 }}>{ev.note}</Text> : null}
                     </View>

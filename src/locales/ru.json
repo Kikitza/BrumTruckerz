@@ -37,7 +37,9 @@
       "border": "Граница",
       "driving": "В пути",
       "rest": "Отдых",
-      "other": "Другое"
+      "other": "Другое",
+      "departure": "Отправление",
+      "stop_arrival": "Прибытие"
     },
     "payMode": {
       "per_diem": "Суточные",
@@ -98,6 +100,14 @@
       "next": "Далее",
       "back": "Назад",
       "stepOf": "Шаг {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Одометр",
+      "current": "Текущий пробег (km)",
+      "departure": "Отправление",
+      "arrived": "Прибытие",
+      "border": "Граница",
+      "needKm": "Введите пробег"
     }
   },
   "expense": {

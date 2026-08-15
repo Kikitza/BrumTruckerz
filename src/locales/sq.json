@@ -37,7 +37,9 @@
       "border": "Kufi",
       "driving": "Në rrugë",
       "rest": "Pushim",
-      "other": "Tjetër"
+      "other": "Tjetër",
+      "departure": "Nisja",
+      "stop_arrival": "Mbërritja"
     },
     "payMode": {
       "per_diem": "Dietë ditore",
@@ -98,6 +100,14 @@
       "next": "Tjetër",
       "back": "Prapa",
       "stepOf": "Hapi {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometrazhi",
+      "current": "Kilometrazhi aktual (km)",
+      "departure": "Nisja",
+      "arrived": "Mbërritja",
+      "border": "Kufiri",
+      "needKm": "Shënoni kilometrazhin"
     }
   },
   "expense": {

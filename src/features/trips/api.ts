@@ -4,6 +4,7 @@
 // Vlasnik radi ONLINE (bez offline reda) — direktan pristup pod RLS-om.
 import { supabase } from "../../lib/supabase";
 import { enqueue } from "../../lib/offline/queue";
+import { uuidv4 } from "../../lib/uuid";
 import { destinationFromStops, reconcileStops } from "./stopsMath";
 import type { TripStopKind, TripStopInput, StopDraftLike } from "./stopsMath";
 
@@ -13,7 +14,9 @@ export type { TripStopKind, TripStopInput };
 
 // ── Tipovi (šema: 0001_init.sql) ──
 export type TripStatus = "draft" | "loading" | "driving" | "border" | "unloading" | "finished";
-export type EventType = "load" | "unload" | "border" | "driving" | "rest" | "other";
+export type EventType = "load" | "unload" | "border" | "driving" | "rest" | "other" | "departure" | "stop_arrival";
+// Događaji sa kilometražom (kriška B): polazak / dolazak na stanicu / granica.
+export type KmEventType = "departure" | "stop_arrival" | "border";
 export type DriverPayMode = "per_diem" | "percentage" | "fixed";
 
 export type Trip = {
@@ -54,6 +57,8 @@ export type TripEvent = {
   trip_id: string;
   type: EventType;
   occurred_at: string;
+  km: number | null;        // očitana kilometraža (departure/stop_arrival/border)
+  stop_id: string | null;   // veza ka stanici (stop_arrival)
   location: string | null;
   note: string | null;
   created_at: string;
@@ -279,15 +284,21 @@ export async function ownerUpdateTripAssignment(tripId: string, input: TripAssig
   return data as Trip;
 }
 
-export async function ownerListTripEvents(tripId: string): Promise<TripEvent[]> {
+const TRIP_EVENT_COLS = "id, company_id, trip_id, type, occurred_at, km, stop_id, location, note, created_at";
+
+async function selectTripEvents(tripId: string): Promise<TripEvent[]> {
   const { data, error } = await supabase
     .from("trip_events")
-    .select("id, company_id, trip_id, type, occurred_at, location, note, created_at")
+    .select(TRIP_EVENT_COLS)
     .eq("trip_id", tripId)
     .order("occurred_at", { ascending: true });
   if (error) throw error;
   return (data ?? []) as TripEvent[];
 }
+
+// Owner i vozač koriste isti upit — RLS razlučuje pristup (events_select_driver, 0009).
+export const ownerListTripEvents = selectTripEvents;
+export const driverListTripEvents = selectTripEvents;
 
 export async function ownerAddTripEvent(input: AddEventInput): Promise<void> {
   const company_id = await currentCompanyId();
@@ -330,6 +341,25 @@ export async function driverAddEvent(p: {
   occurred_at?: string; location?: string; note?: string;
 }) {
   await enqueue("trip_event.insert", { occurred_at: new Date().toISOString(), ...p });
+}
+
+// Događaj sa kilometražom (polazak/stanica/granica) — kroz offline red, klijentski
+// uuid (idempotentno). 'departure' šalje i start_odometer (RPC upiše na turi).
+export async function driverAddKmEvent(p: {
+  company_id: string; trip_id: string; type: KmEventType;
+  km: number; stop_id?: string | null; note?: string | null;
+}) {
+  await enqueue("trip_event.km", {
+    id: uuidv4(),
+    occurred_at: new Date().toISOString(),
+    company_id: p.company_id,
+    trip_id: p.trip_id,
+    type: p.type,
+    km: p.km,
+    stop_id: p.stop_id ?? null,
+    note: p.note ?? null,
+    ...(p.type === "departure" ? { start_odometer: p.km } : {}),
+  });
 }
 
 export async function driverCorrectEvent(p: {

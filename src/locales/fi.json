@@ -37,7 +37,9 @@
       "border": "Raja",
       "driving": "Ajo",
       "rest": "Tauko",
-      "other": "Muu"
+      "other": "Muu",
+      "departure": "Lähtö",
+      "stop_arrival": "Saapuminen"
     },
     "payMode": {
       "per_diem": "Päiväraha",
@@ -98,6 +100,14 @@
       "next": "Seuraava",
       "back": "Takaisin",
       "stepOf": "Vaihe {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Matkamittari",
+      "current": "Nykyinen mittarilukema (km)",
+      "departure": "Lähtö",
+      "arrived": "Saapuminen",
+      "border": "Raja",
+      "needKm": "Syötä mittarilukema"
     }
   },
   "expense": {

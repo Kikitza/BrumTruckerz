@@ -35,7 +35,9 @@
       "border": "Border",
       "driving": "Driving",
       "rest": "Rest",
-      "other": "Other"
+      "other": "Other",
+      "departure": "Departure",
+      "stop_arrival": "Arrival"
     },
     "payMode": {
       "per_diem": "Per diem",
@@ -96,6 +98,14 @@
       "next": "Next",
       "back": "Back",
       "stepOf": "Step {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Odometer",
+      "current": "Current odometer (km)",
+      "departure": "Departure",
+      "arrived": "Arrived",
+      "border": "Border",
+      "needKm": "Enter the odometer"
     }
   },
   "expense": {

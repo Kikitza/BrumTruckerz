@@ -37,7 +37,9 @@
       "border": "Sınır",
       "driving": "Yolda",
       "rest": "Mola",
-      "other": "Diğer"
+      "other": "Diğer",
+      "departure": "Kalkış",
+      "stop_arrival": "Varış"
     },
     "payMode": {
       "per_diem": "Günlük harcırah",
@@ -98,6 +100,14 @@
       "next": "İleri",
       "back": "Geri",
       "stepOf": "Adım {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometre sayacı",
+      "current": "Güncel kilometre (km)",
+      "departure": "Kalkış",
+      "arrived": "Varış",
+      "border": "Sınır",
+      "needKm": "Kilometreyi girin"
     }
   },
   "expense": {

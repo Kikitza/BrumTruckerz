@@ -37,7 +37,9 @@
       "border": "Gräns",
       "driving": "Körning",
       "rest": "Vila",
-      "other": "Övrigt"
+      "other": "Övrigt",
+      "departure": "Avgång",
+      "stop_arrival": "Ankomst"
     },
     "payMode": {
       "per_diem": "Dagtraktamente",
@@ -98,6 +100,14 @@
       "next": "Nästa",
       "back": "Tillbaka",
       "stepOf": "Steg {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Vägmätare",
+      "current": "Nuvarande vägmätarställning (km)",
+      "departure": "Avgång",
+      "arrived": "Ankomst",
+      "border": "Gräns",
+      "needKm": "Ange vägmätarställningen"
     }
   },
   "expense": {

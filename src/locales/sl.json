@@ -37,7 +37,9 @@
       "border": "Meja",
       "driving": "Vožnja",
       "rest": "Počitek",
-      "other": "Drugo"
+      "other": "Drugo",
+      "departure": "Odhod",
+      "stop_arrival": "Prihod"
     },
     "payMode": {
       "per_diem": "Dnevnica",
@@ -98,6 +100,14 @@
       "next": "Naprej",
       "back": "Nazaj",
       "stepOf": "Korak {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometrina",
+      "current": "Trenutna kilometrina (km)",
+      "departure": "Odhod",
+      "arrived": "Prihod",
+      "border": "Meja",
+      "needKm": "Vnesite kilometrino"
     }
   },
   "expense": {

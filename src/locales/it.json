@@ -37,7 +37,9 @@
       "border": "Confine",
       "driving": "In marcia",
       "rest": "Riposo",
-      "other": "Altro"
+      "other": "Altro",
+      "departure": "Partenza",
+      "stop_arrival": "Arrivo"
     },
     "payMode": {
       "per_diem": "Diaria",
@@ -98,6 +100,14 @@
       "next": "Avanti",
       "back": "Indietro",
       "stepOf": "Passo {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Contachilometri",
+      "current": "Contachilometri attuale (km)",
+      "departure": "Partenza",
+      "arrived": "Arrivo",
+      "border": "Confine",
+      "needKm": "Inserire il contachilometri"
     }
   },
   "expense": {

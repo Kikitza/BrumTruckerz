@@ -37,7 +37,9 @@
       "border": "Siena",
       "driving": "Vairavimas",
       "rest": "Poilsis",
-      "other": "Kita"
+      "other": "Kita",
+      "departure": "Išvykimas",
+      "stop_arrival": "Atvykimas"
     },
     "payMode": {
       "per_diem": "Dienpinigiai",
@@ -98,6 +100,14 @@
       "next": "Toliau",
       "back": "Atgal",
       "stepOf": "Žingsnis {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Odometras",
+      "current": "Dabartinė rida (km)",
+      "departure": "Išvykimas",
+      "arrived": "Atvykta",
+      "border": "Siena",
+      "needKm": "Įveskite ridą"
     }
   },
   "expense": {

@@ -37,7 +37,9 @@
       "border": "Határ",
       "driving": "Vezetés",
       "rest": "Pihenő",
-      "other": "Egyéb"
+      "other": "Egyéb",
+      "departure": "Indulás",
+      "stop_arrival": "Érkezés"
     },
     "payMode": {
       "per_diem": "Napidíj",
@@ -98,6 +100,14 @@
       "next": "Tovább",
       "back": "Vissza",
       "stepOf": "Lépés {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilométeróra",
+      "current": "Aktuális kilométeróra-állás (km)",
+      "departure": "Indulás",
+      "arrived": "Érkezés",
+      "border": "Határ",
+      "needKm": "Add meg a kilométeróra-állást"
     }
   },
   "expense": {

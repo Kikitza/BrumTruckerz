@@ -27,6 +27,37 @@ export function registerAllHandlers() {
     if (error) throw error;
   });
 
+  // Događaj sa KILOMETRAŽOM (polazak/stanica/granica). Klijentski uuid => idempotentno
+  // (retry = pk konflikt = uspeh). Za 'departure' se dodatno upiše/potvrdi start_odometer
+  // na turi kroz RPC (vozač ne dira trips direktno) — event je istina.
+  registerHandler("trip_event.km", async (p: {
+    id: string; company_id: string; trip_id: string;
+    type: "departure" | "stop_arrival" | "border";
+    km: number; stop_id?: string | null; occurred_at: string;
+    location?: string | null; note?: string | null; start_odometer?: number;
+  }) => {
+    const { error } = await supabase.from("trip_events").insert({
+      id: p.id,
+      company_id: p.company_id,
+      trip_id: p.trip_id,
+      type: p.type,
+      occurred_at: p.occurred_at,
+      km: p.km,
+      stop_id: p.stop_id ?? null,
+      location: p.location ?? null,
+      note: p.note ?? null,
+    });
+    if (error && error.code !== DUP_PK) throw error;
+
+    if (p.start_odometer != null) {
+      const { error: e2 } = await supabase.rpc("driver_update_trip_progress", {
+        p_trip_id: p.trip_id,
+        p_start_odometer: p.start_odometer,
+      });
+      if (e2) throw e2;
+    }
+  });
+
   // Ispravka događaja — ISKLJUČIVO kroz RPC (append-only, istorija ostaje)
   registerHandler("trip_event.correct", async (p: {
     event_id: string; type?: string; occurred_at?: string;

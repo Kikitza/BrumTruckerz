@@ -37,7 +37,9 @@
       "border": "Grenze",
       "driving": "Fahrt",
       "rest": "Pause",
-      "other": "Sonstiges"
+      "other": "Sonstiges",
+      "departure": "Abfahrt",
+      "stop_arrival": "Ankunft"
     },
     "payMode": {
       "per_diem": "Tagegeld",
@@ -98,6 +100,14 @@
       "next": "Weiter",
       "back": "Zurück",
       "stepOf": "Schritt {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometerstand",
+      "current": "Aktueller Kilometerstand (km)",
+      "departure": "Abfahrt",
+      "arrived": "Angekommen",
+      "border": "Grenze",
+      "needKm": "Kilometerstand eingeben"
     }
   },
   "expense": {

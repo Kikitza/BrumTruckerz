@@ -37,7 +37,9 @@
       "border": "Кордон",
       "driving": "У дорозі",
       "rest": "Відпочинок",
-      "other": "Інше"
+      "other": "Інше",
+      "departure": "Відправлення",
+      "stop_arrival": "Прибуття"
     },
     "payMode": {
       "per_diem": "Добові",
@@ -98,6 +100,14 @@
       "next": "Далі",
       "back": "Назад",
       "stepOf": "Крок {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Одометр",
+      "current": "Поточний пробіг (km)",
+      "departure": "Відправлення",
+      "arrived": "Прибув",
+      "border": "Кордон",
+      "needKm": "Введіть показник одометра"
     }
   },
   "expense": {

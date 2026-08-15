@@ -37,7 +37,9 @@
       "border": "Grens",
       "driving": "Onderweg",
       "rest": "Rust",
-      "other": "Overig"
+      "other": "Overig",
+      "departure": "Vertrek",
+      "stop_arrival": "Aankomst"
     },
     "payMode": {
       "per_diem": "Dagvergoeding",
@@ -98,6 +100,14 @@
       "next": "Volgende",
       "back": "Terug",
       "stepOf": "Stap {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometerstand",
+      "current": "Huidige kilometerstand (km)",
+      "departure": "Vertrek",
+      "arrived": "Aangekomen",
+      "border": "Grens",
+      "needKm": "Voer de kilometerstand in"
     }
   },
   "expense": {

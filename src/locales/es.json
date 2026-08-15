@@ -37,7 +37,9 @@
       "border": "Frontera",
       "driving": "En ruta",
       "rest": "Descanso",
-      "other": "Otro"
+      "other": "Otro",
+      "departure": "Salida",
+      "stop_arrival": "Llegada"
     },
     "payMode": {
       "per_diem": "Dieta",
@@ -98,6 +100,14 @@
       "next": "Siguiente",
       "back": "Atrás",
       "stepOf": "Paso {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Cuentakilómetros",
+      "current": "Cuentakilómetros actual (km)",
+      "departure": "Salida",
+      "arrived": "Llegada",
+      "border": "Frontera",
+      "needKm": "Introduzca el cuentakilómetros"
     }
   },
   "expense": {

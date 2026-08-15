@@ -37,7 +37,9 @@
       "border": "Граница",
       "driving": "Шофиране",
       "rest": "Почивка",
-      "other": "Друго"
+      "other": "Друго",
+      "departure": "Тръгване",
+      "stop_arrival": "Пристигане"
     },
     "payMode": {
       "per_diem": "Дневни",
@@ -98,6 +100,14 @@
       "next": "Напред",
       "back": "Назад",
       "stepOf": "Стъпка {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Километраж",
+      "current": "Текущ километраж (км)",
+      "departure": "Тръгване",
+      "arrived": "Пристигане",
+      "border": "Граница",
+      "needKm": "Въведете километража"
     }
   },
   "expense": {

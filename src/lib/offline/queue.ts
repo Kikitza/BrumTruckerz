@@ -14,6 +14,7 @@ import NetInfo from "@react-native-community/netinfo";
 
 export type MutationKind =
   | "trip_event.insert"
+  | "trip_event.km"
   | "trip_event.correct"
   | "trip.progress"
   | "expense.insert"

@@ -1,11 +1,16 @@
 // Aktivna tura (vozač): status dugmad + troškovi -> SVE kroz offline red (radi bez mreže).
 // Vozač SAMO dodaje troškove (izmenu/brisanje radi vlasnik) — svesna odluka za MVP.
 // Pristup bazi kroz feature api sloj; boje iz tokena; stringovi kroz t().
+import { useState } from "react";
 import { View, Text, Pressable, ScrollView, Alert } from "react-native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { driverListTrips, driverAddEvent, driverProgress, listTripStops } from "../../src/features/trips/api";
+import {
+  driverListTrips, driverAddEvent, driverProgress, driverAddKmEvent, driverListTripEvents,
+  listTripStops, type KmEventType,
+} from "../../src/features/trips/api";
 import { RouteView } from "../../src/features/trips/stops";
+import { departureKm, arrivalsByStop, type KmEventLike } from "../../src/features/trips/eventsMath";
 import {
   listTripExpenses, listPendingExpenses, addExpense, getCompanyBaseCurrency,
 } from "../../src/features/expenses/api";
@@ -13,8 +18,10 @@ import { ExpenseForm, type ExpenseFormValues } from "../../src/features/expenses
 import { AttachmentsSection } from "../../src/features/attachments/AttachmentsSection";
 import { expenseAttachmentKind } from "../../src/features/attachments/api";
 import { useSignOut } from "../../src/features/auth/signOut";
-import { pendingCount } from "../../src/lib/offline/queue";
+import { pendingCount, listPending } from "../../src/lib/offline/queue";
 import { useTheme, type Palette } from "../../src/lib/theme";
+import { Field } from "../../src/components/form";
+import { toInt } from "../../src/lib/num";
 import { fmtDate, fmtMoney } from "../../src/lib/format";
 
 const STATUSES = ["loading", "driving", "border", "unloading", "finished"] as const;
@@ -31,12 +38,6 @@ export default function DriverHome() {
   const signOut = useSignOut();
   const { data } = useQuery({ queryKey: ["driver-trips"], queryFn: driverListTrips });
   const active = data?.find((x: any) => x.status !== "finished");
-  // Stanice ture (read-only za vozača; RLS: SELECT samo za svoje ture). km unosi stižu kasnije.
-  const stopsQ = useQuery({
-    queryKey: ["driver-trip-stops", active?.id],
-    queryFn: () => listTripStops(active!.id),
-    enabled: !!active,
-  });
 
   const setStatus = async (s: Status) => {
     if (!active) return;
@@ -67,11 +68,7 @@ export default function DriverHome() {
         <Text style={{ color: colors.textMuted }}>{String(t(`trip.status.${active.status}`, active.status))}</Text>
       </View>
 
-      {(stopsQ.data?.length ?? 0) > 0 && (
-        <View style={{ padding: 12, borderRadius: 10, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-          <RouteView origin={null} destination={null} stops={stopsQ.data ?? []} colors={colors} />
-        </View>
-      )}
+      <DriverRoute active={active} colors={colors} />
 
       <PendingBanner colors={colors} />
 
@@ -139,6 +136,95 @@ function PendingBanner({ colors }: { colors: Palette }) {
 // Naslov sekcije (isti stil na vozačevom ekranu).
 function SectionLabel({ text, colors }: { text: string; colors: Palette }) {
   return <Text style={{ color: colors.textMuted, fontSize: 13, fontWeight: "700", textTransform: "uppercase" }}>{text}</Text>;
+}
+
+// Ruta + kilometraža vozača: ✓/km po stanici, „Polazak" (jednom), „Stigao" po stanici,
+// „Granica" (više puta). Svi unosi kroz OFFLINE red (idempotentno, klijentski uuid);
+// optimistički prikaz spaja sinhronizovane i pending događaje (arrivals/depKm).
+function DriverRoute({ active, colors }: { active: any; colors: Palette }) {
+  const { t } = useTranslation();
+  const qc = useQueryClient();
+  const [km, setKm] = useState("");
+  const [note, setNote] = useState("");
+
+  const stopsQ = useQuery({ queryKey: ["driver-trip-stops", active.id], queryFn: () => listTripStops(active.id) });
+  const eventsQ = useQuery({ queryKey: ["driver-events", active.id], queryFn: () => driverListTripEvents(active.id) });
+  const pendingQ = useQuery({
+    queryKey: ["driver-km-pending", active.id],
+    queryFn: () => listPending("trip_event.km"),
+    refetchInterval: (q) => ((q.state.data?.length ?? 0) > 0 ? 3000 : false),
+  });
+
+  const stops = stopsQ.data ?? [];
+  const merged: KmEventLike[] = [
+    ...(eventsQ.data ?? []).map((e) => ({ type: e.type, km: e.km, stop_id: e.stop_id })),
+    ...(pendingQ.data ?? [])
+      .filter((p) => p.payload?.trip_id === active.id)
+      .map((p) => ({ type: p.payload.type as string, km: p.payload.km as number, stop_id: (p.payload.stop_id ?? null) as string | null })),
+  ];
+  const arrivals = arrivalsByStop(merged);
+  const depKm = departureKm(merged);
+
+  const add = async (type: KmEventType, stop_id?: string | null) => {
+    const n = toInt(km);
+    if (n == null) { Alert.alert(t("common.error"), t("trip.km.needKm")); return; }
+    try {
+      await driverAddKmEvent({
+        company_id: active.company_id, trip_id: active.id, type, km: n,
+        stop_id: stop_id ?? null, note: type === "border" ? (note.trim() || null) : null,
+      });
+      setKm("");
+      setNote("");
+      qc.invalidateQueries({ queryKey: ["driver-events", active.id] });
+      qc.invalidateQueries({ queryKey: ["driver-km-pending", active.id] });
+      qc.invalidateQueries({ queryKey: ["pending-count"] });
+    } catch (e) {
+      Alert.alert(t("common.error"), String((e as Error).message ?? e));
+    }
+  };
+
+  const pendingStops = stops.filter((s) => arrivals[s.id] == null);
+
+  return (
+    <View style={{ gap: 12, padding: 12, borderRadius: 10, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+      {stops.length > 0 && (
+        <RouteView origin={null} destination={null} stops={stops} colors={colors} arrivals={arrivals} />
+      )}
+
+      <SectionLabel text={t("trip.km.title")} colors={colors} />
+      <Field label={t("trip.km.current")} value={km} onChangeText={setKm} keyboardType="numeric" placeholder="0" colors={colors} />
+      <Field label={t("trip.fields.note")} value={note} onChangeText={setNote} placeholder="Horgoš" colors={colors} />
+
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
+        {depKm == null ? (
+          <ActionButton label={t("trip.km.departure")} onPress={() => add("departure")} colors={colors} />
+        ) : (
+          <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("trip.km.departure")}: {depKm} km ✓</Text>
+        )}
+        <ActionButton label={t("trip.km.border")} onPress={() => add("border")} colors={colors} />
+      </View>
+
+      {pendingStops.map((s) => (
+        <ActionButton
+          key={s.id}
+          label={`${t("trip.km.arrived")} — ${t(`trip.stops.${s.kind}`)}: ${s.place}`}
+          onPress={() => add("stop_arrival", s.id)}
+          colors={colors}
+        />
+      ))}
+    </View>
+  );
+}
+
+function ActionButton({ label, onPress, colors }: { label: string; onPress: () => void; colors: Palette }) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={{ borderWidth: 1, borderColor: colors.primary, borderRadius: 8, paddingVertical: 10, paddingHorizontal: 14 }}
+    >
+      <Text style={{ color: colors.primary, fontWeight: "600", fontSize: 13 }}>{label}</Text>
+    </Pressable>
+  );
 }
 
 // Troškovi ture: sinhronizovani (baza, RLS = svoje ture) + lokalni koji čekaju u redu.

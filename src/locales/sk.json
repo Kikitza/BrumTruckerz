@@ -37,7 +37,9 @@
       "border": "Hranica",
       "driving": "Jazda",
       "rest": "Odpočinok",
-      "other": "Iné"
+      "other": "Iné",
+      "departure": "Odchod",
+      "stop_arrival": "Príchod"
     },
     "payMode": {
       "per_diem": "Diéty",
@@ -98,6 +100,14 @@
       "next": "Ďalej",
       "back": "Späť",
       "stepOf": "Krok {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Tachometer",
+      "current": "Aktuálny stav tachometra (km)",
+      "departure": "Odchod",
+      "arrived": "Príchod",
+      "border": "Hranica",
+      "needKm": "Zadajte stav tachometra"
     }
   },
   "expense": {

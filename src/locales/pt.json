@@ -37,7 +37,9 @@
       "border": "Fronteira",
       "driving": "Em rota",
       "rest": "Descanso",
-      "other": "Outro"
+      "other": "Outro",
+      "departure": "Partida",
+      "stop_arrival": "Chegada"
     },
     "payMode": {
       "per_diem": "Ajuda de custo diária",
@@ -98,6 +100,14 @@
       "next": "Seguinte",
       "back": "Voltar",
       "stepOf": "Passo {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Conta-quilómetros",
+      "current": "Conta-quilómetros atual (km)",
+      "departure": "Partida",
+      "arrived": "Chegada",
+      "border": "Fronteira",
+      "needKm": "Introduza o conta-quilómetros"
     }
   },
   "expense": {

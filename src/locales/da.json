@@ -37,7 +37,9 @@
       "border": "Grænse",
       "driving": "Kørsel",
       "rest": "Hvile",
-      "other": "Andet"
+      "other": "Andet",
+      "departure": "Afgang",
+      "stop_arrival": "Ankomst"
     },
     "payMode": {
       "per_diem": "Dagpenge",
@@ -98,6 +100,14 @@
       "next": "Næste",
       "back": "Tilbage",
       "stepOf": "Trin {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Kilometertæller",
+      "current": "Nuværende kilometerstand (km)",
+      "departure": "Afgang",
+      "arrived": "Ankomst",
+      "border": "Grænse",
+      "needKm": "Indtast kilometerstanden"
     }
   },
   "expense": {

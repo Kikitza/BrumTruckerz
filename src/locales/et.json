@@ -37,7 +37,9 @@
       "border": "Piir",
       "driving": "Sõitmine",
       "rest": "Puhkus",
-      "other": "Muu"
+      "other": "Muu",
+      "departure": "Väljumine",
+      "stop_arrival": "Saabumine"
     },
     "payMode": {
       "per_diem": "Päevaraha",
@@ -98,6 +100,14 @@
       "next": "Edasi",
       "back": "Tagasi",
       "stepOf": "Samm {{current}}/{{total}}"
+    },
+    "km": {
+      "title": "Odomeeter",
+      "current": "Praegune läbisõit (km)",
+      "departure": "Väljumine",
+      "arrived": "Saabunud",
+      "border": "Piir",
+      "needKm": "Sisestage läbisõit"
     }
   },
   "expense": {
