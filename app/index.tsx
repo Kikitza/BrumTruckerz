@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useSession } from "../src/features/auth/useSession";
 import { supabase } from "../src/lib/supabase";
 import { useTheme } from "../src/lib/theme";
+import { Screen } from "../src/components/Screen";
 
 export default function Index() {
   const { session, role, loading } = useSession();
@@ -22,7 +23,7 @@ function NoRole() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 16, backgroundColor: colors.bg }}>
+    <Screen style={{ alignItems: "center", justifyContent: "center", padding: 24, gap: 16 }}>
       <Text style={{ color: colors.text, fontSize: 16, textAlign: "center" }}>{t("auth.noRole")}</Text>
       <Pressable
         onPress={() => supabase.auth.signOut()}
@@ -30,6 +31,6 @@ function NoRole() {
       >
         <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("settings.signOut")}</Text>
       </Pressable>
-    </View>
+    </Screen>
   );
 }

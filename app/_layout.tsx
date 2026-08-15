@@ -2,15 +2,20 @@
 import "../src/lib/i18n";
 import { useEffect } from "react";
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { startSync } from "../src/lib/offline/queue";
 import { registerAllHandlers } from "../src/lib/offline/handlers";
 import { initStoredLanguage } from "../src/i18n/useLanguage";
+import { useTheme } from "../src/lib/theme";
 
 const qc = new QueryClient();
 
 export default function RootLayout() {
+  // SDK 54 (Android) je edge-to-edge: sistemske trake su providne, ikonice se boje
+  // po temi (svetla tema -> tamne ikonice i obrnuto). Prati ručni override teme.
+  const { scheme } = useTheme();
   useEffect(() => {
     initStoredLanguage();
     registerAllHandlers();
@@ -19,6 +24,7 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={qc}>
+        <StatusBar style={scheme === "dark" ? "light" : "dark"} />
         <Stack screenOptions={{ headerShown: false }} />
       </QueryClientProvider>
     </SafeAreaProvider>

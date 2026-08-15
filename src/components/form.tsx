@@ -7,7 +7,8 @@
 //
 // BUG 2: ModalScaffold umotava sadržaj u KeyboardAvoidingView (iOS "padding") i
 // dodaje safe-area padding na vrhu (status bar / sat / baterija) da dugmad u
-// headeru budu ispod status bara i tapabilna.
+// headeru budu ispod status bara i tapabilna, i na dnu (home indikator / nav bar)
+// da dugmad/footer modala ne uđu pod sistemsku traku (Android edge-to-edge, SDK 54).
 import { type ReactNode, useState } from "react";
 import { View, Text, TextInput, Modal, KeyboardAvoidingView, Platform, Pressable, FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -291,7 +292,7 @@ export function ModalScaffold({
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={{ flex: 1, backgroundColor: colors.bg }}
       >
-        <View style={{ flex: 1, paddingTop: insets.top }}>{children}</View>
+        <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>{children}</View>
       </KeyboardAvoidingView>
     </Modal>
   );
