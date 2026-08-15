@@ -104,3 +104,20 @@ Za „aktivnu aplikaciju" danas — Vercel nije korak. Preskoči ga bez griže s
 - **Kod ne stiže na mejl** → proveri spam; proveri šablon iz B4 (`{{ .Token }}`); Supabase-ov ugrađeni SMTP šalje mali broj mejlova na sat (za testiranje dovoljno, za produkciju kasnije svoj SMTP).
 - **QR ne radi u Codespaces** → koristi `--tunnel`.
 - **Ušao sam ali sve prazno / izbacuje me** → nisi uradio Bootstrap (C5) — bez reda u `app_users` nemaš ulogu ni firmu.
+
+---
+
+## Onboarding — Nova firma za 2 minuta (platforma)
+
+Recept za dodavanje NOVE firme sa vlasnikom. (Admin tabla stiže kasnije; za sada SQL.)
+Fajl-šablon: **`supabase/NEW-COMPANY.sql`** (u gitu, bez tajni).
+
+1. **Auth user vlasnika** — Supabase Dashboard **ciljne baze** (DEV ili PROD) → **Authentication → Users → Add user**: unesi **email vlasnika** + lozinku, uključi **Auto Confirm User**. Kopiraj **UUID** novog korisnika.
+2. **Popuni šablon** — otvori `supabase/NEW-COMPANY.sql`, zameni placeholdere:
+   - `<IME_FIRME>` (npr. `Prevoz Marković d.o.o.`), `<BAZNA_VALUTA>` (`EUR`/`RSD`…), `<PLAN>` (`starter`/`pro`), `<LIMIT>` (npr. `5`), `<OWNER_AUTH_ID>` (UUID iz koraka 1).
+3. **Run** — Dashboard → **SQL Editor** (ista, ciljna baza) → nalepi popunjen sadržaj → **Run**. Kontrolni `SELECT` na dnu mora vratiti **1 red** (firma + owner). Idempotentno: ponovni Run kad owner već ima nalog → ne pravi duplu firmu.
+4. **Vlasnik se prijavi** u aplikaciji (email + lozinka iz koraka 1). Vidi **praznu** firmu (tenant izolacija — ništa tuđe).
+5. **Dalje radi sam:** vozače pravi kroz **Flota → vozač → „Napravi nalog"** (kriška P1); vozila/prikolice unosi sam — **limit paketa čuva bazni trigger** (0013), preko limita dobija ljubaznu poruku.
+
+> Promena paketa/limita je isključivo platformska:
+> `update companies set plan='pro', vehicle_limit=20 where id='<company_id>';` (vlasnik to ne može kroz app — RLS).
