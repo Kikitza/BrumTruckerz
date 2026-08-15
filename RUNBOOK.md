@@ -121,3 +121,26 @@ Fajl-šablon: **`supabase/NEW-COMPANY.sql`** (u gitu, bez tajni).
 
 > Promena paketa/limita je isključivo platformska:
 > `update companies set plan='pro', vehicle_limit=20 where id='<company_id>';` (vlasnik to ne može kroz app — RLS).
+
+---
+
+## Platform admin (platforma)
+
+Nalog platform administratora (naplata/paketi/status firmi) pravi **isključivo platforma, ručno**.
+
+**Kreiranje:**
+1. Dashboard **ciljne baze** → Authentication → Users → Add user: **jaka lozinka**, Auto Confirm. Kopiraj UUID.
+2. SQL Editor iste baze:
+   ```sql
+   insert into public.app_users (id, role, company_id)
+   values ('<ADMIN_AUTH_ID>', 'platform_admin', null);   -- company_id MORA biti null (check u 0014)
+   ```
+3. Prijava tim nalogom → aplikacija otvara **admin sekciju** (lista firmi).
+
+**Šta admin može:** vidi sve firme (ime, paket, X/N vozila, status, plaćeno-do, vlasnikov email) + ukupne brojke platforme; menja **paket + limit vozila** i **status (aktivna/obustavljena) + plaćeno-do + napomenu**. Sve kroz RPC (`admin_*`), uz proveru role u bazi.
+
+**Šta admin NE može:** poslovni/finansijski sadržaj firmi (ture, troškovi, P&L) — RLS mu je zatvoren (0014).
+
+**Suspenzija:** status `suspended` → pri prijavi owner **i** vozač te firme dobijaju ekran „Nalog je privremeno obustavljen". (Tvrdo RLS zaključavanje podataka pri suspenziji = buduća opcija.)
+
+**Higijena:** admin nalog je SAMO za platformu (ne vezuj ga za firmu); jaka lozinka; ne deli ga.

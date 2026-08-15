@@ -248,6 +248,27 @@
     "credsTitle": "Prisijungimo duomenys (rodomi vieną kartą)",
     "credsNote": "Perduokite juos vairuotojui. Jie daugiau nebus rodomi."
   },
+  "admin": {
+    "title": "Įmonės",
+    "totals": "Įmonės: {{companies}} · Transporto priemonės: {{vehicles}} · Vairuotojai: {{drivers}}",
+    "empty": "Įmonių nėra",
+    "owner": "Savininkas",
+    "vehicleLimit": "Transporto priemonių limitas",
+    "savePlan": "Išsaugoti planą",
+    "statusTitle": "Būsena ir atsiskaitymai",
+    "paidUntil": "Apmokėta iki",
+    "billingNote": "Atsiskaitymo pastaba",
+    "saveStatus": "Išsaugoti būseną",
+    "confirmStatus": "Taikyti įmonės būsenos pakeitimą?",
+    "pastDue": "vėluojantis mokėjimas",
+    "atLimit": "ties limitu",
+    "overLimit": "viršija limitą",
+    "status": { "active": "Aktyvi", "suspended": "Sustabdyta" }
+  },
+  "suspended": {
+    "title": "Paskyra laikinai sustabdyta",
+    "body": "Susisiekite su pagalbos tarnyba."
+  },
   "common": {
     "save": "Išsaugoti",
     "cancel": "Atšaukti",

@@ -248,6 +248,27 @@
     "credsTitle": "Credenziali (mostrate una sola volta)",
     "credsNote": "Consegnale al conducente. Non verranno mostrate di nuovo."
   },
+  "admin": {
+    "title": "Aziende",
+    "totals": "Aziende: {{companies}} · Veicoli: {{vehicles}} · Conducenti: {{drivers}}",
+    "empty": "Nessuna azienda",
+    "owner": "Titolare",
+    "vehicleLimit": "Limite veicoli",
+    "savePlan": "Salva piano",
+    "statusTitle": "Stato e fatturazione",
+    "paidUntil": "Pagato fino al",
+    "billingNote": "Nota di fatturazione",
+    "saveStatus": "Salva stato",
+    "confirmStatus": "Applicare la modifica dello stato dell'azienda?",
+    "pastDue": "scaduto",
+    "atLimit": "al limite",
+    "overLimit": "oltre il limite",
+    "status": { "active": "Attivo", "suspended": "Sospeso" }
+  },
+  "suspended": {
+    "title": "Account sospeso temporaneamente",
+    "body": "Contatta l'assistenza."
+  },
   "common": {
     "save": "Salva",
     "cancel": "Annulla",

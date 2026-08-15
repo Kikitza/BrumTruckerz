@@ -248,6 +248,27 @@
     "credsTitle": "Date de autentificare (afișate o singură dată)",
     "credsNote": "Transmite-le șoferului. Nu vor mai fi afișate din nou."
   },
+  "admin": {
+    "title": "Companii",
+    "totals": "Companii: {{companies}} · Vehicule: {{vehicles}} · Șoferi: {{drivers}}",
+    "empty": "Nicio companie",
+    "owner": "Proprietar",
+    "vehicleLimit": "Limită vehicule",
+    "savePlan": "Salvează planul",
+    "statusTitle": "Stare și facturare",
+    "paidUntil": "Plătit până la",
+    "billingNote": "Notă de facturare",
+    "saveStatus": "Salvează starea",
+    "confirmStatus": "Aplici schimbarea stării companiei?",
+    "pastDue": "restanță",
+    "atLimit": "la limită",
+    "overLimit": "peste limită",
+    "status": { "active": "Activă", "suspended": "Suspendată" }
+  },
+  "suspended": {
+    "title": "Cont suspendat temporar",
+    "body": "Contactează asistența."
+  },
   "common": {
     "save": "Salvează",
     "cancel": "Anulează",

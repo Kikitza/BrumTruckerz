@@ -248,6 +248,27 @@
     "credsTitle": "Inloggningsuppgifter (visas en gång)",
     "credsNote": "Ge dessa till föraren. De visas inte igen."
   },
+  "admin": {
+    "title": "Företag",
+    "totals": "Företag: {{companies}} · Fordon: {{vehicles}} · Förare: {{drivers}}",
+    "empty": "Inga företag",
+    "owner": "Ägare",
+    "vehicleLimit": "Fordonsgräns",
+    "savePlan": "Spara plan",
+    "statusTitle": "Status och fakturering",
+    "paidUntil": "Betald till",
+    "billingNote": "Faktureringsnotering",
+    "saveStatus": "Spara status",
+    "confirmStatus": "Tillämpa ändring av företagsstatus?",
+    "pastDue": "förfallen",
+    "atLimit": "vid gränsen",
+    "overLimit": "över gränsen",
+    "status": { "active": "Aktiv", "suspended": "Avstängd" }
+  },
+  "suspended": {
+    "title": "Kontot är tillfälligt avstängt",
+    "body": "Kontakta support."
+  },
   "common": {
     "save": "Spara",
     "cancel": "Avbryt",

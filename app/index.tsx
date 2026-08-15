@@ -2,8 +2,11 @@
 // driver -> (driver). FAIL-CLOSED: bez UTVRĐENE uloge NIKAD ne vodimo na owner ekrane.
 import { Redirect } from "expo-router";
 import { ActivityIndicator, View, Text, Pressable } from "react-native";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useSession } from "../src/features/auth/useSession";
+import { SuspendedScreen } from "../src/features/auth/SuspendedScreen";
+import { getMyCompanyStatus } from "../src/features/admin/api";
 import { supabase } from "../src/lib/supabase";
 import { useTheme } from "../src/lib/theme";
 import { Screen } from "../src/components/Screen";
@@ -13,10 +16,18 @@ export default function Index() {
 
   if (loading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
   if (!session) return <Redirect href="/(auth)/sign-in" />;
-  if (role === "driver") return <Redirect href="/(driver)" />;
-  if (role === "owner" || role === "platform_admin") return <Redirect href="/(owner)/trips" />;
+  if (role === "platform_admin") return <Redirect href="/(admin)" />;
+  if (role === "owner" || role === "driver") return <CompanyGate role={role} />;
   // Rola nepoznata (null / greška / nalog nije povezan sa firmom) -> NE owner.
   return <NoRole />;
+}
+
+// Suspension gate: obustavljena firma -> fail-closed ekran (owner I vozač).
+function CompanyGate({ role }: { role: "owner" | "driver" }) {
+  const q = useQuery({ queryKey: ["my-company-status"], queryFn: getMyCompanyStatus });
+  if (q.isLoading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
+  if (q.data === "suspended") return <SuspendedScreen />;
+  return <Redirect href={role === "driver" ? "/(driver)" : "/(owner)/trips"} />;
 }
 
 function NoRole() {

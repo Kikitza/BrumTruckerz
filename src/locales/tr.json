@@ -248,6 +248,27 @@
     "credsTitle": "Kimlik bilgileri (bir kez gösterilir)",
     "credsNote": "Bunları sürücüye verin. Tekrar gösterilmeyecek."
   },
+  "admin": {
+    "title": "Şirketler",
+    "totals": "Şirketler: {{companies}} · Araçlar: {{vehicles}} · Sürücüler: {{drivers}}",
+    "empty": "Şirket yok",
+    "owner": "Sahip",
+    "vehicleLimit": "Araç limiti",
+    "savePlan": "Planı kaydet",
+    "statusTitle": "Durum ve faturalandırma",
+    "paidUntil": "Ödeme geçerlilik tarihi",
+    "billingNote": "Faturalandırma notu",
+    "saveStatus": "Durumu kaydet",
+    "confirmStatus": "Şirket durumu değişikliği uygulansın mı?",
+    "pastDue": "vadesi geçmiş",
+    "atLimit": "limitte",
+    "overLimit": "limit aşımı",
+    "status": { "active": "Aktif", "suspended": "Askıya alındı" }
+  },
+  "suspended": {
+    "title": "Hesap geçici olarak askıya alındı",
+    "body": "Destek ile iletişime geçin."
+  },
   "common": {
     "save": "Kaydet",
     "cancel": "İptal",

@@ -248,6 +248,27 @@
     "credsTitle": "Identifiants (affichés une seule fois)",
     "credsNote": "Donnez-les au chauffeur. Ils ne seront plus affichés."
   },
+  "admin": {
+    "title": "Entreprises",
+    "totals": "Entreprises : {{companies}} · Véhicules : {{vehicles}} · Chauffeurs : {{drivers}}",
+    "empty": "Aucune entreprise",
+    "owner": "Propriétaire",
+    "vehicleLimit": "Limite de véhicules",
+    "savePlan": "Enregistrer le forfait",
+    "statusTitle": "Statut et facturation",
+    "paidUntil": "Payé jusqu'au",
+    "billingNote": "Note de facturation",
+    "saveStatus": "Enregistrer le statut",
+    "confirmStatus": "Appliquer le changement de statut de l'entreprise ?",
+    "pastDue": "en retard de paiement",
+    "atLimit": "à la limite",
+    "overLimit": "au-dessus de la limite",
+    "status": { "active": "Actif", "suspended": "Suspendu" }
+  },
+  "suspended": {
+    "title": "Compte temporairement suspendu",
+    "body": "Contactez le support."
+  },
   "common": {
     "save": "Enregistrer",
     "cancel": "Annuler",

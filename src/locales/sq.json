@@ -248,6 +248,27 @@
     "credsTitle": "Kredencialet (shfaqen një herë)",
     "credsNote": "Jepni këto shoferit. Nuk do të shfaqen përsëri."
   },
+  "admin": {
+    "title": "Kompanitë",
+    "totals": "Kompani: {{companies}} · Automjete: {{vehicles}} · Shoferë: {{drivers}}",
+    "empty": "Nuk ka kompani",
+    "owner": "Pronari",
+    "vehicleLimit": "Kufiri i automjeteve",
+    "savePlan": "Ruaj planin",
+    "statusTitle": "Statusi dhe faturimi",
+    "paidUntil": "Paguar deri më",
+    "billingNote": "Shënim faturimi",
+    "saveStatus": "Ruaj statusin",
+    "confirmStatus": "Të zbatohet ndryshimi i statusit të kompanisë?",
+    "pastDue": "e vonuar",
+    "atLimit": "në kufi",
+    "overLimit": "mbi kufi",
+    "status": { "active": "Aktive", "suspended": "Pezulluar" }
+  },
+  "suspended": {
+    "title": "Llogaria është pezulluar përkohësisht",
+    "body": "Kontaktoni mbështetjen."
+  },
   "common": {
     "save": "Ruaj",
     "cancel": "Anulo",

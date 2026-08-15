@@ -248,6 +248,27 @@
     "credsTitle": "Zugangsdaten (nur einmal angezeigt)",
     "credsNote": "Geben Sie diese dem Fahrer. Sie werden nicht erneut angezeigt."
   },
+  "admin": {
+    "title": "Unternehmen",
+    "totals": "Unternehmen: {{companies}} · Fahrzeuge: {{vehicles}} · Fahrer: {{drivers}}",
+    "empty": "Keine Unternehmen",
+    "owner": "Inhaber",
+    "vehicleLimit": "Fahrzeuglimit",
+    "savePlan": "Plan speichern",
+    "statusTitle": "Status & Abrechnung",
+    "paidUntil": "Bezahlt bis",
+    "billingNote": "Abrechnungsnotiz",
+    "saveStatus": "Status speichern",
+    "confirmStatus": "Statusänderung des Unternehmens anwenden?",
+    "pastDue": "überfällig",
+    "atLimit": "am Limit",
+    "overLimit": "über dem Limit",
+    "status": { "active": "Aktiv", "suspended": "Gesperrt" }
+  },
+  "suspended": {
+    "title": "Konto vorübergehend gesperrt",
+    "body": "Kontaktieren Sie den Support."
+  },
   "common": {
     "save": "Speichern",
     "cancel": "Abbrechen",

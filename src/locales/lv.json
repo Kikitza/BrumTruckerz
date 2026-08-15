@@ -248,6 +248,27 @@
     "credsTitle": "Piekļuves dati (rādīti vienu reizi)",
     "credsNote": "Nododiet tos vadītājam. Tie vairs netiks rādīti."
   },
+  "admin": {
+    "title": "Uzņēmumi",
+    "totals": "Uzņēmumi: {{companies}} · Transportlīdzekļi: {{vehicles}} · Vadītāji: {{drivers}}",
+    "empty": "Nav uzņēmumu",
+    "owner": "Īpašnieks",
+    "vehicleLimit": "Transportlīdzekļu limits",
+    "savePlan": "Saglabāt plānu",
+    "statusTitle": "Statuss un norēķini",
+    "paidUntil": "Apmaksāts līdz",
+    "billingNote": "Norēķinu piezīme",
+    "saveStatus": "Saglabāt statusu",
+    "confirmStatus": "Piemērot uzņēmuma statusa maiņu?",
+    "pastDue": "kavēts maksājums",
+    "atLimit": "uz limita",
+    "overLimit": "virs limita",
+    "status": { "active": "Aktīvs", "suspended": "Apturēts" }
+  },
+  "suspended": {
+    "title": "Konts uz laiku apturēts",
+    "body": "Sazinieties ar atbalsta dienestu."
+  },
   "common": {
     "save": "Saglabāt",
     "cancel": "Atcelt",

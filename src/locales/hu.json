@@ -248,6 +248,27 @@
     "credsTitle": "Belépési adatok (egyszer jelennek meg)",
     "credsNote": "Add át ezeket a sofőrnek. Többé nem jelennek meg."
   },
+  "admin": {
+    "title": "Cégek",
+    "totals": "Cégek: {{companies}} · Járművek: {{vehicles}} · Sofőrök: {{drivers}}",
+    "empty": "Nincsenek cégek",
+    "owner": "Tulajdonos",
+    "vehicleLimit": "Járműkorlát",
+    "savePlan": "Csomag mentése",
+    "statusTitle": "Állapot és számlázás",
+    "paidUntil": "Fizetve eddig",
+    "billingNote": "Számlázási megjegyzés",
+    "saveStatus": "Állapot mentése",
+    "confirmStatus": "Alkalmazod a cég állapotának módosítását?",
+    "pastDue": "lejárt",
+    "atLimit": "a korláton",
+    "overLimit": "korlát felett",
+    "status": { "active": "Aktív", "suspended": "Felfüggesztve" }
+  },
+  "suspended": {
+    "title": "A fiók átmenetileg felfüggesztve",
+    "body": "Vedd fel a kapcsolatot az ügyfélszolgálattal."
+  },
   "common": {
     "save": "Mentés",
     "cancel": "Mégse",

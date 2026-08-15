@@ -246,6 +246,27 @@
     "credsTitle": "Credentials (shown once)",
     "credsNote": "Give these to the driver. They won't be shown again."
   },
+  "admin": {
+    "title": "Companies",
+    "totals": "Companies: {{companies}} · Vehicles: {{vehicles}} · Drivers: {{drivers}}",
+    "empty": "No companies",
+    "owner": "Owner",
+    "vehicleLimit": "Vehicle limit",
+    "savePlan": "Save plan",
+    "statusTitle": "Status & billing",
+    "paidUntil": "Paid until",
+    "billingNote": "Billing note",
+    "saveStatus": "Save status",
+    "confirmStatus": "Apply company status change?",
+    "pastDue": "past due",
+    "atLimit": "at limit",
+    "overLimit": "over limit",
+    "status": { "active": "Active", "suspended": "Suspended" }
+  },
+  "suspended": {
+    "title": "Account temporarily suspended",
+    "body": "Contact support."
+  },
   "common": {
     "save": "Save",
     "cancel": "Cancel",

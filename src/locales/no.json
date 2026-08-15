@@ -248,6 +248,27 @@
     "credsTitle": "Innloggingsdetaljer (vises én gang)",
     "credsNote": "Gi disse til sjåføren. De vises ikke igjen."
   },
+  "admin": {
+    "title": "Selskaper",
+    "totals": "Selskaper: {{companies}} · Kjøretøy: {{vehicles}} · Sjåfører: {{drivers}}",
+    "empty": "Ingen selskaper",
+    "owner": "Eier",
+    "vehicleLimit": "Kjøretøygrense",
+    "savePlan": "Lagre plan",
+    "statusTitle": "Status og fakturering",
+    "paidUntil": "Betalt til",
+    "billingNote": "Faktureringsnotat",
+    "saveStatus": "Lagre status",
+    "confirmStatus": "Bruke endring av selskapsstatus?",
+    "pastDue": "forfalt",
+    "atLimit": "på grensen",
+    "overLimit": "over grensen",
+    "status": { "active": "Aktiv", "suspended": "Suspendert" }
+  },
+  "suspended": {
+    "title": "Kontoen er midlertidig suspendert",
+    "body": "Kontakt kundestøtte."
+  },
   "common": {
     "save": "Lagre",
     "cancel": "Avbryt",

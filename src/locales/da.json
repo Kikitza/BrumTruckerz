@@ -248,6 +248,27 @@
     "credsTitle": "Loginoplysninger (vises én gang)",
     "credsNote": "Giv dem til føreren. De vises ikke igen."
   },
+  "admin": {
+    "title": "Virksomheder",
+    "totals": "Virksomheder: {{companies}} · Køretøjer: {{vehicles}} · Chauffører: {{drivers}}",
+    "empty": "Ingen virksomheder",
+    "owner": "Ejer",
+    "vehicleLimit": "Køretøjsgrænse",
+    "savePlan": "Gem plan",
+    "statusTitle": "Status og fakturering",
+    "paidUntil": "Betalt til",
+    "billingNote": "Faktureringsnote",
+    "saveStatus": "Gem status",
+    "confirmStatus": "Anvend ændring af virksomhedsstatus?",
+    "pastDue": "forfalden",
+    "atLimit": "ved grænsen",
+    "overLimit": "over grænsen",
+    "status": { "active": "Aktiv", "suspended": "Suspenderet" }
+  },
+  "suspended": {
+    "title": "Kontoen er midlertidigt suspenderet",
+    "body": "Kontakt support."
+  },
   "common": {
     "save": "Gem",
     "cancel": "Annuller",

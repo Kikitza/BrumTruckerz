@@ -248,6 +248,27 @@
     "credsTitle": "Kirjautumistiedot (näytetään kerran)",
     "credsNote": "Anna nämä kuljettajalle. Niitä ei näytetä uudelleen."
   },
+  "admin": {
+    "title": "Yritykset",
+    "totals": "Yritykset: {{companies}} · Ajoneuvot: {{vehicles}} · Kuljettajat: {{drivers}}",
+    "empty": "Ei yrityksiä",
+    "owner": "Omistaja",
+    "vehicleLimit": "Ajoneuvoraja",
+    "savePlan": "Tallenna suunnitelma",
+    "statusTitle": "Tila ja laskutus",
+    "paidUntil": "Maksettu saakka",
+    "billingNote": "Laskutushuomautus",
+    "saveStatus": "Tallenna tila",
+    "confirmStatus": "Otetaanko yrityksen tilan muutos käyttöön?",
+    "pastDue": "erääntynyt",
+    "atLimit": "rajalla",
+    "overLimit": "rajan yli",
+    "status": { "active": "Aktiivinen", "suspended": "Keskeytetty" }
+  },
+  "suspended": {
+    "title": "Tili on väliaikaisesti keskeytetty",
+    "body": "Ota yhteyttä tukeen."
+  },
   "common": {
     "save": "Tallenna",
     "cancel": "Peruuta",

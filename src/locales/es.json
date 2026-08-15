@@ -248,6 +248,27 @@
     "credsTitle": "Credenciales (se muestran una sola vez)",
     "credsNote": "Entrégueselas al conductor. No se volverán a mostrar."
   },
+  "admin": {
+    "title": "Empresas",
+    "totals": "Empresas: {{companies}} · Vehículos: {{vehicles}} · Conductores: {{drivers}}",
+    "empty": "Sin empresas",
+    "owner": "Propietario",
+    "vehicleLimit": "Límite de vehículos",
+    "savePlan": "Guardar plan",
+    "statusTitle": "Estado y facturación",
+    "paidUntil": "Pagado hasta",
+    "billingNote": "Nota de facturación",
+    "saveStatus": "Guardar estado",
+    "confirmStatus": "¿Aplicar el cambio de estado de la empresa?",
+    "pastDue": "vencido",
+    "atLimit": "en el límite",
+    "overLimit": "por encima del límite",
+    "status": { "active": "Activo", "suspended": "Suspendido" }
+  },
+  "suspended": {
+    "title": "Cuenta suspendida temporalmente",
+    "body": "Contacte con soporte."
+  },
   "common": {
     "save": "Guardar",
     "cancel": "Cancelar",

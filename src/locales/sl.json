@@ -248,6 +248,27 @@
     "credsTitle": "Prijavni podatki (prikazano enkrat)",
     "credsNote": "Predajte jih vozniku. Ne bodo prikazani znova."
   },
+  "admin": {
+    "title": "Podjetja",
+    "totals": "Podjetja: {{companies}} · Vozila: {{vehicles}} · Vozniki: {{drivers}}",
+    "empty": "Ni podjetij",
+    "owner": "Lastnik",
+    "vehicleLimit": "Omejitev vozil",
+    "savePlan": "Shrani načrt",
+    "statusTitle": "Status in obračun",
+    "paidUntil": "Plačano do",
+    "billingNote": "Opomba o obračunu",
+    "saveStatus": "Shrani status",
+    "confirmStatus": "Uporabi spremembo statusa podjetja?",
+    "pastDue": "zapadlo",
+    "atLimit": "na meji",
+    "overLimit": "nad mejo",
+    "status": { "active": "Aktivno", "suspended": "Suspendirano" }
+  },
+  "suspended": {
+    "title": "Račun je začasno suspendiran",
+    "body": "Obrnite se na podporo."
+  },
   "common": {
     "save": "Shrani",
     "cancel": "Prekliči",

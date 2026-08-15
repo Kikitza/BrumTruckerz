@@ -248,6 +248,27 @@
     "credsTitle": "Pristupni podaci (prikazani jednom)",
     "credsNote": "Dajte ih vozaču. Neće biti ponovo prikazani."
   },
+  "admin": {
+    "title": "Kompanije",
+    "totals": "Kompanije: {{companies}} · Vozila: {{vehicles}} · Vozači: {{drivers}}",
+    "empty": "Nema kompanija",
+    "owner": "Vlasnik",
+    "vehicleLimit": "Ograničenje vozila",
+    "savePlan": "Sačuvaj plan",
+    "statusTitle": "Status i naplata",
+    "paidUntil": "Plaćeno do",
+    "billingNote": "Napomena o naplati",
+    "saveStatus": "Sačuvaj status",
+    "confirmStatus": "Primijeniti promjenu statusa kompanije?",
+    "pastDue": "dospjelo",
+    "atLimit": "na granici",
+    "overLimit": "iznad granice",
+    "status": { "active": "Aktivna", "suspended": "Suspendovana" }
+  },
+  "suspended": {
+    "title": "Račun je privremeno suspendovan",
+    "body": "Kontaktirajte podršku."
+  },
   "common": {
     "save": "Sačuvaj",
     "cancel": "Otkaži",

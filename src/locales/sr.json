@@ -249,6 +249,27 @@
     "credsTitle": "Kredencijali (prikazano jednom)",
     "credsNote": "Prosledi vozaču. Neće se ponovo prikazati."
   },
+  "admin": {
+    "title": "Firme",
+    "totals": "Firmi: {{companies}} · Vozila: {{vehicles}} · Vozača: {{drivers}}",
+    "empty": "Nema firmi",
+    "owner": "Vlasnik",
+    "vehicleLimit": "Limit vozila",
+    "savePlan": "Sačuvaj paket",
+    "statusTitle": "Status i naplata",
+    "paidUntil": "Plaćeno do",
+    "billingNote": "Napomena (naplata)",
+    "saveStatus": "Sačuvaj status",
+    "confirmStatus": "Primeniti izmenu statusa firme?",
+    "pastDue": "isteklo",
+    "atLimit": "na limitu",
+    "overLimit": "preko limita",
+    "status": { "active": "Aktivna", "suspended": "Obustavljena" }
+  },
+  "suspended": {
+    "title": "Nalog je privremeno obustavljen",
+    "body": "Kontaktirajte podršku."
+  },
   "common": {
     "save": "Sačuvaj",
     "cancel": "Otkaži",

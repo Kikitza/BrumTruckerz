@@ -248,6 +248,27 @@
     "credsTitle": "Prihlasovacie údaje (zobrazené raz)",
     "credsNote": "Odovzdajte ich vodičovi. Znova sa už nezobrazia."
   },
+  "admin": {
+    "title": "Firmy",
+    "totals": "Firmy: {{companies}} · Vozidlá: {{vehicles}} · Vodiči: {{drivers}}",
+    "empty": "Žiadne firmy",
+    "owner": "Vlastník",
+    "vehicleLimit": "Limit vozidiel",
+    "savePlan": "Uložiť plán",
+    "statusTitle": "Stav a fakturácia",
+    "paidUntil": "Zaplatené do",
+    "billingNote": "Poznámka k fakturácii",
+    "saveStatus": "Uložiť stav",
+    "confirmStatus": "Použiť zmenu stavu firmy?",
+    "pastDue": "po splatnosti",
+    "atLimit": "na limite",
+    "overLimit": "nad limit",
+    "status": { "active": "Aktívna", "suspended": "Pozastavená" }
+  },
+  "suspended": {
+    "title": "Účet dočasne pozastavený",
+    "body": "Kontaktujte podporu."
+  },
   "common": {
     "save": "Uložiť",
     "cancel": "Zrušiť",

@@ -248,6 +248,27 @@
     "credsTitle": "Dane logowania (pokazane raz)",
     "credsNote": "Przekaż je kierowcy. Nie zostaną wyświetlone ponownie."
   },
+  "admin": {
+    "title": "Firmy",
+    "totals": "Firmy: {{companies}} · Pojazdy: {{vehicles}} · Kierowcy: {{drivers}}",
+    "empty": "Brak firm",
+    "owner": "Właściciel",
+    "vehicleLimit": "Limit pojazdów",
+    "savePlan": "Zapisz plan",
+    "statusTitle": "Status i rozliczenia",
+    "paidUntil": "Opłacone do",
+    "billingNote": "Notatka rozliczeniowa",
+    "saveStatus": "Zapisz status",
+    "confirmStatus": "Zastosować zmianę statusu firmy?",
+    "pastDue": "zaległość",
+    "atLimit": "na limicie",
+    "overLimit": "ponad limit",
+    "status": { "active": "Aktywna", "suspended": "Zawieszona" }
+  },
+  "suspended": {
+    "title": "Konto tymczasowo zawieszone",
+    "body": "Skontaktuj się z pomocą techniczną."
+  },
   "common": {
     "save": "Zapisz",
     "cancel": "Anuluj",

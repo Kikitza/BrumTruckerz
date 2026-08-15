@@ -248,6 +248,27 @@
     "credsTitle": "Juurdepääsuandmed (näidatakse üks kord)",
     "credsNote": "Anna need juhile. Neid enam ei näidata."
   },
+  "admin": {
+    "title": "Ettevõtted",
+    "totals": "Ettevõtted: {{companies}} · Sõidukid: {{vehicles}} · Juhid: {{drivers}}",
+    "empty": "Ettevõtteid pole",
+    "owner": "Omanik",
+    "vehicleLimit": "Sõidukite limiit",
+    "savePlan": "Salvesta plaan",
+    "statusTitle": "Olek ja arveldus",
+    "paidUntil": "Makstud kuni",
+    "billingNote": "Arveldusmärkus",
+    "saveStatus": "Salvesta olek",
+    "confirmStatus": "Kas rakendada ettevõtte oleku muudatus?",
+    "pastDue": "tähtaeg möödas",
+    "atLimit": "limiidil",
+    "overLimit": "üle limiidi",
+    "status": { "active": "Aktiivne", "suspended": "Peatatud" }
+  },
+  "suspended": {
+    "title": "Konto on ajutiselt peatatud",
+    "body": "Võtke ühendust klienditoega."
+  },
   "common": {
     "save": "Salvesta",
     "cancel": "Tühista",

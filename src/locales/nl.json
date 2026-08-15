@@ -248,6 +248,27 @@
     "credsTitle": "Inloggegevens (eenmalig getoond)",
     "credsNote": "Geef deze aan de chauffeur. Ze worden niet opnieuw getoond."
   },
+  "admin": {
+    "title": "Bedrijven",
+    "totals": "Bedrijven: {{companies}} · Voertuigen: {{vehicles}} · Chauffeurs: {{drivers}}",
+    "empty": "Geen bedrijven",
+    "owner": "Eigenaar",
+    "vehicleLimit": "Voertuiglimiet",
+    "savePlan": "Plan opslaan",
+    "statusTitle": "Status en facturatie",
+    "paidUntil": "Betaald tot",
+    "billingNote": "Facturatienotitie",
+    "saveStatus": "Status opslaan",
+    "confirmStatus": "Statuswijziging van bedrijf toepassen?",
+    "pastDue": "achterstallig",
+    "atLimit": "op limiet",
+    "overLimit": "boven limiet",
+    "status": { "active": "Actief", "suspended": "Geblokkeerd" }
+  },
+  "suspended": {
+    "title": "Account tijdelijk geblokkeerd",
+    "body": "Neem contact op met support."
+  },
   "common": {
     "save": "Opslaan",
     "cancel": "Annuleren",
