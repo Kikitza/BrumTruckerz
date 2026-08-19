@@ -248,7 +248,21 @@
     "hasAccount": "Účet aktivní",
     "passwordHint": "Ponechte prázdné pro automatické vygenerování hesla.",
     "credsTitle": "Přihlašovací údaje (zobrazeno jednou)",
-    "credsNote": "Předejte je řidiči. Znovu se již nezobrazí."
+    "credsNote": "Předejte je řidiči. Znovu se již nezobrazí.",
+    "statusCheckFailed": "Stav vašeho účtu nelze ověřit — zkuste to prosím znovu.",
+    "signOutPending": "Některé změny stále čekají na synchronizaci. Pokud se odhlásíte, odešlou se při příštím přihlášení."
+  },
+  "sync": {
+    "failedTitle": "Neúspěšné položky",
+    "failedBody": "Tyto změny se nepodařilo uložit na server.",
+    "abandon": "Zahodit",
+    "abandonConfirm": "Zahodit tuto neúspěšnou položku? Nebude uložena.",
+    "kindLabel": {
+      "event": "Událost",
+      "status": "Stav jízdy",
+      "expense": "Výdaj",
+      "photo": "Fotografie"
+    }
   },
   "admin": {
     "title": "Firmy",
@@ -280,6 +294,7 @@
     "done": "Hotovo",
     "saving": "Ukládání…",
     "error": "Něco se pokazilo",
+    "retry": "Zkusit znovu",
     "offlineNote": "Uloženo lokálně — synchronizuje se po připojení k síti"
   }
 }

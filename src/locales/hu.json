@@ -248,7 +248,21 @@
     "hasAccount": "Fiók aktív",
     "passwordHint": "Hagyd üresen a jelszó automatikus generálásához.",
     "credsTitle": "Belépési adatok (egyszer jelennek meg)",
-    "credsNote": "Add át ezeket a sofőrnek. Többé nem jelennek meg."
+    "credsNote": "Add át ezeket a sofőrnek. Többé nem jelennek meg.",
+    "statusCheckFailed": "Nem sikerült ellenőrizni a fiók állapotát — próbáld újra.",
+    "signOutPending": "Néhány módosítás még szinkronizálásra vár. Ha kijelentkezel, a következő bejelentkezéskor kerülnek elküldésre."
+  },
+  "sync": {
+    "failedTitle": "Sikertelen elemek",
+    "failedBody": "Ezeket a módosításokat nem sikerült elmenteni a szerverre.",
+    "abandon": "Elvetés",
+    "abandonConfirm": "Elveted ezt a sikertelen elemet? Nem lesz elmentve.",
+    "kindLabel": {
+      "event": "Esemény",
+      "status": "Út állapota",
+      "expense": "Költség",
+      "photo": "Fénykép"
+    }
   },
   "admin": {
     "title": "Cégek",
@@ -280,6 +294,7 @@
     "done": "Kész",
     "saving": "Mentés…",
     "error": "Valami hiba történt",
+    "retry": "Újra",
     "offlineNote": "Helyileg mentve — szinkronizálódik, ha online leszel"
   }
 }

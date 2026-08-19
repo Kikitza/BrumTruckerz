@@ -18,7 +18,7 @@ import { ExpenseForm, type ExpenseFormValues } from "../../src/features/expenses
 import { AttachmentsSection } from "../../src/features/attachments/AttachmentsSection";
 import { expenseAttachmentKind } from "../../src/features/attachments/api";
 import { useSignOut } from "../../src/features/auth/signOut";
-import { pendingCount, listPending } from "../../src/lib/offline/queue";
+import { pendingCount, listPending, listDeadLetter, removeDeadLetter, type MutationKind } from "../../src/lib/offline/queue";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { Field } from "../../src/components/form";
 import { toInt } from "../../src/lib/num";
@@ -71,6 +71,8 @@ export default function DriverHome() {
       <DriverRoute active={active} colors={colors} />
 
       <PendingBanner colors={colors} />
+
+      <DeadLetterBanner colors={colors} />
 
       <View style={{ gap: 8 }}>
         {STATUSES.map((s) => {
@@ -129,6 +131,55 @@ function PendingBanner({ colors }: { colors: Palette }) {
   return (
     <View style={{ padding: 10, borderRadius: 8, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.warn }}>
       <Text style={{ color: colors.warn, fontWeight: "600" }}>{t("trip.pendingSync", { count: n })}</Text>
+    </View>
+  );
+}
+
+// Grubi, ljudski label vrste mutacije (za dead-letter listu).
+const KIND_LABEL: Record<MutationKind, "event" | "status" | "expense" | "photo"> = {
+  "trip_event.insert": "event", "trip_event.km": "event", "trip_event.correct": "event",
+  "trip.progress": "status", "expense.insert": "expense", "attachment.upload": "photo",
+};
+
+// Dead-letter: stavke koje su trajno pale (posle MAX_ATTEMPTS). Vidljive korisniku
+// sa mogućnošću „odustani" — da jedna loša stavka ne blokira red niti zbunjuje trajnim
+// „čeka sinhronizaciju". (audit A4)
+function DeadLetterBanner({ colors }: { colors: Palette }) {
+  const { t } = useTranslation();
+  const qc = useQueryClient();
+  const q = useQuery({
+    queryKey: ["dead-letter"],
+    queryFn: () => listDeadLetter(),
+    refetchInterval: 5000,
+  });
+  const rows = q.data ?? [];
+  if (rows.length === 0) return null;
+
+  const abandon = (id: number) =>
+    Alert.alert(t("sync.failedTitle"), t("sync.abandonConfirm"), [
+      { text: t("common.cancel"), style: "cancel" },
+      {
+        text: t("sync.abandon"),
+        style: "destructive",
+        onPress: async () => {
+          await removeDeadLetter(id);
+          qc.invalidateQueries({ queryKey: ["dead-letter"] });
+        },
+      },
+    ]);
+
+  return (
+    <View style={{ padding: 12, borderRadius: 8, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.danger, gap: 8 }}>
+      <Text style={{ color: colors.danger, fontWeight: "700" }}>{t("sync.failedTitle")}</Text>
+      <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("sync.failedBody")}</Text>
+      {rows.map((r) => (
+        <View key={r.id} style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+          <Text style={{ flex: 1, color: colors.text }}>{t(`sync.kindLabel.${KIND_LABEL[r.kind]}`)}</Text>
+          <Pressable onPress={() => abandon(r.id)} hitSlop={8} style={{ paddingVertical: 6, paddingHorizontal: 12, borderRadius: 6, borderWidth: 1, borderColor: colors.danger }}>
+            <Text style={{ color: colors.danger, fontWeight: "600" }}>{t("sync.abandon")}</Text>
+          </Pressable>
+        </View>
+      ))}
     </View>
   );
 }

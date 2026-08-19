@@ -248,7 +248,21 @@
     "hasAccount": "Hesap etkin",
     "passwordHint": "Otomatik parola oluşturmak için boş bırakın.",
     "credsTitle": "Kimlik bilgileri (bir kez gösterilir)",
-    "credsNote": "Bunları sürücüye verin. Tekrar gösterilmeyecek."
+    "credsNote": "Bunları sürücüye verin. Tekrar gösterilmeyecek.",
+    "statusCheckFailed": "Hesap durumunuz doğrulanamıyor — lütfen tekrar deneyin.",
+    "signOutPending": "Bazı değişiklikler hâlâ eşitlenmeyi bekliyor. Çıkış yaparsanız, bir sonraki girişinizde gönderilecekler."
+  },
+  "sync": {
+    "failedTitle": "Başarısız öğeler",
+    "failedBody": "Bu değişiklikler sunucuya kaydedilemedi.",
+    "abandon": "At",
+    "abandonConfirm": "Bu başarısız öğe atılsın mı? Kaydedilmeyecek.",
+    "kindLabel": {
+      "event": "Olay",
+      "status": "Sefer durumu",
+      "expense": "Masraf",
+      "photo": "Fotoğraf"
+    }
   },
   "admin": {
     "title": "Şirketler",
@@ -280,6 +294,7 @@
     "done": "Tamam",
     "saving": "Kaydediliyor…",
     "error": "Bir şeyler ters gitti",
+    "retry": "Yeniden dene",
     "offlineNote": "Yerel olarak kaydedildi — çevrimiçi olunca senkronize edilecek"
   }
 }

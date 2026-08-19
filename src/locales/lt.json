@@ -248,7 +248,21 @@
     "hasAccount": "Paskyra aktyvi",
     "passwordHint": "Palikite tuščią, kad slaptažodis būtų sugeneruotas automatiškai.",
     "credsTitle": "Prisijungimo duomenys (rodomi vieną kartą)",
-    "credsNote": "Perduokite juos vairuotojui. Jie daugiau nebus rodomi."
+    "credsNote": "Perduokite juos vairuotojui. Jie daugiau nebus rodomi.",
+    "statusCheckFailed": "Nepavyko patikrinti jūsų paskyros būsenos — bandykite dar kartą.",
+    "signOutPending": "Kai kurie pakeitimai vis dar laukia sinchronizavimo. Jei atsijungsite, jie bus išsiųsti kitą kartą prisijungus."
+  },
+  "sync": {
+    "failedTitle": "Nepavykę elementai",
+    "failedBody": "Šių pakeitimų nepavyko išsaugoti serveryje.",
+    "abandon": "Atmesti",
+    "abandonConfirm": "Atmesti šį nepavykusį elementą? Jis nebus išsaugotas.",
+    "kindLabel": {
+      "event": "Įvykis",
+      "status": "Kelionės būsena",
+      "expense": "Išlaidos",
+      "photo": "Nuotrauka"
+    }
   },
   "admin": {
     "title": "Įmonės",
@@ -280,6 +294,7 @@
     "done": "Atlikta",
     "saving": "Išsaugoma…",
     "error": "Kažkas nepavyko",
+    "retry": "Bandyti dar kartą",
     "offlineNote": "Išsaugota vietoje — bus sinchronizuota prisijungus"
   }
 }

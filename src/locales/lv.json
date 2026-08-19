@@ -248,7 +248,21 @@
     "hasAccount": "Konts aktīvs",
     "passwordHint": "Atstājiet tukšu, lai paroli ģenerētu automātiski.",
     "credsTitle": "Piekļuves dati (rādīti vienu reizi)",
-    "credsNote": "Nododiet tos vadītājam. Tie vairs netiks rādīti."
+    "credsNote": "Nododiet tos vadītājam. Tie vairs netiks rādīti.",
+    "statusCheckFailed": "Nevar pārbaudīt jūsu konta statusu — lūdzu, mēģiniet vēlreiz.",
+    "signOutPending": "Dažas izmaiņas vēl gaida sinhronizāciju. Ja izrakstīsieties, tās tiks nosūtītas nākamajā pieteikšanās reizē."
+  },
+  "sync": {
+    "failedTitle": "Neizdevušies vienumi",
+    "failedBody": "Šīs izmaiņas nevarēja saglabāt serverī.",
+    "abandon": "Atmest",
+    "abandonConfirm": "Atmest šo neizdevušos vienumu? Tas netiks saglabāts.",
+    "kindLabel": {
+      "event": "Notikums",
+      "status": "Reisa statuss",
+      "expense": "Izdevums",
+      "photo": "Fotoattēls"
+    }
   },
   "admin": {
     "title": "Uzņēmumi",
@@ -280,6 +294,7 @@
     "done": "Gatavs",
     "saving": "Saglabā…",
     "error": "Kaut kas nogāja greizi",
+    "retry": "Mēģināt vēlreiz",
     "offlineNote": "Saglabāts lokāli — sinhronizēsies, kad būs tiešsaiste"
   }
 }

@@ -246,7 +246,21 @@
     "hasAccount": "Account active",
     "passwordHint": "Leave blank to auto-generate a password.",
     "credsTitle": "Credentials (shown once)",
-    "credsNote": "Give these to the driver. They won't be shown again."
+    "credsNote": "Give these to the driver. They won't be shown again.",
+    "statusCheckFailed": "Can't verify your account status — please try again.",
+    "signOutPending": "Some changes are still waiting to sync. If you sign out, they'll be sent the next time you sign in."
+  },
+  "sync": {
+    "failedTitle": "Failed items",
+    "failedBody": "These changes couldn't be saved to the server.",
+    "abandon": "Discard",
+    "abandonConfirm": "Discard this failed item? It won't be saved.",
+    "kindLabel": {
+      "event": "Event",
+      "status": "Trip status",
+      "expense": "Expense",
+      "photo": "Photo"
+    }
   },
   "admin": {
     "title": "Companies",
@@ -278,6 +292,7 @@
     "done": "Done",
     "saving": "Saving…",
     "error": "Something went wrong",
+    "retry": "Retry",
     "offlineNote": "Saved locally — will sync when online"
   }
 }

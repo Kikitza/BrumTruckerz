@@ -18,13 +18,22 @@ const PRILOZI_BUCKET = "prilozi"; // privatan Supabase Storage bucket (v. migrac
 const DUP_PK = "23505"; // Postgres unique_violation — ponovljen upis (retry) tretiramo kao uspeh
 
 export function registerAllHandlers() {
-  // Nov događaj ture (utovar/granica/istovar…)
+  // Nov događaj ture (utovar/granica/istovar…). Klijentski uuid => idempotentno
+  // (retry = pk konflikt = uspeh), isto kao ostali handleri (audit B2).
   registerHandler("trip_event.insert", async (p: {
-    company_id: string; trip_id: string; type: string;
+    id?: string; company_id: string; trip_id: string; type: string;
     occurred_at: string; location?: string; note?: string;
   }) => {
-    const { error } = await supabase.from("trip_events").insert(p);
-    if (error) throw error;
+    const { error } = await supabase.from("trip_events").insert({
+      ...(p.id ? { id: p.id } : {}),
+      company_id: p.company_id,
+      trip_id: p.trip_id,
+      type: p.type,
+      occurred_at: p.occurred_at,
+      location: p.location ?? null,
+      note: p.note ?? null,
+    });
+    if (error && error.code !== DUP_PK) throw error;
   });
 
   // Događaj sa KILOMETRAŽOM (polazak/stanica/granica). Klijentski uuid => idempotentno
@@ -58,13 +67,16 @@ export function registerAllHandlers() {
     }
   });
 
-  // Ispravka događaja — ISKLJUČIVO kroz RPC (append-only, istorija ostaje)
+  // Ispravka događaja — ISKLJUČIVO kroz RPC (append-only, istorija ostaje).
+  // Klijentski uuid nove verzije (p_new_id) => RPC je idempotentan: retry posle
+  // uspešnog upisa vraća isti id umesto da doda dupli ispravak (audit B3).
   registerHandler("trip_event.correct", async (p: {
-    event_id: string; type?: string; occurred_at?: string;
+    event_id: string; new_id: string; type?: string; occurred_at?: string;
     location?: string; note?: string; comment?: string;
   }) => {
     const { error } = await supabase.rpc("correct_trip_event", {
       p_event_id: p.event_id,
+      p_new_id: p.new_id,
       p_type: p.type ?? null,
       p_occurred_at: p.occurred_at ?? null,
       p_location: p.location ?? null,

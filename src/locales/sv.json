@@ -248,7 +248,21 @@
     "hasAccount": "Kontot aktivt",
     "passwordHint": "Lämna tomt för att skapa ett lösenord automatiskt.",
     "credsTitle": "Inloggningsuppgifter (visas en gång)",
-    "credsNote": "Ge dessa till föraren. De visas inte igen."
+    "credsNote": "Ge dessa till föraren. De visas inte igen.",
+    "statusCheckFailed": "Det går inte att verifiera din kontostatus — försök igen.",
+    "signOutPending": "Vissa ändringar väntar fortfarande på att synkroniseras. Om du loggar ut skickas de nästa gång du loggar in."
+  },
+  "sync": {
+    "failedTitle": "Misslyckade objekt",
+    "failedBody": "Dessa ändringar kunde inte sparas på servern.",
+    "abandon": "Kassera",
+    "abandonConfirm": "Kassera det här misslyckade objektet? Det sparas inte.",
+    "kindLabel": {
+      "event": "Händelse",
+      "status": "Turstatus",
+      "expense": "Utgift",
+      "photo": "Foto"
+    }
   },
   "admin": {
     "title": "Företag",
@@ -280,6 +294,7 @@
     "done": "Klar",
     "saving": "Sparar…",
     "error": "Något gick fel",
+    "retry": "Försök igen",
     "offlineNote": "Sparat lokalt — synkroniseras när du är online"
   }
 }

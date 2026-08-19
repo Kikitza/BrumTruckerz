@@ -248,7 +248,21 @@
     "hasAccount": "Cont activ",
     "passwordHint": "Lasă gol pentru a genera automat o parolă.",
     "credsTitle": "Date de autentificare (afișate o singură dată)",
-    "credsNote": "Transmite-le șoferului. Nu vor mai fi afișate din nou."
+    "credsNote": "Transmite-le șoferului. Nu vor mai fi afișate din nou.",
+    "statusCheckFailed": "Nu putem verifica starea contului tău — încearcă din nou.",
+    "signOutPending": "Unele modificări încă așteaptă sincronizarea. Dacă te deconectezi, vor fi trimise la următoarea conectare."
+  },
+  "sync": {
+    "failedTitle": "Elemente eșuate",
+    "failedBody": "Aceste modificări nu au putut fi salvate pe server.",
+    "abandon": "Renunță",
+    "abandonConfirm": "Renunți la acest element eșuat? Nu va fi salvat.",
+    "kindLabel": {
+      "event": "Eveniment",
+      "status": "Starea cursei",
+      "expense": "Cheltuială",
+      "photo": "Fotografie"
+    }
   },
   "admin": {
     "title": "Companii",
@@ -280,6 +294,7 @@
     "done": "Gata",
     "saving": "Se salvează…",
     "error": "Ceva nu a mers bine",
+    "retry": "Reîncearcă",
     "offlineNote": "Salvat local — se va sincroniza când ești online"
   }
 }

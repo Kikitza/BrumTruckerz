@@ -340,7 +340,8 @@ export async function driverAddEvent(p: {
   company_id: string; trip_id: string; type: string;
   occurred_at?: string; location?: string; note?: string;
 }) {
-  await enqueue("trip_event.insert", { occurred_at: new Date().toISOString(), ...p });
+  // klijentski uuid => idempotentno na retry (audit B2)
+  await enqueue("trip_event.insert", { id: uuidv4(), occurred_at: new Date().toISOString(), ...p });
 }
 
 // Događaj sa kilometražom (polazak/stanica/granica) — kroz offline red, klijentski
@@ -366,7 +367,8 @@ export async function driverCorrectEvent(p: {
   event_id: string; type?: string; occurred_at?: string;
   location?: string; note?: string; comment?: string;
 }) {
-  await enqueue("trip_event.correct", p);
+  // klijentski uuid nove verzije => RPC idempotentan na retry (audit B3)
+  await enqueue("trip_event.correct", { new_id: uuidv4(), ...p });
 }
 
 export async function driverProgress(p: {

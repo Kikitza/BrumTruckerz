@@ -248,7 +248,21 @@
     "hasAccount": "Llogaria aktive",
     "passwordHint": "Lëreni bosh për të gjeneruar automatikisht një fjalëkalim.",
     "credsTitle": "Kredencialet (shfaqen një herë)",
-    "credsNote": "Jepni këto shoferit. Nuk do të shfaqen përsëri."
+    "credsNote": "Jepni këto shoferit. Nuk do të shfaqen përsëri.",
+    "statusCheckFailed": "Statusi i llogarisë tuaj nuk mund të verifikohet — ju lutemi provoni përsëri.",
+    "signOutPending": "Disa ndryshime po presin ende të sinkronizohen. Nëse dilni, do të dërgohen herën tjetër që të hyni."
+  },
+  "sync": {
+    "failedTitle": "Artikujt e dështuar",
+    "failedBody": "Këto ndryshime nuk mund të ruheshin në server.",
+    "abandon": "Hidhe",
+    "abandonConfirm": "Ta hedhësh këtë artikull të dështuar? Nuk do të ruhet.",
+    "kindLabel": {
+      "event": "Ngjarje",
+      "status": "Statusi i udhëtimit",
+      "expense": "Shpenzim",
+      "photo": "Foto"
+    }
   },
   "admin": {
     "title": "Kompanitë",
@@ -280,6 +294,7 @@
     "done": "U krye",
     "saving": "Duke ruajtur…",
     "error": "Diçka shkoi keq",
+    "retry": "Provo përsëri",
     "offlineNote": "U ruajt lokalisht — do të sinkronizohet kur të jesh online"
   }
 }

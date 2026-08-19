@@ -248,7 +248,21 @@
     "hasAccount": "Konto aktiv",
     "passwordHint": "Lad feltet stå tomt for at generere en adgangskode automatisk.",
     "credsTitle": "Loginoplysninger (vises én gang)",
-    "credsNote": "Giv dem til føreren. De vises ikke igen."
+    "credsNote": "Giv dem til føreren. De vises ikke igen.",
+    "statusCheckFailed": "Vi kan ikke bekræfte din kontostatus — prøv igen.",
+    "signOutPending": "Nogle ændringer venter stadig på synkronisering. Hvis du logger ud, sendes de, næste gang du logger ind."
+  },
+  "sync": {
+    "failedTitle": "Mislykkede elementer",
+    "failedBody": "Disse ændringer kunne ikke gemmes på serveren.",
+    "abandon": "Kassér",
+    "abandonConfirm": "Kassér dette mislykkede element? Det bliver ikke gemt.",
+    "kindLabel": {
+      "event": "Hændelse",
+      "status": "Turstatus",
+      "expense": "Udgift",
+      "photo": "Foto"
+    }
   },
   "admin": {
     "title": "Virksomheder",
@@ -280,6 +294,7 @@
     "done": "Færdig",
     "saving": "Gemmer…",
     "error": "Noget gik galt",
+    "retry": "Prøv igen",
     "offlineNote": "Gemt lokalt — synkroniseres, når du er online"
   }
 }

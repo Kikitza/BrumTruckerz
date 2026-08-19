@@ -248,7 +248,21 @@
     "hasAccount": "Conta ativa",
     "passwordHint": "Deixe em branco para gerar uma palavra-passe automaticamente.",
     "credsTitle": "Credenciais (mostradas uma vez)",
-    "credsNote": "Entregue-as ao motorista. Não serão mostradas novamente."
+    "credsNote": "Entregue-as ao motorista. Não serão mostradas novamente.",
+    "statusCheckFailed": "Não é possível verificar o estado da sua conta — tente novamente.",
+    "signOutPending": "Algumas alterações ainda estão a aguardar sincronização. Se terminar sessão, serão enviadas na próxima vez que iniciar sessão."
+  },
+  "sync": {
+    "failedTitle": "Itens falhados",
+    "failedBody": "Não foi possível guardar estas alterações no servidor.",
+    "abandon": "Descartar",
+    "abandonConfirm": "Descartar este item falhado? Não será guardado.",
+    "kindLabel": {
+      "event": "Evento",
+      "status": "Estado da viagem",
+      "expense": "Despesa",
+      "photo": "Foto"
+    }
   },
   "admin": {
     "title": "Empresas",
@@ -280,6 +294,7 @@
     "done": "Concluído",
     "saving": "A guardar…",
     "error": "Algo correu mal",
+    "retry": "Tentar novamente",
     "offlineNote": "Guardado localmente — será sincronizado quando estiver online"
   }
 }

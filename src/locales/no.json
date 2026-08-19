@@ -248,7 +248,21 @@
     "hasAccount": "Konto aktiv",
     "passwordHint": "La stå tomt for å generere passord automatisk.",
     "credsTitle": "Innloggingsdetaljer (vises én gang)",
-    "credsNote": "Gi disse til sjåføren. De vises ikke igjen."
+    "credsNote": "Gi disse til sjåføren. De vises ikke igjen.",
+    "statusCheckFailed": "Kan ikke bekrefte kontostatusen din — prøv igjen.",
+    "signOutPending": "Noen endringer venter fortsatt på synkronisering. Hvis du logger ut, sendes de neste gang du logger inn."
+  },
+  "sync": {
+    "failedTitle": "Mislykkede elementer",
+    "failedBody": "Disse endringene kunne ikke lagres på serveren.",
+    "abandon": "Forkast",
+    "abandonConfirm": "Forkaste dette mislykkede elementet? Det lagres ikke.",
+    "kindLabel": {
+      "event": "Hendelse",
+      "status": "Turstatus",
+      "expense": "Utgift",
+      "photo": "Bilde"
+    }
   },
   "admin": {
     "title": "Selskaper",
@@ -280,6 +294,7 @@
     "done": "Ferdig",
     "saving": "Lagrer…",
     "error": "Noe gikk galt",
+    "retry": "Prøv igjen",
     "offlineNote": "Lagret lokalt — synkroniseres når du er online"
   }
 }

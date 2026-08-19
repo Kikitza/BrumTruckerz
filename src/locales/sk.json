@@ -248,7 +248,21 @@
     "hasAccount": "Účet aktívny",
     "passwordHint": "Ponechajte prázdne na automatické vygenerovanie hesla.",
     "credsTitle": "Prihlasovacie údaje (zobrazené raz)",
-    "credsNote": "Odovzdajte ich vodičovi. Znova sa už nezobrazia."
+    "credsNote": "Odovzdajte ich vodičovi. Znova sa už nezobrazia.",
+    "statusCheckFailed": "Nepodarilo sa overiť stav vášho účtu — skúste to znova.",
+    "signOutPending": "Niektoré zmeny stále čakajú na synchronizáciu. Ak sa odhlásite, odošlú sa pri najbližšom prihlásení."
+  },
+  "sync": {
+    "failedTitle": "Neúspešné položky",
+    "failedBody": "Tieto zmeny sa nepodarilo uložiť na server.",
+    "abandon": "Zahodiť",
+    "abandonConfirm": "Zahodiť túto neúspešnú položku? Neuloží sa.",
+    "kindLabel": {
+      "event": "Udalosť",
+      "status": "Stav jazdy",
+      "expense": "Výdavok",
+      "photo": "Fotka"
+    }
   },
   "admin": {
     "title": "Firmy",
@@ -280,6 +294,7 @@
     "done": "Hotovo",
     "saving": "Ukladá sa…",
     "error": "Niečo sa pokazilo",
+    "retry": "Skúsiť znova",
     "offlineNote": "Uložené lokálne — synchronizuje sa po pripojení k sieti"
   }
 }

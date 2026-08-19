@@ -41,8 +41,11 @@ export async function adminSetCompanyStatus(
 }
 
 // Suspension gate: owner/driver čitaju status SVOJE firme (RLS company_read → samo svoja).
-export async function getMyCompanyStatus(): Promise<CompanyStatus | null> {
+// FAIL-CLOSED (audit A3): greška čitanja -> baci (pozivalac blokira dok ne potvrdi
+// status, nikad ne pušta unutra na osnovu neuspele provere). Nema reda -> tretiraj
+// kao obustavljeno (fail-closed).
+export async function getMyCompanyStatus(): Promise<CompanyStatus> {
   const { data, error } = await supabase.from("companies").select("status").limit(1).maybeSingle();
-  if (error) return null;
-  return (data?.status as CompanyStatus) ?? null;
+  if (error) throw error;
+  return (data?.status as CompanyStatus) ?? "suspended";
 }

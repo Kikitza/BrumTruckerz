@@ -248,7 +248,21 @@
     "hasAccount": "Tili aktiivinen",
     "passwordHint": "Jätä tyhjäksi luodaksesi salasanan automaattisesti.",
     "credsTitle": "Kirjautumistiedot (näytetään kerran)",
-    "credsNote": "Anna nämä kuljettajalle. Niitä ei näytetä uudelleen."
+    "credsNote": "Anna nämä kuljettajalle. Niitä ei näytetä uudelleen.",
+    "statusCheckFailed": "Tilin tilaa ei voitu tarkistaa — yritä uudelleen.",
+    "signOutPending": "Jotkin muutokset odottavat vielä synkronointia. Jos kirjaudut ulos, ne lähetetään seuraavalla kirjautumisella."
+  },
+  "sync": {
+    "failedTitle": "Epäonnistuneet kohteet",
+    "failedBody": "Näitä muutoksia ei voitu tallentaa palvelimelle.",
+    "abandon": "Hylkää",
+    "abandonConfirm": "Hylätäänkö tämä epäonnistunut kohde? Sitä ei tallenneta.",
+    "kindLabel": {
+      "event": "Tapahtuma",
+      "status": "Matkan tila",
+      "expense": "Kulu",
+      "photo": "Valokuva"
+    }
   },
   "admin": {
     "title": "Yritykset",
@@ -280,6 +294,7 @@
     "done": "Valmis",
     "saving": "Tallennetaan…",
     "error": "Jotain meni pieleen",
+    "retry": "Yritä uudelleen",
     "offlineNote": "Tallennettu paikallisesti — synkronoidaan verkkoon palatessa"
   }
 }

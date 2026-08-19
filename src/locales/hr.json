@@ -248,7 +248,21 @@
     "hasAccount": "Račun aktivan",
     "passwordHint": "Ostavite prazno za automatsko generiranje lozinke.",
     "credsTitle": "Vjerodajnice (prikazano jednom)",
-    "credsNote": "Predajte ih vozaču. Neće biti ponovno prikazane."
+    "credsNote": "Predajte ih vozaču. Neće biti ponovno prikazane.",
+    "statusCheckFailed": "Nije moguće provjeriti status vašeg računa — pokušajte ponovno.",
+    "signOutPending": "Neke promjene još čekaju sinkronizaciju. Ako se odjavite, bit će poslane pri sljedećoj prijavi."
+  },
+  "sync": {
+    "failedTitle": "Neuspjele stavke",
+    "failedBody": "Ove promjene nije bilo moguće spremiti na poslužitelj.",
+    "abandon": "Odbaci",
+    "abandonConfirm": "Odbaciti ovu neuspjelu stavku? Neće biti spremljena.",
+    "kindLabel": {
+      "event": "Događaj",
+      "status": "Status ture",
+      "expense": "Trošak",
+      "photo": "Fotografija"
+    }
   },
   "admin": {
     "title": "Tvrtke",
@@ -280,6 +294,7 @@
     "done": "Gotovo",
     "saving": "Spremanje…",
     "error": "Nešto je pošlo po zlu",
+    "retry": "Pokušaj ponovno",
     "offlineNote": "Spremljeno lokalno — sinkronizirat će se kad budete online"
   }
 }

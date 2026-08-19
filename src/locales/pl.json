@@ -248,7 +248,21 @@
     "hasAccount": "Konto aktywne",
     "passwordHint": "Pozostaw puste, aby automatycznie wygenerować hasło.",
     "credsTitle": "Dane logowania (pokazane raz)",
-    "credsNote": "Przekaż je kierowcy. Nie zostaną wyświetlone ponownie."
+    "credsNote": "Przekaż je kierowcy. Nie zostaną wyświetlone ponownie.",
+    "statusCheckFailed": "Nie można zweryfikować statusu Twojego konta — spróbuj ponownie.",
+    "signOutPending": "Niektóre zmiany wciąż czekają na synchronizację. Jeśli się wylogujesz, zostaną wysłane przy następnym logowaniu."
+  },
+  "sync": {
+    "failedTitle": "Nieudane elementy",
+    "failedBody": "Tych zmian nie udało się zapisać na serwerze.",
+    "abandon": "Odrzuć",
+    "abandonConfirm": "Odrzucić ten nieudany element? Nie zostanie zapisany.",
+    "kindLabel": {
+      "event": "Zdarzenie",
+      "status": "Status trasy",
+      "expense": "Wydatek",
+      "photo": "Zdjęcie"
+    }
   },
   "admin": {
     "title": "Firmy",
@@ -280,6 +294,7 @@
     "done": "Gotowe",
     "saving": "Zapisywanie…",
     "error": "Coś poszło nie tak",
+    "retry": "Spróbuj ponownie",
     "offlineNote": "Zapisano lokalnie — synchronizacja po połączeniu z siecią"
   }
 }

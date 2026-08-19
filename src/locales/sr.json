@@ -249,7 +249,21 @@
     "hasAccount": "Nalog aktivan",
     "passwordHint": "Ostavi prazno da se lozinka generiše.",
     "credsTitle": "Kredencijali (prikazano jednom)",
-    "credsNote": "Prosledi vozaču. Neće se ponovo prikazati."
+    "credsNote": "Prosledi vozaču. Neće se ponovo prikazati.",
+    "statusCheckFailed": "Ne mogu da proverim status naloga — pokušaj ponovo.",
+    "signOutPending": "Neke izmene još čekaju sinhronizaciju. Ako se odjaviš, poslaće se kada se ponovo prijaviš."
+  },
+  "sync": {
+    "failedTitle": "Neuspele stavke",
+    "failedBody": "Ove izmene nisu mogle da se sačuvaju na server.",
+    "abandon": "Odustani",
+    "abandonConfirm": "Odbaciti ovu neuspelu stavku? Neće biti sačuvana.",
+    "kindLabel": {
+      "event": "Događaj",
+      "status": "Status ture",
+      "expense": "Trošak",
+      "photo": "Slika"
+    }
   },
   "admin": {
     "title": "Firme",
@@ -281,6 +295,7 @@
     "done": "Gotovo",
     "saving": "Čuvanje…",
     "error": "Nešto je pošlo naopako",
+    "retry": "Pokušaj ponovo",
     "offlineNote": "Sačuvano lokalno — sinhronizuje se kad bude mreže"
   }
 }

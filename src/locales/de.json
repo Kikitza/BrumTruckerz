@@ -248,7 +248,21 @@
     "hasAccount": "Konto aktiv",
     "passwordHint": "Leer lassen, um ein Passwort automatisch zu generieren.",
     "credsTitle": "Zugangsdaten (nur einmal angezeigt)",
-    "credsNote": "Geben Sie diese dem Fahrer. Sie werden nicht erneut angezeigt."
+    "credsNote": "Geben Sie diese dem Fahrer. Sie werden nicht erneut angezeigt.",
+    "statusCheckFailed": "Ihr Kontostatus kann nicht überprüft werden — bitte versuchen Sie es erneut.",
+    "signOutPending": "Einige Änderungen warten noch auf die Synchronisierung. Wenn Sie sich abmelden, werden sie bei der nächsten Anmeldung gesendet."
+  },
+  "sync": {
+    "failedTitle": "Fehlgeschlagene Einträge",
+    "failedBody": "Diese Änderungen konnten nicht auf dem Server gespeichert werden.",
+    "abandon": "Verwerfen",
+    "abandonConfirm": "Diesen fehlgeschlagenen Eintrag verwerfen? Er wird nicht gespeichert.",
+    "kindLabel": {
+      "event": "Ereignis",
+      "status": "Tourstatus",
+      "expense": "Ausgabe",
+      "photo": "Foto"
+    }
   },
   "admin": {
     "title": "Unternehmen",
@@ -280,6 +294,7 @@
     "done": "Fertig",
     "saving": "Wird gespeichert…",
     "error": "Etwas ist schiefgelaufen",
+    "retry": "Erneut versuchen",
     "offlineNote": "Lokal gespeichert — wird synchronisiert, sobald online"
   }
 }

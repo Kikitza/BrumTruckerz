@@ -248,7 +248,21 @@
     "hasAccount": "Konto aktiivne",
     "passwordHint": "Jäta tühjaks, et parool automaatselt genereerida.",
     "credsTitle": "Juurdepääsuandmed (näidatakse üks kord)",
-    "credsNote": "Anna need juhile. Neid enam ei näidata."
+    "credsNote": "Anna need juhile. Neid enam ei näidata.",
+    "statusCheckFailed": "Konto oleku kontrollimine ebaõnnestus — palun proovi uuesti.",
+    "signOutPending": "Mõned muudatused ootavad veel sünkroonimist. Kui logid välja, saadetakse need järgmisel sisselogimisel."
+  },
+  "sync": {
+    "failedTitle": "Ebaõnnestunud üksused",
+    "failedBody": "Neid muudatusi ei õnnestunud serverisse salvestada.",
+    "abandon": "Loobu",
+    "abandonConfirm": "Loobuda sellest ebaõnnestunud üksusest? Seda ei salvestata.",
+    "kindLabel": {
+      "event": "Sündmus",
+      "status": "Sõidu olek",
+      "expense": "Kulu",
+      "photo": "Foto"
+    }
   },
   "admin": {
     "title": "Ettevõtted",
@@ -280,6 +294,7 @@
     "done": "Valmis",
     "saving": "Salvestamine…",
     "error": "Midagi läks valesti",
+    "retry": "Proovi uuesti",
     "offlineNote": "Salvestatud lokaalselt — sünkroonitakse võrgus olles"
   }
 }

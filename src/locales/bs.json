@@ -248,7 +248,21 @@
     "hasAccount": "Račun aktivan",
     "passwordHint": "Ostavite prazno za automatsko generisanje lozinke.",
     "credsTitle": "Pristupni podaci (prikazani jednom)",
-    "credsNote": "Dajte ih vozaču. Neće biti ponovo prikazani."
+    "credsNote": "Dajte ih vozaču. Neće biti ponovo prikazani.",
+    "statusCheckFailed": "Ne možemo provjeriti status vašeg računa — pokušajte ponovo.",
+    "signOutPending": "Neke izmjene još čekaju sinhronizaciju. Ako se odjavite, biće poslane pri sljedećoj prijavi."
+  },
+  "sync": {
+    "failedTitle": "Neuspjele stavke",
+    "failedBody": "Ove izmjene nije bilo moguće sačuvati na serveru.",
+    "abandon": "Odbaci",
+    "abandonConfirm": "Odbaciti ovu neuspjelu stavku? Neće biti sačuvana.",
+    "kindLabel": {
+      "event": "Događaj",
+      "status": "Status ture",
+      "expense": "Trošak",
+      "photo": "Fotografija"
+    }
   },
   "admin": {
     "title": "Kompanije",
@@ -280,6 +294,7 @@
     "done": "Gotovo",
     "saving": "Spašavanje…",
     "error": "Nešto je pošlo po zlu",
+    "retry": "Pokušaj ponovo",
     "offlineNote": "Sačuvano lokalno — sinhronizirat će se kada budete online"
   }
 }

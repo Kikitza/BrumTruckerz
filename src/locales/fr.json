@@ -248,7 +248,21 @@
     "hasAccount": "Compte actif",
     "passwordHint": "Laissez vide pour générer un mot de passe automatiquement.",
     "credsTitle": "Identifiants (affichés une seule fois)",
-    "credsNote": "Donnez-les au chauffeur. Ils ne seront plus affichés."
+    "credsNote": "Donnez-les au chauffeur. Ils ne seront plus affichés.",
+    "statusCheckFailed": "Impossible de vérifier le statut de votre compte — veuillez réessayer.",
+    "signOutPending": "Certaines modifications attendent encore d'être synchronisées. Si vous vous déconnectez, elles seront envoyées à votre prochaine connexion."
+  },
+  "sync": {
+    "failedTitle": "Éléments en échec",
+    "failedBody": "Ces modifications n'ont pas pu être enregistrées sur le serveur.",
+    "abandon": "Ignorer",
+    "abandonConfirm": "Ignorer cet élément en échec ? Il ne sera pas enregistré.",
+    "kindLabel": {
+      "event": "Événement",
+      "status": "Statut du trajet",
+      "expense": "Dépense",
+      "photo": "Photo"
+    }
   },
   "admin": {
     "title": "Entreprises",
@@ -280,6 +294,7 @@
     "done": "Terminé",
     "saving": "Enregistrement…",
     "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
     "offlineNote": "Enregistré localement — sera synchronisé une fois en ligne"
   }
 }
