@@ -143,4 +143,69 @@ Nalog platform administratora (naplata/paketi/status firmi) pravi **isključivo 
 
 **Suspenzija:** status `suspended` → pri prijavi owner **i** vozač te firme dobijaju ekran „Nalog je privremeno obustavljen". (Tvrdo RLS zaključavanje podataka pri suspenziji = buduća opcija.)
 
+---
+
+## Restore proba (dokazano vraćanje backupa) — ponovljivo za ~10 min
+
+Cilj: dokazati da PROD backup može da se **vrati** u zaseban projekat (`BrumTruckerz-staging`),
+tj. da backup nije samo fajl nego proverena kopija. „Backup bez probe ne postoji" (ADR F0).
+Metod: native `pg_dump`/`pg_restore` (PG17) preko **IPv4 poolera** — bez Docker-a.
+*(Prvi put dokazano 19.8.2026: svih 13 tabela PROD == STAGING.)*
+
+> STAGING = kopija PRAVE baze (pravi podaci). Lozinke NE upisivati u repo/`.env`; drži ih samo u
+> sesiji (env/fajl van repo-a, `chmod 600`), i **obriši (`shred`) posle probe** — dump sadrži PII.
+
+**Preduslovi (jednom):**
+- Postgres klijent **17**: `sudo apt-get install -y postgresql-client-17` (PGDG repo). `pg_dump 16` ODBIJA PG17 server.
+- Supabase CLI ulogovan (`supabase login`), Pro org (`--org-id` iz `supabase orgs list`).
+- **Direktni host `db.<ref>.supabase.co` je IPv6-only** → sa IPv4 runnera koristi **pooler**
+  (`aws-N-<region>.pooler.supabase.com`, user `postgres.<ref>`). Tačan `aws-N` prefiks saznaj sa:
+  `supabase link --project-ref <ref> -p <pw>` pa `supabase db dump --linked --dry-run | grep PGHOST`.
+
+**Koraci:**
+1. **Kreiraj staging** (isti region kao PROD = `eu-west-1`); lozinku generiši, nigde ne commituj:
+   ```bash
+   STG_PW=$(openssl rand -hex 24)
+   supabase projects create BrumTruckerz-staging --org-id <ORG_ID> --region eu-west-1 --db-password "$STG_PW" --yes
+   ```
+2. **PROD DB lozinka** — reset na **PRAVOM** projektu: Dashboard URL mora sadržati **PROD ref**
+   (`https://supabase.com/dashboard/project/<PROD_REF>/settings/database` → Reset). *Čest zastoj:
+   reset se slučajno odradi na staging/dev projektu — proveri ref u URL-u!*
+   ```bash
+   export PGPASSWORD='<PROD_DB_PW>'; PH=aws-1-eu-west-1.pooler.supabase.com; PU=postgres.<PROD_REF>
+   ```
+3. **Dump PROD** — `public` (šema+podaci) + `auth.users` (podaci; potreban zbog FK `app_users→auth.users`):
+   ```bash
+   pg_dump -h $PH -U $PU -d postgres --schema=public --no-owner --no-privileges -Fc -f public.dump
+   pg_dump -h $PH -U $PU -d postgres -t auth.users --data-only -Fc -f authusers.dump
+   ```
+4. **Restore u staging** — PRVO `auth.users` (da FK ciljevi postoje), pa `public`:
+   ```bash
+   export PGPASSWORD="$STG_PW"; SH=aws-1-eu-west-1.pooler.supabase.com; SU=postgres.<STG_REF>
+   pg_restore -h $SH -U $SU -d postgres --no-owner --data-only authusers.dump
+   pg_restore -h $SH -U $SU -d postgres --no-owner --no-privileges public.dump
+   ```
+   > Jedina očekivana greška: `schema "public" already exists` (postoji u svežem projektu) — bezopasno.
+   > Alternativa (Dashboard, bez klijenta): PROD → *Database → Backups* vraća **u ISTI** projekat (PITR);
+   > za **poseban** projekat ide gornji `pg_dump|pg_restore`.
+5. **Dokaz poklapanja** — isti upit na obe baze; brojevi moraju biti isti:
+   ```bash
+   Q="select 'companies',count(*) from companies union all select 'app_users',count(*) from app_users
+      union all select 'vehicles',count(*) from vehicles union all select 'trailers',count(*) from trailers
+      union all select 'drivers',count(*) from drivers union all select 'trips',count(*) from trips
+      union all select 'trip_events',count(*) from trip_events union all select 'trip_stops',count(*) from trip_stops
+      union all select 'expenses',count(*) from expenses union all select 'attachments',count(*) from attachments
+      union all select 'reminders',count(*) from reminders union all select 'auth.users',count(*) from auth.users order by 1;"
+   PGPASSWORD='<PROD_DB_PW>' psql -h $PH -U $PU -d postgres -Atc "$Q"   # == PROD ==
+   PGPASSWORD="$STG_PW"     psql -h $SH -U $SU -d postgres -Atc "$Q"    # == STAGING ==
+   ```
+   Upiši obe kolone u `IZVESTAJ.md` (tabela PROD vs STAGING).
+6. **OBAVEZNO vrati link na DEV** (staging je samo za probu):
+   ```bash
+   supabase link --project-ref icbjagubaftoqcwfcbwf   # BrumTruckerz-dev
+   supabase projects list                             # potvrda: DEV = linked
+   ```
+7. **Higijena:** `shred -u public.dump authusers.dump` i fajl(ove) sa lozinkama; posle dokazane
+   probe **resetuj PROD DB lozinku** (bila je u sesiji) i obriši/ugasi staging ako ne treba (troškovi).
+
 **Higijena:** admin nalog je SAMO za platformu (ne vezuj ga za firmu); jaka lozinka; ne deli ga.
