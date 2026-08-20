@@ -1,80 +1,55 @@
-# IZVEŠTAJ — KAPIJA F2 / KORAK 1: PROD SYNC (uwphmxxeuggitssdmgcz)
+# IZVEŠTAJ — KAPIJA F2 / KORAK 2: PREKIDAČ ZA TELEFON + NOV PRODUKCIONI BUILD
 
-> STATUS: **URAĐENO na PRODU** (izričito odobrenje vlasnika). Migracije 0021–0025 primenjene; `vies-check`
-> deploy-ovana. **Link vraćen na DEV** (dokaz niže). Bez izmena koda. Auth PRODA **nedirnut**. `reminders-cron`
-> **svesno izostavljen** (ide uz push-finale ritual). Izveštaj sadrži samo imena/refove — **nijednu tajnu-vrednost**.
+> STATUS: **URAĐENO.** Flag za telefon dodat i commitovan; **produkcioni EAS build pokrenut** (PROD okruženje).
+> Provere čiste. Nijedan token u izveštaju.
 
-## Rezultat: ✅ F2 SINHRONIZOVAN NA PROD
-PROD je bio na **0001–0020 sa urednom istorijom** (STOP-kapija „utvrdi stanje" → OK). Push čist iz prvog puta,
-sve aditivno, postojeći podaci netaknuti.
+## 1) Prekidač za prijavu telefonom (feature flag)
+- **`EXPO_PUBLIC_PHONE_LOGIN`** u `eas.json`: **preview = `'1'`**, **production = `'0'`**.
+- **`src/features/auth/phone.ts`** — čista fn `isPhoneLoginEnabled(flag)` (samo `'1'` uključuje) + jest.
+- **`app/(auth)/sign-in.tsx`** — segment „Telefon" i sve telefonske staze (`PhoneSignIn`) vidljivi **SAMO kad je flag
+  `'1'`**. Kad je isključen: prikazuje se samo email prijava; `effectiveMethod` forsira „email" (nema načina da se dođe do
+  telefona). **Email prijava + „Registracija" (dispečer/samouslužno) ostaju SVIMA**, bez obzira na flag.
+- Aktivacija SMS-a kasnije = postavi flag na `'1'` (uz „Aktivacija SMS-a na produkciji" iz `RUNBOOK.md`).
 
-## 1) Stanje pre (STOP-kapija) + dry-run
-- `supabase_migrations.schema_migrations` = **tačno 0001…0020** (20 redova). Očekivano.
-- **Dry-run = TAČNO 0021, 0022, 0023, 0024, 0025** (bez odstupanja → nastavak):
-```
- • 0021_customers.sql
- • 0022_customers_vies.sql
- • 0023_invoices.sql
- • 0024_reminder_types_km.sql
- • 0025_countries_vehicle_types_self_serve.sql
-```
-
-## 2) Push + PRE/POSLE (aditivnost)
-| Tabela | PRE | POSLE |
-|---|---|---|
-| companies | 1 | 1 |
-| app_users | 1 | 1 |
-| auth.users | 3 | 3 |
-| drivers | 1 | 1 |
-| vehicles | 5 | 5 |
-| trailers | 1 | 1 |
-| trips | 0 | 0 |
-| reminders | 4 | 4 |
-| driver_profiles / employments | 0 / 0 | 0 / 0 |
-
-**Nove tabele (prazne):** customers 0, invoices 0, invoice_settings 0. **Nijedan `db push` u 0021–0025 ne radi
-backfill podataka** → svi postojeći brojevi nepromenjeni (čisto aditivno).
-
-## 3) Read-only verifikacija PRODA (bez test:db — po nalogu)
-| Provera | Vrednost |
+## 2) Provere
+| Provera | Rezultat |
 |---|---|
-| istorija (applied max) | **0025** |
-| šifarnici (seed) | countries **41**, vehicle_types **9**, reminder_types **12** |
-| funkcije prisutne | `issue_invoice` ✅, `create_company_self` ✅, `next_invoice_no` ✅ |
-| nove kolone | `trips.customer_id` ✅, `vehicles.type_id` ✅, `companies.country_code` ✅, `reminders.mode` ✅ |
-| customers/invoices/invoice_settings | tabele prisutne (0 redova) |
+| `npm run typecheck` | ✅ čisto |
+| `npm test` (jest) | ✅ 17 suita / 121 test (uklj. `isPhoneLoginEnabled`) |
+| `npm run lint` | ✅ 0 grešaka (4 postojeća upozorenja) |
+| `eas.json` | ✅ validan JSON |
+| commit/push | ✅ `6bce79a` „auth: phone login behind flag…" |
 
-`test:db` **NIJE** puštan na PRODU (samo read-only verifikacija, po zadatku).
+## 3) Produkcioni build (EAS)
+- Komanda: `eas build --platform android --profile production` (APK, PROD okruženje `uwphmxxeuggitssdmgcz`).
+- EAS potvrdio učitane varijable **iz `production` profila**: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`,
+  **`EXPO_PUBLIC_PHONE_LOGIN` (= `0`)** → **telefon je u ovom buildu SKRIVEN**.
+- `versionCode` uvećan **3 → 4** (autoIncrement, remote appVersionSource); Keystore sa Expo servera (postojeći).
+- **Link builda (APK se pojavljuje po završetku):**
+  `https://expo.dev/accounts/kikitzas-team/projects/kikitza/builds/77bd5047-582b-47b0-a0e8-0524c1bc4e61`
+- Status u trenutku izveštaja: **u redu / gradi se** — stranica prati do završetka i nudi APK za preuzimanje.
 
-## 4) Edge / Auth
-- **`vies-check` deploy-ovana na PROD.**
-- **`reminders-cron` SVESNO IZOSTAVLJENA** — ide uz „push-finale" ritual (kad se puštaju sledeće migracije/notif izmene),
-  da se cron ne razdvaja od svog konteksta. Trenutno na PRODU radi prethodna (0012) verzija crona; km-rokovi kreću tek
-  po njenom redeployu. Na DEV-u je nova (km) verzija.
-- **Auth PRODA NEDIRNUT** (nijedan Management API poziv nad PRODOM; telefon/autoconfirm ostaju isključeni).
+> EXPO_TOKEN je bio prisutan i autentikovan (`kikitzatv@proton.me`) → build pokrenut bez zastoja. (Da je falio: token se
+> pravi na expo.dev → Account Settings → Access Tokens → „Create token"; unosi se kao `EXPO_TOKEN`.)
 
-## 5) Link vraćen na DEV (dokaz)
-```
-LINKED → BrumTruckerz-dev           icbjagubaftoqcwfcbwf
-         BrumTruckerz-staging       webquovijioxmouvuiko
-         (PROD)                     uwphmxxeuggitssdmgcz
-```
-`supabase/.temp/project-ref = icbjagubaftoqcwfcbwf`.
+## Šta ovaj build PRVI PUT nosi na pravu (produkcionu) aplikaciju
+Pošto je PROD baza sada na 0001–0025 (Korak 1), ovaj build **prvi put** aktivira ceo F1+F2 sloj na produkciji:
+- **Pozivnice firme** — vlasnik/dispečer generiše kod; primalac ulazi „Imam kod firme" (`accept_invitation`).
+- **Dispečer** — uloga po matrici + **email „Registracija"** (samouslužni ulaz naloga).
+- **Naručioci (kartoteka klijenata) + VIES provera PIB-a** (Edge `vies-check` deploy-ovana na PROD u Koraku 1).
+- **Fakture v1** — brojevi po firmi, PDF (expo-print/sharing), statusi plaćeno/KASNI/storno.
+- **Rokovi: šifarnik tipova po struci + servis po kilometraži** (semafor km). *Napomena:* km push-opomene krenu tek po
+  redeployu `reminders-cron` na PROD (Korak 3, svesno odloženo).
+- **Čarobnjak „Otvori novu firmu"** — samouslužno otvaranje (`create_company_self`) + ISO države + tipovi vozila.
 
-## Stanje migracija (sve tri baze)
-- **DEV:** 0001–0025. **STAGING:** 0001–0020 (F1 proba). **PROD:** 0001–0025 (**ovaj sync**).
-
-## Rollback (PROD, ako zatreba)
-Aditivno; enum se ne dira. Po potrebi obrnutim redom: `create_company_self`/`countries`/`vehicle_types` (0025) →
-`invoices`/`issue_invoice`/`next_invoice_no`/counteri (0023) → `customers` (0021); VIES kolone (0022) i reminder_types+km
-kolone (0024) su prazne/dodatne i bezbedne za ostajanje.
+## Namerno SKRIVENO u ovom (produkcionom) buildu
+- **Prijava telefonom** — `EXPO_PUBLIC_PHONE_LOGIN='0'`. Ostaje isključena dok se SMS ne aktivira (RUNBOOK), pa se uključuje
+  jednim flagom bez izmene koda. (Preview build je `'1'` — telefon vidljiv za internu probu sa test brojevima.)
 
 ## Jezici
-i18n **nije diran** (samo baza/deploy).
-
-## Kvalitet
-STOP-kapije poštovane (istorija → dry-run tačno 0021–0025 → PRE/POSLE); nijedna tajna-vrednost nije zapisana; `reminders-cron`
-svesno izostavljen i to je jasno naznačeno; link vraćen na DEV.
+i18n **nije diran** (flag + build).
 
 ## ČEKA SE (potez vlasnika)
-1. **KAPIJA F2 / KORAK 2** (kad odlučiš): `functions deploy reminders-cron` na PROD (km-rokovi), uz odobrenje.
+1. Preuzmi/instaliraj APK sa build linka kad se završi; probaj na pravom telefonu.
+2. **KAPIJA F2 / KORAK 3** (kad odlučiš): `functions deploy reminders-cron` na PROD (km push-opomene).
+3. Aktivacija SMS-a na produkciji (RUNBOOK) + `EXPO_PUBLIC_PHONE_LOGIN='0'→'1'` u production profilu — kad se krene sa telefonom.
