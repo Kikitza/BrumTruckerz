@@ -31,7 +31,15 @@ if (!isWeb) {
 export default function RootLayout() {
   // SDK 54 (Android) je edge-to-edge: sistemske trake su providne, ikonice se boje
   // po temi (svetla tema -> tamne ikonice i obrnuto). Prati ručni override teme.
-  const { scheme } = useTheme();
+  const { colors, scheme } = useTheme();
+
+  // WEB (F3): ofarbaj podlogu stranice (html/body) bojom aktivne teme — da nijedan ekran
+  // nikad ne pokaže belo van sadržaja (npr. bočne margine centriranog kontejnera).
+  useEffect(() => {
+    if (!isWeb || typeof document === "undefined") return;
+    document.documentElement.style.backgroundColor = colors.bg;
+    document.body.style.backgroundColor = colors.bg;
+  }, [colors.bg]);
   useEffect(() => {
     initStoredLanguage();
     // Offline red (expo-sqlite) je NATIVE-ONLY — web je uvek online (F3).

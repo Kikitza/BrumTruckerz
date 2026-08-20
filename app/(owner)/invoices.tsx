@@ -5,8 +5,8 @@ import { View, Text, Pressable, FlatList, ActivityIndicator } from "react-native
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
-import { isWeb } from "../../src/lib/platform";
 import { fmtMoney } from "../../src/lib/format";
+import { DesktopContainer } from "../../src/components/DesktopContainer";
 import { ModalScaffold } from "../../src/components/form";
 import { listInvoices, listIssuableTrips, type InvoiceRow, type IssuableTrip } from "../../src/features/invoices/api";
 import { invoiceDisplayStatus, type InvoiceDisplayStatus } from "../../src/features/invoices/calc";
@@ -42,8 +42,8 @@ export default function InvoicesScreen() {
   });
 
   return (
-    // WEB (F3): širok ekran → centriran kontejner (max-width), da lista bude čitljiva a kartice ne razvučene.
-    <View style={[{ flex: 1, backgroundColor: colors.bg }, isWeb && { width: "100%", maxWidth: 1000, alignSelf: "center" }]}>
+    // WEB (F3): spoljni sloj puni širinu temom (bez belih ivica), unutra centriran max-width kontejner.
+    <DesktopContainer>
       <View style={{ flexDirection: "row", gap: 8, padding: 12 }}>
         <Pressable onPress={() => setPicking(true)}
           style={{ flex: 1, backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center" }}>
@@ -89,7 +89,7 @@ export default function InvoicesScreen() {
           onPick={(id) => { setPicking(false); setIssuingTripId(id); }}
         />
       )}
-    </View>
+    </DesktopContainer>
   );
 }
 
