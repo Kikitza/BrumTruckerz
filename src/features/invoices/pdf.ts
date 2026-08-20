@@ -131,3 +131,11 @@ export async function shareInvoicePdf(invoiceId: string, lang: InvoiceLang): Pro
     await Sharing.shareAsync(uri, { mimeType: "application/pdf", UTI: "com.adobe.pdf" });
   }
 }
+
+// WEB (F3): „Štampaj / Sačuvaj PDF" — otvara browser print dijalog sa ISTIM HTML šablonom fakture
+// (identičan izgled kao mobilni PDF; knjigovođa iz „Sačuvaj kao PDF" dobija PDF fajl). Bez uploada:
+// pravi PDF bajtovi na webu tražili bi tešku zavisnost (jsPDF/pdf-lib) — arhiva (upload) ostaje mobilna (v1).
+export async function printInvoiceWeb(invoiceId: string, lang: InvoiceLang): Promise<void> {
+  const [inv, settings] = await Promise.all([getInvoice(invoiceId), getInvoiceSettings()]);
+  await Print.printAsync({ html: buildInvoiceHtml(inv, settings, lang) });
+}

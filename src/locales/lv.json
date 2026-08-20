@@ -170,7 +170,9 @@
       "customs": "Muita",
       "fuel_receipt": "Degvielas čeks",
       "other": "Cits"
-    }
+    },
+    "tooLarge": "Attēls ir pārāk liels (maks. {{mb}} MB).",
+    "imagesOnly": "Izvēlies attēla failu."
   },
   "reminders": {
     "vehicleReg": "Reģistrācija derīga līdz",
@@ -495,7 +497,8 @@
       "prefix": "Numura prefikss",
       "defaultVatRate": "Noklusētā PVN likme (%)",
       "defaultVatNote": "Noklusētā PVN piezīme"
-    }
+    },
+    "printPdf": "Drukāt / Saglabāt PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Tu ieiesi kā īpašnieks savā jaunajā tukšajā uzņēmumā."
   },
   "web": {
-    "driverUseMobile": "Šofera lietotne darbojas tikai mobilajā — atver BrumTruckerz mobilo lietotni.",
-    "pdfMobileOnly": "PDF pagaidām ir pieejams mobilajā lietotnē."
+    "driverUseMobile": "Šofera lietotne darbojas tikai mobilajā — atver BrumTruckerz mobilo lietotni."
   }
 }

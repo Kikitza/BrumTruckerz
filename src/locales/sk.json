@@ -170,7 +170,9 @@
       "customs": "Clo",
       "fuel_receipt": "Účtenka za palivo",
       "other": "Iné"
-    }
+    },
+    "tooLarge": "Obrázok je príliš veľký (max. {{mb}} MB).",
+    "imagesOnly": "Vyber súbor obrázka."
   },
   "reminders": {
     "vehicleReg": "Registrácia platná do",
@@ -495,7 +497,8 @@
       "prefix": "Prefix čísla",
       "defaultVatRate": "Predvolená sadzba DPH (%)",
       "defaultVatNote": "Predvolená poznámka k DPH"
-    }
+    },
+    "printPdf": "Tlač / Uložiť PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Vstúpiš ako majiteľ do svojej novej prázdnej firmy."
   },
   "web": {
-    "driverUseMobile": "Aplikácia pre vodiča je len mobilná — otvor mobilnú aplikáciu BrumTruckerz.",
-    "pdfMobileOnly": "PDF je zatiaľ dostupné v mobilnej aplikácii."
+    "driverUseMobile": "Aplikácia pre vodiča je len mobilná — otvor mobilnú aplikáciu BrumTruckerz."
   }
 }

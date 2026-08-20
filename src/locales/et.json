@@ -170,7 +170,9 @@
       "customs": "Toll",
       "fuel_receipt": "Kütusekviitung",
       "other": "Muu"
-    }
+    },
+    "tooLarge": "Pilt on liiga suur (max {{mb}} MB).",
+    "imagesOnly": "Vali pildifail."
   },
   "reminders": {
     "vehicleReg": "Registreerimine kehtib kuni",
@@ -495,7 +497,8 @@
       "prefix": "Numbri eesliide",
       "defaultVatRate": "Vaikimisi käibemaksumäär (%)",
       "defaultVatNote": "Vaikimisi KM märkus"
-    }
+    },
+    "printPdf": "Prindi / Salvesta PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Sisened omanikuna oma uude tühja ettevõttesse."
   },
   "web": {
-    "driverUseMobile": "Juhi rakendus on ainult mobiilne — ava BrumTruckerzi mobiilirakendus.",
-    "pdfMobileOnly": "PDF on praegu saadaval mobiilirakenduses."
+    "driverUseMobile": "Juhi rakendus on ainult mobiilne — ava BrumTruckerzi mobiilirakendus."
   }
 }

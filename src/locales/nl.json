@@ -170,7 +170,9 @@
       "customs": "Douane",
       "fuel_receipt": "Brandstofbon",
       "other": "Overig"
-    }
+    },
+    "tooLarge": "Afbeelding te groot (max. {{mb}} MB).",
+    "imagesOnly": "Kies een afbeeldingsbestand."
   },
   "reminders": {
     "vehicleReg": "Kenteken geldig tot",
@@ -495,7 +497,8 @@
       "prefix": "Nummervoorvoegsel",
       "defaultVatRate": "Standaard btw-tarief (%)",
       "defaultVatNote": "Standaard btw-notitie"
-    }
+    },
+    "printPdf": "Afdrukken / PDF opslaan"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Je komt als eigenaar in je nieuwe lege bedrijf."
   },
   "web": {
-    "driverUseMobile": "De chauffeurs-app is alleen mobiel — open de mobiele BrumTruckerz-app.",
-    "pdfMobileOnly": "PDF is voorlopig beschikbaar in de mobiele app."
+    "driverUseMobile": "De chauffeurs-app is alleen mobiel — open de mobiele BrumTruckerz-app."
   }
 }

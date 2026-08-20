@@ -170,7 +170,9 @@
       "customs": "Alfândega",
       "fuel_receipt": "Recibo de combustível",
       "other": "Outro"
-    }
+    },
+    "tooLarge": "Imagem demasiado grande (máx. {{mb}} MB).",
+    "imagesOnly": "Escolhe um ficheiro de imagem."
   },
   "reminders": {
     "vehicleReg": "Matrícula válida até",
@@ -495,7 +497,8 @@
       "prefix": "Prefixo do número",
       "defaultVatRate": "Taxa de IVA predefinida (%)",
       "defaultVatNote": "Nota de IVA predefinida"
-    }
+    },
+    "printPdf": "Imprimir / Guardar PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Entrarás como proprietário na tua nova empresa vazia."
   },
   "web": {
-    "driverUseMobile": "A app do motorista é apenas móvel — abre a app móvel BrumTruckerz.",
-    "pdfMobileOnly": "O PDF está por agora disponível na app móvel."
+    "driverUseMobile": "A app do motorista é apenas móvel — abre a app móvel BrumTruckerz."
   }
 }

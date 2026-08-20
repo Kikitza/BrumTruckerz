@@ -170,7 +170,9 @@
       "customs": "Carina",
       "fuel_receipt": "Račun za gorivo",
       "other": "Drugo"
-    }
+    },
+    "tooLarge": "Slika je prevelika (največ {{mb}} MB).",
+    "imagesOnly": "Izberi slikovno datoteko."
   },
   "reminders": {
     "vehicleReg": "Registracija velja do",
@@ -495,7 +497,8 @@
       "prefix": "Predpona številke",
       "defaultVatRate": "Privzeta stopnja DDV (%)",
       "defaultVatNote": "Privzeta opomba o DDV"
-    }
+    },
+    "printPdf": "Natisni / Shrani PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Vstopil boš kot lastnik v svoje novo prazno podjetje."
   },
   "web": {
-    "driverUseMobile": "Aplikacija za voznika deluje samo na telefonu — odpri mobilno aplikacijo BrumTruckerz.",
-    "pdfMobileOnly": "PDF je zaenkrat na voljo v mobilni aplikaciji."
+    "driverUseMobile": "Aplikacija za voznika deluje samo na telefonu — odpri mobilno aplikacijo BrumTruckerz."
   }
 }

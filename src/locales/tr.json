@@ -170,7 +170,9 @@
       "customs": "Gümrük",
       "fuel_receipt": "Yakıt fişi",
       "other": "Diğer"
-    }
+    },
+    "tooLarge": "Görsel çok büyük (en fazla {{mb}} MB).",
+    "imagesOnly": "Bir görsel dosyası seç."
   },
   "reminders": {
     "vehicleReg": "Ruhsat geçerlilik tarihi",
@@ -495,7 +497,8 @@
       "prefix": "Numara öneki",
       "defaultVatRate": "Varsayılan KDV oranı (%)",
       "defaultVatNote": "Varsayılan KDV notu"
-    }
+    },
+    "printPdf": "Yazdır / PDF kaydet"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Yeni boş şirketine sahip olarak gireceksin."
   },
   "web": {
-    "driverUseMobile": "Sürücü uygulaması yalnızca mobildir — BrumTruckerz mobil uygulamasını aç.",
-    "pdfMobileOnly": "PDF şimdilik mobil uygulamada mevcut."
+    "driverUseMobile": "Sürücü uygulaması yalnızca mobildir — BrumTruckerz mobil uygulamasını aç."
   }
 }

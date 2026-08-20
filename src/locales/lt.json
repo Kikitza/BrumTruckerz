@@ -170,7 +170,9 @@
       "customs": "Muitinė",
       "fuel_receipt": "Kuro kvitas",
       "other": "Kita"
-    }
+    },
+    "tooLarge": "Vaizdas per didelis (daugiausia {{mb}} MB).",
+    "imagesOnly": "Pasirink vaizdo failą."
   },
   "reminders": {
     "vehicleReg": "Registracija galioja iki",
@@ -495,7 +497,8 @@
       "prefix": "Numerio priešdėlis",
       "defaultVatRate": "Numatytasis PVM tarifas (%)",
       "defaultVatNote": "Numatytoji PVM pastaba"
-    }
+    },
+    "printPdf": "Spausdinti / Išsaugoti PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Įeisi kaip savininkas į savo naują tuščią įmonę."
   },
   "web": {
-    "driverUseMobile": "Vairuotojo programėlė veikia tik telefone — atidaryk BrumTruckerz mobiliąją programėlę.",
-    "pdfMobileOnly": "PDF kol kas pasiekiamas mobiliojoje programėlėje."
+    "driverUseMobile": "Vairuotojo programėlė veikia tik telefone — atidaryk BrumTruckerz mobiliąją programėlę."
   }
 }

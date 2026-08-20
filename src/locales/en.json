@@ -168,7 +168,9 @@
       "customs": "Customs",
       "fuel_receipt": "Fuel receipt",
       "other": "Other"
-    }
+    },
+    "tooLarge": "Image is too large (max {{mb}} MB).",
+    "imagesOnly": "Please choose an image file."
   },
   "reminders": {
     "vehicleReg": "Registration valid until",
@@ -493,7 +495,8 @@
       "prefix": "Number prefix",
       "defaultVatRate": "Default VAT rate (%)",
       "defaultVatNote": "Default VAT note"
-    }
+    },
+    "printPdf": "Print / Save PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -568,7 +571,6 @@
     "reviewHint": "You'll enter your new empty company as owner."
   },
   "web": {
-    "driverUseMobile": "The driver app is mobile only — please open the BrumTruckerz mobile app.",
-    "pdfMobileOnly": "PDF is available in the mobile app for now."
+    "driverUseMobile": "The driver app is mobile only — please open the BrumTruckerz mobile app."
   }
 }

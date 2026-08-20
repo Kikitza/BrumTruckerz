@@ -1,6 +1,6 @@
 # ADR 0011 — Web strategija
 
-**STATUS: PREDLOG** (F3, kriška 1). Odluka se prihvata posle žive probe i pregleda vlasnika.
+**STATUS: PRIHVAĆENO** (20.8.2026). (Predlog: F3 kriška 1; prihvaćeno posle žive probe i pregleda vlasnika.)
 
 ## KONTEKST (danas u kodu)
 - Jedan kod (Expo + expo-router + TypeScript) radi na iOS/Android. `react-native-web` daje **treću metu — browser** iz istog koda, bez odvojenog projekta.

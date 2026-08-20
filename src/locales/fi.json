@@ -170,7 +170,9 @@
       "customs": "Tulli",
       "fuel_receipt": "Polttoainekuitti",
       "other": "Muu"
-    }
+    },
+    "tooLarge": "Kuva on liian suuri (enintään {{mb}} MB).",
+    "imagesOnly": "Valitse kuvatiedosto."
   },
   "reminders": {
     "vehicleReg": "Rekisteröinti voimassa saakka",
@@ -495,7 +497,8 @@
       "prefix": "Numeron etuliite",
       "defaultVatRate": "Oletus-ALV-kanta (%)",
       "defaultVatNote": "Oletus-ALV-huomautus"
-    }
+    },
+    "printPdf": "Tulosta / Tallenna PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Liityt omistajana uuteen tyhjään yritykseesi."
   },
   "web": {
-    "driverUseMobile": "Kuljettajasovellus toimii vain mobiilissa — avaa BrumTruckerz-mobiilisovellus.",
-    "pdfMobileOnly": "PDF on toistaiseksi saatavilla mobiilisovelluksessa."
+    "driverUseMobile": "Kuljettajasovellus toimii vain mobiilissa — avaa BrumTruckerz-mobiilisovellus."
   }
 }

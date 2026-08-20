@@ -170,7 +170,9 @@
       "customs": "Cło",
       "fuel_receipt": "Paragon za paliwo",
       "other": "Inne"
-    }
+    },
+    "tooLarge": "Obraz jest za duży (maks. {{mb}} MB).",
+    "imagesOnly": "Wybierz plik obrazu."
   },
   "reminders": {
     "vehicleReg": "Rejestracja ważna do",
@@ -495,7 +497,8 @@
       "prefix": "Prefiks numeru",
       "defaultVatRate": "Domyślna stawka VAT (%)",
       "defaultVatNote": "Domyślna uwaga VAT"
-    }
+    },
+    "printPdf": "Drukuj / Zapisz PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Wejdziesz jako właściciel do nowej pustej firmy."
   },
   "web": {
-    "driverUseMobile": "Aplikacja kierowcy działa tylko na telefonie — otwórz aplikację mobilną BrumTruckerz.",
-    "pdfMobileOnly": "PDF jest na razie dostępny w aplikacji mobilnej."
+    "driverUseMobile": "Aplikacja kierowcy działa tylko na telefonie — otwórz aplikację mobilną BrumTruckerz."
   }
 }

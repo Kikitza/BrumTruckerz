@@ -15,11 +15,15 @@ import { useTranslation } from "react-i18next";
 import type { Palette } from "../../lib/theme";
 import { pickAndCompress, type ImageSource } from "../../lib/image";
 import { uuidv4 } from "../../lib/uuid";
+import { isWeb } from "../../lib/platform";
+import { pickImageFile } from "../../lib/webFile";
 import {
-  listAttachments, listPendingAttachments, enqueueAttachment, signDownload,
+  listAttachments, listPendingAttachments, enqueueAttachment, uploadAttachmentWeb, signDownload,
   deleteAttachment, deletePendingAttachment,
   ATTACHMENT_KINDS, type AttachmentKind, type Attachment, type PendingAttachment,
 } from "./api";
+
+const MAX_WEB_MB = 8; // size-cap za web upload (v1; mobilni komprimuje pre uploada)
 
 const THUMB = 72;
 
@@ -73,6 +77,28 @@ export function AttachmentsSection({
       { text: t("attachment.library"), onPress: () => addFrom("library") },
       { text: t("common.cancel"), style: "cancel" },
     ]);
+
+  // WEB (F3): izbor fajla sa računara → DIREKTAN upload (bez offline reda). Size-cap MAX_WEB_MB.
+  const addFromComputer = async () => {
+    const file = await pickImageFile();
+    if (!file) return;
+    if (!file.type.startsWith("image/")) { Alert.alert(t("attachment.imagesOnly")); return; }
+    if (file.size > MAX_WEB_MB * 1024 * 1024) { Alert.alert(t("attachment.tooLarge", { mb: MAX_WEB_MB })); return; }
+    setBusy(true);
+    try {
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      const effectiveKind: AttachmentKind = pickKind ? selectedKind : (kind ?? "other");
+      await uploadAttachmentWeb({ id: uuidv4(), trip_id: tripId ?? null, expense_id: expenseId ?? null, kind: effectiveKind, bytes, contentType: file.type });
+      qc.invalidateQueries({ queryKey: key });
+    } catch (e) {
+      Alert.alert(t("common.error"), String((e as Error).message ?? e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  // Pregled: web otvara u NOVOM TABU (signed URL); native puni modal.
+  const openView = (uri: string) => { if (isWeb) window.open(uri, "_blank"); else setViewUri(uri); };
 
   const confirmDelete = (id: string) =>
     Alert.alert(t("attachment.deleteConfirm"), undefined, [
@@ -137,7 +163,7 @@ export function AttachmentsSection({
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
         {pending.map((p) => (
           <View key={`p-${p.queueId}`}>
-            <Pressable onPress={() => setViewUri(p.local_uri)}>
+            <Pressable onPress={() => openView(p.local_uri)}>
               <Image source={{ uri: p.local_uri }} style={{ width: THUMB, height: THUMB, borderRadius: 8, borderWidth: 1, borderColor: colors.warn }} />
               {pickKind ? <KindTag label={t(`attachment.kind.${p.kind}`)} colors={colors} /> : null}
               <View style={{ position: "absolute", left: 0, right: 0, bottom: 0, backgroundColor: colors.warn, borderBottomLeftRadius: 8, borderBottomRightRadius: 8 }}>
@@ -156,11 +182,11 @@ export function AttachmentsSection({
         ))}
         {synced.map((a) => (
           <SyncedThumb key={a.id} a={a} colors={colors} canDelete={canDelete} showKind={!!pickKind}
-            onView={setViewUri} onDelete={confirmDelete} />
+            onView={openView} onDelete={confirmDelete} />
         ))}
 
-        {/* Dodaj sliku */}
-        <Pressable onPress={addPhoto} disabled={busy}
+        {/* Dodaj sliku (native: kamera/galerija; web: fajl sa računara) */}
+        <Pressable onPress={isWeb ? addFromComputer : addPhoto} disabled={busy}
           style={{
             width: THUMB, height: THUMB, borderRadius: 8, borderWidth: 1, borderStyle: "dashed",
             borderColor: colors.primary, alignItems: "center", justifyContent: "center", opacity: busy ? 0.6 : 1,

@@ -1,42 +1,61 @@
-# IZVEŠTAJ — WEB DORADA „BELE IVICE" (full-bleed tema + DesktopContainer)
+# IZVEŠTAJ — F3: PDF NA WEBU + PRILOZI SA RAČUNARA (+ ADR 0011 PRIHVAĆEN)
 
 > STATUS: **URAĐENO na DEV-u i COMMITOVANO+PUSH-ovano** (commit-first; izveštaj u istom commitu).
 > Web export prolazi bez grešaka; mobilno netaknuto.
 
-## Uzrok
-Na `/invoices` je centriran `max-width` kontejner imao boju teme SAMO unutar 1000px; **spoljna podloga (bočne
-margine) je ostajala bela** (default `body`/root). `/trips` je bio ceo taman jer mu root View puni celu širinu temom.
+## KORAK 0 — ADR 0011 PRIHVAĆEN
+`docs/adr/0011-web-strategija.md`: **STATUS: PREDLOG → PRIHVAĆENO (20.8.2026)**.
 
-## Izmene (spisak)
-- **`src/components/DesktopContainer.tsx`** (novo) — reusable omotač: **SPOLJNI sloj `flex:1` + `backgroundColor`
-  aktivne teme preko CELE širine**; UNUTRA centriran `maxWidth` (1000). Na native/uskim ekranima providan (samo
-  flex:1 sa temom) → ponaša se kao običan ekran. Ubuduće ga koriste svi desktop-pass ekrani.
-- **`app/(owner)/invoices.tsx`** — root zamenjen `DesktopContainer`-om (spoljni sloj farba ivice, unutra lista); uklonjen
-  raniji inline `maxWidth` (koji je bio uzrok belih ivica).
-- **`app/_layout.tsx`** — **globalno za web**: `useEffect` postavlja `document.documentElement`/`body` `backgroundColor`
-  = boja pozadine aktivne teme (svetla/tamna), reaguje na promenu teme → **nijedan ekran nikad ne pokaže belo van sadržaja**.
-  Guard `isWeb && typeof document !== "undefined"` (native/SSR bezbedno).
+## 1) PDF fakture na webu — „Štampaj / Sačuvaj PDF"
+- U detalju fakture, na **webu** dugme postaje **„Štampaj / Sačuvaj PDF"** → `Print.printAsync({ html })` sa **ISTIM HTML
+  šablonom** (`buildInvoiceHtml`, sr/en) → **browser print dijalog**. Knjigovođa iz „Sačuvaj kao PDF" dobija PDF fajl na
+  disk; izgled identičan mobilnom PDF-u.
+- Na **native**-u ostaje „Podeli PDF" (generisanje fajla + deljenje + arhiva u `prilozi`).
+- **Sekundarno (pravi PDF bajtovi + upload sa weba) — ODLOŽENO, obrazloženo:** `expo-print` `printToFileAsync` **nije
+  podržan na webu**, a generisanje PDF bajtova u browseru traži **tešku zavisnost** (`jsPDF`/`pdf-lib`). Za v1: web daje
+  print/„Save as PDF" (knjigovođa ima papir/PDF), a **arhiva** (deterministički upload) i dalje nastaje sa **mobilnog** —
+  isti ključ, pa se web i mobilni ne razilaze. (Prihvatljivo v1 po zadatku.)
 
-## Test matrica (mobilno netaknuto)
+## 2) Prilozi sa računara (web)
+- **`src/lib/webFile.ts`** (novo) — `pickImageFile()` (skriveni `<input type="file" accept="image/*">`); `document` se
+  dodiruje samo unutar funkcije → uvoz bezbedan i na native.
+- **`attachments/api.ts` `uploadAttachmentWeb`** — **DIREKTAN upload** (web je uvek online — bez offline reda, ADR 0011):
+  isti ključ `company_id/trip_id/uuid.jpg` i storage pravila (0008) kao mobilni; upis reda u `attachments`.
+- **`AttachmentsSection`** — na webu „＋" otvara izbor fajla → size-cap **8 MB** → upload; **pregled otvara u NOVOM TABU**
+  (signed URL) umesto modala. Na native-u kamera/galerija + modal (nepromenjeno).
+- **Kompresija/размер (obrazloženje):** mobilni komprimuje pre uploada (`pickAndCompress`); na webu bi canvas-resize bio
+  dodatni kod — v1 koristi **razuman size-cap (8 MB)** i upload kako-jeste. Kompresija na webu je moguća kasnija dorada.
+
+## 3) Platforma / ništa mobilno pokvareno
+- Sve grane kroz postojeći `src/lib/platform.ts` (`isWeb`); native putanje 1:1 očuvane (kamera/offline/modal/PDF-share).
+- `web.pdfMobileOnly` uklonjen (web sada štampa) — više se ne koristi.
+
+## Test matrica
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ čisto |
 | `npm test` (jest) | ✅ 17 suita / 121 test |
 | `npm run lint` | ✅ 0 grešaka (4 postojeća upozorenja) |
-| `npm run test:db` | ✅ nepromenjeno (bez DB izmena) |
+| `npm run test:db` | ✅ ALL PASSED (10 svita — nepromenjeno) |
 | `expo export --platform web` | ✅ bez grešaka |
-| Expo Go (native) | ✅ nedirnuto — `DesktopContainer` je na native providan (flex:1 sa temom) |
+| Expo Go (native) | ✅ nedirnuto — sve grane `isWeb`-uslovljene |
 
 ## Migracije / deploy
-- **Nema migracija / Edge / Auth.** Čisto klijentski web fix. `dist/` u `.gitignore`.
+- **Nema migracija / Edge / Auth.** Čisto klijentski. `dist/` u `.gitignore`.
 
 ## Jezici
-i18n **nije diran** (nema novih stringova).
+i18n **dopunjen u SVIH 30 jezika** — `invoice.printPdf`, `attachment.tooLarge`, `attachment.imagesOnly`; uklonjen
+`web.pdfMobileOnly`. `sr`/`en` autorski; 28 mašinski.
+
+## Mapa (ažurirano — prethodne „NE RADI JOŠ" stavke sad rešene)
+- **PDF fakture (web)** → ✅ RADI (print/„Save as PDF"); *arhiva-upload sa weba ostaje odloženo (heavy dep).*
+- **Prilozi/dokumenti (web)** → ✅ RADI (fajl sa računara, direktan upload, pregled u novom tabu).
+- Ostaje: prave tabele/desktop poliranje ostalih ekrana; web-kompresija slika; datumski kalendar-widget.
 
 ## Kvalitet koda
-Reusable `DesktopContainer` (jedan izvor za desktop okvir; sledeći ekrani ga koriste); globalna web podloga na jednom
-mestu (`_layout`); bez duplirane logike; native ponašanje očuvano. **Pravila kvaliteta ispoštovana.**
+Grane kroz `platform.ts`; reuse `buildInvoiceHtml` (isti izgled web/mobilni); `uploadAttachmentWeb` deli ključ/pravila sa
+mobilnim; bez duplirane logike. **Pravila kvaliteta ispoštovana.**
 
 ## ČEKA SE (potez vlasnika)
-1. Živa klik-proba u browseru (`npx expo start --web`) — potvrda da su ivice sada obojene temom na `/invoices` (i svuda).
-2. Sledeće web kriške po mapi iz prethodne kriške (PDF web, prilozi web, tabele, desktop poliranje ekran-po-ekran uz `DesktopContainer`).
+1. Živa proba u browseru: „Štampaj / Sačuvaj PDF" na fakturi + kačenje priloga sa računara.
+2. Sledeće web kriške: desktop tabele/poliranje ekrana (uz `DesktopContainer`), web-kompresija slika, kalendar-widget.

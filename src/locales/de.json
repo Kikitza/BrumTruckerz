@@ -170,7 +170,9 @@
       "customs": "Zoll",
       "fuel_receipt": "Tankbeleg",
       "other": "Sonstiges"
-    }
+    },
+    "tooLarge": "Bild ist zu groß (max. {{mb}} MB).",
+    "imagesOnly": "Bitte wähle eine Bilddatei."
   },
   "reminders": {
     "vehicleReg": "Zulassung gültig bis",
@@ -495,7 +497,8 @@
       "prefix": "Nummernpräfix",
       "defaultVatRate": "Standard-MwSt-Satz (%)",
       "defaultVatNote": "Standard-MwSt-Hinweis"
-    }
+    },
+    "printPdf": "Drucken / PDF speichern"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Du trittst als Eigentümer deinem neuen leeren Unternehmen bei."
   },
   "web": {
-    "driverUseMobile": "Die Fahrer-App ist nur mobil — bitte öffne die BrumTruckerz-Mobil-App.",
-    "pdfMobileOnly": "PDF ist vorerst in der mobilen App verfügbar."
+    "driverUseMobile": "Die Fahrer-App ist nur mobil — bitte öffne die BrumTruckerz-Mobil-App."
   }
 }

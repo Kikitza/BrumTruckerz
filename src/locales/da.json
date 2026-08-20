@@ -170,7 +170,9 @@
       "customs": "Told",
       "fuel_receipt": "Brændstofkvittering",
       "other": "Andet"
-    }
+    },
+    "tooLarge": "Billedet er for stort (maks. {{mb}} MB).",
+    "imagesOnly": "Vælg en billedfil."
   },
   "reminders": {
     "vehicleReg": "Registrering gyldig til",
@@ -495,7 +497,8 @@
       "prefix": "Nummerpræfiks",
       "defaultVatRate": "Standardmomssats (%)",
       "defaultVatNote": "Standardmomsnote"
-    }
+    },
+    "printPdf": "Udskriv / Gem PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Du træder ind som ejer i din nye tomme virksomhed."
   },
   "web": {
-    "driverUseMobile": "Chauffør-appen er kun mobil — åbn BrumTruckerz-mobilappen.",
-    "pdfMobileOnly": "PDF er indtil videre tilgængelig i mobilappen."
+    "driverUseMobile": "Chauffør-appen er kun mobil — åbn BrumTruckerz-mobilappen."
   }
 }

@@ -170,7 +170,9 @@
       "customs": "Doganë",
       "fuel_receipt": "Faturë karburanti",
       "other": "Tjetër"
-    }
+    },
+    "tooLarge": "Imazhi është shumë i madh (maks. {{mb}} MB).",
+    "imagesOnly": "Zgjidh një skedar imazhi."
   },
   "reminders": {
     "vehicleReg": "Regjistrimi vlen deri më",
@@ -495,7 +497,8 @@
       "prefix": "Prefiksi i numrit",
       "defaultVatRate": "Norma e paracaktuar e TVSH-së (%)",
       "defaultVatNote": "Shënim i paracaktuar TVSH"
-    }
+    },
+    "printPdf": "Printo / Ruaj PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Do të hysh si pronar në kompaninë tënde të re bosh."
   },
   "web": {
-    "driverUseMobile": "Aplikacioni i shoferit është vetëm për celular — hap aplikacionin celular BrumTruckerz.",
-    "pdfMobileOnly": "PDF-ja për momentin është në aplikacionin celular."
+    "driverUseMobile": "Aplikacioni i shoferit është vetëm për celular — hap aplikacionin celular BrumTruckerz."
   }
 }

@@ -8,7 +8,7 @@ import { useTheme, type Palette } from "../../lib/theme";
 import { Field, DateField, ModalScaffold } from "../../components/form";
 import { fmtMoney, fmtDate } from "../../lib/format";
 import { getInvoice, markInvoicePaid, cancelInvoice } from "./api";
-import { shareInvoicePdf, type InvoiceLang } from "./pdf";
+import { shareInvoicePdf, printInvoiceWeb, type InvoiceLang } from "./pdf";
 import { isWeb } from "../../lib/platform";
 import { invoiceDisplayStatus, type InvoiceDisplayStatus } from "./calc";
 
@@ -43,11 +43,13 @@ export function InvoiceDetailModal({ invoiceId, onClose }: { invoiceId: string; 
   const pay = useMutation({ mutationFn: () => markInvoicePaid(invoiceId, paidAt ?? todayYMD()), onSuccess: () => { invalidate(); setMode("view"); }, onError: onErr });
   const cancel = useMutation({ mutationFn: () => cancelInvoice(invoiceId, reason), onSuccess: () => { invalidate(); setMode("view"); }, onError: onErr });
 
+  // Web: „Štampaj / Sačuvaj PDF" (browser print dijalog); native: „Podeli PDF" (deli fajl + arhivira).
   const share = async () => {
-    if (isWeb) { Alert.alert(t("web.pdfMobileOnly")); return; } // PDF (print/sharing) je native-only (F3)
     setSharing(true);
-    try { await shareInvoicePdf(invoiceId, lang); invalidate(); }
-    catch (e) { onErr(e); }
+    try {
+      if (isWeb) await printInvoiceWeb(invoiceId, lang);
+      else { await shareInvoicePdf(invoiceId, lang); invalidate(); }
+    } catch (e) { onErr(e); }
     finally { setSharing(false); }
   };
 
@@ -94,7 +96,7 @@ export function InvoiceDetailModal({ invoiceId, onClose }: { invoiceId: string; 
             })}
             <Pressable onPress={share} disabled={sharing}
               style={{ flex: 1, backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center", opacity: sharing ? 0.6 : 1 }}>
-              <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{sharing ? t("common.saving") : t("invoice.sharePdf")}</Text>
+              <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{sharing ? t("common.saving") : t(isWeb ? "invoice.printPdf" : "invoice.sharePdf")}</Text>
             </Pressable>
           </View>
 

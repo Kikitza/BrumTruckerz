@@ -7,6 +7,7 @@
 import * as FileSystem from "expo-file-system/legacy";
 import { supabase } from "../../lib/supabase";
 import { enqueue, listPending, removePending } from "../../lib/offline/queue";
+import { currentCompanyId } from "../auth/currentUser";
 import type { ExpenseCategory } from "../expenses/api";
 
 export type AttachmentKind = "cmr" | "invoice" | "customs" | "fuel_receipt" | "other";
@@ -80,6 +81,28 @@ export async function enqueueAttachment(p: {
     kind: p.kind,
     local_uri: p.local_uri,
   });
+}
+
+// WEB (F3): direktan upload (web je uvek online — bez offline reda). Isti storage ključ
+// (company_id/trip_id/uuid.jpg) i pravila (storage policy 0008) kao mobilni. bytes = sadržaj fajla.
+export async function uploadAttachmentWeb(p: {
+  id: string;
+  trip_id?: string | null;
+  expense_id?: string | null;
+  kind: AttachmentKind;
+  bytes: Uint8Array;
+  contentType: string;
+}): Promise<void> {
+  const company_id = await currentCompanyId();
+  const trip_id = p.trip_id ?? null;
+  const storage_key = `${company_id}/${trip_id}/${p.id}.jpg`; // ext .jpg radi parnosti ključa sa mobilnim
+  const { error: upErr } = await supabase.storage
+    .from("prilozi").upload(storage_key, p.bytes, { contentType: p.contentType || "image/jpeg", upsert: true });
+  if (upErr) throw upErr;
+  const { error: insErr } = await supabase.from("attachments").insert({
+    id: p.id, company_id, trip_id, expense_id: p.expense_id ?? null, kind: p.kind, storage_key,
+  });
+  if (insErr) throw insErr;
 }
 
 // Prilozi ovog subjekta koji čekaju u redu.

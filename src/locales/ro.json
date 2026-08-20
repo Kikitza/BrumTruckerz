@@ -170,7 +170,9 @@
       "customs": "Vamă",
       "fuel_receipt": "Bon combustibil",
       "other": "Altele"
-    }
+    },
+    "tooLarge": "Imaginea este prea mare (max. {{mb}} MB).",
+    "imagesOnly": "Alege un fișier imagine."
   },
   "reminders": {
     "vehicleReg": "Înmatriculare valabilă până la",
@@ -495,7 +497,8 @@
       "prefix": "Prefix număr",
       "defaultVatRate": "Cotă TVA implicită (%)",
       "defaultVatNote": "Notă TVA implicită"
-    }
+    },
+    "printPdf": "Printează / Salvează PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Vei intra ca proprietar în noua ta firmă goală."
   },
   "web": {
-    "driverUseMobile": "Aplicația pentru șofer este doar mobilă — deschide aplicația mobilă BrumTruckerz.",
-    "pdfMobileOnly": "PDF-ul este deocamdată disponibil în aplicația mobilă."
+    "driverUseMobile": "Aplicația pentru șofer este doar mobilă — deschide aplicația mobilă BrumTruckerz."
   }
 }

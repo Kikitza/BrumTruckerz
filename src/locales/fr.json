@@ -170,7 +170,9 @@
       "customs": "Douane",
       "fuel_receipt": "Reçu de carburant",
       "other": "Autre"
-    }
+    },
+    "tooLarge": "Image trop grande (max {{mb}} Mo).",
+    "imagesOnly": "Choisis un fichier image."
   },
   "reminders": {
     "vehicleReg": "Immatriculation valable jusqu'au",
@@ -495,7 +497,8 @@
       "prefix": "Préfixe de numéro",
       "defaultVatRate": "Taux de TVA par défaut (%)",
       "defaultVatNote": "Note TVA par défaut"
-    }
+    },
+    "printPdf": "Imprimer / Enregistrer le PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Tu entreras comme propriétaire dans ta nouvelle entreprise vide."
   },
   "web": {
-    "driverUseMobile": "L'app chauffeur est uniquement mobile — ouvre l'app mobile BrumTruckerz.",
-    "pdfMobileOnly": "Le PDF est pour l'instant disponible dans l'app mobile."
+    "driverUseMobile": "L'app chauffeur est uniquement mobile — ouvre l'app mobile BrumTruckerz."
   }
 }

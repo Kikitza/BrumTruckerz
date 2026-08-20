@@ -170,7 +170,9 @@
       "customs": "Tull",
       "fuel_receipt": "Bränslekvitto",
       "other": "Övrigt"
-    }
+    },
+    "tooLarge": "Bilden är för stor (max {{mb}} MB).",
+    "imagesOnly": "Välj en bildfil."
   },
   "reminders": {
     "vehicleReg": "Registrering giltig till",
@@ -495,7 +497,8 @@
       "prefix": "Nummerprefix",
       "defaultVatRate": "Standardmomssats (%)",
       "defaultVatNote": "Standardmomsanteckning"
-    }
+    },
+    "printPdf": "Skriv ut / Spara PDF"
   },
   "countries": {
     "RS": "Serbia",
@@ -570,7 +573,6 @@
     "reviewHint": "Du går in som ägare i ditt nya tomma företag."
   },
   "web": {
-    "driverUseMobile": "Förar-appen är endast mobil — öppna BrumTruckerz mobilapp.",
-    "pdfMobileOnly": "PDF är för närvarande tillgängligt i mobilappen."
+    "driverUseMobile": "Förar-appen är endast mobil — öppna BrumTruckerz mobilapp."
   }
 }
