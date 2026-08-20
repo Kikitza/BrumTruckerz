@@ -123,11 +123,13 @@ create policy employments_read on employments for select using (
 );
 
 -- STORAGE (prilozi): owner-pristup fajlovima firme → office. Vozačke politike netaknute.
-drop policy prilozi_owner_read on storage.objects;
+-- `if exists`: na okruženju gde restore NIJE nosio `storage` šemu (npr. staging), politike iz
+-- 0008 ne postoje pa bi goli drop pukao — kreiranje niže svejedno postavlja office verzije.
+drop policy if exists prilozi_owner_read on storage.objects;
 create policy prilozi_owner_read on storage.objects for select to authenticated
   using (bucket_id = 'prilozi' and public.is_office_role()
          and (storage.foldername(name))[1] = public.current_company_id()::text);
-drop policy prilozi_owner_write on storage.objects;
+drop policy if exists prilozi_owner_write on storage.objects;
 create policy prilozi_owner_write on storage.objects for insert to authenticated
   with check (bucket_id = 'prilozi' and public.is_office_role()
          and (storage.foldername(name))[1] = public.current_company_id()::text);
