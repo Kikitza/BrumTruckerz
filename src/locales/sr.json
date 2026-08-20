@@ -39,7 +39,8 @@
     "documents": "Dokumenti",
     "resources": "Resursi",
     "profile": "Profil",
-    "customers": "Naručioci"
+    "customers": "Naručioci",
+    "invoices": "Fakture"
   },
   "trip": {
     "status": {
@@ -407,6 +408,63 @@
       "notEu": "VIES proverava samo EU PIB-ove",
       "badge": "PIB proveren ✓ {{date}}",
       "badgeInvalid": "PIB nije pronađen ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nova faktura",
+    "empty": "Još nema faktura",
+    "issue": "Izdaj fakturu",
+    "issueTitle": "Izdavanje fakture",
+    "detailTitle": "Faktura",
+    "pickTrip": "Izaberi turu",
+    "noIssuableTrips": "Nema tura spremnih za fakturu",
+    "needCustomerRevenue": "Prvo dodaj naručioca i vozarinu na turu",
+    "setupIssuer": "Prvo unesi podatke izdavaoca",
+    "sharePdf": "Podeli PDF",
+    "markPaid": "Označi plaćeno",
+    "confirmPaid": "Potvrdi plaćanje",
+    "paidAt": "Plaćeno dana",
+    "cancel": "Storniraj",
+    "confirmCancel": "Potvrdi storno",
+    "cancelReason": "Razlog storna",
+    "status": {
+      "issued": "Izdata",
+      "paid": "Plaćena",
+      "overdue": "KASNI",
+      "cancelled": "Stornirana"
+    },
+    "filter": {
+      "all": "Sve",
+      "issued": "Izdate",
+      "overdue": "Kasne",
+      "paid": "Plaćene",
+      "cancelled": "Stornirane"
+    },
+    "fields": {
+      "customer": "Naručilac",
+      "amount": "Iznos ({{currency}})",
+      "vatRate": "Stopa PDV-a (%)",
+      "base": "Osnovica",
+      "vat": "PDV",
+      "total": "Ukupno",
+      "dueDate": "Rok plaćanja",
+      "issueDate": "Datum izdavanja",
+      "vatNote": "Napomena o PDV-u",
+      "note": "Napomena",
+      "pdfLang": "Jezik PDF-a"
+    },
+    "settings": {
+      "title": "Podaci izdavaoca",
+      "short": "Izdavalac",
+      "hint": "Podaci firme na fakturi (naziv, adresa, PIB, tekući račun).",
+      "legalName": "Pun naziv",
+      "address": "Adresa",
+      "taxId": "PIB",
+      "regNo": "Matični broj",
+      "bankAccount": "Tekući račun",
+      "prefix": "Prefiks broja",
+      "defaultVatRate": "Podrazumevana stopa PDV-a (%)",
+      "defaultVatNote": "Podrazumevana napomena o PDV-u"
     }
   }
 }

@@ -41,7 +41,8 @@
     "documents": "Dokumenti",
     "resources": "Resursi",
     "profile": "Profil",
-    "customers": "Naručitelji"
+    "customers": "Naručitelji",
+    "invoices": "Računi"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES provjerava samo EU VAT brojeve",
       "badge": "VAT provjeren ✓ {{date}}",
       "badgeInvalid": "VAT nije pronađen ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Novi račun",
+    "empty": "Još nema računa",
+    "issue": "Izdaj račun",
+    "issueTitle": "Izdavanje računa",
+    "detailTitle": "Račun",
+    "pickTrip": "Odaberi turu",
+    "noIssuableTrips": "Nema tura za naplatu",
+    "needCustomerRevenue": "Prvo dodaj naručitelja i prihod na turu",
+    "setupIssuer": "Prvo unesi podatke izdavatelja",
+    "sharePdf": "Podijeli PDF",
+    "markPaid": "Označi plaćeno",
+    "confirmPaid": "Potvrdi plaćanje",
+    "paidAt": "Plaćeno dana",
+    "cancel": "Storniraj",
+    "confirmCancel": "Potvrdi storno",
+    "cancelReason": "Razlog storna",
+    "status": {
+      "issued": "Izdan",
+      "paid": "Plaćen",
+      "overdue": "Dospio",
+      "cancelled": "Storniran"
+    },
+    "filter": {
+      "all": "Svi",
+      "issued": "Izdani",
+      "overdue": "Dospjeli",
+      "paid": "Plaćeni",
+      "cancelled": "Stornirani"
+    },
+    "fields": {
+      "customer": "Naručitelj",
+      "amount": "Iznos ({{currency}})",
+      "vatRate": "Stopa PDV-a (%)",
+      "base": "Osnovica",
+      "vat": "PDV",
+      "total": "Ukupno",
+      "dueDate": "Rok plaćanja",
+      "issueDate": "Datum izdavanja",
+      "vatNote": "Napomena o PDV-u",
+      "note": "Napomena",
+      "pdfLang": "Jezik PDF-a"
+    },
+    "settings": {
+      "title": "Podaci izdavatelja",
+      "short": "Izdavatelj",
+      "hint": "Podaci tvrtke na računu (naziv, adresa, OIB, žiroračun).",
+      "legalName": "Naziv",
+      "address": "Adresa",
+      "taxId": "OIB",
+      "regNo": "MB",
+      "bankAccount": "Žiroračun",
+      "prefix": "Prefiks broja",
+      "defaultVatRate": "Zadana stopa PDV-a (%)",
+      "defaultVatNote": "Zadana napomena o PDV-u"
     }
   }
 }

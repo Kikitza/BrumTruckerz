@@ -41,7 +41,8 @@
     "documents": "Dokumenty",
     "resources": "Zasoby",
     "profile": "Profil",
-    "customers": "Klienci"
+    "customers": "Klienci",
+    "invoices": "Faktury"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES sprawdza tylko numery VAT z UE",
       "badge": "NIP zweryfikowany ✓ {{date}}",
       "badgeInvalid": "NIP nie znaleziony ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nowa faktura",
+    "empty": "Brak faktur",
+    "issue": "Wystaw fakturę",
+    "issueTitle": "Wystawianie faktury",
+    "detailTitle": "Faktura",
+    "pickTrip": "Wybierz trasę",
+    "noIssuableTrips": "Brak tras do zafakturowania",
+    "needCustomerRevenue": "Najpierw dodaj klienta i kwotę do trasy",
+    "setupIssuer": "Najpierw uzupełnij dane wystawcy",
+    "sharePdf": "Udostępnij PDF",
+    "markPaid": "Oznacz jako opłaconą",
+    "confirmPaid": "Potwierdź płatność",
+    "paidAt": "Opłacono dnia",
+    "cancel": "Anuluj",
+    "confirmCancel": "Potwierdź anulowanie",
+    "cancelReason": "Powód anulowania",
+    "status": {
+      "issued": "Wystawiona",
+      "paid": "Opłacona",
+      "overdue": "Zaległa",
+      "cancelled": "Anulowana"
+    },
+    "filter": {
+      "all": "Wszystkie",
+      "issued": "Wystawione",
+      "overdue": "Zaległe",
+      "paid": "Opłacone",
+      "cancelled": "Anulowane"
+    },
+    "fields": {
+      "customer": "Klient",
+      "amount": "Kwota ({{currency}})",
+      "vatRate": "Stawka VAT (%)",
+      "base": "Netto",
+      "vat": "VAT",
+      "total": "Razem",
+      "dueDate": "Termin płatności",
+      "issueDate": "Data wystawienia",
+      "vatNote": "Uwaga VAT",
+      "note": "Uwaga",
+      "pdfLang": "Język PDF"
+    },
+    "settings": {
+      "title": "Dane wystawcy",
+      "short": "Wystawca",
+      "hint": "Dane firmy na fakturze (nazwa, adres, NIP, konto bankowe).",
+      "legalName": "Nazwa firmy",
+      "address": "Adres",
+      "taxId": "NIP",
+      "regNo": "Nr rej.",
+      "bankAccount": "Konto bankowe",
+      "prefix": "Prefiks numeru",
+      "defaultVatRate": "Domyślna stawka VAT (%)",
+      "defaultVatNote": "Domyślna uwaga VAT"
     }
   }
 }

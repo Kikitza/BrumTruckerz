@@ -41,7 +41,8 @@
     "documents": "Documenti",
     "resources": "Risorse",
     "profile": "Profilo",
-    "customers": "Clienti"
+    "customers": "Clienti",
+    "invoices": "Fatture"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES verifica solo le partite IVA dell'UE",
       "badge": "P.IVA verificata ✓ {{date}}",
       "badgeInvalid": "P.IVA non trovata ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nuova fattura",
+    "empty": "Ancora nessuna fattura",
+    "issue": "Emetti fattura",
+    "issueTitle": "Emissione fattura",
+    "detailTitle": "Fattura",
+    "pickTrip": "Scegli un viaggio",
+    "noIssuableTrips": "Nessun viaggio da fatturare",
+    "needCustomerRevenue": "Aggiungi prima un cliente e un importo al viaggio",
+    "setupIssuer": "Configura prima i dati dell'emittente",
+    "sharePdf": "Condividi PDF",
+    "markPaid": "Segna come pagata",
+    "confirmPaid": "Conferma pagamento",
+    "paidAt": "Pagata il",
+    "cancel": "Annulla",
+    "confirmCancel": "Conferma annullamento",
+    "cancelReason": "Motivo dell'annullamento",
+    "status": {
+      "issued": "Emessa",
+      "paid": "Pagata",
+      "overdue": "Scaduta",
+      "cancelled": "Annullata"
+    },
+    "filter": {
+      "all": "Tutte",
+      "issued": "Emesse",
+      "overdue": "Scadute",
+      "paid": "Pagate",
+      "cancelled": "Annullate"
+    },
+    "fields": {
+      "customer": "Cliente",
+      "amount": "Importo ({{currency}})",
+      "vatRate": "Aliquota IVA (%)",
+      "base": "Imponibile",
+      "vat": "IVA",
+      "total": "Totale",
+      "dueDate": "Scadenza",
+      "issueDate": "Data di emissione",
+      "vatNote": "Nota IVA",
+      "note": "Nota",
+      "pdfLang": "Lingua del PDF"
+    },
+    "settings": {
+      "title": "Dati emittente",
+      "short": "Emittente",
+      "hint": "Dati dell'azienda in fattura (nome, indirizzo, P.IVA, conto bancario).",
+      "legalName": "Ragione sociale",
+      "address": "Indirizzo",
+      "taxId": "Partita IVA",
+      "regNo": "N. registro",
+      "bankAccount": "Conto bancario",
+      "prefix": "Prefisso numero",
+      "defaultVatRate": "Aliquota IVA predefinita (%)",
+      "defaultVatNote": "Nota IVA predefinita"
     }
   }
 }

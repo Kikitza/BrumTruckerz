@@ -41,7 +41,8 @@
     "documents": "Dokumentumok",
     "resources": "Erőforrások",
     "profile": "Profil",
-    "customers": "Ügyfelek"
+    "customers": "Ügyfelek",
+    "invoices": "Számlák"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "A VIES csak EU-s adószámokat ellenőriz",
       "badge": "Adószám ellenőrizve ✓ {{date}}",
       "badgeInvalid": "Adószám nem található ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Új számla",
+    "empty": "Még nincs számla",
+    "issue": "Számla kiállítása",
+    "issueTitle": "Számla kiállítása",
+    "detailTitle": "Számla",
+    "pickTrip": "Válassz fuvart",
+    "noIssuableTrips": "Nincs számlázható fuvar",
+    "needCustomerRevenue": "Előbb adj ügyfelet és bevételt a fuvarhoz",
+    "setupIssuer": "Előbb add meg a kiállító adatait",
+    "sharePdf": "PDF megosztása",
+    "markPaid": "Fizetettnek jelöl",
+    "confirmPaid": "Fizetés megerősítése",
+    "paidAt": "Fizetve",
+    "cancel": "Sztornó",
+    "confirmCancel": "Sztornó megerősítése",
+    "cancelReason": "Sztornó oka",
+    "status": {
+      "issued": "Kiállítva",
+      "paid": "Fizetve",
+      "overdue": "Lejárt",
+      "cancelled": "Sztornózva"
+    },
+    "filter": {
+      "all": "Mind",
+      "issued": "Kiállított",
+      "overdue": "Lejárt",
+      "paid": "Fizetett",
+      "cancelled": "Sztornózott"
+    },
+    "fields": {
+      "customer": "Ügyfél",
+      "amount": "Összeg ({{currency}})",
+      "vatRate": "ÁFA-kulcs (%)",
+      "base": "Nettó",
+      "vat": "ÁFA",
+      "total": "Összesen",
+      "dueDate": "Fizetési határidő",
+      "issueDate": "Kiállítás dátuma",
+      "vatNote": "ÁFA-megjegyzés",
+      "note": "Megjegyzés",
+      "pdfLang": "PDF nyelve"
+    },
+    "settings": {
+      "title": "Kiállító adatai",
+      "short": "Kiállító",
+      "hint": "Cégadatok a számlán (név, cím, adószám, bankszámla).",
+      "legalName": "Cégnév",
+      "address": "Cím",
+      "taxId": "Adószám",
+      "regNo": "Cégjegyzékszám",
+      "bankAccount": "Bankszámla",
+      "prefix": "Számelőtag",
+      "defaultVatRate": "Alapértelmezett ÁFA-kulcs (%)",
+      "defaultVatNote": "Alapértelmezett ÁFA-megjegyzés"
     }
   }
 }

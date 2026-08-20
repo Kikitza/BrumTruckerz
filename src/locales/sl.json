@@ -41,7 +41,8 @@
     "documents": "Dokumenti",
     "resources": "Viri",
     "profile": "Profil",
-    "customers": "Naročniki"
+    "customers": "Naročniki",
+    "invoices": "Računi"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES preverja samo DDV številke EU",
       "badge": "DDV preverjen ✓ {{date}}",
       "badgeInvalid": "DDV ni najden ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nov račun",
+    "empty": "Še ni računov",
+    "issue": "Izdaj račun",
+    "issueTitle": "Izdaja računa",
+    "detailTitle": "Račun",
+    "pickTrip": "Izberi vožnjo",
+    "noIssuableTrips": "Ni voženj za obračun",
+    "needCustomerRevenue": "Najprej dodaj naročnika in prihodek k vožnji",
+    "setupIssuer": "Najprej vnesi podatke izdajatelja",
+    "sharePdf": "Deli PDF",
+    "markPaid": "Označi kot plačano",
+    "confirmPaid": "Potrdi plačilo",
+    "paidAt": "Plačano dne",
+    "cancel": "Storniraj",
+    "confirmCancel": "Potrdi storno",
+    "cancelReason": "Razlog storna",
+    "status": {
+      "issued": "Izdan",
+      "paid": "Plačan",
+      "overdue": "Zapadel",
+      "cancelled": "Storniran"
+    },
+    "filter": {
+      "all": "Vsi",
+      "issued": "Izdani",
+      "overdue": "Zapadli",
+      "paid": "Plačani",
+      "cancelled": "Stornirani"
+    },
+    "fields": {
+      "customer": "Naročnik",
+      "amount": "Znesek ({{currency}})",
+      "vatRate": "Stopnja DDV (%)",
+      "base": "Osnova",
+      "vat": "DDV",
+      "total": "Skupaj",
+      "dueDate": "Rok plačila",
+      "issueDate": "Datum izdaje",
+      "vatNote": "Opomba o DDV",
+      "note": "Opomba",
+      "pdfLang": "Jezik PDF"
+    },
+    "settings": {
+      "title": "Podatki izdajatelja",
+      "short": "Izdajatelj",
+      "hint": "Podatki podjetja na računu (naziv, naslov, ID DDV, bančni račun).",
+      "legalName": "Naziv",
+      "address": "Naslov",
+      "taxId": "ID za DDV",
+      "regNo": "Matična št.",
+      "bankAccount": "Bančni račun",
+      "prefix": "Predpona številke",
+      "defaultVatRate": "Privzeta stopnja DDV (%)",
+      "defaultVatNote": "Privzeta opomba o DDV"
     }
   }
 }

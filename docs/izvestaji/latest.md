@@ -1,74 +1,77 @@
-# IZVEŠTAJ — F2 KRIŠKA 2: VIES PROVERA PIB-a (da li je EU PIB stvaran i na koga glasi)
+# IZVEŠTAJ — F2 KRUNA: FAKTURA v1 (tura → PDF faktura, brojevi po firmi, statusi plaćanja)
 
 > STATUS: **URAĐENO na DEV-u i COMMITOVANO+PUSH-ovano** (commit-first; izveštaj u istom commitu).
-> Migracija 0022 primenjena; Edge `vies-check` deploy-ovana na DEV. PROD/STAGING **netaknuti**.
-> **VIES nema ključeve — nikakve tajne u kodu ni u izveštaju.**
+> Migracija 0023 primenjena na DEV. Bez novih Edge/Auth promena. PROD/STAGING **netaknuti**.
 
 ## Izmene (spisak)
-- **`supabase/migrations/0022_customers_vies.sql`** (novo, aditivno) — `customers` + `vies_valid` (bool null),
-  `vies_checked_at` (timestamptz null), `vies_name` (text null).
-- **`supabase/functions/vies-check/index.ts`** (novo) — `requireOffice`; ulaz `{country_code, vat_number,
-  customer_id?}` → zove ZVANIČNI VIES REST (`ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number`) →
-  `{status: valid|invalid|unavailable, name, address}`. Ako je `customer_id` iz firme pozivaoca (`loadOwnCustomer`)
-  → upiše ishod na naručioca (osim `unavailable`). **Timeout 12s + fetch-catch → `unavailable` (ne ruši).**
-- **`supabase/functions/_shared/auth.ts`** — dodat `loadOwnCustomer` (provera firme, kao `loadOwnDriver`).
-- **`src/features/customers/vies.ts`** (+`.test.ts`, novo) — čiste fn: `VIES_COUNTRIES` (28: 27 članica + `XI`;
-  Grčka je `EL`, ne `GR`), `viesCountryCode` (GR→EL), `isEuVatCountry`, `normalizeVat` (velika slova, [A-Z0-9],
-  skida vodeći kod zemlje), `viesMessageKey` (ishod → i18n).
-- **`src/features/customers/api.ts`** — `Customer` + VIES polja; `checkVat()` (invoke `vies-check`, izvlači Edge grešku).
-- **`CustomerFormModal.tsx`** — dugme „Proveri PIB" (aktivno kad EU zemlja + PIB): ✓ „Validan — <ime>" (+ „Preuzmi
-  naziv" ako se razlikuje od unetog), ✗ „Nije pronađen u VIES" (**UPOZORENJE, ne blokira čuvanje**), ⚠ „Servis
-  nedostupan", i EU-only poruka za ne-EU zemlju.
-- **`app/(owner)/customers.tsx`** — na kartici bedž „PIB proveren ✓ <datum>" (i suptilno „PIB nije pronađen" kad je proveren a nevažeći).
-- **`src/locales/*.json`** (svih 30) — `customers.checkVat`, `customers.useName`, `customers.vies.*`.
+- **`supabase/migrations/0023_invoices.sql`** (novo):
+  - **`invoice_settings`** (podaci IZDAVAOCA po firmi: legal_name/address/tax_id/reg_no/bank_account,
+    default_vat_rate, default_vat_note, prefix); RLS office; suspend-gate.
+  - **`invoice_counters`** + **`next_invoice_no(company)`** — brojevi po (firma, godina), **SELECT … FOR UPDATE**
+    na brojaču (C2 TOCTOU: bez preskakanja/duplikata pod konkurencijom), format `<prefix><GODINA>-<NNN>`.
+  - **`invoices`** (customer_id NOT NULL, trip_id null **FK RESTRICT**, invoice_no **unique po firmi**, issue/due,
+    currency, amount/vat_rate/vat_amount/total **računato u KODU round2 — pravilo #5**, vat_note, status
+    **issued|paid|cancelled** (bez draft; **bez DELETE** — storno = cancelled + cancel_reason), paid_at,
+    pdf_storage_key, note, created_by). „Kasni" NIJE kolona — **computed** (issued && due_date < danas).
+  - **`issue_invoice(...)`** SECURITY DEFINER RPC — zaključa brojač, izračuna iznose, ubaci fakturu u **jednoj
+    transakciji** → broj se „potroši" samo ako faktura nastane (bez rupa). Provera: office, aktivna firma, naručilac/tura iz firme.
+  - RLS: office select + update (plaćeno/storno/pdf); **UPIS samo kroz RPC** (nema insert politike → numeracija se ne zaobilazi); vozač/admin NIŠTA; suspend-gate; bez DELETE.
+- **`src/features/invoices/calc.ts`** (+`.test.ts`, novo) — čiste fn: `round2`, `computeInvoiceAmounts` (osnova/PDV/ukupno),
+  `formatInvoiceNo`, `proposeDueDate`, `invoiceDisplayStatus` (KASNI computed).
+- **`src/features/invoices/api.ts`** (novo) — settings, liste, `getIssueContext`, `issueInvoice` (RPC), `markInvoicePaid`,
+  `cancelInvoice`, `setInvoicePdfKey`, `listIssuableTrips`.
+- **`src/features/invoices/pdf.ts`** (novo) — HTML šablon (sr/en) → **expo-print** `printToFileAsync` → upload u
+  `prilozi` pod **`company_id/invoices/<invoice_id>.pdf`** (deterministički ključ → bez siročadi) → **expo-sharing** „Podeli".
+- **UI:** `InvoiceSettingsModal`, `IssueInvoiceModal` (iznos=vozarina, valuta firme, PDV/napomena iz izdavaoca,
+  rok=izdavanje+rok naručioca; izbor jezika PDF-a), `InvoiceDetailModal` (Podeli/Plaćeno/Storniraj uz potvrde),
+  **novi tab `app/(owner)/invoices.tsx`** (lista + bedž statusa, KASNI **crveno**; filteri; „Nova faktura" = izbor ture bez fakture).
+  „Izdaj fakturu" u detalju ture (uslov: naručilac + vozarina). „Podaci izdavaoca" u Podešavanjima (Izmeni).
+- **`src/locales/*.json`** (svih 30) — `tabs.invoices` + ceo `invoice` namespace (47 ključeva).
 
-## Smoke na DEV-u (ishodi)
-Direktno na ZVANIČNI VIES REST (isti poziv koji Edge radi) + provera da je Edge zaštićena:
-| Slučaj | Ulaz | Ishod |
-|---|---|---|
-| **Validan EU PIB** | `IE 6388047V` (javno poznat) | `valid:true`, ime **„GOOGLE IRELAND LIMITED"** → status **valid** |
-| **Nevalidan EU PIB** | `DE 000000000` | `valid:false` → status **invalid** („Nije pronađen u VIES") |
-| **Ne-EU (RS)** | `RS 123456789` | VIES `errorWrappers: INVALID_INPUT`; klijent to i NE zove — `isEuVatCountry('RS')=false` → poruka **„VIES proverava samo EU PIB-ove"** |
-| **Edge auth** | anon poziv `vies-check` | **HTTP 401 „Neautorizovano"** (requireOffice) |
-
-VIES oblici (valid/invalid/non-EU) provereni uživo i poklapaju se sa parserom Edge funkcije (`valid` bool +
-`name`/`address` ili `"---"`; servisne greške kroz `errorWrappers[].error`, „nedostupno" kodovi → `unavailable`).
-
-## Odluke / odstupanja (CLAUDE.md pravilo 5)
-1. **✗ ne blokira čuvanje** — VIES „nije pronađen" je UPOZORENJE (vlasnikova odluka); naručilac se svejedno čuva.
-2. **`unavailable` se NE upisuje** na naručioca (ne kvari poslednji dobar ishod); mrežna/timeout greška → `unavailable`.
-3. **Grčka = `EL`** u VIES-u (ne `GR`) i **`XI`** za Sev. Irsku — pokriveno listom i `GR→EL` aliasom.
-4. **Duplirana EU/normalizacija na dve strane** (klijent `vies.ts` u TS, Edge inline u Deno) — namerno: Edge je
-   drugi runtime (Deno, bez pristupa `src/`), pa ne može da uveze klijentski modul; logika je minimalna i ista.
-5. Provera radi i za **nesačuvanog** naručioca (bez `customer_id`) — samo prikaz + „Preuzmi naziv"; za sačuvanog se ishod i upisuje (badge).
+## Ključne odluke / odstupanja (CLAUDE.md pravilo 5)
+1. **PDF samo SR/EN** (izbor pri izdavanju, default `sr`). Faktura je pravni dokument → idu samo **autorski** prevodi;
+   ostali jezici (mašinski) se NE koriste za fakturu — dolaze kad budu overeni. UI aplikacije je i dalje u svih 30.
+2. **Numeracija atomična kroz `issue_invoice` RPC** (brojač + upis u istoj transakciji) → nema rupa ni pri padu upisa.
+   `next_invoice_no` koristi `SELECT … FOR UPDATE` (C2). **Nema client insert politike** — broj se ne može zaobići.
+3. **Plaćeno/Storno/PDF-ključ = office UPDATE kroz RLS** (ne RPC): office je poverljiv unutar firme; izdavanje (numeracija)
+   ostaje jedini RPC-om zaštićen upis. Kolonska ograničenja (npr. da se ne menja iznos) nisu RLS posao — v1 odluka.
+4. **Iznosi računa KOD**: RPC (SQL `round(...,2)`) je autoritet; TS `computeInvoiceAmounts` je isti obračun za PRIKAZ/predlog.
+5. **PDF ključ deterministički** (`…/invoices/<invoice_id>.pdf`, upsert) → ponovno generisanje prepisuje isti objekat (bez siročadi).
+6. **Storage putanja pokrivena**: prvi segment ključa = `company_id` → `prilozi_owner_read/write` (0020, office) i
+   `prilozi_active_write` (suspend, 0015) je pokrivaju; vozačke storage politike se ne diraju → **vozač PDF ne vidi**.
+7. **Vozač fakture NE vidi**: nema tab u (driver), a `invoices`/`invoice_settings` RLS je office-only (test: vozač 0).
 
 ## Test matrica
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ čisto |
-| `npm test` (jest) | ✅ 14 suita / 99 testova (uklj. `vies` — 8 novih: normalizacija/EU lista/mapiranje) |
+| `npm test` (jest) | ✅ 15 suita / 107 testova (uklj. `calc` — 8: obračun/format/rok/status) |
 | `npm run lint` | ✅ 0 grešaka (5 postojećih upozorenja u tuđim fajlovima) |
-| `npm run test:db` | ✅ ALL PASSED (customers svita i dalje prolazi sa novim kolonama) |
-| Smoke (VIES REST + Edge 401) | ✅ (tabela gore) |
+| `npm run test:db` | ✅ ALL PASSED (… + **invoices**) |
+
+**invoices_test.sql:** office izolacija (owner B 0); **vozač 0**; **admin 0**; **numeracija** `…-001/002/003` (bez rupa),
+**obračun** 1000@20% → PDV 200 / ukupno 1200; dispečer vidi + označava plaćeno; **unique** invoice_no po firmi;
+**storno NE oslobađa broj** (posle storna 002 → sledeći je 003); **RESTRICT** brisanja ture sa fakturom; **suspend** (issue blokiran).
 
 ## Migracije / deploy — ručna primena
-- **DEV:** `0022` primenjena; Edge `vies-check` deploy-ovana.
-- **STAGING / PROD:** **nije dirano.** Primena uz odobrenje: `db push` (0022 aditivno — 3 nullable kolone) +
-  `functions deploy vies-check`. Bez tajni/Auth promena.
-- **HITNI SQL / rollback (DEV):** `alter table customers drop column vies_valid, drop column vies_checked_at, drop column vies_name;`
+- **DEV:** `0023` primenjena. Nema Edge/Auth promena u ovoj krišci.
+- **STAGING / PROD:** **nije dirano.** Primena uz odobrenje: `db push` (0021+0022+0023 su pending na PROD-u od F2) i
+  `functions deploy vies-check` (iz F2 K2). 0023 je aditivno (nove tabele/RPC; `trips` dobija nullable FK kolonu — bez dodira podataka).
+- **HITNI SQL / rollback (DEV):** `drop function issue_invoice(uuid,uuid,text,numeric,numeric,date,text,text); drop function next_invoice_no(uuid); drop table invoices; drop table invoice_counters; drop table invoice_settings;`
 
 ## Jezici
-i18n **dopunjen u SVIH 30 jezika** — `customers.checkVat`, `customers.useName`, `customers.vies.*`. `sr`/`en`
-autorski; 28 mašinski (status `"machine"` nepromenjen); `en` potpun (fallback). Skripta potvrdila poklapanje.
+i18n aplikacije **dopunjen u SVIH 30 jezika** — `tabs.invoices` + `invoice` namespace (status/filter/fields/settings).
+`sr`/`en` autorski; 28 mašinski (status `"machine"` nepromenjen); `en` potpun (fallback). **PDF šablon: samo sr+en** (v. odluka 1).
 
 ## Reverzibilnost
-Provera je nedestruktivna; ishod se može ponovo pokrenuti. „Preuzmi naziv" je opciono (ne prepisuje bez klika).
-Izmena naziva/PIB-a resetuje prikazani ishod dok se ne proveri ponovo.
+Nov/Izmeni izdavaoca kroz modal; izdavanje ima „Nazad/Otkaži"; plaćeno/storno **uz potvrdu** (+ datum/razlog).
+Faktura se **ne briše** (storno = status, ADR duh). PDF se može ponovo generisati iz detalja.
 
 ## Kvalitet koda
-Slojevi razdvojeni (VIES poziv u Edge; klijent kroz `customers/api.ts`; čiste fn u `vies.ts`); reusable
-`loadOwnCustomer`; prati postojeće obrasce (edge `requireOffice`/`fnError`, React Query invalidacije, tokeni/`t()`).
-**Pravila kvaliteta ispoštovana** (jedini svesni dup: EU/normalizacija u dva runtime-a, obrazloženo).
+Slojevi razdvojeni (Supabase samo u `invoices/api.ts`; čiste fn u `calc.ts`; PDF izolovan u `pdf.ts`); prati postojeće
+obrasce (upload kao attachments handler, `ModalScaffold`/`Field`/`DateField`, React Query invalidacije, definer RPC,
+test:db impersonacija). Bez duplirane logike. **Pravila kvaliteta ispoštovana.**
 
 ## ČEKA SE (potez vlasnika)
-1. Kad se bude primenjivalo na PROD: `db push 0022` + `functions deploy vies-check` uz odobrenje (aditivno, bez tajni).
+1. PROD sync F2 (uz odobrenje): `db push` 0021→0023 + `functions deploy vies-check`, po receptu iz ranijeg izveštaja
+   (STOP-kapije: utvrdi stanje → dry-run tačno 0021–0023 → PRE/POSLE brojevi → relink DEV).

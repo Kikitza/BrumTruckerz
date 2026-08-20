@@ -41,7 +41,8 @@
     "documents": "Dokumenter",
     "resources": "Ressourcer",
     "profile": "Profil",
-    "customers": "Kunder"
+    "customers": "Kunder",
+    "invoices": "Fakturaer"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES tjekker kun EU-momsnumre",
       "badge": "Momsnr. bekræftet ✓ {{date}}",
       "badgeInvalid": "Momsnr. ikke fundet ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Ny faktura",
+    "empty": "Ingen fakturaer endnu",
+    "issue": "Udsted faktura",
+    "issueTitle": "Udsted faktura",
+    "detailTitle": "Faktura",
+    "pickTrip": "Vælg en tur",
+    "noIssuableTrips": "Ingen ture at fakturere",
+    "needCustomerRevenue": "Tilføj først kunde og omsætning til turen",
+    "setupIssuer": "Opsæt først udstederens oplysninger",
+    "sharePdf": "Del PDF",
+    "markPaid": "Markér som betalt",
+    "confirmPaid": "Bekræft betaling",
+    "paidAt": "Betalt den",
+    "cancel": "Annullér",
+    "confirmCancel": "Bekræft annullering",
+    "cancelReason": "Årsag til annullering",
+    "status": {
+      "issued": "Udstedt",
+      "paid": "Betalt",
+      "overdue": "Forfalden",
+      "cancelled": "Annulleret"
+    },
+    "filter": {
+      "all": "Alle",
+      "issued": "Udstedte",
+      "overdue": "Forfaldne",
+      "paid": "Betalte",
+      "cancelled": "Annullerede"
+    },
+    "fields": {
+      "customer": "Kunde",
+      "amount": "Beløb ({{currency}})",
+      "vatRate": "Momssats (%)",
+      "base": "Netto",
+      "vat": "Moms",
+      "total": "I alt",
+      "dueDate": "Forfaldsdato",
+      "issueDate": "Udstedelsesdato",
+      "vatNote": "Momsnote",
+      "note": "Note",
+      "pdfLang": "PDF-sprog"
+    },
+    "settings": {
+      "title": "Udstederoplysninger",
+      "short": "Udsteder",
+      "hint": "Virksomhedsdata på fakturaen (navn, adresse, moms, bankkonto).",
+      "legalName": "Firmanavn",
+      "address": "Adresse",
+      "taxId": "Momsnr.",
+      "regNo": "Reg.nr.",
+      "bankAccount": "Bankkonto",
+      "prefix": "Nummerpræfiks",
+      "defaultVatRate": "Standardmomssats (%)",
+      "defaultVatNote": "Standardmomsnote"
     }
   }
 }

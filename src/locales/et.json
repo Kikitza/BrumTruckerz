@@ -41,7 +41,8 @@
     "documents": "Dokumendid",
     "resources": "Ressursid",
     "profile": "Profiil",
-    "customers": "Kliendid"
+    "customers": "Kliendid",
+    "invoices": "Arved"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES kontrollib ainult ELi käibemaksunumbreid",
       "badge": "KMKR kinnitatud ✓ {{date}}",
       "badgeInvalid": "KMKR ei leitud ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Uus arve",
+    "empty": "Arveid veel pole",
+    "issue": "Väljasta arve",
+    "issueTitle": "Arve väljastamine",
+    "detailTitle": "Arve",
+    "pickTrip": "Vali sõit",
+    "noIssuableTrips": "Pole sõite arveldamiseks",
+    "needCustomerRevenue": "Lisa esmalt sõidule klient ja tulu",
+    "setupIssuer": "Seadista esmalt väljastaja andmed",
+    "sharePdf": "Jaga PDF",
+    "markPaid": "Märgi makstuks",
+    "confirmPaid": "Kinnita makse",
+    "paidAt": "Makstud",
+    "cancel": "Tühista",
+    "confirmCancel": "Kinnita tühistamine",
+    "cancelReason": "Tühistamise põhjus",
+    "status": {
+      "issued": "Väljastatud",
+      "paid": "Makstud",
+      "overdue": "Tähtaeg möödas",
+      "cancelled": "Tühistatud"
+    },
+    "filter": {
+      "all": "Kõik",
+      "issued": "Väljastatud",
+      "overdue": "Tähtaeg möödas",
+      "paid": "Makstud",
+      "cancelled": "Tühistatud"
+    },
+    "fields": {
+      "customer": "Klient",
+      "amount": "Summa ({{currency}})",
+      "vatRate": "Käibemaksumäär (%)",
+      "base": "Neto",
+      "vat": "KM",
+      "total": "Kokku",
+      "dueDate": "Maksetähtaeg",
+      "issueDate": "Väljastamise kuupäev",
+      "vatNote": "KM märkus",
+      "note": "Märkus",
+      "pdfLang": "PDF keel"
+    },
+    "settings": {
+      "title": "Väljastaja andmed",
+      "short": "Väljastaja",
+      "hint": "Ettevõtte andmed arvel (nimi, aadress, KMKR, pangakonto).",
+      "legalName": "Nimi",
+      "address": "Aadress",
+      "taxId": "KMKR",
+      "regNo": "Reg. nr",
+      "bankAccount": "Pangakonto",
+      "prefix": "Numbri eesliide",
+      "defaultVatRate": "Vaikimisi käibemaksumäär (%)",
+      "defaultVatNote": "Vaikimisi KM märkus"
     }
   }
 }

@@ -41,7 +41,8 @@
     "documents": "Dokumenti",
     "resources": "Resursi",
     "profile": "Profils",
-    "customers": "Klienti"
+    "customers": "Klienti",
+    "invoices": "Rēķini"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES pārbauda tikai ES PVN numurus",
       "badge": "PVN pārbaudīts ✓ {{date}}",
       "badgeInvalid": "PVN nav atrasts ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Jauns rēķins",
+    "empty": "Vēl nav rēķinu",
+    "issue": "Izrakstīt rēķinu",
+    "issueTitle": "Rēķina izrakstīšana",
+    "detailTitle": "Rēķins",
+    "pickTrip": "Izvēlies braucienu",
+    "noIssuableTrips": "Nav braucienu rēķina izrakstīšanai",
+    "needCustomerRevenue": "Vispirms pievieno braucienam klientu un ieņēmumus",
+    "setupIssuer": "Vispirms iestati izrakstītāja datus",
+    "sharePdf": "Kopīgot PDF",
+    "markPaid": "Atzīmēt kā apmaksātu",
+    "confirmPaid": "Apstiprināt maksājumu",
+    "paidAt": "Apmaksāts",
+    "cancel": "Anulēt",
+    "confirmCancel": "Apstiprināt anulēšanu",
+    "cancelReason": "Anulēšanas iemesls",
+    "status": {
+      "issued": "Izrakstīts",
+      "paid": "Apmaksāts",
+      "overdue": "Nokavēts",
+      "cancelled": "Anulēts"
+    },
+    "filter": {
+      "all": "Visi",
+      "issued": "Izrakstīti",
+      "overdue": "Nokavēti",
+      "paid": "Apmaksāti",
+      "cancelled": "Anulēti"
+    },
+    "fields": {
+      "customer": "Klients",
+      "amount": "Summa ({{currency}})",
+      "vatRate": "PVN likme (%)",
+      "base": "Neto",
+      "vat": "PVN",
+      "total": "Kopā",
+      "dueDate": "Apmaksas termiņš",
+      "issueDate": "Izrakstīšanas datums",
+      "vatNote": "PVN piezīme",
+      "note": "Piezīme",
+      "pdfLang": "PDF valoda"
+    },
+    "settings": {
+      "title": "Izrakstītāja dati",
+      "short": "Izrakstītājs",
+      "hint": "Uzņēmuma dati rēķinā (nosaukums, adrese, PVN, bankas konts).",
+      "legalName": "Nosaukums",
+      "address": "Adrese",
+      "taxId": "PVN numurs",
+      "regNo": "Reģ. nr.",
+      "bankAccount": "Bankas konts",
+      "prefix": "Numura prefikss",
+      "defaultVatRate": "Noklusētā PVN likme (%)",
+      "defaultVatNote": "Noklusētā PVN piezīme"
     }
   }
 }

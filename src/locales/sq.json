@@ -41,7 +41,8 @@
     "documents": "Dokumentet",
     "resources": "Burimet",
     "profile": "Profili",
-    "customers": "Klientët"
+    "customers": "Klientët",
+    "invoices": "Faturat"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES kontrollon vetëm NIPT-et e BE-së",
       "badge": "NIPT i verifikuar ✓ {{date}}",
       "badgeInvalid": "NIPT nuk u gjet ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Faturë e re",
+    "empty": "Ende s'ka fatura",
+    "issue": "Lësho faturë",
+    "issueTitle": "Lëshimi i faturës",
+    "detailTitle": "Faturë",
+    "pickTrip": "Zgjidh një udhëtim",
+    "noIssuableTrips": "S'ka udhëtime për faturim",
+    "needCustomerRevenue": "Fillimisht shto klient dhe të ardhura te udhëtimi",
+    "setupIssuer": "Fillimisht vendos të dhënat e lëshuesit",
+    "sharePdf": "Ndaj PDF",
+    "markPaid": "Shëno si të paguar",
+    "confirmPaid": "Konfirmo pagesën",
+    "paidAt": "Paguar më",
+    "cancel": "Anulo",
+    "confirmCancel": "Konfirmo anulimin",
+    "cancelReason": "Arsyeja e anulimit",
+    "status": {
+      "issued": "Lëshuar",
+      "paid": "Paguar",
+      "overdue": "Vonuar",
+      "cancelled": "Anuluar"
+    },
+    "filter": {
+      "all": "Të gjitha",
+      "issued": "Të lëshuara",
+      "overdue": "Të vonuara",
+      "paid": "Të paguara",
+      "cancelled": "Të anuluara"
+    },
+    "fields": {
+      "customer": "Klienti",
+      "amount": "Shuma ({{currency}})",
+      "vatRate": "Norma e TVSH-së (%)",
+      "base": "Neto",
+      "vat": "TVSH",
+      "total": "Gjithsej",
+      "dueDate": "Afati i pagesës",
+      "issueDate": "Data e lëshimit",
+      "vatNote": "Shënim TVSH",
+      "note": "Shënim",
+      "pdfLang": "Gjuha e PDF-së"
+    },
+    "settings": {
+      "title": "Të dhënat e lëshuesit",
+      "short": "Lëshuesi",
+      "hint": "Të dhënat e kompanisë në faturë (emri, adresa, NIPT, llogaria bankare).",
+      "legalName": "Emri ligjor",
+      "address": "Adresa",
+      "taxId": "NIPT",
+      "regNo": "Nr. regjistrimi",
+      "bankAccount": "Llogaria bankare",
+      "prefix": "Prefiksi i numrit",
+      "defaultVatRate": "Norma e paracaktuar e TVSH-së (%)",
+      "defaultVatNote": "Shënim i paracaktuar TVSH"
     }
   }
 }

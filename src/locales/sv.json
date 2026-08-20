@@ -41,7 +41,8 @@
     "documents": "Dokument",
     "resources": "Resurser",
     "profile": "Profil",
-    "customers": "Kunder"
+    "customers": "Kunder",
+    "invoices": "Fakturor"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES kontrollerar bara EU-momsnummer",
       "badge": "Moms verifierat ✓ {{date}}",
       "badgeInvalid": "Moms hittades inte ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Ny faktura",
+    "empty": "Inga fakturor än",
+    "issue": "Utfärda faktura",
+    "issueTitle": "Utfärda faktura",
+    "detailTitle": "Faktura",
+    "pickTrip": "Välj en resa",
+    "noIssuableTrips": "Inga resor att fakturera",
+    "needCustomerRevenue": "Lägg först till kund och intäkt på resan",
+    "setupIssuer": "Ställ först in utställarens uppgifter",
+    "sharePdf": "Dela PDF",
+    "markPaid": "Markera som betald",
+    "confirmPaid": "Bekräfta betalning",
+    "paidAt": "Betald den",
+    "cancel": "Annullera",
+    "confirmCancel": "Bekräfta annullering",
+    "cancelReason": "Orsak till annullering",
+    "status": {
+      "issued": "Utfärdad",
+      "paid": "Betald",
+      "overdue": "Förfallen",
+      "cancelled": "Annullerad"
+    },
+    "filter": {
+      "all": "Alla",
+      "issued": "Utfärdade",
+      "overdue": "Förfallna",
+      "paid": "Betalda",
+      "cancelled": "Annullerade"
+    },
+    "fields": {
+      "customer": "Kund",
+      "amount": "Belopp ({{currency}})",
+      "vatRate": "Momssats (%)",
+      "base": "Netto",
+      "vat": "Moms",
+      "total": "Totalt",
+      "dueDate": "Förfallodag",
+      "issueDate": "Utfärdandedatum",
+      "vatNote": "Momsanteckning",
+      "note": "Anteckning",
+      "pdfLang": "PDF-språk"
+    },
+    "settings": {
+      "title": "Utställarens uppgifter",
+      "short": "Utställare",
+      "hint": "Företagsuppgifter på fakturan (namn, adress, moms, bankkonto).",
+      "legalName": "Företagsnamn",
+      "address": "Adress",
+      "taxId": "Momsnr",
+      "regNo": "Org.nr",
+      "bankAccount": "Bankkonto",
+      "prefix": "Nummerprefix",
+      "defaultVatRate": "Standardmomssats (%)",
+      "defaultVatNote": "Standardmomsanteckning"
     }
   }
 }

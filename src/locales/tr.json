@@ -41,7 +41,8 @@
     "documents": "Belgeler",
     "resources": "Kaynaklar",
     "profile": "Profil",
-    "customers": "Müşteriler"
+    "customers": "Müşteriler",
+    "invoices": "Faturalar"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES yalnızca AB KDV numaralarını doğrular",
       "badge": "KDV doğrulandı ✓ {{date}}",
       "badgeInvalid": "KDV bulunamadı ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Yeni fatura",
+    "empty": "Henüz fatura yok",
+    "issue": "Fatura kes",
+    "issueTitle": "Fatura kesme",
+    "detailTitle": "Fatura",
+    "pickTrip": "Sefer seç",
+    "noIssuableTrips": "Faturalanacak sefer yok",
+    "needCustomerRevenue": "Önce sefere müşteri ve gelir ekle",
+    "setupIssuer": "Önce düzenleyen bilgilerini ayarla",
+    "sharePdf": "PDF paylaş",
+    "markPaid": "Ödendi olarak işaretle",
+    "confirmPaid": "Ödemeyi onayla",
+    "paidAt": "Ödendiği tarih",
+    "cancel": "İptal et",
+    "confirmCancel": "İptali onayla",
+    "cancelReason": "İptal nedeni",
+    "status": {
+      "issued": "Kesildi",
+      "paid": "Ödendi",
+      "overdue": "Gecikmiş",
+      "cancelled": "İptal edildi"
+    },
+    "filter": {
+      "all": "Tümü",
+      "issued": "Kesilen",
+      "overdue": "Gecikmiş",
+      "paid": "Ödenen",
+      "cancelled": "İptal edilen"
+    },
+    "fields": {
+      "customer": "Müşteri",
+      "amount": "Tutar ({{currency}})",
+      "vatRate": "KDV oranı (%)",
+      "base": "Net",
+      "vat": "KDV",
+      "total": "Toplam",
+      "dueDate": "Vade tarihi",
+      "issueDate": "Kesim tarihi",
+      "vatNote": "KDV notu",
+      "note": "Not",
+      "pdfLang": "PDF dili"
+    },
+    "settings": {
+      "title": "Düzenleyen bilgileri",
+      "short": "Düzenleyen",
+      "hint": "Faturadaki şirket bilgileri (ad, adres, KDV, banka hesabı).",
+      "legalName": "Unvan",
+      "address": "Adres",
+      "taxId": "Vergi no",
+      "regNo": "Sicil no",
+      "bankAccount": "Banka hesabı",
+      "prefix": "Numara öneki",
+      "defaultVatRate": "Varsayılan KDV oranı (%)",
+      "defaultVatNote": "Varsayılan KDV notu"
     }
   }
 }

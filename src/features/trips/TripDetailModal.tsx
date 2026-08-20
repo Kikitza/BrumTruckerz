@@ -15,6 +15,7 @@ import {
   type EventType, type DriverPayMode,
 } from "./api";
 import { CustomerPickerField } from "../customers/CustomerPickerField";
+import { IssueInvoiceModal } from "../invoices/IssueInvoiceModal";
 import { RouteView, StopsEditor, stopsToDrafts, type StopDraft } from "./stops";
 import { arrivalsByStop } from "./eventsMath";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
@@ -46,6 +47,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
   const { t } = useTranslation();
   const qc = useQueryClient();
 
+  const [issuing, setIssuing] = useState(false);
   const trip = useQuery({ queryKey: ["trip", tripId], queryFn: () => ownerGetTrip(tripId) });
   const events = useQuery({ queryKey: ["trip-events", tripId], queryFn: () => ownerListTripEvents(tripId) });
   const stops = useQuery({ queryKey: ["trip-stops", tripId], queryFn: () => listTripStops(tripId) });
@@ -354,6 +356,16 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
                     {saveFinance.isPending ? t("common.saving") : t("common.save")}
                   </Text>
                 </Pressable>
+
+                {/* Izdaj fakturu — uslov: tura ima naručioca i vozarinu */}
+                {d.customer_id && d.revenue != null ? (
+                  <Pressable onPress={() => setIssuing(true)}
+                    style={{ borderWidth: 1, borderColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center" }}>
+                    <Text style={{ color: colors.primary, fontWeight: "600" }}>{t("invoice.issue")}</Text>
+                  </Pressable>
+                ) : (
+                  <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("invoice.needCustomerRevenue")}</Text>
+                )}
               </SectionBody>
             </Collapsible>
 
@@ -462,6 +474,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
             </Collapsible>
         </ScrollView>
       )}
+      {issuing && <IssueInvoiceModal tripId={tripId} onClose={() => setIssuing(false)} onIssued={onClose} />}
     </ModalScaffold>
   );
 }

@@ -41,7 +41,8 @@
     "documents": "Dokumenter",
     "resources": "Ressurser",
     "profile": "Profil",
-    "customers": "Kunder"
+    "customers": "Kunder",
+    "invoices": "Fakturaer"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES sjekker bare MVA-numre i EU",
       "badge": "MVA bekreftet ✓ {{date}}",
       "badgeInvalid": "MVA ikke funnet ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Ny faktura",
+    "empty": "Ingen fakturaer ennå",
+    "issue": "Utsted faktura",
+    "issueTitle": "Utsted faktura",
+    "detailTitle": "Faktura",
+    "pickTrip": "Velg en tur",
+    "noIssuableTrips": "Ingen turer å fakturere",
+    "needCustomerRevenue": "Legg først til kunde og inntekt på turen",
+    "setupIssuer": "Sett opp utstederdetaljer først",
+    "sharePdf": "Del PDF",
+    "markPaid": "Merk som betalt",
+    "confirmPaid": "Bekreft betaling",
+    "paidAt": "Betalt den",
+    "cancel": "Kanseller",
+    "confirmCancel": "Bekreft kansellering",
+    "cancelReason": "Årsak til kansellering",
+    "status": {
+      "issued": "Utstedt",
+      "paid": "Betalt",
+      "overdue": "Forfalt",
+      "cancelled": "Kansellert"
+    },
+    "filter": {
+      "all": "Alle",
+      "issued": "Utstedte",
+      "overdue": "Forfalte",
+      "paid": "Betalte",
+      "cancelled": "Kansellerte"
+    },
+    "fields": {
+      "customer": "Kunde",
+      "amount": "Beløp ({{currency}})",
+      "vatRate": "MVA-sats (%)",
+      "base": "Netto",
+      "vat": "MVA",
+      "total": "Totalt",
+      "dueDate": "Forfallsdato",
+      "issueDate": "Utstedelsesdato",
+      "vatNote": "MVA-merknad",
+      "note": "Notat",
+      "pdfLang": "PDF-språk"
+    },
+    "settings": {
+      "title": "Utstederdetaljer",
+      "short": "Utsteder",
+      "hint": "Firmadata på fakturaen (navn, adresse, MVA, bankkonto).",
+      "legalName": "Firmanavn",
+      "address": "Adresse",
+      "taxId": "MVA-nr.",
+      "regNo": "Org.nr.",
+      "bankAccount": "Bankkonto",
+      "prefix": "Nummerprefiks",
+      "defaultVatRate": "Standard MVA-sats (%)",
+      "defaultVatNote": "Standard MVA-merknad"
     }
   }
 }

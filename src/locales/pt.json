@@ -41,7 +41,8 @@
     "documents": "Documentos",
     "resources": "Recursos",
     "profile": "Perfil",
-    "customers": "Clientes"
+    "customers": "Clientes",
+    "invoices": "Faturas"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "O VIES só verifica NIF da UE",
       "badge": "NIF verificado ✓ {{date}}",
       "badgeInvalid": "NIF não encontrado ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nova fatura",
+    "empty": "Ainda sem faturas",
+    "issue": "Emitir fatura",
+    "issueTitle": "Emitir fatura",
+    "detailTitle": "Fatura",
+    "pickTrip": "Escolher uma viagem",
+    "noIssuableTrips": "Nenhuma viagem para faturar",
+    "needCustomerRevenue": "Adiciona primeiro um cliente e um valor à viagem",
+    "setupIssuer": "Configura primeiro os dados do emissor",
+    "sharePdf": "Partilhar PDF",
+    "markPaid": "Marcar como paga",
+    "confirmPaid": "Confirmar pagamento",
+    "paidAt": "Paga em",
+    "cancel": "Anular",
+    "confirmCancel": "Confirmar anulação",
+    "cancelReason": "Motivo da anulação",
+    "status": {
+      "issued": "Emitida",
+      "paid": "Paga",
+      "overdue": "Vencida",
+      "cancelled": "Anulada"
+    },
+    "filter": {
+      "all": "Todas",
+      "issued": "Emitidas",
+      "overdue": "Vencidas",
+      "paid": "Pagas",
+      "cancelled": "Anuladas"
+    },
+    "fields": {
+      "customer": "Cliente",
+      "amount": "Valor ({{currency}})",
+      "vatRate": "Taxa de IVA (%)",
+      "base": "Base",
+      "vat": "IVA",
+      "total": "Total",
+      "dueDate": "Vencimento",
+      "issueDate": "Data de emissão",
+      "vatNote": "Nota de IVA",
+      "note": "Nota",
+      "pdfLang": "Idioma do PDF"
+    },
+    "settings": {
+      "title": "Dados do emissor",
+      "short": "Emissor",
+      "hint": "Dados da empresa na fatura (nome, morada, NIF, conta bancária).",
+      "legalName": "Denominação social",
+      "address": "Morada",
+      "taxId": "NIF",
+      "regNo": "N.º de registo",
+      "bankAccount": "Conta bancária",
+      "prefix": "Prefixo do número",
+      "defaultVatRate": "Taxa de IVA predefinida (%)",
+      "defaultVatNote": "Nota de IVA predefinida"
     }
   }
 }

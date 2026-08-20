@@ -41,7 +41,8 @@
     "documents": "Documenten",
     "resources": "Bronnen",
     "profile": "Profiel",
-    "customers": "Klanten"
+    "customers": "Klanten",
+    "invoices": "Facturen"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES controleert alleen btw-nummers van de EU",
       "badge": "Btw geverifieerd ✓ {{date}}",
       "badgeInvalid": "Btw niet gevonden ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nieuwe factuur",
+    "empty": "Nog geen facturen",
+    "issue": "Factuur uitgeven",
+    "issueTitle": "Factuur uitgeven",
+    "detailTitle": "Factuur",
+    "pickTrip": "Kies een rit",
+    "noIssuableTrips": "Geen ritten om te factureren",
+    "needCustomerRevenue": "Voeg eerst een klant en omzet toe aan de rit",
+    "setupIssuer": "Stel eerst de gegevens van de uitgever in",
+    "sharePdf": "PDF delen",
+    "markPaid": "Als betaald markeren",
+    "confirmPaid": "Betaling bevestigen",
+    "paidAt": "Betaald op",
+    "cancel": "Annuleren",
+    "confirmCancel": "Annulering bevestigen",
+    "cancelReason": "Reden van annulering",
+    "status": {
+      "issued": "Uitgegeven",
+      "paid": "Betaald",
+      "overdue": "Achterstallig",
+      "cancelled": "Geannuleerd"
+    },
+    "filter": {
+      "all": "Alle",
+      "issued": "Uitgegeven",
+      "overdue": "Achterstallig",
+      "paid": "Betaald",
+      "cancelled": "Geannuleerd"
+    },
+    "fields": {
+      "customer": "Klant",
+      "amount": "Bedrag ({{currency}})",
+      "vatRate": "Btw-tarief (%)",
+      "base": "Netto",
+      "vat": "Btw",
+      "total": "Totaal",
+      "dueDate": "Vervaldatum",
+      "issueDate": "Uitgiftedatum",
+      "vatNote": "Btw-notitie",
+      "note": "Notitie",
+      "pdfLang": "PDF-taal"
+    },
+    "settings": {
+      "title": "Gegevens uitgever",
+      "short": "Uitgever",
+      "hint": "Bedrijfsgegevens op de factuur (naam, adres, btw, bankrekening).",
+      "legalName": "Bedrijfsnaam",
+      "address": "Adres",
+      "taxId": "Btw-nummer",
+      "regNo": "Reg.nr.",
+      "bankAccount": "Bankrekening",
+      "prefix": "Nummervoorvoegsel",
+      "defaultVatRate": "Standaard btw-tarief (%)",
+      "defaultVatNote": "Standaard btw-notitie"
     }
   }
 }

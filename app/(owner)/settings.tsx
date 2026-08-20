@@ -1,4 +1,5 @@
-// Podešavanja (vlasnik): paket + iskorišćenost vozila, pozivnice, odjava.
+// Podešavanja (vlasnik/dispečer): paket + iskorišćenost vozila, podaci izdavaoca, pozivnice, odjava.
+import { useState } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -6,6 +7,7 @@ import { useSignOut } from "../../src/features/auth/signOut";
 import { useTheme } from "../../src/lib/theme";
 import { getCompanyPlan, countVehicles } from "../../src/features/fleet/api";
 import { InvitesSection } from "../../src/features/identity/InvitesSection";
+import { InvoiceSettingsModal } from "../../src/features/invoices/InvoiceSettingsModal";
 import { useRole } from "../../src/features/auth/useRole";
 
 export default function Settings() {
@@ -13,6 +15,7 @@ export default function Settings() {
   const { t } = useTranslation();
   const signOut = useSignOut();
   const { isOwner } = useRole();
+  const [invoiceSettings, setInvoiceSettings] = useState(false);
 
   // Paket + iskorišćenost čita samo vlasnik (dispečer nema „Paket": owner-only).
   const planQ = useQuery({ queryKey: ["company-plan"], queryFn: getCompanyPlan, enabled: isOwner });
@@ -36,8 +39,19 @@ export default function Settings() {
         </View>
       )}
 
+      {/* Podaci izdavaoca (za fakture) — office */}
+      <Pressable
+        onPress={() => setInvoiceSettings(true)}
+        style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16 }}
+      >
+        <Text style={{ color: colors.text, fontWeight: "600" }}>{t("invoice.settings.title")}</Text>
+        <Text style={{ color: colors.textMuted, fontSize: 12, marginTop: 2 }}>{t("invoice.settings.hint")}</Text>
+      </Pressable>
+
       {/* Pozivnice: dispečer vidi/pravi SAMO vozačke (allowDispatcher=false) */}
       <InvitesSection allowDispatcher={isOwner} />
+
+      {invoiceSettings && <InvoiceSettingsModal onClose={() => setInvoiceSettings(false)} />}
 
       <Pressable
         onPress={signOut}

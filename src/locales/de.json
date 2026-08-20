@@ -41,7 +41,8 @@
     "documents": "Dokumente",
     "resources": "Ressourcen",
     "profile": "Profil",
-    "customers": "Kunden"
+    "customers": "Kunden",
+    "invoices": "Rechnungen"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES prüft nur EU-USt-IdNr.",
       "badge": "USt-IdNr. geprüft ✓ {{date}}",
       "badgeInvalid": "USt-IdNr. nicht gefunden ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Neue Rechnung",
+    "empty": "Noch keine Rechnungen",
+    "issue": "Rechnung ausstellen",
+    "issueTitle": "Rechnung ausstellen",
+    "detailTitle": "Rechnung",
+    "pickTrip": "Fahrt wählen",
+    "noIssuableTrips": "Keine Fahrten zum Abrechnen",
+    "needCustomerRevenue": "Füge zuerst Kunde und Umsatz zur Fahrt hinzu",
+    "setupIssuer": "Zuerst Aussteller-Daten einrichten",
+    "sharePdf": "PDF teilen",
+    "markPaid": "Als bezahlt markieren",
+    "confirmPaid": "Zahlung bestätigen",
+    "paidAt": "Bezahlt am",
+    "cancel": "Stornieren",
+    "confirmCancel": "Stornierung bestätigen",
+    "cancelReason": "Stornogrund",
+    "status": {
+      "issued": "Ausgestellt",
+      "paid": "Bezahlt",
+      "overdue": "Überfällig",
+      "cancelled": "Storniert"
+    },
+    "filter": {
+      "all": "Alle",
+      "issued": "Ausgestellt",
+      "overdue": "Überfällig",
+      "paid": "Bezahlt",
+      "cancelled": "Storniert"
+    },
+    "fields": {
+      "customer": "Kunde",
+      "amount": "Betrag ({{currency}})",
+      "vatRate": "MwSt-Satz (%)",
+      "base": "Netto",
+      "vat": "MwSt",
+      "total": "Gesamt",
+      "dueDate": "Fällig am",
+      "issueDate": "Ausstellungsdatum",
+      "vatNote": "MwSt-Hinweis",
+      "note": "Notiz",
+      "pdfLang": "PDF-Sprache"
+    },
+    "settings": {
+      "title": "Aussteller-Daten",
+      "short": "Aussteller",
+      "hint": "Firmendaten auf der Rechnung (Name, Adresse, USt-IdNr., Bankkonto).",
+      "legalName": "Firmenname",
+      "address": "Adresse",
+      "taxId": "USt-IdNr.",
+      "regNo": "Reg.-Nr.",
+      "bankAccount": "Bankkonto",
+      "prefix": "Nummernpräfix",
+      "defaultVatRate": "Standard-MwSt-Satz (%)",
+      "defaultVatNote": "Standard-MwSt-Hinweis"
     }
   }
 }

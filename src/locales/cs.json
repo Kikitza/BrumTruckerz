@@ -41,7 +41,8 @@
     "documents": "Dokumenty",
     "resources": "Zdroje",
     "profile": "Profil",
-    "customers": "Zákazníci"
+    "customers": "Zákazníci",
+    "invoices": "Faktury"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES ověřuje pouze DIČ z EU",
       "badge": "DIČ ověřeno ✓ {{date}}",
       "badgeInvalid": "DIČ nenalezeno ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nová faktura",
+    "empty": "Zatím žádné faktury",
+    "issue": "Vystavit fakturu",
+    "issueTitle": "Vystavení faktury",
+    "detailTitle": "Faktura",
+    "pickTrip": "Vyber jízdu",
+    "noIssuableTrips": "Žádné jízdy k fakturaci",
+    "needCustomerRevenue": "Nejprve přidej zákazníka a tržbu k jízdě",
+    "setupIssuer": "Nejprve vyplň údaje vystavitele",
+    "sharePdf": "Sdílet PDF",
+    "markPaid": "Označit jako zaplaceno",
+    "confirmPaid": "Potvrdit platbu",
+    "paidAt": "Zaplaceno dne",
+    "cancel": "Stornovat",
+    "confirmCancel": "Potvrdit storno",
+    "cancelReason": "Důvod storna",
+    "status": {
+      "issued": "Vystavena",
+      "paid": "Zaplacena",
+      "overdue": "Po splatnosti",
+      "cancelled": "Stornována"
+    },
+    "filter": {
+      "all": "Vše",
+      "issued": "Vystavené",
+      "overdue": "Po splatnosti",
+      "paid": "Zaplacené",
+      "cancelled": "Stornované"
+    },
+    "fields": {
+      "customer": "Zákazník",
+      "amount": "Částka ({{currency}})",
+      "vatRate": "Sazba DPH (%)",
+      "base": "Základ",
+      "vat": "DPH",
+      "total": "Celkem",
+      "dueDate": "Splatnost",
+      "issueDate": "Datum vystavení",
+      "vatNote": "Poznámka k DPH",
+      "note": "Poznámka",
+      "pdfLang": "Jazyk PDF"
+    },
+    "settings": {
+      "title": "Údaje vystavitele",
+      "short": "Vystavitel",
+      "hint": "Údaje firmy na faktuře (název, adresa, DIČ, bankovní účet).",
+      "legalName": "Název firmy",
+      "address": "Adresa",
+      "taxId": "DIČ",
+      "regNo": "IČ",
+      "bankAccount": "Bankovní účet",
+      "prefix": "Prefix čísla",
+      "defaultVatRate": "Výchozí sazba DPH (%)",
+      "defaultVatNote": "Výchozí poznámka k DPH"
     }
   }
 }

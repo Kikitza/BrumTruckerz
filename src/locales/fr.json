@@ -41,7 +41,8 @@
     "documents": "Documents",
     "resources": "Ressources",
     "profile": "Profil",
-    "customers": "Clients"
+    "customers": "Clients",
+    "invoices": "Factures"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES ne vérifie que les numéros de TVA de l'UE",
       "badge": "TVA vérifiée ✓ {{date}}",
       "badgeInvalid": "TVA introuvable ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nouvelle facture",
+    "empty": "Aucune facture",
+    "issue": "Émettre une facture",
+    "issueTitle": "Émettre une facture",
+    "detailTitle": "Facture",
+    "pickTrip": "Choisir un trajet",
+    "noIssuableTrips": "Aucun trajet à facturer",
+    "needCustomerRevenue": "Ajoute d'abord un client et un montant au trajet",
+    "setupIssuer": "Configure d'abord les infos de l'émetteur",
+    "sharePdf": "Partager le PDF",
+    "markPaid": "Marquer payée",
+    "confirmPaid": "Confirmer le paiement",
+    "paidAt": "Payée le",
+    "cancel": "Annuler",
+    "confirmCancel": "Confirmer l'annulation",
+    "cancelReason": "Motif d'annulation",
+    "status": {
+      "issued": "Émise",
+      "paid": "Payée",
+      "overdue": "En retard",
+      "cancelled": "Annulée"
+    },
+    "filter": {
+      "all": "Toutes",
+      "issued": "Émises",
+      "overdue": "En retard",
+      "paid": "Payées",
+      "cancelled": "Annulées"
+    },
+    "fields": {
+      "customer": "Client",
+      "amount": "Montant ({{currency}})",
+      "vatRate": "Taux de TVA (%)",
+      "base": "HT",
+      "vat": "TVA",
+      "total": "Total",
+      "dueDate": "Échéance",
+      "issueDate": "Date d'émission",
+      "vatNote": "Note TVA",
+      "note": "Note",
+      "pdfLang": "Langue du PDF"
+    },
+    "settings": {
+      "title": "Infos de l'émetteur",
+      "short": "Émetteur",
+      "hint": "Données de l'entreprise sur la facture (nom, adresse, TVA, compte bancaire).",
+      "legalName": "Raison sociale",
+      "address": "Adresse",
+      "taxId": "N° TVA",
+      "regNo": "N° d'enreg.",
+      "bankAccount": "Compte bancaire",
+      "prefix": "Préfixe de numéro",
+      "defaultVatRate": "Taux de TVA par défaut (%)",
+      "defaultVatNote": "Note TVA par défaut"
     }
   }
 }

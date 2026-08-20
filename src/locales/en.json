@@ -39,7 +39,8 @@
     "documents": "Documents",
     "resources": "Resources",
     "profile": "Profile",
-    "customers": "Customers"
+    "customers": "Customers",
+    "invoices": "Invoices"
   },
   "trip": {
     "status": {
@@ -404,6 +405,63 @@
       "notEu": "VIES only checks EU VAT numbers",
       "badge": "VAT verified ✓ {{date}}",
       "badgeInvalid": "VAT not found ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "New invoice",
+    "empty": "No invoices yet",
+    "issue": "Issue invoice",
+    "issueTitle": "Issue invoice",
+    "detailTitle": "Invoice",
+    "pickTrip": "Choose a trip",
+    "noIssuableTrips": "No trips ready to invoice",
+    "needCustomerRevenue": "Add a customer and revenue to the trip first",
+    "setupIssuer": "Set up issuer details first",
+    "sharePdf": "Share PDF",
+    "markPaid": "Mark paid",
+    "confirmPaid": "Confirm paid",
+    "paidAt": "Paid on",
+    "cancel": "Cancel invoice",
+    "confirmCancel": "Confirm cancellation",
+    "cancelReason": "Cancellation reason",
+    "status": {
+      "issued": "Issued",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled"
+    },
+    "filter": {
+      "all": "All",
+      "issued": "Issued",
+      "overdue": "Overdue",
+      "paid": "Paid",
+      "cancelled": "Cancelled"
+    },
+    "fields": {
+      "customer": "Customer",
+      "amount": "Amount ({{currency}})",
+      "vatRate": "VAT rate (%)",
+      "base": "Net",
+      "vat": "VAT",
+      "total": "Total",
+      "dueDate": "Due date",
+      "issueDate": "Issue date",
+      "vatNote": "VAT note",
+      "note": "Note",
+      "pdfLang": "PDF language"
+    },
+    "settings": {
+      "title": "Issuer details",
+      "short": "Issuer",
+      "hint": "Company data on the invoice (name, address, VAT, bank account).",
+      "legalName": "Legal name",
+      "address": "Address",
+      "taxId": "VAT ID",
+      "regNo": "Reg. no.",
+      "bankAccount": "Bank account",
+      "prefix": "Number prefix",
+      "defaultVatRate": "Default VAT rate (%)",
+      "defaultVatNote": "Default VAT note"
     }
   }
 }

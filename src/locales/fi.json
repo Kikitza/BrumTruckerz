@@ -41,7 +41,8 @@
     "documents": "Asiakirjat",
     "resources": "Resurssit",
     "profile": "Profiili",
-    "customers": "Asiakkaat"
+    "customers": "Asiakkaat",
+    "invoices": "Laskut"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES tarkistaa vain EU:n ALV-numerot",
       "badge": "ALV vahvistettu ✓ {{date}}",
       "badgeInvalid": "ALV ei löytynyt ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Uusi lasku",
+    "empty": "Ei vielä laskuja",
+    "issue": "Laadi lasku",
+    "issueTitle": "Laskun laatiminen",
+    "detailTitle": "Lasku",
+    "pickTrip": "Valitse matka",
+    "noIssuableTrips": "Ei laskutettavia matkoja",
+    "needCustomerRevenue": "Lisää ensin asiakas ja tuotto matkalle",
+    "setupIssuer": "Määritä ensin laatijan tiedot",
+    "sharePdf": "Jaa PDF",
+    "markPaid": "Merkitse maksetuksi",
+    "confirmPaid": "Vahvista maksu",
+    "paidAt": "Maksettu",
+    "cancel": "Peruuta",
+    "confirmCancel": "Vahvista peruutus",
+    "cancelReason": "Peruutuksen syy",
+    "status": {
+      "issued": "Laadittu",
+      "paid": "Maksettu",
+      "overdue": "Erääntynyt",
+      "cancelled": "Peruttu"
+    },
+    "filter": {
+      "all": "Kaikki",
+      "issued": "Laaditut",
+      "overdue": "Erääntyneet",
+      "paid": "Maksetut",
+      "cancelled": "Perutut"
+    },
+    "fields": {
+      "customer": "Asiakas",
+      "amount": "Summa ({{currency}})",
+      "vatRate": "ALV-kanta (%)",
+      "base": "Veroton",
+      "vat": "ALV",
+      "total": "Yhteensä",
+      "dueDate": "Eräpäivä",
+      "issueDate": "Laatimispäivä",
+      "vatNote": "ALV-huomautus",
+      "note": "Muistiinpano",
+      "pdfLang": "PDF:n kieli"
+    },
+    "settings": {
+      "title": "Laatijan tiedot",
+      "short": "Laatija",
+      "hint": "Yrityksen tiedot laskulla (nimi, osoite, ALV, pankkitili).",
+      "legalName": "Yrityksen nimi",
+      "address": "Osoite",
+      "taxId": "ALV-numero",
+      "regNo": "Y-tunnus",
+      "bankAccount": "Pankkitili",
+      "prefix": "Numeron etuliite",
+      "defaultVatRate": "Oletus-ALV-kanta (%)",
+      "defaultVatNote": "Oletus-ALV-huomautus"
     }
   }
 }

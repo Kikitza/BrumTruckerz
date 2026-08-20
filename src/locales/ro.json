@@ -41,7 +41,8 @@
     "documents": "Documente",
     "resources": "Resurse",
     "profile": "Profil",
-    "customers": "Clienți"
+    "customers": "Clienți",
+    "invoices": "Facturi"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES verifică doar codurile TVA din UE",
       "badge": "TVA verificat ✓ {{date}}",
       "badgeInvalid": "TVA negăsit ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Factură nouă",
+    "empty": "Încă nu există facturi",
+    "issue": "Emite factură",
+    "issueTitle": "Emitere factură",
+    "detailTitle": "Factură",
+    "pickTrip": "Alege o cursă",
+    "noIssuableTrips": "Nicio cursă de facturat",
+    "needCustomerRevenue": "Adaugă mai întâi client și venit la cursă",
+    "setupIssuer": "Configurează mai întâi datele emitentului",
+    "sharePdf": "Distribuie PDF",
+    "markPaid": "Marchează plătită",
+    "confirmPaid": "Confirmă plata",
+    "paidAt": "Plătită la",
+    "cancel": "Anulează",
+    "confirmCancel": "Confirmă anularea",
+    "cancelReason": "Motivul anulării",
+    "status": {
+      "issued": "Emisă",
+      "paid": "Plătită",
+      "overdue": "Restantă",
+      "cancelled": "Anulată"
+    },
+    "filter": {
+      "all": "Toate",
+      "issued": "Emise",
+      "overdue": "Restante",
+      "paid": "Plătite",
+      "cancelled": "Anulate"
+    },
+    "fields": {
+      "customer": "Client",
+      "amount": "Sumă ({{currency}})",
+      "vatRate": "Cotă TVA (%)",
+      "base": "Bază",
+      "vat": "TVA",
+      "total": "Total",
+      "dueDate": "Scadență",
+      "issueDate": "Data emiterii",
+      "vatNote": "Notă TVA",
+      "note": "Notă",
+      "pdfLang": "Limba PDF"
+    },
+    "settings": {
+      "title": "Date emitent",
+      "short": "Emitent",
+      "hint": "Datele firmei pe factură (nume, adresă, cod TVA, cont bancar).",
+      "legalName": "Denumire",
+      "address": "Adresă",
+      "taxId": "Cod TVA",
+      "regNo": "Nr. înreg.",
+      "bankAccount": "Cont bancar",
+      "prefix": "Prefix număr",
+      "defaultVatRate": "Cotă TVA implicită (%)",
+      "defaultVatNote": "Notă TVA implicită"
     }
   }
 }

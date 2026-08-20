@@ -41,7 +41,8 @@
     "documents": "Dokumentai",
     "resources": "Ištekliai",
     "profile": "Profilis",
-    "customers": "Klientai"
+    "customers": "Klientai",
+    "invoices": "Sąskaitos"
   },
   "trip": {
     "status": {
@@ -406,6 +407,63 @@
       "notEu": "VIES tikrina tik ES PVM numerius",
       "badge": "PVM patvirtintas ✓ {{date}}",
       "badgeInvalid": "PVM nerastas ({{date}})"
+    }
+  },
+  "invoice": {
+    "new": "Nauja sąskaita",
+    "empty": "Sąskaitų dar nėra",
+    "issue": "Išrašyti sąskaitą",
+    "issueTitle": "Sąskaitos išrašymas",
+    "detailTitle": "Sąskaita",
+    "pickTrip": "Pasirink reisą",
+    "noIssuableTrips": "Nėra reisų sąskaitoms",
+    "needCustomerRevenue": "Pirma pridėk reisui klientą ir pajamas",
+    "setupIssuer": "Pirma nustatyk išrašytojo duomenis",
+    "sharePdf": "Bendrinti PDF",
+    "markPaid": "Pažymėti kaip apmokėtą",
+    "confirmPaid": "Patvirtinti mokėjimą",
+    "paidAt": "Apmokėta",
+    "cancel": "Anuliuoti",
+    "confirmCancel": "Patvirtinti anuliavimą",
+    "cancelReason": "Anuliavimo priežastis",
+    "status": {
+      "issued": "Išrašyta",
+      "paid": "Apmokėta",
+      "overdue": "Pradelsta",
+      "cancelled": "Anuliuota"
+    },
+    "filter": {
+      "all": "Visos",
+      "issued": "Išrašytos",
+      "overdue": "Pradelstos",
+      "paid": "Apmokėtos",
+      "cancelled": "Anuliuotos"
+    },
+    "fields": {
+      "customer": "Klientas",
+      "amount": "Suma ({{currency}})",
+      "vatRate": "PVM tarifas (%)",
+      "base": "Be PVM",
+      "vat": "PVM",
+      "total": "Iš viso",
+      "dueDate": "Apmokėjimo terminas",
+      "issueDate": "Išrašymo data",
+      "vatNote": "PVM pastaba",
+      "note": "Pastaba",
+      "pdfLang": "PDF kalba"
+    },
+    "settings": {
+      "title": "Išrašytojo duomenys",
+      "short": "Išrašytojas",
+      "hint": "Įmonės duomenys sąskaitoje (pavadinimas, adresas, PVM, banko sąskaita).",
+      "legalName": "Pavadinimas",
+      "address": "Adresas",
+      "taxId": "PVM kodas",
+      "regNo": "Reg. nr.",
+      "bankAccount": "Banko sąskaita",
+      "prefix": "Numerio priešdėlis",
+      "defaultVatRate": "Numatytasis PVM tarifas (%)",
+      "defaultVatNote": "Numatytoji PVM pastaba"
     }
   }
 }
