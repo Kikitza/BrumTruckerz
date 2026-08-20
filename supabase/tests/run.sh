@@ -21,5 +21,6 @@ run() {
 }
 run supabase/tests/rls_audit_test.sql           ALL_RLS_TESTS_PASSED
 run supabase/tests/correct_event_chain_test.sql ALL_CHAIN_TESTS_PASSED
+run supabase/tests/identity_test.sql            ALL_IDENTITY_TESTS_PASSED
 [ "$fail" -eq 0 ] && echo "DB tests: ALL PASSED" || echo "DB tests: FAILURES ABOVE"
 exit $fail
