@@ -1,67 +1,80 @@
-# IZVEŠTAJ — F2 FINALE: ČAROBNJAK NOVE FIRME + ISO DRŽAVE + TIPOVI VOZILA (samouslužni ulaz)
+# IZVEŠTAJ — KAPIJA F2 / KORAK 1: PROD SYNC (uwphmxxeuggitssdmgcz)
 
-> STATUS: **URAĐENO na DEV-u i COMMITOVANO+PUSH-ovano** (commit-first; izveštaj u istom commitu).
-> Migracija 0025 primenjena. **Kraj SQL recepta za novu firmu** — čarobnjak je put. PROD/STAGING **netaknuti**.
+> STATUS: **URAĐENO na PRODU** (izričito odobrenje vlasnika). Migracije 0021–0025 primenjene; `vies-check`
+> deploy-ovana. **Link vraćen na DEV** (dokaz niže). Bez izmena koda. Auth PRODA **nedirnut**. `reminders-cron`
+> **svesno izostavljen** (ide uz push-finale ritual). Izveštaj sadrži samo imena/refove — **nijednu tajnu-vrednost**.
 
-## Izmene (spisak)
-- **`supabase/migrations/0025_countries_vehicle_types_self_serve.sql`** (novo):
-  - **`countries`** (code 2 slova PK, name_key, eu_member, sort) — kurirana lista **41** (EU 27 + EFTA + UK + Balkan +
-    susedi TR/UA/MD); RLS: svi authenticated čitaju, **nema write politike** (platforma).
-  - **`vehicle_types`** (code, name_key, sort) — seed 9 (kombi, pikap, solo, tegljač+poluprikolica, hladnjača, cisterna,
-    autotransporter, kiper, kontejnerski); isti RLS; **`vehicles.type_id`** null FK (postojeća vozila null = prilagođeno).
-  - **`companies.country_code`** null FK → countries.
-  - **`create_company_self(name, country_code, base_currency)`** SECURITY DEFINER — **samo za NoRole korisnika** (bez
-    app_users reda; inače `SELF_ALREADY_HAS_COMPANY`); firma (starter/limit 5) + `app_users` OWNER + prazan `invoice_settings`; vraća company_id.
-- **`src/lib/currencies.ts`** (+`.test.ts`, novo) — deljena lista 13 valuta (ExpenseForm sada uvozi odavde) + `suggestCurrency` (RS→RSD, eurozona→EUR, inače EUR).
-- **`src/features/company/api.ts`** (novo) — `listCountries`, `listVehicleTypes`, `createCompanySelf`.
-- **`src/features/company/CountryPickerField.tsx`** (novo) — picker država **sa pretragom** iz šifarnika.
-- **`src/features/company/NewCompanyWizard.tsx`** (novo) — 3 koraka („Nazad" bez gubitka): naziv+zemlja+valuta (predlog po
-  zemlji) → prvo vozilo (preskočivo: tip+registracija) → pregled → `create_company_self` → **gate reload** (vlasnik ulazi u svoju novu praznu firmu).
-- **`app/index.tsx`** — NoRole dobio dugme „Otvori novu firmu" (uz „Imam kod firme").
-- **Pickeri država**: `CustomerFormModal` (country_code), `ReminderFormModal` (vinjeta/needs_country) i čarobnjak koriste
-  `CountryPickerField`. **Flota**: vozilo dobija picker tipa (uz zadržan slobodan `make_model`).
-- **`RUNBOOK.md`** — sekcija „Nova firma" označena **LEGACY** (čarobnjak je put; admin tabla nepromenjena — vidi i nove firme + suspend).
-- **`src/locales/*.json`** (svih 30) — `countries.*` (41), `vehicleTypes.*` (9), `country.*`, `company.*`, `fleet.fields.vehicleTypeNone`.
+## Rezultat: ✅ F2 SINHRONIZOVAN NA PROD
+PROD je bio na **0001–0020 sa urednom istorijom** (STOP-kapija „utvrdi stanje" → OK). Push čist iz prvog puta,
+sve aditivno, postojeći podaci netaknuti.
 
-## Odluke / odstupanja (CLAUDE.md pravilo 5)
-1. **Imena država: sr + en autorski; 28 mašinskih fajlova nose ENGLESKO ime (placeholder)** — lokalizacija 41 države ×
-   30 jezika je velik i greškopodložan skup; en je fallback, a puna lokalizacija imena država dolazi kasnije. Ovo je
-   „izvodljiv pristup" tražen u zadatku (obrazloženje). `name_key` = `countries.<CODE>`.
-2. **Slobodni unosi kompatibilni:** `customers.country_code`/`reminders.country_code` su i dalje `text` — picker upisuje
-   **2-slovni ISO kod** (isti oblik kao ranije ručni unos), pa su postojeći podaci kompatibilni. `vehicles.make_model`
-   ostaje slobodan uz novi `type_id`. **VIES lista NIJE dirana** (GR→EL mapiranje u `vies.ts` i dalje važi; ISO šifarnik je zaseban).
-3. **`create_company_self` samo za NoRole** (bez app_users) — samouslužno, bez potrebe za platformom; admin tabla i dalje vidi/suspenduje sve firme.
-4. **`suggestCurrency` predlaže samo valute iz liste 13** (očigledni slučajevi: RS→RSD, eurozona→EUR); ostalo EUR.
+## 1) Stanje pre (STOP-kapija) + dry-run
+- `supabase_migrations.schema_migrations` = **tačno 0001…0020** (20 redova). Očekivano.
+- **Dry-run = TAČNO 0021, 0022, 0023, 0024, 0025** (bez odstupanja → nastavak):
+```
+ • 0021_customers.sql
+ • 0022_customers_vies.sql
+ • 0023_invoices.sql
+ • 0024_reminder_types_km.sql
+ • 0025_countries_vehicle_types_self_serve.sql
+```
 
-## Test matrica
-| Provera | Rezultat |
+## 2) Push + PRE/POSLE (aditivnost)
+| Tabela | PRE | POSLE |
+|---|---|---|
+| companies | 1 | 1 |
+| app_users | 1 | 1 |
+| auth.users | 3 | 3 |
+| drivers | 1 | 1 |
+| vehicles | 5 | 5 |
+| trailers | 1 | 1 |
+| trips | 0 | 0 |
+| reminders | 4 | 4 |
+| driver_profiles / employments | 0 / 0 | 0 / 0 |
+
+**Nove tabele (prazne):** customers 0, invoices 0, invoice_settings 0. **Nijedan `db push` u 0021–0025 ne radi
+backfill podataka** → svi postojeći brojevi nepromenjeni (čisto aditivno).
+
+## 3) Read-only verifikacija PRODA (bez test:db — po nalogu)
+| Provera | Vrednost |
 |---|---|
-| `npm run typecheck` | ✅ čisto |
-| `npm test` (jest) | ✅ 17 suita / 120 testova (uklj. `currencies` — 4: predlog valute) |
-| `npm run lint` | ✅ 0 grešaka (4 postojeća upozorenja u tuđim fajlovima) |
-| `npm run test:db` | ✅ ALL PASSED (… + **company_self**) |
+| istorija (applied max) | **0025** |
+| šifarnici (seed) | countries **41**, vehicle_types **9**, reminder_types **12** |
+| funkcije prisutne | `issue_invoice` ✅, `create_company_self` ✅, `next_invoice_no` ✅ |
+| nove kolone | `trips.customer_id` ✅, `vehicles.type_id` ✅, `companies.country_code` ✅, `reminders.mode` ✅ |
+| customers/invoices/invoice_settings | tabele prisutne (0 redova) |
 
-**company_self_test.sql:** NoRole korisnik uspeva (firma starter/limit 5/active + owner + invoice_settings); korisnik SA
-firmom **odbijen**; **izolacija** (postojeći vlasnik ne vidi novu firmu i obrnuto); countries(41)/vehicle_types(9)
-čitljivi svima; **klijentski write u countries odbijen**.
+`test:db` **NIJE** puštan na PRODU (samo read-only verifikacija, po zadatku).
 
-## Migracije / deploy — ručna primena
-- **DEV:** `0025` primenjena. Bez Edge/Auth promena u ovoj krišci.
-- **STAGING / PROD:** **nije dirano.** Primena uz odobrenje: `db push` (0025 aditivno — 2 šifarnika + 2 nullable FK kolone
-  + RPC; postojeći podaci netaknuti).
-- **HITNI SQL / rollback (DEV):** `drop function create_company_self(text,text,text); alter table companies drop column country_code; alter table vehicles drop column type_id; drop table vehicle_types; drop table countries;`
+## 4) Edge / Auth
+- **`vies-check` deploy-ovana na PROD.**
+- **`reminders-cron` SVESNO IZOSTAVLJENA** — ide uz „push-finale" ritual (kad se puštaju sledeće migracije/notif izmene),
+  da se cron ne razdvaja od svog konteksta. Trenutno na PRODU radi prethodna (0012) verzija crona; km-rokovi kreću tek
+  po njenom redeployu. Na DEV-u je nova (km) verzija.
+- **Auth PRODA NEDIRNUT** (nijedan Management API poziv nad PRODOM; telefon/autoconfirm ostaju isključeni).
+
+## 5) Link vraćen na DEV (dokaz)
+```
+LINKED → BrumTruckerz-dev           icbjagubaftoqcwfcbwf
+         BrumTruckerz-staging       webquovijioxmouvuiko
+         (PROD)                     uwphmxxeuggitssdmgcz
+```
+`supabase/.temp/project-ref = icbjagubaftoqcwfcbwf`.
+
+## Stanje migracija (sve tri baze)
+- **DEV:** 0001–0025. **STAGING:** 0001–0020 (F1 proba). **PROD:** 0001–0025 (**ovaj sync**).
+
+## Rollback (PROD, ako zatreba)
+Aditivno; enum se ne dira. Po potrebi obrnutim redom: `create_company_self`/`countries`/`vehicle_types` (0025) →
+`invoices`/`issue_invoice`/`next_invoice_no`/counteri (0023) → `customers` (0021); VIES kolone (0022) i reminder_types+km
+kolone (0024) su prazne/dodatne i bezbedne za ostajanje.
 
 ## Jezici
-i18n **dopunjen u SVIH 30 jezika** — `countries.*` (41; sr/en autorski, ostali EN placeholder — v. odluka 1),
-`vehicleTypes.*` (9, prevedeni), `country.*`, `company.*`, `fleet.fields.vehicleTypeNone`. `en` potpun (fallback). Skripta potvrdila poklapanje.
+i18n **nije diran** (samo baza/deploy).
 
-## Reverzibilnost
-Čarobnjak: „Nazad" kroz korake bez gubitka; korak 2 preskočiv; pregled pre kreiranja. Pickeri imaju „Bez države"/„Bez tipa".
-
-## Kvalitet koda
-Slojevi razdvojeni (Supabase u `company/api.ts`; čiste fn u `currencies.ts`); **DRY** (13 valuta izdvojene, ExpenseForm ih
-uvozi); reusable `CountryPickerField` (naručilac/vinjeta/čarobnjak); prati postojeće obrasce (wizard kao NewTripModal,
-PickerField/ModalScaffold, RPC, definer, test:db impersonacija). **Pravila kvaliteta ispoštovana.**
+## Kvalitet
+STOP-kapije poštovane (istorija → dry-run tačno 0021–0025 → PRE/POSLE); nijedna tajna-vrednost nije zapisana; `reminders-cron`
+svesno izostavljen i to je jasno naznačeno; link vraćen na DEV.
 
 ## ČEKA SE (potez vlasnika)
-1. PROD sync F2 (uz odobrenje): `db push` 0021→0025 + `functions deploy` (vies-check, reminders-cron), po receptu sa STOP-kapijama.
+1. **KAPIJA F2 / KORAK 2** (kad odlučiš): `functions deploy reminders-cron` na PROD (km-rokovi), uz odobrenje.
