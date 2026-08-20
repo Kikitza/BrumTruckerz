@@ -11,9 +11,10 @@ import { Collapsible } from "../../components/Collapsible";
 import { toNum, toInt } from "../../lib/num";
 import {
   ownerGetTrip, ownerUpdateTripFinance, ownerUpdateTripAssignment, ownerListTripEvents, ownerAddTripEvent,
-  listTripStops, ownerUpdateTripRoute, isTripArchived,
+  listTripStops, ownerUpdateTripRoute, ownerUpdateTripCustomer, isTripArchived,
   type EventType, type DriverPayMode,
 } from "./api";
+import { CustomerPickerField } from "../customers/CustomerPickerField";
 import { RouteView, StopsEditor, stopsToDrafts, type StopDraft } from "./stops";
 import { arrivalsByStop } from "./eventsMath";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
@@ -74,6 +75,16 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
         driver_pay: toNum(driverPay),
       }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["trip", tripId] }),
+    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+  });
+
+  // Naručilac ture (office; ne dira dodelu/vozarinu). Menja se odmah po izboru (picker).
+  const saveCustomer = useMutation({
+    mutationFn: (customerId: string | null) => ownerUpdateTripCustomer(tripId, customerId),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["trip", tripId] });
+      qc.invalidateQueries({ queryKey: ["owner-trips"] });
+    },
     onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
   });
 
@@ -308,6 +319,11 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
             {/* Finansije */}
             <Collapsible title={t("trip.section.finance")} colors={colors}>
               <SectionBody>
+                <CustomerPickerField
+                  value={d.customer_id}
+                  valueName={d.customer?.name ?? null}
+                  onSelect={(id) => saveCustomer.mutate(id)}
+                />
                 <Field label={t("trip.fields.revenue")} value={revenue} onChangeText={setRevenue}
                   keyboardType="numeric" placeholder="0.00" colors={colors} />
                 <View style={{ gap: 6 }}>

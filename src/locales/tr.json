@@ -40,7 +40,8 @@
     "myTrip": "Seferim",
     "documents": "Belgeler",
     "resources": "Kaynaklar",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Müşteriler"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Olay türü",
       "occurredAt": "Zaman",
       "location": "Konum",
-      "note": "Not"
+      "note": "Not",
+      "customer": "Müşteri",
+      "customerNone": "Müşteri yok"
     },
     "section": {
       "info": "Ayrıntılar",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Telefon numarasını değiştir",
     "phoneChanged": "Telefon numarası değiştirildi."
+  },
+  "customers": {
+    "new": "Yeni müşteri",
+    "edit": "Müşteriyi düzenle",
+    "empty": "Henüz müşteri yok",
+    "active": "Aktif",
+    "archived": "Arşivlenmiş",
+    "archive": "Arşivle",
+    "unarchive": "Etkinleştir",
+    "archiveConfirm": "Bu müşteri arşivlensin mi? Mevcut seferlerde kalır; tekrar etkinleştirebilirsin.",
+    "deleteConfirm": "Bu müşteri silinsin mi?",
+    "termsShort": "{{days}} g",
+    "tripCount_one": "{{count}} sefer",
+    "tripCount_other": "{{count}} sefer",
+    "fields": {
+      "name": "Ad",
+      "vatNumber": "Vergi no",
+      "countryCode": "Ülke kodu",
+      "contactEmail": "E-posta",
+      "contactPhone": "Telefon",
+      "address": "Adres",
+      "paymentTerms": "Ödeme vadesi (gün)",
+      "note": "Not"
+    }
   }
 }

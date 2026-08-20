@@ -40,7 +40,8 @@
     "myTrip": "Мій рейс",
     "documents": "Документи",
     "resources": "Ресурси",
-    "profile": "Профіль"
+    "profile": "Профіль",
+    "customers": "Клієнти"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Тип події",
       "occurredAt": "Час",
       "location": "Місце",
-      "note": "Примітка"
+      "note": "Примітка",
+      "customer": "Клієнт",
+      "customerNone": "Без клієнта"
     },
     "section": {
       "info": "Деталі",
@@ -369,5 +372,29 @@
     "phone": "Телефон",
     "changePhone": "Змінити номер телефону",
     "phoneChanged": "Номер телефону змінено."
+  },
+  "customers": {
+    "new": "Новий клієнт",
+    "edit": "Редагувати клієнта",
+    "empty": "Клієнтів ще немає",
+    "active": "Активні",
+    "archived": "Архівовані",
+    "archive": "Архівувати",
+    "unarchive": "Активувати",
+    "archiveConfirm": "Архівувати цього клієнта? Залишається на наявних рейсах; можеш активувати знову.",
+    "deleteConfirm": "Видалити цього клієнта?",
+    "termsShort": "{{days}} дн",
+    "tripCount_one": "{{count}} рейс",
+    "tripCount_other": "{{count}} рейсів",
+    "fields": {
+      "name": "Назва",
+      "vatNumber": "Номер ПДВ",
+      "countryCode": "Код країни",
+      "contactEmail": "Ел. пошта",
+      "contactPhone": "Телефон",
+      "address": "Адреса",
+      "paymentTerms": "Термін оплати (днів)",
+      "note": "Примітка"
+    }
   }
 }

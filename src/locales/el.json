@@ -40,7 +40,8 @@
     "myTrip": "Το δρομολόγιό μου",
     "documents": "Έγγραφα",
     "resources": "Πόροι",
-    "profile": "Προφίλ"
+    "profile": "Προφίλ",
+    "customers": "Πελάτες"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Τύπος συμβάντος",
       "occurredAt": "Ώρα",
       "location": "Τοποθεσία",
-      "note": "Σημείωση"
+      "note": "Σημείωση",
+      "customer": "Πελάτης",
+      "customerNone": "Χωρίς πελάτη"
     },
     "section": {
       "info": "Λεπτομέρειες",
@@ -369,5 +372,29 @@
     "phone": "Τηλέφωνο",
     "changePhone": "Αλλαγή αριθμού τηλεφώνου",
     "phoneChanged": "Ο αριθμός τηλεφώνου άλλαξε."
+  },
+  "customers": {
+    "new": "Νέος πελάτης",
+    "edit": "Επεξεργασία πελάτη",
+    "empty": "Δεν υπάρχουν πελάτες ακόμη",
+    "active": "Ενεργοί",
+    "archived": "Αρχειοθετημένοι",
+    "archive": "Αρχειοθέτηση",
+    "unarchive": "Ενεργοποίηση",
+    "archiveConfirm": "Αρχειοθέτηση αυτού του πελάτη; Παραμένει στα υπάρχοντα δρομολόγια· μπορείς να τον ενεργοποιήσεις ξανά.",
+    "deleteConfirm": "Διαγραφή αυτού του πελάτη;",
+    "termsShort": "{{days}} μ",
+    "tripCount_one": "{{count}} δρομολόγιο",
+    "tripCount_other": "{{count}} δρομολόγια",
+    "fields": {
+      "name": "Όνομα",
+      "vatNumber": "ΑΦΜ / VAT",
+      "countryCode": "Κωδικός χώρας",
+      "contactEmail": "Email",
+      "contactPhone": "Τηλέφωνο",
+      "address": "Διεύθυνση",
+      "paymentTerms": "Όροι πληρωμής (ημέρες)",
+      "note": "Σημείωση"
+    }
   }
 }

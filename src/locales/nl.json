@@ -40,7 +40,8 @@
     "myTrip": "Mijn rit",
     "documents": "Documenten",
     "resources": "Bronnen",
-    "profile": "Profiel"
+    "profile": "Profiel",
+    "customers": "Klanten"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Type gebeurtenis",
       "occurredAt": "Tijd",
       "location": "Locatie",
-      "note": "Notitie"
+      "note": "Notitie",
+      "customer": "Klant",
+      "customerNone": "Geen klant"
     },
     "section": {
       "info": "Details",
@@ -369,5 +372,29 @@
     "phone": "Telefoon",
     "changePhone": "Telefoonnummer wijzigen",
     "phoneChanged": "Telefoonnummer gewijzigd."
+  },
+  "customers": {
+    "new": "Nieuwe klant",
+    "edit": "Klant bewerken",
+    "empty": "Nog geen klanten",
+    "active": "Actief",
+    "archived": "Gearchiveerd",
+    "archive": "Archiveren",
+    "unarchive": "Activeren",
+    "archiveConfirm": "Deze klant archiveren? Blijft op bestaande ritten; je kunt hem weer activeren.",
+    "deleteConfirm": "Deze klant verwijderen?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} rit",
+    "tripCount_other": "{{count}} ritten",
+    "fields": {
+      "name": "Naam",
+      "vatNumber": "Btw-nummer",
+      "countryCode": "Landcode",
+      "contactEmail": "E-mail",
+      "contactPhone": "Telefoon",
+      "address": "Adres",
+      "paymentTerms": "Betalingstermijn (dagen)",
+      "note": "Notitie"
+    }
   }
 }

@@ -23,6 +23,7 @@ export default function OwnerTabs() {
     <Tabs screenOptions={screenOptions}>
       <Tabs.Screen name="trips/index" options={{ title: t("tabs.trips"), headerRight: LanguageHeaderRight }} />
       <Tabs.Screen name="fleet" options={{ title: t("tabs.fleet") }} />
+      <Tabs.Screen name="customers" options={{ title: t("tabs.customers") }} />
       <Tabs.Screen name="reminders" options={{ title: t("tabs.reminders") }} />
       <Tabs.Screen name="reports" options={{ title: t("tabs.reports") }} />
       <Tabs.Screen name="settings" options={{ title: t("tabs.settings") }} />

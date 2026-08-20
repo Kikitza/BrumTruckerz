@@ -34,6 +34,7 @@ export type Trip = {
   revenue: number | null;
   driver_pay_mode: DriverPayMode | null;
   driver_pay: number | null;
+  customer_id: string | null;   // naručilac (0021), opciono
   started_at: string | null;
   finished_at: string | null;
   created_at: string;
@@ -49,6 +50,7 @@ export type TripDetail = Trip & {
   driver: { full_name: string } | null;
   vehicle: { registration: string } | null;
   trailer: { registration: string } | null;
+  customer: { name: string } | null;
 };
 
 export type TripEvent = {
@@ -72,6 +74,7 @@ export type CreateTripInput = {
   destination?: string | null; // ignoriše se ako su prosleđene stanice (izvodi se iz njih)
   start_odometer?: number | null;
   revenue?: number | null;
+  customer_id?: string | null; // naručilac (0021), opciono
   stops?: TripStopInput[]; // ako postoje: čuvaju se u trip_stops, destination = poslednji istovar
 };
 
@@ -180,6 +183,7 @@ export async function ownerCreateTrip(input: CreateTripInput): Promise<Trip> {
       title: tripTitle(origin, destination), // generiše kod (za prikaze/izvoze)
       start_odometer: input.start_odometer ?? null,
       revenue: input.revenue ?? null,
+      customer_id: input.customer_id ?? null,
     })
     .select()
     .single();
@@ -248,12 +252,18 @@ export async function ownerGetTrip(tripId: string): Promise<TripDetail> {
   const { data, error } = await supabase
     .from("trips")
     .select(
-      "*, driver:drivers(full_name), vehicle:vehicles(registration), trailer:trailers(registration)",
+      "*, driver:drivers(full_name), vehicle:vehicles(registration), trailer:trailers(registration), customer:customers(name)",
     )
     .eq("id", tripId)
     .single();
   if (error) throw error;
   return data as unknown as TripDetail;
+}
+
+// Postavi/ukloni naručioca ture (office; ne dira dodelu/vozarinu). null = bez naručioca.
+export async function ownerUpdateTripCustomer(tripId: string, customerId: string | null): Promise<void> {
+  const { error } = await supabase.from("trips").update({ customer_id: customerId }).eq("id", tripId);
+  if (error) throw error;
 }
 
 export async function ownerUpdateTripFinance(tripId: string, input: TripFinanceInput): Promise<Trip> {

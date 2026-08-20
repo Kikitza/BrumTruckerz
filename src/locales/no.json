@@ -40,7 +40,8 @@
     "myTrip": "Min tur",
     "documents": "Dokumenter",
     "resources": "Ressurser",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Kunder"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Hendelsestype",
       "occurredAt": "Tid",
       "location": "Sted",
-      "note": "Notat"
+      "note": "Notat",
+      "customer": "Kunde",
+      "customerNone": "Ingen kunde"
     },
     "section": {
       "info": "Detaljer",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Endre telefonnummer",
     "phoneChanged": "Telefonnummer endret."
+  },
+  "customers": {
+    "new": "Ny kunde",
+    "edit": "Rediger kunde",
+    "empty": "Ingen kunder ennå",
+    "active": "Aktive",
+    "archived": "Arkiverte",
+    "archive": "Arkiver",
+    "unarchive": "Aktiver",
+    "archiveConfirm": "Arkivere denne kunden? Den blir værende på eksisterende turer; du kan aktivere den igjen.",
+    "deleteConfirm": "Slette denne kunden?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} tur",
+    "tripCount_other": "{{count}} turer",
+    "fields": {
+      "name": "Navn",
+      "vatNumber": "MVA-nummer",
+      "countryCode": "Landkode",
+      "contactEmail": "E-post",
+      "contactPhone": "Telefon",
+      "address": "Adresse",
+      "paymentTerms": "Betalingsfrist (dager)",
+      "note": "Notat"
+    }
   }
 }

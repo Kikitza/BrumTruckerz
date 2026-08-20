@@ -40,7 +40,8 @@
     "myTrip": "Mans reiss",
     "documents": "Dokumenti",
     "resources": "Resursi",
-    "profile": "Profils"
+    "profile": "Profils",
+    "customers": "Klienti"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Notikuma veids",
       "occurredAt": "Laiks",
       "location": "Atrašanās vieta",
-      "note": "Piezīme"
+      "note": "Piezīme",
+      "customer": "Klients",
+      "customerNone": "Bez klienta"
     },
     "section": {
       "info": "Informācija",
@@ -369,5 +372,29 @@
     "phone": "Tālrunis",
     "changePhone": "Mainīt tālruņa numuru",
     "phoneChanged": "Tālruņa numurs mainīts."
+  },
+  "customers": {
+    "new": "Jauns klients",
+    "edit": "Rediģēt klientu",
+    "empty": "Vēl nav klientu",
+    "active": "Aktīvi",
+    "archived": "Arhivēti",
+    "archive": "Arhivēt",
+    "unarchive": "Aktivizēt",
+    "archiveConfirm": "Arhivēt šo klientu? Paliek pie esošajiem braucieniem; vari to atkal aktivizēt.",
+    "deleteConfirm": "Dzēst šo klientu?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} brauciens",
+    "tripCount_other": "{{count}} braucieni",
+    "fields": {
+      "name": "Nosaukums",
+      "vatNumber": "PVN numurs",
+      "countryCode": "Valsts kods",
+      "contactEmail": "E-pasts",
+      "contactPhone": "Tālrunis",
+      "address": "Adrese",
+      "paymentTerms": "Apmaksas termiņš (dienas)",
+      "note": "Piezīme"
+    }
   }
 }

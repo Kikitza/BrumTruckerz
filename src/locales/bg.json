@@ -40,7 +40,8 @@
     "myTrip": "Моят курс",
     "documents": "Документи",
     "resources": "Ресурси",
-    "profile": "Профил"
+    "profile": "Профил",
+    "customers": "Клиенти"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Вид събитие",
       "occurredAt": "Час",
       "location": "Местоположение",
-      "note": "Бележка"
+      "note": "Бележка",
+      "customer": "Клиент",
+      "customerNone": "Без клиент"
     },
     "section": {
       "info": "Детайли",
@@ -369,5 +372,29 @@
     "phone": "Телефон",
     "changePhone": "Смени телефонния номер",
     "phoneChanged": "Телефонният номер е сменен."
+  },
+  "customers": {
+    "new": "Нов клиент",
+    "edit": "Редактирай клиент",
+    "empty": "Все още няма клиенти",
+    "active": "Активни",
+    "archived": "Архивирани",
+    "archive": "Архивирай",
+    "unarchive": "Активирай",
+    "archiveConfirm": "Да се архивира този клиент? Остава по съществуващите курсове; можеш да го активираш отново.",
+    "deleteConfirm": "Да се изтрие този клиент?",
+    "termsShort": "{{days}} д",
+    "tripCount_one": "{{count}} курс",
+    "tripCount_other": "{{count}} курса",
+    "fields": {
+      "name": "Име",
+      "vatNumber": "ДДС номер",
+      "countryCode": "Код на държава",
+      "contactEmail": "Имейл",
+      "contactPhone": "Телефон",
+      "address": "Адрес",
+      "paymentTerms": "Срок за плащане (дни)",
+      "note": "Бележка"
+    }
   }
 }

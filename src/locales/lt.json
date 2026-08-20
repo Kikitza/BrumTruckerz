@@ -40,7 +40,8 @@
     "myTrip": "Mano reisas",
     "documents": "Dokumentai",
     "resources": "Ištekliai",
-    "profile": "Profilis"
+    "profile": "Profilis",
+    "customers": "Klientai"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Įvykio tipas",
       "occurredAt": "Laikas",
       "location": "Vieta",
-      "note": "Pastaba"
+      "note": "Pastaba",
+      "customer": "Klientas",
+      "customerNone": "Be kliento"
     },
     "section": {
       "info": "Išsami informacija",
@@ -369,5 +372,29 @@
     "phone": "Telefonas",
     "changePhone": "Keisti telefono numerį",
     "phoneChanged": "Telefono numeris pakeistas."
+  },
+  "customers": {
+    "new": "Naujas klientas",
+    "edit": "Redaguoti klientą",
+    "empty": "Klientų dar nėra",
+    "active": "Aktyvūs",
+    "archived": "Archyvuoti",
+    "archive": "Archyvuoti",
+    "unarchive": "Aktyvuoti",
+    "archiveConfirm": "Archyvuoti šį klientą? Lieka esamuose reisuose; gali jį vėl aktyvuoti.",
+    "deleteConfirm": "Ištrinti šį klientą?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} reisas",
+    "tripCount_other": "{{count}} reisai",
+    "fields": {
+      "name": "Pavadinimas",
+      "vatNumber": "PVM kodas",
+      "countryCode": "Šalies kodas",
+      "contactEmail": "El. paštas",
+      "contactPhone": "Telefonas",
+      "address": "Adresas",
+      "paymentTerms": "Mokėjimo terminas (dienos)",
+      "note": "Pastaba"
+    }
   }
 }

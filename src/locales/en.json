@@ -38,7 +38,8 @@
     "myTrip": "My trip",
     "documents": "Documents",
     "resources": "Resources",
-    "profile": "Profile"
+    "profile": "Profile",
+    "customers": "Customers"
   },
   "trip": {
     "status": {
@@ -78,7 +79,9 @@
       "eventType": "Event type",
       "occurredAt": "Time",
       "location": "Location",
-      "note": "Note"
+      "note": "Note",
+      "customer": "Customer",
+      "customerNone": "No customer"
     },
     "section": {
       "info": "Details",
@@ -367,5 +370,29 @@
     "phone": "Phone",
     "changePhone": "Change phone number",
     "phoneChanged": "Phone number changed."
+  },
+  "customers": {
+    "new": "New customer",
+    "edit": "Edit customer",
+    "empty": "No customers yet",
+    "active": "Active",
+    "archived": "Archived",
+    "archive": "Archive",
+    "unarchive": "Activate",
+    "archiveConfirm": "Archive this customer? It stays on existing trips; you can activate it again.",
+    "deleteConfirm": "Delete this customer?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} trip",
+    "tripCount_other": "{{count}} trips",
+    "fields": {
+      "name": "Name",
+      "vatNumber": "VAT number",
+      "countryCode": "Country code",
+      "contactEmail": "Email",
+      "contactPhone": "Phone",
+      "address": "Address",
+      "paymentTerms": "Payment terms (days)",
+      "note": "Note"
+    }
   }
 }

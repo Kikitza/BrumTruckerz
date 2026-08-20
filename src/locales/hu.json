@@ -40,7 +40,8 @@
     "myTrip": "Fuvarom",
     "documents": "Dokumentumok",
     "resources": "Erőforrások",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Ügyfelek"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Eseménytípus",
       "occurredAt": "Idő",
       "location": "Helyszín",
-      "note": "Megjegyzés"
+      "note": "Megjegyzés",
+      "customer": "Ügyfél",
+      "customerNone": "Nincs ügyfél"
     },
     "section": {
       "info": "Részletek",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Telefonszám módosítása",
     "phoneChanged": "A telefonszám módosítva."
+  },
+  "customers": {
+    "new": "Új ügyfél",
+    "edit": "Ügyfél szerkesztése",
+    "empty": "Még nincs ügyfél",
+    "active": "Aktív",
+    "archived": "Archivált",
+    "archive": "Archiválás",
+    "unarchive": "Aktiválás",
+    "archiveConfirm": "Archiválod ezt az ügyfelet? A meglévő fuvarokon marad; később újra aktiválhatod.",
+    "deleteConfirm": "Törlöd ezt az ügyfelet?",
+    "termsShort": "{{days}} nap",
+    "tripCount_one": "{{count}} fuvar",
+    "tripCount_other": "{{count}} fuvar",
+    "fields": {
+      "name": "Név",
+      "vatNumber": "Adószám",
+      "countryCode": "Országkód",
+      "contactEmail": "E-mail",
+      "contactPhone": "Telefon",
+      "address": "Cím",
+      "paymentTerms": "Fizetési határidő (nap)",
+      "note": "Megjegyzés"
+    }
   }
 }

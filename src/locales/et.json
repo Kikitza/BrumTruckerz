@@ -40,7 +40,8 @@
     "myTrip": "Minu reis",
     "documents": "Dokumendid",
     "resources": "Ressursid",
-    "profile": "Profiil"
+    "profile": "Profiil",
+    "customers": "Kliendid"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Sündmuse tüüp",
       "occurredAt": "Aeg",
       "location": "Asukoht",
-      "note": "Märkus"
+      "note": "Märkus",
+      "customer": "Klient",
+      "customerNone": "Kliendita"
     },
     "section": {
       "info": "Üksikasjad",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Muuda telefoninumbrit",
     "phoneChanged": "Telefoninumber muudetud."
+  },
+  "customers": {
+    "new": "Uus klient",
+    "edit": "Muuda klienti",
+    "empty": "Kliente veel pole",
+    "active": "Aktiivsed",
+    "archived": "Arhiveeritud",
+    "archive": "Arhiveeri",
+    "unarchive": "Aktiveeri",
+    "archiveConfirm": "Arhiveerida see klient? Jääb olemasolevatele sõitudele; saad ta uuesti aktiveerida.",
+    "deleteConfirm": "Kustutada see klient?",
+    "termsShort": "{{days}} p",
+    "tripCount_one": "{{count}} sõit",
+    "tripCount_other": "{{count}} sõitu",
+    "fields": {
+      "name": "Nimi",
+      "vatNumber": "KMKR / VAT",
+      "countryCode": "Riigikood",
+      "contactEmail": "E-post",
+      "contactPhone": "Telefon",
+      "address": "Aadress",
+      "paymentTerms": "Maksetähtaeg (päeva)",
+      "note": "Märkus"
+    }
   }
 }

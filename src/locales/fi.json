@@ -40,7 +40,8 @@
     "myTrip": "Oma kuljetukseni",
     "documents": "Asiakirjat",
     "resources": "Resurssit",
-    "profile": "Profiili"
+    "profile": "Profiili",
+    "customers": "Asiakkaat"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Tapahtuman tyyppi",
       "occurredAt": "Aika",
       "location": "Sijainti",
-      "note": "Muistiinpano"
+      "note": "Muistiinpano",
+      "customer": "Asiakas",
+      "customerNone": "Ei asiakasta"
     },
     "section": {
       "info": "Tiedot",
@@ -369,5 +372,29 @@
     "phone": "Puhelin",
     "changePhone": "Vaihda puhelinnumero",
     "phoneChanged": "Puhelinnumero vaihdettu."
+  },
+  "customers": {
+    "new": "Uusi asiakas",
+    "edit": "Muokkaa asiakasta",
+    "empty": "Ei vielä asiakkaita",
+    "active": "Aktiiviset",
+    "archived": "Arkistoidut",
+    "archive": "Arkistoi",
+    "unarchive": "Aktivoi",
+    "archiveConfirm": "Arkistoidaanko tämä asiakas? Se säilyy nykyisillä matkoilla; voit aktivoida sen uudelleen.",
+    "deleteConfirm": "Poistetaanko tämä asiakas?",
+    "termsShort": "{{days}} pv",
+    "tripCount_one": "{{count}} matka",
+    "tripCount_other": "{{count}} matkaa",
+    "fields": {
+      "name": "Nimi",
+      "vatNumber": "ALV-numero",
+      "countryCode": "Maakoodi",
+      "contactEmail": "Sähköposti",
+      "contactPhone": "Puhelin",
+      "address": "Osoite",
+      "paymentTerms": "Maksuehto (päivää)",
+      "note": "Muistiinpano"
+    }
   }
 }

@@ -40,7 +40,8 @@
     "myTrip": "Min tur",
     "documents": "Dokument",
     "resources": "Resurser",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Kunder"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Händelsetyp",
       "occurredAt": "Tid",
       "location": "Plats",
-      "note": "Anteckning"
+      "note": "Anteckning",
+      "customer": "Kund",
+      "customerNone": "Ingen kund"
     },
     "section": {
       "info": "Detaljer",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Ändra telefonnummer",
     "phoneChanged": "Telefonnummer ändrat."
+  },
+  "customers": {
+    "new": "Ny kund",
+    "edit": "Redigera kund",
+    "empty": "Inga kunder än",
+    "active": "Aktiva",
+    "archived": "Arkiverade",
+    "archive": "Arkivera",
+    "unarchive": "Aktivera",
+    "archiveConfirm": "Arkivera den här kunden? Den ligger kvar på befintliga resor; du kan aktivera den igen.",
+    "deleteConfirm": "Ta bort den här kunden?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} resa",
+    "tripCount_other": "{{count}} resor",
+    "fields": {
+      "name": "Namn",
+      "vatNumber": "Momsnummer",
+      "countryCode": "Landskod",
+      "contactEmail": "E-post",
+      "contactPhone": "Telefon",
+      "address": "Adress",
+      "paymentTerms": "Betalningsvillkor (dagar)",
+      "note": "Anteckning"
+    }
   }
 }

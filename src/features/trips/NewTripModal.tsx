@@ -13,6 +13,7 @@ import { toNum, toInt } from "../../lib/num";
 import { ownerCreateTrip } from "./api";
 import { StopsEditor, defaultStopDrafts, draftsToInput, type StopDraft } from "./stops";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
+import { CustomerPickerField } from "../customers/CustomerPickerField";
 
 const TOTAL_STEPS = 4;
 
@@ -33,6 +34,7 @@ export function NewTripModal({ onClose }: { onClose: () => void }) {
   const [driverId, setDriverId] = useState<string | null>(null);
   const [vehicleId, setVehicleId] = useState<string | null>(null);
   const [trailerId, setTrailerId] = useState<string | null>(null);
+  const [customerId, setCustomerId] = useState<string | null>(null);
   const [revenue, setRevenue] = useState("");
 
   const save = useMutation({
@@ -44,6 +46,7 @@ export function NewTripModal({ onClose }: { onClose: () => void }) {
         origin: origin.trim() || null,
         start_odometer: toInt(startOdometer),
         revenue: toNum(revenue),
+        customer_id: customerId,
         stops: draftsToInput(stops),
       }),
     onSuccess: () => {
@@ -101,6 +104,7 @@ export function NewTripModal({ onClose }: { onClose: () => void }) {
             <PickerField label={t("trip.fields.trailer")} value={trailerId}
               options={(trailers.data ?? []).map((tr) => ({ value: tr.id, label: tr.registration }))}
               placeholder={t("trip.noTrailer")} clearLabel={t("trip.noTrailer")} onSelect={setTrailerId} colors={colors} />
+            <CustomerPickerField value={customerId} onSelect={setCustomerId} />
             <Field label={t("trip.fields.revenue")} value={revenue} onChangeText={setRevenue}
               keyboardType="numeric" placeholder="0.00" colors={colors} />
           </>

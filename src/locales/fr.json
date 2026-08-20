@@ -40,7 +40,8 @@
     "myTrip": "Mon trajet",
     "documents": "Documents",
     "resources": "Ressources",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Clients"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Type d'événement",
       "occurredAt": "Heure",
       "location": "Lieu",
-      "note": "Note"
+      "note": "Note",
+      "customer": "Client",
+      "customerNone": "Aucun client"
     },
     "section": {
       "info": "Détails",
@@ -369,5 +372,29 @@
     "phone": "Téléphone",
     "changePhone": "Changer le numéro de téléphone",
     "phoneChanged": "Numéro de téléphone modifié."
+  },
+  "customers": {
+    "new": "Nouveau client",
+    "edit": "Modifier le client",
+    "empty": "Aucun client pour l'instant",
+    "active": "Actifs",
+    "archived": "Archivés",
+    "archive": "Archiver",
+    "unarchive": "Activer",
+    "archiveConfirm": "Archiver ce client ? Il reste sur les trajets existants ; tu peux le réactiver.",
+    "deleteConfirm": "Supprimer ce client ?",
+    "termsShort": "{{days}} j",
+    "tripCount_one": "{{count}} trajet",
+    "tripCount_other": "{{count}} trajets",
+    "fields": {
+      "name": "Nom",
+      "vatNumber": "N° TVA",
+      "countryCode": "Code pays",
+      "contactEmail": "E-mail",
+      "contactPhone": "Téléphone",
+      "address": "Adresse",
+      "paymentTerms": "Délai de paiement (jours)",
+      "note": "Note"
+    }
   }
 }

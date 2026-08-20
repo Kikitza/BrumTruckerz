@@ -40,7 +40,8 @@
     "myTrip": "Moje jízda",
     "documents": "Dokumenty",
     "resources": "Zdroje",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Zákazníci"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Typ události",
       "occurredAt": "Čas",
       "location": "Místo",
-      "note": "Poznámka"
+      "note": "Poznámka",
+      "customer": "Zákazník",
+      "customerNone": "Bez zákazníka"
     },
     "section": {
       "info": "Podrobnosti",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Změnit telefonní číslo",
     "phoneChanged": "Telefonní číslo změněno."
+  },
+  "customers": {
+    "new": "Nový zákazník",
+    "edit": "Upravit zákazníka",
+    "empty": "Zatím žádní zákazníci",
+    "active": "Aktivní",
+    "archived": "Archivovaní",
+    "archive": "Archivovat",
+    "unarchive": "Aktivovat",
+    "archiveConfirm": "Archivovat tohoto zákazníka? Zůstává u existujících jízd; můžeš ho znovu aktivovat.",
+    "deleteConfirm": "Smazat tohoto zákazníka?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} jízda",
+    "tripCount_other": "{{count}} jízd",
+    "fields": {
+      "name": "Název",
+      "vatNumber": "DIČ / VAT",
+      "countryCode": "Kód země",
+      "contactEmail": "E-mail",
+      "contactPhone": "Telefon",
+      "address": "Adresa",
+      "paymentTerms": "Splatnost (dny)",
+      "note": "Poznámka"
+    }
   }
 }

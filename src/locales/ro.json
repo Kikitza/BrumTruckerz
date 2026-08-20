@@ -40,7 +40,8 @@
     "myTrip": "Cursa mea",
     "documents": "Documente",
     "resources": "Resurse",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Clienți"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Tip eveniment",
       "occurredAt": "Ora",
       "location": "Locație",
-      "note": "Notă"
+      "note": "Notă",
+      "customer": "Client",
+      "customerNone": "Fără client"
     },
     "section": {
       "info": "Detalii",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Schimbă numărul de telefon",
     "phoneChanged": "Număr de telefon schimbat."
+  },
+  "customers": {
+    "new": "Client nou",
+    "edit": "Editează clientul",
+    "empty": "Încă nu există clienți",
+    "active": "Activi",
+    "archived": "Arhivați",
+    "archive": "Arhivează",
+    "unarchive": "Activează",
+    "archiveConfirm": "Arhivezi acest client? Rămâne pe cursele existente; îl poți reactiva.",
+    "deleteConfirm": "Ștergi acest client?",
+    "termsShort": "{{days}} z",
+    "tripCount_one": "{{count}} cursă",
+    "tripCount_other": "{{count}} curse",
+    "fields": {
+      "name": "Nume",
+      "vatNumber": "Cod TVA",
+      "countryCode": "Cod de țară",
+      "contactEmail": "Email",
+      "contactPhone": "Telefon",
+      "address": "Adresă",
+      "paymentTerms": "Termen de plată (zile)",
+      "note": "Notă"
+    }
   }
 }

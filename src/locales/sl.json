@@ -40,7 +40,8 @@
     "myTrip": "Moja tura",
     "documents": "Dokumenti",
     "resources": "Viri",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Naročniki"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Vrsta dogodka",
       "occurredAt": "Čas",
       "location": "Lokacija",
-      "note": "Opomba"
+      "note": "Opomba",
+      "customer": "Naročnik",
+      "customerNone": "Brez naročnika"
     },
     "section": {
       "info": "Podrobnosti",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Spremeni telefonsko številko",
     "phoneChanged": "Telefonska številka je spremenjena."
+  },
+  "customers": {
+    "new": "Nov naročnik",
+    "edit": "Uredi naročnika",
+    "empty": "Še ni naročnikov",
+    "active": "Aktivni",
+    "archived": "Arhivirani",
+    "archive": "Arhiviraj",
+    "unarchive": "Aktiviraj",
+    "archiveConfirm": "Arhiviraš tega naročnika? Ostane na obstoječih vožnjah; lahko ga znova aktiviraš.",
+    "deleteConfirm": "Izbrišeš tega naročnika?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} vožnja",
+    "tripCount_other": "{{count}} voženj",
+    "fields": {
+      "name": "Naziv",
+      "vatNumber": "ID za DDV",
+      "countryCode": "Oznaka države",
+      "contactEmail": "E-pošta",
+      "contactPhone": "Telefon",
+      "address": "Naslov",
+      "paymentTerms": "Plačilni rok (dni)",
+      "note": "Opomba"
+    }
   }
 }

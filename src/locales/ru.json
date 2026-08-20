@@ -40,7 +40,8 @@
     "myTrip": "Мой рейс",
     "documents": "Документы",
     "resources": "Ресурсы",
-    "profile": "Профиль"
+    "profile": "Профиль",
+    "customers": "Клиенты"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Тип события",
       "occurredAt": "Время",
       "location": "Местоположение",
-      "note": "Примечание"
+      "note": "Примечание",
+      "customer": "Клиент",
+      "customerNone": "Без клиента"
     },
     "section": {
       "info": "Детали",
@@ -369,5 +372,29 @@
     "phone": "Телефон",
     "changePhone": "Изменить номер телефона",
     "phoneChanged": "Номер телефона изменён."
+  },
+  "customers": {
+    "new": "Новый клиент",
+    "edit": "Изменить клиента",
+    "empty": "Клиентов пока нет",
+    "active": "Активные",
+    "archived": "Архивные",
+    "archive": "Архивировать",
+    "unarchive": "Активировать",
+    "archiveConfirm": "Архивировать этого клиента? Остаётся в существующих рейсах; можно снова активировать.",
+    "deleteConfirm": "Удалить этого клиента?",
+    "termsShort": "{{days}} дн",
+    "tripCount_one": "{{count}} рейс",
+    "tripCount_other": "{{count}} рейсов",
+    "fields": {
+      "name": "Название",
+      "vatNumber": "Номер НДС",
+      "countryCode": "Код страны",
+      "contactEmail": "Эл. почта",
+      "contactPhone": "Телефон",
+      "address": "Адрес",
+      "paymentTerms": "Срок оплаты (дней)",
+      "note": "Заметка"
+    }
   }
 }

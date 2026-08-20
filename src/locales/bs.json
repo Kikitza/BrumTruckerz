@@ -40,7 +40,8 @@
     "myTrip": "Moja tura",
     "documents": "Dokumenti",
     "resources": "Resursi",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Naručioci"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Vrsta događaja",
       "occurredAt": "Vrijeme",
       "location": "Lokacija",
-      "note": "Napomena"
+      "note": "Napomena",
+      "customer": "Naručilac",
+      "customerNone": "Bez naručioca"
     },
     "section": {
       "info": "Detalji",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Promijeni broj telefona",
     "phoneChanged": "Broj telefona je promijenjen."
+  },
+  "customers": {
+    "new": "Novi naručilac",
+    "edit": "Izmijeni naručioca",
+    "empty": "Još nema naručilaca",
+    "active": "Aktivni",
+    "archived": "Arhivirani",
+    "archive": "Arhiviraj",
+    "unarchive": "Aktiviraj",
+    "archiveConfirm": "Arhivirati ovog naručioca? Ostaje na postojećim turama; možeš ga ponovo aktivirati.",
+    "deleteConfirm": "Obrisati ovog naručioca?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} tura",
+    "tripCount_other": "{{count}} tura",
+    "fields": {
+      "name": "Naziv",
+      "vatNumber": "PDV broj",
+      "countryCode": "Oznaka zemlje",
+      "contactEmail": "E-pošta",
+      "contactPhone": "Telefon",
+      "address": "Adresa",
+      "paymentTerms": "Rok plaćanja (dana)",
+      "note": "Napomena"
+    }
   }
 }

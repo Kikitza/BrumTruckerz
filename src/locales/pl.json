@@ -40,7 +40,8 @@
     "myTrip": "Moja trasa",
     "documents": "Dokumenty",
     "resources": "Zasoby",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Klienci"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Typ zdarzenia",
       "occurredAt": "Czas",
       "location": "Lokalizacja",
-      "note": "Notatka"
+      "note": "Notatka",
+      "customer": "Klient",
+      "customerNone": "Bez klienta"
     },
     "section": {
       "info": "Szczegóły",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Zmień numer telefonu",
     "phoneChanged": "Numer telefonu zmieniony."
+  },
+  "customers": {
+    "new": "Nowy klient",
+    "edit": "Edytuj klienta",
+    "empty": "Brak klientów",
+    "active": "Aktywni",
+    "archived": "Zarchiwizowani",
+    "archive": "Archiwizuj",
+    "unarchive": "Aktywuj",
+    "archiveConfirm": "Zarchiwizować tego klienta? Pozostaje przy istniejących trasach; możesz go ponownie aktywować.",
+    "deleteConfirm": "Usunąć tego klienta?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} trasa",
+    "tripCount_other": "{{count}} tras",
+    "fields": {
+      "name": "Nazwa",
+      "vatNumber": "NIP / VAT",
+      "countryCode": "Kod kraju",
+      "contactEmail": "E-mail",
+      "contactPhone": "Telefon",
+      "address": "Adres",
+      "paymentTerms": "Termin płatności (dni)",
+      "note": "Notatka"
+    }
   }
 }

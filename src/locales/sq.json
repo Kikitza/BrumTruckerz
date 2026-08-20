@@ -40,7 +40,8 @@
     "myTrip": "Udhëtimi im",
     "documents": "Dokumentet",
     "resources": "Burimet",
-    "profile": "Profili"
+    "profile": "Profili",
+    "customers": "Klientët"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Lloji i ngjarjes",
       "occurredAt": "Koha",
       "location": "Vendndodhja",
-      "note": "Shënim"
+      "note": "Shënim",
+      "customer": "Klienti",
+      "customerNone": "Pa klient"
     },
     "section": {
       "info": "Detajet",
@@ -369,5 +372,29 @@
     "phone": "Telefoni",
     "changePhone": "Ndrysho numrin e telefonit",
     "phoneChanged": "Numri i telefonit u ndryshua."
+  },
+  "customers": {
+    "new": "Klient i ri",
+    "edit": "Ndrysho klientin",
+    "empty": "Ende s'ka klientë",
+    "active": "Aktivë",
+    "archived": "Të arkivuar",
+    "archive": "Arkivo",
+    "unarchive": "Aktivizo",
+    "archiveConfirm": "Ta arkivosh këtë klient? Mbetet në turet ekzistuese; mund ta riaktivizosh.",
+    "deleteConfirm": "Ta fshish këtë klient?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} turne",
+    "tripCount_other": "{{count}} ture",
+    "fields": {
+      "name": "Emri",
+      "vatNumber": "Nr. i TVSH-së",
+      "countryCode": "Kodi i shtetit",
+      "contactEmail": "Email",
+      "contactPhone": "Telefoni",
+      "address": "Adresa",
+      "paymentTerms": "Afati i pagesës (ditë)",
+      "note": "Shënim"
+    }
   }
 }

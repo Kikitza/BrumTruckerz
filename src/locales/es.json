@@ -40,7 +40,8 @@
     "myTrip": "Mi viaje",
     "documents": "Documentos",
     "resources": "Recursos",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "customers": "Clientes"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Tipo de evento",
       "occurredAt": "Hora",
       "location": "Ubicación",
-      "note": "Nota"
+      "note": "Nota",
+      "customer": "Cliente",
+      "customerNone": "Sin cliente"
     },
     "section": {
       "info": "Detalles",
@@ -369,5 +372,29 @@
     "phone": "Teléfono",
     "changePhone": "Cambiar número de teléfono",
     "phoneChanged": "Número de teléfono cambiado."
+  },
+  "customers": {
+    "new": "Nuevo cliente",
+    "edit": "Editar cliente",
+    "empty": "Aún no hay clientes",
+    "active": "Activos",
+    "archived": "Archivados",
+    "archive": "Archivar",
+    "unarchive": "Activar",
+    "archiveConfirm": "¿Archivar este cliente? Permanece en los viajes existentes; puedes volver a activarlo.",
+    "deleteConfirm": "¿Eliminar este cliente?",
+    "termsShort": "{{days}} d",
+    "tripCount_one": "{{count}} viaje",
+    "tripCount_other": "{{count}} viajes",
+    "fields": {
+      "name": "Nombre",
+      "vatNumber": "NIF / IVA",
+      "countryCode": "Código de país",
+      "contactEmail": "Correo",
+      "contactPhone": "Teléfono",
+      "address": "Dirección",
+      "paymentTerms": "Plazo de pago (días)",
+      "note": "Nota"
+    }
   }
 }

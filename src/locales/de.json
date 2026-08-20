@@ -40,7 +40,8 @@
     "myTrip": "Meine Tour",
     "documents": "Dokumente",
     "resources": "Ressourcen",
-    "profile": "Profil"
+    "profile": "Profil",
+    "customers": "Kunden"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Ereignistyp",
       "occurredAt": "Zeit",
       "location": "Ort",
-      "note": "Notiz"
+      "note": "Notiz",
+      "customer": "Kunde",
+      "customerNone": "Kein Kunde"
     },
     "section": {
       "info": "Details",
@@ -369,5 +372,29 @@
     "phone": "Telefon",
     "changePhone": "Telefonnummer ändern",
     "phoneChanged": "Telefonnummer geändert."
+  },
+  "customers": {
+    "new": "Neuer Kunde",
+    "edit": "Kunde bearbeiten",
+    "empty": "Noch keine Kunden",
+    "active": "Aktiv",
+    "archived": "Archiviert",
+    "archive": "Archivieren",
+    "unarchive": "Aktivieren",
+    "archiveConfirm": "Diesen Kunden archivieren? Er bleibt an bestehenden Fahrten; du kannst ihn wieder aktivieren.",
+    "deleteConfirm": "Diesen Kunden löschen?",
+    "termsShort": "{{days}} T",
+    "tripCount_one": "{{count}} Fahrt",
+    "tripCount_other": "{{count}} Fahrten",
+    "fields": {
+      "name": "Name",
+      "vatNumber": "USt-IdNr.",
+      "countryCode": "Ländercode",
+      "contactEmail": "E-Mail",
+      "contactPhone": "Telefon",
+      "address": "Adresse",
+      "paymentTerms": "Zahlungsziel (Tage)",
+      "note": "Notiz"
+    }
   }
 }

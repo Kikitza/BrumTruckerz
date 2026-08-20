@@ -40,7 +40,8 @@
     "myTrip": "Мојата тура",
     "documents": "Документи",
     "resources": "Ресурси",
-    "profile": "Профил"
+    "profile": "Профил",
+    "customers": "Клиенти"
   },
   "trip": {
     "status": {
@@ -80,7 +81,9 @@
       "eventType": "Тип на настан",
       "occurredAt": "Време",
       "location": "Локација",
-      "note": "Забелешка"
+      "note": "Забелешка",
+      "customer": "Клиент",
+      "customerNone": "Без клиент"
     },
     "section": {
       "info": "Детали",
@@ -369,5 +372,29 @@
     "phone": "Телефон",
     "changePhone": "Промени телефонски број",
     "phoneChanged": "Телефонскиот број е променет."
+  },
+  "customers": {
+    "new": "Нов клиент",
+    "edit": "Измени клиент",
+    "empty": "Сè уште нема клиенти",
+    "active": "Активни",
+    "archived": "Архивирани",
+    "archive": "Архивирај",
+    "unarchive": "Активирај",
+    "archiveConfirm": "Да се архивира овој клиент? Останува на постојните тури; можеш повторно да го активираш.",
+    "deleteConfirm": "Да се избрише овој клиент?",
+    "termsShort": "{{days}} д",
+    "tripCount_one": "{{count}} тура",
+    "tripCount_other": "{{count}} тури",
+    "fields": {
+      "name": "Име",
+      "vatNumber": "Даночен број",
+      "countryCode": "Код на земја",
+      "contactEmail": "Е-пошта",
+      "contactPhone": "Телефон",
+      "address": "Адреса",
+      "paymentTerms": "Рок на плаќање (дена)",
+      "note": "Белешка"
+    }
   }
 }
