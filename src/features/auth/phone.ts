@@ -3,6 +3,12 @@
 
 export const DEFAULT_DIAL_PREFIX = "+381"; // podrazumevano Srbija; korisnik može promeniti
 
+// Prekidač za prijavu telefonom (EXPO_PUBLIC_PHONE_LOGIN: '1' = uključeno). Preview build '1',
+// produkcija '0' (dok se SMS ne aktivira po RUNBOOK sekciji). Email prijava/Registracija su uvek tu.
+export function isPhoneLoginEnabled(flag: string | null | undefined): boolean {
+  return flag === "1";
+}
+
 // Normalizuje uneti broj u E.164 („+" + cifre). `defaultPrefix` je pozivni broj zemlje
 // (npr. „+381") koji se koristi kad korisnik unese NACIONALNI broj (sa vodećom 0 ili bez).
 // Pravila (predvidljiva): +… → zadrži; 00… → +…; 0… → prefiks + ostatak (bez vodeće 0);

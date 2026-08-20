@@ -1,4 +1,15 @@
-import { normalizePhone, isValidPhone, toE164, phoneAuthErrorKey, maskPhone, DEFAULT_DIAL_PREFIX } from "./phone";
+import { normalizePhone, isValidPhone, toE164, phoneAuthErrorKey, maskPhone, isPhoneLoginEnabled, DEFAULT_DIAL_PREFIX } from "./phone";
+
+describe("isPhoneLoginEnabled", () => {
+  it("samo '1' uključuje", () => {
+    expect(isPhoneLoginEnabled("1")).toBe(true);
+    expect(isPhoneLoginEnabled("0")).toBe(false);
+    expect(isPhoneLoginEnabled(undefined)).toBe(false);
+    expect(isPhoneLoginEnabled(null)).toBe(false);
+    expect(isPhoneLoginEnabled("")).toBe(false);
+    expect(isPhoneLoginEnabled("true")).toBe(false);
+  });
+});
 
 describe("normalizePhone", () => {
   it("nacionalni broj sa vodećom 0 -> prefiks bez 0", () => {

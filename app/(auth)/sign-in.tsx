@@ -11,6 +11,7 @@ import { useTheme } from "../../src/lib/theme";
 import { Screen } from "../../src/components/Screen";
 import { LanguagePicker } from "../../src/i18n/LanguagePicker";
 import { PhoneSignIn } from "../../src/features/auth/PhoneSignIn";
+import { isPhoneLoginEnabled } from "../../src/features/auth/phone";
 import { EmailSignUp } from "../../src/features/auth/EmailSignUp";
 import LogoLight from "../../assets/brand/logo-horizontal.svg";
 import LogoDark from "../../assets/brand/logo-horizontal-dark.svg";
@@ -23,8 +24,12 @@ export default function SignIn() {
   const { t } = useTranslation();
   const { colors, scheme } = useTheme();
   const Logo = scheme === "dark" ? LogoDark : LogoLight;
+  // Prekidač: telefon-staze vidljive samo kad je EXPO_PUBLIC_PHONE_LOGIN='1' (preview),
+  // isključeno na produkciji do aktivacije SMS-a. Email + Registracija ostaju svima.
+  const phoneEnabled = isPhoneLoginEnabled(process.env.EXPO_PUBLIC_PHONE_LOGIN);
   const [method, setMethod] = useState<Method>("email");
   const [register, setRegister] = useState(false);
+  const effectiveMethod: Method = phoneEnabled ? method : "email";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -56,29 +61,31 @@ export default function SignIn() {
       <Logo width={224} height={40} style={{ alignSelf: "center", marginTop: 16, marginBottom: 20 }} />
       <Text style={{ fontSize: 24, fontWeight: "700", color: colors.text }}>{t("auth.signIn")}</Text>
 
-      {/* Izbor načina prijave: email ili telefon */}
-      <View style={{ flexDirection: "row", gap: 8 }}>
-        {(["email", "phone"] as Method[]).map((m) => {
-          const active = method === m;
-          return (
-            <Pressable
-              key={m}
-              onPress={() => setMethod(m)}
-              style={{
-                flex: 1, paddingVertical: 10, borderRadius: 8, alignItems: "center", borderWidth: 1,
-                borderColor: active ? colors.primary : colors.border,
-                backgroundColor: active ? colors.primary : colors.surface,
-              }}
-            >
-              <Text style={{ color: active ? colors.onPrimary : colors.text, fontWeight: "600" }}>
-                {t(m === "email" ? "auth.methodEmail" : "auth.methodPhone")}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+      {/* Izbor načina prijave: email ili telefon — segment SAMO kad je telefon uključen (flag) */}
+      {phoneEnabled && (
+        <View style={{ flexDirection: "row", gap: 8 }}>
+          {(["email", "phone"] as Method[]).map((m) => {
+            const active = method === m;
+            return (
+              <Pressable
+                key={m}
+                onPress={() => setMethod(m)}
+                style={{
+                  flex: 1, paddingVertical: 10, borderRadius: 8, alignItems: "center", borderWidth: 1,
+                  borderColor: active ? colors.primary : colors.border,
+                  backgroundColor: active ? colors.primary : colors.surface,
+                }}
+              >
+                <Text style={{ color: active ? colors.onPrimary : colors.text, fontWeight: "600" }}>
+                  {t(m === "email" ? "auth.methodEmail" : "auth.methodPhone")}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      )}
 
-      {method === "phone" ? (
+      {effectiveMethod === "phone" ? (
         <PhoneSignIn />
       ) : register ? (
         <EmailSignUp onBack={() => setRegister(false)} />
