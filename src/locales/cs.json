@@ -407,7 +407,8 @@
     "saving": "Ukládání…",
     "error": "Něco se pokazilo",
     "retry": "Zkusit znovu",
-    "offlineNote": "Uloženo lokálně — synchronizuje se po připojení k síti"
+    "offlineNote": "Uloženo lokálně — synchronizuje se po připojení k síti",
+    "loadMore": "Načíst další"
   },
   "profile": {
     "name": "Jméno",

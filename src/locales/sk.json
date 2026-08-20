@@ -407,7 +407,8 @@
     "saving": "Ukladá sa…",
     "error": "Niečo sa pokazilo",
     "retry": "Skúsiť znova",
-    "offlineNote": "Uložené lokálne — synchronizuje sa po pripojení k sieti"
+    "offlineNote": "Uložené lokálne — synchronizuje sa po pripojení k sieti",
+    "loadMore": "Načítať ďalšie"
   },
   "profile": {
     "name": "Meno",

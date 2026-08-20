@@ -407,7 +407,8 @@
     "saving": "Tallennetaan…",
     "error": "Jotain meni pieleen",
     "retry": "Yritä uudelleen",
-    "offlineNote": "Tallennettu paikallisesti — synkronoidaan verkkoon palatessa"
+    "offlineNote": "Tallennettu paikallisesti — synkronoidaan verkkoon palatessa",
+    "loadMore": "Lataa lisää"
   },
   "profile": {
     "name": "Nimi",

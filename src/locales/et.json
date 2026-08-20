@@ -407,7 +407,8 @@
     "saving": "Salvestamine…",
     "error": "Midagi läks valesti",
     "retry": "Proovi uuesti",
-    "offlineNote": "Salvestatud lokaalselt — sünkroonitakse võrgus olles"
+    "offlineNote": "Salvestatud lokaalselt — sünkroonitakse võrgus olles",
+    "loadMore": "Laadi rohkem"
   },
   "profile": {
     "name": "Nimi",

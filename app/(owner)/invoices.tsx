@@ -9,6 +9,7 @@ import { useWideWeb } from "../../src/lib/platform";
 import { fmtMoney, fmtDate } from "../../src/lib/format";
 import { DesktopContainer } from "../../src/components/DesktopContainer";
 import { DataTable, type Column } from "../../src/components/DataTable";
+import { LoadMore } from "../../src/components/LoadMore";
 import { ModalScaffold } from "../../src/components/form";
 import { listInvoices, listIssuableTrips, type InvoiceRow, type IssuableTrip } from "../../src/features/invoices/api";
 import { invoiceDisplayStatus, type InvoiceDisplayStatus } from "../../src/features/invoices/calc";
@@ -37,7 +38,10 @@ export default function InvoicesScreen() {
   const [settings, setSettings] = useState(false);
 
   const wide = useWideWeb();
-  const list = useQuery({ queryKey: ["invoices"], queryFn: listInvoices });
+  const [shown, setShown] = useState(50);
+  const list = useQuery({ queryKey: ["invoices", shown], queryFn: () => listInvoices(shown) });
+  const hasMore = (list.data?.length ?? 0) >= shown;
+  const loadMore = () => setShown((s) => s + 50);
   const today = todayYMD();
   const rows = (list.data ?? []).filter((inv) => {
     if (filter === "all") return true;
@@ -89,11 +93,13 @@ export default function InvoicesScreen() {
       ) : wide ? (
         <ScrollView contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 24 }}>
           <DataTable columns={cols} rows={rows} keyExtractor={(r) => r.id} onRowPress={(r) => setDetailId(r.id)} />
+          {hasMore ? <LoadMore colors={colors} label={t("common.loadMore")} onPress={loadMore} /> : null}
         </ScrollView>
       ) : (
         <FlatList
           data={rows}
           keyExtractor={(x) => x.id}
+          ListFooterComponent={hasMore ? <LoadMore colors={colors} label={t("common.loadMore")} onPress={loadMore} /> : null}
           ListEmptyComponent={<Text style={{ textAlign: "center", color: colors.textMuted, marginTop: 24 }}>{t("invoice.empty")}</Text>}
           renderItem={({ item }) => <Row inv={item} today={today} colors={colors} t={t} onPress={() => setDetailId(item.id)} />}
         />

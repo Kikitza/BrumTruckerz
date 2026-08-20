@@ -10,6 +10,7 @@ import { useWideWeb } from "../../src/lib/platform";
 import { fmtDate } from "../../src/lib/format";
 import { DesktopContainer } from "../../src/components/DesktopContainer";
 import { DataTable, type Column } from "../../src/components/DataTable";
+import { LoadMore } from "../../src/components/LoadMore";
 import {
   listCustomers, archiveCustomer, unarchiveCustomer, deleteCustomer, type Customer,
 } from "../../src/features/customers/api";
@@ -23,7 +24,10 @@ export default function CustomersScreen() {
   const [modal, setModal] = useState<{ open: boolean; item: Customer | null }>({ open: false, item: null });
 
   const wide = useWideWeb();
-  const list = useQuery({ queryKey: ["customers"], queryFn: listCustomers });
+  const [shown, setShown] = useState(50);
+  const list = useQuery({ queryKey: ["customers", shown], queryFn: () => listCustomers(shown) });
+  const hasMore = (list.data?.length ?? 0) >= shown;
+  const loadMore = () => setShown((s) => s + 50);
   const rows = (list.data ?? []).filter((c) => (showArchived ? c.archived_at != null : c.archived_at == null));
 
   const invalidate = () => qc.invalidateQueries({ queryKey: ["customers"] });
@@ -93,11 +97,13 @@ export default function CustomersScreen() {
       ) : wide ? (
         <ScrollView contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 24 }}>
           <DataTable columns={cols} rows={rows} keyExtractor={(c) => c.id} onRowPress={(c) => setModal({ open: true, item: c })} />
+          {hasMore ? <LoadMore colors={colors} label={t("common.loadMore")} onPress={loadMore} /> : null}
         </ScrollView>
       ) : (
         <FlatList
           data={rows}
           keyExtractor={(c) => c.id}
+          ListFooterComponent={hasMore ? <LoadMore colors={colors} label={t("common.loadMore")} onPress={loadMore} /> : null}
           ListEmptyComponent={
             <Text style={{ textAlign: "center", color: colors.textMuted, marginTop: 24 }}>{t("customers.empty")}</Text>
           }

@@ -407,7 +407,8 @@
     "saving": "Spremanje…",
     "error": "Nešto je pošlo po zlu",
     "retry": "Pokušaj ponovno",
-    "offlineNote": "Spremljeno lokalno — sinkronizirat će se kad budete online"
+    "offlineNote": "Spremljeno lokalno — sinkronizirat će se kad budete online",
+    "loadMore": "Učitaj još"
   },
   "profile": {
     "name": "Ime",

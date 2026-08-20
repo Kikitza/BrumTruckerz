@@ -156,14 +156,36 @@ export type TripRichRow = {
   started_at: string | null; finished_at: string | null; created_at: string; revenue: number | null;
   customer: { name: string } | null; driver: { full_name: string } | null; vehicle: { registration: string } | null;
 };
-export async function ownerListTripsRich(): Promise<TripRichRow[]> {
+export async function ownerListTripsRich(limit = 50): Promise<TripRichRow[]> {
   const { data, error } = await supabase
     .from("trips")
     .select("id, origin, destination, status, started_at, finished_at, created_at, revenue, customer:customers(name), driver:drivers(full_name), vehicle:vehicles(registration)")
     .order("created_at", { ascending: false })
-    .limit(200);
+    .limit(limit);
   if (error) throw error;
   return (data ?? []) as unknown as TripRichRow[];
+}
+
+// Server paginacija (F3): aktivne i arhiva zasebno, „Učitaj još" raste limit po 50.
+export async function ownerListActiveTrips(limit = 50): Promise<TripListItem[]> {
+  const { data, error } = await supabase
+    .from("trips")
+    .select("id, origin, destination, title, status, driver_id, vehicle_id, trailer_id, started_at, finished_at")
+    .neq("status", "finished")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return (data ?? []) as TripListItem[];
+}
+export async function ownerListArchivedTrips(limit = 50): Promise<TripListItem[]> {
+  const { data, error } = await supabase
+    .from("trips")
+    .select("id, origin, destination, title, status, driver_id, vehicle_id, trailer_id, started_at, finished_at")
+    .eq("status", "finished")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return (data ?? []) as TripListItem[];
 }
 
 // ── VLASNIK ──

@@ -407,7 +407,8 @@
     "saving": "Wird gespeichert…",
     "error": "Etwas ist schiefgelaufen",
     "retry": "Erneut versuchen",
-    "offlineNote": "Lokal gespeichert — wird synchronisiert, sobald online"
+    "offlineNote": "Lokal gespeichert — wird synchronisiert, sobald online",
+    "loadMore": "Mehr laden"
   },
   "profile": {
     "name": "Name",

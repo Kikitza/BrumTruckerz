@@ -407,7 +407,8 @@
     "saving": "Išsaugoma…",
     "error": "Kažkas nepavyko",
     "retry": "Bandyti dar kartą",
-    "offlineNote": "Išsaugota vietoje — bus sinchronizuota prisijungus"
+    "offlineNote": "Išsaugota vietoje — bus sinchronizuota prisijungus",
+    "loadMore": "Įkelti daugiau"
   },
   "profile": {
     "name": "Vardas",

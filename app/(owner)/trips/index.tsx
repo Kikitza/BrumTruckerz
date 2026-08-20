@@ -11,28 +11,32 @@ import { useWideWeb } from "../../../src/lib/platform";
 import { fmtDate, fmtMoney } from "../../../src/lib/format";
 import { DesktopContainer } from "../../../src/components/DesktopContainer";
 import { DataTable, type Column } from "../../../src/components/DataTable";
-import { ownerListTrips, ownerListTripsRich, tripTitle, isTripArchived, type TripListItem, type TripRichRow } from "../../../src/features/trips/api";
+import { LoadMore } from "../../../src/components/LoadMore";
+import { ownerListActiveTrips, ownerListArchivedTrips, ownerListTripsRich, tripTitle, type TripListItem, type TripRichRow } from "../../../src/features/trips/api";
 import { NewTripModal } from "../../../src/features/trips/NewTripModal";
 import { TripDetailModal } from "../../../src/features/trips/TripDetailModal";
 
 type ModalState = { mode: "none" | "new" | "detail"; tripId?: string };
-const ARCHIVE_PAGE = 20;
+const PAGE = 50;
 
 export default function OwnerTrips() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const [modal, setModal] = useState<ModalState>({ mode: "none" });
   const [archiveOpen, setArchiveOpen] = useState(false);
-  const [archiveShown, setArchiveShown] = useState(ARCHIVE_PAGE);
   const wide = useWideWeb();
 
-  const trips = useQuery({ queryKey: ["owner-trips"], queryFn: ownerListTrips, enabled: !wide });
-  const tripsRich = useQuery({ queryKey: ["owner-trips-rich"], queryFn: ownerListTripsRich, enabled: wide });
+  // Server paginacija (F3): aktivne / arhiva / web-tabela svaka raste svoj limit po 50.
+  const [activeShown, setActiveShown] = useState(PAGE);
+  const [archiveShown, setArchiveShown] = useState(PAGE);
+  const [tableShown, setTableShown] = useState(PAGE);
 
-  // Upit vraća sortirano po created_at desc (najnovije prvo) — podela čuva taj redosled.
-  const all = trips.data ?? [];
-  const active = all.filter((x) => !isTripArchived(x));
-  const archive = all.filter((x) => isTripArchived(x));
+  const activeQ = useQuery({ queryKey: ["owner-trips-active", activeShown], queryFn: () => ownerListActiveTrips(activeShown), enabled: !wide });
+  const archiveQ = useQuery({ queryKey: ["owner-trips-archive", archiveShown], queryFn: () => ownerListArchivedTrips(archiveShown), enabled: !wide && archiveOpen });
+  const tripsRich = useQuery({ queryKey: ["owner-trips-rich", tableShown], queryFn: () => ownerListTripsRich(tableShown), enabled: wide });
+
+  const active = activeQ.data ?? [];
+  const archive = archiveQ.data ?? [];
 
   const open = (tripId: string) => setModal({ mode: "detail", tripId });
 
@@ -63,7 +67,10 @@ export default function OwnerTrips() {
             <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("trip.newTrip")}</Text>
           </Pressable>
           {tripsRich.isLoading ? <ActivityIndicator color={colors.primary} /> : (
-            <DataTable columns={cols} rows={tripsRich.data ?? []} keyExtractor={(r) => r.id} onRowPress={(r) => open(r.id)} />
+            <>
+              <DataTable columns={cols} rows={tripsRich.data ?? []} keyExtractor={(r) => r.id} onRowPress={(r) => open(r.id)} />
+              {(tripsRich.data?.length ?? 0) >= tableShown ? <LoadMore colors={colors} label={t("common.loadMore")} onPress={() => setTableShown((n) => n + PAGE)} /> : null}
+            </>
           )}
         </ScrollView>
         {modals}
@@ -82,52 +89,41 @@ export default function OwnerTrips() {
         </Pressable>
       </View>
 
-      {trips.isLoading ? (
+      {activeQ.isLoading ? (
         <ActivityIndicator style={{ marginTop: 24 }} color={colors.primary} />
       ) : (
         <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
-          {/* AKTIVNE */}
+          {/* AKTIVNE (server paginacija) */}
           <SectionLabel colors={colors} text={t("trip.active")} />
           {active.length === 0 ? (
             <Text style={{ color: colors.textMuted, paddingHorizontal: 16, paddingVertical: 12 }}>
               {t("trip.noActiveTrips")}
             </Text>
           ) : (
-            active.map((item) => <TripRow key={item.id} item={item} colors={colors} onPress={() => open(item.id)} />)
-          )}
-
-          {/* ARHIVA (sklopiva) — prikaz samo ako ima arhiviranih */}
-          {archive.length > 0 && (
             <>
-              <Pressable
-                onPress={() => setArchiveOpen((v) => !v)}
-                accessibilityRole="button"
-                accessibilityState={{ expanded: archiveOpen }}
-                style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 20, paddingBottom: 8 }}
-              >
-                <Text style={{ color: colors.textMuted, width: 14, fontSize: 12 }}>{archiveOpen ? "▾" : "▸"}</Text>
-                <Text style={{ color: colors.textMuted, fontWeight: "700", fontSize: 13 }}>
-                  {t("trip.archive")} ({archive.length})
-                </Text>
-              </Pressable>
-
-              {archiveOpen && (
-                <>
-                  {archive.slice(0, archiveShown).map((item) => (
-                    <TripRow key={item.id} item={item} colors={colors} onPress={() => open(item.id)} />
-                  ))}
-                  {archiveShown < archive.length && (
-                    <Pressable
-                      onPress={() => setArchiveShown((n) => n + ARCHIVE_PAGE)}
-                      style={{ margin: 12, padding: 12, borderRadius: 8, borderWidth: 1, borderColor: colors.border, alignItems: "center" }}
-                    >
-                      <Text style={{ color: colors.primary, fontWeight: "600" }}>{t("trip.loadMore")}</Text>
-                    </Pressable>
-                  )}
-                </>
-              )}
+              {active.map((item) => <TripRow key={item.id} item={item} colors={colors} onPress={() => open(item.id)} />)}
+              {active.length >= activeShown ? <LoadMore colors={colors} label={t("common.loadMore")} onPress={() => setActiveShown((n) => n + PAGE)} /> : null}
             </>
           )}
+
+          {/* ARHIVA (sklopiva, server paginacija — učitava se tek na otvaranje) */}
+          <Pressable
+            onPress={() => setArchiveOpen((v) => !v)}
+            accessibilityRole="button"
+            accessibilityState={{ expanded: archiveOpen }}
+            style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 20, paddingBottom: 8 }}
+          >
+            <Text style={{ color: colors.textMuted, width: 14, fontSize: 12 }}>{archiveOpen ? "▾" : "▸"}</Text>
+            <Text style={{ color: colors.textMuted, fontWeight: "700", fontSize: 13 }}>{t("trip.archive")}</Text>
+          </Pressable>
+          {archiveOpen && (archiveQ.isLoading ? (
+            <ActivityIndicator style={{ marginVertical: 12 }} color={colors.primary} />
+          ) : (
+            <>
+              {archive.map((item) => <TripRow key={item.id} item={item} colors={colors} onPress={() => open(item.id)} />)}
+              {archive.length >= archiveShown ? <LoadMore colors={colors} label={t("common.loadMore")} onPress={() => setArchiveShown((n) => n + PAGE)} /> : null}
+            </>
+          ))}
         </ScrollView>
       )}
 

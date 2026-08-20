@@ -407,7 +407,8 @@
     "saving": "Zapisywanie…",
     "error": "Coś poszło nie tak",
     "retry": "Spróbuj ponownie",
-    "offlineNote": "Zapisano lokalnie — synchronizacja po połączeniu z siecią"
+    "offlineNote": "Zapisano lokalnie — synchronizacja po połączeniu z siecią",
+    "loadMore": "Wczytaj więcej"
   },
   "profile": {
     "name": "Imię",

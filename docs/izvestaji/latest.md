@@ -1,56 +1,73 @@
-# IZVEŠTAJ — F3: DESKTOP TABELE + KALENDAR
+# IZVEŠTAJ — F3: TEST IZDRŽLJIVOSTI (staging volumen + server paginacija & indeksi)
 
-> STATUS: **URAĐENO na DEV-u i COMMITOVANO+PUSH-ovano** (commit-first; izveštaj u istom commitu).
-> Web export prolazi bez grešaka; mobilno netaknuto.
+> STATUS: **URAĐENO** — staging (webquovijioxmouvuiko) seed-ovan i izmeren; server paginacija + indeksi.
+> **Link vraćen na DEV** (dokaz niže). **PROD NIJE diran.** Provere čiste; mobilno netaknuto.
 
-## Izmene (spisak)
-- **KALENDAR (web):** `DateField` web grana prelazi sa tekst-unosa na **`<input type="date">`** (ugrađeni browser kalendar,
-  bez novih biblioteka; kroz `createElement("input", …)` da native ostane netaknut). Vrednost je „YYYY-MM-DD" — isti format.
-- **`src/components/DataTable.tsx`** (novo) — reusable tabela (zaglavlje, red sa **hover**-om, klik → postojeći detalj/modal;
-  sortiranje samo za kolone koje daju `sort` — trivijalno, datum/naziv). Generička (`Column<T>`).
-- **`src/lib/platform.ts`** — `useWideWeb(min=900)` hook (tabele se uključuju samo na webu ≥ ~900px).
-- **4 ekrana** dobijaju desktop tabelu (u `DesktopContainer`; **maxWidth 1200–1240** — tabele traže više horizontalnog
-  prostora od kartica, pa širi kontejner; ispod ~900px i na native-u **ostaju postojeće kartice 1:1**):
-  - **TURE** — relacija, naručilac, vozač, vozilo, status, vozarina (office), datum. (nov `ownerListTripsRich` sa embedovanim imenima/vozarinom)
-  - **FAKTURE** — broj, naručilac, izdata, rok, iznos, **status-bedž** (KASNI crveno).
-  - **NARUČIOCI** — naziv, PIB (+**VIES ✓**), rok plaćanja, broj tura, status.
-  - **FLOTA (vozila)** — registracija, tip, kilometraža, **bedž rokova** (najgori od date/km po vozilu, semafor tačka).
-- **`src/locales/*.json`** (svih 30) — nova zaglavlja: `trip.table.*`, `invoice.table.*`, `customers.table.*`, `fleet.table.reminders`.
+## 1) Staging sync
+- Dry-run = **tačno 0021–0025** (istorija od F1 probe) → push. Zatim **0026** (indeksi, niže).
+- **Edge funkcije za ovaj test NISU potrebne** (mere se listni upiti/paginacija; vies-check/reminders-cron nebitni) — naznačeno.
 
-## Odluke / obrazloženje (pravilo 5)
-1. **`<input type="date">` umesto biblioteke** — ugrađeni browser kalendar (bez težih zavisnosti, tražено u zadatku);
-   native koristi postojeći `@react-native-community/datetimepicker` (netaknuto).
-2. **maxWidth tabela 1200–1240** (vs 1000 za kartice): tabela sa 5–7 kolona je čitljivija sa više širine, a i dalje
-   centrirana (ne razvučena preko celog 4K ekrana). Obrazloženo po proceni.
-3. **Prag 900px**: ispod toga (uzak browser/tablet portret) i na native-u ostaju kartice — tabela nema smisla na uskom.
-4. **Sortiranje v1 samo trivijalno** (naziv/datum/relacija/broj) — bez kompleksnog multi-sort; klik na zaglavlje sortabilne kolone.
-5. **Ture: zaseban rich upit** (`ownerListTripsRich`) samo kad je tabela aktivna (`enabled: wide`) — mobilni koristi lagani `ownerListTrips` (bez izmene mobilnog toka).
+## 2) SEED (samo staging, idempotentno, „[SEED]")
+- **`supabase/STAGING-SEED.sql`** (u repou): idempotentan (prvo briše `[SEED]` firmu → CASCADE), sve nosi „[SEED]".
+  - **Pokretanje:** `supabase db query --linked -f supabase/STAGING-SEED.sql` (staging linkovan).
+  - **Čišćenje:** `delete from companies where name like '[SEED]%'; delete from auth.users where email like '%@brumtruckerz.seed';`
+- **Volumen (potvrđen):** **1200 tura**, **48.000 događaja**, **4800 troškova**, **300 faktura** (mix statusa), **30 naručilaca**,
+  20 vozila / 15 prikolica / 10 vozača, **60 rokova** (datum + km), kroz 12 meseci (mix aktivne/završene).
 
-## Test matrica (ništa mobilno pokvareno)
+## 3) MERENJA (EXPLAIN ANALYZE — server-strana; UI render se ne meri headless)
+> Mereno sa `company_id` filterom (ogledalo RLS-a; RLS dodaje keširan `current_company_id()` — zanemarivo).
+> Cilj „lista ≲1s" — server-strana je u **mikrosekundama**; ključni dobitak je **ograničen payload** (50 redova) + eliminisan Sort.
+
+| Lista (upit) | PRE | POSLE |
+|---|---|---|
+| Ture — kartice (limit 50) | 0.203 ms | 0.203 ms (nepromenjeno; već paged) |
+| Ture — RICH tabela | 0.883 ms (limit **200**) | **0.538 ms** (limit 50) |
+| **Fakture** | 0.607 ms (**BEZ limita**, ~300; **Seq Scan + Sort**) | **0.242 ms** (limit 50; **index**, bez Seq Scan/Sort) |
+| Naručioci | 0.723 ms | 0.606 ms (limit 50) |
+| **Arhiva** (finished) | 0.899 ms (**BEZ limita**, ~840) | **0.249 ms** (limit 50; index) |
+| Admin — lista firmi | 0.108 ms (2 firme; seed vidljiv: 20 voz/10 voz.) | — |
+
+## 4) ISPRAVKE
+- **SERVER PAGINACIJA („Učitaj još", stranice 50):**
+  - **Ture** — obe varijante: mobilne kartice (**aktivne** + **arhiva** zasebni server upiti, svaki „Učitaj još"; arhiva se učitava tek na otvaranje) i **web tabela** (rich, raste limit).
+  - **Fakture** i **Naručioci** — `.limit(shown)` + „Učitaj još" (raste po 50).
+  - Deljena `LoadMore` komponenta; `common.loadMore` u i18n (30 jezika).
+- **`supabase/migrations/0026_list_paging_indexes.sql`** — `invoices (company_id, issue_date desc, invoice_no desc)`
+  (fakture: eliminisan Seq Scan + Sort) i `trips (company_id, status, created_at desc)` (arhiva: index-order paging).
+- **`driver_trips`** — **po prirodi mali** (view filtrira `driver_id = current_driver_id()` → samo turе jednog vozača);
+  ne treba paginacija ni indeks. (Provereno.)
+- **Indeksi gde je explain pokazao Seq Scan:** samo `invoices` (300 redova → Seq Scan+Sort) je opravdavao namenski indeks;
+  ostali Seq Scan-ovi su nad **sićušnim** tabelama (drivers 10) gde je Seq Scan ispravan izbor planera (indeks ne bi pomogao).
+
+## 5) Kapija: admin na webu
+- `admin_list_companies` je bounded RPC (broj firmi mali; per-firma count-ovi indeksirani); **web-safe** (samo RPC, bez native).
+  Podaci potvrđeni: seed firma se vidi u listi (status active, 20 vozila/10 vozača). *Živi klik admin-prijave = `expo start --web`.*
+
+## 6) Mobilno / link
+- Mobilno **nije pokvareno**: paginacija radi i sa malo podataka (na DEV-u/Expo Go „Učitaj još" se ne prikazuje dok ima < 50).
+  Sve grane su iste kao pre za male skupove; native tok nepromenjen.
+- **Link vraćen na DEV** (`supabase/.temp/project-ref = icbjagubaftoqcwfcbwf`).
+
+## Test matrica
 | Provera | Rezultat |
 |---|---|
-| `npm run typecheck` | ✅ čisto |
-| `npm test` (jest) | ✅ 17 suita / 121 test |
-| `npm run lint` | ✅ 0 grešaka (4 postojeća upozorenja) |
-| `npm run test:db` | ✅ nepromenjeno (bez DB izmena) |
+| `npm run typecheck` | ✅ | 
+| `npm test` (jest) | ✅ 121 |
+| `npm run lint` | ✅ 0 grešaka |
+| `npm run test:db` (DEV) | ✅ ALL PASSED |
 | `expo export --platform web` | ✅ bez grešaka |
-| Expo Go (native) | ✅ nedirnuto — `useWideWeb` je false na native (kartice + nativni date picker) |
+| Staging seed + merenja | ✅ (tabela gore) |
 
-## Migracije / deploy
-- **Nema migracija / Edge / Auth.** Čisto klijentski. `dist/` u `.gitignore`.
+## Migracije — ručna primena
+- **DEV:** 0026 primenjena. **STAGING:** 0026 primenjena (za test). **PROD:** **nije** — `db push` 0026 uz odobrenje (aditivno, samo indeksi).
 
 ## Jezici
-i18n **dopunjen u SVIH 30 jezika** — 9 novih zaglavlja tabela (`route/status/revenue/date`, `no/status`, `trips/status`,
-`reminders`). `sr`/`en` autorski; 28 mašinski. `en` potpun (fallback).
-
-## Mapa (ažurirano)
-- Desktop tabele (ture/fakture/naručioci/flota) → ✅ RADI; kalendar (web) → ✅ RADI.
-- Ostaje: web-kompresija slika; desktop poliranje preostalih ekrana (rokovi/izveštaji/podešavanja) po potrebi.
+i18n **dopunjen u SVIH 30** — `common.loadMore`.
 
 ## Kvalitet koda
-Reusable `DataTable` + `DesktopContainer` (jedan okvir za sve desktop ekrane); grane kroz `platform.ts`; klik na red vodi
-u **isti postojeći modal** (bez duplirane logike detalja); native 1:1 očuvan. **Pravila kvaliteta ispoštovana.**
+Deljene `LoadMore`/`DataTable`/`DesktopContainer`; paginacija kroz `.limit(shown)` (jednostavno, server-strana, ograničen payload);
+bez duplirane logike; native tok očuvan.
 
 ## ČEKA SE (potez vlasnika)
-1. Živa proba u browseru (`npx expo start --web`) na širokom ekranu: tabele na 4 ekrana + kalendar u formama.
-2. Sledeće po potrebi: web-kompresija slika; tabele/poliranje preostalih ekrana.
+1. `db push` 0026 na PROD (indeksi) uz odobrenje.
+2. (opciono) čišćenje staging seed-a po `[SEED]` kad test više ne treba.

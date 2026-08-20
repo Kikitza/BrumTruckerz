@@ -407,7 +407,8 @@
     "saving": "Duke ruajtur…",
     "error": "Diçka shkoi keq",
     "retry": "Provo përsëri",
-    "offlineNote": "U ruajt lokalisht — do të sinkronizohet kur të jesh online"
+    "offlineNote": "U ruajt lokalisht — do të sinkronizohet kur të jesh online",
+    "loadMore": "Ngarko më shumë"
   },
   "profile": {
     "name": "Emri",

@@ -407,7 +407,8 @@
     "saving": "Guardando…",
     "error": "Algo salió mal",
     "retry": "Reintentar",
-    "offlineNote": "Guardado localmente — se sincronizará cuando haya conexión"
+    "offlineNote": "Guardado localmente — se sincronizará cuando haya conexión",
+    "loadMore": "Cargar más"
   },
   "profile": {
     "name": "Nombre",

@@ -407,7 +407,8 @@
     "saving": "Kaydediliyor…",
     "error": "Bir şeyler ters gitti",
     "retry": "Yeniden dene",
-    "offlineNote": "Yerel olarak kaydedildi — çevrimiçi olunca senkronize edilecek"
+    "offlineNote": "Yerel olarak kaydedildi — çevrimiçi olunca senkronize edilecek",
+    "loadMore": "Daha fazla yükle"
   },
   "profile": {
     "name": "Ad",

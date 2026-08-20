@@ -79,12 +79,13 @@ export async function upsertInvoiceSettings(input: InvoiceSettingsInput): Promis
 }
 
 // ── Liste ──
-export async function listInvoices(): Promise<InvoiceRow[]> {
+export async function listInvoices(limit = 50): Promise<InvoiceRow[]> {
   const { data, error } = await supabase
     .from("invoices")
     .select(`${I_COLS}, customer:customers(name), trip:trips(origin, destination)`)
     .order("issue_date", { ascending: false })
-    .order("invoice_no", { ascending: false });
+    .order("invoice_no", { ascending: false })
+    .limit(limit); // server paginacija (F3) — „Učitaj još" raste limit
   if (error) throw error;
   return (data ?? []) as unknown as InvoiceRow[];
 }

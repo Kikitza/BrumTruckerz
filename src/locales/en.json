@@ -405,7 +405,8 @@
     "saving": "Saving…",
     "error": "Something went wrong",
     "retry": "Retry",
-    "offlineNote": "Saved locally — will sync when online"
+    "offlineNote": "Saved locally — will sync when online",
+    "loadMore": "Load more"
   },
   "profile": {
     "name": "Name",

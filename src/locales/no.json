@@ -407,7 +407,8 @@
     "saving": "Lagrer…",
     "error": "Noe gikk galt",
     "retry": "Prøv igjen",
-    "offlineNote": "Lagret lokalt — synkroniseres når du er online"
+    "offlineNote": "Lagret lokalt — synkroniseres når du er online",
+    "loadMore": "Last inn mer"
   },
   "profile": {
     "name": "Navn",

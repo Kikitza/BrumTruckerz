@@ -407,7 +407,8 @@
     "saving": "Enregistrement…",
     "error": "Une erreur s'est produite",
     "retry": "Réessayer",
-    "offlineNote": "Enregistré localement — sera synchronisé une fois en ligne"
+    "offlineNote": "Enregistré localement — sera synchronisé une fois en ligne",
+    "loadMore": "Charger plus"
   },
   "profile": {
     "name": "Nom",

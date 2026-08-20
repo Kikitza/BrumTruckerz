@@ -408,7 +408,8 @@
     "saving": "Čuvanje…",
     "error": "Nešto je pošlo naopako",
     "retry": "Pokušaj ponovo",
-    "offlineNote": "Sačuvano lokalno — sinhronizuje se kad bude mreže"
+    "offlineNote": "Sačuvano lokalno — sinhronizuje se kad bude mreže",
+    "loadMore": "Učitaj još"
   },
   "profile": {
     "name": "Ime",

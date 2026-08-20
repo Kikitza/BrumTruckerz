@@ -43,10 +43,10 @@ function toCustomer(r: Row): Customer {
   return { ...rest, trip_count: trips?.[0]?.count ?? 0 };
 }
 
-// Sve naručioce firme (aktivne + arhivirane); UI filtrira po archived_at.
-export async function listCustomers(): Promise<Customer[]> {
+// Sve naručioce firme (aktivne + arhivirane); UI filtrira po archived_at. Server paginacija (F3).
+export async function listCustomers(limit = 50): Promise<Customer[]> {
   const { data, error } = await supabase
-    .from("customers").select(COLS).order("name", { ascending: true });
+    .from("customers").select(COLS).order("name", { ascending: true }).limit(limit);
   if (error) throw error;
   return (data ?? []).map((r) => toCustomer(r as unknown as Row));
 }
