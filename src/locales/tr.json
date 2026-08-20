@@ -568,5 +568,9 @@
     "step2Hint": "İsteğe bağlı — araçları sonra ekleyebilirsin.",
     "firstVehicle": "İlk araç",
     "reviewHint": "Yeni boş şirketine sahip olarak gireceksin."
+  },
+  "web": {
+    "driverUseMobile": "Sürücü uygulaması yalnızca mobildir — BrumTruckerz mobil uygulamasını aç.",
+    "pdfMobileOnly": "PDF şimdilik mobil uygulamada mevcut."
   }
 }

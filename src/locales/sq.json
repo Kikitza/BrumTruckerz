@@ -568,5 +568,9 @@
     "step2Hint": "Opsionale — automjetet mund t'i shtosh më vonë.",
     "firstVehicle": "Automjeti i parë",
     "reviewHint": "Do të hysh si pronar në kompaninë tënde të re bosh."
+  },
+  "web": {
+    "driverUseMobile": "Aplikacioni i shoferit është vetëm për celular — hap aplikacionin celular BrumTruckerz.",
+    "pdfMobileOnly": "PDF-ja për momentin është në aplikacionin celular."
   }
 }

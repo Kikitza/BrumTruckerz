@@ -568,5 +568,9 @@
     "step2Hint": "Valikuline — sõidukeid saad lisada hiljem.",
     "firstVehicle": "Esimene sõiduk",
     "reviewHint": "Sisened omanikuna oma uude tühja ettevõttesse."
+  },
+  "web": {
+    "driverUseMobile": "Juhi rakendus on ainult mobiilne — ava BrumTruckerzi mobiilirakendus.",
+    "pdfMobileOnly": "PDF on praegu saadaval mobiilirakenduses."
   }
 }

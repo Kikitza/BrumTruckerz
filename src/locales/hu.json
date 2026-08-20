@@ -568,5 +568,9 @@
     "step2Hint": "Nem kötelező — járműveket később is hozzáadhatsz.",
     "firstVehicle": "Első jármű",
     "reviewHint": "Tulajdonosként lépsz be az új üres cégedbe."
+  },
+  "web": {
+    "driverUseMobile": "A sofőr alkalmazás csak mobilon működik — nyisd meg a BrumTruckerz mobilalkalmazást.",
+    "pdfMobileOnly": "A PDF egyelőre a mobilalkalmazásban érhető el."
   }
 }

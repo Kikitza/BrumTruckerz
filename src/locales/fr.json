@@ -568,5 +568,9 @@
     "step2Hint": "Facultatif — tu peux ajouter des véhicules plus tard.",
     "firstVehicle": "Premier véhicule",
     "reviewHint": "Tu entreras comme propriétaire dans ta nouvelle entreprise vide."
+  },
+  "web": {
+    "driverUseMobile": "L'app chauffeur est uniquement mobile — ouvre l'app mobile BrumTruckerz.",
+    "pdfMobileOnly": "Le PDF est pour l'instant disponible dans l'app mobile."
   }
 }

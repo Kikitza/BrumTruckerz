@@ -568,5 +568,9 @@
     "step2Hint": "Neprivaloma — transporto priemones gali pridėti vėliau.",
     "firstVehicle": "Pirma transporto priemonė",
     "reviewHint": "Įeisi kaip savininkas į savo naują tuščią įmonę."
+  },
+  "web": {
+    "driverUseMobile": "Vairuotojo programėlė veikia tik telefone — atidaryk BrumTruckerz mobiliąją programėlę.",
+    "pdfMobileOnly": "PDF kol kas pasiekiamas mobiliojoje programėlėje."
   }
 }

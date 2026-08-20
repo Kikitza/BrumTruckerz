@@ -568,5 +568,9 @@
     "step2Hint": "Facoltativo — puoi aggiungere veicoli più tardi.",
     "firstVehicle": "Primo veicolo",
     "reviewHint": "Entrerai come titolare nella tua nuova azienda vuota."
+  },
+  "web": {
+    "driverUseMobile": "L'app autista è solo mobile — apri l'app mobile BrumTruckerz.",
+    "pdfMobileOnly": "Il PDF è per ora disponibile nell'app mobile."
   }
 }

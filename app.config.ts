@@ -34,6 +34,9 @@ const config: ExpoConfig = {
       },
     ],
   ],
+  // Web (F3): isti kod u browseru (react-native-web). Ciljna publika weba v1 = KANCELARIJA
+  // (owner/dispatcher/admin); vozač ostaje mobilni. Web je UVEK ONLINE (offline red = native-only).
+  web: { bundler: "metro", output: "single", favicon: "./assets/icon.png" },
   ios: { supportsTablet: false, bundleIdentifier: "com.brumtruckerz.app" },
   android: {
     package: "com.brumtruckerz.app",

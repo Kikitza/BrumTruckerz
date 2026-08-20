@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import DateTimePicker, { type DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import type { Palette } from "../lib/theme";
 import { fmtDate } from "../lib/format";
+import { isWeb } from "../lib/platform";
 
 export function Field({
   label, value, onChangeText, keyboardType, placeholder, autoCapitalize, colors,
@@ -65,7 +66,38 @@ export function DateField({
 }) {
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
+  const [webText, setWebText] = useState(value ?? "");
   const current = value ? new Date(`${value}T00:00:00`) : new Date();
+
+  // WEB (F3): nativni datetimepicker ne radi na webu → tekstualni unos „YYYY-MM-DD".
+  // Lokalni bafer dozvoljava kucanje; roditelju šalje vrednost tek kad je format kompletan (ili prazno).
+  if (isWeb) {
+    const commit = (s: string) => {
+      setWebText(s);
+      if (s.trim() === "") onChange(null);
+      else if (/^\d{4}-\d{2}-\d{2}$/.test(s.trim())) onChange(s.trim());
+    };
+    return (
+      <View style={{ gap: 6 }}>
+        <Text style={{ color: colors.textMuted, fontSize: 13 }}>{label}</Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+          <TextInput
+            value={webText}
+            onChangeText={commit}
+            placeholder={placeholder ?? "YYYY-MM-DD"}
+            placeholderTextColor={colors.textMuted}
+            autoCapitalize="none"
+            style={{ flex: 1, borderWidth: 1, borderColor: colors.border, borderRadius: 8, padding: 12, color: colors.text, backgroundColor: colors.surface }}
+          />
+          {clearable && webText ? (
+            <Pressable onPress={() => { setWebText(""); onChange(null); }} hitSlop={8} style={{ padding: 8 }}>
+              <Text style={{ color: colors.textMuted, fontSize: 18 }}>×</Text>
+            </Pressable>
+          ) : null}
+        </View>
+      </View>
+    );
+  }
 
   const handleChange = (event: DateTimePickerEvent, selected?: Date) => {
     if (Platform.OS !== "ios") setShow(false); // Android dijalog se sam zatvara

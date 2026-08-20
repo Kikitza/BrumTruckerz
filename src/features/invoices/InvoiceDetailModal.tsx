@@ -9,6 +9,7 @@ import { Field, DateField, ModalScaffold } from "../../components/form";
 import { fmtMoney, fmtDate } from "../../lib/format";
 import { getInvoice, markInvoicePaid, cancelInvoice } from "./api";
 import { shareInvoicePdf, type InvoiceLang } from "./pdf";
+import { isWeb } from "../../lib/platform";
 import { invoiceDisplayStatus, type InvoiceDisplayStatus } from "./calc";
 
 const todayYMD = () => {
@@ -43,6 +44,7 @@ export function InvoiceDetailModal({ invoiceId, onClose }: { invoiceId: string; 
   const cancel = useMutation({ mutationFn: () => cancelInvoice(invoiceId, reason), onSuccess: () => { invalidate(); setMode("view"); }, onError: onErr });
 
   const share = async () => {
+    if (isWeb) { Alert.alert(t("web.pdfMobileOnly")); return; } // PDF (print/sharing) je native-only (F3)
     setSharing(true);
     try { await shareInvoicePdf(invoiceId, lang); invalidate(); }
     catch (e) { onErr(e); }

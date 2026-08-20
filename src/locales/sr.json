@@ -569,5 +569,9 @@
     "step2Hint": "Opciono — vozila možeš dodati kasnije.",
     "firstVehicle": "Prvo vozilo",
     "reviewHint": "Ulaziš kao vlasnik u svoju novu praznu firmu."
+  },
+  "web": {
+    "driverUseMobile": "Vozačka aplikacija radi samo na telefonu — otvori mobilnu BrumTruckerz aplikaciju.",
+    "pdfMobileOnly": "PDF je za sada dostupan u mobilnoj aplikaciji."
   }
 }

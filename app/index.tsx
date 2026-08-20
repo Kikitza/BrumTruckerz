@@ -11,6 +11,7 @@ import { SuspendedScreen } from "../src/features/auth/SuspendedScreen";
 import { getMyCompanyStatus } from "../src/features/admin/api";
 import { AcceptInviteBox } from "../src/features/identity/AcceptInviteBox";
 import { NewCompanyWizard } from "../src/features/company/NewCompanyWizard";
+import { isWeb } from "../src/lib/platform";
 import { useTheme } from "../src/lib/theme";
 import { Screen } from "../src/components/Screen";
 
@@ -20,6 +21,8 @@ export default function Index() {
   if (loading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
   if (!session) return <Redirect href="/(auth)/sign-in" />;
   if (role === "platform_admin") return <Redirect href="/(admin)" />;
+  // WEB (F3): vozač je mobilni (offline red / kamera / km-unos su native) — ljubazna poruka.
+  if (role === "driver" && isWeb) return <DriverWebNotice />;
   // Dispečer deli (owner) sekciju sa vlasnikom (matrica ADR 0003); owner-only delovi se
   // skrivaju u samim ekranima (Paket, dispečerske pozivnice).
   if (role === "owner" || role === "dispatcher" || role === "driver") return <CompanyGate role={role} />;
@@ -51,6 +54,21 @@ function StatusCheckFailed({ onRetry }: { onRetry: () => void }) {
         style={{ backgroundColor: colors.primary, borderRadius: 8, paddingVertical: 12, paddingHorizontal: 20 }}>
         <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("common.retry")}</Text>
       </Pressable>
+      <Pressable onPress={signOut}>
+        <Text style={{ color: colors.danger, fontWeight: "600" }}>{t("settings.signOut")}</Text>
+      </Pressable>
+    </Screen>
+  );
+}
+
+// Vozač na webu: usmeri na mobilnu aplikaciju (web v1 je kancelarijski).
+function DriverWebNotice() {
+  const { colors } = useTheme();
+  const { t } = useTranslation();
+  const signOut = useSignOut();
+  return (
+    <Screen style={{ alignItems: "center", justifyContent: "center", padding: 24, gap: 16 }}>
+      <Text style={{ color: colors.text, fontSize: 16, textAlign: "center" }}>{t("web.driverUseMobile")}</Text>
       <Pressable onPress={signOut}>
         <Text style={{ color: colors.danger, fontWeight: "600" }}>{t("settings.signOut")}</Text>
       </Pressable>

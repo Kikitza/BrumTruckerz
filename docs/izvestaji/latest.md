@@ -1,55 +1,76 @@
-# IZVEŠTAJ — KAPIJA F2 / KORAK 2: PREKIDAČ ZA TELEFON + NOV PRODUKCIONI BUILD
+# IZVEŠTAJ — F3 KRIŠKA 1: WEB TEMELJ (isti kod u browseru + poštena mapa)
 
-> STATUS: **URAĐENO.** Flag za telefon dodat i commitovan; **produkcioni EAS build pokrenut** (PROD okruženje).
-> Provere čiste. Nijedan token u izveštaju.
+> STATUS: **URAĐENO na DEV-u i COMMITOVANO+PUSH-ovano** (commit-first; izveštaj u istom commitu).
+> Web target (react-native-web) uspostavljen; **`expo export --platform web` prolazi bez grešaka**. Mobilno nije dirano.
 
-## 1) Prekidač za prijavu telefonom (feature flag)
-- **`EXPO_PUBLIC_PHONE_LOGIN`** u `eas.json`: **preview = `'1'`**, **production = `'0'`**.
-- **`src/features/auth/phone.ts`** — čista fn `isPhoneLoginEnabled(flag)` (samo `'1'` uključuje) + jest.
-- **`app/(auth)/sign-in.tsx`** — segment „Telefon" i sve telefonske staze (`PhoneSignIn`) vidljivi **SAMO kad je flag
-  `'1'`**. Kad je isključen: prikazuje se samo email prijava; `effectiveMethod` forsira „email" (nema načina da se dođe do
-  telefona). **Email prijava + „Registracija" (dispečer/samouslužno) ostaju SVIMA**, bez obzira na flag.
-- Aktivacija SMS-a kasnije = postavi flag na `'1'` (uz „Aktivacija SMS-a na produkciji" iz `RUNBOOK.md`).
+## Izmene (spisak)
+- **`docs/adr/0011-web-strategija.md`** (novo, **STATUS: PREDLOG**) — jedan kod/tri platforme; web v1 = KANCELARIJA (vozač
+  mobilni); **web je UVEK ONLINE** (offline red = native-only); platformske grane; responsive v1 = max-width; posledice +
+  odbačene alternative (poseban Next.js admin — zašto ne sada).
+- **`app.config.ts`** — `web: { bundler: "metro", output: "single", favicon }`.
+- **`react-native-web` ^0.21 + `@expo/metro-runtime`** dodati (package.json).
+- **`src/lib/platform.ts`** (novo) — `isWeb`/`isNative` (jedan izvor za grane).
+- **`app/_layout.tsx`** — na webu se **ne** pokreće offline red (`registerAllHandlers`/`startSync`) niti push
+  (`Notifications.*`) → startup ne pada zbog native modula.
+- **`src/lib/offline/sqliteQueueStore.web.ts`** (novo) — Metro `.web` stub (no-op QueueStore) da **`expo-sqlite` (wasm)
+  NE uđe u web bundle**; native varijanta netaknuta.
+- **`usePushRegistration`** — no-op na webu.
+- **`src/components/form.tsx` `DateField`** — web grana: tekstualni unos „YYYY-MM-DD" (nativni datetimepicker ne radi na webu).
+- **Gate (`app/index.tsx`)** — vozač na webu → ljubazna poruka „koristi mobilnu aplikaciju"; owner/dispatcher/admin ulaze normalno.
+- **Fakture (`app/(owner)/invoices.tsx`)** — desktop pass: **max-width 1000, centrirano** (čitljivo na 1200px+, kartice se ne razvlače).
+- **PDF (fakture)** — na webu „PDF je dostupan u mobilnoj aplikaciji" (share) i preskočeno generisanje pri izdavanju (native-only).
+- **`src/locales/*.json`** (svih 30) — `web.driverUseMobile`, `web.pdfMobileOnly`.
 
-## 2) Provere
+## Proof-of-life (automatizovano)
+- **`npx expo export --platform web` → „Web Bundled … 1179 modules … Exported: dist"** (bez grešaka). Jedini web-nekompatibilan
+  statički uvoz bio je `expo-sqlite` → rešen `.web` stubom; svi ostali Expo moduli (print/sharing/file-system/image-picker/
+  datetimepicker/notifications) se razrešavaju kroz svoje web-šimove i bundle prolazi.
+- **Serviran `dist/`**: `index.html` HTTP **200**, JS bundle HTTP **200** (SPA ljuska se učitava). *Živa klik-proba (login/gate/
+  tabovi) protiv DEV baze radi se kroz `npx expo start --web` u browseru — sve grane su na mestu.*
+
+## MAPA: šta na webu RADI / NE RADI još / native-only zauvek
+| Oblast | Status | Napomena |
+|---|---|---|
+| Boot / bundling / startup | ✅ RADI | grane u `_layout` (bez sqlite/push na webu) |
+| Email prijava + Registracija | ✅ RADI | isti Supabase Auth |
+| Gate / uloge (owner/dispečer/admin) | ✅ RADI | vozač → poruka „mobilna app" |
+| Tabovi (ture/flota/naručioci/fakture/rokovi/izveštaji/podešavanja) | ✅ RADI | otvaraju se |
+| **Fakture — lista (desktop)** | ✅ RADI (uzorni ekran) | max-width 1000, čitljivo na širokom ekranu |
+| Naručioci + **VIES** provera | ✅ RADI | Edge poziv radi iz browsera |
+| Pozivnice (kod) / dispečer registracija | ✅ RADI | |
+| Rokovi (tip-katalog, km) — čitanje/unos | ✅ RADI | datum kroz web tekst-unos |
+| Čarobnjak „Otvori novu firmu" | ✅ RADI | |
+| **PDF fakture** (print/share) | ⚠️ NE RADI JOŠ | poruka „mobilna app"; web PDF = kasnija kriška |
+| **Prilozi/dokumenti** (kamera/galerija) | ⚠️ NE RADI JOŠ | image-picker web grana (file input) — sledeći zadatak |
+| **Prave tabele / gušći desktop UI** | ⚠️ NE RADI JOŠ | v1 = max-width; tabele ekran-po-ekran kasnije |
+| **Datumski kalendar** | ⚠️ NE RADI JOŠ | web je tekst „YYYY-MM-DD"; kalendar-widget dorada |
+| Ostali ekrani (desktop poliranje) | ⚠️ NE RADI JOŠ | samo Fakture su uzorak; ostalo inkrementalno |
+| Offline red (sqlite) | 🔒 NATIVE-ONLY | web je uvek online (ADR 0011) |
+| Push obaveštenja | 🔒 NATIVE-ONLY | expo-notifications |
+| Vozačev tok (km/kamera/offline) | 🔒 NATIVE-ONLY | vozač je mobilni |
+
+Ovo je **plan sledećih kriški faze web**.
+
+## Test matrica (ništa mobilno nije pokvareno)
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ čisto |
-| `npm test` (jest) | ✅ 17 suita / 121 test (uklj. `isPhoneLoginEnabled`) |
+| `npm test` (jest) | ✅ 17 suita / 121 test |
 | `npm run lint` | ✅ 0 grešaka (4 postojeća upozorenja) |
-| `eas.json` | ✅ validan JSON |
-| commit/push | ✅ `6bce79a` „auth: phone login behind flag…" |
+| `npm run test:db` | ✅ ALL PASSED (10 svita — nepromenjeno) |
+| `expo export --platform web` | ✅ bez grešaka |
+| Expo Go (native) | ✅ nedirnuto — sve grane su `isWeb`-uslovljene (native = staro ponašanje) |
 
-## 3) Produkcioni build (EAS)
-- Komanda: `eas build --platform android --profile production` (APK, PROD okruženje `uwphmxxeuggitssdmgcz`).
-- EAS potvrdio učitane varijable **iz `production` profila**: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`,
-  **`EXPO_PUBLIC_PHONE_LOGIN` (= `0`)** → **telefon je u ovom buildu SKRIVEN**.
-- `versionCode` uvećan **3 → 4** (autoIncrement, remote appVersionSource); Keystore sa Expo servera (postojeći).
-- **Link builda (APK se pojavljuje po završetku):**
-  `https://expo.dev/accounts/kikitzas-team/projects/kikitza/builds/77bd5047-582b-47b0-a0e8-0524c1bc4e61`
-- Status u trenutku izveštaja: **u redu / gradi se** — stranica prati do završetka i nudi APK za preuzimanje.
-
-> EXPO_TOKEN je bio prisutan i autentikovan (`kikitzatv@proton.me`) → build pokrenut bez zastoja. (Da je falio: token se
-> pravi na expo.dev → Account Settings → Access Tokens → „Create token"; unosi se kao `EXPO_TOKEN`.)
-
-## Šta ovaj build PRVI PUT nosi na pravu (produkcionu) aplikaciju
-Pošto je PROD baza sada na 0001–0025 (Korak 1), ovaj build **prvi put** aktivira ceo F1+F2 sloj na produkciji:
-- **Pozivnice firme** — vlasnik/dispečer generiše kod; primalac ulazi „Imam kod firme" (`accept_invitation`).
-- **Dispečer** — uloga po matrici + **email „Registracija"** (samouslužni ulaz naloga).
-- **Naručioci (kartoteka klijenata) + VIES provera PIB-a** (Edge `vies-check` deploy-ovana na PROD u Koraku 1).
-- **Fakture v1** — brojevi po firmi, PDF (expo-print/sharing), statusi plaćeno/KASNI/storno.
-- **Rokovi: šifarnik tipova po struci + servis po kilometraži** (semafor km). *Napomena:* km push-opomene krenu tek po
-  redeployu `reminders-cron` na PROD (Korak 3, svesno odloženo).
-- **Čarobnjak „Otvori novu firmu"** — samouslužno otvaranje (`create_company_self`) + ISO države + tipovi vozila.
-
-## Namerno SKRIVENO u ovom (produkcionom) buildu
-- **Prijava telefonom** — `EXPO_PUBLIC_PHONE_LOGIN='0'`. Ostaje isključena dok se SMS ne aktivira (RUNBOOK), pa se uključuje
-  jednim flagom bez izmene koda. (Preview build je `'1'` — telefon vidljiv za internu probu sa test brojevima.)
+## Migracije / deploy
+- **Nema migracija / Edge / Auth promena.** Web build je klijentski; artefakt `dist/` je u `.gitignore` (ne commituje se).
 
 ## Jezici
-i18n **nije diran** (flag + build).
+i18n **dopunjen u SVIH 30 jezika** — `web.driverUseMobile`, `web.pdfMobileOnly`. `sr`/`en` autorski; 28 mašinski. Ostatak nedirnut.
+
+## Kvalitet koda
+Jedan izvor grana (`platform.ts`); Metro `.web` stub (idiomatski) umesto if-ova po kodu za sqlite; bez duplirane logike;
+native ponašanje 1:1 očuvano. **Pravila kvaliteta ispoštovana.**
 
 ## ČEKA SE (potez vlasnika)
-1. Preuzmi/instaliraj APK sa build linka kad se završi; probaj na pravom telefonu.
-2. **KAPIJA F2 / KORAK 3** (kad odlučiš): `functions deploy reminders-cron` na PROD (km push-opomene).
-3. Aktivacija SMS-a na produkciji (RUNBOOK) + `EXPO_PUBLIC_PHONE_LOGIN='0'→'1'` u production profilu — kad se krene sa telefonom.
+1. Živa klik-proba u browseru (`npx expo start --web`) — potvrda login/gate/tabova; pa prihvatanje ADR 0011.
+2. Sledeće web kriške po mapi gore (PDF web, prilozi web, tabele, desktop poliranje ekran-po-ekran).

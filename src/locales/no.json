@@ -568,5 +568,9 @@
     "step2Hint": "Valgfritt — du kan legge til kjøretøy senere.",
     "firstVehicle": "Første kjøretøy",
     "reviewHint": "Du går inn som eier i ditt nye tomme firma."
+  },
+  "web": {
+    "driverUseMobile": "Sjåfør-appen er kun mobil — åpne BrumTruckerz-mobilappen.",
+    "pdfMobileOnly": "PDF er foreløpig tilgjengelig i mobilappen."
   }
 }

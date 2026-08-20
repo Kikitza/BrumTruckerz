@@ -13,6 +13,7 @@ import { getIssueContext, issueInvoice } from "./api";
 import { computeInvoiceAmounts, proposeDueDate } from "./calc";
 import { generateInvoicePdf, type InvoiceLang } from "./pdf";
 import { InvoiceSettingsModal } from "./InvoiceSettingsModal";
+import { isWeb } from "../../lib/platform";
 
 const todayYMD = () => {
   const d = new Date();
@@ -62,8 +63,8 @@ export function IssueInvoiceModal({ tripId, onClose, onIssued }: { tripId: strin
         vat_note: vatNote,
         note,
       });
-      // PDF best-effort (ne ruši izdavanje ako generisanje/upload padne).
-      try { await generateInvoicePdf(inv.id, lang); } catch { /* PDF se može ponovo generisati iz detalja */ }
+      // PDF best-effort (ne ruši izdavanje). Native-only (F3) — na webu se preskače (generiše se iz detalja na mobilnom).
+      if (!isWeb) { try { await generateInvoicePdf(inv.id, lang); } catch { /* PDF se može ponovo generisati */ } }
       return inv;
     },
     onSuccess: () => {

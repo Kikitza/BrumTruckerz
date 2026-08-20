@@ -568,5 +568,9 @@
     "step2Hint": "Optioneel — je kunt later voertuigen toevoegen.",
     "firstVehicle": "Eerste voertuig",
     "reviewHint": "Je komt als eigenaar in je nieuwe lege bedrijf."
+  },
+  "web": {
+    "driverUseMobile": "De chauffeurs-app is alleen mobiel — open de mobiele BrumTruckerz-app.",
+    "pdfMobileOnly": "PDF is voorlopig beschikbaar in de mobiele app."
   }
 }

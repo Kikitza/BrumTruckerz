@@ -11,18 +11,22 @@ import { registerAllHandlers } from "../src/lib/offline/handlers";
 import { initStoredLanguage } from "../src/i18n/useLanguage";
 import { supabase } from "../src/lib/supabase";
 import { useTheme } from "../src/lib/theme";
+import { isWeb } from "../src/lib/platform";
 
 const qc = new QueryClient();
 
 // Prikaz obaveštenja i dok je aplikacija otvorena (banner + zvuk; bez badge brojača).
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowBanner: true,
-    shouldShowList: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-  }),
-});
+// Native-only: web nema push (F3 — web je uvek online/kancelarijski).
+if (!isWeb) {
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowBanner: true,
+      shouldShowList: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
+}
 
 export default function RootLayout() {
   // SDK 54 (Android) je edge-to-edge: sistemske trake su providne, ikonice se boje
@@ -30,8 +34,11 @@ export default function RootLayout() {
   const { scheme } = useTheme();
   useEffect(() => {
     initStoredLanguage();
-    registerAllHandlers();
-    startSync();
+    // Offline red (expo-sqlite) je NATIVE-ONLY — web je uvek online (F3).
+    if (!isWeb) {
+      registerAllHandlers();
+      startSync();
+    }
   }, []);
 
   // Veži offline red za aktivnu sesiju (audit B4): stavke se stamp-uju user_id/company_id,
@@ -47,8 +54,9 @@ export default function RootLayout() {
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  // Tap na obaveštenje o roku -> otvori „Rokovi" (opomene idu vlasnicima).
+  // Tap na obaveštenje o roku -> otvori „Rokovi" (opomene idu vlasnicima). Native-only.
   useEffect(() => {
+    if (isWeb) return;
     const sub = Notifications.addNotificationResponseReceivedListener(() => {
       router.push("/(owner)/reminders");
     });

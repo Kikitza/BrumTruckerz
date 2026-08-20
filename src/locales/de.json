@@ -568,5 +568,9 @@
     "step2Hint": "Optional — Fahrzeuge später hinzufügen.",
     "firstVehicle": "Erstes Fahrzeug",
     "reviewHint": "Du trittst als Eigentümer deinem neuen leeren Unternehmen bei."
+  },
+  "web": {
+    "driverUseMobile": "Die Fahrer-App ist nur mobil — bitte öffne die BrumTruckerz-Mobil-App.",
+    "pdfMobileOnly": "PDF ist vorerst in der mobilen App verfügbar."
   }
 }

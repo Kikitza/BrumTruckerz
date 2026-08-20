@@ -568,5 +568,9 @@
     "step2Hint": "Valfritt — du kan lägga till fordon senare.",
     "firstVehicle": "Första fordonet",
     "reviewHint": "Du går in som ägare i ditt nya tomma företag."
+  },
+  "web": {
+    "driverUseMobile": "Förar-appen är endast mobil — öppna BrumTruckerz mobilapp.",
+    "pdfMobileOnly": "PDF är för närvarande tillgängligt i mobilappen."
   }
 }

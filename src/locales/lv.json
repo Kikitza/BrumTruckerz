@@ -568,5 +568,9 @@
     "step2Hint": "Neobligāti — transportlīdzekļus vari pievienot vēlāk.",
     "firstVehicle": "Pirmais transportlīdzeklis",
     "reviewHint": "Tu ieiesi kā īpašnieks savā jaunajā tukšajā uzņēmumā."
+  },
+  "web": {
+    "driverUseMobile": "Šofera lietotne darbojas tikai mobilajā — atver BrumTruckerz mobilo lietotni.",
+    "pdfMobileOnly": "PDF pagaidām ir pieejams mobilajā lietotnē."
   }
 }

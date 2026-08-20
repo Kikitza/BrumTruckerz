@@ -568,5 +568,9 @@
     "step2Hint": "Valinnainen — voit lisätä ajoneuvoja myöhemmin.",
     "firstVehicle": "Ensimmäinen ajoneuvo",
     "reviewHint": "Liityt omistajana uuteen tyhjään yritykseesi."
+  },
+  "web": {
+    "driverUseMobile": "Kuljettajasovellus toimii vain mobiilissa — avaa BrumTruckerz-mobiilisovellus.",
+    "pdfMobileOnly": "PDF on toistaiseksi saatavilla mobiilisovelluksessa."
   }
 }

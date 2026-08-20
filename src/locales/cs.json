@@ -568,5 +568,9 @@
     "step2Hint": "Volitelné — vozidla přidáš později.",
     "firstVehicle": "První vozidlo",
     "reviewHint": "Vstoupíš jako majitel do své nové prázdné firmy."
+  },
+  "web": {
+    "driverUseMobile": "Aplikace pro řidiče je jen mobilní — otevři mobilní aplikaci BrumTruckerz.",
+    "pdfMobileOnly": "PDF je zatím dostupné v mobilní aplikaci."
   }
 }

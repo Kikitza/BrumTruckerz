@@ -568,5 +568,9 @@
     "step2Hint": "Opțional — poți adăuga vehicule mai târziu.",
     "firstVehicle": "Primul vehicul",
     "reviewHint": "Vei intra ca proprietar în noua ta firmă goală."
+  },
+  "web": {
+    "driverUseMobile": "Aplicația pentru șofer este doar mobilă — deschide aplicația mobilă BrumTruckerz.",
+    "pdfMobileOnly": "PDF-ul este deocamdată disponibil în aplicația mobilă."
   }
 }
