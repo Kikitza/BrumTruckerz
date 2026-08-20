@@ -11,6 +11,7 @@ import { useTheme } from "../../src/lib/theme";
 import { Screen } from "../../src/components/Screen";
 import { LanguagePicker } from "../../src/i18n/LanguagePicker";
 import { PhoneSignIn } from "../../src/features/auth/PhoneSignIn";
+import { EmailSignUp } from "../../src/features/auth/EmailSignUp";
 import LogoLight from "../../assets/brand/logo-horizontal.svg";
 import LogoDark from "../../assets/brand/logo-horizontal-dark.svg";
 
@@ -23,6 +24,7 @@ export default function SignIn() {
   const { colors, scheme } = useTheme();
   const Logo = scheme === "dark" ? LogoDark : LogoLight;
   const [method, setMethod] = useState<Method>("email");
+  const [register, setRegister] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -78,6 +80,8 @@ export default function SignIn() {
 
       {method === "phone" ? (
         <PhoneSignIn />
+      ) : register ? (
+        <EmailSignUp onBack={() => setRegister(false)} />
       ) : (
         <>
           <TextInput placeholder={t("auth.email")} autoCapitalize="none" keyboardType="email-address"
@@ -106,6 +110,9 @@ export default function SignIn() {
           <Pressable onPress={signIn} disabled={busy || !email.includes("@") || password.length < 6}
             style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 14, alignItems: "center", opacity: busy ? 0.6 : 1 }}>
             <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("auth.signIn")}</Text>
+          </Pressable>
+          <Pressable onPress={() => setRegister(true)} hitSlop={8} style={{ alignItems: "center", padding: 8 }}>
+            <Text style={{ color: colors.primary, fontWeight: "600" }}>{t("auth.noAccount")}</Text>
           </Pressable>
         </>
       )}

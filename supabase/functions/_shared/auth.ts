@@ -1,4 +1,5 @@
-// Deljena autorizacija za driver-account funkcije: dozvoli SAMO prijavljenog OWNER-a.
+// Deljena autorizacija za driver-account funkcije: dozvoli prijavljenu KANCELARIJU
+// (owner ILI dispatcher) — po matrici ADR 0003 dispečer upravlja nalozima vozača.
 // Identitet pozivaoca iz njegovog JWT-a (Authorization) → app_users.role/company.
 // Vraća admin (service-role) klijenta + company_id pozivaoca. Bez dupliranja po funkciji.
 import { createClient, type SupabaseClient } from "npm:@supabase/supabase-js@2";
@@ -9,9 +10,10 @@ export class HttpError extends Error {
   }
 }
 
-export type OwnerCtx = { admin: SupabaseClient; ownerUid: string; companyId: string };
+export type OfficeCtx = { admin: SupabaseClient; uid: string; companyId: string };
 
-export async function requireOwner(req: Request): Promise<OwnerCtx> {
+// Dozvoli SAMO prijavljenu kancelariju (owner ili dispatcher) SVOJE firme.
+export async function requireOffice(req: Request): Promise<OfficeCtx> {
   const url = Deno.env.get("SUPABASE_URL")!;
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
@@ -26,10 +28,12 @@ export async function requireOwner(req: Request): Promise<OwnerCtx> {
   const { data: profile, error: pErr } = await admin
     .from("app_users").select("role, company_id").eq("id", user.id).single();
   if (pErr || !profile) throw new HttpError(403, "Nalog nije povezan sa firmom");
-  if (profile.role !== "owner") throw new HttpError(403, "Samo vlasnik može da upravlja nalozima");
-  if (!profile.company_id) throw new HttpError(403, "Vlasnik nije vezan za firmu");
+  if (profile.role !== "owner" && profile.role !== "dispatcher") {
+    throw new HttpError(403, "Samo vlasnik ili dispečer može da upravlja nalozima vozača");
+  }
+  if (!profile.company_id) throw new HttpError(403, "Nalog nije vezan za firmu");
 
-  return { admin, ownerUid: user.id, companyId: profile.company_id as string };
+  return { admin, uid: user.id, companyId: profile.company_id as string };
 }
 
 export function json(body: unknown, status = 200): Response {
@@ -42,7 +46,7 @@ export function errorResponse(e: unknown): Response {
 }
 
 // Učitaj vozača i potvrdi da pripada firmi POZIVAOCA (403 ako ne).
-export async function loadOwnDriver(ctx: OwnerCtx, driverId: string) {
+export async function loadOwnDriver(ctx: OfficeCtx, driverId: string) {
   if (!driverId) throw new HttpError(400, "driver_id je obavezan");
   const { data: driver, error } = await ctx.admin
     .from("drivers").select("id, company_id, user_id, full_name").eq("id", driverId).single();

@@ -24,7 +24,12 @@
       "otpInvalid": "Code incorrect ou expiré — vérifie-le ou demandes-en un nouveau.",
       "otpExpired": "Ce code a expiré. Demandes-en un nouveau.",
       "otpTooMany": "Trop de tentatives. Patiente un instant et réessaie."
-    }
+    },
+    "register": "S'inscrire",
+    "noAccount": "Pas de compte ? Inscris-toi",
+    "haveAccount": "Déjà un compte ? Connecte-toi",
+    "fullName": "Nom et prénom",
+    "confirmEmailSent": "Vérifie ta boîte mail pour confirmer ton compte."
   },
   "tabs": {
     "trips": "Trajets",

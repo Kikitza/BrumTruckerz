@@ -24,7 +24,12 @@
       "otpInvalid": "Cod incorect sau expirat — verifică-l sau cere unul nou.",
       "otpExpired": "Acest cod a expirat. Cere unul nou.",
       "otpTooMany": "Prea multe încercări. Așteaptă un moment și încearcă din nou."
-    }
+    },
+    "register": "Înregistrează-te",
+    "noAccount": "Nu ai cont? Înregistrează-te",
+    "haveAccount": "Ai deja cont? Conectează-te",
+    "fullName": "Nume și prenume",
+    "confirmEmailSent": "Verifică-ți emailul pentru a confirma contul."
   },
   "tabs": {
     "trips": "Curse",

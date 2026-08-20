@@ -24,7 +24,12 @@
       "otpInvalid": "Codice errato o scaduto — controllalo o richiedine uno nuovo.",
       "otpExpired": "Questo codice è scaduto. Richiedine uno nuovo.",
       "otpTooMany": "Troppi tentativi. Attendi un momento e riprova."
-    }
+    },
+    "register": "Registrati",
+    "noAccount": "Non hai un account? Registrati",
+    "haveAccount": "Hai già un account? Accedi",
+    "fullName": "Nome e cognome",
+    "confirmEmailSent": "Controlla la tua email per confermare l'account."
   },
   "tabs": {
     "trips": "Viaggi",

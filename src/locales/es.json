@@ -24,7 +24,12 @@
       "otpInvalid": "Código incorrecto o caducado — verifícalo o solicita uno nuevo.",
       "otpExpired": "Este código ha caducado. Solicita uno nuevo.",
       "otpTooMany": "Demasiados intentos. Espera un momento e inténtalo de nuevo."
-    }
+    },
+    "register": "Registrarse",
+    "noAccount": "¿No tienes cuenta? Regístrate",
+    "haveAccount": "¿Ya tienes cuenta? Inicia sesión",
+    "fullName": "Nombre y apellidos",
+    "confirmEmailSent": "Revisa tu correo para confirmar tu cuenta."
   },
   "tabs": {
     "trips": "Viajes",

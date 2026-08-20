@@ -17,7 +17,9 @@ const ROLES: InviteRole[] = ["driver", "dispatcher"];
 const STATUS_COLOR = (s: InviteStatus, c: Palette): string =>
   s === "pending" ? c.primary : s === "accepted" ? c.text : c.textMuted;
 
-export function InvitesSection() {
+// allowDispatcher: da li pozivalac (vlasnik) sme da pravi i dispečerske pozivnice.
+// Dispečer prosleđuje allowDispatcher=false → pravi/vidi SAMO vozačke (RLS to i tvrdi).
+export function InvitesSection({ allowDispatcher = true }: { allowDispatcher?: boolean }) {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const qc = useQueryClient();
@@ -65,7 +67,7 @@ export function InvitesSection() {
         />
       )}
 
-      {showNew && <NewInviteModal onClose={() => setShowNew(false)} />}
+      {showNew && <NewInviteModal allowDispatcher={allowDispatcher} onClose={() => setShowNew(false)} />}
     </View>
   );
 }
@@ -127,7 +129,7 @@ function CodeBox({ code, colors }: { code: string; colors: Palette }) {
 }
 
 // ── Modal: nova pozivnica (uloga + ime) -> prikaz koda ──
-function NewInviteModal({ onClose }: { onClose: () => void }) {
+function NewInviteModal({ allowDispatcher, onClose }: { allowDispatcher: boolean; onClose: () => void }) {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const qc = useQueryClient();
@@ -171,14 +173,16 @@ function NewInviteModal({ onClose }: { onClose: () => void }) {
           </View>
         ) : (
           <>
-            <PickerField
-              label={t("invite.roleLabel")}
-              value={role}
-              options={ROLES.map((r) => ({ value: r, label: t(`invite.role.${r}`) }))}
-              placeholder={t("invite.roleLabel")}
-              onSelect={(v) => setRole((v as InviteRole) ?? "driver")}
-              colors={colors}
-            />
+            {allowDispatcher && (
+              <PickerField
+                label={t("invite.roleLabel")}
+                value={role}
+                options={ROLES.map((r) => ({ value: r, label: t(`invite.role.${r}`) }))}
+                placeholder={t("invite.roleLabel")}
+                onSelect={(v) => setRole((v as InviteRole) ?? "driver")}
+                colors={colors}
+              />
+            )}
             <Field
               label={t("invite.nameLabel")}
               value={name}

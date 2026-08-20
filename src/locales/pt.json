@@ -24,7 +24,12 @@
       "otpInvalid": "Código incorreto ou expirado — verifica-o ou pede um novo.",
       "otpExpired": "Este código expirou. Pede um novo.",
       "otpTooMany": "Demasiadas tentativas. Aguarda um momento e tenta de novo."
-    }
+    },
+    "register": "Registar",
+    "noAccount": "Não tens conta? Regista-te",
+    "haveAccount": "Já tens conta? Inicia sessão",
+    "fullName": "Nome e apelido",
+    "confirmEmailSent": "Verifica o teu email para confirmar a conta."
   },
   "tabs": {
     "trips": "Viagens",

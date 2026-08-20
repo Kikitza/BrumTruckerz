@@ -24,7 +24,12 @@
       "otpInvalid": "Yanlış veya süresi dolmuş kod — kontrol et ya da yeni bir tane iste.",
       "otpExpired": "Bu kodun süresi doldu. Yeni bir tane iste.",
       "otpTooMany": "Çok fazla deneme. Lütfen biraz bekle ve tekrar dene."
-    }
+    },
+    "register": "Kaydol",
+    "noAccount": "Hesabın yok mu? Kaydol",
+    "haveAccount": "Zaten hesabın var mı? Giriş yap",
+    "fullName": "Ad ve soyad",
+    "confirmEmailSent": "Hesabını onaylamak için e-postanı kontrol et."
   },
   "tabs": {
     "trips": "Seferler",

@@ -24,7 +24,12 @@
       "otpInvalid": "Neteisingas arba nebegaliojantis kodas — patikrink jį arba paprašyk naujo.",
       "otpExpired": "Šis kodas nebegalioja. Paprašyk naujo.",
       "otpTooMany": "Per daug bandymų. Palauk akimirką ir bandyk dar kartą."
-    }
+    },
+    "register": "Registruotis",
+    "noAccount": "Neturi paskyros? Registruokis",
+    "haveAccount": "Jau turi paskyrą? Prisijunk",
+    "fullName": "Vardas ir pavardė",
+    "confirmEmailSent": "Patikrink el. paštą, kad patvirtintum paskyrą."
   },
   "tabs": {
     "trips": "Reisai",

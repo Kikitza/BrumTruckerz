@@ -24,7 +24,12 @@
       "otpInvalid": "Vale või aegunud kood — kontrolli seda või küsi uus.",
       "otpExpired": "See kood on aegunud. Küsi uus.",
       "otpTooMany": "Liiga palju katseid. Oota hetk ja proovi uuesti."
-    }
+    },
+    "register": "Registreeru",
+    "noAccount": "Kontot pole? Registreeru",
+    "haveAccount": "Konto on juba olemas? Logi sisse",
+    "fullName": "Ees- ja perekonnanimi",
+    "confirmEmailSent": "Kontrolli e-posti konto kinnitamiseks."
   },
   "tabs": {
     "trips": "Reisid",

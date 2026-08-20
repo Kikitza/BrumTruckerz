@@ -22,7 +22,12 @@
       "otpInvalid": "Incorrect or expired code — check it or request a new one.",
       "otpExpired": "This code has expired. Request a new one.",
       "otpTooMany": "Too many attempts. Please wait a moment and try again."
-    }
+    },
+    "register": "Sign up",
+    "noAccount": "Don't have an account? Sign up",
+    "haveAccount": "Already have an account? Sign in",
+    "fullName": "First and last name",
+    "confirmEmailSent": "Check your email to confirm your account."
   },
   "tabs": {
     "trips": "Trips",

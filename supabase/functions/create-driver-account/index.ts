@@ -1,8 +1,8 @@
-// Edge Function (Deno): OWNER pravi app nalog za POSTOJEĆEG vozača flote (bez user_id).
-// Autorizacija: samo prijavljen owner (v. _shared/auth.ts). Service role unutra.
+// Edge Function (Deno): KANCELARIJA (owner/dispečer) pravi app nalog za POSTOJEĆEG vozača flote (bez user_id).
+// Autorizacija: prijavljen owner ili dispečer (v. _shared/auth.ts). Service role unutra.
 // NIKAD ne pravi novi `drivers` red — samo auth user + app_users + UPDATE drivers.user_id
 // (lekcija o „blizancima": jedan vozač = jedan drivers red).
-import { requireOwner, loadOwnDriver, json, errorResponse, HttpError } from "../_shared/auth.ts";
+import { requireOffice, loadOwnDriver, json, errorResponse, HttpError } from "../_shared/auth.ts";
 
 function genPassword(): string {
   // 12 znakova iz sigurnog alfabeta (bez sličnih: 0/O, 1/l/I).
@@ -13,7 +13,7 @@ function genPassword(): string {
 
 Deno.serve(async (req) => {
   try {
-    const ctx = await requireOwner(req);
+    const ctx = await requireOffice(req);
     const { driver_id, email, password } = await req.json().catch(() => ({}));
 
     const mail = String(email ?? "").trim().toLowerCase();

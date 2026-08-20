@@ -24,7 +24,12 @@
       "otpInvalid": "Nieprawidłowy lub wygasły kod — sprawdź go lub poproś o nowy.",
       "otpExpired": "Ten kod wygasł. Poproś o nowy.",
       "otpTooMany": "Zbyt wiele prób. Poczekaj chwilę i spróbuj ponownie."
-    }
+    },
+    "register": "Zarejestruj się",
+    "noAccount": "Nie masz konta? Zarejestruj się",
+    "haveAccount": "Masz już konto? Zaloguj się",
+    "fullName": "Imię i nazwisko",
+    "confirmEmailSent": "Sprawdź e-mail, aby potwierdzić konto."
   },
   "tabs": {
     "trips": "Trasy",

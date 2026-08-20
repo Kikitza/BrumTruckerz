@@ -24,7 +24,12 @@
       "otpInvalid": "Onjuiste of verlopen code — controleer die of vraag een nieuwe aan.",
       "otpExpired": "Deze code is verlopen. Vraag een nieuwe aan.",
       "otpTooMany": "Te veel pogingen. Wacht even en probeer opnieuw."
-    }
+    },
+    "register": "Registreren",
+    "noAccount": "Nog geen account? Registreer",
+    "haveAccount": "Al een account? Log in",
+    "fullName": "Voor- en achternaam",
+    "confirmEmailSent": "Controleer je e-mail om je account te bevestigen."
   },
   "tabs": {
     "trips": "Ritten",

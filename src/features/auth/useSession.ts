@@ -9,7 +9,7 @@ import type { Session } from "@supabase/supabase-js";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../../lib/supabase";
 
-export type Role = "platform_admin" | "owner" | "driver";
+export type Role = "platform_admin" | "owner" | "dispatcher" | "driver";
 
 export function useSession() {
   const qc = useQueryClient();

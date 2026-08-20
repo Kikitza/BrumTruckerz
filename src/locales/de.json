@@ -24,7 +24,12 @@
       "otpInvalid": "Falscher oder abgelaufener Code — prüfe ihn oder fordere einen neuen an.",
       "otpExpired": "Dieser Code ist abgelaufen. Fordere einen neuen an.",
       "otpTooMany": "Zu viele Versuche. Bitte warte einen Moment und versuche es erneut."
-    }
+    },
+    "register": "Registrieren",
+    "noAccount": "Kein Konto? Registrieren",
+    "haveAccount": "Schon ein Konto? Anmelden",
+    "fullName": "Vor- und Nachname",
+    "confirmEmailSent": "Prüfe deine E-Mails, um dein Konto zu bestätigen."
   },
   "tabs": {
     "trips": "Touren",

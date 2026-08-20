@@ -24,7 +24,12 @@
       "otpInvalid": "Felaktig eller utgången kod — kontrollera den eller begär en ny.",
       "otpExpired": "Den här koden har gått ut. Begär en ny.",
       "otpTooMany": "För många försök. Vänta en stund och försök igen."
-    }
+    },
+    "register": "Registrera dig",
+    "noAccount": "Inget konto? Registrera dig",
+    "haveAccount": "Har du redan ett konto? Logga in",
+    "fullName": "För- och efternamn",
+    "confirmEmailSent": "Kolla din e-post för att bekräfta kontot."
   },
   "tabs": {
     "trips": "Turer",

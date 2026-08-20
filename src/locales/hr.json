@@ -24,7 +24,12 @@
       "otpInvalid": "Pogrešan ili istekao kod — provjeri ga ili zatraži novi.",
       "otpExpired": "Ovaj kod je istekao. Zatraži novi.",
       "otpTooMany": "Previše pokušaja. Pričekaj trenutak pa pokušaj ponovno."
-    }
+    },
+    "register": "Registriraj se",
+    "noAccount": "Nemaš račun? Registriraj se",
+    "haveAccount": "Već imaš račun? Prijavi se",
+    "fullName": "Ime i prezime",
+    "confirmEmailSent": "Provjeri e-poštu da potvrdiš račun."
   },
   "tabs": {
     "trips": "Ture",

@@ -1,14 +1,14 @@
-// Edge Function (Deno): OWNER briše app nalog vozača. Istorija (događaji, troškovi,
-// prilozi) OSTAJE — brišu se samo nalog i veza. Autorizacija: samo owner (v. _shared/auth.ts).
+// Edge Function (Deno): KANCELARIJA (owner/dispečer) briše app nalog vozača. Istorija (događaji, troškovi,
+// prilozi) OSTAJE — brišu se samo nalog i veza. Autorizacija: owner ili dispečer (v. _shared/auth.ts).
 //
 // FK napomena: trip_events.created_by / expenses.created_by referišu app_users/auth.users
 // bez ON DELETE (=RESTRICT), pa bi blokirali brisanje. Zato se created_by na tim redovima
 // postavlja na NULL (audit-pokazivač) — SAMI REDOVI I NJIHOV SADRŽAJ OSTAJU netaknuti.
-import { requireOwner, loadOwnDriver, json, errorResponse, HttpError } from "../_shared/auth.ts";
+import { requireOffice, loadOwnDriver, json, errorResponse, HttpError } from "../_shared/auth.ts";
 
 Deno.serve(async (req) => {
   try {
-    const ctx = await requireOwner(req);
+    const ctx = await requireOffice(req);
     const { driver_id } = await req.json().catch(() => ({}));
 
     const driver = await loadOwnDriver(ctx, driver_id);

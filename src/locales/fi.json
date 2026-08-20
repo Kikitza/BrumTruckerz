@@ -24,7 +24,12 @@
       "otpInvalid": "Väärä tai vanhentunut koodi — tarkista se tai pyydä uusi.",
       "otpExpired": "Tämä koodi on vanhentunut. Pyydä uusi.",
       "otpTooMany": "Liian monta yritystä. Odota hetki ja yritä uudelleen."
-    }
+    },
+    "register": "Rekisteröidy",
+    "noAccount": "Eikö sinulla ole tiliä? Rekisteröidy",
+    "haveAccount": "Onko sinulla jo tili? Kirjaudu",
+    "fullName": "Etu- ja sukunimi",
+    "confirmEmailSent": "Vahvista tilisi sähköpostistasi."
   },
   "tabs": {
     "trips": "Kuljetukset",

@@ -18,7 +18,9 @@ export default function Index() {
   if (loading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
   if (!session) return <Redirect href="/(auth)/sign-in" />;
   if (role === "platform_admin") return <Redirect href="/(admin)" />;
-  if (role === "owner" || role === "driver") return <CompanyGate role={role} />;
+  // Dispečer deli (owner) sekciju sa vlasnikom (matrica ADR 0003); owner-only delovi se
+  // skrivaju u samim ekranima (Paket, dispečerske pozivnice).
+  if (role === "owner" || role === "dispatcher" || role === "driver") return <CompanyGate role={role} />;
   // Rola nepoznata (null / greška / nalog nije povezan sa firmom) -> NE owner.
   // Ponuda: uđi u firmu kodom (pozivnica) -> po prihvatanju osveži gate (reloadRole).
   return <NoRole onJoined={reloadRole} />;
@@ -27,7 +29,7 @@ export default function Index() {
 // Suspension gate: obustavljena firma -> fail-closed ekran (owner I vozač).
 // FAIL-CLOSED (audit A3): greška provere statusa NE pušta unutra — blokira sa
 // porukom i „pokušaj ponovo" (nikad redirect na osnovu neuspele provere).
-function CompanyGate({ role }: { role: "owner" | "driver" }) {
+function CompanyGate({ role }: { role: "owner" | "dispatcher" | "driver" }) {
   const q = useQuery({ queryKey: ["my-company-status"], queryFn: getMyCompanyStatus, retry: 1 });
   if (q.isLoading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
   if (q.isError) return <StatusCheckFailed onRetry={() => q.refetch()} />;

@@ -24,7 +24,12 @@
       "otpInvalid": "Nepareizs vai beidzies kods — pārbaudi to vai pieprasi jaunu.",
       "otpExpired": "Šis kods ir beidzies. Pieprasi jaunu.",
       "otpTooMany": "Pārāk daudz mēģinājumu. Uzgaidi brīdi un mēģini vēlreiz."
-    }
+    },
+    "register": "Reģistrēties",
+    "noAccount": "Nav konta? Reģistrējies",
+    "haveAccount": "Jau ir konts? Pieteikties",
+    "fullName": "Vārds un uzvārds",
+    "confirmEmailSent": "Pārbaudi e-pastu, lai apstiprinātu kontu."
   },
   "tabs": {
     "trips": "Reisi",

@@ -24,7 +24,12 @@
       "otpInvalid": "Kod i gabuar ose i skaduar — kontrolloje ose kërko një të ri.",
       "otpExpired": "Ky kod ka skaduar. Kërko një të ri.",
       "otpTooMany": "Shumë përpjekje. Prit një çast dhe provo sërish."
-    }
+    },
+    "register": "Regjistrohu",
+    "noAccount": "S'ke llogari? Regjistrohu",
+    "haveAccount": "Ke tashmë llogari? Hyr",
+    "fullName": "Emri dhe mbiemri",
+    "confirmEmailSent": "Kontrollo emailin për të konfirmuar llogarinë."
   },
   "tabs": {
     "trips": "Udhëtimet",

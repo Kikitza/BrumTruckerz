@@ -1,10 +1,10 @@
-// Edge Function (Deno): OWNER čita email naloga vozača (auth.users nije čitljiv iz klijenta).
-// Koristi UI „Flota → vozač" da prikaže email za vozača koji IMA nalog. Samo owner svoje firme.
-import { requireOwner, loadOwnDriver, json, errorResponse, HttpError } from "../_shared/auth.ts";
+// Edge Function (Deno): KANCELARIJA (owner/dispečer) čita email naloga vozača (auth.users nije čitljiv iz klijenta).
+// Koristi UI „Flota → vozač" da prikaže email za vozača koji IMA nalog. Owner ili dispečer svoje firme.
+import { requireOffice, loadOwnDriver, json, errorResponse, HttpError } from "../_shared/auth.ts";
 
 Deno.serve(async (req) => {
   try {
-    const ctx = await requireOwner(req);
+    const ctx = await requireOffice(req);
     const { driver_id } = await req.json().catch(() => ({}));
 
     const driver = await loadOwnDriver(ctx, driver_id);

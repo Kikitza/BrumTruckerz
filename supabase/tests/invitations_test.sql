@@ -15,7 +15,7 @@
 --          (d) izolacija firmi (owner B ne vidi pozivnice firme A);
 --          (e) suspend-gate: owner obustavljene firme NE pravi pozivnicu;
 --          (f) već član DRUGE firme → INVITE_OTHER_COMPANY;
---          (g) dispečer za svež nalog (bez identiteta) → INVITE_DISPATCHER_NOT_READY.
+--          (g) dispečerska pozivnica: svež nalog → app_users(role dispatcher)+profil+zaposlenje (0020).
 -- ─────────────────────────────────────────────────────────────────────────────
 
 do $$
@@ -26,6 +26,7 @@ declare
   u_dfresh uuid := gen_random_uuid();   -- svež nalog (auth.users, BEZ app_users) → prihvata
   u_dfresh2 uuid := gen_random_uuid();  -- svež nalog za odbijene pokušaje
   u_dfresh3 uuid := gen_random_uuid();  -- svež nalog bez imena → fallback 'Vozač' (0019)
+  u_ddisp uuid := gen_random_uuid();    -- svež nalog → prihvata DISPEČERSKU pozivnicu (0020)
   u_other uuid := gen_random_uuid();    -- već vozač firme B → drugi tenant
   d_other uuid := gen_random_uuid();
   inv_ok uuid; code_ok text;
@@ -45,6 +46,7 @@ begin
     (u_dfresh,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_dfresh||'@t.local'),
     (u_dfresh2,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_dfresh2||'@t.local'),
     (u_dfresh3,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_dfresh3||'@t.local'),
+    (u_ddisp,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_ddisp||'@t.local'),
     (u_other,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_other||'@t.local');
   insert into companies (id, name, status) values
     (c_a,'A','active'), (c_b,'B','active'), (c_s,'S','suspended');
@@ -52,6 +54,8 @@ begin
     (u_oa, c_a,'owner'), (u_ob, c_b,'owner'), (u_os, c_s,'owner'),
     (u_admin, null,'platform_admin'), (u_other, c_b,'driver');
   insert into drivers (id, company_id, user_id, full_name) values (d_other, c_b, u_other, 'Other Drv');
+  -- Dispečer se registrovao email+ime → ime u auth metadata (0020: fallback u display_name).
+  update auth.users set raw_user_meta_data = jsonb_build_object('full_name', 'Dis Pečer') where id = u_ddisp;
   -- NAPOMENA: u_dfresh / u_dfresh2 NEMAJU app_users red (to je „nalog nije povezan sa firmom").
 
   -- ═══ Owner A pravi pozivnice (impersonacija) ═══
@@ -159,15 +163,30 @@ begin
   exception when others then v_err := SQLERRM; end;
   if v_err not like '%INVITE_NOT_FOUND%' then raise exception 'FAIL: pogrešan kod nije odbijen (err=%)', v_err; end if;
 
-  begin v_result := accept_invitation(code_disp); v_err := 'NONE';
-  exception when others then v_err := SQLERRM; end;
-  if v_err not like '%INVITE_DISPATCHER_NOT_READY%' then
-    raise exception 'FAIL: dispečer za svež nalog nije odbijen (err=%)', v_err;
-  end if;
-
   -- svež nalog 2 je posle svih odbijenih pokušaja OSTAO bez firme/reda
   select count(*) into n from app_users where id = u_dfresh2;
   if n <> 0 then raise exception 'FAIL: odbijeni pokušaji ipak napravili app_users'; end if;
+
+  -- ═══ (0020) DISPEČERSKA POZIVNICA: svež nalog → app_users(role dispatcher)+profil+zaposlenje ═══
+  perform set_config('request.jwt.claims', json_build_object('sub', u_ddisp)::text, true);
+  v_result := accept_invitation(code_disp);
+  if v_result->>'status' <> 'accepted' or v_result->>'role' <> 'dispatcher' then
+    raise exception 'FAIL: dispečerska pozivnica nije prihvaćena (%)', v_result;
+  end if;
+  select count(*) into n from app_users where id = u_ddisp and company_id = c_a and role = 'dispatcher';
+  if n <> 1 then raise exception 'FAIL: app_users(role dispatcher) nije nastao'; end if;
+  select count(*) into n from dispatcher_profiles where user_id = u_ddisp and public_no is null;
+  if n <> 1 then raise exception 'FAIL: dispatcher_profile (public_no null) nije nastao'; end if;
+  -- ime iz REGISTRACIJE (auth metadata) → display_name (pozivnica bez invited_name)
+  select display_name into v_txt from dispatcher_profiles where user_id = u_ddisp;
+  if v_txt <> 'Dis Pečer' then raise exception 'FAIL: display_name nije ime iz registracije (%)', v_txt; end if;
+  select count(*) into n from employments
+    where user_id = u_ddisp and company_id = c_a and status = 'active' and role_on_company = 'dispatcher';
+  if n <> 1 then raise exception 'FAIL: aktivno dispečersko zaposlenje nije nastalo'; end if;
+  -- dispečer NEMA drivers red (nije vozač)
+  perform set_config('request.jwt.claims', json_build_object('sub', u_oa)::text, true);
+  select count(*) into n from drivers where user_id = u_ddisp;
+  if n <> 0 then raise exception 'FAIL: dispečer dobio drivers red'; end if;
 
   -- ═══ (0019) FALLBACK IMENA: pozivnica bez invited_name → display_name = 'Vozač' ═══
   perform set_config('request.jwt.claims', json_build_object('sub', u_dfresh3)::text, true);

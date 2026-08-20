@@ -24,7 +24,12 @@
       "otpInvalid": "Forkert eller udløbet kode — tjek den, eller bed om en ny.",
       "otpExpired": "Denne kode er udløbet. Bed om en ny.",
       "otpTooMany": "For mange forsøg. Vent et øjeblik, og prøv igen."
-    }
+    },
+    "register": "Opret konto",
+    "noAccount": "Ingen konto? Opret dig",
+    "haveAccount": "Har du allerede en konto? Log ind",
+    "fullName": "Fornavn og efternavn",
+    "confirmEmailSent": "Tjek din e-mail for at bekræfte kontoen."
   },
   "tabs": {
     "trips": "Ture",

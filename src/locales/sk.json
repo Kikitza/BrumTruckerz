@@ -24,7 +24,12 @@
       "otpInvalid": "Nesprávny alebo expirovaný kód — skontroluj ho alebo si vyžiadaj nový.",
       "otpExpired": "Tento kód expiroval. Vyžiadaj si nový.",
       "otpTooMany": "Priveľa pokusov. Chvíľu počkaj a skús to znova."
-    }
+    },
+    "register": "Registrovať sa",
+    "noAccount": "Nemáš účet? Zaregistruj sa",
+    "haveAccount": "Už máš účet? Prihlás sa",
+    "fullName": "Meno a priezvisko",
+    "confirmEmailSent": "Skontroluj e-mail a potvrď účet."
   },
   "tabs": {
     "trips": "Jazdy",

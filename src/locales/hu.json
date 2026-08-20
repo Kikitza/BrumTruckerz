@@ -24,7 +24,12 @@
       "otpInvalid": "Hibás vagy lejárt kód — ellenőrizd, vagy kérj újat.",
       "otpExpired": "Ez a kód lejárt. Kérj újat.",
       "otpTooMany": "Túl sok próbálkozás. Várj egy kicsit, és próbáld újra."
-    }
+    },
+    "register": "Regisztráció",
+    "noAccount": "Nincs fiókod? Regisztrálj",
+    "haveAccount": "Van már fiókod? Jelentkezz be",
+    "fullName": "Vezeték- és keresztnév",
+    "confirmEmailSent": "Ellenőrizd az e-mailed a fiók megerősítéséhez."
   },
   "tabs": {
     "trips": "Fuvarok",

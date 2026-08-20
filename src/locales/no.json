@@ -24,7 +24,12 @@
       "otpInvalid": "Feil eller utløpt kode — sjekk den eller be om en ny.",
       "otpExpired": "Denne koden er utløpt. Be om en ny.",
       "otpTooMany": "For mange forsøk. Vent litt og prøv igjen."
-    }
+    },
+    "register": "Registrer deg",
+    "noAccount": "Ingen konto? Registrer deg",
+    "haveAccount": "Har du allerede en konto? Logg inn",
+    "fullName": "Fornavn og etternavn",
+    "confirmEmailSent": "Sjekk e-posten din for å bekrefte kontoen."
   },
   "tabs": {
     "trips": "Turer",
