@@ -59,7 +59,8 @@
 | Staging seed + merenja | ✅ (tabela gore) |
 
 ## Migracije — ručna primena
-- **DEV:** 0026 primenjena. **STAGING:** 0026 primenjena (za test). **PROD:** **nije** — `db push` 0026 uz odobrenje (aditivno, samo indeksi).
+- **DEV:** 0026 primenjena. **STAGING:** 0026 primenjena (za test). **PROD:** ✅ **0026 primenjena** (uz izričito odobrenje vlasnika; aditivno, samo indeksi).
+  - Tok: link PROD → dry-run = **tačno 0026** (bez odstupanja) → push → **link vraćen na DEV** (`project-ref = icbjagubaftoqcwfcbwf`).
 
 ## Jezici
 i18n **dopunjen u SVIH 30** — `common.loadMore`.
@@ -69,5 +70,5 @@ Deljene `LoadMore`/`DataTable`/`DesktopContainer`; paginacija kroz `.limit(shown
 bez duplirane logike; native tok očuvan.
 
 ## ČEKA SE (potez vlasnika)
-1. `db push` 0026 na PROD (indeksi) uz odobrenje.
+1. ~~`db push` 0026 na PROD~~ — **URAĐENO** (odobreno; indeksi na PROD).
 2. (opciono) čišćenje staging seed-a po `[SEED]` kad test više ne treba.
