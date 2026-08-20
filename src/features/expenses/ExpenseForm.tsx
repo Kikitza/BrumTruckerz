@@ -8,10 +8,8 @@ import { useTranslation } from "react-i18next";
 import type { Palette } from "../../lib/theme";
 import { Field, DateField, PickerField } from "../../components/form";
 import { toNum } from "../../lib/num";
+import { CURRENCIES } from "../../lib/currencies";
 import { EXPENSE_CATEGORIES, type ExpenseCategory } from "./api";
-
-// Najčešće valute na evropskim turama (original sa računa). EUR podrazumevano.
-const CURRENCIES: string[] = ["EUR", "RSD", "PLN", "HUF", "CZK", "RON", "BGN", "CHF", "USD", "GBP", "TRY", "BAM", "MKD"];
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const todayYMD = () => {

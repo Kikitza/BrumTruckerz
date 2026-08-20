@@ -13,6 +13,7 @@ import {
   type ReminderSubjectType, type ReminderRow, type ReminderTypeCatalog, type ReminderMode,
 } from "./api";
 import { proposeDateFromInterval, kmRemaining } from "./status";
+import { CountryPickerField } from "../company/CountryPickerField";
 
 const todayYMD = () => {
   const d = new Date();
@@ -177,7 +178,7 @@ export function ReminderFormModal({
           )}
 
           {type?.needs_country && (
-            <Field label={t("reminders.country")} value={country} onChangeText={setCountry} autoCapitalize="characters" placeholder="AT" colors={colors} />
+            <CountryPickerField label={t("reminders.country")} value={country || null} onSelect={(c) => setCountry(c ?? "")} />
           )}
 
           {editing && (

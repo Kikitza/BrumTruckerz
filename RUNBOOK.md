@@ -107,7 +107,13 @@ Za „aktivnu aplikaciju" danas — Vercel nije korak. Preskoči ga bez griže s
 
 ---
 
-## Onboarding — Nova firma za 2 minuta (platforma)
+## Onboarding — Nova firma za 2 minuta (platforma)  ⚠️ LEGACY
+
+> **LEGACY (F2 finale):** primarni put je sada **samouslužni ČAROBNJAK** u aplikaciji —
+> „Otvori novu firmu" na NoRole ekranu → `create_company_self` (0025) kreira firmu + owner +
+> prazan `invoice_settings`. Vlasnik ne mora da čeka SQL. Ovaj SQL recept ostaje kao rezerva
+> (npr. migracija podataka / masovni unos). **Admin tabla je nepromenjena** — platforma vidi i
+> nove (samouslužne) firme i može ih suspendovati.
 
 Recept za dodavanje NOVE firme sa vlasnikom. (Admin tabla stiže kasnije; za sada SQL.)
 Fajl-šablon: **`supabase/NEW-COMPANY.sql`** (u gitu, bez tajni).

@@ -268,7 +268,8 @@
       "employmentType": "Anställningsform",
       "employmentStart": "Anställningsstart",
       "contractEnd": "Kontraktets slut",
-      "medicalValidUntil": "Läkarintyg giltigt till"
+      "medicalValidUntil": "Läkarintyg giltigt till",
+      "vehicleTypeNone": "Ingen typ / anpassad"
     },
     "employment": {
       "indefinite": "Tillsvidare",
@@ -495,5 +496,77 @@
       "defaultVatRate": "Standardmomssats (%)",
       "defaultVatNote": "Standardmomsanteckning"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Skåpbil",
+    "pickup": "Pickup",
+    "rigid": "Lastbil (solo)",
+    "tractor_semi": "Dragbil + trailer",
+    "reefer": "Kyltransport",
+    "tanker": "Tankbil",
+    "car_carrier": "Biltransport",
+    "tipper": "Tippbil",
+    "container": "Containerbil"
+  },
+  "country": {
+    "select": "Välj land",
+    "search": "Sök",
+    "none": "Inget land"
+  },
+  "company": {
+    "openNew": "Öppna nytt företag",
+    "wizardTitle": "Nytt företag",
+    "name": "Företagsnamn",
+    "country": "Land",
+    "currency": "Valuta",
+    "create": "Skapa företag",
+    "addFirstVehicle": "Lägg till första fordonet",
+    "vehicleType": "Fordonstyp",
+    "step2Hint": "Valfritt — du kan lägga till fordon senare.",
+    "firstVehicle": "Första fordonet",
+    "reviewHint": "Du går in som ägare i ditt nya tomma företag."
   }
 }

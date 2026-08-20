@@ -268,7 +268,8 @@
       "employmentType": "Typ zamestnania",
       "employmentStart": "Začiatok zamestnania",
       "contractEnd": "Koniec zmluvy",
-      "medicalValidUntil": "Lekárska prehliadka platná do"
+      "medicalValidUntil": "Lekárska prehliadka platná do",
+      "vehicleTypeNone": "Bez typu / vlastné"
     },
     "employment": {
       "indefinite": "Na dobu neurčitú",
@@ -495,5 +496,77 @@
       "defaultVatRate": "Predvolená sadzba DPH (%)",
       "defaultVatNote": "Predvolená poznámka k DPH"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Dodávka",
+    "pickup": "Pickup",
+    "rigid": "Sólo vozidlo",
+    "tractor_semi": "Ťahač + náves",
+    "reefer": "Chladiarenské",
+    "tanker": "Cisterna",
+    "car_carrier": "Autotransportér",
+    "tipper": "Sklápač",
+    "container": "Kontajnerové"
+  },
+  "country": {
+    "select": "Vyber krajinu",
+    "search": "Hľadať",
+    "none": "Bez krajiny"
+  },
+  "company": {
+    "openNew": "Otvoriť novú firmu",
+    "wizardTitle": "Nová firma",
+    "name": "Názov firmy",
+    "country": "Krajina",
+    "currency": "Mena",
+    "create": "Vytvoriť firmu",
+    "addFirstVehicle": "Pridať prvé vozidlo",
+    "vehicleType": "Typ vozidla",
+    "step2Hint": "Voliteľné — vozidlá pridáš neskôr.",
+    "firstVehicle": "Prvé vozidlo",
+    "reviewHint": "Vstúpiš ako majiteľ do svojej novej prázdnej firmy."
   }
 }

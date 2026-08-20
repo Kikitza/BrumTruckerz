@@ -268,7 +268,8 @@
       "employmentType": "Rodzaj zatrudnienia",
       "employmentStart": "Początek zatrudnienia",
       "contractEnd": "Koniec umowy",
-      "medicalValidUntil": "Badanie ważne do"
+      "medicalValidUntil": "Badanie ważne do",
+      "vehicleTypeNone": "Bez typu / niestandardowy"
     },
     "employment": {
       "indefinite": "Na czas nieokreślony",
@@ -495,5 +496,77 @@
       "defaultVatRate": "Domyślna stawka VAT (%)",
       "defaultVatNote": "Domyślna uwaga VAT"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Furgon",
+    "pickup": "Pickup",
+    "rigid": "Samochód solo",
+    "tractor_semi": "Ciągnik + naczepa",
+    "reefer": "Chłodnia",
+    "tanker": "Cysterna",
+    "car_carrier": "Autotransporter",
+    "tipper": "Wywrotka",
+    "container": "Kontenerowiec"
+  },
+  "country": {
+    "select": "Wybierz kraj",
+    "search": "Szukaj",
+    "none": "Bez kraju"
+  },
+  "company": {
+    "openNew": "Otwórz nową firmę",
+    "wizardTitle": "Nowa firma",
+    "name": "Nazwa firmy",
+    "country": "Kraj",
+    "currency": "Waluta",
+    "create": "Utwórz firmę",
+    "addFirstVehicle": "Dodaj pierwszy pojazd",
+    "vehicleType": "Typ pojazdu",
+    "step2Hint": "Opcjonalnie — pojazdy dodasz później.",
+    "firstVehicle": "Pierwszy pojazd",
+    "reviewHint": "Wejdziesz jako właściciel do nowej pustej firmy."
   }
 }

@@ -9,6 +9,7 @@ import { Field, ModalScaffold } from "../../components/form";
 import { toInt } from "../../lib/num";
 import { createCustomer, updateCustomer, checkVat, type Customer, type CustomerInput, type ViesResult } from "./api";
 import { isEuVatCountry, viesMessageKey } from "./vies";
+import { CountryPickerField } from "../company/CountryPickerField";
 
 type ViesUi = ViesResult | { status: "not_eu" } | null;
 
@@ -87,7 +88,7 @@ export function CustomerFormModal({
       <ScrollView contentContainerStyle={{ padding: 16, gap: 16, paddingBottom: 32 }} keyboardShouldPersistTaps="handled">
         <Field label={t("customers.fields.name")} value={name} onChangeText={setName} autoCapitalize="sentences" colors={colors} />
         <Field label={t("customers.fields.vatNumber")} value={vat} onChangeText={(s) => { setVat(s); setVies(null); }} autoCapitalize="characters" colors={colors} />
-        <Field label={t("customers.fields.countryCode")} value={country} onChangeText={(s) => { setCountry(s); setVies(null); }} autoCapitalize="characters" placeholder="RS" colors={colors} />
+        <CountryPickerField label={t("customers.fields.countryCode")} value={country || null} onSelect={(c) => { setCountry(c ?? ""); setVies(null); }} />
 
         {/* VIES provera PIB-a */}
         <View style={{ gap: 8 }}>

@@ -17,9 +17,10 @@ import { useTheme, type Palette } from "../../src/lib/theme";
 import { fmtNumber, fmtKm, fmtDate } from "../../src/lib/format";
 import { toNum, toInt } from "../../src/lib/num";
 import {
-  Field, DateField, ModalScaffold, CustomRemindersSection,
+  Field, DateField, ModalScaffold, PickerField, CustomRemindersSection,
   type CustomReminderDraft,
 } from "../../src/components/form";
+import { listVehicleTypes } from "../../src/features/company/api";
 import {
   listVehicles, createVehicle, updateVehicle, deleteVehicle,
   listTrailers, createTrailer, updateTrailer, deleteTrailer,
@@ -241,6 +242,8 @@ function FleetFormModal({
 
   const [registration, setRegistration] = useState(it.registration ?? "");
   const [makeModel, setMakeModel] = useState(it.make_model ?? "");
+  const [typeId, setTypeId] = useState<string | null>(it.type_id ?? null);
+  const vehicleTypesQ = useQuery({ queryKey: ["vehicle-types"], queryFn: listVehicleTypes, enabled: section === "vehicles" });
   const [norm, setNorm] = useState(it.norm_consumption != null ? String(it.norm_consumption) : "");
   const [odometer, setOdometer] = useState(it.current_odometer != null ? String(it.current_odometer) : "");
   const [type, setType] = useState(it.type ?? "");
@@ -304,6 +307,7 @@ function FleetFormModal({
           make_model: makeModel.trim() || null,
           norm_consumption: toNum(norm),
           current_odometer: toInt(odometer),
+          type_id: typeId,
         };
         const saved = editing ? await updateVehicle(item!.id, input) : await createVehicle(input);
         // Rokovi se upisuju posle create-a (treba nam id novog reda za subject_id).
@@ -379,6 +383,10 @@ function FleetFormModal({
           <>
             <Field label={t("fleet.fields.registration")} value={registration}
               onChangeText={setRegistration} autoCapitalize="characters" colors={colors} />
+            <PickerField label={t("company.vehicleType")} value={typeId}
+              options={(vehicleTypesQ.data ?? []).map((vt) => ({ value: vt.id, label: t(vt.name_key) }))}
+              placeholder={t("fleet.fields.vehicleTypeNone")} clearLabel={t("fleet.fields.vehicleTypeNone")}
+              onSelect={setTypeId} colors={colors} />
             <Field label={t("fleet.fields.makeModel")} value={makeModel} onChangeText={setMakeModel} colors={colors} />
             <Field label={t("fleet.fields.normConsumption")} value={norm}
               onChangeText={setNorm} keyboardType="numeric" placeholder="0.0" colors={colors} />

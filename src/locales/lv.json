@@ -268,7 +268,8 @@
       "employmentType": "Nodarbinātības veids",
       "employmentStart": "Nodarbinātības sākums",
       "contractEnd": "Līguma beigas",
-      "medicalValidUntil": "Medicīniskā izziņa derīga līdz"
+      "medicalValidUntil": "Medicīniskā izziņa derīga līdz",
+      "vehicleTypeNone": "Bez tipa / pielāgots"
     },
     "employment": {
       "indefinite": "Beztermiņa",
@@ -495,5 +496,77 @@
       "defaultVatRate": "Noklusētā PVN likme (%)",
       "defaultVatNote": "Noklusētā PVN piezīme"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Furgons",
+    "pickup": "Pikaps",
+    "rigid": "Vienvienīgs kravas auto",
+    "tractor_semi": "Vilcējs + puspiekabe",
+    "reefer": "Refrižerators",
+    "tanker": "Cisterna",
+    "car_carrier": "Autovedējs",
+    "tipper": "Pašizgāzējs",
+    "container": "Konteineru pārvadātājs"
+  },
+  "country": {
+    "select": "Izvēlies valsti",
+    "search": "Meklēt",
+    "none": "Bez valsts"
+  },
+  "company": {
+    "openNew": "Atvērt jaunu uzņēmumu",
+    "wizardTitle": "Jauns uzņēmums",
+    "name": "Uzņēmuma nosaukums",
+    "country": "Valsts",
+    "currency": "Valūta",
+    "create": "Izveidot uzņēmumu",
+    "addFirstVehicle": "Pievienot pirmo transportlīdzekli",
+    "vehicleType": "Transportlīdzekļa tips",
+    "step2Hint": "Neobligāti — transportlīdzekļus vari pievienot vēlāk.",
+    "firstVehicle": "Pirmais transportlīdzeklis",
+    "reviewHint": "Tu ieiesi kā īpašnieks savā jaunajā tukšajā uzņēmumā."
   }
 }

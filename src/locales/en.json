@@ -266,7 +266,8 @@
       "employmentType": "Employment type",
       "employmentStart": "Employment start",
       "contractEnd": "Contract end",
-      "medicalValidUntil": "Medical valid until"
+      "medicalValidUntil": "Medical valid until",
+      "vehicleTypeNone": "No type / custom"
     },
     "employment": {
       "indefinite": "Indefinite",
@@ -493,5 +494,77 @@
       "defaultVatRate": "Default VAT rate (%)",
       "defaultVatNote": "Default VAT note"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Van",
+    "pickup": "Pickup",
+    "rigid": "Rigid truck",
+    "tractor_semi": "Tractor + semitrailer",
+    "reefer": "Refrigerated",
+    "tanker": "Tanker",
+    "car_carrier": "Car carrier",
+    "tipper": "Tipper",
+    "container": "Container carrier"
+  },
+  "country": {
+    "select": "Select country",
+    "search": "Search",
+    "none": "No country"
+  },
+  "company": {
+    "openNew": "Open new company",
+    "wizardTitle": "New company",
+    "name": "Company name",
+    "country": "Country",
+    "currency": "Currency",
+    "create": "Create company",
+    "addFirstVehicle": "Add first vehicle",
+    "vehicleType": "Vehicle type",
+    "step2Hint": "Optional — you can add vehicles later.",
+    "firstVehicle": "First vehicle",
+    "reviewHint": "You'll enter your new empty company as owner."
   }
 }

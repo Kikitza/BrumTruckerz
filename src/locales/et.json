@@ -268,7 +268,8 @@
       "employmentType": "Töösuhte tüüp",
       "employmentStart": "Töösuhte algus",
       "contractEnd": "Lepingu lõpp",
-      "medicalValidUntil": "Tervisetõend kehtib kuni"
+      "medicalValidUntil": "Tervisetõend kehtib kuni",
+      "vehicleTypeNone": "Tüüp puudub / kohandatud"
     },
     "employment": {
       "indefinite": "Tähtajatu",
@@ -495,5 +496,77 @@
       "defaultVatRate": "Vaikimisi käibemaksumäär (%)",
       "defaultVatNote": "Vaikimisi KM märkus"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Kaubik",
+    "pickup": "Pikap",
+    "rigid": "Üksiksõiduk",
+    "tractor_semi": "Veduk + poolhaagis",
+    "reefer": "Külmutusauto",
+    "tanker": "Paakauto",
+    "car_carrier": "Autovedu",
+    "tipper": "Kallur",
+    "container": "Konteinerveok"
+  },
+  "country": {
+    "select": "Vali riik",
+    "search": "Otsi",
+    "none": "Riik puudub"
+  },
+  "company": {
+    "openNew": "Ava uus ettevõte",
+    "wizardTitle": "Uus ettevõte",
+    "name": "Ettevõtte nimi",
+    "country": "Riik",
+    "currency": "Valuuta",
+    "create": "Loo ettevõte",
+    "addFirstVehicle": "Lisa esimene sõiduk",
+    "vehicleType": "Sõiduki tüüp",
+    "step2Hint": "Valikuline — sõidukeid saad lisada hiljem.",
+    "firstVehicle": "Esimene sõiduk",
+    "reviewHint": "Sisened omanikuna oma uude tühja ettevõttesse."
   }
 }

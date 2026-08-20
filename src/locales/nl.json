@@ -268,7 +268,8 @@
       "employmentType": "Type dienstverband",
       "employmentStart": "Begin dienstverband",
       "contractEnd": "Einde contract",
-      "medicalValidUntil": "Medische keuring geldig tot"
+      "medicalValidUntil": "Medische keuring geldig tot",
+      "vehicleTypeNone": "Geen type / aangepast"
     },
     "employment": {
       "indefinite": "Onbepaalde tijd",
@@ -495,5 +496,77 @@
       "defaultVatRate": "Standaard btw-tarief (%)",
       "defaultVatNote": "Standaard btw-notitie"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Bestelwagen",
+    "pickup": "Pick-up",
+    "rigid": "Bakwagen",
+    "tractor_semi": "Trekker + oplegger",
+    "reefer": "Koelwagen",
+    "tanker": "Tankwagen",
+    "car_carrier": "Autotransporter",
+    "tipper": "Kipper",
+    "container": "Containervervoerder"
+  },
+  "country": {
+    "select": "Land kiezen",
+    "search": "Zoeken",
+    "none": "Geen land"
+  },
+  "company": {
+    "openNew": "Nieuw bedrijf openen",
+    "wizardTitle": "Nieuw bedrijf",
+    "name": "Bedrijfsnaam",
+    "country": "Land",
+    "currency": "Valuta",
+    "create": "Bedrijf aanmaken",
+    "addFirstVehicle": "Eerste voertuig toevoegen",
+    "vehicleType": "Voertuigtype",
+    "step2Hint": "Optioneel — je kunt later voertuigen toevoegen.",
+    "firstVehicle": "Eerste voertuig",
+    "reviewHint": "Je komt als eigenaar in je nieuwe lege bedrijf."
   }
 }

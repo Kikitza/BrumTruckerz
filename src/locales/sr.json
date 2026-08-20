@@ -269,7 +269,8 @@
       "employmentType": "Tip zaposlenja",
       "employmentStart": "Datum početka rada",
       "contractEnd": "Kraj ugovora",
-      "medicalValidUntil": "Lekarsko uverenje važi do"
+      "medicalValidUntil": "Lekarsko uverenje važi do",
+      "vehicleTypeNone": "Bez tipa / prilagođeno"
     },
     "employment": {
       "indefinite": "Na neodređeno",
@@ -496,5 +497,77 @@
       "defaultVatRate": "Podrazumevana stopa PDV-a (%)",
       "defaultVatNote": "Podrazumevana napomena o PDV-u"
     }
+  },
+  "countries": {
+    "RS": "Srbija",
+    "AT": "Austrija",
+    "BE": "Belgija",
+    "BG": "Bugarska",
+    "HR": "Hrvatska",
+    "CY": "Kipar",
+    "CZ": "Češka",
+    "DK": "Danska",
+    "EE": "Estonija",
+    "FI": "Finska",
+    "FR": "Francuska",
+    "DE": "Nemačka",
+    "GR": "Grčka",
+    "HU": "Mađarska",
+    "IE": "Irska",
+    "IT": "Italija",
+    "LV": "Letonija",
+    "LT": "Litvanija",
+    "LU": "Luksemburg",
+    "MT": "Malta",
+    "NL": "Holandija",
+    "PL": "Poljska",
+    "PT": "Portugal",
+    "RO": "Rumunija",
+    "SK": "Slovačka",
+    "SI": "Slovenija",
+    "ES": "Španija",
+    "SE": "Švedska",
+    "CH": "Švajcarska",
+    "IS": "Island",
+    "LI": "Lihtenštajn",
+    "NO": "Norveška",
+    "GB": "Ujedinjeno Kraljevstvo",
+    "BA": "Bosna i Hercegovina",
+    "ME": "Crna Gora",
+    "MK": "Severna Makedonija",
+    "AL": "Albanija",
+    "XK": "Kosovo",
+    "TR": "Turska",
+    "UA": "Ukrajina",
+    "MD": "Moldavija"
+  },
+  "vehicleTypes": {
+    "van": "Kombi",
+    "pickup": "Pikap",
+    "rigid": "Solo kamion",
+    "tractor_semi": "Tegljač sa poluprikolicom",
+    "reefer": "Hladnjača",
+    "tanker": "Cisterna",
+    "car_carrier": "Autotransporter",
+    "tipper": "Kiper",
+    "container": "Kontejnerski"
+  },
+  "country": {
+    "select": "Izaberi državu",
+    "search": "Pretraga",
+    "none": "Bez države"
+  },
+  "company": {
+    "openNew": "Otvori novu firmu",
+    "wizardTitle": "Nova firma",
+    "name": "Naziv firme",
+    "country": "Država",
+    "currency": "Valuta",
+    "create": "Otvori firmu",
+    "addFirstVehicle": "Dodaj prvo vozilo",
+    "vehicleType": "Tip vozila",
+    "step2Hint": "Opciono — vozila možeš dodati kasnije.",
+    "firstVehicle": "Prvo vozilo",
+    "reviewHint": "Ulaziš kao vlasnik u svoju novu praznu firmu."
   }
 }

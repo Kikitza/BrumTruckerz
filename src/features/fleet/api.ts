@@ -15,6 +15,7 @@ export type Vehicle = {
   make_model: string | null;
   norm_consumption: number | null; // očekivana potrošnja L/100km
   current_odometer: number | null; // ažurira se iz tura
+  type_id: string | null;          // tip iz šifarnika (0025); null = prilagođeno
   created_at: string;
 };
 
@@ -45,6 +46,7 @@ export type VehicleInput = {
   make_model?: string | null;
   norm_consumption?: number | null;
   current_odometer?: number | null;
+  type_id?: string | null;
 };
 export type TrailerInput = {
   registration: string;
@@ -95,7 +97,7 @@ export async function countVehicles(): Promise<number> {
 export async function listVehicles(): Promise<Vehicle[]> {
   const { data, error } = await supabase
     .from("vehicles")
-    .select("id, company_id, registration, make_model, norm_consumption, current_odometer, created_at")
+    .select("id, company_id, registration, make_model, norm_consumption, current_odometer, type_id, created_at")
     .order("created_at", { ascending: false });
   if (error) throw error;
   return (data ?? []) as Vehicle[];

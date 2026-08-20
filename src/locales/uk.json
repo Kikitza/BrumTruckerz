@@ -268,7 +268,8 @@
       "employmentType": "Тип працевлаштування",
       "employmentStart": "Початок працевлаштування",
       "contractEnd": "Кінець договору",
-      "medicalValidUntil": "Медична довідка дійсна до"
+      "medicalValidUntil": "Медична довідка дійсна до",
+      "vehicleTypeNone": "Без типу / власний"
     },
     "employment": {
       "indefinite": "Безстроковий",
@@ -495,5 +496,77 @@
       "defaultVatRate": "Ставка ПДВ за замовчуванням (%)",
       "defaultVatNote": "Примітка щодо ПДВ за замовчуванням"
     }
+  },
+  "countries": {
+    "RS": "Serbia",
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "IS": "Iceland",
+    "LI": "Liechtenstein",
+    "NO": "Norway",
+    "GB": "United Kingdom",
+    "BA": "Bosnia and Herzegovina",
+    "ME": "Montenegro",
+    "MK": "North Macedonia",
+    "AL": "Albania",
+    "XK": "Kosovo",
+    "TR": "Türkiye",
+    "UA": "Ukraine",
+    "MD": "Moldova"
+  },
+  "vehicleTypes": {
+    "van": "Фургон",
+    "pickup": "Пікап",
+    "rigid": "Одиночна вантажівка",
+    "tractor_semi": "Тягач + напівпричіп",
+    "reefer": "Рефрижератор",
+    "tanker": "Цистерна",
+    "car_carrier": "Автовоз",
+    "tipper": "Самоскид",
+    "container": "Контейнеровоз"
+  },
+  "country": {
+    "select": "Обери країну",
+    "search": "Пошук",
+    "none": "Без країни"
+  },
+  "company": {
+    "openNew": "Відкрити нову компанію",
+    "wizardTitle": "Нова компанія",
+    "name": "Назва компанії",
+    "country": "Країна",
+    "currency": "Валюта",
+    "create": "Створити компанію",
+    "addFirstVehicle": "Додати перший транспорт",
+    "vehicleType": "Тип транспорту",
+    "step2Hint": "Необов'язково — транспорт можна додати пізніше.",
+    "firstVehicle": "Перший транспорт",
+    "reviewHint": "Ти увійдеш як власник у свою нову порожню компанію."
   }
 }
