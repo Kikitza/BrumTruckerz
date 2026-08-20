@@ -12,7 +12,19 @@
     "verify": "Verifica",
     "codeSentTo": "Codice inviato a {{email}}",
     "changeEmail": "Cambia e-mail",
-    "noRole": "L'account non è collegato a nessuna azienda. Contatta il titolare."
+    "noRole": "L'account non è collegato a nessuna azienda. Contatta il titolare.",
+    "methodEmail": "Email",
+    "methodPhone": "Telefono",
+    "phoneNumber": "Numero di telefono",
+    "phonePrefix": "Prefisso paese",
+    "codeSentToPhone": "Codice inviato a {{phone}}",
+    "back": "Indietro",
+    "err": {
+      "phoneInvalid": "Inserisci un numero di telefono valido.",
+      "otpInvalid": "Codice errato o scaduto — controllalo o richiedine uno nuovo.",
+      "otpExpired": "Questo codice è scaduto. Richiedine uno nuovo.",
+      "otpTooMany": "Troppi tentativi. Attendi un momento e riprova."
+    }
   },
   "tabs": {
     "trips": "Viaggi",

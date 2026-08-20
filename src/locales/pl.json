@@ -12,7 +12,19 @@
     "verify": "Zweryfikuj",
     "codeSentTo": "Kod wysłano na {{email}}",
     "changeEmail": "Zmień e-mail",
-    "noRole": "Konto nie jest powiązane z firmą. Skontaktuj się z właścicielem."
+    "noRole": "Konto nie jest powiązane z firmą. Skontaktuj się z właścicielem.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Numer telefonu",
+    "phonePrefix": "Numer kierunkowy",
+    "codeSentToPhone": "Kod wysłano na {{phone}}",
+    "back": "Wstecz",
+    "err": {
+      "phoneInvalid": "Wpisz prawidłowy numer telefonu.",
+      "otpInvalid": "Nieprawidłowy lub wygasły kod — sprawdź go lub poproś o nowy.",
+      "otpExpired": "Ten kod wygasł. Poproś o nowy.",
+      "otpTooMany": "Zbyt wiele prób. Poczekaj chwilę i spróbuj ponownie."
+    }
   },
   "tabs": {
     "trips": "Trasy",

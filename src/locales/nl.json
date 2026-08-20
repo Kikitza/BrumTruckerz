@@ -12,7 +12,19 @@
     "verify": "Verifiëren",
     "codeSentTo": "Code verzonden naar {{email}}",
     "changeEmail": "E-mail wijzigen",
-    "noRole": "Account is niet gekoppeld aan een bedrijf. Neem contact op met de eigenaar."
+    "noRole": "Account is niet gekoppeld aan een bedrijf. Neem contact op met de eigenaar.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Telefoon",
+    "phoneNumber": "Telefoonnummer",
+    "phonePrefix": "Landcode",
+    "codeSentToPhone": "Code verzonden naar {{phone}}",
+    "back": "Terug",
+    "err": {
+      "phoneInvalid": "Voer een geldig telefoonnummer in.",
+      "otpInvalid": "Onjuiste of verlopen code — controleer die of vraag een nieuwe aan.",
+      "otpExpired": "Deze code is verlopen. Vraag een nieuwe aan.",
+      "otpTooMany": "Te veel pogingen. Wacht even en probeer opnieuw."
+    }
   },
   "tabs": {
     "trips": "Ritten",

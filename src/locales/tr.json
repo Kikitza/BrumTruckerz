@@ -12,7 +12,19 @@
     "verify": "Doğrula",
     "codeSentTo": "Kod {{email}} adresine gönderildi",
     "changeEmail": "E-postayı değiştir",
-    "noRole": "Hesap bir şirkete bağlı değil. Sahibiyle iletişime geçin."
+    "noRole": "Hesap bir şirkete bağlı değil. Sahibiyle iletişime geçin.",
+    "methodEmail": "E-posta",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefon numarası",
+    "phonePrefix": "Ülke kodu",
+    "codeSentToPhone": "Kod {{phone}} numarasına gönderildi",
+    "back": "Geri",
+    "err": {
+      "phoneInvalid": "Geçerli bir telefon numarası gir.",
+      "otpInvalid": "Yanlış veya süresi dolmuş kod — kontrol et ya da yeni bir tane iste.",
+      "otpExpired": "Bu kodun süresi doldu. Yeni bir tane iste.",
+      "otpTooMany": "Çok fazla deneme. Lütfen biraz bekle ve tekrar dene."
+    }
   },
   "tabs": {
     "trips": "Seferler",

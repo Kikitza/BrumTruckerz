@@ -12,7 +12,19 @@
     "verify": "Verifiko",
     "codeSentTo": "Kodi u dërgua te {{email}}",
     "changeEmail": "Ndrysho email-in",
-    "noRole": "Llogaria nuk është e lidhur me një kompani. Kontaktoni pronarin."
+    "noRole": "Llogaria nuk është e lidhur me një kompani. Kontaktoni pronarin.",
+    "methodEmail": "Email",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Numri i telefonit",
+    "phonePrefix": "Prefiksi i shtetit",
+    "codeSentToPhone": "Kodi u dërgua te {{phone}}",
+    "back": "Prapa",
+    "err": {
+      "phoneInvalid": "Fut një numër telefoni të vlefshëm.",
+      "otpInvalid": "Kod i gabuar ose i skaduar — kontrolloje ose kërko një të ri.",
+      "otpExpired": "Ky kod ka skaduar. Kërko një të ri.",
+      "otpTooMany": "Shumë përpjekje. Prit një çast dhe provo sërish."
+    }
   },
   "tabs": {
     "trips": "Udhëtimet",

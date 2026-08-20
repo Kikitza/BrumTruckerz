@@ -12,7 +12,19 @@
     "verify": "Overiť",
     "codeSentTo": "Kód odoslaný na {{email}}",
     "changeEmail": "Zmeniť e-mail",
-    "noRole": "Účet nie je prepojený s firmou. Kontaktujte majiteľa."
+    "noRole": "Účet nie je prepojený s firmou. Kontaktujte majiteľa.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Telefón",
+    "phoneNumber": "Telefónne číslo",
+    "phonePrefix": "Predvoľba krajiny",
+    "codeSentToPhone": "Kód odoslaný na {{phone}}",
+    "back": "Späť",
+    "err": {
+      "phoneInvalid": "Zadaj platné telefónne číslo.",
+      "otpInvalid": "Nesprávny alebo expirovaný kód — skontroluj ho alebo si vyžiadaj nový.",
+      "otpExpired": "Tento kód expiroval. Vyžiadaj si nový.",
+      "otpTooMany": "Priveľa pokusov. Chvíľu počkaj a skús to znova."
+    }
   },
   "tabs": {
     "trips": "Jazdy",

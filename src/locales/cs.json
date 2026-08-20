@@ -12,7 +12,19 @@
     "verify": "Ověřit",
     "codeSentTo": "Kód odeslán na {{email}}",
     "changeEmail": "Změnit e-mail",
-    "noRole": "Účet není propojen s firmou. Kontaktujte majitele."
+    "noRole": "Účet není propojen s firmou. Kontaktujte majitele.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefonní číslo",
+    "phonePrefix": "Předvolba země",
+    "codeSentToPhone": "Kód odeslán na {{phone}}",
+    "back": "Zpět",
+    "err": {
+      "phoneInvalid": "Zadej platné telefonní číslo.",
+      "otpInvalid": "Nesprávný nebo vypršený kód — zkontroluj ho nebo si vyžádej nový.",
+      "otpExpired": "Tento kód vypršel. Vyžádej si nový.",
+      "otpTooMany": "Příliš mnoho pokusů. Chvíli počkej a zkus to znovu."
+    }
   },
   "tabs": {
     "trips": "Jízdy",

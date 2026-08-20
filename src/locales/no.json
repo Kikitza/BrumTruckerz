@@ -12,7 +12,19 @@
     "verify": "Bekreft",
     "codeSentTo": "Kode sendt til {{email}}",
     "changeEmail": "Endre e-post",
-    "noRole": "Kontoen er ikke knyttet til et selskap. Kontakt eieren."
+    "noRole": "Kontoen er ikke knyttet til et selskap. Kontakt eieren.",
+    "methodEmail": "E-post",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefonnummer",
+    "phonePrefix": "Landskode",
+    "codeSentToPhone": "Kode sendt til {{phone}}",
+    "back": "Tilbake",
+    "err": {
+      "phoneInvalid": "Skriv inn et gyldig telefonnummer.",
+      "otpInvalid": "Feil eller utløpt kode — sjekk den eller be om en ny.",
+      "otpExpired": "Denne koden er utløpt. Be om en ny.",
+      "otpTooMany": "For mange forsøk. Vent litt og prøv igjen."
+    }
   },
   "tabs": {
     "trips": "Turer",

@@ -12,7 +12,19 @@
     "verify": "Vérifier",
     "codeSentTo": "Code envoyé à {{email}}",
     "changeEmail": "Modifier l'e-mail",
-    "noRole": "Le compte n'est associé à aucune entreprise. Contactez le propriétaire."
+    "noRole": "Le compte n'est associé à aucune entreprise. Contactez le propriétaire.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Téléphone",
+    "phoneNumber": "Numéro de téléphone",
+    "phonePrefix": "Indicatif pays",
+    "codeSentToPhone": "Code envoyé au {{phone}}",
+    "back": "Retour",
+    "err": {
+      "phoneInvalid": "Saisis un numéro de téléphone valide.",
+      "otpInvalid": "Code incorrect ou expiré — vérifie-le ou demandes-en un nouveau.",
+      "otpExpired": "Ce code a expiré. Demandes-en un nouveau.",
+      "otpTooMany": "Trop de tentatives. Patiente un instant et réessaie."
+    }
   },
   "tabs": {
     "trips": "Trajets",

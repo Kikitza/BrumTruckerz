@@ -10,7 +10,19 @@
     "verify": "Verify",
     "codeSentTo": "Code sent to {{email}}",
     "changeEmail": "Change email",
-    "noRole": "Account is not linked to a company. Contact the owner."
+    "noRole": "Account is not linked to a company. Contact the owner.",
+    "methodEmail": "Email",
+    "methodPhone": "Phone",
+    "phoneNumber": "Phone number",
+    "phonePrefix": "Country code",
+    "codeSentToPhone": "Code sent to {{phone}}",
+    "back": "Back",
+    "err": {
+      "phoneInvalid": "Enter a valid phone number.",
+      "otpInvalid": "Incorrect or expired code — check it or request a new one.",
+      "otpExpired": "This code has expired. Request a new one.",
+      "otpTooMany": "Too many attempts. Please wait a moment and try again."
+    }
   },
   "tabs": {
     "trips": "Trips",

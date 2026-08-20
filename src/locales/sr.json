@@ -10,7 +10,19 @@
     "verify": "Potvrdi",
     "codeSentTo": "Kod poslat na {{email}}",
     "changeEmail": "Promeni imejl",
-    "noRole": "Nalog nije povezan sa firmom. Obratite se vlasniku."
+    "noRole": "Nalog nije povezan sa firmom. Obratite se vlasniku.",
+    "methodEmail": "Imejl",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Broj telefona",
+    "phonePrefix": "Pozivni broj",
+    "codeSentToPhone": "Kod poslat na {{phone}}",
+    "back": "Nazad",
+    "err": {
+      "phoneInvalid": "Unesi ispravan broj telefona.",
+      "otpInvalid": "Pogrešan ili istekao kod — proveri ga ili zatraži novi.",
+      "otpExpired": "Ovaj kod je istekao. Zatraži novi.",
+      "otpTooMany": "Previše pokušaja. Sačekaj trenutak pa probaj ponovo."
+    }
   },
   "tabs": {
     "trips": "Ture",

@@ -12,7 +12,19 @@
     "verify": "Bestätigen",
     "codeSentTo": "Code gesendet an {{email}}",
     "changeEmail": "E-Mail ändern",
-    "noRole": "Konto ist keinem Unternehmen zugeordnet. Wenden Sie sich an den Eigentümer."
+    "noRole": "Konto ist keinem Unternehmen zugeordnet. Wenden Sie sich an den Eigentümer.",
+    "methodEmail": "E-Mail",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefonnummer",
+    "phonePrefix": "Ländervorwahl",
+    "codeSentToPhone": "Code gesendet an {{phone}}",
+    "back": "Zurück",
+    "err": {
+      "phoneInvalid": "Gib eine gültige Telefonnummer ein.",
+      "otpInvalid": "Falscher oder abgelaufener Code — prüfe ihn oder fordere einen neuen an.",
+      "otpExpired": "Dieser Code ist abgelaufen. Fordere einen neuen an.",
+      "otpTooMany": "Zu viele Versuche. Bitte warte einen Moment und versuche es erneut."
+    }
   },
   "tabs": {
     "trips": "Touren",

@@ -12,7 +12,19 @@
     "verify": "Bekræft",
     "codeSentTo": "Kode sendt til {{email}}",
     "changeEmail": "Skift e-mail",
-    "noRole": "Kontoen er ikke knyttet til et firma. Kontakt ejeren."
+    "noRole": "Kontoen er ikke knyttet til et firma. Kontakt ejeren.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefonnummer",
+    "phonePrefix": "Landekode",
+    "codeSentToPhone": "Kode sendt til {{phone}}",
+    "back": "Tilbage",
+    "err": {
+      "phoneInvalid": "Indtast et gyldigt telefonnummer.",
+      "otpInvalid": "Forkert eller udløbet kode — tjek den, eller bed om en ny.",
+      "otpExpired": "Denne kode er udløbet. Bed om en ny.",
+      "otpTooMany": "For mange forsøg. Vent et øjeblik, og prøv igen."
+    }
   },
   "tabs": {
     "trips": "Ture",

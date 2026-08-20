@@ -12,7 +12,19 @@
     "verify": "Verifică",
     "codeSentTo": "Cod trimis la {{email}}",
     "changeEmail": "Schimbă e-mailul",
-    "noRole": "Contul nu este asociat unei firme. Contactează proprietarul."
+    "noRole": "Contul nu este asociat unei firme. Contactează proprietarul.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Număr de telefon",
+    "phonePrefix": "Prefix de țară",
+    "codeSentToPhone": "Cod trimis la {{phone}}",
+    "back": "Înapoi",
+    "err": {
+      "phoneInvalid": "Introdu un număr de telefon valid.",
+      "otpInvalid": "Cod incorect sau expirat — verifică-l sau cere unul nou.",
+      "otpExpired": "Acest cod a expirat. Cere unul nou.",
+      "otpTooMany": "Prea multe încercări. Așteaptă un moment și încearcă din nou."
+    }
   },
   "tabs": {
     "trips": "Curse",

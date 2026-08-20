@@ -12,7 +12,19 @@
     "verify": "Patvirtinti",
     "codeSentTo": "Kodas išsiųstas į {{email}}",
     "changeEmail": "Keisti el. paštą",
-    "noRole": "Paskyra nesusieta su įmone. Susisiekite su savininku."
+    "noRole": "Paskyra nesusieta su įmone. Susisiekite su savininku.",
+    "methodEmail": "El. paštas",
+    "methodPhone": "Telefonas",
+    "phoneNumber": "Telefono numeris",
+    "phonePrefix": "Šalies kodas",
+    "codeSentToPhone": "Kodas išsiųstas į {{phone}}",
+    "back": "Atgal",
+    "err": {
+      "phoneInvalid": "Įvesk galiojantį telefono numerį.",
+      "otpInvalid": "Neteisingas arba nebegaliojantis kodas — patikrink jį arba paprašyk naujo.",
+      "otpExpired": "Šis kodas nebegalioja. Paprašyk naujo.",
+      "otpTooMany": "Per daug bandymų. Palauk akimirką ir bandyk dar kartą."
+    }
   },
   "tabs": {
     "trips": "Reisai",

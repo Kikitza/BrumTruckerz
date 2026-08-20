@@ -12,7 +12,19 @@
     "verify": "Potvrdi",
     "codeSentTo": "Kod poslan na {{email}}",
     "changeEmail": "Promijeni e-poštu",
-    "noRole": "Račun nije povezan s tvrtkom. Obratite se vlasniku."
+    "noRole": "Račun nije povezan s tvrtkom. Obratite se vlasniku.",
+    "methodEmail": "E-pošta",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Broj telefona",
+    "phonePrefix": "Pozivni broj",
+    "codeSentToPhone": "Kod poslan na {{phone}}",
+    "back": "Natrag",
+    "err": {
+      "phoneInvalid": "Unesi ispravan broj telefona.",
+      "otpInvalid": "Pogrešan ili istekao kod — provjeri ga ili zatraži novi.",
+      "otpExpired": "Ovaj kod je istekao. Zatraži novi.",
+      "otpTooMany": "Previše pokušaja. Pričekaj trenutak pa pokušaj ponovno."
+    }
   },
   "tabs": {
     "trips": "Ture",

@@ -25,6 +25,7 @@ declare
   u_admin uuid := gen_random_uuid();
   u_dfresh uuid := gen_random_uuid();   -- svež nalog (auth.users, BEZ app_users) → prihvata
   u_dfresh2 uuid := gen_random_uuid();  -- svež nalog za odbijene pokušaje
+  u_dfresh3 uuid := gen_random_uuid();  -- svež nalog bez imena → fallback 'Vozač' (0019)
   u_other uuid := gen_random_uuid();    -- već vozač firme B → drugi tenant
   d_other uuid := gen_random_uuid();
   inv_ok uuid; code_ok text;
@@ -32,7 +33,8 @@ declare
   inv_exp uuid; code_exp text;
   inv_can uuid; code_can text;
   inv_disp uuid; code_disp text;
-  n int; v_result jsonb; v_err text; ok boolean;
+  inv_noname uuid; code_noname text;
+  n int; v_result jsonb; v_txt text; v_err text; ok boolean;
 begin
   -- ═══ FIXTURES (kao postgres, bypass RLS) ═══
   insert into auth.users (id, instance_id, aud, role, email) values
@@ -42,6 +44,7 @@ begin
     (u_admin,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_admin||'@t.local'),
     (u_dfresh,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_dfresh||'@t.local'),
     (u_dfresh2,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_dfresh2||'@t.local'),
+    (u_dfresh3,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_dfresh3||'@t.local'),
     (u_other,'00000000-0000-0000-0000-000000000000','authenticated','authenticated', u_other||'@t.local');
   insert into companies (id, name, status) values
     (c_a,'A','active'), (c_b,'B','active'), (c_s,'S','suspended');
@@ -69,6 +72,9 @@ begin
   insert into invitations (company_id, created_by, role)
     values (c_a, u_oa, 'dispatcher') returning id, code into inv_disp;
   select code into code_disp from invitations where id = inv_disp;
+  insert into invitations (company_id, created_by, role)  -- BEZ invited_name → fallback 'Vozač'
+    values (c_a, u_oa, 'driver') returning id, code into inv_noname;
+  select code into code_noname from invitations where id = inv_noname;
 
   -- kod je 8 znakova iz alfabeta bez O/0/I/1
   if code_ok !~ '^[2-9A-HJ-NP-Z]{8}$' then raise exception 'FAIL: kod pogrešan format (%)', code_ok; end if;
@@ -113,9 +119,11 @@ begin
   -- app_users nastao (most: company_id + role driver) — vozač čita svoj red
   select count(*) into n from app_users where id = u_dfresh and company_id = c_a and role = 'driver';
   if n <> 1 then raise exception 'FAIL: most — app_users vozača nije postavljen (company/role)'; end if;
-  -- driver_profile nastao (BT-D)
+  -- driver_profile nastao (BT-D), display_name iz invited_name pozivnice (0019)
   select count(*) into n from driver_profiles where user_id = u_dfresh and public_no ~ '^BT-D-\d{5,}$';
   if n <> 1 then raise exception 'FAIL: driver_profile (BT-D) nije nastao'; end if;
+  select display_name into v_txt from driver_profiles where user_id = u_dfresh;
+  if v_txt <> 'Novi Vozač' then raise exception 'FAIL: display_name nije invited_name (%)', v_txt; end if;
   -- aktivno zaposlenje u firmi A
   select count(*) into n from employments where user_id = u_dfresh and company_id = c_a and status = 'active' and role_on_company = 'driver';
   if n <> 1 then raise exception 'FAIL: aktivno zaposlenje nije nastalo'; end if;
@@ -160,6 +168,17 @@ begin
   -- svež nalog 2 je posle svih odbijenih pokušaja OSTAO bez firme/reda
   select count(*) into n from app_users where id = u_dfresh2;
   if n <> 0 then raise exception 'FAIL: odbijeni pokušaji ipak napravili app_users'; end if;
+
+  -- ═══ (0019) FALLBACK IMENA: pozivnica bez invited_name → display_name = 'Vozač' ═══
+  perform set_config('request.jwt.claims', json_build_object('sub', u_dfresh3)::text, true);
+  v_result := accept_invitation(code_noname);
+  if v_result->>'status' <> 'accepted' then raise exception 'FAIL: no-name accept nije prošao'; end if;
+  select display_name into v_txt from driver_profiles where user_id = u_dfresh3;
+  if v_txt <> 'Vozač' then raise exception 'FAIL: fallback ime nije Vozač (%)', v_txt; end if;
+  -- i drivers.full_name je 'Vozač' (ne NULL, ne imejl)
+  perform set_config('request.jwt.claims', json_build_object('sub', u_oa)::text, true);
+  select full_name into v_txt from drivers where user_id = u_dfresh3 and company_id = c_a;
+  if v_txt <> 'Vozač' then raise exception 'FAIL: drivers.full_name fallback nije Vozač (%)', v_txt; end if;
 
   -- Sve prošlo → namerni rollback (read-only).
   raise exception 'ALL_INVITATIONS_TESTS_PASSED';

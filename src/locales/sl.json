@@ -12,7 +12,19 @@
     "verify": "Potrdi",
     "codeSentTo": "Koda poslana na {{email}}",
     "changeEmail": "Spremeni e-pošto",
-    "noRole": "Račun ni povezan s podjetjem. Obrnite se na lastnika."
+    "noRole": "Račun ni povezan s podjetjem. Obrnite se na lastnika.",
+    "methodEmail": "E-pošta",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefonska številka",
+    "phonePrefix": "Klicna koda",
+    "codeSentToPhone": "Koda poslana na {{phone}}",
+    "back": "Nazaj",
+    "err": {
+      "phoneInvalid": "Vnesi veljavno telefonsko številko.",
+      "otpInvalid": "Napačna ali potekla koda — preveri jo ali zahtevaj novo.",
+      "otpExpired": "Ta koda je potekla. Zahtevaj novo.",
+      "otpTooMany": "Preveč poskusov. Počakaj trenutek in poskusi znova."
+    }
   },
   "tabs": {
     "trips": "Ture",

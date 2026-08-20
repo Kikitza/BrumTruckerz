@@ -12,7 +12,19 @@
     "verify": "Apstiprināt",
     "codeSentTo": "Kods nosūtīts uz {{email}}",
     "changeEmail": "Mainīt e-pastu",
-    "noRole": "Konts nav saistīts ar uzņēmumu. Sazinieties ar īpašnieku."
+    "noRole": "Konts nav saistīts ar uzņēmumu. Sazinieties ar īpašnieku.",
+    "methodEmail": "E-pasts",
+    "methodPhone": "Tālrunis",
+    "phoneNumber": "Tālruņa numurs",
+    "phonePrefix": "Valsts kods",
+    "codeSentToPhone": "Kods nosūtīts uz {{phone}}",
+    "back": "Atpakaļ",
+    "err": {
+      "phoneInvalid": "Ievadi derīgu tālruņa numuru.",
+      "otpInvalid": "Nepareizs vai beidzies kods — pārbaudi to vai pieprasi jaunu.",
+      "otpExpired": "Šis kods ir beidzies. Pieprasi jaunu.",
+      "otpTooMany": "Pārāk daudz mēģinājumu. Uzgaidi brīdi un mēģini vēlreiz."
+    }
   },
   "tabs": {
     "trips": "Reisi",

@@ -12,7 +12,19 @@
     "verify": "Vahvista",
     "codeSentTo": "Koodi lähetetty osoitteeseen {{email}}",
     "changeEmail": "Vaihda sähköposti",
-    "noRole": "Tiliä ei ole liitetty yritykseen. Ota yhteyttä omistajaan."
+    "noRole": "Tiliä ei ole liitetty yritykseen. Ota yhteyttä omistajaan.",
+    "methodEmail": "Sähköposti",
+    "methodPhone": "Puhelin",
+    "phoneNumber": "Puhelinnumero",
+    "phonePrefix": "Maakoodi",
+    "codeSentToPhone": "Koodi lähetetty numeroon {{phone}}",
+    "back": "Takaisin",
+    "err": {
+      "phoneInvalid": "Anna kelvollinen puhelinnumero.",
+      "otpInvalid": "Väärä tai vanhentunut koodi — tarkista se tai pyydä uusi.",
+      "otpExpired": "Tämä koodi on vanhentunut. Pyydä uusi.",
+      "otpTooMany": "Liian monta yritystä. Odota hetki ja yritä uudelleen."
+    }
   },
   "tabs": {
     "trips": "Kuljetukset",

@@ -12,7 +12,19 @@
     "verify": "Kinnita",
     "codeSentTo": "Kood saadeti aadressile {{email}}",
     "changeEmail": "Muuda e-posti",
-    "noRole": "Konto ei ole seotud ühegi ettevõttega. Võtke ühendust omanikuga."
+    "noRole": "Konto ei ole seotud ühegi ettevõttega. Võtke ühendust omanikuga.",
+    "methodEmail": "E-post",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefoninumber",
+    "phonePrefix": "Riigikood",
+    "codeSentToPhone": "Kood saadeti numbrile {{phone}}",
+    "back": "Tagasi",
+    "err": {
+      "phoneInvalid": "Sisesta kehtiv telefoninumber.",
+      "otpInvalid": "Vale või aegunud kood — kontrolli seda või küsi uus.",
+      "otpExpired": "See kood on aegunud. Küsi uus.",
+      "otpTooMany": "Liiga palju katseid. Oota hetk ja proovi uuesti."
+    }
   },
   "tabs": {
     "trips": "Reisid",

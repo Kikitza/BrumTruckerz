@@ -12,7 +12,19 @@
     "verify": "Verifiera",
     "codeSentTo": "Kod skickad till {{email}}",
     "changeEmail": "Byt e-post",
-    "noRole": "Kontot är inte kopplat till ett företag. Kontakta ägaren."
+    "noRole": "Kontot är inte kopplat till ett företag. Kontakta ägaren.",
+    "methodEmail": "E-post",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefonnummer",
+    "phonePrefix": "Landskod",
+    "codeSentToPhone": "Kod skickad till {{phone}}",
+    "back": "Tillbaka",
+    "err": {
+      "phoneInvalid": "Ange ett giltigt telefonnummer.",
+      "otpInvalid": "Felaktig eller utgången kod — kontrollera den eller begär en ny.",
+      "otpExpired": "Den här koden har gått ut. Begär en ny.",
+      "otpTooMany": "För många försök. Vänta en stund och försök igen."
+    }
   },
   "tabs": {
     "trips": "Turer",

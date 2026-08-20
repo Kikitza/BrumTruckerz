@@ -10,15 +10,19 @@ import { supabase } from "../../src/lib/supabase";
 import { useTheme } from "../../src/lib/theme";
 import { Screen } from "../../src/components/Screen";
 import { LanguagePicker } from "../../src/i18n/LanguagePicker";
+import { PhoneSignIn } from "../../src/features/auth/PhoneSignIn";
 import LogoLight from "../../assets/brand/logo-horizontal.svg";
 import LogoDark from "../../assets/brand/logo-horizontal-dark.svg";
 
 const LAST_EMAIL_KEY = "auth.lastEmail";
 
+type Method = "email" | "phone";
+
 export default function SignIn() {
   const { t } = useTranslation();
   const { colors, scheme } = useTheme();
   const Logo = scheme === "dark" ? LogoDark : LogoLight;
+  const [method, setMethod] = useState<Method>("email");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -50,33 +54,61 @@ export default function SignIn() {
       <Logo width={224} height={40} style={{ alignSelf: "center", marginTop: 16, marginBottom: 20 }} />
       <Text style={{ fontSize: 24, fontWeight: "700", color: colors.text }}>{t("auth.signIn")}</Text>
 
-      <TextInput placeholder={t("auth.email")} autoCapitalize="none" keyboardType="email-address"
-        autoComplete="email" textContentType="emailAddress"
-        value={email} onChangeText={setEmail} placeholderTextColor={colors.textMuted} style={input} />
-
-      {/* Lozinka + oko za prikaži/sakrij; sistemski menadžer lozinki kroz autoComplete/textContentType */}
-      <View style={{ flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: colors.border, borderRadius: 8, backgroundColor: colors.surface }}>
-        <TextInput
-          placeholder={t("auth.password")} secureTextEntry={!showPassword}
-          autoCapitalize="none" autoComplete="current-password" textContentType="password"
-          value={password} onChangeText={setPassword} placeholderTextColor={colors.textMuted}
-          style={{ flex: 1, padding: 12, color: colors.text }}
-        />
-        <Pressable
-          onPress={() => setShowPassword((s) => !s)}
-          hitSlop={8}
-          accessibilityRole="button"
-          accessibilityLabel={t(showPassword ? "auth.hidePassword" : "auth.showPassword")}
-          style={{ paddingHorizontal: 12, paddingVertical: 12 }}
-        >
-          <Text style={{ fontSize: 18 }}>{showPassword ? "🙈" : "👁"}</Text>
-        </Pressable>
+      {/* Izbor načina prijave: email ili telefon */}
+      <View style={{ flexDirection: "row", gap: 8 }}>
+        {(["email", "phone"] as Method[]).map((m) => {
+          const active = method === m;
+          return (
+            <Pressable
+              key={m}
+              onPress={() => setMethod(m)}
+              style={{
+                flex: 1, paddingVertical: 10, borderRadius: 8, alignItems: "center", borderWidth: 1,
+                borderColor: active ? colors.primary : colors.border,
+                backgroundColor: active ? colors.primary : colors.surface,
+              }}
+            >
+              <Text style={{ color: active ? colors.onPrimary : colors.text, fontWeight: "600" }}>
+                {t(m === "email" ? "auth.methodEmail" : "auth.methodPhone")}
+              </Text>
+            </Pressable>
+          );
+        })}
       </View>
 
-      <Pressable onPress={signIn} disabled={busy || !email.includes("@") || password.length < 6}
-        style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 14, alignItems: "center", opacity: busy ? 0.6 : 1 }}>
-        <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("auth.signIn")}</Text>
-      </Pressable>
+      {method === "phone" ? (
+        <PhoneSignIn />
+      ) : (
+        <>
+          <TextInput placeholder={t("auth.email")} autoCapitalize="none" keyboardType="email-address"
+            autoComplete="email" textContentType="emailAddress"
+            value={email} onChangeText={setEmail} placeholderTextColor={colors.textMuted} style={input} />
+
+          {/* Lozinka + oko za prikaži/sakrij; sistemski menadžer lozinki kroz autoComplete/textContentType */}
+          <View style={{ flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: colors.border, borderRadius: 8, backgroundColor: colors.surface }}>
+            <TextInput
+              placeholder={t("auth.password")} secureTextEntry={!showPassword}
+              autoCapitalize="none" autoComplete="current-password" textContentType="password"
+              value={password} onChangeText={setPassword} placeholderTextColor={colors.textMuted}
+              style={{ flex: 1, padding: 12, color: colors.text }}
+            />
+            <Pressable
+              onPress={() => setShowPassword((s) => !s)}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={t(showPassword ? "auth.hidePassword" : "auth.showPassword")}
+              style={{ paddingHorizontal: 12, paddingVertical: 12 }}
+            >
+              <Text style={{ fontSize: 18 }}>{showPassword ? "🙈" : "👁"}</Text>
+            </Pressable>
+          </View>
+
+          <Pressable onPress={signIn} disabled={busy || !email.includes("@") || password.length < 6}
+            style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 14, alignItems: "center", opacity: busy ? 0.6 : 1 }}>
+            <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("auth.signIn")}</Text>
+          </Pressable>
+        </>
+      )}
     </Screen>
   );
 }

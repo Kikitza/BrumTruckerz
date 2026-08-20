@@ -209,3 +209,27 @@ Metod: native `pg_dump`/`pg_restore` (PG17) preko **IPv4 poolera** — bez Docke
    probe **resetuj PROD DB lozinku** (bila je u sesiji) i obriši/ugasi staging ako ne treba (troškovi).
 
 **Higijena:** admin nalog je SAMO za platformu (ne vezuj ga za firmu); jaka lozinka; ne deli ga.
+
+## Aktivacija SMS-a na produkciji (SAMO ZAPIS — ne primenjuje se u test režimu)
+
+> DEV je u **TEST režimu**: `external_phone_enabled=true`, `sms_provider=twilio` **bez kredencijala**,
+> `sms_test_otp` sadrži fiksne test brojeve → kod stiže samo za te brojeve, **ništa se stvarno ne šalje, nula troška**.
+> Pravi SMS se pali **tek na produkcijskom lansiranju**, uz izričito odobrenje vlasnika. Koraci:
+
+1. **Twilio Verify nalog** (preporuka: Verify, ne obični Messaging — Twilio drži OTP/rate/retry):
+   - kreiraj Twilio nalog → **Verify Service** → uzmi `Account SID`, `Auth Token`, `Verify Service SID`.
+2. **Unesi kredencijale na PROD projektu** (Dashboard → Authentication → Providers → Phone → *Twilio Verify*),
+   ili kroz Management API `PATCH /v1/projects/<PROD_REF>/config/auth`:
+   `sms_provider=twilio_verify`, `sms_twilio_verify_account_sid`, `sms_twilio_verify_auth_token`,
+   `sms_twilio_verify_message_service_sid`.
+3. **ISKLJUČI test brojeve** na PRODU: `sms_test_otp=""` i `sms_test_otp_valid_until=null`
+   (inače bi fiksni kodovi radili i na produkciji — bezbednosna rupa).
+4. **Rate limits**: `rate_limit_sms_sent` (SMS/sat po projektu) i `sms_max_frequency` (min. razmak između
+   dva slanja istom broju) — postavi razumno (npr. 5–10/sat po broju) da se spreči zloupotreba/trošak.
+5. **CAPTCHA / Attestation**: uključi CAPTCHA na Auth (Dashboard → Authentication → Attack Protection),
+   da botovi ne pale SMS troškove (Turnstile/hCaptcha; klijent šalje `captchaToken` uz `signInWithOtp`).
+6. **Provera pre puštanja**: pošalji na SVOJ pravi broj jednom, potvrdi da OTP stiže i da verifikacija radi;
+   pa proveri da test brojevi VIŠE ne prolaze (korak 3).
+
+**Rollback SMS-a** (ako zatreba): `external_phone_enabled=false` — telefon nestaje sa login ekrana (klijent
+gate-uje po grešci), email/lozinka ostaje.

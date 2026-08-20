@@ -12,7 +12,19 @@
     "verify": "Ellenőrzés",
     "codeSentTo": "A kódot elküldtük ide: {{email}}",
     "changeEmail": "E-mail módosítása",
-    "noRole": "A fiók nincs céghez rendelve. Vedd fel a kapcsolatot a tulajdonossal."
+    "noRole": "A fiók nincs céghez rendelve. Vedd fel a kapcsolatot a tulajdonossal.",
+    "methodEmail": "E-mail",
+    "methodPhone": "Telefon",
+    "phoneNumber": "Telefonszám",
+    "phonePrefix": "Országhívó",
+    "codeSentToPhone": "Kód elküldve ide: {{phone}}",
+    "back": "Vissza",
+    "err": {
+      "phoneInvalid": "Adj meg érvényes telefonszámot.",
+      "otpInvalid": "Hibás vagy lejárt kód — ellenőrizd, vagy kérj újat.",
+      "otpExpired": "Ez a kód lejárt. Kérj újat.",
+      "otpTooMany": "Túl sok próbálkozás. Várj egy kicsit, és próbáld újra."
+    }
   },
   "tabs": {
     "trips": "Fuvarok",

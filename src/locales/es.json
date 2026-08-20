@@ -12,7 +12,19 @@
     "verify": "Verificar",
     "codeSentTo": "Código enviado a {{email}}",
     "changeEmail": "Cambiar correo electrónico",
-    "noRole": "La cuenta no está vinculada a ninguna empresa. Contacte con el propietario."
+    "noRole": "La cuenta no está vinculada a ninguna empresa. Contacte con el propietario.",
+    "methodEmail": "Correo",
+    "methodPhone": "Teléfono",
+    "phoneNumber": "Número de teléfono",
+    "phonePrefix": "Prefijo de país",
+    "codeSentToPhone": "Código enviado a {{phone}}",
+    "back": "Atrás",
+    "err": {
+      "phoneInvalid": "Introduce un número de teléfono válido.",
+      "otpInvalid": "Código incorrecto o caducado — verifícalo o solicita uno nuevo.",
+      "otpExpired": "Este código ha caducado. Solicita uno nuevo.",
+      "otpTooMany": "Demasiados intentos. Espera un momento e inténtalo de nuevo."
+    }
   },
   "tabs": {
     "trips": "Viajes",
