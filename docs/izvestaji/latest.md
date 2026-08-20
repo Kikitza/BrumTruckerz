@@ -1,74 +1,74 @@
-# IZVEŠTAJ — F2 KRIŠKA 1: NARUČIOCI (kartoteka klijenata + tura dobija naručioca)
+# IZVEŠTAJ — F2 KRIŠKA 2: VIES PROVERA PIB-a (da li je EU PIB stvaran i na koga glasi)
 
 > STATUS: **URAĐENO na DEV-u i COMMITOVANO+PUSH-ovano** (commit-first; izveštaj u istom commitu).
-> Migracija 0021 primenjena na DEV. PROD/STAGING **netaknuti**. VIES provera NIJE u ovoj krišci (sledeća).
+> Migracija 0022 primenjena; Edge `vies-check` deploy-ovana na DEV. PROD/STAGING **netaknuti**.
+> **VIES nema ključeve — nikakve tajne u kodu ni u izveštaju.**
 
 ## Izmene (spisak)
-- **`supabase/migrations/0021_customers.sql`** (novo):
-  - **`customers`** (company_id, `name` NOT NULL, `vat_number`, `country_code` (2 slova, tekst), `contact_email`,
-    `contact_phone`, `address`, `payment_terms_days` default 30, `note`, `archived_at`, `created_at`); indeks
-    `(company_id, archived_at, name)`.
-  - **RLS:** `customers_office` (owner+dispatcher pun pristup u SVOJOJ firmi kroz `is_office_role()`); **vozač i
-    platform_admin NEMAJU politiku → NIŠTA** (fail-closed); RESTRICTIVE suspend-gate (insert/update/delete, obrazac 0015).
-  - **`trips.customer_id`** uuid null FK → customers **ON DELETE RESTRICT** (naručilac sa turama se ne briše —
-    arhivira se; postojeće ture ostaju bez naručioca — legalno i zauvek dozvoljeno); indeks `(company_id, customer_id)`.
-  - `driver_trips` view (0001) je kolonski eksplicitan → **NE dobija** `customer_id`. Vozač naručioca ne vidi nigde.
-- **`src/features/customers/api.ts`** (novo) — `listCustomers` (sa `trip_count` preko embedded `trips(count)`),
-  `listActiveCustomers`, `createCustomer`, `updateCustomer`, `archiveCustomer`, `unarchiveCustomer`, `deleteCustomer`.
-- **`src/features/customers/CustomerFormModal.tsx`** (novo) — Nov/Izmeni (REVERZIBILNOST #2: forma sa vrednostima).
-- **`src/features/customers/CustomerPickerField.tsx`** (novo) — picker aktivnih + „Bez naručioca" + prečica
-  „Nov naručilac" (otvara formu, po kreiranju odmah bira). Koristi se SAMO na owner/office ekranima ture.
-- **`app/(owner)/customers.tsx`** (novo) + **`app/(owner)/_layout.tsx`** (tab „Naručioci") — lista (naziv, PIB, rok
-  plaćanja, broj tura), filter aktivni/arhivirani; brisanje: SA turama → samo „Arhiviraj" (+ „Aktiviraj" nazad, uz
-  potvrdu); BEZ tura → „Obriši" (uz potvrdu).
-- **`src/features/trips/api.ts`** — `Trip.customer_id`, `CreateTripInput.customer_id`, `ownerCreateTrip` upisuje ga,
-  `ownerGetTrip` embeduje `customer:customers(name)`, novi `ownerUpdateTripCustomer(tripId, customerId)`.
-- **`NewTripModal.tsx`** (korak 4: „Naručilac" picker) i **`TripDetailModal.tsx`** (Finansije: picker naručioca,
-  čuva se odmah po izboru) — naziv naručioca u detaljima ture.
-- **`src/locales/*.json`** (svih 30) — `tabs.customers`, `trip.fields.customer`/`customerNone`, ceo `customers` namespace.
+- **`supabase/migrations/0022_customers_vies.sql`** (novo, aditivno) — `customers` + `vies_valid` (bool null),
+  `vies_checked_at` (timestamptz null), `vies_name` (text null).
+- **`supabase/functions/vies-check/index.ts`** (novo) — `requireOffice`; ulaz `{country_code, vat_number,
+  customer_id?}` → zove ZVANIČNI VIES REST (`ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number`) →
+  `{status: valid|invalid|unavailable, name, address}`. Ako je `customer_id` iz firme pozivaoca (`loadOwnCustomer`)
+  → upiše ishod na naručioca (osim `unavailable`). **Timeout 12s + fetch-catch → `unavailable` (ne ruši).**
+- **`supabase/functions/_shared/auth.ts`** — dodat `loadOwnCustomer` (provera firme, kao `loadOwnDriver`).
+- **`src/features/customers/vies.ts`** (+`.test.ts`, novo) — čiste fn: `VIES_COUNTRIES` (28: 27 članica + `XI`;
+  Grčka je `EL`, ne `GR`), `viesCountryCode` (GR→EL), `isEuVatCountry`, `normalizeVat` (velika slova, [A-Z0-9],
+  skida vodeći kod zemlje), `viesMessageKey` (ishod → i18n).
+- **`src/features/customers/api.ts`** — `Customer` + VIES polja; `checkVat()` (invoke `vies-check`, izvlači Edge grešku).
+- **`CustomerFormModal.tsx`** — dugme „Proveri PIB" (aktivno kad EU zemlja + PIB): ✓ „Validan — <ime>" (+ „Preuzmi
+  naziv" ako se razlikuje od unetog), ✗ „Nije pronađen u VIES" (**UPOZORENJE, ne blokira čuvanje**), ⚠ „Servis
+  nedostupan", i EU-only poruka za ne-EU zemlju.
+- **`app/(owner)/customers.tsx`** — na kartici bedž „PIB proveren ✓ <datum>" (i suptilno „PIB nije pronađen" kad je proveren a nevažeći).
+- **`src/locales/*.json`** (svih 30) — `customers.checkVat`, `customers.useName`, `customers.vies.*`.
+
+## Smoke na DEV-u (ishodi)
+Direktno na ZVANIČNI VIES REST (isti poziv koji Edge radi) + provera da je Edge zaštićena:
+| Slučaj | Ulaz | Ishod |
+|---|---|---|
+| **Validan EU PIB** | `IE 6388047V` (javno poznat) | `valid:true`, ime **„GOOGLE IRELAND LIMITED"** → status **valid** |
+| **Nevalidan EU PIB** | `DE 000000000` | `valid:false` → status **invalid** („Nije pronađen u VIES") |
+| **Ne-EU (RS)** | `RS 123456789` | VIES `errorWrappers: INVALID_INPUT`; klijent to i NE zove — `isEuVatCountry('RS')=false` → poruka **„VIES proverava samo EU PIB-ove"** |
+| **Edge auth** | anon poziv `vies-check` | **HTTP 401 „Neautorizovano"** (requireOffice) |
+
+VIES oblici (valid/invalid/non-EU) provereni uživo i poklapaju se sa parserom Edge funkcije (`valid` bool +
+`name`/`address` ili `"---"`; servisne greške kroz `errorWrappers[].error`, „nedostupno" kodovi → `unavailable`).
 
 ## Odluke / odstupanja (CLAUDE.md pravilo 5)
-1. **Vozač naručioca NE vidi** — potvrđeno na DVA nivoa: (a) `customers` RLS nema vozačku politiku (select 0);
-   (b) `driver_trips` view nema `customer_id` kolonu (test to i tvrdi). Finansijska sfera ostaje van vozača.
-2. **platform_admin NIŠTA** nad `customers` (poslovni sadržaj, u duhu 0014) — nema politike.
-3. **Naručilac na turi = office** (owner+dispatcher), menja se kroz `trips` update (RLS office iz 0020); ne dira
-   dodelu/vozarinu. Editovanje dozvoljeno i na završenoj turi (poslovni podatak, kao finansije).
-4. **Arhiviraj vs Obriši** vođeno `trip_count`-om (embedded count): sa turama → arhiva (RESTRICT ionako brani
-   brisanje u bazi — dupla brana), bez tura → brisanje.
+1. **✗ ne blokira čuvanje** — VIES „nije pronađen" je UPOZORENJE (vlasnikova odluka); naručilac se svejedno čuva.
+2. **`unavailable` se NE upisuje** na naručioca (ne kvari poslednji dobar ishod); mrežna/timeout greška → `unavailable`.
+3. **Grčka = `EL`** u VIES-u (ne `GR`) i **`XI`** za Sev. Irsku — pokriveno listom i `GR→EL` aliasom.
+4. **Duplirana EU/normalizacija na dve strane** (klijent `vies.ts` u TS, Edge inline u Deno) — namerno: Edge je
+   drugi runtime (Deno, bez pristupa `src/`), pa ne može da uveze klijentski modul; logika je minimalna i ista.
+5. Provera radi i za **nesačuvanog** naručioca (bez `customer_id`) — samo prikaz + „Preuzmi naziv"; za sačuvanog se ishod i upisuje (badge).
 
 ## Test matrica
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ čisto |
-| `npm test` (jest) | ✅ 13 suita / 91 test (čiste fn nepromenjene — customers je DB-testiran) |
+| `npm test` (jest) | ✅ 14 suita / 99 testova (uklj. `vies` — 8 novih: normalizacija/EU lista/mapiranje) |
 | `npm run lint` | ✅ 0 grešaka (5 postojećih upozorenja u tuđim fajlovima) |
-| `npm run test:db` | ✅ ALL PASSED (… + **customers**) |
+| `npm run test:db` | ✅ ALL PASSED (customers svita i dalje prolazi sa novim kolonama) |
+| Smoke (VIES REST + Edge 401) | ✅ (tabela gore) |
 
-**customers_test.sql:** office (owner+dispatcher) pun pristup u svojoj firmi; izolacija firmi (owner B 0);
-**vozač 0**; **platform_admin 0**; suspend-gate (dispečer obustavljene firme ne upisuje); **RESTRICT** brisanja
-naručioca SA turom (arhiviranje umesto), brisanje BEZ tura dozvoljeno; **driver_trips nema `customer_id`**.
-
-## Migracije — ručna primena
-- **DEV:** `0021` primenjena (`supabase db push --linked`).
-- **STAGING / PROD:** **nije dirano.** Primena uz odobrenje: `db push` (0021 je aditivna — nova tabela + nova
-  nullable kolona sa FK; bez dodira postojećih podataka). Nema Edge/Auth promena u ovoj krišci.
-- **HITNI SQL / rollback (DEV):** `alter table trips drop column customer_id; drop table customers;`
+## Migracije / deploy — ručna primena
+- **DEV:** `0022` primenjena; Edge `vies-check` deploy-ovana.
+- **STAGING / PROD:** **nije dirano.** Primena uz odobrenje: `db push` (0022 aditivno — 3 nullable kolone) +
+  `functions deploy vies-check`. Bez tajni/Auth promena.
+- **HITNI SQL / rollback (DEV):** `alter table customers drop column vies_valid, drop column vies_checked_at, drop column vies_name;`
 
 ## Jezici
-i18n **dopunjen u SVIH 30 jezika** — `tabs.customers`, `trip.fields.customer`/`customerNone`, `customers` namespace
-(polja + akcije + `tripCount_one/_other`). `sr`/`en` autorski; 28 mašinski (status `"machine"` nepromenjen);
-`en` potpun (fallback). Skripta potvrdila poklapanje ključeva.
+i18n **dopunjen u SVIH 30 jezika** — `customers.checkVat`, `customers.useName`, `customers.vies.*`. `sr`/`en`
+autorski; 28 mašinski (status `"machine"` nepromenjen); `en` potpun (fallback). Skripta potvrdila poklapanje.
 
 ## Reverzibilnost
-Nov/Izmeni kroz modal; arhiviranje i brisanje **uz potvrdu**; „Aktiviraj" vraća arhiviranog. Picker na turi ima
-„Bez naručioca" (uklanjanje). Nema gubitka unosa.
+Provera je nedestruktivna; ishod se može ponovo pokrenuti. „Preuzmi naziv" je opciono (ne prepisuje bez klika).
+Izmena naziva/PIB-a resetuje prikazani ishod dok se ne proveri ponovo.
 
 ## Kvalitet koda
-Slojevi razdvojeni (jedini Supabase sloj `customers/api.ts`; UI zove api); reusable `CustomerPickerField`
-(deljen između Nove ture i Izmeni); prati postojeće obrasce (fleet CRUD, PickerField/ModalScaffold, React Query
-invalidacije, is_office_role gate, test:db impersonacija). Bez duplirane logike; **pravila kvaliteta ispoštovana.**
+Slojevi razdvojeni (VIES poziv u Edge; klijent kroz `customers/api.ts`; čiste fn u `vies.ts`); reusable
+`loadOwnCustomer`; prati postojeće obrasce (edge `requireOffice`/`fnError`, React Query invalidacije, tokeni/`t()`).
+**Pravila kvaliteta ispoštovana** (jedini svesni dup: EU/normalizacija u dva runtime-a, obrazloženo).
 
 ## ČEKA SE (potez vlasnika)
-1. Kad se bude primenjivalo na PROD: `db push 0021` uz odobrenje (aditivno; bez Edge/Auth).
-
-> Napomena: higijena iz F0 (oba reseta DB lozinki) je ODRAĐENA; staging OSTAJE kao pozornica za probe — te stavke se više ne vode u „ČEKA SE".
+1. Kad se bude primenjivalo na PROD: `db push 0022` + `functions deploy vies-check` uz odobrenje (aditivno, bez tajni).

@@ -54,3 +54,13 @@ export async function loadOwnDriver(ctx: OfficeCtx, driverId: string) {
   if (driver.company_id !== ctx.companyId) throw new HttpError(403, "Vozač nije iz vaše firme");
   return driver as { id: string; company_id: string; user_id: string | null; full_name: string };
 }
+
+// Učitaj naručioca i potvrdi da pripada firmi POZIVAOCA (403 ako ne).
+export async function loadOwnCustomer(ctx: OfficeCtx, customerId: string) {
+  if (!customerId) throw new HttpError(400, "customer_id je obavezan");
+  const { data: c, error } = await ctx.admin
+    .from("customers").select("id, company_id, name, country_code, vat_number").eq("id", customerId).single();
+  if (error || !c) throw new HttpError(404, "Naručilac ne postoji");
+  if (c.company_id !== ctx.companyId) throw new HttpError(403, "Naručilac nije iz vaše firme");
+  return c as { id: string; company_id: string; name: string; country_code: string | null; vat_number: string | null };
+}

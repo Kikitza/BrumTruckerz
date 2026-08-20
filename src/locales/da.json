@@ -395,6 +395,17 @@
       "address": "Adresse",
       "paymentTerms": "Betalingsfrist (dage)",
       "note": "Note"
+    },
+    "checkVat": "Tjek momsnr.",
+    "useName": "Brug dette navn",
+    "vies": {
+      "valid": "Gyldigt — {{name}}",
+      "validNoName": "Gyldigt",
+      "invalid": "Ikke fundet i VIES",
+      "unavailable": "Tjenesten er midlertidigt utilgængelig — prøv igen senere",
+      "notEu": "VIES tjekker kun EU-momsnumre",
+      "badge": "Momsnr. bekræftet ✓ {{date}}",
+      "badgeInvalid": "Momsnr. ikke fundet ({{date}})"
     }
   }
 }

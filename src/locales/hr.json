@@ -395,6 +395,17 @@
       "address": "Adresa",
       "paymentTerms": "Rok plaćanja (dana)",
       "note": "Napomena"
+    },
+    "checkVat": "Provjeri OIB/VAT",
+    "useName": "Preuzmi naziv",
+    "vies": {
+      "valid": "Valjan — {{name}}",
+      "validNoName": "Valjan",
+      "invalid": "Nije pronađen u VIES",
+      "unavailable": "Usluga trenutačno nedostupna — pokušaj kasnije",
+      "notEu": "VIES provjerava samo EU VAT brojeve",
+      "badge": "VAT provjeren ✓ {{date}}",
+      "badgeInvalid": "VAT nije pronađen ({{date}})"
     }
   }
 }

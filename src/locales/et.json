@@ -395,6 +395,17 @@
       "address": "Aadress",
       "paymentTerms": "Maksetähtaeg (päeva)",
       "note": "Märkus"
+    },
+    "checkVat": "Kontrolli KMKR",
+    "useName": "Kasuta seda nime",
+    "vies": {
+      "valid": "Kehtiv — {{name}}",
+      "validNoName": "Kehtiv",
+      "invalid": "VIES-ist ei leitud",
+      "unavailable": "Teenus pole ajutiselt saadaval — proovi hiljem",
+      "notEu": "VIES kontrollib ainult ELi käibemaksunumbreid",
+      "badge": "KMKR kinnitatud ✓ {{date}}",
+      "badgeInvalid": "KMKR ei leitud ({{date}})"
     }
   }
 }

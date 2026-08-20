@@ -395,6 +395,17 @@
       "address": "Adress",
       "paymentTerms": "Betalningsvillkor (dagar)",
       "note": "Anteckning"
+    },
+    "checkVat": "Kontrollera moms",
+    "useName": "Använd detta namn",
+    "vies": {
+      "valid": "Giltigt — {{name}}",
+      "validNoName": "Giltigt",
+      "invalid": "Hittades inte i VIES",
+      "unavailable": "Tjänsten är tillfälligt otillgänglig — försök igen senare",
+      "notEu": "VIES kontrollerar bara EU-momsnummer",
+      "badge": "Moms verifierat ✓ {{date}}",
+      "badgeInvalid": "Moms hittades inte ({{date}})"
     }
   }
 }

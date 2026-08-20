@@ -395,6 +395,17 @@
       "address": "Osoite",
       "paymentTerms": "Maksuehto (päivää)",
       "note": "Muistiinpano"
+    },
+    "checkVat": "Tarkista ALV",
+    "useName": "Käytä tätä nimeä",
+    "vies": {
+      "valid": "Kelvollinen — {{name}}",
+      "validNoName": "Kelvollinen",
+      "invalid": "Ei löytynyt VIES:stä",
+      "unavailable": "Palvelu ei ole tilapäisesti käytettävissä — yritä myöhemmin",
+      "notEu": "VIES tarkistaa vain EU:n ALV-numerot",
+      "badge": "ALV vahvistettu ✓ {{date}}",
+      "badgeInvalid": "ALV ei löytynyt ({{date}})"
     }
   }
 }

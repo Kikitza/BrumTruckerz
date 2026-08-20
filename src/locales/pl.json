@@ -395,6 +395,17 @@
       "address": "Adres",
       "paymentTerms": "Termin płatności (dni)",
       "note": "Notatka"
+    },
+    "checkVat": "Sprawdź NIP",
+    "useName": "Użyj tej nazwy",
+    "vies": {
+      "valid": "Ważny — {{name}}",
+      "validNoName": "Ważny",
+      "invalid": "Nie znaleziono w VIES",
+      "unavailable": "Usługa chwilowo niedostępna — spróbuj później",
+      "notEu": "VIES sprawdza tylko numery VAT z UE",
+      "badge": "NIP zweryfikowany ✓ {{date}}",
+      "badgeInvalid": "NIP nie znaleziony ({{date}})"
     }
   }
 }

@@ -396,6 +396,17 @@
       "address": "Adresa",
       "paymentTerms": "Rok plaćanja (dana)",
       "note": "Napomena"
+    },
+    "checkVat": "Proveri PIB",
+    "useName": "Preuzmi naziv",
+    "vies": {
+      "valid": "Validan — {{name}}",
+      "validNoName": "Validan",
+      "invalid": "Nije pronađen u VIES",
+      "unavailable": "Servis trenutno nedostupan — pokušaj kasnije",
+      "notEu": "VIES proverava samo EU PIB-ove",
+      "badge": "PIB proveren ✓ {{date}}",
+      "badgeInvalid": "PIB nije pronađen ({{date}})"
     }
   }
 }

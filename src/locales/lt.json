@@ -395,6 +395,17 @@
       "address": "Adresas",
       "paymentTerms": "Mokėjimo terminas (dienos)",
       "note": "Pastaba"
+    },
+    "checkVat": "Tikrinti PVM",
+    "useName": "Naudoti šį pavadinimą",
+    "vies": {
+      "valid": "Galiojantis — {{name}}",
+      "validNoName": "Galiojantis",
+      "invalid": "Nerasta VIES",
+      "unavailable": "Paslauga laikinai nepasiekiama — pabandyk vėliau",
+      "notEu": "VIES tikrina tik ES PVM numerius",
+      "badge": "PVM patvirtintas ✓ {{date}}",
+      "badgeInvalid": "PVM nerastas ({{date}})"
     }
   }
 }

@@ -395,6 +395,17 @@
       "address": "Adresa",
       "paymentTerms": "Rok plaćanja (dana)",
       "note": "Napomena"
+    },
+    "checkVat": "Provjeri PDV",
+    "useName": "Preuzmi naziv",
+    "vies": {
+      "valid": "Validan — {{name}}",
+      "validNoName": "Validan",
+      "invalid": "Nije pronađen u VIES",
+      "unavailable": "Servis trenutno nedostupan — pokušaj kasnije",
+      "notEu": "VIES provjerava samo EU PDV brojeve",
+      "badge": "PDV provjeren ✓ {{date}}",
+      "badgeInvalid": "PDV nije pronađen ({{date}})"
     }
   }
 }

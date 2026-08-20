@@ -6,6 +6,7 @@ import { View, Text, Pressable, FlatList, ActivityIndicator, Alert } from "react
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
+import { fmtDate } from "../../src/lib/format";
 import {
   listCustomers, archiveCustomer, unarchiveCustomer, deleteCustomer, type Customer,
 } from "../../src/features/customers/api";
@@ -113,6 +114,17 @@ function Row({
       <Pressable style={{ flex: 1 }} onPress={onEdit}>
         <Text style={{ color: colors.text, fontWeight: "600" }}>{c.name}</Text>
         {meta ? <Text style={{ color: colors.textMuted, marginTop: 2, fontSize: 12 }}>{meta}</Text> : null}
+        {c.vies_checked_at ? (
+          c.vies_valid ? (
+            <Text style={{ color: colors.primary, marginTop: 2, fontSize: 12 }}>
+              {t("customers.vies.badge", { date: fmtDate(c.vies_checked_at) })}
+            </Text>
+          ) : (
+            <Text style={{ color: colors.warn, marginTop: 2, fontSize: 12 }}>
+              {t("customers.vies.badgeInvalid", { date: fmtDate(c.vies_checked_at) })}
+            </Text>
+          )
+        ) : null}
       </Pressable>
       {archived ? (
         <Pressable onPress={onUnarchive} hitSlop={8} style={{ padding: 8 }}>

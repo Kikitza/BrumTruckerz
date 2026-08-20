@@ -395,6 +395,17 @@
       "address": "Cím",
       "paymentTerms": "Fizetési határidő (nap)",
       "note": "Megjegyzés"
+    },
+    "checkVat": "Adószám ellenőrzése",
+    "useName": "Ez a név átvétele",
+    "vies": {
+      "valid": "Érvényes — {{name}}",
+      "validNoName": "Érvényes",
+      "invalid": "Nem található a VIES-ben",
+      "unavailable": "A szolgáltatás átmenetileg nem elérhető — próbáld később",
+      "notEu": "A VIES csak EU-s adószámokat ellenőriz",
+      "badge": "Adószám ellenőrizve ✓ {{date}}",
+      "badgeInvalid": "Adószám nem található ({{date}})"
     }
   }
 }

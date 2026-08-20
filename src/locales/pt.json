@@ -395,6 +395,17 @@
       "address": "Morada",
       "paymentTerms": "Prazo de pagamento (dias)",
       "note": "Nota"
+    },
+    "checkVat": "Verificar NIF",
+    "useName": "Usar este nome",
+    "vies": {
+      "valid": "Válido — {{name}}",
+      "validNoName": "Válido",
+      "invalid": "Não encontrado no VIES",
+      "unavailable": "Serviço temporariamente indisponível — tenta mais tarde",
+      "notEu": "O VIES só verifica NIF da UE",
+      "badge": "NIF verificado ✓ {{date}}",
+      "badgeInvalid": "NIF não encontrado ({{date}})"
     }
   }
 }

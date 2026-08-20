@@ -395,6 +395,17 @@
       "address": "Adrese",
       "paymentTerms": "Apmaksas termiņš (dienas)",
       "note": "Piezīme"
+    },
+    "checkVat": "Pārbaudīt PVN",
+    "useName": "Izmantot šo nosaukumu",
+    "vies": {
+      "valid": "Derīgs — {{name}}",
+      "validNoName": "Derīgs",
+      "invalid": "Nav atrasts VIES",
+      "unavailable": "Pakalpojums īslaicīgi nav pieejams — mēģini vēlāk",
+      "notEu": "VIES pārbauda tikai ES PVN numurus",
+      "badge": "PVN pārbaudīts ✓ {{date}}",
+      "badgeInvalid": "PVN nav atrasts ({{date}})"
     }
   }
 }

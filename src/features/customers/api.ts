@@ -16,6 +16,9 @@ export type Customer = {
   note: string | null;
   archived_at: string | null;
   created_at: string;
+  vies_valid: boolean | null;       // ishod poslednje VIES provere (0022)
+  vies_checked_at: string | null;
+  vies_name: string | null;         // naziv iz VIES registra (kad je validan)
   trip_count: number; // broj tura koje ga koriste (odlučuje arhiviraj vs briši)
 };
 
@@ -31,7 +34,7 @@ export type CustomerInput = {
 };
 
 const COLS =
-  "id, company_id, name, vat_number, country_code, contact_email, contact_phone, address, payment_terms_days, note, archived_at, created_at, trips(count)";
+  "id, company_id, name, vat_number, country_code, contact_email, contact_phone, address, payment_terms_days, note, archived_at, created_at, vies_valid, vies_checked_at, vies_name, trips(count)";
 
 type Row = Omit<Customer, "trip_count"> & { trips: { count: number }[] };
 
@@ -99,4 +102,37 @@ export async function unarchiveCustomer(id: string): Promise<void> {
 export async function deleteCustomer(id: string): Promise<void> {
   const { error } = await supabase.from("customers").delete().eq("id", id);
   if (error) throw error;
+}
+
+// ── VIES provera PIB-a (Edge funkcija vies-check) ──
+export type ViesResult = {
+  status: "valid" | "invalid" | "unavailable";
+  name: string | null;
+  address: string | null;
+  checked_at: string | null;
+};
+
+// Izvuci poruku greške iz Edge funkcije (telo { error }) — inače generička.
+async function fnError(error: unknown, fallback: string): Promise<Error> {
+  const ctx = (error as { context?: { json?: () => Promise<{ error?: string }> } })?.context;
+  try {
+    const body = await ctx?.json?.();
+    if (body?.error) return new Error(body.error);
+  } catch { /* telo nije JSON */ }
+  return new Error((error as Error)?.message ?? fallback);
+}
+
+// Proveri PIB kroz VIES. Ako je customer_id dat → ishod se upisuje na naručioca (badge).
+export async function checkVat(input: {
+  country_code: string; vat_number: string; customer_id?: string | null;
+}): Promise<ViesResult> {
+  const { data, error } = await supabase.functions.invoke("vies-check", {
+    body: {
+      country_code: input.country_code,
+      vat_number: input.vat_number,
+      ...(input.customer_id ? { customer_id: input.customer_id } : {}),
+    },
+  });
+  if (error) throw await fnError(error, "VIES provera nije uspela");
+  return data as ViesResult;
 }

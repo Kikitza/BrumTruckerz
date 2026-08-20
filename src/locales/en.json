@@ -393,6 +393,17 @@
       "address": "Address",
       "paymentTerms": "Payment terms (days)",
       "note": "Note"
+    },
+    "checkVat": "Check VAT",
+    "useName": "Use this name",
+    "vies": {
+      "valid": "Valid — {{name}}",
+      "validNoName": "Valid",
+      "invalid": "Not found in VIES",
+      "unavailable": "Service temporarily unavailable — try again later",
+      "notEu": "VIES only checks EU VAT numbers",
+      "badge": "VAT verified ✓ {{date}}",
+      "badgeInvalid": "VAT not found ({{date}})"
     }
   }
 }

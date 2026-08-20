@@ -395,6 +395,17 @@
       "address": "Adresse",
       "paymentTerms": "Zahlungsziel (Tage)",
       "note": "Notiz"
+    },
+    "checkVat": "USt-IdNr. prüfen",
+    "useName": "Diesen Namen übernehmen",
+    "vies": {
+      "valid": "Gültig — {{name}}",
+      "validNoName": "Gültig",
+      "invalid": "Nicht in VIES gefunden",
+      "unavailable": "Dienst vorübergehend nicht verfügbar — später erneut versuchen",
+      "notEu": "VIES prüft nur EU-USt-IdNr.",
+      "badge": "USt-IdNr. geprüft ✓ {{date}}",
+      "badgeInvalid": "USt-IdNr. nicht gefunden ({{date}})"
     }
   }
 }

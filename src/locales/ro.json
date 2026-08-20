@@ -395,6 +395,17 @@
       "address": "Adresă",
       "paymentTerms": "Termen de plată (zile)",
       "note": "Notă"
+    },
+    "checkVat": "Verifică TVA",
+    "useName": "Folosește acest nume",
+    "vies": {
+      "valid": "Valid — {{name}}",
+      "validNoName": "Valid",
+      "invalid": "Negăsit în VIES",
+      "unavailable": "Serviciu temporar indisponibil — încearcă mai târziu",
+      "notEu": "VIES verifică doar codurile TVA din UE",
+      "badge": "TVA verificat ✓ {{date}}",
+      "badgeInvalid": "TVA negăsit ({{date}})"
     }
   }
 }

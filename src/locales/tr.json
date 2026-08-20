@@ -395,6 +395,17 @@
       "address": "Adres",
       "paymentTerms": "Ödeme vadesi (gün)",
       "note": "Not"
+    },
+    "checkVat": "KDV'yi doğrula",
+    "useName": "Bu adı kullan",
+    "vies": {
+      "valid": "Geçerli — {{name}}",
+      "validNoName": "Geçerli",
+      "invalid": "VIES'te bulunamadı",
+      "unavailable": "Hizmet geçici olarak kullanılamıyor — daha sonra dene",
+      "notEu": "VIES yalnızca AB KDV numaralarını doğrular",
+      "badge": "KDV doğrulandı ✓ {{date}}",
+      "badgeInvalid": "KDV bulunamadı ({{date}})"
     }
   }
 }

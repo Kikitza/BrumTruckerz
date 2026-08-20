@@ -395,6 +395,17 @@
       "address": "Adresse",
       "paymentTerms": "Délai de paiement (jours)",
       "note": "Note"
+    },
+    "checkVat": "Vérifier la TVA",
+    "useName": "Utiliser ce nom",
+    "vies": {
+      "valid": "Valide — {{name}}",
+      "validNoName": "Valide",
+      "invalid": "Introuvable dans VIES",
+      "unavailable": "Service temporairement indisponible — réessaie plus tard",
+      "notEu": "VIES ne vérifie que les numéros de TVA de l'UE",
+      "badge": "TVA vérifiée ✓ {{date}}",
+      "badgeInvalid": "TVA introuvable ({{date}})"
     }
   }
 }

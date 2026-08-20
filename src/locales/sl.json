@@ -395,6 +395,17 @@
       "address": "Naslov",
       "paymentTerms": "Plačilni rok (dni)",
       "note": "Opomba"
+    },
+    "checkVat": "Preveri DDV",
+    "useName": "Uporabi to ime",
+    "vies": {
+      "valid": "Veljaven — {{name}}",
+      "validNoName": "Veljaven",
+      "invalid": "Ni najden v VIES",
+      "unavailable": "Storitev trenutno ni na voljo — poskusi pozneje",
+      "notEu": "VIES preverja samo DDV številke EU",
+      "badge": "DDV preverjen ✓ {{date}}",
+      "badgeInvalid": "DDV ni najden ({{date}})"
     }
   }
 }

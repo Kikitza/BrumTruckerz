@@ -395,6 +395,17 @@
       "address": "Adresse",
       "paymentTerms": "Betalingsfrist (dager)",
       "note": "Notat"
+    },
+    "checkVat": "Sjekk MVA",
+    "useName": "Bruk dette navnet",
+    "vies": {
+      "valid": "Gyldig — {{name}}",
+      "validNoName": "Gyldig",
+      "invalid": "Ikke funnet i VIES",
+      "unavailable": "Tjenesten er midlertidig utilgjengelig — prøv igjen senere",
+      "notEu": "VIES sjekker bare MVA-numre i EU",
+      "badge": "MVA bekreftet ✓ {{date}}",
+      "badgeInvalid": "MVA ikke funnet ({{date}})"
     }
   }
 }

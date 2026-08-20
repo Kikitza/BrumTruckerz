@@ -395,6 +395,17 @@
       "address": "Adresa",
       "paymentTerms": "Splatnosť (dni)",
       "note": "Poznámka"
+    },
+    "checkVat": "Overiť IČ DPH",
+    "useName": "Použiť tento názov",
+    "vies": {
+      "valid": "Platné — {{name}}",
+      "validNoName": "Platné",
+      "invalid": "Nenájdené vo VIES",
+      "unavailable": "Služba je dočasne nedostupná — skús to neskôr",
+      "notEu": "VIES overuje iba IČ DPH z EÚ",
+      "badge": "IČ DPH overené ✓ {{date}}",
+      "badgeInvalid": "IČ DPH nenájdené ({{date}})"
     }
   }
 }

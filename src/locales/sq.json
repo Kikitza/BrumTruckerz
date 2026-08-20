@@ -395,6 +395,17 @@
       "address": "Adresa",
       "paymentTerms": "Afati i pagesës (ditë)",
       "note": "Shënim"
+    },
+    "checkVat": "Kontrollo NIPT",
+    "useName": "Përdor këtë emër",
+    "vies": {
+      "valid": "I vlefshëm — {{name}}",
+      "validNoName": "I vlefshëm",
+      "invalid": "Nuk u gjet në VIES",
+      "unavailable": "Shërbimi përkohësisht i padisponueshëm — provo më vonë",
+      "notEu": "VIES kontrollon vetëm NIPT-et e BE-së",
+      "badge": "NIPT i verifikuar ✓ {{date}}",
+      "badgeInvalid": "NIPT nuk u gjet ({{date}})"
     }
   }
 }

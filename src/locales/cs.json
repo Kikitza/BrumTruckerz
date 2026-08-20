@@ -395,6 +395,17 @@
       "address": "Adresa",
       "paymentTerms": "Splatnost (dny)",
       "note": "Poznámka"
+    },
+    "checkVat": "Ověřit DIČ",
+    "useName": "Použít tento název",
+    "vies": {
+      "valid": "Platné — {{name}}",
+      "validNoName": "Platné",
+      "invalid": "Nenalezeno ve VIES",
+      "unavailable": "Služba je dočasně nedostupná — zkus to později",
+      "notEu": "VIES ověřuje pouze DIČ z EU",
+      "badge": "DIČ ověřeno ✓ {{date}}",
+      "badgeInvalid": "DIČ nenalezeno ({{date}})"
     }
   }
 }

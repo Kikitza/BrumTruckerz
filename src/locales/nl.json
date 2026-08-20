@@ -395,6 +395,17 @@
       "address": "Adres",
       "paymentTerms": "Betalingstermijn (dagen)",
       "note": "Notitie"
+    },
+    "checkVat": "Btw controleren",
+    "useName": "Deze naam gebruiken",
+    "vies": {
+      "valid": "Geldig — {{name}}",
+      "validNoName": "Geldig",
+      "invalid": "Niet gevonden in VIES",
+      "unavailable": "Dienst tijdelijk niet beschikbaar — probeer later opnieuw",
+      "notEu": "VIES controleert alleen btw-nummers van de EU",
+      "badge": "Btw geverifieerd ✓ {{date}}",
+      "badgeInvalid": "Btw niet gevonden ({{date}})"
     }
   }
 }

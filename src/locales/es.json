@@ -395,6 +395,17 @@
       "address": "Dirección",
       "paymentTerms": "Plazo de pago (días)",
       "note": "Nota"
+    },
+    "checkVat": "Verificar IVA",
+    "useName": "Usar este nombre",
+    "vies": {
+      "valid": "Válido — {{name}}",
+      "validNoName": "Válido",
+      "invalid": "No encontrado en VIES",
+      "unavailable": "Servicio temporalmente no disponible — inténtalo más tarde",
+      "notEu": "VIES solo verifica números de IVA de la UE",
+      "badge": "IVA verificado ✓ {{date}}",
+      "badgeInvalid": "IVA no encontrado ({{date}})"
     }
   }
 }
