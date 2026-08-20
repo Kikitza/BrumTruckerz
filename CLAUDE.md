@@ -49,13 +49,13 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 - Testovi za: offline red (enqueue/flush/retry), fx obračun, RLS (firma A ≠ firma B), correct_trip_event lanac verzija.
 - **Provere na kraju svakog zadatka (ritual):** `npm run typecheck` **i** `npm test` moraju biti čisti; `npm run lint` bez **grešaka** (upozorenja su dozvoljena). Iste tri provere vrti CI (`.github/workflows/ci.yml`).
 - **COMMIT-FIRST (način rada):** po završetku zadatka sa zelenim proverama — **ODMAH commit i push**. Pregled vlasnika/savetnika ide **POSLE, iz commita**; ispravke kao **novi commit** (ili revert). Ne čeka se odobrenje za commit. (Izuzetak ostaje: **PROD/STAGING migracije** i dalje samo uz izričito odobrenje — commit-first se odnosi na kod/DEV, ne na produkcionu primenu šeme.)
-- **IZVEŠTAJ (obavezno):** na kraju SVAKOG zadatka upiši kompletan rezime u `IZVESTAJ.md` u korenu projekta, **prepisujući** stari sadržaj (uvek samo poslednji zadatak). Rezime obavezno sadrži: spisak izmena, test matricu (ili test listu), podsetnik za ručnu primenu migracija (ako ih ima) i eventualni HITNI SQL / rollback. `IZVESTAJ.md` je u `.gitignore` (ne commituje se) — služi da preživi reset sesije/Codespace-a.
+- **IZVEŠTAJ (obavezno):** na kraju SVAKOG zadatka upiši kompletan rezime u **`docs/izvestaji/latest.md`**, **prepisujući** stari sadržaj (uvek samo poslednji zadatak), i **COMMIT-uj ga U ISTOM commitu sa poslom** (fajl JESTE u repou, nije u `.gitignore`). Rezime obavezno sadrži: spisak izmena, test matricu (ili test listu), podsetnik za ručnu primenu migracija (ako ih ima) i eventualni HITNI SQL / rollback. **TAJNE:** u izveštaj se NIKAD ne pišu VREDNOSTI tajni (lozinke, tokeni, ključevi, connection stringovi) — samo imena/mesta; proveri i tekst koji prenosiš/citiraš. (Stari `IZVESTAJ.md` u korenu je UKINUT iz upotrebe.)
 
 ## JEZICI — važi za svaki zadatak
 1. **Svaki novi i18n ključ se u ISTOM zadatku dodaje u SVE jezičke fajlove** (`src/locales/*.json`): `sr` i `en` autorski (verified), svi ostali mašinski prevod. Lista jezika je u `src/i18n/languages.ts`.
 2. **`en` ostaje fallback** — nijedan ključ ne sme da postoji samo u nekom drugom jeziku a da fali u `en`.
 3. **Status fajla (`"machine"`/`"verified"`) se NE menja** osim izričitim zadatkom overavanja tog jezika.
-4. **Svaki `IZVESTAJ.md` potvrđuje** da su svi jezici dopunjeni (ili da i18n nije diran).
+4. **Svaki izveštaj (`docs/izvestaji/latest.md`) potvrđuje** da su svi jezici dopunjeni (ili da i18n nije diran).
 
 ## REVERZIBILNOST — važi za svaki zadatak
 1. **Svaki višekoračni tok ima „Nazad"** bez gubitka unosa (stanje živi u roditelju, koraci renderuju podskup).
@@ -68,5 +68,5 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 2. **Bez špageta:** jedna funkcija = jedna odgovornost; UI koji se ponavlja se izdvaja kao reusable komponenta; fajl koji naraste da radi više nesrodnih stvari se deli (orijentir: preko ~400 linija razmisli o podeli).
 3. **Imenovanje** jasno i dosledno postojećim konvencijama; **bez mrtvog koda** i zakomentarisanih blokova.
 4. **Prati postojeće obrasce** projekta (React Query invalidacije, offline handleri, RPC gde postoji) umesto uvođenja paralelnih rešenja.
-5. Ako zadatak traži nešto što bi ova pravila prekršilo — **ne ćuti:** uradi čistije i obrazloži u `IZVESTAJ.md`, ili stani i pitaj.
-6. Svaki `IZVESTAJ.md` sadrži **jednu liniju**: potvrda da su pravila kvaliteta ispoštovana, ili šta tačno odstupa i zašto.
+5. Ako zadatak traži nešto što bi ova pravila prekršilo — **ne ćuti:** uradi čistije i obrazloži u `docs/izvestaji/latest.md`, ili stani i pitaj.
+6. Svaki izveštaj sadrži **jednu liniju**: potvrda da su pravila kvaliteta ispoštovana, ili šta tačno odstupa i zašto.
