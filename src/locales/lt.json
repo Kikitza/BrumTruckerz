@@ -132,6 +132,12 @@
       "arrived": "Atvykta",
       "border": "Siena",
       "needKm": "Įveskite ridą"
+    },
+    "table": {
+      "route": "Maršrutas",
+      "status": "Būsena",
+      "revenue": "Pajamos",
+      "date": "Data"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Neterminuota",
       "fixed_term": "Terminuota"
+    },
+    "table": {
+      "reminders": "Terminai"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES tikrina tik ES PVM numerius",
       "badge": "PVM patvirtintas ✓ {{date}}",
       "badgeInvalid": "PVM nerastas ({{date}})"
+    },
+    "table": {
+      "trips": "Reisai",
+      "status": "Būsena"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Numatytasis PVM tarifas (%)",
       "defaultVatNote": "Numatytoji PVM pastaba"
     },
-    "printPdf": "Spausdinti / Išsaugoti PDF"
+    "printPdf": "Spausdinti / Išsaugoti PDF",
+    "table": {
+      "no": "Nr.",
+      "status": "Būsena"
+    }
   },
   "countries": {
     "RS": "Serbia",

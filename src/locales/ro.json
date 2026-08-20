@@ -132,6 +132,12 @@
       "arrived": "Sosire",
       "border": "Frontieră",
       "needKm": "Introduceți kilometrajul"
+    },
+    "table": {
+      "route": "Rută",
+      "status": "Stare",
+      "revenue": "Venit",
+      "date": "Data"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Pe perioadă nedeterminată",
       "fixed_term": "Pe perioadă determinată"
+    },
+    "table": {
+      "reminders": "Termene"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES verifică doar codurile TVA din UE",
       "badge": "TVA verificat ✓ {{date}}",
       "badgeInvalid": "TVA negăsit ({{date}})"
+    },
+    "table": {
+      "trips": "Curse",
+      "status": "Stare"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Cotă TVA implicită (%)",
       "defaultVatNote": "Notă TVA implicită"
     },
-    "printPdf": "Printează / Salvează PDF"
+    "printPdf": "Printează / Salvează PDF",
+    "table": {
+      "no": "Nr.",
+      "status": "Stare"
+    }
   },
   "countries": {
     "RS": "Serbia",

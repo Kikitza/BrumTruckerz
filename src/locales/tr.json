@@ -132,6 +132,12 @@
       "arrived": "Varış",
       "border": "Sınır",
       "needKm": "Kilometreyi girin"
+    },
+    "table": {
+      "route": "Güzergâh",
+      "status": "Durum",
+      "revenue": "Gelir",
+      "date": "Tarih"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Belirsiz süreli",
       "fixed_term": "Belirli süreli"
+    },
+    "table": {
+      "reminders": "Vadeler"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES yalnızca AB KDV numaralarını doğrular",
       "badge": "KDV doğrulandı ✓ {{date}}",
       "badgeInvalid": "KDV bulunamadı ({{date}})"
+    },
+    "table": {
+      "trips": "Seferler",
+      "status": "Durum"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Varsayılan KDV oranı (%)",
       "defaultVatNote": "Varsayılan KDV notu"
     },
-    "printPdf": "Yazdır / PDF kaydet"
+    "printPdf": "Yazdır / PDF kaydet",
+    "table": {
+      "no": "No",
+      "status": "Durum"
+    }
   },
   "countries": {
     "RS": "Serbia",

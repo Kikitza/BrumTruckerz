@@ -132,6 +132,12 @@
       "arrived": "Пристигнување",
       "border": "Граница",
       "needKm": "Внесете километража"
+    },
+    "table": {
+      "route": "Релација",
+      "status": "Статус",
+      "revenue": "Приход",
+      "date": "Датум"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "На неопределено",
       "fixed_term": "На определено"
+    },
+    "table": {
+      "reminders": "Рокови"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES проверува само ЕУ ДДВ броеви",
       "badge": "ДДВ проверен ✓ {{date}}",
       "badgeInvalid": "ДДВ не е пронајден ({{date}})"
+    },
+    "table": {
+      "trips": "Тури",
+      "status": "Статус"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Стандардна стапка на ДДВ (%)",
       "defaultVatNote": "Стандардна забелешка за ДДВ"
     },
-    "printPdf": "Печати / Зачувај PDF"
+    "printPdf": "Печати / Зачувај PDF",
+    "table": {
+      "no": "Бр.",
+      "status": "Статус"
+    }
   },
   "countries": {
     "RS": "Serbia",

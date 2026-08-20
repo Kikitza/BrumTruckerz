@@ -132,6 +132,12 @@
       "arrived": "Saabunud",
       "border": "Piir",
       "needKm": "Sisestage läbisõit"
+    },
+    "table": {
+      "route": "Marsruut",
+      "status": "Olek",
+      "revenue": "Tulu",
+      "date": "Kuupäev"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Tähtajatu",
       "fixed_term": "Tähtajaline"
+    },
+    "table": {
+      "reminders": "Tähtajad"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES kontrollib ainult ELi käibemaksunumbreid",
       "badge": "KMKR kinnitatud ✓ {{date}}",
       "badgeInvalid": "KMKR ei leitud ({{date}})"
+    },
+    "table": {
+      "trips": "Sõidud",
+      "status": "Olek"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Vaikimisi käibemaksumäär (%)",
       "defaultVatNote": "Vaikimisi KM märkus"
     },
-    "printPdf": "Prindi / Salvesta PDF"
+    "printPdf": "Prindi / Salvesta PDF",
+    "table": {
+      "no": "Nr",
+      "status": "Olek"
+    }
   },
   "countries": {
     "RS": "Serbia",

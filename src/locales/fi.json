@@ -132,6 +132,12 @@
       "arrived": "Saapuminen",
       "border": "Raja",
       "needKm": "Syötä mittarilukema"
+    },
+    "table": {
+      "route": "Reitti",
+      "status": "Tila",
+      "revenue": "Tuotto",
+      "date": "Päivä"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Toistaiseksi voimassa oleva",
       "fixed_term": "Määräaikainen"
+    },
+    "table": {
+      "reminders": "Määräajat"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES tarkistaa vain EU:n ALV-numerot",
       "badge": "ALV vahvistettu ✓ {{date}}",
       "badgeInvalid": "ALV ei löytynyt ({{date}})"
+    },
+    "table": {
+      "trips": "Matkat",
+      "status": "Tila"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Oletus-ALV-kanta (%)",
       "defaultVatNote": "Oletus-ALV-huomautus"
     },
-    "printPdf": "Tulosta / Tallenna PDF"
+    "printPdf": "Tulosta / Tallenna PDF",
+    "table": {
+      "no": "Nro",
+      "status": "Tila"
+    }
   },
   "countries": {
     "RS": "Serbia",

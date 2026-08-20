@@ -132,6 +132,12 @@
       "arrived": "Príchod",
       "border": "Hranica",
       "needKm": "Zadajte stav tachometra"
+    },
+    "table": {
+      "route": "Trasa",
+      "status": "Stav",
+      "revenue": "Tržba",
+      "date": "Dátum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Na dobu neurčitú",
       "fixed_term": "Na dobu určitú"
+    },
+    "table": {
+      "reminders": "Termíny"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES overuje iba IČ DPH z EÚ",
       "badge": "IČ DPH overené ✓ {{date}}",
       "badgeInvalid": "IČ DPH nenájdené ({{date}})"
+    },
+    "table": {
+      "trips": "Jazdy",
+      "status": "Stav"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Predvolená sadzba DPH (%)",
       "defaultVatNote": "Predvolená poznámka k DPH"
     },
-    "printPdf": "Tlač / Uložiť PDF"
+    "printPdf": "Tlač / Uložiť PDF",
+    "table": {
+      "no": "Č.",
+      "status": "Stav"
+    }
   },
   "countries": {
     "RS": "Serbia",

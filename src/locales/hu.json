@@ -132,6 +132,12 @@
       "arrived": "Érkezés",
       "border": "Határ",
       "needKm": "Add meg a kilométeróra-állást"
+    },
+    "table": {
+      "route": "Útvonal",
+      "status": "Állapot",
+      "revenue": "Bevétel",
+      "date": "Dátum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Határozatlan idejű",
       "fixed_term": "Határozott idejű"
+    },
+    "table": {
+      "reminders": "Határidők"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "A VIES csak EU-s adószámokat ellenőriz",
       "badge": "Adószám ellenőrizve ✓ {{date}}",
       "badgeInvalid": "Adószám nem található ({{date}})"
+    },
+    "table": {
+      "trips": "Fuvarok",
+      "status": "Állapot"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Alapértelmezett ÁFA-kulcs (%)",
       "defaultVatNote": "Alapértelmezett ÁFA-megjegyzés"
     },
-    "printPdf": "Nyomtatás / PDF mentése"
+    "printPdf": "Nyomtatás / PDF mentése",
+    "table": {
+      "no": "Sz.",
+      "status": "Állapot"
+    }
   },
   "countries": {
     "RS": "Serbia",

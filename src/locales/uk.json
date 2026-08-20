@@ -132,6 +132,12 @@
       "arrived": "Прибув",
       "border": "Кордон",
       "needKm": "Введіть показник одометра"
+    },
+    "table": {
+      "route": "Маршрут",
+      "status": "Статус",
+      "revenue": "Дохід",
+      "date": "Дата"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Безстроковий",
       "fixed_term": "Строковий"
+    },
+    "table": {
+      "reminders": "Терміни"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES перевіряє лише номери ПДВ ЄС",
       "badge": "ПДВ перевірено ✓ {{date}}",
       "badgeInvalid": "ПДВ не знайдено ({{date}})"
+    },
+    "table": {
+      "trips": "Рейси",
+      "status": "Статус"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Ставка ПДВ за замовчуванням (%)",
       "defaultVatNote": "Примітка щодо ПДВ за замовчуванням"
     },
-    "printPdf": "Друк / Зберегти PDF"
+    "printPdf": "Друк / Зберегти PDF",
+    "table": {
+      "no": "№",
+      "status": "Статус"
+    }
   },
   "countries": {
     "RS": "Serbia",

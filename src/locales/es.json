@@ -132,6 +132,12 @@
       "arrived": "Llegada",
       "border": "Frontera",
       "needKm": "Introduzca el cuentakilómetros"
+    },
+    "table": {
+      "route": "Ruta",
+      "status": "Estado",
+      "revenue": "Ingresos",
+      "date": "Fecha"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Indefinido",
       "fixed_term": "Temporal"
+    },
+    "table": {
+      "reminders": "Vencimientos"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES solo verifica números de IVA de la UE",
       "badge": "IVA verificado ✓ {{date}}",
       "badgeInvalid": "IVA no encontrado ({{date}})"
+    },
+    "table": {
+      "trips": "Viajes",
+      "status": "Estado"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Tipo de IVA por defecto (%)",
       "defaultVatNote": "Nota de IVA por defecto"
     },
-    "printPdf": "Imprimir / Guardar PDF"
+    "printPdf": "Imprimir / Guardar PDF",
+    "table": {
+      "no": "N.º",
+      "status": "Estado"
+    }
   },
   "countries": {
     "RS": "Serbia",

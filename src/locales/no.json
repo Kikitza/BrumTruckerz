@@ -132,6 +132,12 @@
       "arrived": "Ankommet",
       "border": "Grense",
       "needKm": "Angi kilometerstanden"
+    },
+    "table": {
+      "route": "Rute",
+      "status": "Status",
+      "revenue": "Inntekt",
+      "date": "Dato"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Fast ansettelse",
       "fixed_term": "Midlertidig"
+    },
+    "table": {
+      "reminders": "Frister"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES sjekker bare MVA-numre i EU",
       "badge": "MVA bekreftet ✓ {{date}}",
       "badgeInvalid": "MVA ikke funnet ({{date}})"
+    },
+    "table": {
+      "trips": "Turer",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Standard MVA-sats (%)",
       "defaultVatNote": "Standard MVA-merknad"
     },
-    "printPdf": "Skriv ut / Lagre PDF"
+    "printPdf": "Skriv ut / Lagre PDF",
+    "table": {
+      "no": "Nr.",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Serbia",

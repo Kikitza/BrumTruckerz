@@ -132,6 +132,12 @@
       "arrived": "Příjezd",
       "border": "Hranice",
       "needKm": "Zadejte stav tachometru"
+    },
+    "table": {
+      "route": "Trasa",
+      "status": "Stav",
+      "revenue": "Tržba",
+      "date": "Datum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Na dobu neurčitou",
       "fixed_term": "Na dobu určitou"
+    },
+    "table": {
+      "reminders": "Termíny"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES ověřuje pouze DIČ z EU",
       "badge": "DIČ ověřeno ✓ {{date}}",
       "badgeInvalid": "DIČ nenalezeno ({{date}})"
+    },
+    "table": {
+      "trips": "Jízdy",
+      "status": "Stav"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Výchozí sazba DPH (%)",
       "defaultVatNote": "Výchozí poznámka k DPH"
     },
-    "printPdf": "Tisk / Uložit PDF"
+    "printPdf": "Tisk / Uložit PDF",
+    "table": {
+      "no": "Č.",
+      "status": "Stav"
+    }
   },
   "countries": {
     "RS": "Serbia",

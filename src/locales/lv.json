@@ -132,6 +132,12 @@
       "arrived": "Ieradies",
       "border": "Robeža",
       "needKm": "Ievadiet odometra rādījumu"
+    },
+    "table": {
+      "route": "Maršruts",
+      "status": "Statuss",
+      "revenue": "Ieņēmumi",
+      "date": "Datums"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Beztermiņa",
       "fixed_term": "Uz noteiktu laiku"
+    },
+    "table": {
+      "reminders": "Termiņi"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES pārbauda tikai ES PVN numurus",
       "badge": "PVN pārbaudīts ✓ {{date}}",
       "badgeInvalid": "PVN nav atrasts ({{date}})"
+    },
+    "table": {
+      "trips": "Braucieni",
+      "status": "Statuss"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Noklusētā PVN likme (%)",
       "defaultVatNote": "Noklusētā PVN piezīme"
     },
-    "printPdf": "Drukāt / Saglabāt PDF"
+    "printPdf": "Drukāt / Saglabāt PDF",
+    "table": {
+      "no": "Nr.",
+      "status": "Statuss"
+    }
   },
   "countries": {
     "RS": "Serbia",

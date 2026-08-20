@@ -2,11 +2,14 @@
 // filter aktivni/arhivirani, Nova/Izmeni (modal), brisanje: sa turama → samo Arhiviraj
 // (+ Aktiviraj nazad), bez tura → brisanje. Sav pristup bazi kroz customers/api.ts.
 import { useState } from "react";
-import { View, Text, Pressable, FlatList, ActivityIndicator, Alert } from "react-native";
+import { View, Text, Pressable, FlatList, ActivityIndicator, ScrollView, Alert } from "react-native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
+import { useWideWeb } from "../../src/lib/platform";
 import { fmtDate } from "../../src/lib/format";
+import { DesktopContainer } from "../../src/components/DesktopContainer";
+import { DataTable, type Column } from "../../src/components/DataTable";
 import {
   listCustomers, archiveCustomer, unarchiveCustomer, deleteCustomer, type Customer,
 } from "../../src/features/customers/api";
@@ -19,6 +22,7 @@ export default function CustomersScreen() {
   const [showArchived, setShowArchived] = useState(false);
   const [modal, setModal] = useState<{ open: boolean; item: Customer | null }>({ open: false, item: null });
 
+  const wide = useWideWeb();
   const list = useQuery({ queryKey: ["customers"], queryFn: listCustomers });
   const rows = (list.data ?? []).filter((c) => (showArchived ? c.archived_at != null : c.archived_at == null));
 
@@ -40,8 +44,24 @@ export default function CustomersScreen() {
       { text: t("common.delete"), style: "destructive", onPress: () => del.mutate(c.id) },
     ]);
 
+  const cols: Column<Customer>[] = [
+    { key: "name", header: t("customers.fields.name"), width: 2, render: (c) => c.name, sort: (c) => c.name },
+    { key: "vat", header: t("customers.fields.vatNumber"), width: 1.4, render: (c) => (
+        <Text numberOfLines={1} style={{ color: colors.text, fontSize: 14 }}>
+          {c.vat_number ?? "—"}{c.vies_valid ? <Text style={{ color: colors.primary }}> ✓</Text> : null}
+        </Text>
+      ) },
+    { key: "terms", header: t("customers.fields.paymentTerms"), width: 1, align: "right", render: (c) => String(c.payment_terms_days) },
+    { key: "trips", header: t("customers.table.trips"), width: 1, align: "right", render: (c) => String(c.trip_count) },
+    { key: "status", header: t("customers.table.status"), width: 1, render: (c) => (
+        <Text style={{ color: c.archived_at ? colors.textMuted : colors.primary, fontWeight: "600", fontSize: 12 }}>
+          {t(c.archived_at ? "customers.archived" : "customers.active")}
+        </Text>
+      ) },
+  ];
+
   return (
-    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+    <DesktopContainer maxWidth={1200}>
       {/* Filter aktivni/arhivirani */}
       <View style={{ flexDirection: "row", gap: 8, padding: 12 }}>
         {[false, true].map((arch) => {
@@ -70,6 +90,10 @@ export default function CustomersScreen() {
 
       {list.isLoading ? (
         <ActivityIndicator style={{ marginTop: 24 }} color={colors.primary} />
+      ) : wide ? (
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 24 }}>
+          <DataTable columns={cols} rows={rows} keyExtractor={(c) => c.id} onRowPress={(c) => setModal({ open: true, item: c })} />
+        </ScrollView>
       ) : (
         <FlatList
           data={rows}
@@ -92,7 +116,7 @@ export default function CustomersScreen() {
       {modal.open && (
         <CustomerFormModal customer={modal.item} onClose={() => setModal({ open: false, item: null })} />
       )}
-    </View>
+    </DesktopContainer>
   );
 }
 

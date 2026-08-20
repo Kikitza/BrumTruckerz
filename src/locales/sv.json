@@ -132,6 +132,12 @@
       "arrived": "Ankomst",
       "border": "Gräns",
       "needKm": "Ange vägmätarställningen"
+    },
+    "table": {
+      "route": "Rutt",
+      "status": "Status",
+      "revenue": "Intäkt",
+      "date": "Datum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Tillsvidare",
       "fixed_term": "Tidsbegränsad"
+    },
+    "table": {
+      "reminders": "Frister"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES kontrollerar bara EU-momsnummer",
       "badge": "Moms verifierat ✓ {{date}}",
       "badgeInvalid": "Moms hittades inte ({{date}})"
+    },
+    "table": {
+      "trips": "Resor",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Standardmomssats (%)",
       "defaultVatNote": "Standardmomsanteckning"
     },
-    "printPdf": "Skriv ut / Spara PDF"
+    "printPdf": "Skriv ut / Spara PDF",
+    "table": {
+      "no": "Nr",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Serbia",

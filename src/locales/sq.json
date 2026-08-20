@@ -132,6 +132,12 @@
       "arrived": "Mbërritja",
       "border": "Kufiri",
       "needKm": "Shënoni kilometrazhin"
+    },
+    "table": {
+      "route": "Rruga",
+      "status": "Statusi",
+      "revenue": "Të ardhurat",
+      "date": "Data"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Pa afat",
       "fixed_term": "Me afat"
+    },
+    "table": {
+      "reminders": "Afatet"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES kontrollon vetëm NIPT-et e BE-së",
       "badge": "NIPT i verifikuar ✓ {{date}}",
       "badgeInvalid": "NIPT nuk u gjet ({{date}})"
+    },
+    "table": {
+      "trips": "Turet",
+      "status": "Statusi"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Norma e paracaktuar e TVSH-së (%)",
       "defaultVatNote": "Shënim i paracaktuar TVSH"
     },
-    "printPdf": "Printo / Ruaj PDF"
+    "printPdf": "Printo / Ruaj PDF",
+    "table": {
+      "no": "Nr.",
+      "status": "Statusi"
+    }
   },
   "countries": {
     "RS": "Serbia",

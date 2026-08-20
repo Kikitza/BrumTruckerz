@@ -7,7 +7,11 @@ import { View, Text, Pressable, ScrollView, ActivityIndicator } from "react-nati
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../../src/lib/theme";
-import { ownerListTrips, tripTitle, isTripArchived, type TripListItem } from "../../../src/features/trips/api";
+import { useWideWeb } from "../../../src/lib/platform";
+import { fmtDate, fmtMoney } from "../../../src/lib/format";
+import { DesktopContainer } from "../../../src/components/DesktopContainer";
+import { DataTable, type Column } from "../../../src/components/DataTable";
+import { ownerListTrips, ownerListTripsRich, tripTitle, isTripArchived, type TripListItem, type TripRichRow } from "../../../src/features/trips/api";
 import { NewTripModal } from "../../../src/features/trips/NewTripModal";
 import { TripDetailModal } from "../../../src/features/trips/TripDetailModal";
 
@@ -20,8 +24,10 @@ export default function OwnerTrips() {
   const [modal, setModal] = useState<ModalState>({ mode: "none" });
   const [archiveOpen, setArchiveOpen] = useState(false);
   const [archiveShown, setArchiveShown] = useState(ARCHIVE_PAGE);
+  const wide = useWideWeb();
 
-  const trips = useQuery({ queryKey: ["owner-trips"], queryFn: ownerListTrips });
+  const trips = useQuery({ queryKey: ["owner-trips"], queryFn: ownerListTrips, enabled: !wide });
+  const tripsRich = useQuery({ queryKey: ["owner-trips-rich"], queryFn: ownerListTripsRich, enabled: wide });
 
   // Upit vraća sortirano po created_at desc (najnovije prvo) — podela čuva taj redosled.
   const all = trips.data ?? [];
@@ -29,6 +35,41 @@ export default function OwnerTrips() {
   const archive = all.filter((x) => isTripArchived(x));
 
   const open = (tripId: string) => setModal({ mode: "detail", tripId });
+
+  const modals = (
+    <>
+      {modal.mode === "new" && <NewTripModal onClose={() => setModal({ mode: "none" })} />}
+      {modal.mode === "detail" && modal.tripId && (
+        <TripDetailModal tripId={modal.tripId} onClose={() => setModal({ mode: "none" })} />
+      )}
+    </>
+  );
+
+  // WEB širok (F3): desktop tabela.
+  if (wide) {
+    const cols: Column<TripRichRow>[] = [
+      { key: "route", header: t("trip.table.route"), width: 2, render: (r) => tripTitle(r.origin, r.destination) ?? r.id.slice(0, 8), sort: (r) => r.origin ?? "" },
+      { key: "customer", header: t("trip.fields.customer"), width: 1.5, render: (r) => r.customer?.name ?? "—", sort: (r) => r.customer?.name ?? "" },
+      { key: "driver", header: t("trip.fields.driver"), width: 1.3, render: (r) => r.driver?.full_name ?? "—" },
+      { key: "vehicle", header: t("trip.fields.vehicle"), width: 1, render: (r) => r.vehicle?.registration ?? "—" },
+      { key: "status", header: t("trip.table.status"), width: 1, render: (r) => t(`trip.status.${r.status}`) },
+      { key: "revenue", header: t("trip.table.revenue"), width: 1, align: "right", render: (r) => (r.revenue != null ? fmtMoney(r.revenue, "EUR") : "—") },
+      { key: "date", header: t("trip.table.date"), width: 1, align: "right", render: (r) => fmtDate(r.finished_at ?? r.started_at ?? r.created_at), sort: (r) => r.finished_at ?? r.started_at ?? r.created_at },
+    ];
+    return (
+      <DesktopContainer maxWidth={1240}>
+        <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
+          <Pressable onPress={() => setModal({ mode: "new" })} style={{ alignSelf: "flex-start", backgroundColor: colors.primary, borderRadius: 8, paddingVertical: 10, paddingHorizontal: 16 }}>
+            <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("trip.newTrip")}</Text>
+          </Pressable>
+          {tripsRich.isLoading ? <ActivityIndicator color={colors.primary} /> : (
+            <DataTable columns={cols} rows={tripsRich.data ?? []} keyExtractor={(r) => r.id} onRowPress={(r) => open(r.id)} />
+          )}
+        </ScrollView>
+        {modals}
+      </DesktopContainer>
+    );
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
@@ -90,10 +131,7 @@ export default function OwnerTrips() {
         </ScrollView>
       )}
 
-      {modal.mode === "new" && <NewTripModal onClose={() => setModal({ mode: "none" })} />}
-      {modal.mode === "detail" && modal.tripId && (
-        <TripDetailModal tripId={modal.tripId} onClose={() => setModal({ mode: "none" })} />
-      )}
+      {modals}
     </View>
   );
 }

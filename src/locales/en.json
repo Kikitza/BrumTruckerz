@@ -130,6 +130,12 @@
       "arrived": "Arrived",
       "border": "Border",
       "needKm": "Enter the odometer"
+    },
+    "table": {
+      "route": "Route",
+      "status": "Status",
+      "revenue": "Revenue",
+      "date": "Date"
     }
   },
   "expense": {
@@ -274,6 +280,9 @@
     "employment": {
       "indefinite": "Indefinite",
       "fixed_term": "Fixed-term"
+    },
+    "table": {
+      "reminders": "Deadlines"
     }
   },
   "settings": {
@@ -438,6 +447,10 @@
       "notEu": "VIES only checks EU VAT numbers",
       "badge": "VAT verified ✓ {{date}}",
       "badgeInvalid": "VAT not found ({{date}})"
+    },
+    "table": {
+      "trips": "Trips",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -496,7 +509,11 @@
       "defaultVatRate": "Default VAT rate (%)",
       "defaultVatNote": "Default VAT note"
     },
-    "printPdf": "Print / Save PDF"
+    "printPdf": "Print / Save PDF",
+    "table": {
+      "no": "No.",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Serbia",

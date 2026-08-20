@@ -132,6 +132,12 @@
       "arrived": "Arrivo",
       "border": "Confine",
       "needKm": "Inserire il contachilometri"
+    },
+    "table": {
+      "route": "Tratta",
+      "status": "Stato",
+      "revenue": "Ricavo",
+      "date": "Data"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Indeterminato",
       "fixed_term": "Determinato"
+    },
+    "table": {
+      "reminders": "Scadenze"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES verifica solo le partite IVA dell'UE",
       "badge": "P.IVA verificata ✓ {{date}}",
       "badgeInvalid": "P.IVA non trovata ({{date}})"
+    },
+    "table": {
+      "trips": "Viaggi",
+      "status": "Stato"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Aliquota IVA predefinita (%)",
       "defaultVatNote": "Nota IVA predefinita"
     },
-    "printPdf": "Stampa / Salva PDF"
+    "printPdf": "Stampa / Salva PDF",
+    "table": {
+      "no": "N.",
+      "status": "Stato"
+    }
   },
   "countries": {
     "RS": "Serbia",

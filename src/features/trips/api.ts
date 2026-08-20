@@ -150,6 +150,22 @@ async function currentCompanyId(): Promise<string> {
   return cid;
 }
 
+// Bogat red za desktop tabelu (F3): + naručilac/vozač/vozilo/vozarina (office vidi kroz RLS).
+export type TripRichRow = {
+  id: string; origin: string | null; destination: string | null; status: TripStatus;
+  started_at: string | null; finished_at: string | null; created_at: string; revenue: number | null;
+  customer: { name: string } | null; driver: { full_name: string } | null; vehicle: { registration: string } | null;
+};
+export async function ownerListTripsRich(): Promise<TripRichRow[]> {
+  const { data, error } = await supabase
+    .from("trips")
+    .select("id, origin, destination, status, started_at, finished_at, created_at, revenue, customer:customers(name), driver:drivers(full_name), vehicle:vehicles(registration)")
+    .order("created_at", { ascending: false })
+    .limit(200);
+  if (error) throw error;
+  return (data ?? []) as unknown as TripRichRow[];
+}
+
 // ── VLASNIK ──
 export async function ownerListTrips(): Promise<TripListItem[]> {
   const { data, error } = await supabase

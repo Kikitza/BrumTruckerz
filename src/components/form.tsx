@@ -9,7 +9,7 @@
 // dodaje safe-area padding na vrhu (status bar / sat / baterija) da dugmad u
 // headeru budu ispod status bara i tapabilna, i na dnu (home indikator / nav bar)
 // da dugmad/footer modala ne uđu pod sistemsku traku (Android edge-to-edge, SDK 54).
-import { type ReactNode, useState } from "react";
+import { type ReactNode, createElement, useState } from "react";
 import { View, Text, TextInput, Modal, KeyboardAvoidingView, Platform, Pressable, FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
@@ -66,31 +66,27 @@ export function DateField({
 }) {
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
-  const [webText, setWebText] = useState(value ?? "");
   const current = value ? new Date(`${value}T00:00:00`) : new Date();
 
-  // WEB (F3): nativni datetimepicker ne radi na webu → tekstualni unos „YYYY-MM-DD".
-  // Lokalni bafer dozvoljava kucanje; roditelju šalje vrednost tek kad je format kompletan (ili prazno).
+  // WEB (F3): ugrađeni browser kalendar preko <input type="date"> (bez novih biblioteka).
+  // Vrednost je „YYYY-MM-DD" — isti format kao svuda; native je netaknut.
   if (isWeb) {
-    const commit = (s: string) => {
-      setWebText(s);
-      if (s.trim() === "") onChange(null);
-      else if (/^\d{4}-\d{2}-\d{2}$/.test(s.trim())) onChange(s.trim());
-    };
+    const input = createElement("input", {
+      type: "date",
+      value: value ?? "",
+      onChange: (e: { target: { value: string } }) => onChange(e.target.value || null),
+      style: {
+        flex: 1, padding: 11, borderRadius: 8, border: `1px solid ${colors.border}`,
+        background: colors.surface, color: colors.text, fontSize: 14,
+      },
+    });
     return (
       <View style={{ gap: 6 }}>
         <Text style={{ color: colors.textMuted, fontSize: 13 }}>{label}</Text>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-          <TextInput
-            value={webText}
-            onChangeText={commit}
-            placeholder={placeholder ?? "YYYY-MM-DD"}
-            placeholderTextColor={colors.textMuted}
-            autoCapitalize="none"
-            style={{ flex: 1, borderWidth: 1, borderColor: colors.border, borderRadius: 8, padding: 12, color: colors.text, backgroundColor: colors.surface }}
-          />
-          {clearable && webText ? (
-            <Pressable onPress={() => { setWebText(""); onChange(null); }} hitSlop={8} style={{ padding: 8 }}>
+          {input}
+          {clearable && value ? (
+            <Pressable onPress={() => onChange(null)} hitSlop={8} style={{ padding: 8 }}>
               <Text style={{ color: colors.textMuted, fontSize: 18 }}>×</Text>
             </Pressable>
           ) : null}

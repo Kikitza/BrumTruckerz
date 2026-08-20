@@ -132,6 +132,12 @@
       "arrived": "Прибытие",
       "border": "Граница",
       "needKm": "Введите пробег"
+    },
+    "table": {
+      "route": "Маршрут",
+      "status": "Статус",
+      "revenue": "Выручка",
+      "date": "Дата"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Бессрочный",
       "fixed_term": "Срочный"
+    },
+    "table": {
+      "reminders": "Сроки"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES проверяет только номера НДС ЕС",
       "badge": "НДС проверен ✓ {{date}}",
       "badgeInvalid": "НДС не найден ({{date}})"
+    },
+    "table": {
+      "trips": "Рейсы",
+      "status": "Статус"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Ставка НДС по умолчанию (%)",
       "defaultVatNote": "Примечание по НДС по умолчанию"
     },
-    "printPdf": "Печать / Сохранить PDF"
+    "printPdf": "Печать / Сохранить PDF",
+    "table": {
+      "no": "№",
+      "status": "Статус"
+    }
   },
   "countries": {
     "RS": "Serbia",

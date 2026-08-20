@@ -132,6 +132,12 @@
       "arrived": "Angekommen",
       "border": "Grenze",
       "needKm": "Kilometerstand eingeben"
+    },
+    "table": {
+      "route": "Strecke",
+      "status": "Status",
+      "revenue": "Umsatz",
+      "date": "Datum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Unbefristet",
       "fixed_term": "Befristet"
+    },
+    "table": {
+      "reminders": "Termine"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES prüft nur EU-USt-IdNr.",
       "badge": "USt-IdNr. geprüft ✓ {{date}}",
       "badgeInvalid": "USt-IdNr. nicht gefunden ({{date}})"
+    },
+    "table": {
+      "trips": "Fahrten",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Standard-MwSt-Satz (%)",
       "defaultVatNote": "Standard-MwSt-Hinweis"
     },
-    "printPdf": "Drucken / PDF speichern"
+    "printPdf": "Drucken / PDF speichern",
+    "table": {
+      "no": "Nr.",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Serbia",

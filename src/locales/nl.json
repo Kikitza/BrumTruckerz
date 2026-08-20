@@ -132,6 +132,12 @@
       "arrived": "Aangekomen",
       "border": "Grens",
       "needKm": "Voer de kilometerstand in"
+    },
+    "table": {
+      "route": "Route",
+      "status": "Status",
+      "revenue": "Omzet",
+      "date": "Datum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Onbepaalde tijd",
       "fixed_term": "Bepaalde tijd"
+    },
+    "table": {
+      "reminders": "Deadlines"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES controleert alleen btw-nummers van de EU",
       "badge": "Btw geverifieerd ✓ {{date}}",
       "badgeInvalid": "Btw niet gevonden ({{date}})"
+    },
+    "table": {
+      "trips": "Ritten",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Standaard btw-tarief (%)",
       "defaultVatNote": "Standaard btw-notitie"
     },
-    "printPdf": "Afdrukken / PDF opslaan"
+    "printPdf": "Afdrukken / PDF opslaan",
+    "table": {
+      "no": "Nr.",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Serbia",

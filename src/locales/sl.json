@@ -132,6 +132,12 @@
       "arrived": "Prihod",
       "border": "Meja",
       "needKm": "Vnesite kilometrino"
+    },
+    "table": {
+      "route": "Relacija",
+      "status": "Stanje",
+      "revenue": "Prihodek",
+      "date": "Datum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Nedoločen čas",
       "fixed_term": "Določen čas"
+    },
+    "table": {
+      "reminders": "Roki"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES preverja samo DDV številke EU",
       "badge": "DDV preverjen ✓ {{date}}",
       "badgeInvalid": "DDV ni najden ({{date}})"
+    },
+    "table": {
+      "trips": "Vožnje",
+      "status": "Stanje"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Privzeta stopnja DDV (%)",
       "defaultVatNote": "Privzeta opomba o DDV"
     },
-    "printPdf": "Natisni / Shrani PDF"
+    "printPdf": "Natisni / Shrani PDF",
+    "table": {
+      "no": "Št.",
+      "status": "Stanje"
+    }
   },
   "countries": {
     "RS": "Serbia",

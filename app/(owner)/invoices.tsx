@@ -1,12 +1,14 @@
 // Fakture (office: owner + dispečer): lista sa bedžom statusa (izdata/plaćena/KASNI crveno/stornirana),
 // filteri, „Nova faktura" (izbor ture bez fakture), detalj sa akcijama. Vozač fakture NE vidi (nema tab).
 import { useState } from "react";
-import { View, Text, Pressable, FlatList, ActivityIndicator } from "react-native";
+import { View, Text, Pressable, FlatList, ActivityIndicator, ScrollView } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
-import { fmtMoney } from "../../src/lib/format";
+import { useWideWeb } from "../../src/lib/platform";
+import { fmtMoney, fmtDate } from "../../src/lib/format";
 import { DesktopContainer } from "../../src/components/DesktopContainer";
+import { DataTable, type Column } from "../../src/components/DataTable";
 import { ModalScaffold } from "../../src/components/form";
 import { listInvoices, listIssuableTrips, type InvoiceRow, type IssuableTrip } from "../../src/features/invoices/api";
 import { invoiceDisplayStatus, type InvoiceDisplayStatus } from "../../src/features/invoices/calc";
@@ -34,6 +36,7 @@ export default function InvoicesScreen() {
   const [picking, setPicking] = useState(false);
   const [settings, setSettings] = useState(false);
 
+  const wide = useWideWeb();
   const list = useQuery({ queryKey: ["invoices"], queryFn: listInvoices });
   const today = todayYMD();
   const rows = (list.data ?? []).filter((inv) => {
@@ -41,9 +44,21 @@ export default function InvoicesScreen() {
     return invoiceDisplayStatus(inv.status, inv.due_date, today) === filter;
   });
 
+  const cols: Column<InvoiceRow>[] = [
+    { key: "no", header: t("invoice.table.no"), width: 1, render: (r) => r.invoice_no, sort: (r) => r.invoice_no },
+    { key: "customer", header: t("invoice.fields.customer"), width: 1.6, render: (r) => r.customer?.name ?? "—", sort: (r) => r.customer?.name ?? "" },
+    { key: "issued", header: t("invoice.fields.issueDate"), width: 1, render: (r) => fmtDate(r.issue_date), sort: (r) => r.issue_date },
+    { key: "due", header: t("invoice.fields.dueDate"), width: 1, render: (r) => (r.due_date ? fmtDate(r.due_date) : "—") },
+    { key: "amount", header: t("invoice.fields.total"), width: 1, align: "right", render: (r) => fmtMoney(r.total, r.currency) },
+    { key: "status", header: t("invoice.table.status"), width: 1, render: (r) => {
+        const d = invoiceDisplayStatus(r.status, r.due_date, today);
+        return <Text style={{ color: STATUS_COLOR(d, colors), fontWeight: "700", fontSize: 12 }}>{t(`invoice.status.${d}`)}</Text>;
+      } },
+  ];
+
   return (
     // WEB (F3): spoljni sloj puni širinu temom (bez belih ivica), unutra centriran max-width kontejner.
-    <DesktopContainer>
+    <DesktopContainer maxWidth={1240}>
       <View style={{ flexDirection: "row", gap: 8, padding: 12 }}>
         <Pressable onPress={() => setPicking(true)}
           style={{ flex: 1, backgroundColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center" }}>
@@ -71,6 +86,10 @@ export default function InvoicesScreen() {
 
       {list.isLoading ? (
         <ActivityIndicator style={{ marginTop: 24 }} color={colors.primary} />
+      ) : wide ? (
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 24 }}>
+          <DataTable columns={cols} rows={rows} keyExtractor={(r) => r.id} onRowPress={(r) => setDetailId(r.id)} />
+        </ScrollView>
       ) : (
         <FlatList
           data={rows}

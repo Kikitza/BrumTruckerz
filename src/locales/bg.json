@@ -132,6 +132,12 @@
       "arrived": "Пристигане",
       "border": "Граница",
       "needKm": "Въведете километража"
+    },
+    "table": {
+      "route": "Маршрут",
+      "status": "Статус",
+      "revenue": "Приход",
+      "date": "Дата"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Безсрочен",
       "fixed_term": "Срочен"
+    },
+    "table": {
+      "reminders": "Срокове"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES проверява само ДДС номера от ЕС",
       "badge": "ДДС проверен ✓ {{date}}",
       "badgeInvalid": "ДДС не е намерен ({{date}})"
+    },
+    "table": {
+      "trips": "Курсове",
+      "status": "Статус"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "ДДС ставка по подразбиране (%)",
       "defaultVatNote": "Забележка за ДДС по подразбиране"
     },
-    "printPdf": "Печат / Запази PDF"
+    "printPdf": "Печат / Запази PDF",
+    "table": {
+      "no": "№",
+      "status": "Статус"
+    }
   },
   "countries": {
     "RS": "Serbia",

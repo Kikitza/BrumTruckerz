@@ -131,6 +131,12 @@
       "arrived": "Stigao",
       "border": "Granica",
       "needKm": "Unesite kilometražu"
+    },
+    "table": {
+      "route": "Relacija",
+      "status": "Status",
+      "revenue": "Vozarina",
+      "date": "Datum"
     }
   },
   "expense": {
@@ -277,6 +283,9 @@
     "employment": {
       "indefinite": "Na neodređeno",
       "fixed_term": "Na određeno"
+    },
+    "table": {
+      "reminders": "Rokovi"
     }
   },
   "settings": {
@@ -441,6 +450,10 @@
       "notEu": "VIES proverava samo EU PIB-ove",
       "badge": "PIB proveren ✓ {{date}}",
       "badgeInvalid": "PIB nije pronađen ({{date}})"
+    },
+    "table": {
+      "trips": "Ture",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -499,7 +512,11 @@
       "defaultVatRate": "Podrazumevana stopa PDV-a (%)",
       "defaultVatNote": "Podrazumevana napomena o PDV-u"
     },
-    "printPdf": "Štampaj / Sačuvaj PDF"
+    "printPdf": "Štampaj / Sačuvaj PDF",
+    "table": {
+      "no": "Broj",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Srbija",

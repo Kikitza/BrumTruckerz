@@ -132,6 +132,12 @@
       "arrived": "Przyjazd",
       "border": "Granica",
       "needKm": "Wprowadź stan licznika"
+    },
+    "table": {
+      "route": "Trasa",
+      "status": "Status",
+      "revenue": "Przychód",
+      "date": "Data"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Na czas nieokreślony",
       "fixed_term": "Na czas określony"
+    },
+    "table": {
+      "reminders": "Terminy"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES sprawdza tylko numery VAT z UE",
       "badge": "NIP zweryfikowany ✓ {{date}}",
       "badgeInvalid": "NIP nie znaleziony ({{date}})"
+    },
+    "table": {
+      "trips": "Trasy",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Domyślna stawka VAT (%)",
       "defaultVatNote": "Domyślna uwaga VAT"
     },
-    "printPdf": "Drukuj / Zapisz PDF"
+    "printPdf": "Drukuj / Zapisz PDF",
+    "table": {
+      "no": "Nr",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Serbia",

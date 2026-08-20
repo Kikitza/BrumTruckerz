@@ -132,6 +132,12 @@
       "arrived": "Άφιξη",
       "border": "Σύνορα",
       "needKm": "Καταχωρίστε τα χιλιόμετρα"
+    },
+    "table": {
+      "route": "Διαδρομή",
+      "status": "Κατάσταση",
+      "revenue": "Έσοδα",
+      "date": "Ημ/νία"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Αορίστου",
       "fixed_term": "Ορισμένου χρόνου"
+    },
+    "table": {
+      "reminders": "Προθεσμίες"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "Το VIES ελέγχει μόνο ΑΦΜ της ΕΕ",
       "badge": "ΑΦΜ επαληθεύτηκε ✓ {{date}}",
       "badgeInvalid": "ΑΦΜ δεν βρέθηκε ({{date}})"
+    },
+    "table": {
+      "trips": "Δρομολόγια",
+      "status": "Κατάσταση"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Προεπιλεγμένος συντελεστής ΦΠΑ (%)",
       "defaultVatNote": "Προεπιλεγμένη σημείωση ΦΠΑ"
     },
-    "printPdf": "Εκτύπωση / Αποθήκευση PDF"
+    "printPdf": "Εκτύπωση / Αποθήκευση PDF",
+    "table": {
+      "no": "Αρ.",
+      "status": "Κατάσταση"
+    }
   },
   "countries": {
     "RS": "Serbia",

@@ -132,6 +132,12 @@
       "arrived": "Dolazak",
       "border": "Granica",
       "needKm": "Unesite kilometražu"
+    },
+    "table": {
+      "route": "Relacija",
+      "status": "Status",
+      "revenue": "Vozarina",
+      "date": "Datum"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Neodređeno",
       "fixed_term": "Određeno"
+    },
+    "table": {
+      "reminders": "Rokovi"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES provjerava samo EU VAT brojeve",
       "badge": "VAT provjeren ✓ {{date}}",
       "badgeInvalid": "VAT nije pronađen ({{date}})"
+    },
+    "table": {
+      "trips": "Ture",
+      "status": "Status"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Zadana stopa PDV-a (%)",
       "defaultVatNote": "Zadana napomena o PDV-u"
     },
-    "printPdf": "Ispiši / Spremi PDF"
+    "printPdf": "Ispiši / Spremi PDF",
+    "table": {
+      "no": "Broj",
+      "status": "Status"
+    }
   },
   "countries": {
     "RS": "Serbia",

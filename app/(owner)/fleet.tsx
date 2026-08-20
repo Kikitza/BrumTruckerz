@@ -21,6 +21,11 @@ import {
   type CustomReminderDraft,
 } from "../../src/components/form";
 import { listVehicleTypes } from "../../src/features/company/api";
+import { useWideWeb } from "../../src/lib/platform";
+import { DesktopContainer } from "../../src/components/DesktopContainer";
+import { DataTable, type Column } from "../../src/components/DataTable";
+import { listAllReminders } from "../../src/features/reminders/api";
+import { kmStatus, dateSeverity, worstSeverity, type Severity } from "../../src/features/reminders/status";
 import {
   listVehicles, createVehicle, updateVehicle, deleteVehicle,
   listTrailers, createTrailer, updateTrailer, deleteTrailer,
@@ -68,6 +73,10 @@ export default function FleetScreen() {
   const [modal, setModal] = useState<{ open: boolean; item: Item | null }>({ open: false, item: null });
 
   const list = useQuery({ queryKey: ["fleet", section], queryFn: () => listFns[section]() });
+  const wide = useWideWeb();
+  const vehTable = wide && section === "vehicles";
+  const vTypesQ = useQuery({ queryKey: ["vehicle-types"], queryFn: listVehicleTypes, enabled: vehTable });
+  const vehRemQ = useQuery({ queryKey: ["reminders", "all"], queryFn: listAllReminders, enabled: vehTable });
 
   // Paket + iskorišćenost vozila (limit se proverava i u bazi kroz trigger).
   const planQ = useQuery({ queryKey: ["company-plan"], queryFn: getCompanyPlan });
@@ -96,8 +105,39 @@ export default function FleetScreen() {
       { text: t("common.delete"), style: "destructive", onPress: () => del.mutate(item.id) },
     ]);
 
+  // ── Desktop tabela vozila (F3): kolone + bedž rokova (najgori od date/km po vozilu) ──
+  const DAY_MS = 86_400_000;
+  const daysUntil = (ymd: string) => {
+    const due = new Date(`${ymd}T00:00:00`); const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((due.getTime() - today.getTime()) / DAY_MS);
+  };
+  const typeName = (id: string | null) => {
+    if (!id) return "—";
+    const vt = (vTypesQ.data ?? []).find((x) => x.id === id);
+    return vt ? t(vt.name_key) : "—";
+  };
+  const worstByVeh = new Map<string, Severity>();
+  for (const r of vehRemQ.data ?? []) {
+    if (r.subject_type !== "vehicle") continue;
+    const sev: Severity = r.mode === "km"
+      ? (kmStatus(r.subject_odometer, r.due_km) ?? "ok")
+      : (r.due_date ? dateSeverity(daysUntil(r.due_date)) : "ok");
+    worstByVeh.set(r.subject_id, worstSeverity([worstByVeh.get(r.subject_id), sev]));
+  }
+  const sevColor = (s: Severity) => (s === "red" ? colors.danger : s === "yellow" ? colors.warn : colors.border);
+  const vehCols: Column<Vehicle>[] = [
+    { key: "reg", header: t("fleet.fields.registration"), width: 1.4, render: (v) => v.registration, sort: (v) => v.registration },
+    { key: "type", header: t("company.vehicleType"), width: 1.4, render: (v) => typeName(v.type_id) },
+    { key: "odo", header: t("fleet.fields.currentOdometer"), width: 1.2, align: "right", render: (v) => (v.current_odometer != null ? fmtKm(v.current_odometer) : "—") },
+    { key: "rem", header: t("fleet.table.reminders"), width: 1, render: (v) => {
+        const s = worstByVeh.get(v.id);
+        return s ? <View style={{ width: 12, height: 12, borderRadius: 6, backgroundColor: sevColor(s) }} /> : <Text style={{ color: colors.textMuted }}>—</Text>;
+      } },
+  ];
+
   return (
-    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+    <DesktopContainer maxWidth={1200}>
       {/* Segment kontrola: tri sekcije flote */}
       <View style={{ flexDirection: "row", gap: 8, padding: 12 }}>
         {SECTIONS.map((s) => {
@@ -138,6 +178,10 @@ export default function FleetScreen() {
 
       {list.isLoading ? (
         <ActivityIndicator style={{ marginTop: 24 }} color={colors.primary} />
+      ) : vehTable ? (
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 24 }}>
+          <DataTable columns={vehCols} rows={(list.data ?? []) as Vehicle[]} keyExtractor={(v) => v.id} onRowPress={(v) => setModal({ open: true, item: v })} />
+        </ScrollView>
       ) : (
         <FlatList
           data={list.data ?? []}
@@ -167,7 +211,7 @@ export default function FleetScreen() {
           onClose={() => setModal({ open: false, item: null })}
         />
       )}
-    </View>
+    </DesktopContainer>
   );
 }
 

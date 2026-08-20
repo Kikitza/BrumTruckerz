@@ -132,6 +132,12 @@
       "arrived": "Chegada",
       "border": "Fronteira",
       "needKm": "Introduza o conta-quilómetros"
+    },
+    "table": {
+      "route": "Rota",
+      "status": "Estado",
+      "revenue": "Receita",
+      "date": "Data"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Sem termo",
       "fixed_term": "A termo certo"
+    },
+    "table": {
+      "reminders": "Prazos"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "O VIES só verifica NIF da UE",
       "badge": "NIF verificado ✓ {{date}}",
       "badgeInvalid": "NIF não encontrado ({{date}})"
+    },
+    "table": {
+      "trips": "Viagens",
+      "status": "Estado"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Taxa de IVA predefinida (%)",
       "defaultVatNote": "Nota de IVA predefinida"
     },
-    "printPdf": "Imprimir / Guardar PDF"
+    "printPdf": "Imprimir / Guardar PDF",
+    "table": {
+      "no": "N.º",
+      "status": "Estado"
+    }
   },
   "countries": {
     "RS": "Serbia",

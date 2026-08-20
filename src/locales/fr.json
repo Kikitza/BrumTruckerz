@@ -132,6 +132,12 @@
       "arrived": "Arrivé",
       "border": "Frontière",
       "needKm": "Saisir le kilométrage"
+    },
+    "table": {
+      "route": "Trajet",
+      "status": "Statut",
+      "revenue": "Recette",
+      "date": "Date"
     }
   },
   "expense": {
@@ -276,6 +282,9 @@
     "employment": {
       "indefinite": "Durée indéterminée",
       "fixed_term": "Durée déterminée"
+    },
+    "table": {
+      "reminders": "Échéances"
     }
   },
   "settings": {
@@ -440,6 +449,10 @@
       "notEu": "VIES ne vérifie que les numéros de TVA de l'UE",
       "badge": "TVA vérifiée ✓ {{date}}",
       "badgeInvalid": "TVA introuvable ({{date}})"
+    },
+    "table": {
+      "trips": "Trajets",
+      "status": "Statut"
     }
   },
   "invoice": {
@@ -498,7 +511,11 @@
       "defaultVatRate": "Taux de TVA par défaut (%)",
       "defaultVatNote": "Note TVA par défaut"
     },
-    "printPdf": "Imprimer / Enregistrer le PDF"
+    "printPdf": "Imprimer / Enregistrer le PDF",
+    "table": {
+      "no": "N°",
+      "status": "Statut"
+    }
   },
   "countries": {
     "RS": "Serbia",
