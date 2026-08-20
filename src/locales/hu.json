@@ -252,6 +252,51 @@
     "statusCheckFailed": "Nem sikerült ellenőrizni a fiók állapotát — próbáld újra.",
     "signOutPending": "Néhány módosítás még szinkronizálásra vár. Ha kijelentkezel, a következő bejelentkezéskor kerülnek elküldésre."
   },
+  "invite": {
+    "title": "Meghívók",
+    "subtitle": "Hozz létre egy kódot, és add oda a személynek. Az alkalmazásban beírja, hogy csatlakozzon a céghez.",
+    "new": "Új meghívó",
+    "roleLabel": "Szerep",
+    "role": {
+      "driver": "Sofőr",
+      "dispatcher": "Diszpécser"
+    },
+    "nameLabel": "Név (opcionális)",
+    "namePlaceholder": "pl. Marko Marković",
+    "create": "Meghívó létrehozása",
+    "codeTitle": "Meghívó kód",
+    "codeNote": "Add oda ezt a kódot a személynek. 7 napig érvényes.",
+    "copy": "Másolás",
+    "copied": "Másolva",
+    "cancel": "Meghívó visszavonása",
+    "cancelConfirm": "Visszavonod ezt a meghívót? A kód érvénytelenné válik.",
+    "empty": "Még nincs meghívó",
+    "expiresOn": "Lejár: {{date}}",
+    "dispatcherNote": "A diszpécseri hozzáférés egy későbbi frissítésben érkezik; a kód már most rögzíti a tagságot.",
+    "status": {
+      "pending": "Függőben",
+      "accepted": "Elfogadva",
+      "cancelled": "Visszavonva",
+      "expired": "Lejárt"
+    },
+    "haveCode": "Van céges kódom",
+    "enterCode": "Kód megadása",
+    "codePlaceholder": "8 karakteres kód",
+    "join": "Csatlakozás a céghez",
+    "joining": "Csatlakozás…",
+    "accepted": "Csatlakoztál a céghez.",
+    "acceptedDispatcher": "Tagság rögzítve. A diszpécseri hozzáférés egy későbbi frissítésben érkezik.",
+    "err": {
+      "notFound": "A kód nem található. Ellenőrizd, és próbáld újra.",
+      "expired": "Ez a kód lejárt.",
+      "cancelled": "Ezt a meghívót visszavonták.",
+      "used": "Ezt a kódot már felhasználták.",
+      "otherCompany": "A fiókod már egy másik céghez tartozik.",
+      "suspended": "Ez a cég fel van függesztve.",
+      "dispatcherNotReady": "A diszpécser fiókok még nem támogatottak — kérd meg a tulajdonost, hogy sofőrként hívjon meg.",
+      "roleCannotAccept": "Ez a fiók nem fogadhat el meghívókat."
+    }
+  },
   "sync": {
     "failedTitle": "Sikertelen elemek",
     "failedBody": "Ezeket a módosításokat nem sikerült elmenteni a szerverre.",
@@ -279,7 +324,10 @@
     "pastDue": "lejárt",
     "atLimit": "a korláton",
     "overLimit": "korlát felett",
-    "status": { "active": "Aktív", "suspended": "Felfüggesztve" }
+    "status": {
+      "active": "Aktív",
+      "suspended": "Felfüggesztve"
+    }
   },
   "suspended": {
     "title": "A fiók átmenetileg felfüggesztve",

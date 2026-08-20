@@ -252,6 +252,51 @@
     "statusCheckFailed": "Nevar pārbaudīt jūsu konta statusu — lūdzu, mēģiniet vēlreiz.",
     "signOutPending": "Dažas izmaiņas vēl gaida sinhronizāciju. Ja izrakstīsieties, tās tiks nosūtītas nākamajā pieteikšanās reizē."
   },
+  "invite": {
+    "title": "Ielūgumi",
+    "subtitle": "Izveido kodu un nodod to personai. Viņa to ievada lietotnē, lai pievienotos tavam uzņēmumam.",
+    "new": "Jauns ielūgums",
+    "roleLabel": "Loma",
+    "role": {
+      "driver": "Šoferis",
+      "dispatcher": "Dispečers"
+    },
+    "nameLabel": "Vārds (neobligāti)",
+    "namePlaceholder": "piem., Marko Marković",
+    "create": "Izveidot ielūgumu",
+    "codeTitle": "Ielūguma kods",
+    "codeNote": "Nodod šo kodu personai. Tas ir derīgs 7 dienas.",
+    "copy": "Kopēt",
+    "copied": "Nokopēts",
+    "cancel": "Atcelt ielūgumu",
+    "cancelConfirm": "Atcelt šo ielūgumu? Kods vairs nedarbosies.",
+    "empty": "Vēl nav ielūgumu",
+    "expiresOn": "Beidzas {{date}}",
+    "dispatcherNote": "Dispečera piekļuve būs vēlākā atjauninājumā; kods jau tagad reģistrē dalību.",
+    "status": {
+      "pending": "Gaida",
+      "accepted": "Pieņemts",
+      "cancelled": "Atcelts",
+      "expired": "Beidzies"
+    },
+    "haveCode": "Man ir uzņēmuma kods",
+    "enterCode": "Ievadi kodu",
+    "codePlaceholder": "8 rakstzīmju kods",
+    "join": "Pievienoties uzņēmumam",
+    "joining": "Pievienojas…",
+    "accepted": "Tu pievienojies uzņēmumam.",
+    "acceptedDispatcher": "Dalība reģistrēta. Dispečera piekļuve būs vēlākā atjauninājumā.",
+    "err": {
+      "notFound": "Kods nav atrasts. Pārbaudi to un mēģini vēlreiz.",
+      "expired": "Šis kods ir beidzies.",
+      "cancelled": "Šis ielūgums tika atcelts.",
+      "used": "Šis kods jau ir izmantots.",
+      "otherCompany": "Tavs konts jau pieder citam uzņēmumam.",
+      "suspended": "Šis uzņēmums ir apturēts.",
+      "dispatcherNotReady": "Dispečera konti vēl netiek atbalstīti — palūdz īpašniekam uzaicināt tevi kā šoferi.",
+      "roleCannotAccept": "Šis konts nevar pieņemt ielūgumus."
+    }
+  },
   "sync": {
     "failedTitle": "Neizdevušies vienumi",
     "failedBody": "Šīs izmaiņas nevarēja saglabāt serverī.",
@@ -279,7 +324,10 @@
     "pastDue": "kavēts maksājums",
     "atLimit": "uz limita",
     "overLimit": "virs limita",
-    "status": { "active": "Aktīvs", "suspended": "Apturēts" }
+    "status": {
+      "active": "Aktīvs",
+      "suspended": "Apturēts"
+    }
   },
   "suspended": {
     "title": "Konts uz laiku apturēts",

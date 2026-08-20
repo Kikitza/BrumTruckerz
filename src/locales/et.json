@@ -252,6 +252,51 @@
     "statusCheckFailed": "Konto oleku kontrollimine ebaõnnestus — palun proovi uuesti.",
     "signOutPending": "Mõned muudatused ootavad veel sünkroonimist. Kui logid välja, saadetakse need järgmisel sisselogimisel."
   },
+  "invite": {
+    "title": "Kutsed",
+    "subtitle": "Loo kood ja anna see isikule. Ta sisestab selle rakenduses, et sinu ettevõttega liituda.",
+    "new": "Uus kutse",
+    "roleLabel": "Roll",
+    "role": {
+      "driver": "Juht",
+      "dispatcher": "Dispetšer"
+    },
+    "nameLabel": "Nimi (valikuline)",
+    "namePlaceholder": "nt Marko Marković",
+    "create": "Loo kutse",
+    "codeTitle": "Kutse kood",
+    "codeNote": "Anna see kood isikule. Kehtib 7 päeva.",
+    "copy": "Kopeeri",
+    "copied": "Kopeeritud",
+    "cancel": "Tühista kutse",
+    "cancelConfirm": "Kas tühistada see kutse? Kood lakkab töötamast.",
+    "empty": "Kutseid veel pole",
+    "expiresOn": "Aegub {{date}}",
+    "dispatcherNote": "Dispetšeri juurdepääs tuleb hilisemas uuenduses; kood salvestab liikmesuse juba praegu.",
+    "status": {
+      "pending": "Ootel",
+      "accepted": "Vastu võetud",
+      "cancelled": "Tühistatud",
+      "expired": "Aegunud"
+    },
+    "haveCode": "Mul on ettevõtte kood",
+    "enterCode": "Sisesta kood",
+    "codePlaceholder": "8-märgiline kood",
+    "join": "Liitu ettevõttega",
+    "joining": "Liitumine…",
+    "accepted": "Liitusid ettevõttega.",
+    "acceptedDispatcher": "Liikmesus salvestatud. Dispetšeri juurdepääs tuleb hilisemas uuenduses.",
+    "err": {
+      "notFound": "Koodi ei leitud. Kontrolli seda ja proovi uuesti.",
+      "expired": "See kood on aegunud.",
+      "cancelled": "See kutse tühistati.",
+      "used": "Seda koodi on juba kasutatud.",
+      "otherCompany": "Sinu konto kuulub juba teisele ettevõttele.",
+      "suspended": "See ettevõte on peatatud.",
+      "dispatcherNotReady": "Dispetšeri kontosid veel ei toetata — palu omanikul kutsuda sind juhina.",
+      "roleCannotAccept": "See konto ei saa kutseid vastu võtta."
+    }
+  },
   "sync": {
     "failedTitle": "Ebaõnnestunud üksused",
     "failedBody": "Neid muudatusi ei õnnestunud serverisse salvestada.",
@@ -279,7 +324,10 @@
     "pastDue": "tähtaeg möödas",
     "atLimit": "limiidil",
     "overLimit": "üle limiidi",
-    "status": { "active": "Aktiivne", "suspended": "Peatatud" }
+    "status": {
+      "active": "Aktiivne",
+      "suspended": "Peatatud"
+    }
   },
   "suspended": {
     "title": "Konto on ajutiselt peatatud",

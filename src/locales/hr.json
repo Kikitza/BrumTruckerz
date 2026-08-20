@@ -252,6 +252,51 @@
     "statusCheckFailed": "Nije moguće provjeriti status vašeg računa — pokušajte ponovno.",
     "signOutPending": "Neke promjene još čekaju sinkronizaciju. Ako se odjavite, bit će poslane pri sljedećoj prijavi."
   },
+  "invite": {
+    "title": "Pozivnice",
+    "subtitle": "Generiraj kod i proslijedi ga osobi. Ona ga unosi u aplikaciji da se pridruži tvojoj tvrtki.",
+    "new": "Nova pozivnica",
+    "roleLabel": "Uloga",
+    "role": {
+      "driver": "Vozač",
+      "dispatcher": "Dispečer"
+    },
+    "nameLabel": "Ime (neobavezno)",
+    "namePlaceholder": "npr. Marko Marković",
+    "create": "Stvori pozivnicu",
+    "codeTitle": "Kod pozivnice",
+    "codeNote": "Proslijedi ovaj kod osobi. Vrijedi 7 dana.",
+    "copy": "Kopiraj",
+    "copied": "Kopirano",
+    "cancel": "Otkaži pozivnicu",
+    "cancelConfirm": "Otkazati ovu pozivnicu? Kod će prestati vrijediti.",
+    "empty": "Još nema pozivnica",
+    "expiresOn": "Istječe {{date}}",
+    "dispatcherNote": "Dispečerski pristup stiže u kasnijoj verziji; kod za sada bilježi članstvo.",
+    "status": {
+      "pending": "Na čekanju",
+      "accepted": "Prihvaćena",
+      "cancelled": "Otkazana",
+      "expired": "Istekla"
+    },
+    "haveCode": "Imam kod tvrtke",
+    "enterCode": "Unesi kod",
+    "codePlaceholder": "kod od 8 znakova",
+    "join": "Pridruži se tvrtki",
+    "joining": "Pridruživanje…",
+    "accepted": "Pridružio si se tvrtki.",
+    "acceptedDispatcher": "Članstvo je zabilježeno. Dispečerski pristup stiže u kasnijoj verziji.",
+    "err": {
+      "notFound": "Kod nije pronađen. Provjeri ga i pokušaj ponovno.",
+      "expired": "Ovaj kod je istekao.",
+      "cancelled": "Ova pozivnica je otkazana.",
+      "used": "Ovaj kod je već iskorišten.",
+      "otherCompany": "Tvoj račun već pripada drugoj tvrtki.",
+      "suspended": "Ova tvrtka je obustavljena.",
+      "dispatcherNotReady": "Dispečerski računi još nisu podržani — zamoli vlasnika da te pozove kao vozača.",
+      "roleCannotAccept": "Ovaj račun ne može prihvaćati pozivnice."
+    }
+  },
   "sync": {
     "failedTitle": "Neuspjele stavke",
     "failedBody": "Ove promjene nije bilo moguće spremiti na poslužitelj.",
@@ -279,7 +324,10 @@
     "pastDue": "dospjelo",
     "atLimit": "na granici",
     "overLimit": "iznad granice",
-    "status": { "active": "Aktivno", "suspended": "Suspendirano" }
+    "status": {
+      "active": "Aktivno",
+      "suspended": "Suspendirano"
+    }
   },
   "suspended": {
     "title": "Račun je privremeno suspendiran",

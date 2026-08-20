@@ -252,6 +252,51 @@
     "statusCheckFailed": "Não é possível verificar o estado da sua conta — tente novamente.",
     "signOutPending": "Algumas alterações ainda estão a aguardar sincronização. Se terminar sessão, serão enviadas na próxima vez que iniciar sessão."
   },
+  "invite": {
+    "title": "Convites",
+    "subtitle": "Gere um código e partilhe-o com a pessoa. Ela introduz o código na app para entrar na sua empresa.",
+    "new": "Novo convite",
+    "roleLabel": "Função",
+    "role": {
+      "driver": "Motorista",
+      "dispatcher": "Despachante"
+    },
+    "nameLabel": "Nome (opcional)",
+    "namePlaceholder": "ex.: Marko Marković",
+    "create": "Criar convite",
+    "codeTitle": "Código de convite",
+    "codeNote": "Partilhe este código com a pessoa. É válido por 7 dias.",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "cancel": "Cancelar convite",
+    "cancelConfirm": "Cancelar este convite? O código deixará de funcionar.",
+    "empty": "Ainda sem convites",
+    "expiresOn": "Expira em {{date}}",
+    "dispatcherNote": "O acesso de despachante chegará numa atualização posterior; o código já regista a adesão.",
+    "status": {
+      "pending": "Pendente",
+      "accepted": "Aceite",
+      "cancelled": "Cancelado",
+      "expired": "Expirado"
+    },
+    "haveCode": "Tenho um código da empresa",
+    "enterCode": "Introduzir código",
+    "codePlaceholder": "código de 8 caracteres",
+    "join": "Entrar na empresa",
+    "joining": "A entrar…",
+    "accepted": "Entrou na empresa.",
+    "acceptedDispatcher": "Adesão registada. O acesso de despachante chegará numa atualização posterior.",
+    "err": {
+      "notFound": "Código não encontrado. Verifique e tente novamente.",
+      "expired": "Este código expirou.",
+      "cancelled": "Este convite foi cancelado.",
+      "used": "Este código já foi utilizado.",
+      "otherCompany": "A sua conta já pertence a outra empresa.",
+      "suspended": "Esta empresa está suspensa.",
+      "dispatcherNotReady": "As contas de despachante ainda não são suportadas — peça ao proprietário para o convidar como motorista.",
+      "roleCannotAccept": "Esta conta não pode aceitar convites."
+    }
+  },
   "sync": {
     "failedTitle": "Itens falhados",
     "failedBody": "Não foi possível guardar estas alterações no servidor.",
@@ -279,7 +324,10 @@
     "pastDue": "em atraso",
     "atLimit": "no limite",
     "overLimit": "acima do limite",
-    "status": { "active": "Ativo", "suspended": "Suspenso" }
+    "status": {
+      "active": "Ativo",
+      "suspended": "Suspenso"
+    }
   },
   "suspended": {
     "title": "Conta suspensa temporariamente",

@@ -252,6 +252,51 @@
     "statusCheckFailed": "Nepodarilo sa overiť stav vášho účtu — skúste to znova.",
     "signOutPending": "Niektoré zmeny stále čakajú na synchronizáciu. Ak sa odhlásite, odošlú sa pri najbližšom prihlásení."
   },
+  "invite": {
+    "title": "Pozvánky",
+    "subtitle": "Vygeneruj kód a odovzdaj ho osobe. Zadá ho v aplikácii, aby sa pripojila k tvojej firme.",
+    "new": "Nová pozvánka",
+    "roleLabel": "Rola",
+    "role": {
+      "driver": "Vodič",
+      "dispatcher": "Dispečer"
+    },
+    "nameLabel": "Meno (voliteľné)",
+    "namePlaceholder": "napr. Marko Marković",
+    "create": "Vytvoriť pozvánku",
+    "codeTitle": "Kód pozvánky",
+    "codeNote": "Odovzdaj tento kód osobe. Platí 7 dní.",
+    "copy": "Kopírovať",
+    "copied": "Skopírované",
+    "cancel": "Zrušiť pozvánku",
+    "cancelConfirm": "Zrušiť túto pozvánku? Kód prestane fungovať.",
+    "empty": "Zatiaľ žiadne pozvánky",
+    "expiresOn": "Platnosť do {{date}}",
+    "dispatcherNote": "Prístup dispečera príde v neskoršej aktualizácii; kód už teraz zaznamenáva členstvo.",
+    "status": {
+      "pending": "Čaká sa",
+      "accepted": "Prijaté",
+      "cancelled": "Zrušené",
+      "expired": "Vypršané"
+    },
+    "haveCode": "Mám firemný kód",
+    "enterCode": "Zadať kód",
+    "codePlaceholder": "kód s 8 znakmi",
+    "join": "Pripojiť sa k firme",
+    "joining": "Pripájanie…",
+    "accepted": "Pripojil si sa k firme.",
+    "acceptedDispatcher": "Členstvo zaznamenané. Prístup dispečera príde v neskoršej aktualizácii.",
+    "err": {
+      "notFound": "Kód sa nenašiel. Skontroluj ho a skús to znova.",
+      "expired": "Tento kód vypršal.",
+      "cancelled": "Táto pozvánka bola zrušená.",
+      "used": "Tento kód už bol použitý.",
+      "otherCompany": "Tvoj účet už patrí inej firme.",
+      "suspended": "Táto firma je pozastavená.",
+      "dispatcherNotReady": "Účty dispečera zatiaľ nie sú podporované — požiadaj majiteľa, aby ťa pozval ako vodiča.",
+      "roleCannotAccept": "Tento účet nemôže prijímať pozvánky."
+    }
+  },
   "sync": {
     "failedTitle": "Neúspešné položky",
     "failedBody": "Tieto zmeny sa nepodarilo uložiť na server.",
@@ -279,7 +324,10 @@
     "pastDue": "po splatnosti",
     "atLimit": "na limite",
     "overLimit": "nad limit",
-    "status": { "active": "Aktívna", "suspended": "Pozastavená" }
+    "status": {
+      "active": "Aktívna",
+      "suspended": "Pozastavená"
+    }
   },
   "suspended": {
     "title": "Účet dočasne pozastavený",

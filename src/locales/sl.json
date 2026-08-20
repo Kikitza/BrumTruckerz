@@ -252,6 +252,51 @@
     "statusCheckFailed": "Stanja vašega računa ni mogoče preveriti — poskusite znova.",
     "signOutPending": "Nekatere spremembe še čakajo na sinhronizacijo. Če se odjavite, bodo poslane ob naslednji prijavi."
   },
+  "invite": {
+    "title": "Vabila",
+    "subtitle": "Ustvari kodo in jo posreduj osebi. V aplikaciji jo vnese, da se pridruži tvojemu podjetju.",
+    "new": "Novo vabilo",
+    "roleLabel": "Vloga",
+    "role": {
+      "driver": "Voznik",
+      "dispatcher": "Disponent"
+    },
+    "nameLabel": "Ime (neobvezno)",
+    "namePlaceholder": "npr. Marko Marković",
+    "create": "Ustvari vabilo",
+    "codeTitle": "Koda vabila",
+    "codeNote": "Posreduj to kodo osebi. Velja 7 dni.",
+    "copy": "Kopiraj",
+    "copied": "Kopirano",
+    "cancel": "Prekliči vabilo",
+    "cancelConfirm": "Prekličeš to vabilo? Koda ne bo več delovala.",
+    "empty": "Zaenkrat ni vabil",
+    "expiresOn": "Poteče {{date}}",
+    "dispatcherNote": "Dostop disponenta pride v poznejši posodobitvi; koda že zdaj beleži članstvo.",
+    "status": {
+      "pending": "V čakanju",
+      "accepted": "Sprejeto",
+      "cancelled": "Preklicano",
+      "expired": "Poteklo"
+    },
+    "haveCode": "Imam kodo podjetja",
+    "enterCode": "Vnesi kodo",
+    "codePlaceholder": "koda z 8 znaki",
+    "join": "Pridruži se podjetju",
+    "joining": "Pridruževanje…",
+    "accepted": "Pridružil si se podjetju.",
+    "acceptedDispatcher": "Članstvo zabeleženo. Dostop disponenta pride v poznejši posodobitvi.",
+    "err": {
+      "notFound": "Kode ni mogoče najti. Preveri jo in poskusi znova.",
+      "expired": "Ta koda je potekla.",
+      "cancelled": "To vabilo je bilo preklicano.",
+      "used": "Ta koda je že uporabljena.",
+      "otherCompany": "Tvoj račun že pripada drugemu podjetju.",
+      "suspended": "To podjetje je začasno ustavljeno.",
+      "dispatcherNotReady": "Računi disponenta še niso podprti — prosi lastnika, da te povabi kot voznika.",
+      "roleCannotAccept": "Ta račun ne more sprejemati vabil."
+    }
+  },
   "sync": {
     "failedTitle": "Neuspešni elementi",
     "failedBody": "Teh sprememb ni bilo mogoče shraniti na strežnik.",
@@ -279,7 +324,10 @@
     "pastDue": "zapadlo",
     "atLimit": "na meji",
     "overLimit": "nad mejo",
-    "status": { "active": "Aktivno", "suspended": "Suspendirano" }
+    "status": {
+      "active": "Aktivno",
+      "suspended": "Suspendirano"
+    }
   },
   "suspended": {
     "title": "Račun je začasno suspendiran",

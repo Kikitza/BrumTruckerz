@@ -252,6 +252,51 @@
     "statusCheckFailed": "Kan ikke bekrefte kontostatusen din — prøv igjen.",
     "signOutPending": "Noen endringer venter fortsatt på synkronisering. Hvis du logger ut, sendes de neste gang du logger inn."
   },
+  "invite": {
+    "title": "Invitasjoner",
+    "subtitle": "Lag en kode og del den med personen. Vedkommende taster den inn i appen for å bli med i firmaet ditt.",
+    "new": "Ny invitasjon",
+    "roleLabel": "Rolle",
+    "role": {
+      "driver": "Sjåfør",
+      "dispatcher": "Transportleder"
+    },
+    "nameLabel": "Navn (valgfritt)",
+    "namePlaceholder": "f.eks. Marko Marković",
+    "create": "Opprett invitasjon",
+    "codeTitle": "Invitasjonskode",
+    "codeNote": "Del denne koden med personen. Den er gyldig i 7 dager.",
+    "copy": "Kopier",
+    "copied": "Kopiert",
+    "cancel": "Avbryt invitasjon",
+    "cancelConfirm": "Avbryte denne invitasjonen? Koden slutter å virke.",
+    "empty": "Ingen invitasjoner ennå",
+    "expiresOn": "Utløper {{date}}",
+    "dispatcherNote": "Tilgang for transportleder kommer i en senere oppdatering; koden registrerer medlemskapet allerede nå.",
+    "status": {
+      "pending": "Venter",
+      "accepted": "Godtatt",
+      "cancelled": "Avbrutt",
+      "expired": "Utløpt"
+    },
+    "haveCode": "Jeg har en firmakode",
+    "enterCode": "Skriv inn kode",
+    "codePlaceholder": "kode på 8 tegn",
+    "join": "Bli med i firmaet",
+    "joining": "Blir med…",
+    "accepted": "Du er nå med i firmaet.",
+    "acceptedDispatcher": "Medlemskap registrert. Tilgang for transportleder kommer i en senere oppdatering.",
+    "err": {
+      "notFound": "Fant ikke koden. Sjekk den og prøv igjen.",
+      "expired": "Denne koden er utløpt.",
+      "cancelled": "Denne invitasjonen ble avbrutt.",
+      "used": "Denne koden er allerede brukt.",
+      "otherCompany": "Kontoen din tilhører allerede et annet firma.",
+      "suspended": "Dette firmaet er suspendert.",
+      "dispatcherNotReady": "Transportleder-kontoer støttes ikke ennå — be eieren invitere deg som sjåfør.",
+      "roleCannotAccept": "Denne kontoen kan ikke godta invitasjoner."
+    }
+  },
   "sync": {
     "failedTitle": "Mislykkede elementer",
     "failedBody": "Disse endringene kunne ikke lagres på serveren.",
@@ -279,7 +324,10 @@
     "pastDue": "forfalt",
     "atLimit": "på grensen",
     "overLimit": "over grensen",
-    "status": { "active": "Aktiv", "suspended": "Suspendert" }
+    "status": {
+      "active": "Aktiv",
+      "suspended": "Suspendert"
+    }
   },
   "suspended": {
     "title": "Kontoen er midlertidig suspendert",

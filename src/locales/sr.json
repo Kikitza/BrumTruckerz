@@ -253,6 +253,51 @@
     "statusCheckFailed": "Ne mogu da proverim status naloga — pokušaj ponovo.",
     "signOutPending": "Neke izmene još čekaju sinhronizaciju. Ako se odjaviš, poslaće se kada se ponovo prijaviš."
   },
+  "invite": {
+    "title": "Pozivnice",
+    "subtitle": "Generiši kod i prosledi ga osobi. Ona ga unosi u aplikaciji da uđe u tvoju firmu.",
+    "new": "Nova pozivnica",
+    "roleLabel": "Uloga",
+    "role": {
+      "driver": "Vozač",
+      "dispatcher": "Dispečer"
+    },
+    "nameLabel": "Ime (opciono)",
+    "namePlaceholder": "npr. Marko Marković",
+    "create": "Napravi pozivnicu",
+    "codeTitle": "Kod pozivnice",
+    "codeNote": "Prosledi ovaj kod osobi. Važi 7 dana.",
+    "copy": "Kopiraj",
+    "copied": "Kopirano",
+    "cancel": "Otkaži pozivnicu",
+    "cancelConfirm": "Otkazati ovu pozivnicu? Kod prestaje da važi.",
+    "empty": "Još nema pozivnica",
+    "expiresOn": "Ističe {{date}}",
+    "dispatcherNote": "Dispečerski pristup stiže u kasnijoj verziji; kod za sada beleži članstvo.",
+    "status": {
+      "pending": "Na čekanju",
+      "accepted": "Prihvaćena",
+      "cancelled": "Otkazana",
+      "expired": "Istekla"
+    },
+    "haveCode": "Imam kod firme",
+    "enterCode": "Unesi kod",
+    "codePlaceholder": "kod od 8 znakova",
+    "join": "Uđi u firmu",
+    "joining": "Ulazak…",
+    "accepted": "Ušao si u firmu.",
+    "acceptedDispatcher": "Članstvo je zabeleženo. Dispečerski pristup stiže u kasnijoj verziji.",
+    "err": {
+      "notFound": "Kod nije pronađen. Proveri i pokušaj ponovo.",
+      "expired": "Ovaj kod je istekao.",
+      "cancelled": "Ova pozivnica je otkazana.",
+      "used": "Ovaj kod je već iskorišćen.",
+      "otherCompany": "Tvoj nalog već pripada drugoj firmi.",
+      "suspended": "Ova firma je obustavljena.",
+      "dispatcherNotReady": "Dispečerski nalozi još nisu podržani — zamoli vlasnika da te pozove kao vozača.",
+      "roleCannotAccept": "Ovaj nalog ne može da prihvata pozivnice."
+    }
+  },
   "sync": {
     "failedTitle": "Neuspele stavke",
     "failedBody": "Ove izmene nisu mogle da se sačuvaju na server.",
@@ -280,7 +325,10 @@
     "pastDue": "isteklo",
     "atLimit": "na limitu",
     "overLimit": "preko limita",
-    "status": { "active": "Aktivna", "suspended": "Obustavljena" }
+    "status": {
+      "active": "Aktivna",
+      "suspended": "Obustavljena"
+    }
   },
   "suspended": {
     "title": "Nalog je privremeno obustavljen",

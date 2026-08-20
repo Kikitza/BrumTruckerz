@@ -8,18 +8,20 @@ import { useSession } from "../src/features/auth/useSession";
 import { useSignOut } from "../src/features/auth/signOut";
 import { SuspendedScreen } from "../src/features/auth/SuspendedScreen";
 import { getMyCompanyStatus } from "../src/features/admin/api";
+import { AcceptInviteBox } from "../src/features/identity/AcceptInviteBox";
 import { useTheme } from "../src/lib/theme";
 import { Screen } from "../src/components/Screen";
 
 export default function Index() {
-  const { session, role, loading } = useSession();
+  const { session, role, loading, reloadRole } = useSession();
 
   if (loading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
   if (!session) return <Redirect href="/(auth)/sign-in" />;
   if (role === "platform_admin") return <Redirect href="/(admin)" />;
   if (role === "owner" || role === "driver") return <CompanyGate role={role} />;
   // Rola nepoznata (null / greška / nalog nije povezan sa firmom) -> NE owner.
-  return <NoRole />;
+  // Ponuda: uđi u firmu kodom (pozivnica) -> po prihvatanju osveži gate (reloadRole).
+  return <NoRole onJoined={reloadRole} />;
 }
 
 // Suspension gate: obustavljena firma -> fail-closed ekran (owner I vozač).
@@ -52,18 +54,16 @@ function StatusCheckFailed({ onRetry }: { onRetry: () => void }) {
   );
 }
 
-function NoRole() {
+function NoRole({ onJoined }: { onJoined: () => void }) {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const signOut = useSignOut(); // deljeni hook (potvrda + odjava) — bez direktnog supabase poziva
   return (
     <Screen style={{ alignItems: "center", justifyContent: "center", padding: 24, gap: 16 }}>
       <Text style={{ color: colors.text, fontSize: 16, textAlign: "center" }}>{t("auth.noRole")}</Text>
-      <Pressable
-        onPress={signOut}
-        style={{ backgroundColor: colors.primary, borderRadius: 8, paddingVertical: 12, paddingHorizontal: 20 }}
-      >
-        <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("settings.signOut")}</Text>
+      <AcceptInviteBox onJoined={onJoined} />
+      <Pressable onPress={signOut}>
+        <Text style={{ color: colors.danger, fontWeight: "600" }}>{t("settings.signOut")}</Text>
       </Pressable>
     </Screen>
   );

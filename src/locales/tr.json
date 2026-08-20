@@ -252,6 +252,51 @@
     "statusCheckFailed": "Hesap durumunuz doğrulanamıyor — lütfen tekrar deneyin.",
     "signOutPending": "Bazı değişiklikler hâlâ eşitlenmeyi bekliyor. Çıkış yaparsanız, bir sonraki girişinizde gönderilecekler."
   },
+  "invite": {
+    "title": "Davetler",
+    "subtitle": "Bir kod oluştur ve kişiyle paylaş. Şirketine katılmak için kodu uygulamaya girer.",
+    "new": "Yeni davet",
+    "roleLabel": "Rol",
+    "role": {
+      "driver": "Şoför",
+      "dispatcher": "Sevkiyatçı"
+    },
+    "nameLabel": "Ad (isteğe bağlı)",
+    "namePlaceholder": "örn. Marko Marković",
+    "create": "Davet oluştur",
+    "codeTitle": "Davet kodu",
+    "codeNote": "Bu kodu kişiyle paylaş. 7 gün geçerlidir.",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "cancel": "Daveti iptal et",
+    "cancelConfirm": "Bu davet iptal edilsin mi? Kod çalışmayı durduracak.",
+    "empty": "Henüz davet yok",
+    "expiresOn": "{{date}} tarihinde sona erer",
+    "dispatcherNote": "Sevkiyatçı erişimi sonraki bir güncellemede gelecek; kod üyeliği şimdiden kaydediyor.",
+    "status": {
+      "pending": "Bekliyor",
+      "accepted": "Kabul edildi",
+      "cancelled": "İptal edildi",
+      "expired": "Süresi doldu"
+    },
+    "haveCode": "Şirket kodum var",
+    "enterCode": "Kodu gir",
+    "codePlaceholder": "8 karakterli kod",
+    "join": "Şirkete katıl",
+    "joining": "Katılıyor…",
+    "accepted": "Şirkete katıldın.",
+    "acceptedDispatcher": "Üyelik kaydedildi. Sevkiyatçı erişimi sonraki bir güncellemede gelecek.",
+    "err": {
+      "notFound": "Kod bulunamadı. Kontrol edip tekrar dene.",
+      "expired": "Bu kodun süresi doldu.",
+      "cancelled": "Bu davet iptal edildi.",
+      "used": "Bu kod zaten kullanıldı.",
+      "otherCompany": "Hesabın zaten başka bir şirkete ait.",
+      "suspended": "Bu şirket askıya alındı.",
+      "dispatcherNotReady": "Sevkiyatçı hesapları henüz desteklenmiyor — sahibinden seni şoför olarak davet etmesini iste.",
+      "roleCannotAccept": "Bu hesap davetleri kabul edemez."
+    }
+  },
   "sync": {
     "failedTitle": "Başarısız öğeler",
     "failedBody": "Bu değişiklikler sunucuya kaydedilemedi.",
@@ -279,7 +324,10 @@
     "pastDue": "vadesi geçmiş",
     "atLimit": "limitte",
     "overLimit": "limit aşımı",
-    "status": { "active": "Aktif", "suspended": "Askıya alındı" }
+    "status": {
+      "active": "Aktif",
+      "suspended": "Askıya alındı"
+    }
   },
   "suspended": {
     "title": "Hesap geçici olarak askıya alındı",

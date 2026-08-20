@@ -17,6 +17,7 @@ export function useSession() {
   const [role, setRole] = useState<Role | null>(null);
   const [loading, setLoading] = useState(true);
   const [sessionReady, setSessionReady] = useState(false); // da li je sesija UTVRĐENA
+  const [roleBump, setRoleBump] = useState(0);             // ručno ponovno čitanje uloge
   const prevUid = useRef<string | null | undefined>(undefined);
 
   useEffect(() => {
@@ -55,7 +56,12 @@ export function useSession() {
         setLoading(false);
       });
     return () => { active = false; };
-  }, [sessionReady, session?.user.id, qc]);
+  }, [sessionReady, session?.user.id, qc, roleBump]);
 
-  return { session, role, loading };
+  // Ponovo pročitaj ulogu bez odjave — posle prihvatanja pozivnice app_users red nastaje
+  // / dobija company_id, pa gate treba da se preračuna (fail-closed ostaje: loading=true
+  // dok se ne učita, nikad na owner ekrane sa polovičnim stanjem).
+  const reloadRole = () => setRoleBump((b) => b + 1);
+
+  return { session, role, loading, reloadRole };
 }

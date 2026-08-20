@@ -252,6 +252,51 @@
     "statusCheckFailed": "Kan je accountstatus niet verifiëren — probeer het opnieuw.",
     "signOutPending": "Sommige wijzigingen wachten nog op synchronisatie. Als je uitlogt, worden ze bij de volgende keer inloggen verzonden."
   },
+  "invite": {
+    "title": "Uitnodigingen",
+    "subtitle": "Genereer een code en deel die met de persoon. Die voert de code in de app in om lid te worden van je bedrijf.",
+    "new": "Nieuwe uitnodiging",
+    "roleLabel": "Rol",
+    "role": {
+      "driver": "Chauffeur",
+      "dispatcher": "Planner"
+    },
+    "nameLabel": "Naam (optioneel)",
+    "namePlaceholder": "bijv. Marko Marković",
+    "create": "Uitnodiging aanmaken",
+    "codeTitle": "Uitnodigingscode",
+    "codeNote": "Deel deze code met de persoon. De code is 7 dagen geldig.",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd",
+    "cancel": "Uitnodiging annuleren",
+    "cancelConfirm": "Deze uitnodiging annuleren? De code werkt dan niet meer.",
+    "empty": "Nog geen uitnodigingen",
+    "expiresOn": "Verloopt op {{date}}",
+    "dispatcherNote": "Toegang voor planners komt in een latere update; de code legt het lidmaatschap nu al vast.",
+    "status": {
+      "pending": "In afwachting",
+      "accepted": "Geaccepteerd",
+      "cancelled": "Geannuleerd",
+      "expired": "Verlopen"
+    },
+    "haveCode": "Ik heb een bedrijfscode",
+    "enterCode": "Code invoeren",
+    "codePlaceholder": "code van 8 tekens",
+    "join": "Bij bedrijf aansluiten",
+    "joining": "Bezig met aansluiten…",
+    "accepted": "Je bent bij het bedrijf gekomen.",
+    "acceptedDispatcher": "Lidmaatschap vastgelegd. Toegang voor planners komt in een latere update.",
+    "err": {
+      "notFound": "Code niet gevonden. Controleer de code en probeer opnieuw.",
+      "expired": "Deze code is verlopen.",
+      "cancelled": "Deze uitnodiging is geannuleerd.",
+      "used": "Deze code is al gebruikt.",
+      "otherCompany": "Je account hoort al bij een ander bedrijf.",
+      "suspended": "Dit bedrijf is opgeschort.",
+      "dispatcherNotReady": "Planner-accounts worden nog niet ondersteund — vraag de eigenaar je als chauffeur uit te nodigen.",
+      "roleCannotAccept": "Dit account kan geen uitnodigingen accepteren."
+    }
+  },
   "sync": {
     "failedTitle": "Mislukte items",
     "failedBody": "Deze wijzigingen konden niet op de server worden opgeslagen.",
@@ -279,7 +324,10 @@
     "pastDue": "achterstallig",
     "atLimit": "op limiet",
     "overLimit": "boven limiet",
-    "status": { "active": "Actief", "suspended": "Geblokkeerd" }
+    "status": {
+      "active": "Actief",
+      "suspended": "Geblokkeerd"
+    }
   },
   "suspended": {
     "title": "Account tijdelijk geblokkeerd",

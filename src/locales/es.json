@@ -252,6 +252,51 @@
     "statusCheckFailed": "No se puede verificar el estado de tu cuenta — inténtalo de nuevo.",
     "signOutPending": "Algunos cambios aún están esperando sincronizarse. Si cierras sesión, se enviarán la próxima vez que inicies sesión."
   },
+  "invite": {
+    "title": "Invitaciones",
+    "subtitle": "Genera un código y compártelo con la persona. Lo introduce en la app para unirse a tu empresa.",
+    "new": "Nueva invitación",
+    "roleLabel": "Rol",
+    "role": {
+      "driver": "Conductor",
+      "dispatcher": "Despachador"
+    },
+    "nameLabel": "Nombre (opcional)",
+    "namePlaceholder": "p. ej. Marko Marković",
+    "create": "Crear invitación",
+    "codeTitle": "Código de invitación",
+    "codeNote": "Comparte este código con la persona. Es válido durante 7 días.",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "cancel": "Cancelar invitación",
+    "cancelConfirm": "¿Cancelar esta invitación? El código dejará de funcionar.",
+    "empty": "Aún no hay invitaciones",
+    "expiresOn": "Caduca el {{date}}",
+    "dispatcherNote": "El acceso de despachador llegará en una actualización posterior; el código ya registra la pertenencia.",
+    "status": {
+      "pending": "Pendiente",
+      "accepted": "Aceptada",
+      "cancelled": "Cancelada",
+      "expired": "Caducada"
+    },
+    "haveCode": "Tengo un código de empresa",
+    "enterCode": "Introducir código",
+    "codePlaceholder": "código de 8 caracteres",
+    "join": "Unirse a la empresa",
+    "joining": "Uniéndose…",
+    "accepted": "Te has unido a la empresa.",
+    "acceptedDispatcher": "Pertenencia registrada. El acceso de despachador llegará en una actualización posterior.",
+    "err": {
+      "notFound": "Código no encontrado. Verifícalo e inténtalo de nuevo.",
+      "expired": "Este código ha caducado.",
+      "cancelled": "Esta invitación fue cancelada.",
+      "used": "Este código ya se ha utilizado.",
+      "otherCompany": "Tu cuenta ya pertenece a otra empresa.",
+      "suspended": "Esta empresa está suspendida.",
+      "dispatcherNotReady": "Las cuentas de despachador aún no se admiten — pide al propietario que te invite como conductor.",
+      "roleCannotAccept": "Esta cuenta no puede aceptar invitaciones."
+    }
+  },
   "sync": {
     "failedTitle": "Elementos fallidos",
     "failedBody": "Estos cambios no se pudieron guardar en el servidor.",
@@ -279,7 +324,10 @@
     "pastDue": "vencido",
     "atLimit": "en el límite",
     "overLimit": "por encima del límite",
-    "status": { "active": "Activo", "suspended": "Suspendido" }
+    "status": {
+      "active": "Activo",
+      "suspended": "Suspendido"
+    }
   },
   "suspended": {
     "title": "Cuenta suspendida temporalmente",

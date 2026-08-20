@@ -252,6 +252,51 @@
     "statusCheckFailed": "Impossibile verificare lo stato del tuo account — riprova.",
     "signOutPending": "Alcune modifiche sono ancora in attesa di sincronizzazione. Se esci, verranno inviate al prossimo accesso."
   },
+  "invite": {
+    "title": "Inviti",
+    "subtitle": "Genera un codice e condividilo con la persona. Lo inserisce nell'app per entrare nella tua azienda.",
+    "new": "Nuovo invito",
+    "roleLabel": "Ruolo",
+    "role": {
+      "driver": "Autista",
+      "dispatcher": "Dispatcher"
+    },
+    "nameLabel": "Nome (facoltativo)",
+    "namePlaceholder": "es. Marko Marković",
+    "create": "Crea invito",
+    "codeTitle": "Codice invito",
+    "codeNote": "Condividi questo codice con la persona. È valido 7 giorni.",
+    "copy": "Copia",
+    "copied": "Copiato",
+    "cancel": "Annulla invito",
+    "cancelConfirm": "Annullare questo invito? Il codice smetterà di funzionare.",
+    "empty": "Ancora nessun invito",
+    "expiresOn": "Scade il {{date}}",
+    "dispatcherNote": "L'accesso dispatcher arriverà in un aggiornamento successivo; il codice registra già l'appartenenza.",
+    "status": {
+      "pending": "In attesa",
+      "accepted": "Accettato",
+      "cancelled": "Annullato",
+      "expired": "Scaduto"
+    },
+    "haveCode": "Ho un codice aziendale",
+    "enterCode": "Inserisci il codice",
+    "codePlaceholder": "codice di 8 caratteri",
+    "join": "Entra nell'azienda",
+    "joining": "Accesso…",
+    "accepted": "Sei entrato nell'azienda.",
+    "acceptedDispatcher": "Appartenenza registrata. L'accesso dispatcher arriverà in un aggiornamento successivo.",
+    "err": {
+      "notFound": "Codice non trovato. Controllalo e riprova.",
+      "expired": "Questo codice è scaduto.",
+      "cancelled": "Questo invito è stato annullato.",
+      "used": "Questo codice è già stato usato.",
+      "otherCompany": "Il tuo account appartiene già a un'altra azienda.",
+      "suspended": "Questa azienda è sospesa.",
+      "dispatcherNotReady": "Gli account dispatcher non sono ancora supportati — chiedi al titolare di invitarti come autista.",
+      "roleCannotAccept": "Questo account non può accettare inviti."
+    }
+  },
   "sync": {
     "failedTitle": "Elementi non riusciti",
     "failedBody": "Impossibile salvare queste modifiche sul server.",
@@ -279,7 +324,10 @@
     "pastDue": "scaduto",
     "atLimit": "al limite",
     "overLimit": "oltre il limite",
-    "status": { "active": "Attivo", "suspended": "Sospeso" }
+    "status": {
+      "active": "Attivo",
+      "suspended": "Sospeso"
+    }
   },
   "suspended": {
     "title": "Account sospeso temporaneamente",

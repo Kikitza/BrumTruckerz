@@ -252,6 +252,51 @@
     "statusCheckFailed": "Statusi i llogarisë tuaj nuk mund të verifikohet — ju lutemi provoni përsëri.",
     "signOutPending": "Disa ndryshime po presin ende të sinkronizohen. Nëse dilni, do të dërgohen herën tjetër që të hyni."
   },
+  "invite": {
+    "title": "Ftesa",
+    "subtitle": "Krijo një kod dhe jepja personit. Ai e fut në aplikacion për t'u bashkuar me kompaninë tënde.",
+    "new": "Ftesë e re",
+    "roleLabel": "Roli",
+    "role": {
+      "driver": "Shofer",
+      "dispatcher": "Dispeçer"
+    },
+    "nameLabel": "Emri (opsional)",
+    "namePlaceholder": "p.sh. Marko Marković",
+    "create": "Krijo ftesën",
+    "codeTitle": "Kodi i ftesës",
+    "codeNote": "Jepja këtë kod personit. Vlen për 7 ditë.",
+    "copy": "Kopjo",
+    "copied": "U kopjua",
+    "cancel": "Anulo ftesën",
+    "cancelConfirm": "Ta anulosh këtë ftesë? Kodi do të ndalojë së funksionuari.",
+    "empty": "Ende s'ka ftesa",
+    "expiresOn": "Skadon më {{date}}",
+    "dispatcherNote": "Qasja si dispeçer vjen në një përditësim të mëvonshëm; kodi tashmë e regjistron anëtarësimin.",
+    "status": {
+      "pending": "Në pritje",
+      "accepted": "Pranuar",
+      "cancelled": "Anuluar",
+      "expired": "Skaduar"
+    },
+    "haveCode": "Kam një kod kompanie",
+    "enterCode": "Fut kodin",
+    "codePlaceholder": "kod me 8 shenja",
+    "join": "Bashkohu me kompaninë",
+    "joining": "Po bashkohesh…",
+    "accepted": "U bashkove me kompaninë.",
+    "acceptedDispatcher": "Anëtarësimi u regjistrua. Qasja si dispeçer vjen në një përditësim të mëvonshëm.",
+    "err": {
+      "notFound": "Kodi nuk u gjet. Kontrolloje dhe provo sërish.",
+      "expired": "Ky kod ka skaduar.",
+      "cancelled": "Kjo ftesë u anulua.",
+      "used": "Ky kod është përdorur tashmë.",
+      "otherCompany": "Llogaria jote i përket tashmë një kompanie tjetër.",
+      "suspended": "Kjo kompani është pezulluar.",
+      "dispatcherNotReady": "Llogaritë e dispeçerit nuk mbështeten ende — kërko nga pronari të të ftojë si shofer.",
+      "roleCannotAccept": "Kjo llogari nuk mund të pranojë ftesa."
+    }
+  },
   "sync": {
     "failedTitle": "Artikujt e dështuar",
     "failedBody": "Këto ndryshime nuk mund të ruheshin në server.",
@@ -279,7 +324,10 @@
     "pastDue": "e vonuar",
     "atLimit": "në kufi",
     "overLimit": "mbi kufi",
-    "status": { "active": "Aktive", "suspended": "Pezulluar" }
+    "status": {
+      "active": "Aktive",
+      "suspended": "Pezulluar"
+    }
   },
   "suspended": {
     "title": "Llogaria është pezulluar përkohësisht",

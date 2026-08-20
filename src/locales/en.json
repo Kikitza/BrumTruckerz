@@ -250,6 +250,51 @@
     "statusCheckFailed": "Can't verify your account status — please try again.",
     "signOutPending": "Some changes are still waiting to sync. If you sign out, they'll be sent the next time you sign in."
   },
+  "invite": {
+    "title": "Invitations",
+    "subtitle": "Generate a code and share it with the person. They enter it in the app to join your company.",
+    "new": "New invitation",
+    "roleLabel": "Role",
+    "role": {
+      "driver": "Driver",
+      "dispatcher": "Dispatcher"
+    },
+    "nameLabel": "Name (optional)",
+    "namePlaceholder": "e.g. Marko Marković",
+    "create": "Create invitation",
+    "codeTitle": "Invitation code",
+    "codeNote": "Share this code with the person. It's valid for 7 days.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "cancel": "Cancel invitation",
+    "cancelConfirm": "Cancel this invitation? The code will stop working.",
+    "empty": "No invitations yet",
+    "expiresOn": "Expires {{date}}",
+    "dispatcherNote": "Dispatcher access will be enabled in a later update; the code records their membership now.",
+    "status": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "cancelled": "Cancelled",
+      "expired": "Expired"
+    },
+    "haveCode": "I have a company code",
+    "enterCode": "Enter code",
+    "codePlaceholder": "8-character code",
+    "join": "Join company",
+    "joining": "Joining…",
+    "accepted": "You've joined the company.",
+    "acceptedDispatcher": "Membership recorded. Dispatcher access will be enabled in a later update.",
+    "err": {
+      "notFound": "Code not found. Check it and try again.",
+      "expired": "This code has expired.",
+      "cancelled": "This invitation was cancelled.",
+      "used": "This code has already been used.",
+      "otherCompany": "Your account already belongs to another company.",
+      "suspended": "This company is suspended.",
+      "dispatcherNotReady": "Dispatcher accounts aren't supported yet — ask the owner to invite you as a driver.",
+      "roleCannotAccept": "This account can't accept invitations."
+    }
+  },
   "sync": {
     "failedTitle": "Failed items",
     "failedBody": "These changes couldn't be saved to the server.",
@@ -277,7 +322,10 @@
     "pastDue": "past due",
     "atLimit": "at limit",
     "overLimit": "over limit",
-    "status": { "active": "Active", "suspended": "Suspended" }
+    "status": {
+      "active": "Active",
+      "suspended": "Suspended"
+    }
   },
   "suspended": {
     "title": "Account temporarily suspended",

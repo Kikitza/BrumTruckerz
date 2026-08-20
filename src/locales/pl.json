@@ -252,6 +252,51 @@
     "statusCheckFailed": "Nie można zweryfikować statusu Twojego konta — spróbuj ponownie.",
     "signOutPending": "Niektóre zmiany wciąż czekają na synchronizację. Jeśli się wylogujesz, zostaną wysłane przy następnym logowaniu."
   },
+  "invite": {
+    "title": "Zaproszenia",
+    "subtitle": "Wygeneruj kod i przekaż go osobie. Wpisuje go w aplikacji, aby dołączyć do Twojej firmy.",
+    "new": "Nowe zaproszenie",
+    "roleLabel": "Rola",
+    "role": {
+      "driver": "Kierowca",
+      "dispatcher": "Dyspozytor"
+    },
+    "nameLabel": "Imię (opcjonalnie)",
+    "namePlaceholder": "np. Marko Marković",
+    "create": "Utwórz zaproszenie",
+    "codeTitle": "Kod zaproszenia",
+    "codeNote": "Przekaż ten kod osobie. Jest ważny przez 7 dni.",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano",
+    "cancel": "Anuluj zaproszenie",
+    "cancelConfirm": "Anulować to zaproszenie? Kod przestanie działać.",
+    "empty": "Brak zaproszeń",
+    "expiresOn": "Wygasa {{date}}",
+    "dispatcherNote": "Dostęp dyspozytora pojawi się w późniejszej aktualizacji; kod już teraz zapisuje członkostwo.",
+    "status": {
+      "pending": "Oczekujące",
+      "accepted": "Zaakceptowane",
+      "cancelled": "Anulowane",
+      "expired": "Wygasłe"
+    },
+    "haveCode": "Mam kod firmy",
+    "enterCode": "Wpisz kod",
+    "codePlaceholder": "kod 8-znakowy",
+    "join": "Dołącz do firmy",
+    "joining": "Dołączanie…",
+    "accepted": "Dołączyłeś do firmy.",
+    "acceptedDispatcher": "Członkostwo zapisane. Dostęp dyspozytora pojawi się w późniejszej aktualizacji.",
+    "err": {
+      "notFound": "Nie znaleziono kodu. Sprawdź go i spróbuj ponownie.",
+      "expired": "Ten kod wygasł.",
+      "cancelled": "To zaproszenie zostało anulowane.",
+      "used": "Ten kod został już użyty.",
+      "otherCompany": "Twoje konto należy już do innej firmy.",
+      "suspended": "Ta firma jest zawieszona.",
+      "dispatcherNotReady": "Konta dyspozytora nie są jeszcze obsługiwane — poproś właściciela, aby zaprosił Cię jako kierowcę.",
+      "roleCannotAccept": "To konto nie może przyjmować zaproszeń."
+    }
+  },
   "sync": {
     "failedTitle": "Nieudane elementy",
     "failedBody": "Tych zmian nie udało się zapisać na serwerze.",
@@ -279,7 +324,10 @@
     "pastDue": "zaległość",
     "atLimit": "na limicie",
     "overLimit": "ponad limit",
-    "status": { "active": "Aktywna", "suspended": "Zawieszona" }
+    "status": {
+      "active": "Aktywna",
+      "suspended": "Zawieszona"
+    }
   },
   "suspended": {
     "title": "Konto tymczasowo zawieszone",

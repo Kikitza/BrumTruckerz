@@ -252,6 +252,51 @@
     "statusCheckFailed": "Tilin tilaa ei voitu tarkistaa — yritä uudelleen.",
     "signOutPending": "Jotkin muutokset odottavat vielä synkronointia. Jos kirjaudut ulos, ne lähetetään seuraavalla kirjautumisella."
   },
+  "invite": {
+    "title": "Kutsut",
+    "subtitle": "Luo koodi ja anna se henkilölle. Hän syöttää sen sovelluksessa liittyäkseen yritykseesi.",
+    "new": "Uusi kutsu",
+    "roleLabel": "Rooli",
+    "role": {
+      "driver": "Kuljettaja",
+      "dispatcher": "Ajojärjestelijä"
+    },
+    "nameLabel": "Nimi (valinnainen)",
+    "namePlaceholder": "esim. Marko Marković",
+    "create": "Luo kutsu",
+    "codeTitle": "Kutsukoodi",
+    "codeNote": "Anna tämä koodi henkilölle. Se on voimassa 7 päivää.",
+    "copy": "Kopioi",
+    "copied": "Kopioitu",
+    "cancel": "Peruuta kutsu",
+    "cancelConfirm": "Peruutetaanko tämä kutsu? Koodi lakkaa toimimasta.",
+    "empty": "Ei vielä kutsuja",
+    "expiresOn": "Vanhenee {{date}}",
+    "dispatcherNote": "Ajojärjestelijän käyttöoikeus tulee myöhemmässä päivityksessä; koodi kirjaa jäsenyyden jo nyt.",
+    "status": {
+      "pending": "Odottaa",
+      "accepted": "Hyväksytty",
+      "cancelled": "Peruutettu",
+      "expired": "Vanhentunut"
+    },
+    "haveCode": "Minulla on yrityksen koodi",
+    "enterCode": "Syötä koodi",
+    "codePlaceholder": "8 merkin koodi",
+    "join": "Liity yritykseen",
+    "joining": "Liitytään…",
+    "accepted": "Liityit yritykseen.",
+    "acceptedDispatcher": "Jäsenyys kirjattu. Ajojärjestelijän käyttöoikeus tulee myöhemmässä päivityksessä.",
+    "err": {
+      "notFound": "Koodia ei löytynyt. Tarkista se ja yritä uudelleen.",
+      "expired": "Tämä koodi on vanhentunut.",
+      "cancelled": "Tämä kutsu peruutettiin.",
+      "used": "Tämä koodi on jo käytetty.",
+      "otherCompany": "Tilisi kuuluu jo toiseen yritykseen.",
+      "suspended": "Tämä yritys on jäädytetty.",
+      "dispatcherNotReady": "Ajojärjestelijän tilejä ei vielä tueta — pyydä omistajaa kutsumaan sinut kuljettajaksi.",
+      "roleCannotAccept": "Tämä tili ei voi hyväksyä kutsuja."
+    }
+  },
   "sync": {
     "failedTitle": "Epäonnistuneet kohteet",
     "failedBody": "Näitä muutoksia ei voitu tallentaa palvelimelle.",
@@ -279,7 +324,10 @@
     "pastDue": "erääntynyt",
     "atLimit": "rajalla",
     "overLimit": "rajan yli",
-    "status": { "active": "Aktiivinen", "suspended": "Keskeytetty" }
+    "status": {
+      "active": "Aktiivinen",
+      "suspended": "Keskeytetty"
+    }
   },
   "suspended": {
     "title": "Tili on väliaikaisesti keskeytetty",

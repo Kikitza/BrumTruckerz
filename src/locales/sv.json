@@ -252,6 +252,51 @@
     "statusCheckFailed": "Det går inte att verifiera din kontostatus — försök igen.",
     "signOutPending": "Vissa ändringar väntar fortfarande på att synkroniseras. Om du loggar ut skickas de nästa gång du loggar in."
   },
+  "invite": {
+    "title": "Inbjudningar",
+    "subtitle": "Skapa en kod och dela den med personen. Hen anger koden i appen för att gå med i ditt företag.",
+    "new": "Ny inbjudan",
+    "roleLabel": "Roll",
+    "role": {
+      "driver": "Förare",
+      "dispatcher": "Transportledare"
+    },
+    "nameLabel": "Namn (valfritt)",
+    "namePlaceholder": "t.ex. Marko Marković",
+    "create": "Skapa inbjudan",
+    "codeTitle": "Inbjudningskod",
+    "codeNote": "Dela den här koden med personen. Den gäller i 7 dagar.",
+    "copy": "Kopiera",
+    "copied": "Kopierad",
+    "cancel": "Avbryt inbjudan",
+    "cancelConfirm": "Avbryta den här inbjudan? Koden slutar fungera.",
+    "empty": "Inga inbjudningar än",
+    "expiresOn": "Går ut {{date}}",
+    "dispatcherNote": "Åtkomst för transportledare kommer i en senare uppdatering; koden registrerar medlemskapet redan nu.",
+    "status": {
+      "pending": "Väntar",
+      "accepted": "Accepterad",
+      "cancelled": "Avbruten",
+      "expired": "Utgången"
+    },
+    "haveCode": "Jag har en företagskod",
+    "enterCode": "Ange kod",
+    "codePlaceholder": "kod på 8 tecken",
+    "join": "Gå med i företaget",
+    "joining": "Går med…",
+    "accepted": "Du har gått med i företaget.",
+    "acceptedDispatcher": "Medlemskap registrerat. Åtkomst för transportledare kommer i en senare uppdatering.",
+    "err": {
+      "notFound": "Koden hittades inte. Kontrollera den och försök igen.",
+      "expired": "Den här koden har gått ut.",
+      "cancelled": "Den här inbjudan avbröts.",
+      "used": "Den här koden har redan använts.",
+      "otherCompany": "Ditt konto tillhör redan ett annat företag.",
+      "suspended": "Det här företaget är avstängt.",
+      "dispatcherNotReady": "Konton för transportledare stöds inte ännu — be ägaren att bjuda in dig som förare.",
+      "roleCannotAccept": "Det här kontot kan inte acceptera inbjudningar."
+    }
+  },
   "sync": {
     "failedTitle": "Misslyckade objekt",
     "failedBody": "Dessa ändringar kunde inte sparas på servern.",
@@ -279,7 +324,10 @@
     "pastDue": "förfallen",
     "atLimit": "vid gränsen",
     "overLimit": "över gränsen",
-    "status": { "active": "Aktiv", "suspended": "Avstängd" }
+    "status": {
+      "active": "Aktiv",
+      "suspended": "Avstängd"
+    }
   },
   "suspended": {
     "title": "Kontot är tillfälligt avstängt",

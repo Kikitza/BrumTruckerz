@@ -252,6 +252,51 @@
     "statusCheckFailed": "Nu putem verifica starea contului tău — încearcă din nou.",
     "signOutPending": "Unele modificări încă așteaptă sincronizarea. Dacă te deconectezi, vor fi trimise la următoarea conectare."
   },
+  "invite": {
+    "title": "Invitații",
+    "subtitle": "Generează un cod și transmite-l persoanei. Îl introduce în aplicație pentru a se alătura firmei tale.",
+    "new": "Invitație nouă",
+    "roleLabel": "Rol",
+    "role": {
+      "driver": "Șofer",
+      "dispatcher": "Dispecer"
+    },
+    "nameLabel": "Nume (opțional)",
+    "namePlaceholder": "ex.: Marko Marković",
+    "create": "Creează invitația",
+    "codeTitle": "Cod de invitație",
+    "codeNote": "Transmite acest cod persoanei. Este valabil 7 zile.",
+    "copy": "Copiază",
+    "copied": "Copiat",
+    "cancel": "Anulează invitația",
+    "cancelConfirm": "Anulezi această invitație? Codul nu va mai funcționa.",
+    "empty": "Încă nu există invitații",
+    "expiresOn": "Expiră la {{date}}",
+    "dispatcherNote": "Accesul de dispecer va veni într-o actualizare ulterioară; codul înregistrează deja apartenența.",
+    "status": {
+      "pending": "În așteptare",
+      "accepted": "Acceptată",
+      "cancelled": "Anulată",
+      "expired": "Expirată"
+    },
+    "haveCode": "Am un cod de firmă",
+    "enterCode": "Introdu codul",
+    "codePlaceholder": "cod din 8 caractere",
+    "join": "Alătură-te firmei",
+    "joining": "Se alătură…",
+    "accepted": "Te-ai alăturat firmei.",
+    "acceptedDispatcher": "Apartenență înregistrată. Accesul de dispecer va veni într-o actualizare ulterioară.",
+    "err": {
+      "notFound": "Cod negăsit. Verifică-l și încearcă din nou.",
+      "expired": "Acest cod a expirat.",
+      "cancelled": "Această invitație a fost anulată.",
+      "used": "Acest cod a fost deja folosit.",
+      "otherCompany": "Contul tău aparține deja altei firme.",
+      "suspended": "Această firmă este suspendată.",
+      "dispatcherNotReady": "Conturile de dispecer nu sunt încă acceptate — roagă proprietarul să te invite ca șofer.",
+      "roleCannotAccept": "Acest cont nu poate accepta invitații."
+    }
+  },
   "sync": {
     "failedTitle": "Elemente eșuate",
     "failedBody": "Aceste modificări nu au putut fi salvate pe server.",
@@ -279,7 +324,10 @@
     "pastDue": "restanță",
     "atLimit": "la limită",
     "overLimit": "peste limită",
-    "status": { "active": "Activă", "suspended": "Suspendată" }
+    "status": {
+      "active": "Activă",
+      "suspended": "Suspendată"
+    }
   },
   "suspended": {
     "title": "Cont suspendat temporar",

@@ -252,6 +252,51 @@
     "statusCheckFailed": "Nepavyko patikrinti jūsų paskyros būsenos — bandykite dar kartą.",
     "signOutPending": "Kai kurie pakeitimai vis dar laukia sinchronizavimo. Jei atsijungsite, jie bus išsiųsti kitą kartą prisijungus."
   },
+  "invite": {
+    "title": "Kvietimai",
+    "subtitle": "Sukurk kodą ir perduok jį asmeniui. Jis įveda kodą programėlėje, kad prisijungtų prie tavo įmonės.",
+    "new": "Naujas kvietimas",
+    "roleLabel": "Vaidmuo",
+    "role": {
+      "driver": "Vairuotojas",
+      "dispatcher": "Dispečeris"
+    },
+    "nameLabel": "Vardas (nebūtina)",
+    "namePlaceholder": "pvz., Marko Marković",
+    "create": "Sukurti kvietimą",
+    "codeTitle": "Kvietimo kodas",
+    "codeNote": "Perduok šį kodą asmeniui. Jis galioja 7 dienas.",
+    "copy": "Kopijuoti",
+    "copied": "Nukopijuota",
+    "cancel": "Atšaukti kvietimą",
+    "cancelConfirm": "Atšaukti šį kvietimą? Kodas nustos veikti.",
+    "empty": "Kvietimų dar nėra",
+    "expiresOn": "Galioja iki {{date}}",
+    "dispatcherNote": "Dispečerio prieiga atsiras vėlesniame atnaujinime; kodas jau dabar registruoja narystę.",
+    "status": {
+      "pending": "Laukiama",
+      "accepted": "Priimtas",
+      "cancelled": "Atšauktas",
+      "expired": "Nebegalioja"
+    },
+    "haveCode": "Turiu įmonės kodą",
+    "enterCode": "Įvesti kodą",
+    "codePlaceholder": "8 simbolių kodas",
+    "join": "Prisijungti prie įmonės",
+    "joining": "Jungiamasi…",
+    "accepted": "Prisijungei prie įmonės.",
+    "acceptedDispatcher": "Narystė užregistruota. Dispečerio prieiga atsiras vėlesniame atnaujinime.",
+    "err": {
+      "notFound": "Kodas nerastas. Patikrink jį ir bandyk dar kartą.",
+      "expired": "Šis kodas nebegalioja.",
+      "cancelled": "Šis kvietimas buvo atšauktas.",
+      "used": "Šis kodas jau panaudotas.",
+      "otherCompany": "Tavo paskyra jau priklauso kitai įmonei.",
+      "suspended": "Ši įmonė yra sustabdyta.",
+      "dispatcherNotReady": "Dispečerio paskyros dar nepalaikomos — paprašyk savininko pakviesti tave kaip vairuotoją.",
+      "roleCannotAccept": "Ši paskyra negali priimti kvietimų."
+    }
+  },
   "sync": {
     "failedTitle": "Nepavykę elementai",
     "failedBody": "Šių pakeitimų nepavyko išsaugoti serveryje.",
@@ -279,7 +324,10 @@
     "pastDue": "vėluojantis mokėjimas",
     "atLimit": "ties limitu",
     "overLimit": "viršija limitą",
-    "status": { "active": "Aktyvi", "suspended": "Sustabdyta" }
+    "status": {
+      "active": "Aktyvi",
+      "suspended": "Sustabdyta"
+    }
   },
   "suspended": {
     "title": "Paskyra laikinai sustabdyta",

@@ -252,6 +252,51 @@
     "statusCheckFailed": "Vi kan ikke bekræfte din kontostatus — prøv igen.",
     "signOutPending": "Nogle ændringer venter stadig på synkronisering. Hvis du logger ud, sendes de, næste gang du logger ind."
   },
+  "invite": {
+    "title": "Invitationer",
+    "subtitle": "Generér en kode, og del den med personen. Vedkommende indtaster den i appen for at blive en del af din virksomhed.",
+    "new": "Ny invitation",
+    "roleLabel": "Rolle",
+    "role": {
+      "driver": "Chauffør",
+      "dispatcher": "Disponent"
+    },
+    "nameLabel": "Navn (valgfrit)",
+    "namePlaceholder": "f.eks. Marko Marković",
+    "create": "Opret invitation",
+    "codeTitle": "Invitationskode",
+    "codeNote": "Del denne kode med personen. Den er gyldig i 7 dage.",
+    "copy": "Kopiér",
+    "copied": "Kopieret",
+    "cancel": "Annullér invitation",
+    "cancelConfirm": "Annullér denne invitation? Koden holder op med at virke.",
+    "empty": "Ingen invitationer endnu",
+    "expiresOn": "Udløber {{date}}",
+    "dispatcherNote": "Disponentadgang kommer i en senere opdatering; koden registrerer allerede medlemskabet.",
+    "status": {
+      "pending": "Afventer",
+      "accepted": "Accepteret",
+      "cancelled": "Annulleret",
+      "expired": "Udløbet"
+    },
+    "haveCode": "Jeg har en virksomhedskode",
+    "enterCode": "Indtast kode",
+    "codePlaceholder": "kode på 8 tegn",
+    "join": "Bliv en del af virksomheden",
+    "joining": "Tilslutter…",
+    "accepted": "Du er blevet en del af virksomheden.",
+    "acceptedDispatcher": "Medlemskab registreret. Disponentadgang kommer i en senere opdatering.",
+    "err": {
+      "notFound": "Koden blev ikke fundet. Tjek den, og prøv igen.",
+      "expired": "Denne kode er udløbet.",
+      "cancelled": "Denne invitation blev annulleret.",
+      "used": "Denne kode er allerede brugt.",
+      "otherCompany": "Din konto tilhører allerede en anden virksomhed.",
+      "suspended": "Denne virksomhed er suspenderet.",
+      "dispatcherNotReady": "Disponentkonti understøttes ikke endnu — bed ejeren om at invitere dig som chauffør.",
+      "roleCannotAccept": "Denne konto kan ikke acceptere invitationer."
+    }
+  },
   "sync": {
     "failedTitle": "Mislykkede elementer",
     "failedBody": "Disse ændringer kunne ikke gemmes på serveren.",
@@ -279,7 +324,10 @@
     "pastDue": "forfalden",
     "atLimit": "ved grænsen",
     "overLimit": "over grænsen",
-    "status": { "active": "Aktiv", "suspended": "Suspenderet" }
+    "status": {
+      "active": "Aktiv",
+      "suspended": "Suspenderet"
+    }
   },
   "suspended": {
     "title": "Kontoen er midlertidigt suspenderet",

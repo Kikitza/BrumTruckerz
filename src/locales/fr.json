@@ -252,6 +252,51 @@
     "statusCheckFailed": "Impossible de vérifier le statut de votre compte — veuillez réessayer.",
     "signOutPending": "Certaines modifications attendent encore d'être synchronisées. Si vous vous déconnectez, elles seront envoyées à votre prochaine connexion."
   },
+  "invite": {
+    "title": "Invitations",
+    "subtitle": "Générez un code et transmettez-le à la personne. Elle le saisit dans l'application pour rejoindre votre entreprise.",
+    "new": "Nouvelle invitation",
+    "roleLabel": "Rôle",
+    "role": {
+      "driver": "Chauffeur",
+      "dispatcher": "Répartiteur"
+    },
+    "nameLabel": "Nom (facultatif)",
+    "namePlaceholder": "p. ex. Marko Marković",
+    "create": "Créer l'invitation",
+    "codeTitle": "Code d'invitation",
+    "codeNote": "Transmettez ce code à la personne. Il est valable 7 jours.",
+    "copy": "Copier",
+    "copied": "Copié",
+    "cancel": "Annuler l'invitation",
+    "cancelConfirm": "Annuler cette invitation ? Le code cessera de fonctionner.",
+    "empty": "Aucune invitation pour l'instant",
+    "expiresOn": "Expire le {{date}}",
+    "dispatcherNote": "L'accès répartiteur arrivera dans une mise à jour ultérieure ; le code enregistre déjà l'adhésion.",
+    "status": {
+      "pending": "En attente",
+      "accepted": "Acceptée",
+      "cancelled": "Annulée",
+      "expired": "Expirée"
+    },
+    "haveCode": "J'ai un code d'entreprise",
+    "enterCode": "Saisir le code",
+    "codePlaceholder": "code à 8 caractères",
+    "join": "Rejoindre l'entreprise",
+    "joining": "Adhésion…",
+    "accepted": "Vous avez rejoint l'entreprise.",
+    "acceptedDispatcher": "Adhésion enregistrée. L'accès répartiteur arrivera dans une mise à jour ultérieure.",
+    "err": {
+      "notFound": "Code introuvable. Vérifiez-le et réessayez.",
+      "expired": "Ce code a expiré.",
+      "cancelled": "Cette invitation a été annulée.",
+      "used": "Ce code a déjà été utilisé.",
+      "otherCompany": "Votre compte appartient déjà à une autre entreprise.",
+      "suspended": "Cette entreprise est suspendue.",
+      "dispatcherNotReady": "Les comptes répartiteur ne sont pas encore pris en charge — demandez au propriétaire de vous inviter comme chauffeur.",
+      "roleCannotAccept": "Ce compte ne peut pas accepter d'invitations."
+    }
+  },
   "sync": {
     "failedTitle": "Éléments en échec",
     "failedBody": "Ces modifications n'ont pas pu être enregistrées sur le serveur.",
@@ -279,7 +324,10 @@
     "pastDue": "en retard de paiement",
     "atLimit": "à la limite",
     "overLimit": "au-dessus de la limite",
-    "status": { "active": "Actif", "suspended": "Suspendu" }
+    "status": {
+      "active": "Actif",
+      "suspended": "Suspendu"
+    }
   },
   "suspended": {
     "title": "Compte temporairement suspendu",

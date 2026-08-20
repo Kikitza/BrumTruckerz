@@ -252,6 +252,51 @@
     "statusCheckFailed": "Ihr Kontostatus kann nicht überprüft werden — bitte versuchen Sie es erneut.",
     "signOutPending": "Einige Änderungen warten noch auf die Synchronisierung. Wenn Sie sich abmelden, werden sie bei der nächsten Anmeldung gesendet."
   },
+  "invite": {
+    "title": "Einladungen",
+    "subtitle": "Erstelle einen Code und gib ihn an die Person weiter. Sie gibt ihn in der App ein, um deinem Unternehmen beizutreten.",
+    "new": "Neue Einladung",
+    "roleLabel": "Rolle",
+    "role": {
+      "driver": "Fahrer",
+      "dispatcher": "Disponent"
+    },
+    "nameLabel": "Name (optional)",
+    "namePlaceholder": "z. B. Marko Marković",
+    "create": "Einladung erstellen",
+    "codeTitle": "Einladungscode",
+    "codeNote": "Gib diesen Code an die Person weiter. Er ist 7 Tage gültig.",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "cancel": "Einladung stornieren",
+    "cancelConfirm": "Diese Einladung stornieren? Der Code wird ungültig.",
+    "empty": "Noch keine Einladungen",
+    "expiresOn": "Läuft ab am {{date}}",
+    "dispatcherNote": "Der Disponenten-Zugang kommt in einem späteren Update; der Code erfasst die Mitgliedschaft bereits jetzt.",
+    "status": {
+      "pending": "Ausstehend",
+      "accepted": "Angenommen",
+      "cancelled": "Storniert",
+      "expired": "Abgelaufen"
+    },
+    "haveCode": "Ich habe einen Firmencode",
+    "enterCode": "Code eingeben",
+    "codePlaceholder": "8-stelliger Code",
+    "join": "Unternehmen beitreten",
+    "joining": "Beitreten…",
+    "accepted": "Du bist dem Unternehmen beigetreten.",
+    "acceptedDispatcher": "Mitgliedschaft erfasst. Der Disponenten-Zugang kommt in einem späteren Update.",
+    "err": {
+      "notFound": "Code nicht gefunden. Bitte prüfen und erneut versuchen.",
+      "expired": "Dieser Code ist abgelaufen.",
+      "cancelled": "Diese Einladung wurde storniert.",
+      "used": "Dieser Code wurde bereits verwendet.",
+      "otherCompany": "Dein Konto gehört bereits zu einem anderen Unternehmen.",
+      "suspended": "Dieses Unternehmen ist gesperrt.",
+      "dispatcherNotReady": "Disponenten-Konten werden noch nicht unterstützt — bitte den Eigentümer, dich als Fahrer einzuladen.",
+      "roleCannotAccept": "Dieses Konto kann keine Einladungen annehmen."
+    }
+  },
   "sync": {
     "failedTitle": "Fehlgeschlagene Einträge",
     "failedBody": "Diese Änderungen konnten nicht auf dem Server gespeichert werden.",
@@ -279,7 +324,10 @@
     "pastDue": "überfällig",
     "atLimit": "am Limit",
     "overLimit": "über dem Limit",
-    "status": { "active": "Aktiv", "suspended": "Gesperrt" }
+    "status": {
+      "active": "Aktiv",
+      "suspended": "Gesperrt"
+    }
   },
   "suspended": {
     "title": "Konto vorübergehend gesperrt",
