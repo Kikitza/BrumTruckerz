@@ -27,6 +27,7 @@ Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne do
 9. **Brend:** boje znaka == dizajn tokeni (`src/lib/theme.ts`); logo fajlovi i pravila u `assets/brand/brand.md`.
 10. **Tajne:** nikad u repo; klijent koristi `EXPO_PUBLIC_SUPABASE_URL/ANON_KEY`; serverske tajne u Supabase secrets.
 11. **Rokovi/zabrane su podatak sa izvorom, nikad AI procena.** Zabrane: 12 meseci u krug, ograda + zvanični EU izvor, lokalno keširane.
+12. **Izričita zabrana ili PRESKOČI u zadatku se NIKAD ne preskače po sopstvenoj proceni** — ako misliš da je bezbedno ili korisno, **STANI i PITAJ pre izvršenja.**
 
 ## Uloge (MVP)
 `platform_admin` / `owner` / `driver`. **Dispečer je ODLOŽEN** (posle validacije): vlasnik kreira do 100 dispečera sa svim owner funkcijama; vlasnik im dodeljuje vozače/kamione/prikolice; dispečeri međusobno šalju zahteve za zamenu truka/prikolice. Ne graditi sada.
