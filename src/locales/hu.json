@@ -39,7 +39,8 @@
     "settings": "Beállítások",
     "myTrip": "Fuvarom",
     "documents": "Dokumentumok",
-    "resources": "Erőforrások"
+    "resources": "Erőforrások",
+    "profile": "Profil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Valami hiba történt",
     "retry": "Újra",
     "offlineNote": "Helyileg mentve — szinkronizálódik, ha online leszel"
+  },
+  "profile": {
+    "name": "Név",
+    "publicNo": "Sofőr-azonosító",
+    "phone": "Telefon",
+    "changePhone": "Telefonszám módosítása",
+    "phoneChanged": "A telefonszám módosítva."
   }
 }

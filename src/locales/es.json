@@ -39,7 +39,8 @@
     "settings": "Ajustes",
     "myTrip": "Mi viaje",
     "documents": "Documentos",
-    "resources": "Recursos"
+    "resources": "Recursos",
+    "profile": "Perfil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Algo salió mal",
     "retry": "Reintentar",
     "offlineNote": "Guardado localmente — se sincronizará cuando haya conexión"
+  },
+  "profile": {
+    "name": "Nombre",
+    "publicNo": "ID de conductor",
+    "phone": "Teléfono",
+    "changePhone": "Cambiar número de teléfono",
+    "phoneChanged": "Número de teléfono cambiado."
   }
 }

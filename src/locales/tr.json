@@ -39,7 +39,8 @@
     "settings": "Ayarlar",
     "myTrip": "Seferim",
     "documents": "Belgeler",
-    "resources": "Kaynaklar"
+    "resources": "Kaynaklar",
+    "profile": "Profil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Bir şeyler ters gitti",
     "retry": "Yeniden dene",
     "offlineNote": "Yerel olarak kaydedildi — çevrimiçi olunca senkronize edilecek"
+  },
+  "profile": {
+    "name": "Ad",
+    "publicNo": "Sürücü kimliği",
+    "phone": "Telefon",
+    "changePhone": "Telefon numarasını değiştir",
+    "phoneChanged": "Telefon numarası değiştirildi."
   }
 }

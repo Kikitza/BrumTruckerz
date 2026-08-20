@@ -39,7 +39,8 @@
     "settings": "Nastavenia",
     "myTrip": "Moja jazda",
     "documents": "Dokumenty",
-    "resources": "Zdroje"
+    "resources": "Zdroje",
+    "profile": "Profil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Niečo sa pokazilo",
     "retry": "Skúsiť znova",
     "offlineNote": "Uložené lokálne — synchronizuje sa po pripojení k sieti"
+  },
+  "profile": {
+    "name": "Meno",
+    "publicNo": "ID vodiča",
+    "phone": "Telefón",
+    "changePhone": "Zmeniť telefónne číslo",
+    "phoneChanged": "Telefónne číslo zmenené."
   }
 }

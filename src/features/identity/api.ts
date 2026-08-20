@@ -8,6 +8,28 @@ import { supabase } from "../../lib/supabase";
 import { currentUserId, currentCompanyId } from "../auth/currentUser";
 import type { InviteStatus } from "./inviteCode";
 
+// ── Moj profil (vozač čita svoj: RLS driver_profiles user_id=auth.uid()) ──
+// Telefon dolazi iz auth (session/getUser) — nije u našim tabelama (brava, ne identitet).
+export type MyProfile = {
+  name: string | null;      // display_name profila, pa full_name naloga
+  public_no: string | null; // 'BT-D-#####'
+  phone: string | null;     // trenutni auth telefon
+};
+
+export async function getMyProfile(): Promise<MyProfile> {
+  const uid = await currentUserId();
+  const [{ data: prof }, { data: au }, { data: userRes }] = await Promise.all([
+    supabase.from("driver_profiles").select("public_no, display_name").eq("user_id", uid).maybeSingle(),
+    supabase.from("app_users").select("full_name").eq("id", uid).maybeSingle(),
+    supabase.auth.getUser(),
+  ]);
+  return {
+    name: (prof?.display_name as string | null) || (au?.full_name as string | null) || null,
+    public_no: (prof?.public_no as string | null) ?? null,
+    phone: userRes.user?.phone ?? null,
+  };
+}
+
 export type InviteRole = "driver" | "dispatcher";
 
 export type Invitation = {

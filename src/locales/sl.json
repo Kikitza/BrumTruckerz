@@ -39,7 +39,8 @@
     "settings": "Nastavitve",
     "myTrip": "Moja tura",
     "documents": "Dokumenti",
-    "resources": "Viri"
+    "resources": "Viri",
+    "profile": "Profil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Nekaj je šlo narobe",
     "retry": "Poskusi znova",
     "offlineNote": "Shranjeno lokalno — sinhronizirano bo, ko boste na spletu"
+  },
+  "profile": {
+    "name": "Ime",
+    "publicNo": "ID voznika",
+    "phone": "Telefon",
+    "changePhone": "Spremeni telefonsko številko",
+    "phoneChanged": "Telefonska številka je spremenjena."
   }
 }

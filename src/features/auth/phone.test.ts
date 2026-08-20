@@ -1,4 +1,4 @@
-import { normalizePhone, isValidPhone, toE164, phoneAuthErrorKey, DEFAULT_DIAL_PREFIX } from "./phone";
+import { normalizePhone, isValidPhone, toE164, phoneAuthErrorKey, maskPhone, DEFAULT_DIAL_PREFIX } from "./phone";
 
 describe("normalizePhone", () => {
   it("nacionalni broj sa vodećom 0 -> prefiks bez 0", () => {
@@ -48,6 +48,18 @@ describe("toE164", () => {
   it("spaja prefiks i nacionalni broj", () => {
     expect(toE164("060 123 4567", "+381")).toBe("+381601234567");
     expect(isValidPhone(toE164("601234567", "+381"))).toBe(true);
+  });
+});
+
+describe("maskPhone", () => {
+  it("maskira sredinu, čuva pozivni i poslednje 2 cifre", () => {
+    expect(maskPhone("+381600000001")).toBe("+381 •••••••01");
+    expect(maskPhone("381600000001")).toBe("+381 •••••••01"); // bez +
+  });
+  it("prazno/kratko", () => {
+    expect(maskPhone(null)).toBe("—");
+    expect(maskPhone("")).toBe("—");
+    expect(maskPhone("+123")).toBe("+123");
   });
 });
 

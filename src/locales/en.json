@@ -37,7 +37,8 @@
     "settings": "Settings",
     "myTrip": "My trip",
     "documents": "Documents",
-    "resources": "Resources"
+    "resources": "Resources",
+    "profile": "Profile"
   },
   "trip": {
     "status": {
@@ -359,5 +360,12 @@
     "error": "Something went wrong",
     "retry": "Retry",
     "offlineNote": "Saved locally — will sync when online"
+  },
+  "profile": {
+    "name": "Name",
+    "publicNo": "Driver ID",
+    "phone": "Phone",
+    "changePhone": "Change phone number",
+    "phoneChanged": "Phone number changed."
   }
 }

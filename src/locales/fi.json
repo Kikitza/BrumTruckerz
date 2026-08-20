@@ -39,7 +39,8 @@
     "settings": "Asetukset",
     "myTrip": "Oma kuljetukseni",
     "documents": "Asiakirjat",
-    "resources": "Resurssit"
+    "resources": "Resurssit",
+    "profile": "Profiili"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Jotain meni pieleen",
     "retry": "Yritä uudelleen",
     "offlineNote": "Tallennettu paikallisesti — synkronoidaan verkkoon palatessa"
+  },
+  "profile": {
+    "name": "Nimi",
+    "publicNo": "Kuljettajan tunnus",
+    "phone": "Puhelin",
+    "changePhone": "Vaihda puhelinnumero",
+    "phoneChanged": "Puhelinnumero vaihdettu."
   }
 }

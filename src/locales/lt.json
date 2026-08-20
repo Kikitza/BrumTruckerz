@@ -39,7 +39,8 @@
     "settings": "Nustatymai",
     "myTrip": "Mano reisas",
     "documents": "Dokumentai",
-    "resources": "Ištekliai"
+    "resources": "Ištekliai",
+    "profile": "Profilis"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Kažkas nepavyko",
     "retry": "Bandyti dar kartą",
     "offlineNote": "Išsaugota vietoje — bus sinchronizuota prisijungus"
+  },
+  "profile": {
+    "name": "Vardas",
+    "publicNo": "Vairuotojo ID",
+    "phone": "Telefonas",
+    "changePhone": "Keisti telefono numerį",
+    "phoneChanged": "Telefono numeris pakeistas."
   }
 }

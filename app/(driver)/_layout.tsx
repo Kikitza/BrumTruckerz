@@ -24,6 +24,7 @@ export default function DriverTabs() {
       <Tabs.Screen name="index" options={{ title: t("tabs.myTrip"), headerRight: LanguageHeaderRight }} />
       <Tabs.Screen name="documents" options={{ title: t("tabs.documents") }} />
       <Tabs.Screen name="resources" options={{ title: t("tabs.resources") }} />
+      <Tabs.Screen name="profile" options={{ title: t("tabs.profile") }} />
     </Tabs>
   );
 }

@@ -39,7 +39,8 @@
     "settings": "Setări",
     "myTrip": "Cursa mea",
     "documents": "Documente",
-    "resources": "Resurse"
+    "resources": "Resurse",
+    "profile": "Profil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Ceva nu a mers bine",
     "retry": "Reîncearcă",
     "offlineNote": "Salvat local — se va sincroniza când ești online"
+  },
+  "profile": {
+    "name": "Nume",
+    "publicNo": "ID șofer",
+    "phone": "Telefon",
+    "changePhone": "Schimbă numărul de telefon",
+    "phoneChanged": "Număr de telefon schimbat."
   }
 }

@@ -37,7 +37,8 @@
     "settings": "Podešavanja",
     "myTrip": "Moja tura",
     "documents": "Dokumenti",
-    "resources": "Resursi"
+    "resources": "Resursi",
+    "profile": "Profil"
   },
   "trip": {
     "status": {
@@ -362,5 +363,12 @@
     "error": "Nešto je pošlo naopako",
     "retry": "Pokušaj ponovo",
     "offlineNote": "Sačuvano lokalno — sinhronizuje se kad bude mreže"
+  },
+  "profile": {
+    "name": "Ime",
+    "publicNo": "Broj vozača",
+    "phone": "Telefon",
+    "changePhone": "Promeni broj telefona",
+    "phoneChanged": "Broj telefona je promenjen."
   }
 }

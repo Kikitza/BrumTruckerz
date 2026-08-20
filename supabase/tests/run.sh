@@ -24,5 +24,6 @@ run supabase/tests/correct_event_chain_test.sql ALL_CHAIN_TESTS_PASSED
 run supabase/tests/identity_test.sql            ALL_IDENTITY_TESTS_PASSED
 run supabase/tests/invitations_test.sql         ALL_INVITATIONS_TESTS_PASSED
 run supabase/tests/dispatcher_test.sql           ALL_DISPATCHER_TESTS_PASSED
+run supabase/tests/phone_change_test.sql         ALL_PHONE_CHANGE_TESTS_PASSED
 [ "$fail" -eq 0 ] && echo "DB tests: ALL PASSED" || echo "DB tests: FAILURES ABOVE"
 exit $fail

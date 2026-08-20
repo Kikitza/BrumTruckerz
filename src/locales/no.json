@@ -39,7 +39,8 @@
     "settings": "Innstillinger",
     "myTrip": "Min tur",
     "documents": "Dokumenter",
-    "resources": "Ressurser"
+    "resources": "Ressurser",
+    "profile": "Profil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Noe gikk galt",
     "retry": "Prøv igjen",
     "offlineNote": "Lagret lokalt — synkroniseres når du er online"
+  },
+  "profile": {
+    "name": "Navn",
+    "publicNo": "Sjåfør-ID",
+    "phone": "Telefon",
+    "changePhone": "Endre telefonnummer",
+    "phoneChanged": "Telefonnummer endret."
   }
 }

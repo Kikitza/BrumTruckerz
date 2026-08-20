@@ -39,7 +39,8 @@
     "settings": "Seaded",
     "myTrip": "Minu reis",
     "documents": "Dokumendid",
-    "resources": "Ressursid"
+    "resources": "Ressursid",
+    "profile": "Profiil"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Midagi läks valesti",
     "retry": "Proovi uuesti",
     "offlineNote": "Salvestatud lokaalselt — sünkroonitakse võrgus olles"
+  },
+  "profile": {
+    "name": "Nimi",
+    "publicNo": "Juhi ID",
+    "phone": "Telefon",
+    "changePhone": "Muuda telefoninumbrit",
+    "phoneChanged": "Telefoninumber muudetud."
   }
 }

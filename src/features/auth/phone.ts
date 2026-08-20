@@ -25,6 +25,17 @@ export function isValidPhone(e164: string | null | undefined): boolean {
   return !!e164 && /^\+[1-9]\d{7,14}$/.test(e164);
 }
 
+// Maskiran prikaz broja: vidljivi pozivni (prve 3 cifre) + poslednje 2, sredina „•".
+// Supabase vraća telefon bez „+" (npr. „381600000001") — dodajemo ga radi prikaza.
+export function maskPhone(raw: string | null | undefined): string {
+  if (!raw) return "—";
+  const digits = raw.replace(/\D/g, "");
+  if (digits.length < 5) return raw.startsWith("+") ? raw : "+" + digits;
+  const head = "+" + digits.slice(0, 3);
+  const tail = digits.slice(-2);
+  return `${head} ${"•".repeat(digits.length - 5)}${tail}`;
+}
+
 // Ceo unos (prefiks + nacionalni broj) → E.164 (spoj kroz normalizePhone).
 export function toE164(rawNumber: string, prefix = DEFAULT_DIAL_PREFIX): string {
   return normalizePhone(rawNumber, prefix);

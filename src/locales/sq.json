@@ -39,7 +39,8 @@
     "settings": "Cilësimet",
     "myTrip": "Udhëtimi im",
     "documents": "Dokumentet",
-    "resources": "Burimet"
+    "resources": "Burimet",
+    "profile": "Profili"
   },
   "trip": {
     "status": {
@@ -361,5 +362,12 @@
     "error": "Diçka shkoi keq",
     "retry": "Provo përsëri",
     "offlineNote": "U ruajt lokalisht — do të sinkronizohet kur të jesh online"
+  },
+  "profile": {
+    "name": "Emri",
+    "publicNo": "ID e shoferit",
+    "phone": "Telefoni",
+    "changePhone": "Ndrysho numrin e telefonit",
+    "phoneChanged": "Numri i telefonit u ndryshua."
   }
 }
