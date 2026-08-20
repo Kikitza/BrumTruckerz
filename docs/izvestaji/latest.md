@@ -69,5 +69,6 @@ Slojevi razdvojeni (jedini Supabase sloj `customers/api.ts`; UI zove api); reusa
 invalidacije, is_office_role gate, test:db impersonacija). Bez duplirane logike; **pravila kvaliteta ispoštovana.**
 
 ## ČEKA SE (potez vlasnika)
-1. (i dalje otvoreno) reset PROD DB lozinke; odluka o stagingu (higijena posle proba).
-2. Kad se bude primenjivalo na PROD: `db push 0021` uz odobrenje (aditivno; bez Edge/Auth).
+1. Kad se bude primenjivalo na PROD: `db push 0021` uz odobrenje (aditivno; bez Edge/Auth).
+
+> Napomena: higijena iz F0 (oba reseta DB lozinki) je ODRAĐENA; staging OSTAJE kao pozornica za probe — te stavke se više ne vode u „ČEKA SE".
