@@ -26,12 +26,22 @@ function applicableStage(days: number): number | null {
   return null;
 }
 
-// Srpski nazivi kategorija (custom -> label reda).
+// Km-prag (servis po km): 0 (prekoračeno) / 500 / 2000 / null. Paritet sa src/features/reminders/status.ts.
+function applicableKmStage(remaining: number): number | null {
+  if (remaining <= 0) return 0;
+  if (remaining <= 500) return 500;
+  if (remaining <= 2000) return 2000;
+  return null;
+}
+
+// Srpski nazivi kategorija (custom -> label reda; + tipovi iz šifarnika 0024).
 const CAT: Record<string, string> = {
   registration: "Registracija", technical: "Tehnički pregled", tacho_calibration: "Tahograf (kalibracija)",
   fire_extinguisher: "PP aparat", license_excerpt: "Izvod licence", cemt: "CEMT", code95: "Kôd 95",
   medical: "Lekarsko uverenje", adr: "ADR", green_card: "Zelena karta", tacho_card: "Tahograf kartica",
   contract: "Ugovor", service: "Servis", custom: "Rok",
+  cpc: "CPC (Kôd 95)", adr_driver: "ADR sertifikat", adr_vehicle: "ADR vozila",
+  vignette: "Vinjeta", trailer_technical: "Tehnički pregled", trailer_registration: "Registracija",
 };
 
 const ymd = (d: Date) => d.toISOString().slice(0, 10);
@@ -67,7 +77,19 @@ Deno.serve(async (req) => {
     .map((r) => ({ r, days: daysUntil(r.due_date as string), stage: applicableStage(daysUntil(r.due_date as string)) }))
     .filter((x) => x.stage !== null && (x.r.notified_stage == null || (x.stage as number) < x.r.notified_stage));
 
-  if (due.length === 0) return Response.json({ scanned: reminders?.length ?? 0, due: 0, sent: 0 });
+  // KM-rokovi (servis po km, mode='km'): prag iz preostale kilometraže (due_km - current_odometer).
+  const { data: kmRem } = await supabase
+    .from("reminders")
+    .select("id, company_id, subject_type, subject_id, category, label, due_km, notified_stage")
+    .eq("mode", "km").not("due_km", "is", null);
+  const { data: vehOdo } = await supabase.from("vehicles").select("id, current_odometer");
+  const odoMap = new Map<string, number>();
+  (vehOdo ?? []).forEach((v: { id: string; current_odometer: number | null }) => odoMap.set(v.id, v.current_odometer ?? 0));
+  const dueKm = (kmRem ?? [])
+    .map((r) => { const remaining = (r.due_km as number) - (odoMap.get(r.subject_id) ?? 0); return { r, remaining, stage: applicableKmStage(remaining) }; })
+    .filter((x) => x.stage !== null && (x.r.notified_stage == null || (x.stage as number) < x.r.notified_stage));
+
+  if (due.length === 0 && dueKm.length === 0) return Response.json({ scanned: (reminders?.length ?? 0) + (kmRem?.length ?? 0), due: 0, sent: 0 });
 
   // Imena subjekata (polimorfno, bez FK join-a).
   const [veh, tra, dri] = await Promise.all([
@@ -80,8 +102,8 @@ Deno.serve(async (req) => {
   (tra.data ?? []).forEach((t: { id: string; registration: string }) => names.set(t.id, t.registration));
   (dri.data ?? []).forEach((d: { id: string; full_name: string }) => names.set(d.id, d.full_name));
 
-  // Vlasnici firmi iz dospelih rokova + njihovi tokeni.
-  const companyIds = [...new Set(due.map((x) => x.r.company_id))];
+  // Vlasnici firmi iz dospelih rokova (datum + km) + njihovi tokeni.
+  const companyIds = [...new Set([...due, ...dueKm].map((x) => x.r.company_id))];
   const { data: owners } = await supabase
     .from("app_users").select("id, company_id").eq("role", "owner").in("company_id", companyIds);
   const ownersByCompany = new Map<string, string[]>();
@@ -115,6 +137,16 @@ Deno.serve(async (req) => {
     const toks = (ownersByCompany.get(x.r.company_id) ?? []).flatMap((uid) => tokensByUser.get(uid) ?? []);
     for (const to of toks) messages.push({ to, title: "Rok ističe", body, data: { screen: "reminders" } });
   }
+  // Km-rokovi: ista poruka, „još X km" (ili „prekoračeno za X km").
+  for (const x of dueKm) {
+    const subject = names.get(x.r.subject_id) ?? "—";
+    const cat = x.r.category === "custom" ? (x.r.label?.trim() || CAT.custom) : (CAT[x.r.category] ?? x.r.category);
+    const body = x.remaining < 0
+      ? `${subject} — ${cat}: prekoračeno za ${Math.abs(x.remaining)} km`
+      : `${subject} — ${cat}: još ${x.remaining} km`;
+    const toks = (ownersByCompany.get(x.r.company_id) ?? []).flatMap((uid) => tokensByUser.get(uid) ?? []);
+    for (const to of toks) messages.push({ to, title: "Servis vozila", body, data: { screen: "reminders" } });
+  }
 
   let sent = 0;
   if (messages.length) {
@@ -128,9 +160,9 @@ Deno.serve(async (req) => {
   }
 
   // Upiši prag (i kad vlasnik nema token: prag je obrađen; alarm je vidljiv u aplikaciji).
-  for (const x of due) {
+  for (const x of [...due, ...dueKm]) {
     await supabase.from("reminders").update({ notified_stage: x.stage }).eq("id", x.r.id);
   }
 
-  return Response.json({ scanned: reminders?.length ?? 0, due: due.length, sent });
+  return Response.json({ scanned: (reminders?.length ?? 0) + (kmRem?.length ?? 0), due: due.length + dueKm.length, sent });
 });

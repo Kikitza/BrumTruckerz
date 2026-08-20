@@ -210,7 +210,37 @@
       "fire_extinguisher": "Gesintuvas",
       "medical": "Medicininė pažyma",
       "custom": "Kita"
-    }
+    },
+    "type": {
+      "cpc": "Kvalifikacija (Kodas 95)",
+      "tacho_card": "Vairuotojo tachografo kortelė",
+      "medical": "Medicininė pažyma",
+      "adr_driver": "ADR pažymėjimas",
+      "technical": "Techninė apžiūra",
+      "registration": "Registracija",
+      "tacho_calibration": "Tachografo kalibravimas",
+      "adr_vehicle": "Transporto priemonės ADR",
+      "fire_extinguisher": "Gesintuvas",
+      "vignette": "Vinjetė",
+      "trailer_technical": "Techninė apžiūra",
+      "trailer_registration": "Registracija"
+    },
+    "mode": {
+      "label": "Režimas",
+      "date": "Data",
+      "km": "Rida"
+    },
+    "km": {
+      "remaining": "liko {{count}} km",
+      "over": "viršyta {{count}} km"
+    },
+    "dueDate": "Terminas",
+    "dueKm": "Servisas ties (km)",
+    "country": "Šalis",
+    "newTitle": "Naujas priminimas",
+    "customType": "Pasirinktinis",
+    "changeType": "Keisti tipą",
+    "deleteConfirm": "Ištrinti šį priminimą?"
   },
   "fleet": {
     "vehicles": "Transporto priemonės",

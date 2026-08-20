@@ -210,7 +210,37 @@
       "fire_extinguisher": "Tulekustuti",
       "medical": "Tervisetõend",
       "custom": "Muu"
-    }
+    },
+    "type": {
+      "cpc": "Ametipädevus (Kood 95)",
+      "tacho_card": "Juhi sõidumeeriku kaart",
+      "medical": "Tervisetõend",
+      "adr_driver": "ADR-tunnistus",
+      "technical": "Tehnoülevaatus",
+      "registration": "Registreerimine",
+      "tacho_calibration": "Sõidumeeriku kalibreerimine",
+      "adr_vehicle": "Sõiduki ADR",
+      "fire_extinguisher": "Tulekustuti",
+      "vignette": "Vinjett",
+      "trailer_technical": "Tehnoülevaatus",
+      "trailer_registration": "Registreerimine"
+    },
+    "mode": {
+      "label": "Režiim",
+      "date": "Kuupäev",
+      "km": "Läbisõit"
+    },
+    "km": {
+      "remaining": "{{count}} km jäänud",
+      "over": "{{count}} km ületatud"
+    },
+    "dueDate": "Tähtaeg",
+    "dueKm": "Hooldus (km)",
+    "country": "Riik",
+    "newTitle": "Uus meeldetuletus",
+    "customType": "Kohandatud",
+    "changeType": "Muuda tüüpi",
+    "deleteConfirm": "Kustutada see meeldetuletus?"
   },
   "fleet": {
     "vehicles": "Sõidukid",

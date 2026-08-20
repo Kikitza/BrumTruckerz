@@ -210,7 +210,37 @@
       "fire_extinguisher": "Estintore",
       "medical": "Certificato medico",
       "custom": "Altro"
-    }
+    },
+    "type": {
+      "cpc": "CQC (Codice 95)",
+      "tacho_card": "Carta tachigrafica conducente",
+      "medical": "Certificato medico",
+      "adr_driver": "Certificato ADR",
+      "technical": "Revisione",
+      "registration": "Immatricolazione",
+      "tacho_calibration": "Taratura tachigrafo",
+      "adr_vehicle": "ADR veicolo",
+      "fire_extinguisher": "Estintore",
+      "vignette": "Vignetta",
+      "trailer_technical": "Revisione",
+      "trailer_registration": "Immatricolazione"
+    },
+    "mode": {
+      "label": "Modalità",
+      "date": "Data",
+      "km": "Chilometraggio"
+    },
+    "km": {
+      "remaining": "{{count}} km rimanenti",
+      "over": "{{count}} km oltre"
+    },
+    "dueDate": "Scadenza",
+    "dueKm": "Tagliando a (km)",
+    "country": "Paese",
+    "newTitle": "Nuovo promemoria",
+    "customType": "Personalizzato",
+    "changeType": "Cambia tipo",
+    "deleteConfirm": "Eliminare questo promemoria?"
   },
   "fleet": {
     "vehicles": "Veicoli",

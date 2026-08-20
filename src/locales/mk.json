@@ -210,7 +210,37 @@
       "fire_extinguisher": "Противпожарен апарат",
       "medical": "Лекарско уверение",
       "custom": "Друго"
-    }
+    },
+    "type": {
+      "cpc": "Квалификација (Код 95)",
+      "tacho_card": "Тахографска картичка на возачот",
+      "medical": "Лекарско уверение",
+      "adr_driver": "ADR сертификат",
+      "technical": "Технички преглед",
+      "registration": "Регистрација",
+      "tacho_calibration": "Калибрација на тахограф",
+      "adr_vehicle": "ADR на возилото",
+      "fire_extinguisher": "Апарат за гаснење",
+      "vignette": "Винета",
+      "trailer_technical": "Технички преглед",
+      "trailer_registration": "Регистрација"
+    },
+    "mode": {
+      "label": "Режим",
+      "date": "Датум",
+      "km": "Километража"
+    },
+    "km": {
+      "remaining": "уште {{count}} km",
+      "over": "надминато за {{count}} km"
+    },
+    "dueDate": "Рок",
+    "dueKm": "Сервис на (km)",
+    "country": "Земја",
+    "newTitle": "Ново потсетување",
+    "customType": "Прилагодено",
+    "changeType": "Смени тип",
+    "deleteConfirm": "Да се избрише ова потсетување?"
   },
   "fleet": {
     "vehicles": "Возила",

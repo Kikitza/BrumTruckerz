@@ -210,7 +210,37 @@
       "fire_extinguisher": "Stingător",
       "medical": "Aviz medical",
       "custom": "Altele"
-    }
+    },
+    "type": {
+      "cpc": "CPC (Cod 95)",
+      "tacho_card": "Cardul tahografic al șoferului",
+      "medical": "Aviz medical",
+      "adr_driver": "Certificat ADR",
+      "technical": "Inspecție tehnică",
+      "registration": "Înmatriculare",
+      "tacho_calibration": "Calibrare tahograf",
+      "adr_vehicle": "ADR vehicul",
+      "fire_extinguisher": "Stingător",
+      "vignette": "Vinietă",
+      "trailer_technical": "Inspecție tehnică",
+      "trailer_registration": "Înmatriculare"
+    },
+    "mode": {
+      "label": "Mod",
+      "date": "Dată",
+      "km": "Kilometraj"
+    },
+    "km": {
+      "remaining": "încă {{count}} km",
+      "over": "depășit cu {{count}} km"
+    },
+    "dueDate": "Scadență",
+    "dueKm": "Service la (km)",
+    "country": "Țară",
+    "newTitle": "Memento nou",
+    "customType": "Personalizat",
+    "changeType": "Schimbă tipul",
+    "deleteConfirm": "Ștergi acest memento?"
   },
   "fleet": {
     "vehicles": "Vehicule",

@@ -210,7 +210,37 @@
       "fire_extinguisher": "Gaśnica",
       "medical": "Badanie lekarskie",
       "custom": "Inne"
-    }
+    },
+    "type": {
+      "cpc": "Kwalifikacja (Kod 95)",
+      "tacho_card": "Karta kierowcy do tachografu",
+      "medical": "Badanie lekarskie",
+      "adr_driver": "Certyfikat ADR",
+      "technical": "Przegląd techniczny",
+      "registration": "Rejestracja",
+      "tacho_calibration": "Kalibracja tachografu",
+      "adr_vehicle": "ADR pojazdu",
+      "fire_extinguisher": "Gaśnica",
+      "vignette": "Winieta",
+      "trailer_technical": "Przegląd techniczny",
+      "trailer_registration": "Rejestracja"
+    },
+    "mode": {
+      "label": "Tryb",
+      "date": "Data",
+      "km": "Przebieg"
+    },
+    "km": {
+      "remaining": "jeszcze {{count}} km",
+      "over": "przekroczono o {{count}} km"
+    },
+    "dueDate": "Termin",
+    "dueKm": "Serwis przy (km)",
+    "country": "Kraj",
+    "newTitle": "Nowe przypomnienie",
+    "customType": "Niestandardowy",
+    "changeType": "Zmień typ",
+    "deleteConfirm": "Usunąć to przypomnienie?"
   },
   "fleet": {
     "vehicles": "Pojazdy",

@@ -208,7 +208,37 @@
       "fire_extinguisher": "Fire extinguisher",
       "medical": "Medical certificate",
       "custom": "Other"
-    }
+    },
+    "type": {
+      "cpc": "CPC (Code 95)",
+      "tacho_card": "Driver tachograph card",
+      "medical": "Medical certificate",
+      "adr_driver": "ADR certificate",
+      "technical": "Technical inspection",
+      "registration": "Registration",
+      "tacho_calibration": "Tachograph calibration",
+      "adr_vehicle": "Vehicle ADR",
+      "fire_extinguisher": "Fire extinguisher",
+      "vignette": "Vignette",
+      "trailer_technical": "Technical inspection",
+      "trailer_registration": "Registration"
+    },
+    "mode": {
+      "label": "Mode",
+      "date": "Date",
+      "km": "Mileage"
+    },
+    "km": {
+      "remaining": "{{count}} km left",
+      "over": "{{count}} km over"
+    },
+    "dueDate": "Due date",
+    "dueKm": "Service at (km)",
+    "country": "Country",
+    "newTitle": "New reminder",
+    "customType": "Custom",
+    "changeType": "Change type",
+    "deleteConfirm": "Delete this reminder?"
   },
   "fleet": {
     "vehicles": "Vehicles",

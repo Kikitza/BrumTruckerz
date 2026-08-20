@@ -210,7 +210,37 @@
       "fire_extinguisher": "Extintor",
       "medical": "Atestado médico",
       "custom": "Outro"
-    }
+    },
+    "type": {
+      "cpc": "CAM (Código 95)",
+      "tacho_card": "Cartão de tacógrafo do condutor",
+      "medical": "Atestado médico",
+      "adr_driver": "Certificado ADR",
+      "technical": "Inspeção técnica",
+      "registration": "Matrícula",
+      "tacho_calibration": "Calibração do tacógrafo",
+      "adr_vehicle": "ADR do veículo",
+      "fire_extinguisher": "Extintor",
+      "vignette": "Vinheta",
+      "trailer_technical": "Inspeção técnica",
+      "trailer_registration": "Matrícula"
+    },
+    "mode": {
+      "label": "Modo",
+      "date": "Data",
+      "km": "Quilometragem"
+    },
+    "km": {
+      "remaining": "{{count}} km restantes",
+      "over": "{{count}} km excedidos"
+    },
+    "dueDate": "Vencimento",
+    "dueKm": "Revisão aos (km)",
+    "country": "País",
+    "newTitle": "Novo lembrete",
+    "customType": "Personalizado",
+    "changeType": "Mudar tipo",
+    "deleteConfirm": "Eliminar este lembrete?"
   },
   "fleet": {
     "vehicles": "Veículos",

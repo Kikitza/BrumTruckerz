@@ -210,7 +210,37 @@
       "fire_extinguisher": "Пожарогасител",
       "medical": "Медицинско свидетелство",
       "custom": "Друго"
-    }
+    },
+    "type": {
+      "cpc": "Квалификация (Код 95)",
+      "tacho_card": "Тахографна карта на водача",
+      "medical": "Медицинско",
+      "adr_driver": "ADR сертификат",
+      "technical": "Технически преглед",
+      "registration": "Регистрация",
+      "tacho_calibration": "Калибриране на тахограф",
+      "adr_vehicle": "ADR на превозното средство",
+      "fire_extinguisher": "Пожарогасител",
+      "vignette": "Винетка",
+      "trailer_technical": "Технически преглед",
+      "trailer_registration": "Регистрация"
+    },
+    "mode": {
+      "label": "Режим",
+      "date": "Дата",
+      "km": "Пробег"
+    },
+    "km": {
+      "remaining": "още {{count}} km",
+      "over": "превишено с {{count}} km"
+    },
+    "dueDate": "Падеж",
+    "dueKm": "Сервиз на (km)",
+    "country": "Държава",
+    "newTitle": "Ново напомняне",
+    "customType": "Персонализирано",
+    "changeType": "Смени типа",
+    "deleteConfirm": "Да се изтрие това напомняне?"
   },
   "fleet": {
     "vehicles": "Превозни средства",

@@ -210,7 +210,37 @@
       "fire_extinguisher": "Tűzoltó készülék",
       "medical": "Orvosi alkalmasság",
       "custom": "Egyéb"
-    }
+    },
+    "type": {
+      "cpc": "GKI (95-ös kód)",
+      "tacho_card": "Sofőr tachográfkártya",
+      "medical": "Orvosi alkalmasság",
+      "adr_driver": "ADR-igazolvány",
+      "technical": "Műszaki vizsga",
+      "registration": "Forgalmi",
+      "tacho_calibration": "Tachográf-kalibrálás",
+      "adr_vehicle": "Jármű ADR",
+      "fire_extinguisher": "Tűzoltó készülék",
+      "vignette": "Matrica",
+      "trailer_technical": "Műszaki vizsga",
+      "trailer_registration": "Forgalmi"
+    },
+    "mode": {
+      "label": "Mód",
+      "date": "Dátum",
+      "km": "Kilométeróra"
+    },
+    "km": {
+      "remaining": "még {{count}} km",
+      "over": "{{count}} km túllépve"
+    },
+    "dueDate": "Határidő",
+    "dueKm": "Szerviz (km)",
+    "country": "Ország",
+    "newTitle": "Új emlékeztető",
+    "customType": "Egyéni",
+    "changeType": "Típus módosítása",
+    "deleteConfirm": "Törlöd ezt az emlékeztetőt?"
   },
   "fleet": {
     "vehicles": "Járművek",

@@ -210,7 +210,37 @@
       "fire_extinguisher": "Yangın söndürücü",
       "medical": "Sağlık raporu",
       "custom": "Diğer"
-    }
+    },
+    "type": {
+      "cpc": "SRC/CPC (Kod 95)",
+      "tacho_card": "Sürücü takograf kartı",
+      "medical": "Sağlık raporu",
+      "adr_driver": "ADR sertifikası",
+      "technical": "Muayene",
+      "registration": "Tescil",
+      "tacho_calibration": "Takograf kalibrasyonu",
+      "adr_vehicle": "Araç ADR",
+      "fire_extinguisher": "Yangın söndürücü",
+      "vignette": "Vinyet",
+      "trailer_technical": "Muayene",
+      "trailer_registration": "Tescil"
+    },
+    "mode": {
+      "label": "Mod",
+      "date": "Tarih",
+      "km": "Kilometre"
+    },
+    "km": {
+      "remaining": "{{count}} km kaldı",
+      "over": "{{count}} km aşıldı"
+    },
+    "dueDate": "Vade",
+    "dueKm": "Servis (km)",
+    "country": "Ülke",
+    "newTitle": "Yeni hatırlatma",
+    "customType": "Özel",
+    "changeType": "Türü değiştir",
+    "deleteConfirm": "Bu hatırlatma silinsin mi?"
   },
   "fleet": {
     "vehicles": "Araçlar",

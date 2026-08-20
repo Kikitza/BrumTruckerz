@@ -210,7 +210,37 @@
       "fire_extinguisher": "Fikës zjarri",
       "medical": "Çertifikatë mjekësore",
       "custom": "Tjetër"
-    }
+    },
+    "type": {
+      "cpc": "CPC (Kodi 95)",
+      "tacho_card": "Karta e tahografit të shoferit",
+      "medical": "Certifikatë mjekësore",
+      "adr_driver": "Certifikatë ADR",
+      "technical": "Kontroll teknik",
+      "registration": "Regjistrimi",
+      "tacho_calibration": "Kalibrimi i tahografit",
+      "adr_vehicle": "ADR i automjetit",
+      "fire_extinguisher": "Fikëse zjarri",
+      "vignette": "Vinjetë",
+      "trailer_technical": "Kontroll teknik",
+      "trailer_registration": "Regjistrimi"
+    },
+    "mode": {
+      "label": "Modaliteti",
+      "date": "Data",
+      "km": "Kilometrazhi"
+    },
+    "km": {
+      "remaining": "edhe {{count}} km",
+      "over": "tejkaluar {{count}} km"
+    },
+    "dueDate": "Afati",
+    "dueKm": "Servis në (km)",
+    "country": "Shteti",
+    "newTitle": "Kujtesë e re",
+    "customType": "E personalizuar",
+    "changeType": "Ndrysho llojin",
+    "deleteConfirm": "Ta fshish këtë kujtesë?"
   },
   "fleet": {
     "vehicles": "Automjetet",

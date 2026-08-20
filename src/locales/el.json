@@ -210,7 +210,37 @@
       "fire_extinguisher": "Πυροσβεστήρας",
       "medical": "Πιστοποιητικό υγείας",
       "custom": "Άλλο"
-    }
+    },
+    "type": {
+      "cpc": "ΠΕΙ (Κωδικός 95)",
+      "tacho_card": "Κάρτα ταχογράφου οδηγού",
+      "medical": "Ιατρικό πιστοποιητικό",
+      "adr_driver": "Πιστοποιητικό ADR",
+      "technical": "Τεχνικός έλεγχος",
+      "registration": "Άδεια κυκλοφορίας",
+      "tacho_calibration": "Βαθμονόμηση ταχογράφου",
+      "adr_vehicle": "ADR οχήματος",
+      "fire_extinguisher": "Πυροσβεστήρας",
+      "vignette": "Σήμα διοδίων",
+      "trailer_technical": "Τεχνικός έλεγχος",
+      "trailer_registration": "Άδεια κυκλοφορίας"
+    },
+    "mode": {
+      "label": "Λειτουργία",
+      "date": "Ημερομηνία",
+      "km": "Χιλιόμετρα"
+    },
+    "km": {
+      "remaining": "απομένουν {{count}} km",
+      "over": "υπέρβαση {{count}} km"
+    },
+    "dueDate": "Λήξη",
+    "dueKm": "Σέρβις στα (km)",
+    "country": "Χώρα",
+    "newTitle": "Νέα υπενθύμιση",
+    "customType": "Προσαρμοσμένο",
+    "changeType": "Αλλαγή τύπου",
+    "deleteConfirm": "Διαγραφή αυτής της υπενθύμισης;"
   },
   "fleet": {
     "vehicles": "Οχήματα",

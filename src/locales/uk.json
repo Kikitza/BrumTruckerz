@@ -210,7 +210,37 @@
       "fire_extinguisher": "Вогнегасник",
       "medical": "Медична довідка",
       "custom": "Інше"
-    }
+    },
+    "type": {
+      "cpc": "Кваліфікація (Код 95)",
+      "tacho_card": "Картка водія тахографа",
+      "medical": "Медична довідка",
+      "adr_driver": "Сертифікат ADR",
+      "technical": "Техогляд",
+      "registration": "Реєстрація",
+      "tacho_calibration": "Калібрування тахографа",
+      "adr_vehicle": "ADR транспорту",
+      "fire_extinguisher": "Вогнегасник",
+      "vignette": "Віньєтка",
+      "trailer_technical": "Техогляд",
+      "trailer_registration": "Реєстрація"
+    },
+    "mode": {
+      "label": "Режим",
+      "date": "Дата",
+      "km": "Пробіг"
+    },
+    "km": {
+      "remaining": "ще {{count}} km",
+      "over": "перевищено на {{count}} km"
+    },
+    "dueDate": "Термін",
+    "dueKm": "Сервіс на (km)",
+    "country": "Країна",
+    "newTitle": "Нове нагадування",
+    "customType": "Власне",
+    "changeType": "Змінити тип",
+    "deleteConfirm": "Видалити це нагадування?"
   },
   "fleet": {
     "vehicles": "Транспортні засоби",

@@ -210,7 +210,37 @@
       "fire_extinguisher": "Brannslukningsapparat",
       "medical": "Helseattest",
       "custom": "Annet"
-    }
+    },
+    "type": {
+      "cpc": "Yrkessjåførbevis (Kode 95)",
+      "tacho_card": "Sjåførkort til fartsskriver",
+      "medical": "Helseattest",
+      "adr_driver": "ADR-bevis",
+      "technical": "EU-kontroll",
+      "registration": "Registrering",
+      "tacho_calibration": "Kalibrering av fartsskriver",
+      "adr_vehicle": "Kjøretøy-ADR",
+      "fire_extinguisher": "Brannslukker",
+      "vignette": "Vignett",
+      "trailer_technical": "EU-kontroll",
+      "trailer_registration": "Registrering"
+    },
+    "mode": {
+      "label": "Modus",
+      "date": "Dato",
+      "km": "Kilometerstand"
+    },
+    "km": {
+      "remaining": "{{count}} km igjen",
+      "over": "{{count}} km over"
+    },
+    "dueDate": "Forfallsdato",
+    "dueKm": "Service ved (km)",
+    "country": "Land",
+    "newTitle": "Ny påminnelse",
+    "customType": "Egendefinert",
+    "changeType": "Endre type",
+    "deleteConfirm": "Slette denne påminnelsen?"
   },
   "fleet": {
     "vehicles": "Kjøretøy",

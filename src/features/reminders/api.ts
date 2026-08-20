@@ -20,12 +20,73 @@ export type DateReminder = {
   issued_at: string | null; // 'YYYY-MM-DD' (npr. datum atesta)
 };
 
-// Red za ekran "Rokovi": rok + razrešeno ime subjekta.
+export type ReminderMode = "date" | "km";
+
+// Red za ekran "Rokovi": rok + razrešeno ime subjekta + tip/režim/km (0024).
 export type ReminderRow = DateReminder & {
   subject_type: ReminderSubjectType;
   subject_id: string;
   subject_name: string;
+  type_id: string | null;
+  type_name_key: string | null; // i18n ključ tipa (join reminder_types)
+  country_code: string | null;
+  mode: ReminderMode;
+  due_km: number | null;
+  subject_odometer: number | null; // trenutna kilometraža vozila (za km-semafor)
 };
+
+// ── Šifarnik tipova rokova (0024): svi authenticated čitaju; menja samo platforma ──
+export type ReminderTypeCatalog = {
+  id: string;
+  code: string;
+  subject_kind: ReminderSubjectType;
+  name_key: string;
+  default_interval_months: number | null;
+  needs_country: boolean;
+  sort: number;
+};
+export async function listReminderTypes(): Promise<ReminderTypeCatalog[]> {
+  const { data, error } = await supabase
+    .from("reminder_types")
+    .select("id, code, subject_kind, name_key, default_interval_months, needs_country, sort")
+    .order("subject_kind", { ascending: true })
+    .order("sort", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as ReminderTypeCatalog[];
+}
+
+// Generičan rok (za tip-vođen tok „Novi/Izmeni rok").
+export type ReminderInput = {
+  subjectType: ReminderSubjectType;
+  subjectId: string;
+  typeId: string | null;      // null = „prilagođen"
+  category: string;           // tipovan: type.code; prilagođen: 'custom'
+  label: string | null;
+  mode: ReminderMode;
+  dueDate: string | null;
+  dueKm: number | null;
+  issuedAt: string | null;
+  countryCode: string | null;
+};
+export async function createReminder(input: ReminderInput): Promise<void> {
+  const company_id = await currentCompanyId();
+  const { error } = await supabase.from("reminders").insert({
+    company_id, subject_type: input.subjectType, subject_id: input.subjectId, kind: "date",
+    type_id: input.typeId, category: input.category, label: input.label,
+    mode: input.mode, due_date: input.dueDate, due_km: input.dueKm,
+    issued_at: input.issuedAt, country_code: input.countryCode,
+  });
+  if (error) throw error;
+}
+export async function updateReminder(id: string, input: ReminderInput): Promise<void> {
+  const { error } = await supabase.from("reminders").update({
+    type_id: input.typeId, category: input.category, label: input.label,
+    mode: input.mode, due_date: input.dueDate, due_km: input.dueKm,
+    issued_at: input.issuedAt, country_code: input.countryCode,
+    notified_stage: null, // izmena roka -> opomene iznova
+  }).eq("id", id);
+  if (error) throw error;
+}
 
 // Ulaz za upsert singleton datumskog roka.
 export type SetDateReminderInput = {
@@ -204,31 +265,44 @@ export async function listSubjectReminders(
   return (data ?? []) as DateReminder[];
 }
 
-// ── Ekran "Rokovi": svi datumski rokovi firme + ime subjekta ──
+// ── Ekran "Rokovi": svi rokovi firme (datum + km) + ime subjekta + km vozila ──
+type RawReminderRow = DateReminder & {
+  subject_type: ReminderSubjectType; subject_id: string;
+  type_id: string | null; country_code: string | null; mode: ReminderMode; due_km: number | null;
+  reminder_types: { name_key: string } | null;
+};
 export async function listAllReminders(): Promise<ReminderRow[]> {
   const { data, error } = await supabase
     .from("reminders")
-    .select(`id, category, label, due_date, issued_at, subject_type, subject_id`)
-    .eq("kind", "date")
-    .not("due_date", "is", null)
-    .order("due_date", { ascending: true });
+    .select(`id, category, label, due_date, issued_at, subject_type, subject_id, type_id, country_code, mode, due_km, reminder_types(name_key)`)
+    .eq("kind", "date");
   if (error) throw error;
-  const rows = (data ?? []) as Array<
-    DateReminder & { subject_type: ReminderSubjectType; subject_id: string }
-  >;
+  // Zadrži validne: datumski sa due_date, ili km sa due_km.
+  const rows = ((data ?? []) as unknown as RawReminderRow[]).filter(
+    (r) => (r.mode === "km" ? r.due_km != null : r.due_date != null),
+  );
 
-  // Imena subjekata (polimorfno — nema FK join-a): povuci mape jednom.
+  // Imena subjekata + kilometraža vozila (polimorfno — nema FK join-a): povuci mape jednom.
   const [veh, tra, dri] = await Promise.all([
-    supabase.from("vehicles").select("id, registration"),
+    supabase.from("vehicles").select("id, registration, current_odometer"),
     supabase.from("trailers").select("id, registration"),
     supabase.from("drivers").select("id, full_name"),
   ]);
   const names = new Map<string, string>();
-  (veh.data ?? []).forEach((v: { id: string; registration: string }) => names.set(v.id, v.registration));
+  const odo = new Map<string, number | null>();
+  (veh.data ?? []).forEach((v: { id: string; registration: string; current_odometer: number | null }) => {
+    names.set(v.id, v.registration); odo.set(v.id, v.current_odometer);
+  });
   (tra.data ?? []).forEach((t: { id: string; registration: string }) => names.set(t.id, t.registration));
   (dri.data ?? []).forEach((d: { id: string; full_name: string }) => names.set(d.id, d.full_name));
 
-  return rows.map((r) => ({ ...r, subject_name: names.get(r.subject_id) ?? "—" }));
+  return rows.map((r) => ({
+    id: r.id, category: r.category, label: r.label, due_date: r.due_date, issued_at: r.issued_at,
+    subject_type: r.subject_type, subject_id: r.subject_id, subject_name: names.get(r.subject_id) ?? "—",
+    type_id: r.type_id, type_name_key: r.reminder_types?.name_key ?? null,
+    country_code: r.country_code, mode: r.mode, due_km: r.due_km,
+    subject_odometer: r.subject_type === "vehicle" ? odo.get(r.subject_id) ?? null : null,
+  }));
 }
 
 // ── Kompatibilnost: lekarsko uverenje vozača (deleguje na generičke funkcije) ──

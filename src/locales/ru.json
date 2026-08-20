@@ -210,7 +210,37 @@
       "fire_extinguisher": "Огнетушитель",
       "medical": "Медицинская справка",
       "custom": "Другое"
-    }
+    },
+    "type": {
+      "cpc": "Квалификация (Код 95)",
+      "tacho_card": "Карта водителя тахографа",
+      "medical": "Медсправка",
+      "adr_driver": "Свидетельство ADR",
+      "technical": "Техосмотр",
+      "registration": "Регистрация",
+      "tacho_calibration": "Калибровка тахографа",
+      "adr_vehicle": "ADR транспорта",
+      "fire_extinguisher": "Огнетушитель",
+      "vignette": "Виньетка",
+      "trailer_technical": "Техосмотр",
+      "trailer_registration": "Регистрация"
+    },
+    "mode": {
+      "label": "Режим",
+      "date": "Дата",
+      "km": "Пробег"
+    },
+    "km": {
+      "remaining": "ещё {{count}} km",
+      "over": "превышено на {{count}} km"
+    },
+    "dueDate": "Срок",
+    "dueKm": "Сервис на (km)",
+    "country": "Страна",
+    "newTitle": "Новое напоминание",
+    "customType": "Своё",
+    "changeType": "Изменить тип",
+    "deleteConfirm": "Удалить это напоминание?"
   },
   "fleet": {
     "vehicles": "Транспортные средства",

@@ -210,7 +210,37 @@
       "fire_extinguisher": "Aparat za gašenje požara",
       "medical": "Ljekarsko uvjerenje",
       "custom": "Ostalo"
-    }
+    },
+    "type": {
+      "cpc": "CPC (Kôd 95)",
+      "tacho_card": "Tahografska kartica vozača",
+      "medical": "Ljekarsko uvjerenje",
+      "adr_driver": "ADR certifikat",
+      "technical": "Tehnički pregled",
+      "registration": "Registracija",
+      "tacho_calibration": "Kalibracija tahografa",
+      "adr_vehicle": "ADR vozila",
+      "fire_extinguisher": "PP aparat",
+      "vignette": "Vinjeta",
+      "trailer_technical": "Tehnički pregled",
+      "trailer_registration": "Registracija"
+    },
+    "mode": {
+      "label": "Način",
+      "date": "Datum",
+      "km": "Kilometraža"
+    },
+    "km": {
+      "remaining": "još {{count}} km",
+      "over": "prekoračeno {{count}} km"
+    },
+    "dueDate": "Rok",
+    "dueKm": "Servis na (km)",
+    "country": "Država",
+    "newTitle": "Novi podsjetnik",
+    "customType": "Prilagođeno",
+    "changeType": "Promijeni vrstu",
+    "deleteConfirm": "Obrisati ovaj podsjetnik?"
   },
   "fleet": {
     "vehicles": "Vozila",

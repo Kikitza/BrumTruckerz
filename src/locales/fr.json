@@ -210,7 +210,37 @@
       "fire_extinguisher": "Extincteur",
       "medical": "Certificat médical",
       "custom": "Autre"
-    }
+    },
+    "type": {
+      "cpc": "CPC (Code 95)",
+      "tacho_card": "Carte tachygraphe conducteur",
+      "medical": "Certificat médical",
+      "adr_driver": "Certificat ADR",
+      "technical": "Contrôle technique",
+      "registration": "Immatriculation",
+      "tacho_calibration": "Étalonnage tachygraphe",
+      "adr_vehicle": "ADR véhicule",
+      "fire_extinguisher": "Extincteur",
+      "vignette": "Vignette",
+      "trailer_technical": "Contrôle technique",
+      "trailer_registration": "Immatriculation"
+    },
+    "mode": {
+      "label": "Mode",
+      "date": "Date",
+      "km": "Kilométrage"
+    },
+    "km": {
+      "remaining": "{{count}} km restants",
+      "over": "{{count}} km dépassés"
+    },
+    "dueDate": "Échéance",
+    "dueKm": "Entretien à (km)",
+    "country": "Pays",
+    "newTitle": "Nouveau rappel",
+    "customType": "Personnalisé",
+    "changeType": "Changer de type",
+    "deleteConfirm": "Supprimer ce rappel ?"
   },
   "fleet": {
     "vehicles": "Véhicules",

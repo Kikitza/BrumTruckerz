@@ -210,7 +210,37 @@
       "fire_extinguisher": "Extintor",
       "medical": "Certificado médico",
       "custom": "Otro"
-    }
+    },
+    "type": {
+      "cpc": "CAP (Código 95)",
+      "tacho_card": "Tarjeta de tacógrafo del conductor",
+      "medical": "Certificado médico",
+      "adr_driver": "Certificado ADR",
+      "technical": "Inspección técnica",
+      "registration": "Matrícula",
+      "tacho_calibration": "Calibración del tacógrafo",
+      "adr_vehicle": "ADR del vehículo",
+      "fire_extinguisher": "Extintor",
+      "vignette": "Viñeta",
+      "trailer_technical": "Inspección técnica",
+      "trailer_registration": "Matrícula"
+    },
+    "mode": {
+      "label": "Modo",
+      "date": "Fecha",
+      "km": "Kilometraje"
+    },
+    "km": {
+      "remaining": "{{count}} km restantes",
+      "over": "{{count}} km excedidos"
+    },
+    "dueDate": "Vencimiento",
+    "dueKm": "Servicio a los (km)",
+    "country": "País",
+    "newTitle": "Nuevo aviso",
+    "customType": "Personalizado",
+    "changeType": "Cambiar tipo",
+    "deleteConfirm": "¿Eliminar este aviso?"
   },
   "fleet": {
     "vehicles": "Vehículos",

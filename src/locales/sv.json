@@ -210,7 +210,37 @@
       "fire_extinguisher": "Brandsläckare",
       "medical": "Läkarintyg",
       "custom": "Övrigt"
-    }
+    },
+    "type": {
+      "cpc": "YKB (Kod 95)",
+      "tacho_card": "Förarkort till färdskrivare",
+      "medical": "Läkarintyg",
+      "adr_driver": "ADR-intyg",
+      "technical": "Besiktning",
+      "registration": "Registrering",
+      "tacho_calibration": "Kalibrering av färdskrivare",
+      "adr_vehicle": "Fordons-ADR",
+      "fire_extinguisher": "Brandsläckare",
+      "vignette": "Vinjett",
+      "trailer_technical": "Besiktning",
+      "trailer_registration": "Registrering"
+    },
+    "mode": {
+      "label": "Läge",
+      "date": "Datum",
+      "km": "Mätarställning"
+    },
+    "km": {
+      "remaining": "{{count}} km kvar",
+      "over": "{{count}} km över"
+    },
+    "dueDate": "Förfallodag",
+    "dueKm": "Service vid (km)",
+    "country": "Land",
+    "newTitle": "Ny påminnelse",
+    "customType": "Anpassad",
+    "changeType": "Byt typ",
+    "deleteConfirm": "Ta bort den här påminnelsen?"
   },
   "fleet": {
     "vehicles": "Fordon",

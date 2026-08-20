@@ -210,7 +210,37 @@
       "fire_extinguisher": "Hasicí přístroj",
       "medical": "Lékařská prohlídka",
       "custom": "Jiné"
-    }
+    },
+    "type": {
+      "cpc": "Průkaz způsobilosti (Kód 95)",
+      "tacho_card": "Karta řidiče do tachografu",
+      "medical": "Lékařský posudek",
+      "adr_driver": "Osvědčení ADR",
+      "technical": "Technická kontrola",
+      "registration": "Registrace",
+      "tacho_calibration": "Kalibrace tachografu",
+      "adr_vehicle": "ADR vozidla",
+      "fire_extinguisher": "Hasicí přístroj",
+      "vignette": "Dálniční známka",
+      "trailer_technical": "Technická kontrola",
+      "trailer_registration": "Registrace"
+    },
+    "mode": {
+      "label": "Režim",
+      "date": "Datum",
+      "km": "Nájezd"
+    },
+    "km": {
+      "remaining": "ještě {{count}} km",
+      "over": "překročeno o {{count}} km"
+    },
+    "dueDate": "Termín",
+    "dueKm": "Servis při (km)",
+    "country": "Země",
+    "newTitle": "Nová připomínka",
+    "customType": "Vlastní",
+    "changeType": "Změnit typ",
+    "deleteConfirm": "Smazat tuto připomínku?"
   },
   "fleet": {
     "vehicles": "Vozidla",

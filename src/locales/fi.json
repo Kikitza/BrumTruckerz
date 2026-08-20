@@ -210,7 +210,37 @@
       "fire_extinguisher": "Sammutin",
       "medical": "Lääkärintodistus",
       "custom": "Muu"
-    }
+    },
+    "type": {
+      "cpc": "Ammattipätevyys (Koodi 95)",
+      "tacho_card": "Kuljettajan ajopiirturikortti",
+      "medical": "Lääkärintodistus",
+      "adr_driver": "ADR-todistus",
+      "technical": "Katsastus",
+      "registration": "Rekisteröinti",
+      "tacho_calibration": "Ajopiirturin kalibrointi",
+      "adr_vehicle": "Ajoneuvon ADR",
+      "fire_extinguisher": "Sammutin",
+      "vignette": "Vinjetti",
+      "trailer_technical": "Katsastus",
+      "trailer_registration": "Rekisteröinti"
+    },
+    "mode": {
+      "label": "Tila",
+      "date": "Päivä",
+      "km": "Mittarilukema"
+    },
+    "km": {
+      "remaining": "{{count}} km jäljellä",
+      "over": "{{count}} km yli"
+    },
+    "dueDate": "Eräpäivä",
+    "dueKm": "Huolto (km)",
+    "country": "Maa",
+    "newTitle": "Uusi muistutus",
+    "customType": "Mukautettu",
+    "changeType": "Vaihda tyyppi",
+    "deleteConfirm": "Poistetaanko tämä muistutus?"
   },
   "fleet": {
     "vehicles": "Ajoneuvot",

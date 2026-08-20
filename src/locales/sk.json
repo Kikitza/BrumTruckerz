@@ -210,7 +210,37 @@
       "fire_extinguisher": "Hasiaci prístroj",
       "medical": "Lekárska prehliadka",
       "custom": "Iné"
-    }
+    },
+    "type": {
+      "cpc": "KKV (Kód 95)",
+      "tacho_card": "Karta vodiča do tachografu",
+      "medical": "Lekárska prehliadka",
+      "adr_driver": "Osvedčenie ADR",
+      "technical": "Technická kontrola",
+      "registration": "Evidencia",
+      "tacho_calibration": "Kalibrácia tachografu",
+      "adr_vehicle": "ADR vozidla",
+      "fire_extinguisher": "Hasiaci prístroj",
+      "vignette": "Diaľničná známka",
+      "trailer_technical": "Technická kontrola",
+      "trailer_registration": "Evidencia"
+    },
+    "mode": {
+      "label": "Režim",
+      "date": "Dátum",
+      "km": "Najazd"
+    },
+    "km": {
+      "remaining": "ešte {{count}} km",
+      "over": "prekročené o {{count}} km"
+    },
+    "dueDate": "Termín",
+    "dueKm": "Servis pri (km)",
+    "country": "Krajina",
+    "newTitle": "Nová pripomienka",
+    "customType": "Vlastné",
+    "changeType": "Zmeniť typ",
+    "deleteConfirm": "Odstrániť túto pripomienku?"
   },
   "fleet": {
     "vehicles": "Vozidlá",

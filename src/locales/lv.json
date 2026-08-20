@@ -210,7 +210,37 @@
       "fire_extinguisher": "Ugunsdzēšamais aparāts",
       "medical": "Medicīniskā izziņa",
       "custom": "Cits"
-    }
+    },
+    "type": {
+      "cpc": "Kvalifikācija (Kods 95)",
+      "tacho_card": "Vadītāja tahogrāfa karte",
+      "medical": "Medicīniskā izziņa",
+      "adr_driver": "ADR sertifikāts",
+      "technical": "Tehniskā apskate",
+      "registration": "Reģistrācija",
+      "tacho_calibration": "Tahogrāfa kalibrēšana",
+      "adr_vehicle": "Transportlīdzekļa ADR",
+      "fire_extinguisher": "Ugunsdzēsības aparāts",
+      "vignette": "Vinjete",
+      "trailer_technical": "Tehniskā apskate",
+      "trailer_registration": "Reģistrācija"
+    },
+    "mode": {
+      "label": "Režīms",
+      "date": "Datums",
+      "km": "Nobraukums"
+    },
+    "km": {
+      "remaining": "atlikuši {{count}} km",
+      "over": "pārsniegts par {{count}} km"
+    },
+    "dueDate": "Termiņš",
+    "dueKm": "Serviss pie (km)",
+    "country": "Valsts",
+    "newTitle": "Jauns atgādinājums",
+    "customType": "Pielāgots",
+    "changeType": "Mainīt tipu",
+    "deleteConfirm": "Dzēst šo atgādinājumu?"
   },
   "fleet": {
     "vehicles": "Transportlīdzekļi",

@@ -210,7 +210,37 @@
       "fire_extinguisher": "Gasilni aparat",
       "medical": "Zdravniško potrdilo",
       "custom": "Drugo"
-    }
+    },
+    "type": {
+      "cpc": "Koda 95",
+      "tacho_card": "Voznikova kartica tahografa",
+      "medical": "Zdravniško spričevalo",
+      "adr_driver": "Potrdilo ADR",
+      "technical": "Tehnični pregled",
+      "registration": "Registracija",
+      "tacho_calibration": "Kalibracija tahografa",
+      "adr_vehicle": "ADR vozila",
+      "fire_extinguisher": "Gasilni aparat",
+      "vignette": "Vinjeta",
+      "trailer_technical": "Tehnični pregled",
+      "trailer_registration": "Registracija"
+    },
+    "mode": {
+      "label": "Način",
+      "date": "Datum",
+      "km": "Kilometrina"
+    },
+    "km": {
+      "remaining": "še {{count}} km",
+      "over": "preseženo za {{count}} km"
+    },
+    "dueDate": "Rok",
+    "dueKm": "Servis pri (km)",
+    "country": "Država",
+    "newTitle": "Novo opozorilo",
+    "customType": "Po meri",
+    "changeType": "Spremeni vrsto",
+    "deleteConfirm": "Izbrišeš to opozorilo?"
   },
   "fleet": {
     "vehicles": "Vozila",

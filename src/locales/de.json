@@ -210,7 +210,37 @@
       "fire_extinguisher": "Feuerlöscher",
       "medical": "Ärztliches Attest",
       "custom": "Sonstiges"
-    }
+    },
+    "type": {
+      "cpc": "CPC (Modul 95)",
+      "tacho_card": "Fahrer-Fahrtenschreiberkarte",
+      "medical": "Ärztliches Attest",
+      "adr_driver": "ADR-Bescheinigung",
+      "technical": "Hauptuntersuchung",
+      "registration": "Zulassung",
+      "tacho_calibration": "Tachographen-Kalibrierung",
+      "adr_vehicle": "ADR-Fahrzeug",
+      "fire_extinguisher": "Feuerlöscher",
+      "vignette": "Vignette",
+      "trailer_technical": "Hauptuntersuchung",
+      "trailer_registration": "Zulassung"
+    },
+    "mode": {
+      "label": "Modus",
+      "date": "Datum",
+      "km": "Kilometerstand"
+    },
+    "km": {
+      "remaining": "noch {{count}} km",
+      "over": "{{count}} km überfällig"
+    },
+    "dueDate": "Fällig am",
+    "dueKm": "Service bei (km)",
+    "country": "Land",
+    "newTitle": "Neuer Termin",
+    "customType": "Benutzerdefiniert",
+    "changeType": "Typ ändern",
+    "deleteConfirm": "Diesen Termin löschen?"
   },
   "fleet": {
     "vehicles": "Fahrzeuge",

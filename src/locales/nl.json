@@ -210,7 +210,37 @@
       "fire_extinguisher": "Brandblusser",
       "medical": "Medische keuring",
       "custom": "Overig"
-    }
+    },
+    "type": {
+      "cpc": "Vakbekwaamheid (Code 95)",
+      "tacho_card": "Tachograafkaart bestuurder",
+      "medical": "Medische keuring",
+      "adr_driver": "ADR-certificaat",
+      "technical": "Technische keuring",
+      "registration": "Kenteken",
+      "tacho_calibration": "Tachograafkalibratie",
+      "adr_vehicle": "ADR voertuig",
+      "fire_extinguisher": "Brandblusser",
+      "vignette": "Vignet",
+      "trailer_technical": "Technische keuring",
+      "trailer_registration": "Kenteken"
+    },
+    "mode": {
+      "label": "Modus",
+      "date": "Datum",
+      "km": "Kilometerstand"
+    },
+    "km": {
+      "remaining": "nog {{count}} km",
+      "over": "{{count}} km over"
+    },
+    "dueDate": "Vervaldatum",
+    "dueKm": "Onderhoud bij (km)",
+    "country": "Land",
+    "newTitle": "Nieuwe herinnering",
+    "customType": "Aangepast",
+    "changeType": "Type wijzigen",
+    "deleteConfirm": "Deze herinnering verwijderen?"
   },
   "fleet": {
     "vehicles": "Voertuigen",

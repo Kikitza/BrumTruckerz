@@ -210,7 +210,37 @@
       "fire_extinguisher": "Ildslukker",
       "medical": "Lægeerklæring",
       "custom": "Andet"
-    }
+    },
+    "type": {
+      "cpc": "Kvalifikationsbevis (Kode 95)",
+      "tacho_card": "Førerkort til fartskriver",
+      "medical": "Lægeattest",
+      "adr_driver": "ADR-bevis",
+      "technical": "Syn",
+      "registration": "Registrering",
+      "tacho_calibration": "Kalibrering af fartskriver",
+      "adr_vehicle": "Køretøjs-ADR",
+      "fire_extinguisher": "Ildslukker",
+      "vignette": "Vignet",
+      "trailer_technical": "Syn",
+      "trailer_registration": "Registrering"
+    },
+    "mode": {
+      "label": "Tilstand",
+      "date": "Dato",
+      "km": "Kilometerstand"
+    },
+    "km": {
+      "remaining": "{{count}} km tilbage",
+      "over": "{{count}} km over"
+    },
+    "dueDate": "Forfaldsdato",
+    "dueKm": "Service ved (km)",
+    "country": "Land",
+    "newTitle": "Ny påmindelse",
+    "customType": "Tilpasset",
+    "changeType": "Skift type",
+    "deleteConfirm": "Slet denne påmindelse?"
   },
   "fleet": {
     "vehicles": "Køretøjer",
