@@ -1,29 +1,56 @@
-# IZVEŠTAJ — MASTER-PLAN v2.0 (fazna isporuka)
+# IZVEŠTAJ — v2-1: KARIJERNI PROFIL RADNIKA (CV iz stvarnog rada)
 
-> **Samo dokument; kod/šema NisU dirani.** Napisan `docs/MASTER-PLAN-v2.md` na osnovu PDF-a, `V2-GAP.md` i
-> zaključanih odluka vlasnika.
+> Prva v2.0 kriška. Read-only CV za **vozača I dispečera** iz **postojećih** podataka. **Bez GPS-a, bez marketplace-a,
+> bez „zemlje kroz koje je vozio"** (to je naredna kriška — nov podatak ruta→zemlja). Commit `56e2625` (push-ovan).
 
-**Dokument:** `docs/MASTER-PLAN-v2.md`
+## 1) Podaci (stvarne tabele — provereno)
+- **`employments`** (`0017`): firma + period (`started_at`/`ended_at`) + `role_on_company` + `status` → istorija zaposlenja.
+- **`driver_month_rollup`** (`0001`): `company_id`,`driver_id`,`year_month`,`trips_count`,`total_km` (završene ture po `finished_at`) → zbir km/tura + grafikon.
+- **`drivers`** (`user_id` **globalno jedinstven**, `0007`): osoba = JEDAN drivers red; **istorija po firmama živi na `rollup.company_id`**, ne na više drivers redova (ključno za autorizaciju/skoping).
 
-## Šta sadrži
-1. **Gde smo** — F0–F3 isporučeno (iz koda, sa dokazima) + skor **61 ✓ / 33 ~ / 43 ✗**.
-2. **Provera audit High A1–A4 → SVI ZATVORENI ✓** (utvrđeno iz koda):
-   - A1 (append-only vraćen), A2 (`platform_admin` odsečen sa dnevnika), A3 (suspend RLS `company_is_active()` + restrictive write-gate) → **`0015_audit_fixes`** (+`0016`), **na PROD-u** (`remote 0026`).
-   - A4 (offline poison) → `queue.ts` `MAX_ATTEMPTS=5` dead-letter, red nastavlja + `queue.test.ts`.
-   - Zaključak: A1–A4 **nisu** preostali posao; nova bezbednosna stavka je `audit_log` (§11) — to je NOVO, ne A1–A4.
-3. **Faze v2.0** (zaključan redosled), svaka: cilj, kriške, IZLAZNA KAPIJA, S/M/L, ⛩ + ADR-ovi pre početka:
-   - **v2-1 Karijerni profil** (M, mini-⛩) → **v2-2 Event/Outbox** (L, ⛩) → **v2-3 Marketplace** (L, ⛩) → **v2-4 Komercijalizacija** (M–L, ⛩ entitlement) → **v2-Z GPS** (L, ⛩, poslednje).
-4. **Faza v2-1 razrađena:** prikaz postojećih (`employments`+`trips`+`driver_month_rollup` → zaposlenja, broj/istorija tura, ukupno km, grafikon km/mesec) vs nov podatak (ruta→zemlja, uz data-collision guard); ekrani vozač/dispečer CV. Bez GPS-a.
-5. **Rizici** — poštena napomena o „sve pa prodaja" (duže do prihoda/validacije) bez nametanja.
-6. **Jednosmerna vrata — redosled i zašto** (event pre marketplace-a; role/multi-firma pre portala; data-collision guard pre geo podataka; entitlement pre naplate; GPS poslednje).
-
-## Uzgred (ispravka `V2-GAP.md`)
-Stavka „Zatvaranje audit High A1–A4" izbačena iz preostalog i označena ✓ (§19 red + PREOSTALO 22); skor ažuriran **60→61 ✓ / 34→33 ~**.
-
-## Provere
-| Stavka | Rezultat |
+## 2) Migracija 0027 — 5 READ-ONLY RPC-ova (SECURITY DEFINER, autorizacija eksplicitna)
+| RPC | Vraća |
 |---|---|
-| Izmene koda/šeme | **nema** (samo docs) |
-| Nov dokument | `docs/MASTER-PLAN-v2.md` |
-| Ispravka | `docs/izvestaji/V2-GAP.md` (A1–A4 ✓) |
-| A1–A4 verifikovano iz koda | ✓ zatvoreni (0015/0016 na PROD + offline dead-letter) |
+| `career_view_mode(p_user)` | `self` \| `company` \| `none` |
+| `career_header(p_user)` | javni broj (BT-D/BT-T) + ime (profil → fallback `drivers.full_name`) |
+| `career_summary(p_user)` | ukupno km, broj tura (rollup), broj firmi + staž (employments) |
+| `career_employments(p_user)` | firma + period + uloga + status |
+| `career_km_series(p_user)` | km/tura po mesecu (za grafikon) |
+
+**RLS/privatnost (u RPC-u, bypass RLS pa eksplicitno):**
+- `self` — radnik vidi SVOJ CV kroz **sve** firme (`p_user=null`→`auth.uid()`).
+- `company` — office (owner/dispatcher, `is_office_role()`) vidi radnika **SVOJE** firme, ograničeno na `company_id = current_company_id()` (ne vidi šta je radio u drugim firmama — data-collision duh).
+- `none` — izuzetak `42501`.
+
+## 3) Ekrani (mobilni + web)
+- **Vozač** `app/(driver)/profile.tsx`: postojeća identitet-kartica + **CV** (zbirne kartice, grafikon km/mesec, istorija zaposlenja).
+- **Office pregled** — `app/(owner)/fleet.tsx`: u driver edit modalu dugme **„Karijera"** (samo kad vozač ima `user_id`) → `CareerProfileModal` (skopiran na firmu office-a).
+- **Dispečer** `app/(owner)/settings.tsx`: **„Moj CV"** (samo `role==='dispatcher'`; vlasnik nije radnik-građanin) → `CareerProfileModal` (self).
+- **Grafikon** `KmBarChart` — bez teške zavisnosti (čisti View-ovi), km po mesecu za izabranu godinu, prebacivač godina, ljubazna prazna stanja. (Nema chart biblioteke u projektu → jednostavan bar-grafikon.)
+
+## 4) Feature sloj / kvalitet
+- `src/features/career/`: `api.ts` (jedini sloj ka Supabase-u, kroz RPC), `calc.ts` (čiste fn: agregacija km, staž, period), `KmBarChart`, `CareerProfileView` (deljen, self/office), `CareerProfileModal`.
+- Boje iz tokena, stringovi kroz `t()`, React Query keširanje; bez dupliranja (jedan `CareerProfileView`).
+
+## 5) Testovi
+- **`supabase/tests/career_test.sql`** (u `run.sh`): (a) self vidi svoj CV A+B (km 3000, tura 5, firmi 2); (b) radnik NE vidi tuđi (`42501`); (c) office B vidi radnika samo za B (km 2000, 1 firma, 1 zaposlenje); (d) office A vidi samo A (km 1000); (e) office A ne vidi radnika koji nije u A (`42501`). → **`npm run test:db` ALL PASSED**.
+- **jest** `calc.test.ts` (agregacija km, staž, period). → **130/130**.
+
+## 6) i18n
+`career.*` (20 ključeva, ugnježdeno: `role.*`, `chart.*`) u **svih 30** jezika (sr/en autorski, 28 mašinskih); `en` fallback pun; status fajlova netaknut.
+
+## PODSETNIK — ručna primena migracije
+- **0027 je primenjen na DEV** (`supabase db push --linked`). **PROD/STAGING NIJE** — ide TEK uz izričito odobrenje vlasnika (ritual). Dok 0027 nije na PROD-u, CV ekrani u produkcionom buildu vraćaju grešku (RPC ne postoji). Rollback: `drop function career_view_mode/header/summary/employments/km_series` (samo funkcije; nema izmena podataka/šeme tabela).
+
+## Provere (ritual)
+| Provera | Rezultat |
+|---|---|
+| `npm run typecheck` | ✅ |
+| `npm test` (jest) | ✅ 130/130 (19 suita) |
+| `npm run test:db` (DEV) | ✅ ALL PASSED (uklj. career_test) |
+| `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
+| `expo export --platform web` | ✅ build prolazi |
+| Native (Expo Go) | ✅ nedirano van dodatih ekrana |
+| i18n 30/30 | ✅ |
+| KVALITET KODA | ✅ jedan api sloj + jedan deljeni prikaz; RPC autorizacija eksplicitna |
+| Link ostao na DEV | ✅ (`icbjagubaftoqcwfcbwf`) |
