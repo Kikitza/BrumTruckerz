@@ -104,9 +104,23 @@
 |---|---|---|
 | A | `google-services.json` u korenu | **URAĐENO** ✅ (projekat `entop-98f50`, package `com.brumtruckerz.app`) |
 | A | `googleServicesFile` u `app.config.ts` | **URAĐENO** ✅ (`./google-services.json`; commit `3819bfe`) |
-| B | FCM V1 ključ na expo.dev | **NIJE** ⛔ — čeka DEO B (ključ IZ projekta **`entop-98f50`**) |
-| C | Build sa push-om (versionCode 6) | **ČEKA DEO B** ⛔ |
-| D | Proba uživo | **ČEKA DEO C** ⛔ |
+| B | FCM V1 ključ na expo.dev | **URAĐENO** ✅ (uploadovan; Credentials → Android) |
+| C | Build sa push-om (versionCode 6) | **URAĐENO** ✅ — build pokrenut (link dole) |
+| D | Proba uživo | **ČEKA instalaciju builda** ⛔ |
+
+### DEO C — build (ova sesija)
+🔗 **https://expo.dev/accounts/kikitzas-team/projects/kikitza/builds/71960859-ab1f-4b90-8a1f-ad120f8d97e6**
+- Android / `production` (APK), **versionCode 5 → 6** (auto-increment)
+- **`google-services.json` u paketu** → FCM registracija push tokena radi
+- remote keystore (`Build Credentials I5m2sqRrSb`), `EXPO_PUBLIC_PHONE_LOGIN=0`
+
+### DEO D — proba uživo (posle instalacije builda)
+1. **[VLASNIK]** instaliraj build 6 na telefon (link → **Install**), otvori app i uloguj se na pravu firmu → push token se registruje u `push_tokens`.
+2. **[VLASNIK]** napravi/izmeni jedan **rok** sa **bliskim datumom** (da upadne u prag opomene).
+3. **Izbor okidača** (obrazloženje):
+   - **Preporuka — 07:00 cron (najverniji test):** ostavi rok preko noći; sutra u 07:00 (Europe/Belgrade) postojeći pg_cron sam okine → push stiže baš kao pravim korisnicima. Nula diranja PROD tajni.
+   - **Ako hoćeš ODMAH:** ručni okidač `reminders-cron` (`x-cron-secret`). To zahteva `CRON_SECRET` u ruci; pošto je vrednost generisana u ranijoj sesiji i **NE čuva se** ovde, za trenutni test bih morao da **rotiram** `CRON_SECRET` na PROD-u (nova vrednost + sinhronizacija sa pg_cron izvorom) — radim **samo uz tvoje izričito odobrenje** (dira PROD).
+4. **[JA]** upisujem rezultat (scanned/due/sent brojke, bez tajni) po prijemu.
 
 > ⚠️ **Napomena o projektu:** prva verzija fajla je imala pogrešan package (`E.T.N.O.S`, projekat `truckerz-d5118`) i
 > **odbačena** je. Važeći `google-services.json` je iz projekta **`entop-98f50`**. FCM V1 service-account ključ (DEO B)
