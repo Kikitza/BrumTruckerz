@@ -13,7 +13,7 @@ import { LanguagePicker } from "../../src/i18n/LanguagePicker";
 import { PhoneSignIn } from "../../src/features/auth/PhoneSignIn";
 import { isPhoneLoginEnabled } from "../../src/features/auth/phone";
 import { EmailSignUp } from "../../src/features/auth/EmailSignUp";
-import { BRAND_NAME, BRAND_TAGLINE } from "../../src/lib/brand";
+import { BrandLockup } from "../../src/components/BrandLockup";
 
 const LAST_EMAIL_KEY = "auth.lastEmail";
 
@@ -56,10 +56,9 @@ export default function SignIn() {
   return (
     <Screen style={{ justifyContent: "center", padding: 24, gap: 12 }}>
       <LanguagePicker />
-      {/* Brend (ETNOP): ime krupno + tagline manjim slovima ispod. Tagline se NE prevodi (v. src/lib/brand.ts). */}
-      <View style={{ alignItems: "center", marginTop: 16, marginBottom: 20 }}>
-        <Text style={{ fontSize: 44, fontWeight: "800", letterSpacing: 2, color: colors.text }}>{BRAND_NAME}</Text>
-        <Text style={{ fontSize: 12, color: colors.textMuted, marginTop: 4, textAlign: "center" }}>{BRAND_TAGLINE}</Text>
+      {/* Brend (ETNOP): Evropa dot-map znak + ime + tagline (tema-svesno). */}
+      <View style={{ alignItems: "center", marginTop: 8, marginBottom: 20 }}>
+        <BrandLockup />
       </View>
       <Text style={{ fontSize: 24, fontWeight: "700", color: colors.text }}>{t("auth.signIn")}</Text>
 

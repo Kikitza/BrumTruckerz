@@ -408,7 +408,8 @@
     "error": "Nešto je pošlo po zlu",
     "retry": "Pokušaj ponovo",
     "offlineNote": "Sačuvano lokalno — sinhronizirat će se kada budete online",
-    "loadMore": "Učitaj još"
+    "loadMore": "Učitaj još",
+    "loading": "Učitavanje…"
   },
   "profile": {
     "name": "Ime",

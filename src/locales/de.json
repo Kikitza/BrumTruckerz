@@ -408,7 +408,8 @@
     "error": "Etwas ist schiefgelaufen",
     "retry": "Erneut versuchen",
     "offlineNote": "Lokal gespeichert — wird synchronisiert, sobald online",
-    "loadMore": "Mehr laden"
+    "loadMore": "Mehr laden",
+    "loading": "Wird geladen…"
   },
   "profile": {
     "name": "Name",

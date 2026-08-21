@@ -408,7 +408,8 @@
     "error": "Er is iets misgegaan",
     "retry": "Opnieuw proberen",
     "offlineNote": "Lokaal opgeslagen — wordt gesynchroniseerd zodra er verbinding is",
-    "loadMore": "Meer laden"
+    "loadMore": "Meer laden",
+    "loading": "Laden…"
   },
   "profile": {
     "name": "Naam",

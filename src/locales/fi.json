@@ -408,7 +408,8 @@
     "error": "Jotain meni pieleen",
     "retry": "Yritä uudelleen",
     "offlineNote": "Tallennettu paikallisesti — synkronoidaan verkkoon palatessa",
-    "loadMore": "Lataa lisää"
+    "loadMore": "Lataa lisää",
+    "loading": "Ladataan…"
   },
   "profile": {
     "name": "Nimi",

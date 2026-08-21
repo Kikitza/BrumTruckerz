@@ -408,7 +408,8 @@
     "error": "Kažkas nepavyko",
     "retry": "Bandyti dar kartą",
     "offlineNote": "Išsaugota vietoje — bus sinchronizuota prisijungus",
-    "loadMore": "Įkelti daugiau"
+    "loadMore": "Įkelti daugiau",
+    "loading": "Įkeliama…"
   },
   "profile": {
     "name": "Vardas",

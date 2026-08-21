@@ -408,7 +408,8 @@
     "error": "Algo salió mal",
     "retry": "Reintentar",
     "offlineNote": "Guardado localmente — se sincronizará cuando haya conexión",
-    "loadMore": "Cargar más"
+    "loadMore": "Cargar más",
+    "loading": "Cargando…"
   },
   "profile": {
     "name": "Nombre",

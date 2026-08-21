@@ -8,7 +8,7 @@ const config: ExpoConfig = {
   version: "0.1.0",
   orientation: "portrait",
   userInterfaceStyle: "automatic",   // prati sistem (dark/light) — pravilo #8
-  icon: "./assets/icon.png",         // 1024×1024, puna #0B1F3A podloga (bez alfe)
+  icon: "./assets/icon.png",         // 1024×1024, ETNOP Evropa dot-map, puna #0B1220 podloga (bez alfe)
   plugins: [
     "expo-router",
     "expo-asset",
@@ -19,11 +19,11 @@ const config: ExpoConfig = {
     [
       "expo-splash-screen",
       {
-        image: "./assets/splash-icon.png",   // znak (providan), pozadina ide odvojeno
+        image: "./assets/splash-icon.png",   // ETNOP znak (providan), pozadina ide odvojeno
         imageWidth: 200,
         resizeMode: "contain",
-        backgroundColor: "#0B1F3A",
-        dark: { image: "./assets/splash-icon.png", backgroundColor: "#0B1F3A" },
+        backgroundColor: "#0B1220",
+        dark: { image: "./assets/splash-icon.png", backgroundColor: "#0B1220" },
       },
     ],
     [
@@ -41,8 +41,8 @@ const config: ExpoConfig = {
   android: {
     package: "com.brumtruckerz.app",
     adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon.png", // providan znak, u sigurnoj zoni
-      backgroundColor: "#0B1F3A",
+      foregroundImage: "./assets/adaptive-icon.png", // providan ETNOP znak, u sigurnoj zoni
+      backgroundColor: "#0B1220",
     },
   },
   experiments: { typedRoutes: true },

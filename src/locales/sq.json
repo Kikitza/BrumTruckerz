@@ -408,7 +408,8 @@
     "error": "Diçka shkoi keq",
     "retry": "Provo përsëri",
     "offlineNote": "U ruajt lokalisht — do të sinkronizohet kur të jesh online",
-    "loadMore": "Ngarko më shumë"
+    "loadMore": "Ngarko më shumë",
+    "loading": "Po ngarkohet…"
   },
   "profile": {
     "name": "Emri",

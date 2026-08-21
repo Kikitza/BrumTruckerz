@@ -8,6 +8,7 @@ import { supabase } from "../../lib/supabase";
 import { base64ToBytes } from "../../lib/base64";
 import { currentCompanyId } from "../auth/currentUser";
 import { BRAND_NAME, BRAND_TAGLINE } from "../../lib/brand";
+import { BRAND_MARK_DATA_URI } from "./brandMark";
 import { getInvoice, getInvoiceSettings, setInvoicePdfKey, type InvoiceFull, type InvoiceSettings } from "./api";
 
 export type InvoiceLang = "sr" | "en";
@@ -57,7 +58,8 @@ export function buildInvoiceHtml(inv: InvoiceFull, settings: InvoiceSettings | n
   return `<!doctype html><html><head><meta charset="utf-8"><style>
     * { box-sizing: border-box; }
     body { font-family: -apple-system, Roboto, Arial, sans-serif; color: #14181f; padding: 28px; font-size: 13px; }
-    .brand { margin-bottom: 18px; }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .brandmark { display: block; width: 54px; height: 54px; }
     .brandname { font-size: 30px; font-weight: 800; letter-spacing: 2px; color: #14181f; }
     .brandtag { font-size: 11px; color: #667; letter-spacing: 0.5px; margin-top: 2px; }
     .top { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -77,7 +79,7 @@ export function buildInvoiceHtml(inv: InvoiceFull, settings: InvoiceSettings | n
     .wm { position: fixed; top: 42%; left: 0; right: 0; text-align: center; font-size: 60px; color: rgba(200,60,60,0.14); font-weight: 800; letter-spacing: 6px; }
   </style></head><body>
     ${watermark ? `<div class="wm">${esc(watermark)}</div>` : ""}
-    <div class="brand"><div class="brandname">${esc(BRAND_NAME)}</div><div class="brandtag">${esc(BRAND_TAGLINE)}</div></div>
+    <div class="brand"><img class="brandmark" src="${BRAND_MARK_DATA_URI}" alt="ETNOP"/><div><div class="brandname">${esc(BRAND_NAME)}</div><div class="brandtag">${esc(BRAND_TAGLINE)}</div></div></div>
     <div class="top">
       <div><div class="muted">${L.invoice}</div><div class="no">${esc(inv.invoice_no)}</div></div>
       <div class="muted" style="text-align:right">

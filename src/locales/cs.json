@@ -408,7 +408,8 @@
     "error": "Něco se pokazilo",
     "retry": "Zkusit znovu",
     "offlineNote": "Uloženo lokálně — synchronizuje se po připojení k síti",
-    "loadMore": "Načíst další"
+    "loadMore": "Načíst další",
+    "loading": "Načítání…"
   },
   "profile": {
     "name": "Jméno",

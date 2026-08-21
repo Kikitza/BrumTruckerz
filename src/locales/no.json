@@ -408,7 +408,8 @@
     "error": "Noe gikk galt",
     "retry": "Prøv igjen",
     "offlineNote": "Lagret lokalt — synkroniseres når du er online",
-    "loadMore": "Last inn mer"
+    "loadMore": "Last inn mer",
+    "loading": "Laster…"
   },
   "profile": {
     "name": "Navn",

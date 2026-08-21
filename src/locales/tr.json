@@ -408,7 +408,8 @@
     "error": "Bir şeyler ters gitti",
     "retry": "Yeniden dene",
     "offlineNote": "Yerel olarak kaydedildi — çevrimiçi olunca senkronize edilecek",
-    "loadMore": "Daha fazla yükle"
+    "loadMore": "Daha fazla yükle",
+    "loading": "Yükleniyor…"
   },
   "profile": {
     "name": "Ad",

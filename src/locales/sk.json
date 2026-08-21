@@ -408,7 +408,8 @@
     "error": "Niečo sa pokazilo",
     "retry": "Skúsiť znova",
     "offlineNote": "Uložené lokálne — synchronizuje sa po pripojení k sieti",
-    "loadMore": "Načítať ďalšie"
+    "loadMore": "Načítať ďalšie",
+    "loading": "Načítava sa…"
   },
   "profile": {
     "name": "Meno",

@@ -409,7 +409,8 @@
     "error": "Nešto je pošlo naopako",
     "retry": "Pokušaj ponovo",
     "offlineNote": "Sačuvano lokalno — sinhronizuje se kad bude mreže",
-    "loadMore": "Učitaj još"
+    "loadMore": "Učitaj još",
+    "loading": "Učitavanje…"
   },
   "profile": {
     "name": "Ime",

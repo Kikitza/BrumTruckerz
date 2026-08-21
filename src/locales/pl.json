@@ -408,7 +408,8 @@
     "error": "Coś poszło nie tak",
     "retry": "Spróbuj ponownie",
     "offlineNote": "Zapisano lokalnie — synchronizacja po połączeniu z siecią",
-    "loadMore": "Wczytaj więcej"
+    "loadMore": "Wczytaj więcej",
+    "loading": "Ładowanie…"
   },
   "profile": {
     "name": "Imię",

@@ -1,43 +1,32 @@
-# BrumTruckerz — brand vodič (v1)
+# ETNOP — brand vodič (v2)
 
-## Ime i koncept
-**Brum** = zvuk motora; **Truckerz** = zajednica vozača. Znak to prevodi doslovno:
-**kamion u pokretu napred** (aerodinamični nos kabine, artikulisana prikolica) +
-**tri „brum" linije** — zvuk motora pretvoren u vizuelni potpis. Kamion je uvek
-okrenut **udesno** (napred = napredak); linije su uvek **iza** njega.
+**ETNOP** = *European Transport Network Operations Platform* (tagline, ne prevodi se).
+Znak: **krug sa geografski verodostojnim obrisom Evrope**, ispunjen tačkama glavnih gradova
+evropskih država, povezanim tankom mrežom — „digitalna transportna mreža Evrope".
 
-## Paleta (== dizajn tokeni aplikacije — brend i proizvod govore isto)
-| Uloga | HEX | Upotreba |
-|---|---|---|
-| Ink (primarna) | `#16233B` | telo znaka i wordmark na svetlom |
-| Teal (signal) | `#0E7C6B` | brum linije, „Brum" u wordmarku, akcenti |
-| Teal light | `#3BB79F` | teal na tamnim podlogama |
-| White | `#FFFFFF` | znak na tamnom / app ikona |
-| Amber (sekundarna) | `#B4741A` | upozorenja u proizvodu; NE u logotipu |
+## Boje (v. i `src/lib/brand.ts` + dizajn tokeni `src/lib/theme.ts`)
+| Uloga | Hex |
+|---|---|
+| Podloga znaka (boot/splash/ikonica) | `#0B1220` |
+| Tačke/mreža — cijan (signal) | `#22D3EE` |
+| Tačke — mint (prestonice) | `#5EEAD4` |
 
-## Tipografija wordmarka
-**Archivo 800** (Google Fonts, open source; fallback Inter/system).
-Dvotonski lockup: `Brum` u tealu, `Truckerz` u ink boji.
-Za štampu/final: konvertovati tekst u krive (outline) pre predaje.
+Prestonice su krupnije tačke (mint), ostali veliki gradovi sitnije (cijan); mreža je suptilna.
 
-## Fajlovi (`assets/brand/`)
-- `logo-mark.svg` — znak, svetla podloga (primarni)
-- `logo-mark-dark.svg` — znak, tamna podloga
-- `logo-mark-mono.svg` — jedna boja (`currentColor`): pečat, graviranje, 1-color print
-- `logo-horizontal(.dark).svg` — znak + wordmark
-- `app-icon.svg` — 1024×1024, ink podloga, zaobljenje 228
+## Fajlovi
+- `etnop-logo-europe.svg` — pun logo: krug + mapa + **ETNOP** + tagline (tamna podloga; koristi se na boot ekranu).
+- `etnop-mark-europe.svg` — samo znak (krug + mapa), tamna varijanta — ikonica/splash/header/login (dark tema).
+- `etnop-mark-europe-light.svg` — znak za svetlu podlogu (tamne teal tačke) — light tema, PDF faktura.
 
-## Pravila upotrebe
-- **Zaštitni prostor:** oko znaka minimalno prečnik jednog točka sa svake strane.
-- **Minimalne veličine:** znak ≥ 24 px visine; horizontalni lockup ≥ 120 px širine; ispod toga koristiti samo znak.
-- **Tamne podloge:** uvek `-dark` varijanta (beli kamion + teal light). Nikad ink znak na tamnom.
-- **Ne raditi:** rotacija ili ogledalo (kamion nikad ne ide „unazad"), senke/gradijenti na znaku, menjanje boja delova, razdvajanje linija od kamiona, kompresovanje/razvlačenje.
-- Jedna boja dostupna? → mono varijanta, nikad ručno prebojavanje.
+## Izvedeni PNG-ovi (iz `etnop-mark-europe.svg`, dev alat) — vezani u `app.config.ts`
+- `assets/icon.png` (1024×1024, puna `#0B1220`) — app ikonica / web favicon.
+- `assets/adaptive-icon.png` (1024×1024, providan, u sigurnoj zoni) — Android adaptive foreground (`backgroundColor #0B1220`).
+- `assets/splash-icon.png` (providan znak) — expo-splash-screen (`backgroundColor #0B1220`).
 
-## Ikone za prodavnice
-- **iOS:** `app-icon.svg` izvesti u PNG 1024×1024 (Apple sam zaobljuje — izvor je pun kvadrat; naš rx=228 je za pregled/marketing).
-- **Android (adaptive):** foreground = znak (beli kamion + teal linije) na transparentnoj podlozi sa ~66% safe-zone, background = puna `#16233B`. Ne koristiti gotov zaobljeni kvadrat kao adaptive.
-- Favicon/monohrom (Android 13+ themed icon): `logo-mark-mono.svg`.
+## Izvor karte + licenca
+Obris: **Natural Earth 1:110m** (public domain, slobodno za komercijalu) preko npm `world-atlas`.
+Projekcija/generisanje: `d3-geo` + `topojson-client` — **samo dev alat**, NIJE runtime zavisnost aplikacije.
 
-## Zastave (izbor jezika)
-Zastave za izbor jezika NISU brend-asset — dolaze iz paketa **flag-icons** (MIT). Smeštene su odvojeno u `assets/flags/` sa atribucijom u `assets/flags/README.md`. Mapiranje jezik→zastava je u `src/i18n/languages.ts`.
+## Identitet ≠ brend
+Tehnički/pravni identifikatori se NE menjaju rebrandom: `android.package`/`bundleId` `com.brumtruckerz.app`,
+`scheme`, EAS slug/projekat, Supabase refs, storage ključevi, javni brojevi **BT-D/BT-T**.

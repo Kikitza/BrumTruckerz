@@ -2,7 +2,7 @@
 // driver -> (driver). FAIL-CLOSED: bez UTVRĐENE uloge NIKAD ne vodimo na owner ekrane.
 import { Redirect } from "expo-router";
 import { useState } from "react";
-import { ActivityIndicator, View, Text, Pressable } from "react-native";
+import { Text, Pressable } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useSession } from "../src/features/auth/useSession";
@@ -14,11 +14,12 @@ import { NewCompanyWizard } from "../src/features/company/NewCompanyWizard";
 import { isWeb } from "../src/lib/platform";
 import { useTheme } from "../src/lib/theme";
 import { Screen } from "../src/components/Screen";
+import { BootScreen } from "../src/components/BootScreen";
 
 export default function Index() {
   const { session, role, loading, reloadRole } = useSession();
 
-  if (loading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
+  if (loading) return <BootScreen />;
   if (!session) return <Redirect href="/(auth)/sign-in" />;
   if (role === "platform_admin") return <Redirect href="/(admin)" />;
   // WEB (F3): vozač je mobilni (offline red / kamera / km-unos su native) — ljubazna poruka.
@@ -36,7 +37,7 @@ export default function Index() {
 // porukom i „pokušaj ponovo" (nikad redirect na osnovu neuspele provere).
 function CompanyGate({ role }: { role: "owner" | "dispatcher" | "driver" }) {
   const q = useQuery({ queryKey: ["my-company-status"], queryFn: getMyCompanyStatus, retry: 1 });
-  if (q.isLoading) return <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator /></View>;
+  if (q.isLoading) return <BootScreen />;
   if (q.isError) return <StatusCheckFailed onRetry={() => q.refetch()} />;
   if (q.data === "suspended") return <SuspendedScreen />;
   return <Redirect href={role === "driver" ? "/(driver)" : "/(owner)/trips"} />;

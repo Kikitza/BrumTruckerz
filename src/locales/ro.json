@@ -408,7 +408,8 @@
     "error": "Ceva nu a mers bine",
     "retry": "Reîncearcă",
     "offlineNote": "Salvat local — se va sincroniza când ești online",
-    "loadMore": "Încarcă mai mult"
+    "loadMore": "Încarcă mai mult",
+    "loading": "Se încarcă…"
   },
   "profile": {
     "name": "Nume",

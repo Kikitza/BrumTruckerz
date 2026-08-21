@@ -406,7 +406,8 @@
     "error": "Something went wrong",
     "retry": "Retry",
     "offlineNote": "Saved locally — will sync when online",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "loading": "Loading…"
   },
   "profile": {
     "name": "Name",

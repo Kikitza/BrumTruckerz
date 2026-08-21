@@ -408,7 +408,8 @@
     "error": "Midagi läks valesti",
     "retry": "Proovi uuesti",
     "offlineNote": "Salvestatud lokaalselt — sünkroonitakse võrgus olles",
-    "loadMore": "Laadi rohkem"
+    "loadMore": "Laadi rohkem",
+    "loading": "Laadimine…"
   },
   "profile": {
     "name": "Nimi",

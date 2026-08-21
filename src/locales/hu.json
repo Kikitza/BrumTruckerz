@@ -408,7 +408,8 @@
     "error": "Valami hiba történt",
     "retry": "Újra",
     "offlineNote": "Helyileg mentve — szinkronizálódik, ha online leszel",
-    "loadMore": "Több betöltése"
+    "loadMore": "Több betöltése",
+    "loading": "Betöltés…"
   },
   "profile": {
     "name": "Név",

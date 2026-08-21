@@ -408,7 +408,8 @@
     "error": "Kaut kas nogāja greizi",
     "retry": "Mēģināt vēlreiz",
     "offlineNote": "Saglabāts lokāli — sinhronizēsies, kad būs tiešsaiste",
-    "loadMore": "Ielādēt vairāk"
+    "loadMore": "Ielādēt vairāk",
+    "loading": "Ielādē…"
   },
   "profile": {
     "name": "Vārds",

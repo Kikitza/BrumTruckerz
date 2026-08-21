@@ -3,6 +3,7 @@
 // react-navigation dodaje gornji safe-area inset — naslov i headerRight (zastavica)
 // ne ulaze pod statusnu traku. Tab bar poštuje donji inset (home indikator) automatski.
 import { useTheme } from "../lib/theme";
+import { BrandHeaderLeft } from "./BrandHeaderLeft";
 
 export function useTabsScreenOptions() {
   const { colors } = useTheme();
@@ -10,6 +11,7 @@ export function useTabsScreenOptions() {
     headerStyle: { backgroundColor: colors.surface },
     headerTintColor: colors.text,
     headerShadowVisible: false,
+    headerLeft: BrandHeaderLeft, // ETNOP znak levo u zaglavlju (chrome brend)
     sceneContainerStyle: { backgroundColor: colors.bg },
     tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border },
     tabBarActiveTintColor: colors.primary,
