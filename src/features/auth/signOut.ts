@@ -3,11 +3,14 @@
 //
 // Ako u redu ima nesinhronizovanih stavki (audit B4), potvrda to napominje —
 // stavke su vezane za korisnika i poslaće se kad se ponovo prijavi (ne gube se).
-import { Alert } from "react-native";
+//
+// Potvrda ide kroz `confirmAction` (web-safe): na native-u Alert, na webu window.confirm —
+// jer je RN Alert.alert NO-OP na webu, pa je odjava ranije izgledala „mrtvo" u browseru.
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabase";
 import { pendingCount } from "../../lib/offline/queue";
+import { confirmAction } from "../../lib/confirm";
 
 export function useSignOut() {
   const { t } = useTranslation();
@@ -18,16 +21,14 @@ export function useSignOut() {
     } catch {
       // ako provera reda padne, i dalje dozvoli odjavu sa standardnom porukom
     }
-    Alert.alert(t("settings.signOut"), msg, [
-      { text: t("common.cancel"), style: "cancel" },
-      {
-        text: t("settings.signOut"),
-        style: "destructive",
-        onPress: async () => {
-          await supabase.auth.signOut();
-          router.replace("/(auth)/sign-in");
-        },
-      },
-    ]);
+    const ok = await confirmAction({
+      title: t("settings.signOut"),
+      message: msg,
+      confirmLabel: t("settings.signOut"),
+      cancelLabel: t("common.cancel"),
+    });
+    if (!ok) return;
+    await supabase.auth.signOut();
+    router.replace("/(auth)/sign-in");
   };
 }
