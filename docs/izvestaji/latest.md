@@ -1,56 +1,46 @@
-# IZVEŠTAJ — v2-1: KARIJERNI PROFIL RADNIKA (CV iz stvarnog rada)
+# IZVEŠTAJ — v2-1b: „ZEMLJE KROZ KOJE JE VOZIO" (geografija ture → CV mapa)
 
-> Prva v2.0 kriška. Read-only CV za **vozača I dispečera** iz **postojećih** podataka. **Bez GPS-a, bez marketplace-a,
-> bez „zemlje kroz koje je vozio"** (to je naredna kriška — nov podatak ruta→zemlja). Commit `56e2625` (push-ovan).
+> Nastavak karijernog profila. Pristup: **AUTO pokušaj + RUČNA potvrda**. Commit `9d07c4d` (push-ovan).
 
-## 1) Podaci (stvarne tabele — provereno)
-- **`employments`** (`0017`): firma + period (`started_at`/`ended_at`) + `role_on_company` + `status` → istorija zaposlenja.
-- **`driver_month_rollup`** (`0001`): `company_id`,`driver_id`,`year_month`,`trips_count`,`total_km` (završene ture po `finished_at`) → zbir km/tura + grafikon.
-- **`drivers`** (`user_id` **globalno jedinstven**, `0007`): osoba = JEDAN drivers red; **istorija po firmama živi na `rollup.company_id`**, ne na više drivers redova (ključno za autorizaciju/skoping).
+## 1) Migracija 0028 (na DEV)
+- **`trip_stops.country_code`** + **`trip_stops.country_source`** (`'auto'|'manual'|null`) — zemlja svake stanice.
+- **`trips.origin_country_code`** + **`trips.origin_country_source`** — zemlja **polaznog mesta** (origin je tekst na `trips`, nije stanica; destinacija = poslednji istovar → njena zemlja je u `trip_stops`).
+- FK → `countries(code)` (41 ISO kod, `0025`). **Postojeće ture ostaju `null`** (legalno; CV pokazuje samo poznato).
+- **`career_countries(p_user)`** RPC (SECURITY DEFINER): distinct zemlje iz origin+stanica tura radnika, sa brojem tura po zemlji; **ista privatnost** kao ostatak CV-a (self = sve firme; office = samo svoja firma).
 
-## 2) Migracija 0027 — 5 READ-ONLY RPC-ova (SECURITY DEFINER, autorizacija eksplicitna)
-| RPC | Vraća |
-|---|---|
-| `career_view_mode(p_user)` | `self` \| `company` \| `none` |
-| `career_header(p_user)` | javni broj (BT-D/BT-T) + ime (profil → fallback `drivers.full_name`) |
-| `career_summary(p_user)` | ukupno km, broj tura (rollup), broj firmi + staž (employments) |
-| `career_employments(p_user)` | firma + period + uloga + status |
-| `career_km_series(p_user)` | km/tura po mesecu (za grafikon) |
+## 2) Auto-detekcija (čista fn, bez plaćenih servisa) — `src/features/trips/countryDetect.ts`
+- `detectCountry(place) → { code, confident }`. Redosled: (1) eksplicitan kod na kraju („…, DE" / „(IT)" / „Beograd - RS"); (2) ime zemlje (varijante sr/en/de, bez dijakritike); (3) poznat veliki grad (rečnik ~200 gradova EU/Balkan).
+- **NE nagađa na silu:** kad nije jasno → `{ null, false }` (ostaje za ručnu potvrdu). `country_source='auto'` se upisuje **samo** za `confident`.
 
-**RLS/privatnost (u RPC-u, bypass RLS pa eksplicitno):**
-- `self` — radnik vidi SVOJ CV kroz **sve** firme (`p_user=null`→`auth.uid()`).
-- `company` — office (owner/dispatcher, `is_office_role()`) vidi radnika **SVOJE** firme, ograničeno na `company_id = current_company_id()` (ne vidi šta je radio u drugim firmama — data-collision duh).
-- `none` — izuzetak `42501`.
+## 3) UI na turi (Nova/Izmeni) — auto-predlog + ručni izbor
+- Svaka stanica (`StopsEditor`) i **polazno mesto** (`NewTripModal`, `TripDetailModal` route-edit) dobijaju polje **„Zemlja"** (`CountryPickerField` sa pretragom).
+- Kucanje mesta → auto-predlog (source `auto`); korisnik može promeniti (→ `manual`, konačno — ne pregazuje se). Nesiguran predlog → prazno + suptilni nagoveštaj „Izaberi zemlju".
+- **Prazno NE blokira čuvanje** ture. Provučeno kroz `StopDraft → TripStopInput/StopDraftLike → reconcileStops → create/route api` (uklj. `trips.origin_country_*`).
 
-## 3) Ekrani (mobilni + web)
-- **Vozač** `app/(driver)/profile.tsx`: postojeća identitet-kartica + **CV** (zbirne kartice, grafikon km/mesec, istorija zaposlenja).
-- **Office pregled** — `app/(owner)/fleet.tsx`: u driver edit modalu dugme **„Karijera"** (samo kad vozač ima `user_id`) → `CareerProfileModal` (skopiran na firmu office-a).
-- **Dispečer** `app/(owner)/settings.tsx`: **„Moj CV"** (samo `role==='dispatcher'`; vlasnik nije radnik-građanin) → `CareerProfileModal` (self).
-- **Grafikon** `KmBarChart` — bez teške zavisnosti (čisti View-ovi), km po mesecu za izabranu godinu, prebacivač godina, ljubazna prazna stanja. (Nema chart biblioteke u projektu → jednostavan bar-grafikon.)
+## 4) Backfill istorije
+- Dopuna zemalja postojećim turama ide kroz **redovni „Izmeni rutu"** na turi (sada ima country picker po stanici + za polazak) — office lako dopunjava.
+- **Zaseban masovni „Ture bez zemlje" ekran je ODLOŽEN** (opciono po zadatku; ne forsiram masovni upis / ne uvodim mrtav kod). Može kao sledeća sitna kriška ako zatreba.
 
-## 4) Feature sloj / kvalitet
-- `src/features/career/`: `api.ts` (jedini sloj ka Supabase-u, kroz RPC), `calc.ts` (čiste fn: agregacija km, staž, period), `KmBarChart`, `CareerProfileView` (deljen, self/office), `CareerProfileModal`.
-- Boje iz tokena, stringovi kroz `t()`, React Query keširanje; bez dupliranja (jedan `CareerProfileView`).
+## 5) CV dopuna — „Zemlje kroz koje je vozio"
+- `CareerProfileView`: kartica sa zastavicama (`flagEmoji`, XK bez zvanične → 🏳️) + naziv zemlje (`t(countries.<CODE>)`) + broj tura. Ljubazno prazno stanje.
 
-## 5) Testovi
-- **`supabase/tests/career_test.sql`** (u `run.sh`): (a) self vidi svoj CV A+B (km 3000, tura 5, firmi 2); (b) radnik NE vidi tuđi (`42501`); (c) office B vidi radnika samo za B (km 2000, 1 firma, 1 zaposlenje); (d) office A vidi samo A (km 1000); (e) office A ne vidi radnika koji nije u A (`42501`). → **`npm run test:db` ALL PASSED**.
-- **jest** `calc.test.ts` (agregacija km, staž, period). → **130/130**.
-
-## 6) i18n
-`career.*` (20 ključeva, ugnježdeno: `role.*`, `chart.*`) u **svih 30** jezika (sr/en autorski, 28 mašinskih); `en` fallback pun; status fajlova netaknut.
+## 6) Testovi
+- **jest**: `countryDetect.test.ts` (eksplicitan kod / ime / grad / nejasno→prazno), `calc.test.ts` (+`flagEmoji`), `stopsMath.test.ts` (redovi dopunjeni `country_code/source`). → **136/136**.
+- **test:db**: `career_test.sql` proširen — zemlje: self=4 (DE,AT,IT,SI); office B=2 (IT,SI, **ne** DE iz firme A); office A=2 (DE,AT); izolacija. → **ALL PASSED**.
+- **i18n**: `trip.stops.country`, `trip.stops.countryHint`, `career.countriesVisited`, `career.noCountries` u **svih 30** (sr/en autorski).
 
 ## PODSETNIK — ručna primena migracije
-- **0027 je primenjen na DEV** (`supabase db push --linked`). **PROD/STAGING NIJE** — ide TEK uz izričito odobrenje vlasnika (ritual). Dok 0027 nije na PROD-u, CV ekrani u produkcionom buildu vraćaju grešku (RPC ne postoji). Rollback: `drop function career_view_mode/header/summary/employments/km_series` (samo funkcije; nema izmena podataka/šeme tabela).
+- **0028 je samo na DEV** (`db push --linked`). **PROD/STAGING** tek uz izričito odobrenje (ritual). Rollback: `drop function career_countries`; kolone (`trip_stops.country_*`, `trips.origin_country_*`) su aditivne/nullable (mogu ostati bez štete, ili `drop column`).
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ |
-| `npm test` (jest) | ✅ 130/130 (19 suita) |
-| `npm run test:db` (DEV) | ✅ ALL PASSED (uklj. career_test) |
+| `npm test` | ✅ 136/136 (20 suita) |
+| `npm run test:db` (DEV) | ✅ ALL PASSED |
 | `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
 | `expo export --platform web` | ✅ build prolazi |
-| Native (Expo Go) | ✅ nedirano van dodatih ekrana |
+| Postojeći tokovi (create/edit ture) | ✅ nedirani (country je aditivan, prazno dozvoljeno) |
 | i18n 30/30 | ✅ |
-| KVALITET KODA | ✅ jedan api sloj + jedan deljeni prikaz; RPC autorizacija eksplicitna |
-| Link ostao na DEV | ✅ (`icbjagubaftoqcwfcbwf`) |
+| Data-collision guard (§6) | ✅ zemlja rute = odvojeno polje (ne meša se sa interesom/prebivalištem) |
+| Link ostao na DEV | ✅ |
