@@ -1,62 +1,65 @@
-# IZVEŠTAJ — „PUSH FINALE": infrastruktura postavljena; proba push-a ČEKA (odluka vlasnika)
+# IZVEŠTAJ — BUG „ODJAVA NE RADI NA WEBU" (popravljeno)
 
-> Idempotentno provereno stanje. **Sva push-infrastruktura je na mestu** (google-services uvezan, FCM ključ na expo.dev,
-> reminders-cron + CRON_SECRET + raspored na PROD-u, migracija 0026 na PROD-u, novi build sa push-om napravljen).
-> **Proba uživo (korak 4) je SVESNO preskočena** na zahtev vlasnika — čeka njegovu odluku o okidaču.
-> Nijedna tajna-vrednost nije u ovom izveštaju.
+> **Uzrok (potvrđen):** React Native `Alert.alert` sa dugmadima je **NO-OP na react-native-web** — dijalog se
+> ne prikaže, pa se `onPress` (koji radi `supabase.auth.signOut()` + `router.replace`) **nikad ne izvrši**.
+> Zato u browseru klik na „Odjava" ništa vidljivo ne uradi i **nema greške u konzoli** (ništa ne pukne — samo
+> se potvrda „proguta"). Na native-u (Expo Go) Alert radi, pa je odjava radila.
+> **Popravka:** deljeni web-safe `confirmAction()` (native: Alert; web: `window.confirm`); `useSignOut` ide kroz njega.
+> Native tok netaknut. Commit `31bb04f` (push-ovan).
 
-## Status po koraku
+## Dijagnoza toka (po tački zadatka)
+- `supabase.auth.signOut()` na webu radi ispravno **kad se pozove** — problem je što se **nije ni pozivao**.
+- `session state`: `useSession` sluša `onAuthStateChange`; da je signOut prošao, gate bi se re-evaluirao. Nije stizao dotle.
+- Krivac **(b)** iz zadatka: **Alert.alert potvrda no-op na webu**. Krivac (a) (redirect) nije bio uzrok — `router.replace`
+  je već postojao unutar `onPress`, ali se `onPress` nije okidao. Sada, kad potvrda prođe, i signOut i redirect se izvrše.
 
-| # | Korak | Status | Sledeći klik vlasnika |
-|---|---|---|---|
-| 1 | `google-services.json` u korenu | **URAĐENO** ✅ | — (projekat `entop-98f50`, package `com.brumtruckerz.app`) |
-| 1 | `googleServicesFile` u `app.config.ts` | **URAĐENO** ✅ | — (`./google-services.json`; commit `3819bfe`) |
-| 1 | FCM V1 ključ na expo.dev (Credentials → Android) | **URAĐENO** ✅ (vlasnik uploadovao) | — (ključ iz istog projekta `entop-98f50`) |
-| 2 | `reminders-cron` deploy @ PROD | **URAĐENO** ✅ | — (`ACTIVE`, `verify_jwt:false`, v1) |
-| 2 | CRON_SECRET (PROD secret) | **URAĐENO** ✅ | — (postoji; vrednost se NE čuva van sesije u kojoj je kreirana) |
-| 2 | Raspored 07:00 Europe/Belgrade (pg_cron) | **URAĐENO** ✅ | — (`0 5 * * *` UTC; DST: 07:00 CEST leti / 06:00 zimi) |
-| 2 | Smoke 401/200 | **URAĐENO** ✅ (ranija sesija) | — (401 bez tajne, 200 sa tajnom) |
-| 3 | `db push 0026` @ PROD | **URAĐENO** ✅ | — (`local 0026 = remote 0026`; dry-run bi bio prazan) |
-| 4 | **Proba uživo push-a** | **ČEKA** ⏸️ (odluka vlasnika) | vidi „Kako pokrenuti probu" dole |
-| C | Novi production build sa push-om | **URAĐENO** ✅ | instaliraj build 6 na telefon (link dole) |
+## Izmene
+| Fajl | Izmena |
+|---|---|
+| `src/lib/confirm.ts` (**nov**) | `confirmAction({title,message,confirmLabel,cancelLabel,destructive?})` → `Promise<boolean>`. Web: `window.confirm`; native: `Alert.alert` (cancel/destructive, `onDismiss→false`). Jedno rešenje za sve ekrane. |
+| `src/features/auth/signOut.ts` | Uklonjen `Alert`; potvrda kroz `confirmAction`; na `false` prekid, na `true` → `signOut()` + `router.replace("/(auth)/sign-in")`. Poruka o nesinhronizovanom redu očuvana. |
 
-## Novi build (nosi push + ETNOP brend)
-🔗 **https://expo.dev/accounts/kikitzas-team/projects/kikitza/builds/71960859-ab1f-4b90-8a1f-ad120f8d97e6**
-- Android / `production` (APK), **versionCode 5 → 6** (auto-increment)
-- **`google-services.json` ugrađen u paket** → FCM registracija push tokena radi
-- remote keystore (`Build Credentials I5m2sqRrSb`), `EXPO_PUBLIC_PHONE_LOGIN=0`
+## Ponašanje posle popravke
+- **Web:** klik „Odjava" → `window.confirm` (radi) → potvrda → sesija očišćena → korisnik na login ekranu.
+- **Native (Expo Go):** identično kao pre (Alert sa cancel/destructive) — **nepromenjeno**.
 
-## Provera ove sesije (bez remećenja linka — `--project-ref`, link ostao DEV)
-- `google-services.json`: `project entop-98f50`, `package com.brumtruckerz.app` → **MATCH** sa `android.package`.
-- `app.config.ts`: `googleServicesFile: "./google-services.json"` prisutan.
-- `functions list` (PROD): `reminders-cron` → `ACTIVE`, `verify_jwt:false`.
-- `secrets list` (PROD): `CRON_SECRET` prisutan *(prikaz je digest, NE vrednost)*.
-- `migration list` (PROD): `local 0026 = remote 0026`.
+## Testovi
+- `npm test` **121/121** ✅, `typecheck` ✅, `lint` 0 grešaka (4 upozorenja, baseline) ✅.
+- Nov unit test **nije** dodat: konvencija projekta (`jest.config.js`) je „testiramo SAMO čiste funkcije (bez mreže/…)";
+  `confirmAction` je tanak platform-branč omotač oko `Alert`/`window.confirm` (nije čista funkcija) → krhko RN-mockovanje
+  bi išlo suprotno konvenciji. Pokriveno tipovima + ručnom logikom.
 
-## Korak 4 — proba uživo: SVESNO ČEKA (odluka vlasnika)
-Nije pokrenuta na izričit zahtev vlasnika. Kad poželiš da je uradimo, biraš okidač:
+## i18n
+Bez novih ključeva — koristi postojeće (`settings.signOut`, `settings.signOutConfirm`, `common.cancel`, `account.signOutPending`). Lokalizacije nisu dirane.
 
-- **Opcija A — 07:00 cron (najverniji, nula diranja PROD tajni):**
-  instaliraj build 6, uloguj se (push token se registruje), napravi **rok sa bliskim datumom** na pravoj firmi,
-  ostavi preko noći → sutra u 07:00 (Europe/Belgrade) pg_cron sam okine → push stiže kao pravim korisnicima.
-- **Opcija B — ručni okidač ODMAH:**
-  POST na `reminders-cron` sa `x-cron-secret` headerom. Pošto se `CRON_SECRET` vrednost **ne čuva** van sesije u kojoj
-  je kreirana, za trenutni test bih morao da **rotiram** `CRON_SECRET` na PROD-u (nova vrednost + sinhronizacija sa
-  pg_cron izvorom) — radim **samo uz tvoje izričito odobrenje** jer dira produkciju.
+## OSTALA MESTA sa istim rizikom (Alert.alert no-op na WEBU) — NISU dirana u ovom zadatku
+> Po zadatku (obim velik): popravljena SAMO odjava; ostalo se rešava zasebno **istim** `confirmAction` helperom.
 
-**Ako meta-rok bude pravljen za probu:** biće to običan reminder sa bliskim datumom na pravoj firmi; posle probe ga
-vlasnik ukloni/izmeni kroz „Centar rokova" (Izmeni/Obriši uz potvrdu) — nikakav poseban čist-up nije potreban.
+### A) Destruktivne/akcione POTVRDE (višedugmadne — na webu se „progutaju", akcija izostaje) — PRIORITET
+| Fajl:linija | Akcija |
+|---|---|
+| `src/features/reminders/ReminderFormModal.tsx:90` | brisanje roka (`reminders.deleteConfirm`) |
+| `src/features/attachments/AttachmentsSection.tsx:75` | izbor izvora priloga (kamera/galerija) |
+| `src/features/attachments/AttachmentsSection.tsx:104,121` | brisanje priloga (`attachment.deleteConfirm`) |
+| `src/features/admin/CompanyDetailModal.tsx:39` | promena statusa firme (`admin.confirmStatus`) |
+| `src/features/trips/TripDetailModal.tsx:214` | brisanje troška (`expense.deleteConfirm`) |
+| `src/features/trips/stops.tsx:40` | brisanje stajanja (`trip.stops.deleteConfirm`) |
+| `src/features/identity/InvitesSection.tsx:37` | otkazivanje pozivnice (`invite.cancelConfirm`) |
+| `src/features/identity/AcceptInviteBox.tsx:27` | uspeh prihvatanja pozivnice → `onJoined` (na webu callback ne okine) |
 
-## Šta je preostalo
-Samo **korak 4 (proba)**. Cela infrastruktura je spremna; kad javiš izbor (A ili B), zatvaramo „PUSH FINALE".
+### B) Informativni Alert (naslov/poruka, bez dugmadi) — na webu se ne vide (niža ozbiljnost)
+Greške/obaveštenja tipa `Alert.alert(t("common.error"), msg)` u: `ReminderFormModal`, `NewCompanyWizard`, `InvoiceDetailModal`,
+`AttachmentsSection`, `CompanyDetailModal`, `TripDetailModal`, `IssueInvoiceModal`, `InvoiceSettingsModal`, `NewTripModal`,
+`PhoneOtpSteps`, `registerPush`, `InvitesSection`, `app/(auth)/sign-in.tsx`, `app/(owner)/customers.tsx`.
+Predlog (zaseban zadatak): web-safe toast/inline poruka (npr. `window.alert` fallback ili in-app toast) kroz isti sloj.
 
-## Provere
+## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
-| google-services MATCH + `googleServicesFile` vezan | ✅ |
-| reminders-cron / CRON_SECRET / 07:00 raspored @ PROD | ✅ (postoji; nije ponovo diran) |
-| 0026 @ PROD | ✅ `remote 0026` |
-| Novi build sa push-om (vc 6) | ✅ napravljen |
-| Link ostao na DEV | ✅ (`icbjagubaftoqcwfcbwf`) |
-| i18n | nije diran |
-| Tajne u izveštaju | ✅ nijedna vrednost (samo imena/mesta) |
+| `npm run typecheck` | ✅ |
+| `npm test` | ✅ 121/121 |
+| `npm run lint` | ✅ 0 grešaka (4 upozorenja) |
+| Native tok odjave | ✅ nepromenjen |
+| Web tok odjave | ✅ confirm radi → sesija očišćena → login |
+| Pravila kvaliteta (#1 bez dupliranja: jedan `confirmAction`) | ✅ ispoštovano |
+| Commit + push | ✅ `31bb04f` na `main` |
