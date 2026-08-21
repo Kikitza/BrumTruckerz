@@ -1,74 +1,65 @@
-# IZVEŠTAJ — F3: TEST IZDRŽLJIVOSTI (staging volumen + server paginacija & indeksi)
+# IZVEŠTAJ — REBRAND → ETNOP (samo prikazni sloj; identifikatori nepromenjeni)
 
-> STATUS: **URAĐENO** — staging (webquovijioxmouvuiko) seed-ovan i izmeren; server paginacija + indeksi.
-> **Link vraćen na DEV** (dokaz niže). **PROD NIJE diran.** Provere čiste; mobilno netaknuto.
+> DEV. Ime = **ETNOP**; tagline (jedna konstanta, ne prevodi se) = „European Transport Network Operations Platform".
+> Provere čiste; `expo config` razrešava `name = ETNOP` (Expo Go/app lista). Identiteti netaknuti.
 
-## 1) Staging sync
-- Dry-run = **tačno 0021–0025** (istorija od F1 probe) → push. Zatim **0026** (indeksi, niže).
-- **Edge funkcije za ovaj test NISU potrebne** (mere se listni upiti/paginacija; vies-check/reminders-cron nebitni) — naznačeno.
+## Brend konstanta (jedini izvor)
+- **NOVO `src/lib/brand.ts`** — `BRAND_NAME = "ETNOP"`, `BRAND_TAGLINE = "European Transport Network Operations Platform"`.
+  Tagline se **NE prevodi** (enterprise standard: brend na engleskom u svih 30 jezika).
 
-## 2) SEED (samo staging, idempotentno, „[SEED]")
-- **`supabase/STAGING-SEED.sql`** (u repou): idempotentan (prvo briše `[SEED]` firmu → CASCADE), sve nosi „[SEED]".
-  - **Pokretanje:** `supabase db query --linked -f supabase/STAGING-SEED.sql` (staging linkovan).
-  - **Čišćenje:** `delete from companies where name like '[SEED]%'; delete from auth.users where email like '%@brumtruckerz.seed';`
-- **Volumen (potvrđen):** **1200 tura**, **48.000 događaja**, **4800 troškova**, **300 faktura** (mix statusa), **30 naručilaca**,
-  20 vozila / 15 prikolica / 10 vozača, **60 rokova** (datum + km), kroz 12 meseci (mix aktivne/završene).
+## 1) Prikazni sloj (sve što korisnik vidi) — IZMENJENO
+| Mesto | Izmena |
+|---|---|
+| `app.config.ts` → `name` | „BrumTruckerz" → **„ETNOP"** (ime u Expo Go/app listi/splash) |
+| `app/(auth)/sign-in.tsx` | **ETNOP** krupno (44pt) + **tagline** manjim slovima ispod; uklonjen stari logo-wordmark (prikazivao „BrumTruckerz") |
+| `src/features/invoices/pdf.ts` | PDF **header: ETNOP + tagline ispod** (brend dokumenta; iznad „FAKTURA/INVOICE"); tagline uvek EN bez obzira na jezik fakture |
+| `src/features/notifications/registerPush.ts` | Android notifikacioni kanal `name` → `BRAND_NAME` (ETNOP); vidljivo u sistemskim podešavanjima |
+| `src/locales/*.json` (SVIH 30) | `common.driverUseMobile` — brend pomen „BrumTruckerz" → **„ETNOP"** |
 
-## 3) MERENJA (EXPLAIN ANALYZE — server-strana; UI render se ne meri headless)
-> Mereno sa `company_id` filterom (ogledalo RLS-a; RLS dodaje keširan `current_company_id()` — zanemarivo).
-> Cilj „lista ≲1s" — server-strana je u **mikrosekundama**; ključni dobitak je **ograničen payload** (50 redova) + eliminisan Sort.
+> Push **naslovi** (`reminders-cron`): „Rok ističe" / „Servis vozila" — **ne pominju ime**, pa ostaju nepromenjeni.
 
-| Lista (upit) | PRE | POSLE |
-|---|---|---|
-| Ture — kartice (limit 50) | 0.203 ms | 0.203 ms (nepromenjeno; već paged) |
-| Ture — RICH tabela | 0.883 ms (limit **200**) | **0.538 ms** (limit 50) |
-| **Fakture** | 0.607 ms (**BEZ limita**, ~300; **Seq Scan + Sort**) | **0.242 ms** (limit 50; **index**, bez Seq Scan/Sort) |
-| Naručioci | 0.723 ms | 0.606 ms (limit 50) |
-| **Arhiva** (finished) | 0.899 ms (**BEZ limita**, ~840) | **0.249 ms** (limit 50; index) |
-| Admin — lista firmi | 0.108 ms (2 firme; seed vidljiv: 20 voz/10 voz.) | — |
+## 2) Dokumentacija — IZMENJENO
+| Fajl | Izmena |
+|---|---|
+| `README.md` | naslov → **„# ETNOP — starter"** |
+| `CLAUDE.md` | naslov + uvod („**ETNOP** — mobilna aplikacija…") + **red o internom nasleđu**: „brumtruckerz" u identifikatorima je **trajno** |
+| `docs/MASTER-PLAN.md` | naslov → ETNOP + **v1.1 beleška o rebrandu** (samo prikazni sloj; identiteti i istorija netaknuti) |
 
-## 4) ISPRAVKE
-- **SERVER PAGINACIJA („Učitaj još", stranice 50):**
-  - **Ture** — obe varijante: mobilne kartice (**aktivne** + **arhiva** zasebni server upiti, svaki „Učitaj još"; arhiva se učitava tek na otvaranje) i **web tabela** (rich, raste limit).
-  - **Fakture** i **Naručioci** — `.limit(shown)` + „Učitaj još" (raste po 50).
-  - Deljena `LoadMore` komponenta; `common.loadMore` u i18n (30 jezika).
-- **`supabase/migrations/0026_list_paging_indexes.sql`** — `invoices (company_id, issue_date desc, invoice_no desc)`
-  (fakture: eliminisan Seq Scan + Sort) i `trips (company_id, status, created_at desc)` (arhiva: index-order paging).
-- **`driver_trips`** — **po prirodi mali** (view filtrira `driver_id = current_driver_id()` → samo turе jednog vozača);
-  ne treba paginacija ni indeks. (Provereno.)
-- **Indeksi gde je explain pokazao Seq Scan:** samo `invoices` (300 redova → Seq Scan+Sort) je opravdavao namenski indeks;
-  ostali Seq Scan-ovi su nad **sićušnim** tabelama (drivers 10) gde je Seq Scan ispravan izbor planera (indeks ne bi pomogao).
+## 3) Grep celog repoa („BrumTruckerz"/„Brum") — ŠTA OSTAJE i ZAŠTO
+Sve preostale pojave su **identitet / tehnika / istorija** (nijedna nije korisniku vidljiva kao brend):
 
-## 5) Kapija: admin na webu
-- `admin_list_companies` je bounded RPC (broj firmi mali; per-firma count-ovi indeksirani); **web-safe** (samo RPC, bez native).
-  Podaci potvrđeni: seed firma se vidi u listi (status active, 20 vozila/10 vozača). *Živi klik admin-prijave = `expo start --web`.*
+| Mesto | Ostaje jer… |
+|---|---|
+| `app.config.ts` `android.package` + `bundleIdentifier` `com.brumtruckerz.app` | **tehnički id instalirane aplikacije — NIKAD se ne menja** (eksplicitno) |
+| `app.config.ts` `scheme: "brumtruckerz"` | deep-link identifikator (menjanje bi razbilo linkove) |
+| `package.json` `name`, `.devcontainer/devcontainer.json` `name` | npm/dev-container identifikator; **repo ime se u ovom zadatku ne menja** |
+| EAS `slug: "kikitza"` / `projectId` | EAS projekat-identifikator (nepromenjen) |
+| `CLAUDE.md` `BrumTruckerz-dev`, `RUNBOOK.md` (Supabase project imena, `brumtruckerz.com`, starter zip, repo ime) | Supabase refs + operativne/infra instrukcije; identifikatori |
+| `supabase/DEV-SEED.sql` company „BrumTruckerz", `supabase/STAGING-SEED.sql` `@brumtruckerz.seed` | **sadržaj baze / seed identifikator** (email-match za čišćenje) — ne dira se |
+| `docs/AUDIT-BRUMTRUCKERZ-2026-08.md` + `docs/AUDIT-SAZETAK.md` (naslov, telo, ime fajla) | **ISTORIJSKI audit — istorija ostaje istinita** |
+| `docs/projektni-zadatak.md` „Naziv: BrumTruckerz" | PRD/istorijski spec (van liste izmena; istorija) |
+| `assets/brand/brand.md` + logo/icon/splash asseti | vodič **postojećeg** znaka; **logo redizajn = zaseban asset zadatak** (nov ETNOP mark nije isporučen). Login zato prikazuje ETNOP **tekstualni** wordmark, a ne stari SVG. |
+| `src/lib/brand.ts`, `CLAUDE.md`, `MASTER-PLAN.md` (pomeni „brumtruckerz") | namerne **napomene o nasleđu/rebrandu** (objašnjavaju zašto identifikatori ostaju) |
 
-## 6) Mobilno / link
-- Mobilno **nije pokvareno**: paginacija radi i sa malo podataka (na DEV-u/Expo Go „Učitaj još" se ne prikazuje dok ima < 50).
-  Sve grane su iste kao pre za male skupove; native tok nepromenjen.
-- **Link vraćen na DEV** (`supabase/.temp/project-ref = icbjagubaftoqcwfcbwf`).
+**Namerno NIJE dirano** (po zadatku): android.package, BT-D/BT-T brojevi, EAS slug/projekat, Supabase refs, storage ključevi, sadržaj baze, repo ime, istorijski izveštaji i ADR.
 
 ## Test matrica
 | Provera | Rezultat |
 |---|---|
-| `npm run typecheck` | ✅ | 
-| `npm test` (jest) | ✅ 121 |
-| `npm run lint` | ✅ 0 grešaka |
-| `npm run test:db` (DEV) | ✅ ALL PASSED |
-| `expo export --platform web` | ✅ bez grešaka |
-| Staging seed + merenja | ✅ (tabela gore) |
-
-## Migracije — ručna primena
-- **DEV:** 0026 primenjena. **STAGING:** 0026 primenjena (za test). **PROD:** ✅ **0026 primenjena** (uz izričito odobrenje vlasnika; aditivno, samo indeksi).
-  - Tok: link PROD → dry-run = **tačno 0026** (bez odstupanja) → push → **link vraćen na DEV** (`project-ref = icbjagubaftoqcwfcbwf`).
+| `npm run typecheck` | ✅ |
+| `npm test` (jest) | ✅ 121/121 |
+| `npm run lint` | ✅ 0 grešaka (4 upozorenja) |
+| `expo export --platform web` | ✅ |
+| `expo config` → `name` | ✅ **ETNOP** (package/slug/scheme nepromenjeni) |
 
 ## Jezici
-i18n **dopunjen u SVIH 30** — `common.loadMore`.
+i18n **dopunjen u SVIH 30** — brend pomen (`common.driverUseMobile`) → ETNOP; sr/en autorski, ostali mašinski.
+Status fajlova (`machine`/`verified`) **nije** menjan. `en` ostaje fallback; nijedan ključ nije dodat/uklonjen (samo vrednost brend tokena).
 
 ## Kvalitet koda
-Deljene `LoadMore`/`DataTable`/`DesktopContainer`; paginacija kroz `.limit(shown)` (jednostavno, server-strana, ograničen payload);
-bez duplirane logike; native tok očuvan.
+Brend kroz **jednu deljenu konstantu** (`src/lib/brand.ts`) — bez duplirane niske; login/PDF/push kanal je čitaju.
+Bez mrtvog koda (uklonjeni nekorišćeni logo importi u `sign-in.tsx`). Pravila kvaliteta ispoštovana.
 
-## ČEKA SE (potez vlasnika)
-1. ~~`db push` 0026 na PROD~~ — **URAĐENO** (odobreno; indeksi na PROD).
-2. (opciono) čišćenje staging seed-a po `[SEED]` kad test više ne treba.
+## Napomena (van scope-a, za kasnije)
+- **ETNOP logo/ikonica/splash art** — nije isporučen nov znak; `assets/brand/*` i splash/icon PNG još nose stari mark. Zaseban asset zadatak.
+- **F4 (push finale)** ostaje pauziran dok vlasnik ne potvrdi „1a/1b gotovo" (Firebase/FCM). Nezavisno od ovog rebranda.

@@ -13,8 +13,7 @@ import { LanguagePicker } from "../../src/i18n/LanguagePicker";
 import { PhoneSignIn } from "../../src/features/auth/PhoneSignIn";
 import { isPhoneLoginEnabled } from "../../src/features/auth/phone";
 import { EmailSignUp } from "../../src/features/auth/EmailSignUp";
-import LogoLight from "../../assets/brand/logo-horizontal.svg";
-import LogoDark from "../../assets/brand/logo-horizontal-dark.svg";
+import { BRAND_NAME, BRAND_TAGLINE } from "../../src/lib/brand";
 
 const LAST_EMAIL_KEY = "auth.lastEmail";
 
@@ -22,8 +21,7 @@ type Method = "email" | "phone";
 
 export default function SignIn() {
   const { t } = useTranslation();
-  const { colors, scheme } = useTheme();
-  const Logo = scheme === "dark" ? LogoDark : LogoLight;
+  const { colors } = useTheme();
   // Prekidač: telefon-staze vidljive samo kad je EXPO_PUBLIC_PHONE_LOGIN='1' (preview),
   // isključeno na produkciji do aktivacije SMS-a. Email + Registracija ostaju svima.
   const phoneEnabled = isPhoneLoginEnabled(process.env.EXPO_PUBLIC_PHONE_LOGIN);
@@ -58,7 +56,11 @@ export default function SignIn() {
   return (
     <Screen style={{ justifyContent: "center", padding: 24, gap: 12 }}>
       <LanguagePicker />
-      <Logo width={224} height={40} style={{ alignSelf: "center", marginTop: 16, marginBottom: 20 }} />
+      {/* Brend (ETNOP): ime krupno + tagline manjim slovima ispod. Tagline se NE prevodi (v. src/lib/brand.ts). */}
+      <View style={{ alignItems: "center", marginTop: 16, marginBottom: 20 }}>
+        <Text style={{ fontSize: 44, fontWeight: "800", letterSpacing: 2, color: colors.text }}>{BRAND_NAME}</Text>
+        <Text style={{ fontSize: 12, color: colors.textMuted, marginTop: 4, textAlign: "center" }}>{BRAND_TAGLINE}</Text>
+      </View>
       <Text style={{ fontSize: 24, fontWeight: "700", color: colors.text }}>{t("auth.signIn")}</Text>
 
       {/* Izbor načina prijave: email ili telefon — segment SAMO kad je telefon uključen (flag) */}

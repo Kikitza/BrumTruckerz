@@ -1,10 +1,13 @@
-# CLAUDE.md — pravila projekta: BrumTruckerz (aplikacija za praćenje tura)
+# CLAUDE.md — pravila projekta: ETNOP (aplikacija za praćenje tura)
+
+> **Brend:** ime = **ETNOP**; tagline (jedna konstanta, `src/lib/brand.ts`, NE prevodi se) = „European Transport Network Operations Platform".
+> **Interno nasleđe:** „brumtruckerz" u identifikatorima je **trajno** i NIJE brend — `android.package`/`bundleId` `com.brumtruckerz.app`, `scheme`, EAS slug/projekat, Supabase project refs (`BrumTruckerz-dev` i dr.), storage ključevi, seed email domen, javni brojevi **BT-D/BT-T**. Rebrand dira SAMO prikazni sloj; identifikatori se NE menjaju.
 
 Puna specifikacija: `docs/projektni-zadatak.md` (PRD) i `docs/data-model.md`.
 Ovaj fajl je sažetak pravila koja se NIKAD ne krše + redosled izgradnje.
 
 ## Šta je ovo
-**BrumTruckerz** — mobilna aplikacija (Expo/React Native + Supabase) za male evropske prevoznike (1–20 kamiona):
+**ETNOP** — mobilna aplikacija (Expo/React Native + Supabase) za male evropske prevoznike (1–20 kamiona):
 vozač vodi turu i slika dokumentaciju; vlasnik na telefonu vidi status, troškove i **profit ture (P&L)**;
 centar rokova (registracije/atesti/servisi) sa push opomenama; performans vozača.
 Severna zvezda: **P&L ture**. Pozicioniranje: „digitalna arhiva transportne dokumentacije" — NIKAD ne zvati „eCMR" (pravno zaštićen pojam; eFTI sertifikacija je kasnija faza).

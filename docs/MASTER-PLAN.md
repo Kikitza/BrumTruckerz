@@ -1,8 +1,14 @@
-# BrumTruckerz — MASTER PLAN (novi projektni zadatak)
+# ETNOP — MASTER PLAN (novi projektni zadatak)
 
 > Cilj: najbolja aplikacija (mobilna + web) za male i srednje drumske prevoznike u Evropi.
 > Skala-meta: arhitektura spremna za 500.000+ korisnika svih uloga.
 > Ovaj dokument je jedini izvor istine za redosled rada. Menja se samo odlukom vlasnika proizvoda.
+
+> **v1.1 (rebrand → ETNOP):** proizvod je preimenovan iz „BrumTruckerz" u **ETNOP**
+> (tagline „European Transport Network Operations Platform"). Rebrand je **samo prikazni sloj**;
+> tehnički/pravni identiteti (`android.package`, EAS slug, `scheme`, Supabase refs, storage ključevi,
+> javni brojevi BT-D/BT-T) ostaju nepromenjeni. Istorijski dokumenti (auditi, ADR, stari izveštaji, PRD)
+> se NE prepravljaju — istorija ostaje istinita.
 
 ## Ulazi u plan
 1. Enterprise arhitektonski audit-dokument (ciljna arhitektura: identitet, članstvo, uloge, geografija, novac, ture, dokumenti, entitlementi, GDPR, priprema za praćenje).

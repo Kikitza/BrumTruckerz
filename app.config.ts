@@ -1,7 +1,7 @@
 import type { ExpoConfig } from "expo/config";
 
 const config: ExpoConfig = {
-  name: "BrumTruckerz",                // vidljivo ime aplikacije
+  name: "ETNOP",                       // vidljivo ime aplikacije (brend; v. src/lib/brand.ts)
   slug: "kikitza",                     // EAS projekat-slug (mora da odgovara projectId-u; interni identifikator, ne brend)
   owner: "kikitzas-team",              // EAS nalog vlasnik projekta (projectId živi pod ovim nalogom)
   scheme: "brumtruckerz",

@@ -1,4 +1,4 @@
-# BrumTruckerz — starter
+# ETNOP — starter
 
 Mobilna aplikacija za male evropske prevoznike: tura + dokumenti + troškovi (multivaluta) →
 **P&L ture** za vlasnika; centar rokova sa push opomenama; offline-first za vozača.

@@ -6,6 +6,7 @@ import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { Platform, Alert } from "react-native";
 import i18n from "../../lib/i18n";
+import { BRAND_NAME } from "../../lib/brand";
 import { supabase } from "../../lib/supabase";
 
 let attempted = false; // jednom po pokretanju aplikacije (spreči višestruke pokušaje)
@@ -30,7 +31,7 @@ export async function registerPushOnce(): Promise<void> {
 
     if (Platform.OS === "android") {
       await Notifications.setNotificationChannelAsync("default", {
-        name: "BrumTruckerz",
+        name: BRAND_NAME,
         importance: Notifications.AndroidImportance.DEFAULT,
       });
     }
