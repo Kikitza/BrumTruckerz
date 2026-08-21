@@ -1,7 +1,8 @@
 // „Podaci izdavaoca" (invoice_settings) — jednom pre prve fakture, kasnije Izmeni u Podešavanjima.
 // REVERZIBILNOST #2: forma sa postojećim vrednostima. Pristup bazi kroz invoices/api.ts.
 import { useState } from "react";
-import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView, ActivityIndicator } from "react-native";
+import { notify } from "../../lib/confirm";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
@@ -44,7 +45,7 @@ export function InvoiceSettingsModal({ onClose, onSaved }: { onClose: () => void
       onSaved?.();
       onClose();
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const valid = legalName.trim().length > 0 && !save.isPending;

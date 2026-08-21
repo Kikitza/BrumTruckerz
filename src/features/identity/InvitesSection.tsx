@@ -2,8 +2,9 @@
 // Kopiraj; otkazivanje uz potvrdu (REVERZIBILNOST). Sav pristup bazi kroz api sloj.
 // Boje SAMO iz tokena (pravilo #8), stringovi SAMO kroz t() (pravilo #7).
 import { useState } from "react";
-import { View, Text, Pressable, FlatList, Alert } from "react-native";
+import { View, Text, Pressable, FlatList } from "react-native";
 import * as Clipboard from "expo-clipboard";
+import { confirmAction, notify } from "../../lib/confirm";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
@@ -30,14 +31,15 @@ export function InvitesSection({ allowDispatcher = true }: { allowDispatcher?: b
   const cancel = useMutation({
     mutationFn: (id: string) => cancelInvite(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["invites"] }),
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
-  const confirmCancel = (inv: Invitation) =>
-    Alert.alert(t("invite.cancelConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("invite.cancel"), style: "destructive", onPress: () => cancel.mutate(inv.id) },
-    ]);
+  const confirmCancel = async (inv: Invitation) => {
+    const ok = await confirmAction({
+      title: t("invite.cancelConfirm"), confirmLabel: t("invite.cancel"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) cancel.mutate(inv.id);
+  };
 
   return (
     <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16, gap: 12 }}>
@@ -143,7 +145,7 @@ function NewInviteModal({ allowDispatcher, onClose }: { allowDispatcher: boolean
       setCreated(inv);
       qc.invalidateQueries({ queryKey: ["invites"] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   return (

@@ -9,11 +9,11 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
-  Alert,
 } from "react-native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
+import { confirmAction, notify } from "../../src/lib/confirm";
 import { fmtNumber, fmtKm, fmtDate } from "../../src/lib/format";
 import { toNum, toInt } from "../../src/lib/num";
 import {
@@ -90,20 +90,21 @@ export default function FleetScreen() {
       qc.invalidateQueries({ queryKey: ["fleet", section] });
       if (section === "vehicles") qc.invalidateQueries({ queryKey: ["vehicle-count"] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   // Dodavanje vozila preko limita: ljubazna poruka umesto forme (bazni trigger je tvrda brana).
   const onAdd = () => {
-    if (atVehicleLimit && limit != null) { Alert.alert(t("plan.limitReached", { limit })); return; }
+    if (atVehicleLimit && limit != null) { notify({ title: t("plan.limitReached", { limit }) }); return; }
     setModal({ open: true, item: null });
   };
 
-  const confirmDelete = (item: Item) =>
-    Alert.alert(t(deleteKey[section]), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.delete"), style: "destructive", onPress: () => del.mutate(item.id) },
-    ]);
+  const confirmDelete = async (item: Item) => {
+    const ok = await confirmAction({
+      title: t(deleteKey[section]), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) del.mutate(item.id);
+  };
 
   // ── Desktop tabela vozila (F3): kolone + bedž rokova (najgori od date/km po vozilu) ──
   const DAY_MS = 86_400_000;
@@ -391,8 +392,8 @@ function FleetFormModal({
     onError: (e) => {
       const msg = String((e as Error).message ?? e);
       // Bazni trigger (limit paketa) -> ljubazna poruka; ostalo -> generička.
-      if (isVehicleLimitError(msg) && vehicleLimit != null) Alert.alert(t("plan.limitReached", { limit: vehicleLimit }));
-      else Alert.alert(t("common.error"), msg);
+      if (isVehicleLimitError(msg) && vehicleLimit != null) notify({ title: t("plan.limitReached", { limit: vehicleLimit }) });
+      else notify({ title: t("common.error"), message: msg });
     },
   });
 
@@ -556,7 +557,7 @@ function DriverAccountSection({
       setCreds(res); setHasAccount(true); setEmail(""); setPassword("");
       qc.invalidateQueries({ queryKey: ["fleet", "drivers"] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const del = useMutation({
@@ -566,14 +567,15 @@ function DriverAccountSection({
       qc.invalidateQueries({ queryKey: ["fleet", "drivers"] });
       qc.invalidateQueries({ queryKey: ["driver-email", driverId] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
-  const confirmDelete = () =>
-    Alert.alert(t("account.deleteConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.delete"), style: "destructive", onPress: () => del.mutate() },
-    ]);
+  const confirmDelete = async () => {
+    const ok = await confirmAction({
+      title: t("account.deleteConfirm"), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) del.mutate();
+  };
 
   const validEmail = email.includes("@");
 

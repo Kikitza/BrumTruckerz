@@ -2,7 +2,8 @@
 // roditelju; REVERZIBILNOST). Korak 1: naziv + zemlja + valuta (predlog po zemlji). Korak 2
 // (preskočiv): prvo vozilo (tip + registracija). Korak 3: pregled → create_company_self → gate reload.
 import { useState } from "react";
-import { View, Text, Pressable, ScrollView, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView } from "react-native";
+import { notify } from "../../lib/confirm";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
@@ -36,7 +37,7 @@ export function NewCompanyWizard({ onClose, onCreated }: { onClose: () => void; 
       }
     },
     onSuccess: () => { qc.clear(); onCreated(); },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const step1Valid = name.trim().length > 0 && currency.length > 0;

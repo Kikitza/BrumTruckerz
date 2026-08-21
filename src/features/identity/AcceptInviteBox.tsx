@@ -2,10 +2,11 @@
 // Živi na NoRole ekranu (nalog nije povezan sa firmom). Sav pristup bazi kroz api sloj.
 // Boje SAMO iz tokena (pravilo #8), stringovi SAMO kroz t() (pravilo #7).
 import { useState } from "react";
-import { View, Text, Pressable, Alert } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Field } from "../../components/form";
+import { notify } from "../../lib/confirm";
 import { useTheme } from "../../lib/theme";
 import { acceptInvitation } from "./api";
 import { isValidInviteCode, normalizeInviteCode, inviteErrorKey } from "./inviteCode";
@@ -20,13 +21,16 @@ export function AcceptInviteBox({ onJoined }: { onJoined: () => void }) {
 
   const accept = useMutation({
     mutationFn: () => acceptInvitation(normalizeInviteCode(code)),
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       const msg = res.role === "dispatcher" ? t("invite.acceptedDispatcher") : t("invite.accepted");
       // Osveži status firme (suspend-gate) i preračunaj ulogu kroz gate.
       qc.invalidateQueries({ queryKey: ["my-company-status"] });
-      Alert.alert(msg, undefined, [{ text: t("common.done"), onPress: onJoined }]);
+      // notify je web-safe: na native-u čeka „Gotovo", na webu window.alert — pa TEK onda onJoined
+      // (na webu je RN Alert no-op → ranije onJoined nije okidao i član nije ušao u firmu).
+      await notify({ title: msg, okLabel: t("common.done") });
+      onJoined();
     },
-    onError: (e) => Alert.alert(t(inviteErrorKey(String((e as Error).message ?? e)))),
+    onError: (e) => notify({ title: t(inviteErrorKey(String((e as Error).message ?? e))) }),
   });
 
   const valid = isValidInviteCode(code);

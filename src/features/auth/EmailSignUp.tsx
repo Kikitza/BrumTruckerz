@@ -3,7 +3,8 @@
 // (full_name) i pri prihvatanju pozivnice završi u profilu (v. accept_invitation).
 // DEV: mailer_autoconfirm=true → signUp odmah vraća sesiju (bez potvrde mejla).
 import { useState } from "react";
-import { View, Text, TextInput, Pressable, Alert } from "react-native";
+import { View, Text, TextInput, Pressable } from "react-native";
+import { notify } from "../../lib/confirm";
 import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabase";
@@ -30,10 +31,10 @@ export function EmailSignUp({ onBack }: { onBack: () => void }) {
       options: { data: { full_name: fullName.trim() } },
     });
     setBusy(false);
-    if (error) return Alert.alert(t("common.error"), error.message);
+    if (error) return void notify({ title: t("common.error"), message: error.message });
     // Sa autoconfirm-om sesija postoji odmah → gate; bez nje (prod) traži potvrdu mejla.
     if (data.session) router.replace("/");
-    else Alert.alert(t("auth.confirmEmailSent"));
+    else notify({ title: t("auth.confirmEmailSent") });
   };
 
   const valid = fullName.trim().length > 1 && email.includes("@") && password.length >= 6;

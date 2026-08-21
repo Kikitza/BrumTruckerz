@@ -1,9 +1,10 @@
 // Detalj firme (platform admin): izmena paketa/limita i statusa/naplate — sve kroz RPC.
 import { useState } from "react";
-import { View, Text, Pressable, ScrollView, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView } from "react-native";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
+import { confirmAction, notify } from "../../lib/confirm";
 import { Field, DateField, ModalScaffold } from "../../components/form";
 import { toInt } from "../../lib/num";
 import { adminSetCompanyPlan, adminSetCompanyStatus, type AdminCompany, type CompanyStatus } from "./api";
@@ -22,7 +23,7 @@ export function CompanyDetailModal({ company, onClose }: { company: AdminCompany
   const [note, setNote] = useState(company.billing_note ?? "");
 
   const refresh = () => qc.invalidateQueries({ queryKey: ["admin-companies"] });
-  const fail = (e: unknown) => Alert.alert(t("common.error"), String((e as Error).message ?? e));
+  const fail = (e: unknown) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
 
   const savePlan = useMutation({
     mutationFn: () => adminSetCompanyPlan(company.id, plan.trim(), toInt(limit) ?? company.vehicle_limit),
@@ -35,11 +36,12 @@ export function CompanyDetailModal({ company, onClose }: { company: AdminCompany
     onError: fail,
   });
 
-  const confirmStatus = () =>
-    Alert.alert(t("admin.confirmStatus"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.save"), onPress: () => saveStatus.mutate() },
-    ]);
+  const confirmStatus = async () => {
+    const ok = await confirmAction({
+      title: t("admin.confirmStatus"), confirmLabel: t("common.save"), cancelLabel: t("common.cancel"), destructive: false,
+    });
+    if (ok) saveStatus.mutate();
+  };
 
   return (
     <ModalScaffold colors={colors} onRequestClose={onClose}>

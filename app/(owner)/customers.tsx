@@ -2,11 +2,12 @@
 // filter aktivni/arhivirani, Nova/Izmeni (modal), brisanje: sa turama → samo Arhiviraj
 // (+ Aktiviraj nazad), bez tura → brisanje. Sav pristup bazi kroz customers/api.ts.
 import { useState } from "react";
-import { View, Text, Pressable, FlatList, ActivityIndicator, ScrollView, Alert } from "react-native";
+import { View, Text, Pressable, FlatList, ActivityIndicator, ScrollView } from "react-native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { useWideWeb } from "../../src/lib/platform";
+import { confirmAction, notify } from "../../src/lib/confirm";
 import { fmtDate } from "../../src/lib/format";
 import { DesktopContainer } from "../../src/components/DesktopContainer";
 import { DataTable, type Column } from "../../src/components/DataTable";
@@ -31,22 +32,24 @@ export default function CustomersScreen() {
   const rows = (list.data ?? []).filter((c) => (showArchived ? c.archived_at != null : c.archived_at == null));
 
   const invalidate = () => qc.invalidateQueries({ queryKey: ["customers"] });
-  const onErr = (e: unknown) => Alert.alert(t("common.error"), String((e as Error).message ?? e));
+  const onErr = (e: unknown) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
 
   const archive = useMutation({ mutationFn: (id: string) => archiveCustomer(id), onSuccess: invalidate, onError: onErr });
   const unarchive = useMutation({ mutationFn: (id: string) => unarchiveCustomer(id), onSuccess: invalidate, onError: onErr });
   const del = useMutation({ mutationFn: (id: string) => deleteCustomer(id), onSuccess: invalidate, onError: onErr });
 
-  const confirmArchive = (c: Customer) =>
-    Alert.alert(t("customers.archiveConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("customers.archive"), style: "destructive", onPress: () => archive.mutate(c.id) },
-    ]);
-  const confirmDelete = (c: Customer) =>
-    Alert.alert(t("customers.deleteConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.delete"), style: "destructive", onPress: () => del.mutate(c.id) },
-    ]);
+  const confirmArchive = async (c: Customer) => {
+    const ok = await confirmAction({
+      title: t("customers.archiveConfirm"), confirmLabel: t("customers.archive"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) archive.mutate(c.id);
+  };
+  const confirmDelete = async (c: Customer) => {
+    const ok = await confirmAction({
+      title: t("customers.deleteConfirm"), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) del.mutate(c.id);
+  };
 
   const cols: Column<Customer>[] = [
     { key: "name", header: t("customers.fields.name"), width: 2, render: (c) => c.name, sort: (c) => c.name },

@@ -3,9 +3,10 @@
 //    (i kasnije „Izmeni turu"). Ne priča sa API-jem; roditelj drži niz i snima ga.
 //  * RouteView — read-only uređen prikaz (polazak → utovari/istovari): koristi
 //    detalj ture (vlasnik) i ekran vozača. Stare ture bez stanica: origin→destination.
-import { View, Text, Pressable, Alert } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Field } from "../../components/form";
+import { confirmAction } from "../../lib/confirm";
 import type { Palette } from "../../lib/theme";
 import { tripTitle, type TripStop, type TripStopKind, type TripStopInput } from "./api";
 
@@ -36,11 +37,12 @@ export function StopsEditor({
   const { t } = useTranslation();
   const update = (key: string, patch: Partial<StopDraft>) =>
     onChange(items.map((i) => (i.key === key ? { ...i, ...patch } : i)));
-  const confirmRemove = (key: string) =>
-    Alert.alert(t("trip.stops.deleteConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.delete"), style: "destructive", onPress: () => onChange(items.filter((i) => i.key !== key)) },
-    ]);
+  const confirmRemove = async (key: string) => {
+    const ok = await confirmAction({
+      title: t("trip.stops.deleteConfirm"), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) onChange(items.filter((i) => i.key !== key));
+  };
 
   return (
     <View style={{ gap: 12 }}>

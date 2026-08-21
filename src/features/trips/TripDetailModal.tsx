@@ -1,10 +1,11 @@
 // Modal „Detalj ture" (vlasnik): podaci + finansije + troškovi + dnevnik događaja.
 // Izdvojeno iz ekrana tura (app/(owner)/trips/index.tsx) — čisto premeštanje, bez promene logike.
 import { useEffect, useState, type ReactNode } from "react";
-import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView, ActivityIndicator } from "react-native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
+import { confirmAction, notify } from "../../lib/confirm";
 import { fmtDateTime, fmtDate, fmtMoney } from "../../lib/format";
 import { Field, ModalScaffold, PickerField } from "../../components/form";
 import { Collapsible } from "../../components/Collapsible";
@@ -77,7 +78,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
         driver_pay: toNum(driverPay),
       }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["trip", tripId] }),
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   // Naručilac ture (office; ne dira dodelu/vozarinu). Menja se odmah po izboru (picker).
@@ -87,7 +88,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
       qc.invalidateQueries({ queryKey: ["trip", tripId] });
       qc.invalidateQueries({ queryKey: ["owner-trips"] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   // ── Dodela (vozač/vozilo/prikolica) — zamena bez uticaja na cenu ture ──
@@ -121,7 +122,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
       qc.invalidateQueries({ queryKey: ["trip", tripId] });
       qc.invalidateQueries({ queryKey: ["owner-trips"] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
   // Aktivno samo kad je nešto stvarno promenjeno i oba obavezna izabrana.
   const canSaveAssignment =
@@ -157,7 +158,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
       qc.invalidateQueries({ queryKey: ["driver-trip-stops"] }); // vozačev prikaz rute
       setRouteEditing(false);
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   // Dodavanje događaja
@@ -183,13 +184,13 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
       setNote("");
       setOccurredAt(nowLocalInput());
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   // ── Troškovi (owner online; kurs za datum troška, base_amount računa kod) ──
   const expenses = useQuery({ queryKey: ["trip-expenses", tripId], queryFn: () => listTripExpenses(tripId) });
 
-  // Unos ide kroz deljenu ExpenseForm; na grešku prikaži Alert i re-throw (forma zadrži unos).
+  // Unos ide kroz deljenu ExpenseForm; na grešku prikaži poruku (notify) i re-throw (forma zadrži unos).
   const submitExpense = async (v: ExpenseFormValues) => {
     try {
       await ownerAddExpense({ trip_id: tripId, ...v });
@@ -197,7 +198,7 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
       qc.invalidateQueries({ queryKey: ["trip-expenses", tripId] });
       qc.invalidateQueries({ queryKey: ["trip", tripId] });
     } catch (e) {
-      Alert.alert(t("common.error"), String((e as Error).message ?? e));
+      notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
       throw e;
     }
   };
@@ -208,13 +209,14 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
       qc.invalidateQueries({ queryKey: ["trip-expenses", tripId] });
       qc.invalidateQueries({ queryKey: ["trip", tripId] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
-  const confirmDeleteExpense = (id: string) =>
-    Alert.alert(t("expense.deleteConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.delete"), style: "destructive", onPress: () => delExpense.mutate(id) },
-    ]);
+  const confirmDeleteExpense = async (id: string) => {
+    const ok = await confirmAction({
+      title: t("expense.deleteConfirm"), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) delExpense.mutate(id);
+  };
 
   const expenseRows = expenses.data ?? [];
   const baseCurrency = expenseRows[0]?.base_currency ?? "EUR";

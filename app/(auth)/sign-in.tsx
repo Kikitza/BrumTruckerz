@@ -2,8 +2,9 @@
 // Čuvanje prijave: kroz SISTEMSKI menadžer lozinki (autoComplete/textContentType) —
 // aplikacija NE čuva lozinku sama; pamti samo poslednji uneti email (prefill).
 import { useEffect, useState } from "react";
-import { View, Text, TextInput, Pressable, Alert } from "react-native";
+import { View, Text, TextInput, Pressable } from "react-native";
 import { router } from "expo-router";
+import { notify } from "../../src/lib/confirm";
 import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { supabase } from "../../src/lib/supabase";
@@ -43,7 +44,7 @@ export default function SignIn() {
     const mail = email.trim();
     const { error } = await supabase.auth.signInWithPassword({ email: mail, password });
     setBusy(false);
-    if (error) return Alert.alert(t("common.error"), error.message);
+    if (error) return void notify({ title: t("common.error"), message: error.message });
     AsyncStorage.setItem(LAST_EMAIL_KEY, mail).catch(() => {}); // zapamti email za sledeći put
     router.replace("/");
   };

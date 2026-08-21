@@ -37,3 +37,34 @@ export function confirmAction(opts: ConfirmOptions): Promise<boolean> {
     );
   });
 }
+
+// Web-safe informativno obaveštenje (greška/uspeh). Vraća Promise<void> koji se razreši kad
+// korisnik zatvori poruku — pa se posle njega može bezbedno nastaviti (npr. onJoined).
+//
+// ZAŠTO: kao i confirm, RN `Alert.alert` je NO-OP na react-native-web → greške/obaveštenja se
+// na webu uopšte ne vide, a callback na dugmetu (npr. „Gotovo" → onJoined) se nikad ne okine.
+//   - native: `Alert.alert` (razreši na tap dugmeta / dismiss);
+//   - web: `window.alert` (blokirajući) → razreši odmah posle zatvaranja.
+export type NotifyOptions = {
+  title: string;
+  message?: string;
+  okLabel?: string; // native: tekst dugmeta (default = sistemsko OK)
+};
+
+export function notify(opts: NotifyOptions): Promise<void> {
+  const { title, message, okLabel } = opts;
+
+  if (Platform.OS === "web") {
+    if (typeof window !== "undefined" && typeof window.alert === "function") {
+      window.alert(message ? `${title}\n\n${message}` : title);
+    }
+    return Promise.resolve();
+  }
+
+  return new Promise((resolve) => {
+    // okLabel dat -> dugme koje razrešava na tap (npr. „Gotovo" pre onJoined);
+    // bez njega -> sistemsko OK (native nepromenjen), razreši se na dismiss.
+    const buttons = okLabel ? [{ text: okLabel, onPress: () => resolve() }] : undefined;
+    Alert.alert(title, message, buttons, { cancelable: true, onDismiss: () => resolve() });
+  });
+}

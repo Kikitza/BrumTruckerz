@@ -2,10 +2,11 @@
 // Tip popuni naziv i PREDLOŽI datum iz intervala (izmenjivo); needs_country traži zemlju; za VOZILO
 // izbor režima Datum/Kilometraža (due_km + „još X km"). Izmena može promeniti tip/režim (REVERZIBILNOST).
 import { useState } from "react";
-import { View, Text, Pressable, ScrollView, FlatList, ActivityIndicator, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView, FlatList, ActivityIndicator } from "react-native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
+import { confirmAction, notify } from "../../lib/confirm";
 import { Field, DateField, ModalScaffold } from "../../components/form";
 import { toNum } from "../../lib/num";
 import {
@@ -79,18 +80,20 @@ export function ReminderFormModal({
       return editing ? updateReminder(row!.id, input) : createReminder(input);
     },
     onSuccess: () => { qc.invalidateQueries({ queryKey: ["reminders"] }); onClose(); },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const del = useMutation({
     mutationFn: () => deleteReminder(row!.id),
     onSuccess: () => { qc.invalidateQueries({ queryKey: ["reminders"] }); onClose(); },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
-  const confirmDelete = () => Alert.alert(t("reminders.deleteConfirm"), undefined, [
-    { text: t("common.cancel"), style: "cancel" },
-    { text: t("common.delete"), style: "destructive", onPress: () => del.mutate() },
-  ]);
+  const confirmDelete = async () => {
+    const ok = await confirmAction({
+      title: t("reminders.deleteConfirm"), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (ok) del.mutate();
+  };
 
   // Faza izbora tipa (samo pri kreiranju, dok tip nije izabran).
   const choosing = !editing && type === undefined;

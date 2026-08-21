@@ -1,7 +1,8 @@
 // Modal „Nov/Izmeni naručilac" (REVERZIBILNOST #2: forma sa postojećim vrednostima).
 // Sav pristup bazi kroz customers/api.ts. Boje iz tokena, stringovi kroz t().
 import { useState } from "react";
-import { View, Text, Pressable, ScrollView, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView } from "react-native";
+import { notify } from "../../lib/confirm";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
@@ -48,7 +49,7 @@ export function CustomerFormModal({
       setVies(r);
       if (editing) qc.invalidateQueries({ queryKey: ["customers"] });
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const save = useMutation({
@@ -64,7 +65,7 @@ export function CustomerFormModal({
       onSaved?.(c);
       onClose();
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const valid = name.trim().length > 0 && !save.isPending;

@@ -4,7 +4,8 @@
 //  ③ Vozač                        ④ Vozilo + prikolica + vozarina → Sačuvaj
 // Čuvanje: trips + trip_stops (seq po redosledu); destination = poslednji istovar.
 import { useState } from "react";
-import { View, Text, Pressable, ScrollView, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView } from "react-native";
+import { notify } from "../../lib/confirm";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
@@ -53,7 +54,7 @@ export function NewTripModal({ onClose }: { onClose: () => void }) {
       qc.invalidateQueries({ queryKey: ["owner-trips"] });
       onClose();
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const canSave = !!driverId && !!vehicleId && !save.isPending;

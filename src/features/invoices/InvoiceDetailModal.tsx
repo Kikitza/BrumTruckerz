@@ -1,7 +1,8 @@
 // Detalj fakture (office): podaci + akcije „Podeli PDF", „Označi plaćeno" (potvrda + datum),
 // „Storniraj" (potvrda + razlog). Vozač fakture NE vidi (nema tab ni RLS). Pristup kroz invoices/api.
 import { useState } from "react";
-import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView, ActivityIndicator } from "react-native";
+import { notify } from "../../lib/confirm";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
@@ -38,7 +39,7 @@ export function InvoiceDetailModal({ invoiceId, onClose }: { invoiceId: string; 
     qc.invalidateQueries({ queryKey: ["invoice", invoiceId] });
     qc.invalidateQueries({ queryKey: ["invoices"] });
   };
-  const onErr = (e: unknown) => Alert.alert(t("common.error"), String((e as Error).message ?? e));
+  const onErr = (e: unknown) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
 
   const pay = useMutation({ mutationFn: () => markInvoicePaid(invoiceId, paidAt ?? todayYMD()), onSuccess: () => { invalidate(); setMode("view"); }, onError: onErr });
   const cancel = useMutation({ mutationFn: () => cancelInvoice(invoiceId, reason), onSuccess: () => { invalidate(); setMode("view"); }, onError: onErr });

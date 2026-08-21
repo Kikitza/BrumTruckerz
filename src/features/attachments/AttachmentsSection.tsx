@@ -16,6 +16,7 @@ import type { Palette } from "../../lib/theme";
 import { pickAndCompress, type ImageSource } from "../../lib/image";
 import { uuidv4 } from "../../lib/uuid";
 import { isWeb } from "../../lib/platform";
+import { confirmAction, notify } from "../../lib/confirm";
 import { pickImageFile } from "../../lib/webFile";
 import {
   listAttachments, listPendingAttachments, enqueueAttachment, uploadAttachmentWeb, signDownload,
@@ -65,12 +66,14 @@ export function AttachmentsSection({
       qc.invalidateQueries({ queryKey: key });
       qc.invalidateQueries({ queryKey: ["pending-count"] });
     } catch (e) {
-      Alert.alert(t("common.error"), String((e as Error).message ?? e));
+      notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
     } finally {
       setBusy(false);
     }
   };
 
+  // NATIVE-only izbor izvora (kamera/galerija). Na webu se ne poziva (v. isWeb grana dole),
+  // pa ostaje RN Alert (troslojni izbor, ne boolean confirm).
   const addPhoto = () =>
     Alert.alert(t("attachment.add"), undefined, [
       { text: t("attachment.camera"), onPress: () => addFrom("camera") },
@@ -82,8 +85,8 @@ export function AttachmentsSection({
   const addFromComputer = async () => {
     const file = await pickImageFile();
     if (!file) return;
-    if (!file.type.startsWith("image/")) { Alert.alert(t("attachment.imagesOnly")); return; }
-    if (file.size > MAX_WEB_MB * 1024 * 1024) { Alert.alert(t("attachment.tooLarge", { mb: MAX_WEB_MB })); return; }
+    if (!file.type.startsWith("image/")) { notify({ title: t("attachment.imagesOnly") }); return; }
+    if (file.size > MAX_WEB_MB * 1024 * 1024) { notify({ title: t("attachment.tooLarge", { mb: MAX_WEB_MB }) }); return; }
     setBusy(true);
     try {
       const bytes = new Uint8Array(await file.arrayBuffer());
@@ -91,7 +94,7 @@ export function AttachmentsSection({
       await uploadAttachmentWeb({ id: uuidv4(), trip_id: tripId ?? null, expense_id: expenseId ?? null, kind: effectiveKind, bytes, contentType: file.type });
       qc.invalidateQueries({ queryKey: key });
     } catch (e) {
-      Alert.alert(t("common.error"), String((e as Error).message ?? e));
+      notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
     } finally {
       setBusy(false);
     }
@@ -100,39 +103,33 @@ export function AttachmentsSection({
   // Pregled: web otvara u NOVOM TABU (signed URL); native puni modal.
   const openView = (uri: string) => { if (isWeb) window.open(uri, "_blank"); else setViewUri(uri); };
 
-  const confirmDelete = (id: string) =>
-    Alert.alert(t("attachment.deleteConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      {
-        text: t("common.delete"), style: "destructive",
-        onPress: async () => {
-          try {
-            await deleteAttachment(id);
-            qc.invalidateQueries({ queryKey: key });
-          } catch (e) {
-            Alert.alert(t("common.error"), String((e as Error).message ?? e));
-          }
-        },
-      },
-    ]);
+  const confirmDelete = async (id: string) => {
+    const ok = await confirmAction({
+      title: t("attachment.deleteConfirm"), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (!ok) return;
+    try {
+      await deleteAttachment(id);
+      qc.invalidateQueries({ queryKey: key });
+    } catch (e) {
+      notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
+    }
+  };
 
   // Brisanje PENDING priloga (pre sinhronizacije): iz reda + lokalni fajl.
-  const confirmDeletePending = (p: PendingAttachment) =>
-    Alert.alert(t("attachment.deleteConfirm"), undefined, [
-      { text: t("common.cancel"), style: "cancel" },
-      {
-        text: t("common.delete"), style: "destructive",
-        onPress: async () => {
-          try {
-            await deletePendingAttachment(p.queueId, p.local_uri);
-            qc.invalidateQueries({ queryKey: key });
-            qc.invalidateQueries({ queryKey: ["pending-count"] });
-          } catch (e) {
-            Alert.alert(t("common.error"), String((e as Error).message ?? e));
-          }
-        },
-      },
-    ]);
+  const confirmDeletePending = async (p: PendingAttachment) => {
+    const ok = await confirmAction({
+      title: t("attachment.deleteConfirm"), confirmLabel: t("common.delete"), cancelLabel: t("common.cancel"),
+    });
+    if (!ok) return;
+    try {
+      await deletePendingAttachment(p.queueId, p.local_uri);
+      qc.invalidateQueries({ queryKey: key });
+      qc.invalidateQueries({ queryKey: ["pending-count"] });
+    } catch (e) {
+      notify({ title: t("common.error"), message: String((e as Error).message ?? e) });
+    }
+  };
 
   const hasAny = synced.length > 0 || pending.length > 0;
 

@@ -2,7 +2,8 @@
 // valuta firme, PDV/napomena iz podataka izdavaoca, rok = izdavanje + rok naručioca (izmenjivo).
 // Pre prve fakture: „Podaci izdavaoca" jednom. Jezik PDF-a: sr/en. Sav pristup kroz invoices/api.
 import { useEffect, useState } from "react";
-import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView, ActivityIndicator } from "react-native";
+import { notify } from "../../lib/confirm";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
@@ -73,7 +74,7 @@ export function IssueInvoiceModal({ tripId, onClose, onIssued }: { tripId: strin
       onIssued?.();
       onClose();
     },
-    onError: (e) => Alert.alert(t("common.error"), String((e as Error).message ?? e)),
+    onError: (e) => notify({ title: t("common.error"), message: String((e as Error).message ?? e) }),
   });
 
   const valid = !!ctx?.trip.customer_id && amt > 0 && hasIssuer && !issue.isPending;
