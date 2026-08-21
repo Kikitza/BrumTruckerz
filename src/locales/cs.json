@@ -118,7 +118,9 @@
       "addLoading": "+ Přidat nakládku",
       "addUnloading": "+ Přidat vykládku",
       "place": "Místo",
-      "deleteConfirm": "Smazat tuto zastávku?"
+      "deleteConfirm": "Smazat tuto zastávku?",
+      "country": "Země",
+      "countryHint": "Vyber zemi"
     },
     "wizard": {
       "step1": "Odjezd a tachometr",
@@ -622,6 +624,8 @@
       "title": "km za měsíc",
       "empty": "Zatím žádná data.",
       "yearTotal": "Celkem: {{km}}"
-    }
+    },
+    "countriesVisited": "Projeté země",
+    "noCountries": "Zatím žádné země."
   }
 }

@@ -118,7 +118,9 @@
       "addLoading": "+ Pridať nakládku",
       "addUnloading": "+ Pridať vykládku",
       "place": "Miesto",
-      "deleteConfirm": "Odstrániť túto zastávku?"
+      "deleteConfirm": "Odstrániť túto zastávku?",
+      "country": "Krajina",
+      "countryHint": "Vyber krajinu"
     },
     "wizard": {
       "step1": "Odjazd a tachometer",
@@ -622,6 +624,8 @@
       "title": "km za mesiac",
       "empty": "Zatiaľ žiadne dáta.",
       "yearTotal": "Spolu: {{km}}"
-    }
+    },
+    "countriesVisited": "Prejazdené krajiny",
+    "noCountries": "Zatiaľ žiadne krajiny."
   }
 }

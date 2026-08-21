@@ -118,7 +118,9 @@
       "addLoading": "+ Lisää lastaus",
       "addUnloading": "+ Lisää purku",
       "place": "Paikka",
-      "deleteConfirm": "Poistetaanko tämä pysähdys?"
+      "deleteConfirm": "Poistetaanko tämä pysähdys?",
+      "country": "Maa",
+      "countryHint": "Valitse maa"
     },
     "wizard": {
       "step1": "Lähtö & matkamittari",
@@ -622,6 +624,8 @@
       "title": "km kuukaudessa",
       "empty": "Ei vielä tietoja.",
       "yearTotal": "Yhteensä: {{km}}"
-    }
+    },
+    "countriesVisited": "Ajetut maat",
+    "noCountries": "Ei vielä maita."
   }
 }

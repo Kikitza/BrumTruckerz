@@ -13,11 +13,13 @@ import { toNum, toInt } from "../../lib/num";
 import {
   ownerGetTrip, ownerUpdateTripFinance, ownerUpdateTripAssignment, ownerListTripEvents, ownerAddTripEvent,
   listTripStops, ownerUpdateTripRoute, ownerUpdateTripCustomer, isTripArchived,
-  type EventType, type DriverPayMode,
+  type EventType, type DriverPayMode, type CountrySource,
 } from "./api";
 import { CustomerPickerField } from "../customers/CustomerPickerField";
 import { IssueInvoiceModal } from "../invoices/IssueInvoiceModal";
 import { RouteView, StopsEditor, stopsToDrafts, type StopDraft } from "./stops";
+import { detectCountry } from "./countryDetect";
+import { CountryPickerField } from "../company/CountryPickerField";
 import { arrivalsByStop } from "./eventsMath";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
 import { listTripExpenses, ownerAddExpense, ownerDeleteExpense } from "../expenses/api";
@@ -132,6 +134,8 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
   // Dozvoljeno dok tura nije arhivirana; vozarina i dodela se ovim tokom NE diraju.
   const [routeEditing, setRouteEditing] = useState(false);
   const [editOrigin, setEditOrigin] = useState("");
+  const [editOriginCountry, setEditOriginCountry] = useState<string | null>(null);
+  const [editOriginCountrySrc, setEditOriginCountrySrc] = useState<CountrySource | null>(null);
   const [editStartOdo, setEditStartOdo] = useState("");
   const [editStops, setEditStops] = useState<StopDraft[]>([]);
 
@@ -139,17 +143,33 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
     const dd = trip.data;
     if (!dd) return;
     setEditOrigin(dd.origin ?? "");
+    setEditOriginCountry(dd.origin_country_code ?? null);
+    setEditOriginCountrySrc(dd.origin_country_source ?? null);
     setEditStartOdo(dd.start_odometer != null ? String(dd.start_odometer) : "");
     setEditStops(stopsToDrafts(stops.data ?? []));
     setRouteEditing(true);
+  };
+
+  // Auto-predlog zemlje polaska (ručni izbor je konačan).
+  const onEditOriginChange = (s: string) => {
+    setEditOrigin(s);
+    if (editOriginCountry && editOriginCountrySrc === "manual") return;
+    const g = detectCountry(s);
+    if (g.confident && g.code) { setEditOriginCountry(g.code); setEditOriginCountrySrc("auto"); }
+    else if (editOriginCountrySrc === "auto") { setEditOriginCountry(null); setEditOriginCountrySrc(null); }
   };
 
   const saveRoute = useMutation({
     mutationFn: () =>
       ownerUpdateTripRoute(tripId, {
         origin: editOrigin.trim() || null,
+        origin_country_code: editOriginCountry,
+        origin_country_source: editOriginCountrySrc,
         startOdometer: toInt(editStartOdo),
-        stops: editStops.map((d) => ({ existingId: d.existingId, kind: d.kind, place: d.place, note: d.note })),
+        stops: editStops.map((d) => ({
+          existingId: d.existingId, kind: d.kind, place: d.place, note: d.note,
+          country_code: d.country, country_source: d.countrySource,
+        })),
       }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["trip", tripId] });
@@ -253,8 +273,13 @@ export function TripDetailModal({ tripId, onClose }: { tripId: string; onClose: 
               <SectionBody>
                 {routeEditing ? (
                   <View style={{ gap: 12 }}>
-                    <Field label={t("trip.fields.origin")} value={editOrigin} onChangeText={setEditOrigin}
+                    <Field label={t("trip.fields.origin")} value={editOrigin} onChangeText={onEditOriginChange}
                       autoCapitalize="sentences" placeholder="Beograd" colors={colors} />
+                    <CountryPickerField
+                      label={editOriginCountry ? t("trip.stops.country") : t("trip.stops.countryHint")}
+                      value={editOriginCountry}
+                      onSelect={(code) => { setEditOriginCountry(code); setEditOriginCountrySrc(code ? "manual" : null); }}
+                    />
                     <Field label={t("trip.fields.startOdometer")} value={editStartOdo} onChangeText={setEditStartOdo}
                       keyboardType="numeric" placeholder="0" colors={colors} />
                     <StopsEditor items={editStops} onChange={setEditStops} colors={colors} />

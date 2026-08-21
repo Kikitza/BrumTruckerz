@@ -35,3 +35,12 @@ export function monthYear(dateStr: string | null | undefined): string {
   if (!dateStr) return "";
   return `${dateStr.slice(5, 7)}.${dateStr.slice(0, 4)}`;
 }
+
+// ISO 2-slovni kod → zastavica (regionalni indikatori). XK (Kosovo) nema zvaničnu → "".
+export function flagEmoji(code: string): string {
+  if (!/^[A-Za-z]{2}$/.test(code)) return "";
+  const c = code.toUpperCase();
+  if (c === "XK") return "";
+  const A = 0x1f1e6;
+  return String.fromCodePoint(A + c.charCodeAt(0) - 65, A + c.charCodeAt(1) - 65);
+}

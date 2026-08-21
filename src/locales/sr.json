@@ -117,7 +117,9 @@
       "addLoading": "+ Dodaj utovar",
       "addUnloading": "+ Dodaj istovar",
       "place": "Mesto",
-      "deleteConfirm": "Obrisati ovu stanicu?"
+      "deleteConfirm": "Obrisati ovu stanicu?",
+      "country": "Zemlja",
+      "countryHint": "Izaberi zemlju"
     },
     "wizard": {
       "step1": "Polazak i kilometraža",
@@ -623,6 +625,8 @@
       "title": "km po mesecu",
       "empty": "Još nema podataka.",
       "yearTotal": "Ukupno: {{km}}"
-    }
+    },
+    "countriesVisited": "Zemlje kroz koje je vozio",
+    "noCountries": "Još nema zemalja."
   }
 }

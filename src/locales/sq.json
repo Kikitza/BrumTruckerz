@@ -118,7 +118,9 @@
       "addLoading": "+ Shto ngarkim",
       "addUnloading": "+ Shto shkarkim",
       "place": "Vendi",
-      "deleteConfirm": "Të fshihet kjo ndalesë?"
+      "deleteConfirm": "Të fshihet kjo ndalesë?",
+      "country": "Shteti",
+      "countryHint": "Zgjidh shtetin"
     },
     "wizard": {
       "step1": "Nisja dhe kilometrazhi",
@@ -622,6 +624,8 @@
       "title": "km në muaj",
       "empty": "Ende s'ka të dhëna.",
       "yearTotal": "Gjithsej: {{km}}"
-    }
+    },
+    "countriesVisited": "Shtetet e përshkuara",
+    "noCountries": "Ende s'ka shtete."
   }
 }

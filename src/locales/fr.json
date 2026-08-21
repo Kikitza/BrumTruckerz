@@ -118,7 +118,9 @@
       "addLoading": "+ Ajouter un chargement",
       "addUnloading": "+ Ajouter un déchargement",
       "place": "Lieu",
-      "deleteConfirm": "Supprimer cet arrêt ?"
+      "deleteConfirm": "Supprimer cet arrêt ?",
+      "country": "Pays",
+      "countryHint": "Choisir un pays"
     },
     "wizard": {
       "step1": "Départ et compteur kilométrique",
@@ -622,6 +624,8 @@
       "title": "km par mois",
       "empty": "Pas encore de données.",
       "yearTotal": "Total : {{km}}"
-    }
+    },
+    "countriesVisited": "Pays traversés",
+    "noCountries": "Aucun pays pour le moment."
   }
 }

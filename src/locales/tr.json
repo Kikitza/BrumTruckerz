@@ -118,7 +118,9 @@
       "addLoading": "+ Yükleme ekle",
       "addUnloading": "+ Boşaltma ekle",
       "place": "Yer",
-      "deleteConfirm": "Bu durak silinsin mi?"
+      "deleteConfirm": "Bu durak silinsin mi?",
+      "country": "Ülke",
+      "countryHint": "Ülke seç"
     },
     "wizard": {
       "step1": "Kalkış ve kilometre sayacı",
@@ -622,6 +624,8 @@
       "title": "aylık km",
       "empty": "Henüz veri yok.",
       "yearTotal": "Toplam: {{km}}"
-    }
+    },
+    "countriesVisited": "Geçilen ülkeler",
+    "noCountries": "Henüz ülke yok."
   }
 }

@@ -116,7 +116,9 @@
       "addLoading": "+ Add loading",
       "addUnloading": "+ Add unloading",
       "place": "Place",
-      "deleteConfirm": "Delete this stop?"
+      "deleteConfirm": "Delete this stop?",
+      "country": "Country",
+      "countryHint": "Select country"
     },
     "wizard": {
       "step1": "Departure & odometer",
@@ -620,6 +622,8 @@
       "title": "km per month",
       "empty": "No data yet.",
       "yearTotal": "Total: {{km}}"
-    }
+    },
+    "countriesVisited": "Countries driven through",
+    "noCountries": "No countries yet."
   }
 }

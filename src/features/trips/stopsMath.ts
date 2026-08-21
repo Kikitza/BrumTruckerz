@@ -1,8 +1,12 @@
 // Čiste funkcije/tipovi za stanice ture — BEZ Supabase importa (testabilno u jest-u).
 // api.ts ih re-exportuje da ostane jedini „ulaz" za domen, a testovi ih uvoze odavde.
 export type TripStopKind = "loading" | "unloading";
+export type CountrySource = "auto" | "manual";
 // Nacrt stanice (bez id/seq — seq se dodeljuje po redosledu pri čuvanju).
-export type TripStopInput = { kind: TripStopKind; place: string; note?: string | null };
+export type TripStopInput = {
+  kind: TripStopKind; place: string; note?: string | null;
+  country_code?: string | null; country_source?: CountrySource | null;
+};
 
 // destination = mesto POSLEDNJEG istovara (kompatibilnost sa trips.destination).
 // Prazna/bez istovara -> null.
@@ -18,8 +22,14 @@ export function destinationFromStops(stops: TripStopInput[]): string | null {
 // Nacrt sa vezom ka postojećem redu (existingId) ili nov (null). Prazna mesta se
 // preskaču. seq = pozicija u NOVOM redosledu (1-baziran). Vraća plan izmena:
 // obriši uklonjene, ubaci nove, ažuriraj postojeće.
-export type StopDraftLike = { existingId: string | null; kind: TripStopKind; place: string; note: string };
-export type StopRow = { seq: number; kind: TripStopKind; place: string; note: string | null };
+export type StopDraftLike = {
+  existingId: string | null; kind: TripStopKind; place: string; note: string;
+  country_code?: string | null; country_source?: CountrySource | null;
+};
+export type StopRow = {
+  seq: number; kind: TripStopKind; place: string; note: string | null;
+  country_code: string | null; country_source: CountrySource | null;
+};
 export type StopReconcile = {
   toDelete: string[];
   toInsert: StopRow[];
@@ -28,7 +38,10 @@ export type StopReconcile = {
 
 export function reconcileStops(existingIds: string[], drafts: StopDraftLike[]): StopReconcile {
   const clean = drafts
-    .map((d) => ({ existingId: d.existingId, kind: d.kind, place: d.place.trim(), note: d.note.trim() || null }))
+    .map((d) => ({
+      existingId: d.existingId, kind: d.kind, place: d.place.trim(), note: d.note.trim() || null,
+      country_code: d.country_code ?? null, country_source: d.country_source ?? null,
+    }))
     .filter((d) => d.place);
 
   const keptIds = new Set(clean.map((d) => d.existingId).filter((x): x is string => x != null));
@@ -37,7 +50,10 @@ export function reconcileStops(existingIds: string[], drafts: StopDraftLike[]): 
   const toInsert: StopRow[] = [];
   const toUpdate: (StopRow & { id: string })[] = [];
   clean.forEach((d, i) => {
-    const row: StopRow = { seq: i + 1, kind: d.kind, place: d.place, note: d.note };
+    const row: StopRow = {
+      seq: i + 1, kind: d.kind, place: d.place, note: d.note,
+      country_code: d.country_code, country_source: d.country_source,
+    };
     if (d.existingId) toUpdate.push({ id: d.existingId, ...row });
     else toInsert.push(row);
   });

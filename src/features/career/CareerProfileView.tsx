@@ -8,9 +8,10 @@ import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
 import { fmtKm, fmtNumber } from "../../lib/format";
 import {
-  getCareerHeader, getCareerSummary, getCareerEmployments, getCareerKmSeries, type CareerEmployment,
+  getCareerHeader, getCareerSummary, getCareerEmployments, getCareerKmSeries, getCareerCountries,
+  type CareerEmployment,
 } from "./api";
-import { tenureYearsMonths, monthYear } from "./calc";
+import { tenureYearsMonths, monthYear, flagEmoji } from "./calc";
 import { KmBarChart } from "./KmBarChart";
 
 export function CareerProfileView({ userId, showHeader = false }: { userId?: string | null; showHeader?: boolean }) {
@@ -22,6 +23,7 @@ export function CareerProfileView({ userId, showHeader = false }: { userId?: str
   const sumQ = useQuery({ queryKey: ["career-summary", key], queryFn: () => getCareerSummary(userId) });
   const empQ = useQuery({ queryKey: ["career-employments", key], queryFn: () => getCareerEmployments(userId) });
   const kmQ = useQuery({ queryKey: ["career-km", key], queryFn: () => getCareerKmSeries(userId) });
+  const ctryQ = useQuery({ queryKey: ["career-countries", key], queryFn: () => getCareerCountries(userId) });
 
   if (sumQ.isLoading || empQ.isLoading || kmQ.isLoading) {
     return <ActivityIndicator color={colors.primary} style={{ marginTop: 24 }} />;
@@ -53,6 +55,27 @@ export function CareerProfileView({ userId, showHeader = false }: { userId?: str
       {/* Grafikon km/mesec */}
       <Card colors={colors}>
         <KmBarChart series={kmQ.data ?? []} colors={colors} t={t} />
+      </Card>
+
+      {/* Zemlje kroz koje je vozio */}
+      <Card colors={colors}>
+        <Text style={{ color: colors.textMuted, fontSize: 13, fontWeight: "700", textTransform: "uppercase", marginBottom: 8 }}>
+          {t("career.countriesVisited")}
+        </Text>
+        {(ctryQ.data ?? []).length === 0 ? (
+          <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t("career.noCountries")}</Text>
+        ) : (
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+            {(ctryQ.data ?? []).map((c) => (
+              <View key={c.country_code}
+                style={{ flexDirection: "row", alignItems: "center", gap: 6, borderWidth: 1, borderColor: colors.border, borderRadius: 20, paddingVertical: 6, paddingHorizontal: 12 }}>
+                <Text style={{ fontSize: 15 }}>{flagEmoji(c.country_code) || "🏳️"}</Text>
+                <Text style={{ color: colors.text, fontSize: 13 }}>{t(c.name_key)}</Text>
+                <Text style={{ color: colors.textMuted, fontSize: 12 }}>· {c.trips_count}</Text>
+              </View>
+            ))}
+          </View>
+        )}
       </Card>
 
       {/* Istorija zaposlenja */}

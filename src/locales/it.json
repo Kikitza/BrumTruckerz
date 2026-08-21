@@ -118,7 +118,9 @@
       "addLoading": "+ Aggiungi carico",
       "addUnloading": "+ Aggiungi scarico",
       "place": "Luogo",
-      "deleteConfirm": "Eliminare questa fermata?"
+      "deleteConfirm": "Eliminare questa fermata?",
+      "country": "Paese",
+      "countryHint": "Scegli paese"
     },
     "wizard": {
       "step1": "Partenza e contachilometri",
@@ -622,6 +624,8 @@
       "title": "km al mese",
       "empty": "Ancora nessun dato.",
       "yearTotal": "Totale: {{km}}"
-    }
+    },
+    "countriesVisited": "Paesi attraversati",
+    "noCountries": "Ancora nessun paese."
   }
 }

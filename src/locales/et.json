@@ -118,7 +118,9 @@
       "addLoading": "+ Lisa laadimine",
       "addUnloading": "+ Lisa mahalaadimine",
       "place": "Koht",
-      "deleteConfirm": "Kustutada see peatus?"
+      "deleteConfirm": "Kustutada see peatus?",
+      "country": "Riik",
+      "countryHint": "Vali riik"
     },
     "wizard": {
       "step1": "Väljumine ja odomeeter",
@@ -622,6 +624,8 @@
       "title": "km kuus",
       "empty": "Andmeid veel pole.",
       "yearTotal": "Kokku: {{km}}"
-    }
+    },
+    "countriesVisited": "Läbitud riigid",
+    "noCountries": "Veel pole riike."
   }
 }

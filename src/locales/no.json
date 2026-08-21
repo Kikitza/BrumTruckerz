@@ -118,7 +118,9 @@
       "addLoading": "+ Legg til lasting",
       "addUnloading": "+ Legg til lossing",
       "place": "Sted",
-      "deleteConfirm": "Slette dette stoppet?"
+      "deleteConfirm": "Slette dette stoppet?",
+      "country": "Land",
+      "countryHint": "Velg land"
     },
     "wizard": {
       "step1": "Avreise og kilometerteller",
@@ -622,6 +624,8 @@
       "title": "km per måned",
       "empty": "Ingen data ennå.",
       "yearTotal": "Totalt: {{km}}"
-    }
+    },
+    "countriesVisited": "Kjørte land",
+    "noCountries": "Ingen land ennå."
   }
 }

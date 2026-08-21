@@ -118,7 +118,9 @@
       "addLoading": "+ Pridėti pakrovimą",
       "addUnloading": "+ Pridėti iškrovimą",
       "place": "Vieta",
-      "deleteConfirm": "Ištrinti šį sustojimą?"
+      "deleteConfirm": "Ištrinti šį sustojimą?",
+      "country": "Šalis",
+      "countryHint": "Pasirink šalį"
     },
     "wizard": {
       "step1": "Išvykimas ir odometras",
@@ -622,6 +624,8 @@
       "title": "km per mėnesį",
       "empty": "Kol kas nėra duomenų.",
       "yearTotal": "Iš viso: {{km}}"
-    }
+    },
+    "countriesVisited": "Pravažiuotos šalys",
+    "noCountries": "Kol kas nėra šalių."
   }
 }

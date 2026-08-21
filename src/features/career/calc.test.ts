@@ -1,4 +1,4 @@
-import { availableYears, kmByMonthForYear, tenureYearsMonths, monthYear, yearOf, monthOf } from "./calc";
+import { availableYears, kmByMonthForYear, tenureYearsMonths, monthYear, yearOf, monthOf, flagEmoji } from "./calc";
 import type { CareerKmPoint } from "./api";
 
 const p = (ym: string, km: number, trips = 1): CareerKmPoint => ({ year_month: ym, total_km: km, trips_count: trips });
@@ -34,5 +34,12 @@ describe("career/calc", () => {
     expect(monthYear("2026-03-15")).toBe("03.2026");
     expect(monthYear(null)).toBe("");
     expect(monthYear(undefined)).toBe("");
+  });
+
+  it("flagEmoji: ISO kod → zastavica; XK/nevalidno → ''", () => {
+    expect(flagEmoji("DE")).toBe("🇩🇪");
+    expect(flagEmoji("rs")).toBe("🇷🇸");
+    expect(flagEmoji("XK")).toBe("");
+    expect(flagEmoji("X")).toBe("");
   });
 });

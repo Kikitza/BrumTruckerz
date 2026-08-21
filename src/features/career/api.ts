@@ -13,6 +13,7 @@ export type CareerEmployment = {
   started_at: string; ended_at: string | null; status: "active" | "ended";
 };
 export type CareerKmPoint = { year_month: string; total_km: number; trips_count: number };
+export type CareerCountry = { country_code: string; name_key: string; trips_count: number };
 
 const arg = (userId?: string | null) => ({ p_user: userId ?? null });
 const num = (v: unknown) => Number(v ?? 0); // bigint može stići kao string
@@ -48,6 +49,17 @@ export async function getCareerKmSeries(userId?: string | null): Promise<CareerK
   return ((data ?? []) as Record<string, unknown>[]).map((r) => ({
     year_month: String(r.year_month),
     total_km: num(r.total_km),
+    trips_count: num(r.trips_count),
+  }));
+}
+
+// „Zemlje kroz koje je vozio" — distinct zemlje iz origin+stanica tura (0028), sa brojem tura.
+export async function getCareerCountries(userId?: string | null): Promise<CareerCountry[]> {
+  const { data, error } = await supabase.rpc("career_countries", arg(userId));
+  if (error) throw error;
+  return ((data ?? []) as Record<string, unknown>[]).map((r) => ({
+    country_code: String(r.country_code),
+    name_key: String(r.name_key),
     trips_count: num(r.trips_count),
   }));
 }

@@ -118,7 +118,9 @@
       "addLoading": "+ Tilføj læsning",
       "addUnloading": "+ Tilføj losning",
       "place": "Sted",
-      "deleteConfirm": "Slet dette stop?"
+      "deleteConfirm": "Slet dette stop?",
+      "country": "Land",
+      "countryHint": "Vælg land"
     },
     "wizard": {
       "step1": "Afgang & kilometertæller",
@@ -622,6 +624,8 @@
       "title": "km pr. måned",
       "empty": "Ingen data endnu.",
       "yearTotal": "I alt: {{km}}"
-    }
+    },
+    "countriesVisited": "Gennemkørte lande",
+    "noCountries": "Ingen lande endnu."
   }
 }

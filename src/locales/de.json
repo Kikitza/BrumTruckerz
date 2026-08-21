@@ -118,7 +118,9 @@
       "addLoading": "+ Beladung hinzufügen",
       "addUnloading": "+ Entladung hinzufügen",
       "place": "Ort",
-      "deleteConfirm": "Diesen Stopp löschen?"
+      "deleteConfirm": "Diesen Stopp löschen?",
+      "country": "Land",
+      "countryHint": "Land wählen"
     },
     "wizard": {
       "step1": "Abfahrt & Kilometerstand",
@@ -622,6 +624,8 @@
       "title": "km pro Monat",
       "empty": "Noch keine Daten.",
       "yearTotal": "Gesamt: {{km}}"
-    }
+    },
+    "countriesVisited": "Befahrene Länder",
+    "noCountries": "Noch keine Länder."
   }
 }

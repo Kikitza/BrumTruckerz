@@ -6,28 +6,46 @@
 import { View, Text, Pressable } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Field } from "../../components/form";
+import { CountryPickerField } from "../company/CountryPickerField";
 import { confirmAction } from "../../lib/confirm";
+import { detectCountry } from "./countryDetect";
 import type { Palette } from "../../lib/theme";
-import { tripTitle, type TripStop, type TripStopKind, type TripStopInput } from "./api";
+import { tripTitle, type TripStop, type TripStopKind, type TripStopInput, type CountrySource } from "./api";
 
 // ── Unos (nacrti) ──
 // existingId = veza ka redu u bazi (za „Izmeni turu"); null = nova stanica.
-export type StopDraft = { key: string; existingId: string | null; kind: TripStopKind; place: string; note: string };
+export type StopDraft = {
+  key: string; existingId: string | null; kind: TripStopKind; place: string; note: string;
+  country: string | null; countrySource: CountrySource | null;
+};
 
 let stopSeq = 0;
 export const newStopDraft = (kind: TripStopKind): StopDraft => ({
-  key: `stop-${stopSeq++}`, existingId: null, kind, place: "", note: "",
+  key: `stop-${stopSeq++}`, existingId: null, kind, place: "", note: "", country: null, countrySource: null,
 });
 // Podrazumevano: jedan utovar + jedan istovar.
 export const defaultStopDrafts = (): StopDraft[] => [newStopDraft("loading"), newStopDraft("unloading")];
 
 // Postojeće stanice -> nacrti (popunjavanje forme „Izmeni turu").
 export const stopsToDrafts = (stops: TripStop[]): StopDraft[] =>
-  stops.map((s) => ({ key: `existing-${s.id}`, existingId: s.id, kind: s.kind, place: s.place, note: s.note ?? "" }));
+  stops.map((s) => ({
+    key: `existing-${s.id}`, existingId: s.id, kind: s.kind, place: s.place, note: s.note ?? "",
+    country: s.country_code ?? null, countrySource: s.country_source ?? null,
+  }));
 
 // Nacrti -> ulaz za api (redosled = redosled u nizu; sanitizacija je u ownerCreateTrip).
 export const draftsToInput = (drafts: StopDraft[]): TripStopInput[] =>
-  drafts.map((d) => ({ kind: d.kind, place: d.place, note: d.note }));
+  drafts.map((d) => ({ kind: d.kind, place: d.place, note: d.note, country_code: d.country, country_source: d.countrySource }));
+
+// Auto-predlog zemlje pri promeni mesta: puni SAMO ako je prazno ili je prethodno bilo 'auto'
+// (ručni izbor korisnika se ne pregazuje). Siguran predlog → country + source 'auto'.
+export function autoCountryPatch(place: string, current: { country: string | null; countrySource: CountrySource | null }): Partial<StopDraft> {
+  if (current.country && current.countrySource === "manual") return {}; // poštuj ručni izbor
+  const g = detectCountry(place);
+  if (g.confident && g.code) return { country: g.code, countrySource: "auto" };
+  if (current.countrySource === "auto") return { country: null, countrySource: null }; // više nije jasno
+  return {};
+}
 
 const kindAccent = (kind: TripStopKind, colors: Palette) => (kind === "loading" ? colors.primary : colors.warn);
 
@@ -61,7 +79,13 @@ export function StopsEditor({
             </Pressable>
           </View>
           <Field label={t("trip.stops.place")} value={it.place}
-            onChangeText={(s) => update(it.key, { place: s })} autoCapitalize="sentences" colors={colors} />
+            onChangeText={(s) => update(it.key, { place: s, ...autoCountryPatch(s, it) })} autoCapitalize="sentences" colors={colors} />
+          {/* Zemlja stanice (auto-predlog iz mesta; ručni izbor je konačan). Prazno ne blokira čuvanje. */}
+          <CountryPickerField
+            label={it.country ? t("trip.stops.country") : t("trip.stops.countryHint")}
+            value={it.country}
+            onSelect={(code) => update(it.key, { country: code, countrySource: code ? "manual" : null })}
+          />
           <Field label={t("trip.fields.note")} value={it.note}
             onChangeText={(s) => update(it.key, { note: s })} colors={colors} />
         </View>

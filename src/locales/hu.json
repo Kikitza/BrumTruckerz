@@ -118,7 +118,9 @@
       "addLoading": "+ Felrakodás hozzáadása",
       "addUnloading": "+ Lerakodás hozzáadása",
       "place": "Hely",
-      "deleteConfirm": "Törli ezt a megállót?"
+      "deleteConfirm": "Törli ezt a megállót?",
+      "country": "Ország",
+      "countryHint": "Válassz országot"
     },
     "wizard": {
       "step1": "Indulás és kilométeróra",
@@ -622,6 +624,8 @@
       "title": "km havonta",
       "empty": "Még nincs adat.",
       "yearTotal": "Összesen: {{km}}"
-    }
+    },
+    "countriesVisited": "Bejárt országok",
+    "noCountries": "Még nincsenek országok."
   }
 }

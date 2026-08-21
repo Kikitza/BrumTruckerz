@@ -118,7 +118,9 @@
       "addLoading": "+ Adaugă încărcare",
       "addUnloading": "+ Adaugă descărcare",
       "place": "Loc",
-      "deleteConfirm": "Ștergeți această oprire?"
+      "deleteConfirm": "Ștergeți această oprire?",
+      "country": "Țară",
+      "countryHint": "Alege țara"
     },
     "wizard": {
       "step1": "Plecare și kilometraj",
@@ -622,6 +624,8 @@
       "title": "km pe lună",
       "empty": "Încă nu există date.",
       "yearTotal": "Total: {{km}}"
-    }
+    },
+    "countriesVisited": "Țări parcurse",
+    "noCountries": "Încă nicio țară."
   }
 }

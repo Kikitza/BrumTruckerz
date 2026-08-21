@@ -118,7 +118,9 @@
       "addLoading": "+ Dodaj załadunek",
       "addUnloading": "+ Dodaj rozładunek",
       "place": "Miejsce",
-      "deleteConfirm": "Usunąć ten przystanek?"
+      "deleteConfirm": "Usunąć ten przystanek?",
+      "country": "Kraj",
+      "countryHint": "Wybierz kraj"
     },
     "wizard": {
       "step1": "Wyjazd i licznik",
@@ -622,6 +624,8 @@
       "title": "km na miesiąc",
       "empty": "Brak danych.",
       "yearTotal": "Razem: {{km}}"
-    }
+    },
+    "countriesVisited": "Przejechane kraje",
+    "noCountries": "Brak krajów."
   }
 }

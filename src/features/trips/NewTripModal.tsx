@@ -11,8 +11,10 @@ import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../lib/theme";
 import { Field, ModalScaffold, PickerField } from "../../components/form";
 import { toNum, toInt } from "../../lib/num";
-import { ownerCreateTrip } from "./api";
+import { ownerCreateTrip, type CountrySource } from "./api";
 import { StopsEditor, defaultStopDrafts, draftsToInput, type StopDraft } from "./stops";
+import { detectCountry } from "./countryDetect";
+import { CountryPickerField } from "../company/CountryPickerField";
 import { listDrivers, listVehicles, listTrailers } from "../fleet/api";
 import { CustomerPickerField } from "../customers/CustomerPickerField";
 
@@ -30,7 +32,18 @@ export function NewTripModal({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(1);
   // Celo stanje čarobnjaka (preživljava Nazad/Dalje).
   const [origin, setOrigin] = useState("");
+  const [originCountry, setOriginCountry] = useState<string | null>(null);
+  const [originCountrySrc, setOriginCountrySrc] = useState<CountrySource | null>(null);
   const [startOdometer, setStartOdometer] = useState("");
+
+  // Auto-predlog zemlje polaska iz teksta (ručni izbor je konačan).
+  const onOriginChange = (s: string) => {
+    setOrigin(s);
+    if (originCountry && originCountrySrc === "manual") return;
+    const g = detectCountry(s);
+    if (g.confident && g.code) { setOriginCountry(g.code); setOriginCountrySrc("auto"); }
+    else if (originCountrySrc === "auto") { setOriginCountry(null); setOriginCountrySrc(null); }
+  };
   const [stops, setStops] = useState<StopDraft[]>(defaultStopDrafts);
   const [driverId, setDriverId] = useState<string | null>(null);
   const [vehicleId, setVehicleId] = useState<string | null>(null);
@@ -45,6 +58,8 @@ export function NewTripModal({ onClose }: { onClose: () => void }) {
         vehicle_id: vehicleId!,
         trailer_id: trailerId,
         origin: origin.trim() || null,
+        origin_country_code: originCountry,
+        origin_country_source: originCountrySrc,
         start_odometer: toInt(startOdometer),
         revenue: toNum(revenue),
         customer_id: customerId,
@@ -79,8 +94,13 @@ export function NewTripModal({ onClose }: { onClose: () => void }) {
 
         {step === 1 && (
           <>
-            <Field label={t("trip.fields.origin")} value={origin} onChangeText={setOrigin}
+            <Field label={t("trip.fields.origin")} value={origin} onChangeText={onOriginChange}
               placeholder="Beograd" autoCapitalize="sentences" colors={colors} />
+            <CountryPickerField
+              label={originCountry ? t("trip.stops.country") : t("trip.stops.countryHint")}
+              value={originCountry}
+              onSelect={(code) => { setOriginCountry(code); setOriginCountrySrc(code ? "manual" : null); }}
+            />
             <Field label={t("trip.fields.startOdometer")} value={startOdometer} onChangeText={setStartOdometer}
               keyboardType="numeric" placeholder="0" colors={colors} />
           </>

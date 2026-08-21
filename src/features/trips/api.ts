@@ -6,11 +6,11 @@ import { supabase } from "../../lib/supabase";
 import { enqueue } from "../../lib/offline/queue";
 import { uuidv4 } from "../../lib/uuid";
 import { destinationFromStops, reconcileStops } from "./stopsMath";
-import type { TripStopKind, TripStopInput, StopDraftLike } from "./stopsMath";
+import type { TripStopKind, TripStopInput, StopDraftLike, CountrySource } from "./stopsMath";
 
 // Re-export (jedini domen-ulaz je api.ts; čiste funkcije/tipovi žive u ./stopsMath).
 export { destinationFromStops };
-export type { TripStopKind, TripStopInput };
+export type { TripStopKind, TripStopInput, CountrySource } from "./stopsMath";
 
 // ── Tipovi (šema: 0001_init.sql) ──
 export type TripStatus = "draft" | "loading" | "driving" | "border" | "unloading" | "finished";
@@ -27,6 +27,8 @@ export type Trip = {
   trailer_id: string | null;
   origin: string | null;
   destination: string | null;
+  origin_country_code: string | null;             // zemlja polaznog mesta (0028), odvojeno polje
+  origin_country_source: CountrySource | null;    // 'auto' (aplikacija pogodila) | 'manual' (potvrdio čovek)
   title: string | null; // auto-generisan "origin → destination" (kompatibilnost/izvozi)
   status: TripStatus;
   start_odometer: number | null;
@@ -71,6 +73,8 @@ export type CreateTripInput = {
   vehicle_id: string;
   trailer_id?: string | null;
   origin?: string | null;
+  origin_country_code?: string | null;            // zemlja polaska (0028), opciono
+  origin_country_source?: CountrySource | null;
   destination?: string | null; // ignoriše se ako su prosleđene stanice (izvodi se iz njih)
   start_odometer?: number | null;
   revenue?: number | null;
@@ -115,6 +119,8 @@ export type TripStop = {
   kind: TripStopKind;
   place: string;
   note: string | null;
+  country_code: string | null;                 // zemlja stanice (0028)
+  country_source: CountrySource | null;
 };
 
 export type AddEventInput = {
@@ -204,7 +210,10 @@ export async function ownerCreateTrip(input: CreateTripInput): Promise<Trip> {
   const origin = input.origin?.trim() || null;
   // Sanitizacija stanica: trim mesta, izbaci prazne, zadrži redosled unosa.
   const stops = (input.stops ?? [])
-    .map((s) => ({ kind: s.kind, place: s.place.trim(), note: s.note?.trim() || null }))
+    .map((s) => ({
+      kind: s.kind, place: s.place.trim(), note: s.note?.trim() || null,
+      country_code: s.country_code ?? null, country_source: s.country_source ?? null,
+    }))
     .filter((s) => s.place);
   const destination = stops.length ? destinationFromStops(stops) : input.destination?.trim() || null;
 
@@ -217,6 +226,8 @@ export async function ownerCreateTrip(input: CreateTripInput): Promise<Trip> {
       vehicle_id: input.vehicle_id,
       trailer_id: input.trailer_id ?? null,
       origin,
+      origin_country_code: input.origin_country_code ?? null,
+      origin_country_source: input.origin_country_source ?? null,
       destination,
       title: tripTitle(origin, destination), // generiše kod (za prikaze/izvoze)
       start_odometer: input.start_odometer ?? null,
@@ -229,7 +240,10 @@ export async function ownerCreateTrip(input: CreateTripInput): Promise<Trip> {
   const trip = data as Trip;
 
   if (stops.length) {
-    const rows = stops.map((s, i) => ({ trip_id: trip.id, seq: i + 1, kind: s.kind, place: s.place, note: s.note }));
+    const rows = stops.map((s, i) => ({
+      trip_id: trip.id, seq: i + 1, kind: s.kind, place: s.place, note: s.note,
+      country_code: s.country_code, country_source: s.country_source,
+    }));
     const { error: e2 } = await supabase.from("trip_stops").insert(rows);
     if (e2) throw e2;
   }
@@ -240,7 +254,7 @@ export async function ownerCreateTrip(input: CreateTripInput): Promise<Trip> {
 export async function listTripStops(tripId: string): Promise<TripStop[]> {
   const { data, error } = await supabase
     .from("trip_stops")
-    .select("id, trip_id, seq, kind, place, note")
+    .select("id, trip_id, seq, kind, place, note, country_code, country_source")
     .eq("trip_id", tripId)
     .order("seq", { ascending: true });
   if (error) throw error;
@@ -252,6 +266,8 @@ export async function listTripStops(tripId: string): Promise<TripStop[]> {
 // redosledu). trips.destination se ponovo izračuna. VOZARINA I DODELA se NE diraju.
 export type UpdateTripRouteInput = {
   origin: string | null;
+  origin_country_code?: string | null;            // zemlja polaska (0028)
+  origin_country_source?: CountrySource | null;
   startOdometer?: number | null; // undefined = ne diraj
   stops: StopDraftLike[];
 };
@@ -267,19 +283,26 @@ export async function ownerUpdateTripRoute(tripId: string, input: UpdateTripRout
   for (const u of plan.toUpdate) {
     const { error } = await supabase
       .from("trip_stops")
-      .update({ seq: u.seq, kind: u.kind, place: u.place, note: u.note })
+      .update({ seq: u.seq, kind: u.kind, place: u.place, note: u.note, country_code: u.country_code, country_source: u.country_source })
       .eq("id", u.id);
     if (error) throw error;
   }
   if (plan.toInsert.length) {
-    const rows = plan.toInsert.map((r) => ({ trip_id: tripId, seq: r.seq, kind: r.kind, place: r.place, note: r.note }));
+    const rows = plan.toInsert.map((r) => ({
+      trip_id: tripId, seq: r.seq, kind: r.kind, place: r.place, note: r.note,
+      country_code: r.country_code, country_source: r.country_source,
+    }));
     const { error } = await supabase.from("trip_stops").insert(rows);
     if (error) throw error;
   }
 
   const origin = input.origin?.trim() || null;
   const destination = destinationFromStops(input.stops.map((d) => ({ kind: d.kind, place: d.place, note: d.note })));
-  const patch: Record<string, unknown> = { origin, destination, title: tripTitle(origin, destination) };
+  const patch: Record<string, unknown> = {
+    origin, destination, title: tripTitle(origin, destination),
+    origin_country_code: input.origin_country_code ?? null,
+    origin_country_source: input.origin_country_source ?? null,
+  };
   if (input.startOdometer !== undefined) patch.start_odometer = input.startOdometer;
 
   const { error } = await supabase.from("trips").update(patch).eq("id", tripId);

@@ -118,7 +118,9 @@
       "addLoading": "+ Laden toevoegen",
       "addUnloading": "+ Lossen toevoegen",
       "place": "Plaats",
-      "deleteConfirm": "Deze stop verwijderen?"
+      "deleteConfirm": "Deze stop verwijderen?",
+      "country": "Land",
+      "countryHint": "Land kiezen"
     },
     "wizard": {
       "step1": "Vertrek & kilometerstand",
@@ -622,6 +624,8 @@
       "title": "km per maand",
       "empty": "Nog geen gegevens.",
       "yearTotal": "Totaal: {{km}}"
-    }
+    },
+    "countriesVisited": "Bereden landen",
+    "noCountries": "Nog geen landen."
   }
 }

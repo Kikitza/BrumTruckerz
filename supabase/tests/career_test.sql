@@ -17,6 +17,8 @@ declare
   u_w uuid := gen_random_uuid(); u_w2 uuid := gen_random_uuid();
   u_oa uuid := gen_random_uuid(); u_ob uuid := gen_random_uuid();
   d_w uuid := gen_random_uuid(); d_w2 uuid := gen_random_uuid();
+  v_a uuid := gen_random_uuid(); v_b uuid := gen_random_uuid();
+  t_a uuid := gen_random_uuid(); t_b uuid := gen_random_uuid();
   km_v bigint; tr_v bigint; co_v int; n int; mode text; ok boolean;
 begin
   -- ═══ FIXTURES (kao postgres, bypass RLS) ═══
@@ -43,6 +45,14 @@ begin
   insert into driver_month_rollup (company_id, driver_id, year_month, trips_count, total_km) values
     (c_a, d_w, date '2024-03-01', 2, 1000),
     (c_b, d_w, date '2025-02-01', 3, 2000);
+  -- Zemlje (0028): tura u A → origin DE + stanica AT; tura u B → origin IT + stanica SI.
+  insert into vehicles (id, company_id, registration) values (v_a, c_a, 'A-1'), (v_b, c_b, 'B-1');
+  insert into trips (id, company_id, driver_id, vehicle_id, status, origin_country_code) values
+    (t_a, c_a, d_w, v_a, 'finished', 'DE'),
+    (t_b, c_b, d_w, v_b, 'finished', 'IT');
+  insert into trip_stops (trip_id, seq, kind, place, country_code) values
+    (t_a, 1, 'unloading', 'Wien',  'AT'),
+    (t_b, 1, 'unloading', 'Koper', 'SI');
 
   set local role authenticated;
 
@@ -60,6 +70,10 @@ begin
   if n <> 2 then raise exception 'FAIL: W self employments = % (očekivano 2)', n; end if;
   select count(*) into n from career_km_series(null);
   if n <> 2 then raise exception 'FAIL: W self km_series = % (očekivano 2)', n; end if;
+
+  -- zemlje self: DE, AT (A) + IT, SI (B) = 4
+  select count(*) into n from career_countries(null);
+  if n <> 4 then raise exception 'FAIL: W self countries = % (očekivano 4)', n; end if;
 
   -- ═══ (b) radnik NE vidi tuđi CV ═══
   ok := false;
@@ -79,6 +93,11 @@ begin
   if co_v <> 1    then raise exception 'FAIL: ownerB vidi W companies = % (očekivano 1)', co_v; end if;
   select count(*) into n from career_employments(u_w);
   if n <> 1 then raise exception 'FAIL: ownerB vidi W employments = % (očekivano 1 — samo B)', n; end if;
+  -- zemlje: office B vidi samo B (IT, SI) = 2; NE vidi DE/AT iz firme A
+  select count(*) into n from career_countries(u_w);
+  if n <> 2 then raise exception 'FAIL: ownerB vidi W countries = % (očekivano 2 — samo B)', n; end if;
+  select count(*) into n from career_countries(u_w) where country_code = 'DE';
+  if n <> 0 then raise exception 'FAIL: ownerB vidi zemlju DE iz firme A (mora 0)'; end if;
 
   -- ═══ (d) OFFICE firme A: vidi W, ali SAMO podatke firme A (izolacija perioda) ═══
   perform set_config('request.jwt.claims', json_build_object('sub', u_oa)::text, true);
@@ -86,6 +105,9 @@ begin
   if km_v <> 1000 then raise exception 'FAIL: ownerA vidi W total_km = % (očekivano 1000 — samo A)', km_v; end if;
   select count(*) into n from career_employments(u_w);
   if n <> 1 then raise exception 'FAIL: ownerA vidi W employments = % (očekivano 1 — samo A)', n; end if;
+  -- zemlje: office A vidi samo A (DE, AT) = 2
+  select count(*) into n from career_countries(u_w);
+  if n <> 2 then raise exception 'FAIL: ownerA vidi W countries = % (očekivano 2 — samo A)', n; end if;
 
   -- ═══ (e) OFFICE firme A NE vidi radnika koji nije u firmi A (u_w2 je samo u B) ═══
   select career_view_mode(u_w2) into mode;

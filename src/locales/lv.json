@@ -118,7 +118,9 @@
       "addLoading": "+ Pievienot iekraušanu",
       "addUnloading": "+ Pievienot izkraušanu",
       "place": "Vieta",
-      "deleteConfirm": "Dzēst šo pieturu?"
+      "deleteConfirm": "Dzēst šo pieturu?",
+      "country": "Valsts",
+      "countryHint": "Izvēlies valsti"
     },
     "wizard": {
       "step1": "Izbraukšana un odometrs",
@@ -622,6 +624,8 @@
       "title": "km mēnesī",
       "empty": "Vēl nav datu.",
       "yearTotal": "Kopā: {{km}}"
-    }
+    },
+    "countriesVisited": "Izbrauktās valstis",
+    "noCountries": "Vēl nav valstu."
   }
 }

@@ -118,7 +118,9 @@
       "addLoading": "+ Lägg till lastning",
       "addUnloading": "+ Lägg till lossning",
       "place": "Plats",
-      "deleteConfirm": "Ta bort detta stopp?"
+      "deleteConfirm": "Ta bort detta stopp?",
+      "country": "Land",
+      "countryHint": "Välj land"
     },
     "wizard": {
       "step1": "Avgång & vägmätare",
@@ -622,6 +624,8 @@
       "title": "km per månad",
       "empty": "Inga data ännu.",
       "yearTotal": "Totalt: {{km}}"
-    }
+    },
+    "countriesVisited": "Körda länder",
+    "noCountries": "Inga länder ännu."
   }
 }

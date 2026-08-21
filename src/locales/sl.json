@@ -118,7 +118,9 @@
       "addLoading": "+ Dodaj natovarjanje",
       "addUnloading": "+ Dodaj raztovarjanje",
       "place": "Kraj",
-      "deleteConfirm": "Izbrišem to postajo?"
+      "deleteConfirm": "Izbrišem to postajo?",
+      "country": "Država",
+      "countryHint": "Izberi državo"
     },
     "wizard": {
       "step1": "Odhod in kilometrina",
@@ -622,6 +624,8 @@
       "title": "km na mesec",
       "empty": "Še ni podatkov.",
       "yearTotal": "Skupaj: {{km}}"
-    }
+    },
+    "countriesVisited": "Prevožene države",
+    "noCountries": "Še ni držav."
   }
 }
