@@ -1,47 +1,55 @@
-# IZVEŠTAJ — NOV PRODUKCIONI BUILD (samo brend; Firebase/push preskočen)
+# IZVEŠTAJ — „PUSH FINALE" (Firebase / obaveštenja) — nastavak
 
-> **Cilj:** instalirana aplikacija dobija **ETNOP ikonicu + Evropa splash + novi logo**. Firebase/cron NIJE diran.
-> Build je pokrenut na EAS (queued). Splash/ikonica se peku u nativni paket u build-vremenu → stižu s ovim buildom.
+> **Idempotentna provera:** backend (cron/secret/migracija) je **gotov od ranije**. Sve preostalo (FCM ključ,
+> build sa push-om, proba uživo) **čeka jedan fajl** — `google-services.json` — koji **samo vlasnik** može da preuzme.
+> `googleServicesFile` se NE vezuje dok fajl fizički ne postoji (put ka nepostojećem fajlu ruši build).
 
-## Link builda
-**https://expo.dev/accounts/kikitzas-team/projects/kikitza/builds/df3e2e3a-170c-40c0-b249-64990d0553bf**
+## Status po koraku
 
-- Platforma: **Android**, profil: **production**, tip: **APK**
-- **versionCode: 4 → 5** (auto-increment; `appVersionSource: remote`, `autoIncrement: true`)
-- Android credentials: **remote keystore sa EAS servera** (`Build Credentials I5m2sqRrSb`) — bez novih ključeva
-- Env iz `production` profila: `EXPO_PUBLIC_PHONE_LOGIN=0` (telefon login ostaje isključen), PROD Supabase URL/anon
-- Autentikacija: `EXPO_TOKEN` (nalog `kikitza` / `kikitzas-team`, Owner) — **vrednost tokena se NE upisuje**
-
-## 1) Potvrda brend-asseta (ova sesija)
-| Asset | Dimenzije | Sadržaj (vizuelna QA) | Podloga |
+| # | Korak | Status | Sledeći klik vlasnika |
 |---|---|---|---|
-| `assets/icon.png` | 1024×1024 RGBA | **Evropa dot-map** ✅ | puna `#0B1220` |
-| `assets/adaptive-icon.png` | 1024×1024 RGBA | **Evropa dot-map** ✅ | providna (sig. zona) |
-| `assets/splash-icon.png` | 1024×1024 RGBA | **Evropa dot-map** ✅ | providna |
+| 1 | `google-services.json` u korenu | **NIJE** ⛔ | Firebase konzola → Add project „ETNOP" → Add app Android `com.brumtruckerz.app` → Download → prevuci u koren (koraci dole) |
+| 1 | `googleServicesFile` u `app.config.ts` | **NIJE** (čeka fajl) | Ja vežem ČIM fajl bude u korenu → commit „push: google-services wired" |
+| 2 | FCM V1 ključ na expo.dev | **NIJE potvrđeno** ⛔ | Project settings → Service accounts → Generate key → upload na expo.dev → Credentials → Android → FCM V1 |
+| 3 | `reminders-cron` deploy @ PROD | **URAĐENO** ✅ | — (`ACTIVE`, `verify_jwt:false`) |
+| 3 | CRON_SECRET (PROD secret) | **URAĐENO** ✅ | — (postoji; smoke 401/200 u F4 backend sesiji) |
+| 3 | Raspored 07:00 Europe/Belgrade (pg_cron) | **URAĐENO** ✅ | — (`0 5 * * *` UTC = 07:00 CEST leti / 06:00 zimi) |
+| 4 | `db push 0026` @ PROD | **URAĐENO** ✅ | — (`remote 0026`; dry-run prazan) |
+| 5 | Nov production build sa push-om | **ČEKA korak 1** ⛔ | Pokrećem ČIM je `google-services.json` uvezan |
+| 6 | Proba uživo (rok → push na telefon) | **ČEKA korak 5** ⛔ | Posle instalacije builda: ručni test-okidač reminders-cron (200) ili sačekati 07:00 cron |
 
-`app.config.ts`: `expo-splash-screen.backgroundColor = #0B1220` (i `dark`), `adaptiveIcon.backgroundColor = #0B1220`. Nijedan kamion.
+## Provera ove sesije (bez remećenja linka — `--project-ref`, link ostao DEV)
+- `functions list` (PROD): `reminders-cron` → `ACTIVE`.
+- `secrets list` (PROD): `CRON_SECRET` prisutan *(prikaz je digest, NE vrednost)*.
+- `migration list` (PROD): `local 0026 = remote 0026`.
+- `google-services.json`: **nema** u korenu; `app.config.ts` bez `googleServicesFile`.
 
-## 2) Šta build donosi na uređaj (prvi put posle rebranda)
-- **App ikonica** → ETNOP Evropa znak (bila je stara jer je prethodni paket pre-rebrand).
-- **Splash** → Evropa znak na `#0B1220` (splash se ne može OTA-update-ovati; morao je nov binarni build).
-- **Boot/login/PDF header** → već ETNOP (od `d99df9c`), sad i nativni omotač prati.
+## Korak 1 — VLASNIK, klik po klik (blokira sve ostalo)
+1. https://console.firebase.google.com → **Add project** → ime **`ETNOP`** → (Google Analytics može **off**) → **Create project**.
+2. **Add app → Android**.
+3. **Android package name:** `com.brumtruckerz.app` **(TAČNO ovako — trajni identifikator, nije brend).**
+4. Nickname/SHA-1 preskoči → **Register app**.
+5. **Download `google-services.json`**.
+6. Prevuci u **koren repoa** (`/workspaces/BrumTruckerz/google-services.json`) → javi **„1 gotovo"**.
 
-## 3) Šta NIJE dirano (po zadatku)
-- **Firebase / `google-services.json`** — preskočeno; push na ovom buildu **neće raditi** dok se ne uveže FCM (zaseban zadatak).
-- **reminders-cron / CRON_SECRET / pg_cron raspored** — netaknuto (ostaje ACTIVE na PROD-u).
-- **Identifikatori** — `com.brumtruckerz.app`, `scheme`, EAS slug `kikitza` — nepromenjeni.
+## Korak 2 — VLASNIK (JSON NIKAD u git ni u izveštaj)
+1. Firebase ⚙️ **Project settings → Service accounts → Generate new private key** (drži lokalno).
+2. https://expo.dev → projekat **kikitza** → **Credentials → Android → FCM V1** → **Upload** JSON → javi **„2 gotovo"**.
 
-## Sledeći potez vlasnika
-1. Sačekaj da build završi (link gore → status/`Install`), pa instaliraj APK na telefon.
-2. Vizuelno potvrdi: **ETNOP ikonica** na launcher-u + **Evropa splash** pri pokretanju.
-3. Za push (kasnije): vrati se na Firebase korake iz prethodnog izveštaja (`google-services.json` + FCM V1 ključ).
+## Šta ja radim posle potvrda
+- „1 gotovo" → vežem `googleServicesFile`, provere, commit „push: google-services wired".
+- „2 gotovo" + reč za build → `eas build --platform android --profile production` (versionCode auto +1, telefon flag `0`); link u izveštaj.
+- Posle instalacije → proba uživo: ručni test-okidač `reminders-cron` (`x-cron-secret` → očekivano `200` + push), ili sačekati 07:00 cron; obrazložiću izbor.
+
+## Napomena — brend build
+Prethodni **brend-build** (versionCode 5) je već pokrenut i nosi ETNOP ikonicu/splash, ali **bez push-a**
+(bez `google-services.json`). Ovaj „PUSH FINALE" build (posle koraka 1) biće **sledeći** i doneće funkcionalan push.
 
 ## Provere
 | Provera | Rezultat |
 |---|---|
-| Brend PNG-ovi = Evropa znak (vizuelna QA) | ✅ sva tri |
-| `app.config` splash/adaptive `backgroundColor` | ✅ `#0B1220` |
-| EAS auth (`EXPO_TOKEN`) | ✅ `kikitza`/`kikitzas-team` (Owner) |
-| Build queued + versionCode inkrement | ✅ 4 → 5 |
-| Firebase/cron netaknuti | ✅ (po zadatku preskočeno) |
-| Tajne u izveštaju | ✅ nijedna (samo link builda) |
+| Verifikacija PROD backend | ✅ cron/secret/0026 prisutni |
+| Link ostao na DEV | ✅ |
+| Izmene koda | nema (čeka `google-services.json`) |
+| i18n | nije diran |
+| Tajne u izveštaju | ✅ nijedna vrednost |
