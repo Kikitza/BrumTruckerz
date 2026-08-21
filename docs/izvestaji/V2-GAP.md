@@ -27,7 +27,7 @@
 | 16 | Event/outbox & realtime (§8, §10) | 0 | 1 | 2 |
 | 17 | Navigation / telematika (§9) | 0 | 0 | 3 |
 | 18 | Tehn. arhitektura & data model (§10) | 2 | 2 | 3 |
-| 19 | Bezbednost/privatnost/compliance (§11) | 3 | 2 | 1 |
+| 19 | Bezbednost/privatnost/compliance (§11) | 4 | 1 | 1 |
 | 20 | Offline & sync (§12) | 4 | 1 | 0 |
 | 21 | Skala & performanse (§13) | 2 | 1 | 1 |
 | 22 | i18n & lokalizacija (§14) | 3 | 1 | 1 |
@@ -37,7 +37,7 @@
 | 26 | Engineering / CI/CD / okruženja (§18) | 3 | 2 | 1 |
 | 27 | Test strategija (§19) | 2 | 2 | 3 |
 | 28 | Observability (§10/§18) | 0 | 0 | 2 |
-| | **UKUPNO** | **60** | **34** | **43** |
+| | **UKUPNO** | **61** | **33** | **43** |
 
 ---
 
@@ -199,7 +199,7 @@
 | Service-role samo server-side; nema u bundle-u | ✓ | Edge re-provera tenanta; audit: „nema tajne u repou" |
 | Audit trail (role change, reassignment, financial, doc delete, billing) | ~ | delimično kroz `trip_events`; **fali:** `audit_log` tabela |
 | GDPR (export/delete request, retention, DPA, privacy labels) | ✗ **[NOVO iz PDF-a]** | nema GDPR tokova |
-| Otvorene audit High stavke (2026-08: A1 dnevnik owner-write, A2 platform_admin/trip_events, A3 suspenzija RLS, A4 offline poison) | ~ | dokumentovano `AUDIT-BRUMTRUCKERZ-2026-08.md`; **fali:** potvrda da su zatvorene |
+| Audit High A1–A4 (2026-08) | ✓ **[ISPRAVKA]** | **ZATVORENI**: A1/A2/A3 u `0015_audit_fixes` (+ `0016`), na PROD-u (`remote 0026`); A4 offline dead-letter `queue.ts` (`MAX_ATTEMPTS=5`) + `queue.test.ts`. Detalji: `MASTER-PLAN-v2.md §2` |
 
 ## 20) Offline-first & sinhronizacija (§12)
 | Zahtev | Stanje | Referenca |
@@ -320,7 +320,7 @@ zaposlenje, broj/istorija tura, ukupno km, grafikon km/mesec. **Zemlje, preferen
 | 19 | **Karijerni profil — „zemlje kroz koje je vozio"** (strukturisana zemlja po stanici/ruti) | §7.9-CV | **S–M** | ~ (podatkovni model) |
 | 20 | **Marketing/growth agent** (odvojen servis) | §15 | **L** | ⛩ (odvojen domen) |
 | 21 | **E2E/Load/Recovery testovi** | §19 | **M–L** | ne |
-| 22 | **Zatvaranje audit High A1–A4** (ako otvoreni) | §11 | **S–M** | ne (bezbednosno bitno) |
+| ~~22~~ | ~~Zatvaranje audit High A1–A4~~ → **ZATVORENO** (0015/0016 na PROD + offline dead-letter; v. `MASTER-PLAN-v2.md §2`) | §11 | — | — |
 | 23 | **Realtime sloj** (Supabase realtime za dispatch/dashboard) | §8, §10 | **M** | ~ (vezano za event model) |
 
 > „⛩ jednosmerna vrata" = odluke skupe za promeniti kasnije (event model, role/multi-firma, portal/driver podela,
