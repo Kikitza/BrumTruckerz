@@ -1,77 +1,50 @@
-# IZVEŠTAJ — WEB-SAFE POTVRDE/OBAVEŠTENJA (dovršetak)
+# IZVEŠTAJ — F3 „WEB DOVRŠETAK": kompresija slika + desktop poliranje
 
-> Nastavak popravke „odjava ne radi na webu". Uzrok je isti za celu klasu: **RN `Alert.alert` je NO-OP na
-> react-native-web** → destruktivne potvrde se „progutaju" (akcija izostane), a greške/obaveštenja se ne vide.
-> Sve **web-dostupne (vlasnik/auth)** tačke sada idu kroz **jedan** helper `src/lib/confirm.ts`
-> (`confirmAction` + novi `notify`). **Native tok nepromenjen.** Commit `c06b571` (push-ovan).
+> Web = uvek online, kancelarija. **Native netaknut** (sve web grane su iza `isWeb`). Commit `072a8a6` (push-ovan).
 
-## Helper (`src/lib/confirm.ts`)
-- `confirmAction({title, message?, confirmLabel, cancelLabel, destructive?}) → Promise<boolean>` — web: `window.confirm`; native: `Alert.alert` (cancel/destructive, `onDismiss→false`).
-- **`notify({title, message?, okLabel?}) → Promise<void>`** (novo) — web: `window.alert` (blokira → razreši); native: `Alert.alert` (razreši na tap/dismiss; bez `okLabel` ostaje sistemsko OK → native 1:1). `okLabel` daje dugme koje razrešava pre nastavka (npr. „Gotovo" → `onJoined`).
+## 1) Kompresija slika na webu ✅
+- **Novo:** `src/lib/webFile.ts` → `compressImageForUpload(file, {maxEdge, quality})` — ugrađeni `<canvas>` (bez teških biblioteka):
+  smanji na **dužu stranu ≤ 1600px**, **JPEG ~0.8**, **zadrži odnos stranica**; samo smanjuje (nikad ne uvećava).
+  Ako slika već staje / dekodovanje ne uspe / rezultat NIJE manji → **vrati original** (bez gubitka). GIF/SVG se ne diraju.
+- **Ugrađeno u** `AttachmentsSection.addFromComputer` (web upload) pre `uploadAttachmentWeb`. `storage_key` ostaje
+  `company_id/trip_id/uuid.jpg`, `contentType` sada **stvarno** `image/jpeg` (doslednije nego pre — ranije se npr. PNG
+  slao pod `.jpg` ključem). 8MB gard na izvorni fajl ostaje.
 
-## Lista A — VIŠEDUGMADNE POTVRDE (sad rade na webu) ✅
-| Fajl | Akcija |
+### Pre/posle (isti algoritam: duža strana 1600 + JPEG q80; ImageMagick analog canvas puta)
+| Primer | Pre | Posle | Ušteda |
+|---|---|---|---|
+| Telefonska foto dokumenta 4032×3024 | 3843 KB | 1600×1200, **323 KB** | ~**92%** |
+| Skenirana A4 2480×3508 | 104 KB | 1131×1600, **9 KB** | ~**91%** |
+
+> Napomena: brojevi su iz reprezentativnog merenja (browser canvas nije dostupan u CI-u); algoritam je identičan onome u kodu.
+
+## 2) Desktop poliranje (DesktopContainer / tamna tema) ✅
+| Ekran | Šta je urađeno |
 |---|---|
-| `reminders/ReminderFormModal.tsx` | brisanje roka |
-| `attachments/AttachmentsSection.tsx` | brisanje priloga (sinhronizovan **i** pending) |
-| `admin/CompanyDetailModal.tsx` | promena statusa firme (nedestruktivan confirm) |
-| `trips/TripDetailModal.tsx` | brisanje troška |
-| `trips/stops.tsx` | brisanje stajanja |
-| `identity/InvitesSection.tsx` | otkazivanje pozivnice |
-| `identity/AcceptInviteBox.tsx` | **uspeh prihvatanja → `onJoined` okine i na webu** (bez ovoga nov član nije ulazio u firmu preko browsera) |
-| `(owner)/customers.tsx` | arhiviranje **i** brisanje naručioca *(dodatno nađeno — nije bilo u pređašnjoj listi A)* |
-| `(owner)/fleet.tsx` | brisanje vozila/prikolice/vozača + brisanje naloga vozača *(dodatno nađeno — glavni CRUD ekran)* |
+| **Rokovi** (`(owner)/reminders.tsx`) | umotan u `DesktopContainer maxWidth=900` (prazan + lista) — bez razvučenih kartica; puna širina nosi boju teme (bez belih ivica) |
+| **Podešavanja** (`(owner)/settings.tsx`) | umotan u `DesktopContainer maxWidth=720` — uža, centrirana kolona (paket, izdavalac, pozivnice, odjava) |
+| **SVI modali** (`components/form.tsx` → `ModalScaffold`) | na webu sadržaj **centriran, `maxWidth 640`** — jedna izmena doteruje: **Izdavalac** (`InvoiceSettingsModal`), **Naručilac detalj/forma** (`CustomerFormModal`), forme rokova/tura/troška/firme — polja se više ne razvlače preko celog ekrana |
 
-## Lista B — INFORMATIVNI ALERT (greške/obaveštenja, sad vidljivi na webu) ✅
-Prebačeno na `notify`: `sign-in`, `EmailSignUp` (greška + „potvrdi mejl"), `NewCompanyWizard`, `IssueInvoiceModal`,
-`InvoiceDetailModal`, `InvoiceSettingsModal`, `NewTripModal`, `CustomerFormModal`, `customers.tsx`,
-`fleet.tsx` (greške + poruke o limitu paketa), plus greške u svim gore navedenim A-fajlovima
-(`ReminderFormModal`, `AttachmentsSection`, `CompanyDetailModal`, `TripDetailModal`, `InvitesSection`).
+- **DRY:** umesto po-ekran doterivanja modala, jedna izmena u `ModalScaffold` pokriva sve (KVALITET #1).
+- **Funkcionalnost nedirana** — samo raspored/širine na širokom webu; native je providan (`isWeb` gard).
 
-## Namerno OSTAVLJENO (native-only — nema web put, nema bага) — za info
-| Fajl | Zašto |
-|---|---|
-| `attachments/AttachmentsSection.tsx` → `addPhoto` | troslojni izbor izvora (kamera/galerija); web koristi `addFromComputer` (v. `isWeb` grana) |
-| `notifications/registerPush.ts` | push-dozvola rationale — push ne postoji na webu |
-| `auth/PhoneOtpSteps.tsx`, `identity/PhoneChange.tsx` | telefon/OTP tok je native |
-| `app/(driver)/index.tsx` | vozač je na webu blokiran (`DriverWebNotice` u `app/index.tsx`) → ekran se ne renderuje na webu |
-
-> Ako se ubuduće otvori native-only tok za web (npr. vozač na webu), ta mesta se prebace istim helperom.
-
-## Ponašanje
-- **Web:** potvrde → `window.confirm`; greške/obaveštenja → `window.alert`; `AcceptInviteBox` posle „OK" pokreće `onJoined` (ulazak u firmu radi).
-- **Native (Expo Go):** identično kao pre (Alert sa cancel/destructive; sistemsko OK) — **nepromenjeno**.
-
-## i18n
-Bez novih ključeva — korišćeni postojeći (`common.*`, `*.deleteConfirm`, `*.confirm*`, `plan.limitReached`, `auth.confirmEmailSent`, …). Lokalizacije nisu dirane.
-
-## Testovi / kvalitet
-- Nov unit test **nije** dodat: konvencija (`jest.config.js`) je „SAMO čiste funkcije"; `confirmAction`/`notify` su platform-branč omotači (Alert/window) — ne čiste funkcije. Pokriveno tipovima + revizijom.
-- Slojevi/DRY (KVALITET #1): jedan helper za sve ekrane; bez dupliranja.
+## 3) Sitno / izlistano (bez širenja obima)
+- `reports.tsx` je **stub** („reports — TODO"), bez sadržaja za poliranje — ostavljen; kad dobije sadržaj, umotati u `DesktopContainer`.
+- **Hover/cursor-pointer** na klik-elementima na webu: nije sistemski uveden (bio bi rasut zahvat kroz mnoge `Pressable`).
+  Predlog za zaseban prolog: dodati deljeni web `cursor: "pointer"` sloj (npr. u `Screen`/reusable dugme) umesto po komponenti.
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ |
-| `npm test` | ✅ 121/121 |
+| `npm test` | ✅ 125/125 (18 suita) |
 | `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
-| Native tok (Expo Go) | ✅ nepromenjen |
-| Web tok (potvrde/greške/prihvatanje pozivnice) | ✅ rade |
-| Commit + push | ✅ `c06b571` na `main` |
+| `expo export --platform web` | ✅ build prolazi (exit 0) |
+| Native (Expo Go) | ✅ nedirano (sve web grane iza `isWeb`) |
+| i18n | ✅ nije diran (nema novih ključeva u ovom zadatku) |
+| KVALITET KODA | ✅ jedan helper za kompresiju, jedna izmena za sve modale (bez dupliranja) |
+| Commit + push | ✅ `072a8a6` na `main` |
 
-## DODATAK — PRIJAVA (sign-in) greške INLINE (commit `40737d0`)
-- Pogrešan imejl/lozinka i mrežna greška su na webu bile **nevidljive** (Alert no-op). Sada se prikazuju
-  **inline** (crveni tekst ispod polja) — **ne** kroz Alert/`window.alert` — čitljivo, radi na **webu i native-u**
-  (native namerno dobija istu inline poruku umesto Alert-a, jer je bolje).
-- **Mapiranje** kroz čistu fn `src/features/auth/emailAuth.ts` → `emailAuthErrorKey` (analogno `phoneAuthErrorKey`):
-  `auth.err.invalidCredentials` („Pogrešan imejl ili lozinka"), `auth.err.network` (mrežna greška — svoja poruka,
-  ne meša se sa lozinkom), `auth.err.emailNotConfirmed`, `auth.err.signInFailed` (iskren fallback).
-- **i18n:** 4 nova ključa `auth.err.*` u **svih 30** jezika (sr/en autorski, ostalih 28 mašinski). `en` fallback pun,
-  nijedan ključ ne postoji samo u drugom jeziku. Status fajlova nije menjan.
-- Greška se **čisti** pri ponovnom pokušaju i pri kucanju (email/lozinka).
-- **Test:** `src/features/auth/emailAuth.test.ts` (4 slučaja: invalid/network/notConfirmed/fallback) — čista fn,
-  u skladu sa konvencijom testova.
-- Provere: typecheck ✅, **jest 125/125** (18 suita, +4) ✅, lint 0 grešaka ✅, i18n konzistentnost (30/30) ✅.
-
-## Šta ostaje
-Ništa blokirajuće. Preostali `Alert.alert` su isključivo native-only tokovi (tabela gore); mogu se ujednačiti istim helperom u zasebnom prolazu ako/ kad ti tokovi dobiju web verziju.
+## Šta ostaje (F3)
+- `reports.tsx` sadržaj (poseban zadatak) + njegov desktop-pass.
+- Opcioni web „mikro-utisak": hover/cursor sloj (gore).
