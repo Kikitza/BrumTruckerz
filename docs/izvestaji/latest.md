@@ -102,11 +102,15 @@
 
 | # | Korak | Status |
 |---|---|---|
-| A | `google-services.json` u korenu | **NIJE** ⛔ — čeka DEO A |
-| A | `googleServicesFile` u `app.config.ts` | **NIJE** (čeka fajl) |
-| B | FCM V1 ključ na expo.dev | **NIJE potvrđeno** ⛔ — čeka DEO B |
-| C | Build sa push-om (versionCode 6) | **ČEKA DEO A** ⛔ |
+| A | `google-services.json` u korenu | **URAĐENO** ✅ (projekat `entop-98f50`, package `com.brumtruckerz.app`) |
+| A | `googleServicesFile` u `app.config.ts` | **URAĐENO** ✅ (`./google-services.json`; commit `3819bfe`) |
+| B | FCM V1 ključ na expo.dev | **NIJE** ⛔ — čeka DEO B (ključ IZ projekta **`entop-98f50`**) |
+| C | Build sa push-om (versionCode 6) | **ČEKA DEO B** ⛔ |
 | D | Proba uživo | **ČEKA DEO C** ⛔ |
+
+> ⚠️ **Napomena o projektu:** prva verzija fajla je imala pogrešan package (`E.T.N.O.S`, projekat `truckerz-d5118`) i
+> **odbačena** je. Važeći `google-services.json` je iz projekta **`entop-98f50`**. FCM V1 service-account ključ (DEO B)
+> **MORA** biti generisan iz **istog** projekta `entop-98f50` — inače se ne poklapa i push ne prolazi.
 | — | reminders-cron deploy @ PROD | **URAĐENO** ✅ (`ACTIVE`, `verify_jwt:false`) |
 | — | CRON_SECRET @ PROD | **URAĐENO** ✅ (postoji; smoke 401/200 ranije) |
 | — | Raspored 07:00 Europe/Belgrade | **URAĐENO** ✅ (`0 5 * * *` UTC; DST: 07:00 CEST leti / 06:00 zimi) |
