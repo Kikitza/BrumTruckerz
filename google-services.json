@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "558254406214",
+    "project_id": "entop-98f50",
+    "storage_bucket": "entop-98f50.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558254406214:android:e92dae745e4e30754f2847",
+        "android_client_info": {
+          "package_name": "com.brumtruckerz.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfoVfA2SOxPlVBrc8B5n-KCIxzQTkKxPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

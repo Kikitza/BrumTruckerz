@@ -40,6 +40,7 @@ const config: ExpoConfig = {
   ios: { supportsTablet: false, bundleIdentifier: "com.brumtruckerz.app" },
   android: {
     package: "com.brumtruckerz.app",
+    googleServicesFile: "./google-services.json", // FCM V1 (push) — mora imati package == android.package
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png", // providan ETNOP znak, u sigurnoj zoni
       backgroundColor: "#0B1220",
