@@ -59,5 +59,19 @@ Bez novih ključeva — korišćeni postojeći (`common.*`, `*.deleteConfirm`, `
 | Web tok (potvrde/greške/prihvatanje pozivnice) | ✅ rade |
 | Commit + push | ✅ `c06b571` na `main` |
 
+## DODATAK — PRIJAVA (sign-in) greške INLINE (commit `40737d0`)
+- Pogrešan imejl/lozinka i mrežna greška su na webu bile **nevidljive** (Alert no-op). Sada se prikazuju
+  **inline** (crveni tekst ispod polja) — **ne** kroz Alert/`window.alert` — čitljivo, radi na **webu i native-u**
+  (native namerno dobija istu inline poruku umesto Alert-a, jer je bolje).
+- **Mapiranje** kroz čistu fn `src/features/auth/emailAuth.ts` → `emailAuthErrorKey` (analogno `phoneAuthErrorKey`):
+  `auth.err.invalidCredentials` („Pogrešan imejl ili lozinka"), `auth.err.network` (mrežna greška — svoja poruka,
+  ne meša se sa lozinkom), `auth.err.emailNotConfirmed`, `auth.err.signInFailed` (iskren fallback).
+- **i18n:** 4 nova ključa `auth.err.*` u **svih 30** jezika (sr/en autorski, ostalih 28 mašinski). `en` fallback pun,
+  nijedan ključ ne postoji samo u drugom jeziku. Status fajlova nije menjan.
+- Greška se **čisti** pri ponovnom pokušaju i pri kucanju (email/lozinka).
+- **Test:** `src/features/auth/emailAuth.test.ts` (4 slučaja: invalid/network/notConfirmed/fallback) — čista fn,
+  u skladu sa konvencijom testova.
+- Provere: typecheck ✅, **jest 125/125** (18 suita, +4) ✅, lint 0 grešaka ✅, i18n konzistentnost (30/30) ✅.
+
 ## Šta ostaje
 Ništa blokirajuće. Preostali `Alert.alert` su isključivo native-only tokovi (tabela gore); mogu se ujednačiti istim helperom u zasebnom prolazu ako/ kad ti tokovi dobiju web verziju.
