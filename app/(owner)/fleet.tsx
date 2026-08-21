@@ -14,6 +14,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { confirmAction, notify } from "../../src/lib/confirm";
+import { CareerProfileModal } from "../../src/features/career/CareerProfileModal";
 import { fmtNumber, fmtKm, fmtDate } from "../../src/lib/format";
 import { toNum, toInt } from "../../src/lib/num";
 import {
@@ -335,6 +336,7 @@ function FleetFormModal({
 
   // Lekarsko uverenje = rok (reminders), NE kolona na drivers. Učitaj postojeći pri izmeni.
   const [medical, setMedical] = useState<string | null>(null);
+  const [careerOpen, setCareerOpen] = useState(false); // CV radnika (office pregled)
   const medicalQ = useQuery({
     queryKey: ["driver-medical", item?.id ?? "new"],
     queryFn: () => getDriverMedicalReminder(item!.id),
@@ -526,6 +528,17 @@ function FleetFormModal({
             {/* Nalog vozača — tek za sačuvanog vozača (treba postojeći drivers red). */}
             {editing && (
               <DriverAccountSection driverId={item!.id} userId={(item as Driver).user_id} colors={colors} />
+            )}
+
+            {/* Karijera (CV) radnika — samo kad vozač ima nalog (user_id); office pregled ograničen na svoju firmu. */}
+            {editing && (item as Driver).user_id && (
+              <Pressable onPress={() => setCareerOpen(true)}
+                style={{ borderWidth: 1, borderColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center" }}>
+                <Text style={{ color: colors.primary, fontWeight: "600" }}>{t("career.open")}</Text>
+              </Pressable>
+            )}
+            {careerOpen && (
+              <CareerProfileModal userId={(item as Driver).user_id} onClose={() => setCareerOpen(false)} />
             )}
           </>
         )}

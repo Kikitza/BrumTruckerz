@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Застосунок водія лише мобільний — відкрий мобільний застосунок ETNOP."
+  },
+  "career": {
+    "title": "Кар'єра",
+    "open": "Кар'єра (CV)",
+    "myCv": "Моє CV",
+    "myCvHint": "Твоя трудова історія та підсумки",
+    "totalKm": "Усього км",
+    "trips": "Рейси",
+    "companies": "Компанії",
+    "tenure": "Стаж",
+    "yearShort": "р",
+    "monthShort": "м",
+    "employmentHistory": "Історія працевлаштування",
+    "noEmployments": "Ще немає працевлаштувань.",
+    "now": "зараз",
+    "statusActive": "Активно",
+    "statusEnded": "Завершено",
+    "role": {
+      "driver": "Водій",
+      "dispatcher": "Диспетчер"
+    },
+    "chart": {
+      "title": "км на місяць",
+      "empty": "Ще немає даних.",
+      "yearTotal": "Усього: {{km}}"
+    }
   }
 }

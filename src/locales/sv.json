@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Förar-appen är endast mobil — öppna ETNOP mobilapp."
+  },
+  "career": {
+    "title": "Karriär",
+    "open": "Karriär (CV)",
+    "myCv": "Mitt CV",
+    "myCvHint": "Din arbetshistorik och summor",
+    "totalKm": "Totalt km",
+    "trips": "Turer",
+    "companies": "Företag",
+    "tenure": "Anställningstid",
+    "yearShort": "å",
+    "monthShort": "m",
+    "employmentHistory": "Anställningshistorik",
+    "noEmployments": "Inga anställningar ännu.",
+    "now": "nu",
+    "statusActive": "Aktiv",
+    "statusEnded": "Avslutad",
+    "role": {
+      "driver": "Förare",
+      "dispatcher": "Transportledare"
+    },
+    "chart": {
+      "title": "km per månad",
+      "empty": "Inga data ännu.",
+      "yearTotal": "Totalt: {{km}}"
+    }
   }
 }

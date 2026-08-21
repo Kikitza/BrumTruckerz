@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "L'app chauffeur est uniquement mobile — ouvre l'app mobile ETNOP."
+  },
+  "career": {
+    "title": "Carrière",
+    "open": "Carrière (CV)",
+    "myCv": "Mon CV",
+    "myCvHint": "Votre historique et totaux",
+    "totalKm": "Km total",
+    "trips": "Trajets",
+    "companies": "Sociétés",
+    "tenure": "Ancienneté",
+    "yearShort": "a",
+    "monthShort": "m",
+    "employmentHistory": "Historique d'emploi",
+    "noEmployments": "Aucun emploi pour le moment.",
+    "now": "maintenant",
+    "statusActive": "Actif",
+    "statusEnded": "Terminé",
+    "role": {
+      "driver": "Chauffeur",
+      "dispatcher": "Répartiteur"
+    },
+    "chart": {
+      "title": "km par mois",
+      "empty": "Pas encore de données.",
+      "yearTotal": "Total : {{km}}"
+    }
   }
 }

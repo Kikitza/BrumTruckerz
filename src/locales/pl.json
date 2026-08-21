@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Aplikacja kierowcy działa tylko na telefonie — otwórz aplikację mobilną ETNOP."
+  },
+  "career": {
+    "title": "Kariera",
+    "open": "Kariera (CV)",
+    "myCv": "Moje CV",
+    "myCvHint": "Twoja historia pracy i sumy",
+    "totalKm": "Suma km",
+    "trips": "Trasy",
+    "companies": "Firmy",
+    "tenure": "Staż",
+    "yearShort": "l",
+    "monthShort": "m",
+    "employmentHistory": "Historia zatrudnienia",
+    "noEmployments": "Brak zatrudnień.",
+    "now": "teraz",
+    "statusActive": "Aktywne",
+    "statusEnded": "Zakończone",
+    "role": {
+      "driver": "Kierowca",
+      "dispatcher": "Dyspozytor"
+    },
+    "chart": {
+      "title": "km na miesiąc",
+      "empty": "Brak danych.",
+      "yearTotal": "Razem: {{km}}"
+    }
   }
 }

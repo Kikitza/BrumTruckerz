@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "A app do motorista é apenas móvel — abre a app móvel ETNOP."
+  },
+  "career": {
+    "title": "Carreira",
+    "open": "Carreira (CV)",
+    "myCv": "O meu CV",
+    "myCvHint": "O teu histórico de trabalho e totais",
+    "totalKm": "Km totais",
+    "trips": "Viagens",
+    "companies": "Empresas",
+    "tenure": "Antiguidade",
+    "yearShort": "a",
+    "monthShort": "m",
+    "employmentHistory": "Histórico de emprego",
+    "noEmployments": "Ainda sem empregos.",
+    "now": "agora",
+    "statusActive": "Ativo",
+    "statusEnded": "Terminado",
+    "role": {
+      "driver": "Motorista",
+      "dispatcher": "Despachante"
+    },
+    "chart": {
+      "title": "km por mês",
+      "empty": "Ainda sem dados.",
+      "yearTotal": "Total: {{km}}"
+    }
   }
 }

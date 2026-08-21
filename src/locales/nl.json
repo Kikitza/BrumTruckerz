@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "De chauffeurs-app is alleen mobiel — open de mobiele ETNOP-app."
+  },
+  "career": {
+    "title": "Loopbaan",
+    "open": "Loopbaan (CV)",
+    "myCv": "Mijn cv",
+    "myCvHint": "Je werkgeschiedenis en totalen",
+    "totalKm": "Totaal km",
+    "trips": "Ritten",
+    "companies": "Bedrijven",
+    "tenure": "Dienstjaren",
+    "yearShort": "j",
+    "monthShort": "m",
+    "employmentHistory": "Arbeidsverleden",
+    "noEmployments": "Nog geen dienstverbanden.",
+    "now": "nu",
+    "statusActive": "Actief",
+    "statusEnded": "Beëindigd",
+    "role": {
+      "driver": "Chauffeur",
+      "dispatcher": "Planner"
+    },
+    "chart": {
+      "title": "km per maand",
+      "empty": "Nog geen gegevens.",
+      "yearTotal": "Totaal: {{km}}"
+    }
   }
 }

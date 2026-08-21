@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Апликацијата за возач е само мобилна — отвори ја мобилната апликација ETNOP."
+  },
+  "career": {
+    "title": "Кариера",
+    "open": "Кариера (CV)",
+    "myCv": "Мое CV",
+    "myCvHint": "Твојата работна историја и збирови",
+    "totalKm": "Вкупно км",
+    "trips": "Тури",
+    "companies": "Фирми",
+    "tenure": "Стаж",
+    "yearShort": "г",
+    "monthShort": "м",
+    "employmentHistory": "Историја на вработување",
+    "noEmployments": "Сè уште нема вработувања.",
+    "now": "сега",
+    "statusActive": "Активно",
+    "statusEnded": "Завршено",
+    "role": {
+      "driver": "Возач",
+      "dispatcher": "Диспечер"
+    },
+    "chart": {
+      "title": "км по месец",
+      "empty": "Сè уште нема податоци.",
+      "yearTotal": "Вкупно: {{km}}"
+    }
   }
 }

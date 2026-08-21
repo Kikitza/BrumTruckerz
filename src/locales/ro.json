@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Aplicația pentru șofer este doar mobilă — deschide aplicația mobilă ETNOP."
+  },
+  "career": {
+    "title": "Carieră",
+    "open": "Carieră (CV)",
+    "myCv": "CV-ul meu",
+    "myCvHint": "Istoricul tău de muncă și totaluri",
+    "totalKm": "Total km",
+    "trips": "Curse",
+    "companies": "Firme",
+    "tenure": "Vechime",
+    "yearShort": "a",
+    "monthShort": "l",
+    "employmentHistory": "Istoric angajări",
+    "noEmployments": "Încă nu există angajări.",
+    "now": "acum",
+    "statusActive": "Activ",
+    "statusEnded": "Încheiat",
+    "role": {
+      "driver": "Șofer",
+      "dispatcher": "Dispecer"
+    },
+    "chart": {
+      "title": "km pe lună",
+      "empty": "Încă nu există date.",
+      "yearTotal": "Total: {{km}}"
+    }
   }
 }

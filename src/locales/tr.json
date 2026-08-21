@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Sürücü uygulaması yalnızca mobildir — ETNOP mobil uygulamasını aç."
+  },
+  "career": {
+    "title": "Kariyer",
+    "open": "Kariyer (CV)",
+    "myCv": "CV'm",
+    "myCvHint": "Çalışma geçmişin ve toplamlar",
+    "totalKm": "Toplam km",
+    "trips": "Seferler",
+    "companies": "Şirketler",
+    "tenure": "Kıdem",
+    "yearShort": "y",
+    "monthShort": "ay",
+    "employmentHistory": "Çalışma geçmişi",
+    "noEmployments": "Henüz istihdam yok.",
+    "now": "şimdi",
+    "statusActive": "Aktif",
+    "statusEnded": "Sona erdi",
+    "role": {
+      "driver": "Sürücü",
+      "dispatcher": "Sevkiyatçı"
+    },
+    "chart": {
+      "title": "aylık km",
+      "empty": "Henüz veri yok.",
+      "yearTotal": "Toplam: {{km}}"
+    }
   }
 }

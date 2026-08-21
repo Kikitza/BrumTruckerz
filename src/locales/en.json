@@ -595,5 +595,31 @@
   },
   "web": {
     "driverUseMobile": "The driver app is mobile only — please open the ETNOP mobile app."
+  },
+  "career": {
+    "title": "Career",
+    "open": "Career (CV)",
+    "myCv": "My CV",
+    "myCvHint": "Your work history and totals",
+    "totalKm": "Total km",
+    "trips": "Trips",
+    "companies": "Companies",
+    "tenure": "Tenure",
+    "yearShort": "y",
+    "monthShort": "m",
+    "employmentHistory": "Employment history",
+    "noEmployments": "No employment records yet.",
+    "now": "now",
+    "statusActive": "Active",
+    "statusEnded": "Ended",
+    "role": {
+      "driver": "Driver",
+      "dispatcher": "Dispatcher"
+    },
+    "chart": {
+      "title": "km per month",
+      "empty": "No data yet.",
+      "yearTotal": "Total: {{km}}"
+    }
   }
 }

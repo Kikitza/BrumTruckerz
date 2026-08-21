@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Sjåfør-appen er kun mobil — åpne ETNOP-mobilappen."
+  },
+  "career": {
+    "title": "Karriere",
+    "open": "Karriere (CV)",
+    "myCv": "Min CV",
+    "myCvHint": "Din arbeidshistorikk og totaler",
+    "totalKm": "Totalt km",
+    "trips": "Turer",
+    "companies": "Firmaer",
+    "tenure": "Ansiennitet",
+    "yearShort": "å",
+    "monthShort": "m",
+    "employmentHistory": "Ansettelseshistorikk",
+    "noEmployments": "Ingen ansettelser ennå.",
+    "now": "nå",
+    "statusActive": "Aktiv",
+    "statusEnded": "Avsluttet",
+    "role": {
+      "driver": "Sjåfør",
+      "dispatcher": "Transportleder"
+    },
+    "chart": {
+      "title": "km per måned",
+      "empty": "Ingen data ennå.",
+      "yearTotal": "Totalt: {{km}}"
+    }
   }
 }

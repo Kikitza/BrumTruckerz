@@ -10,13 +10,15 @@ import { getCompanyPlan, countVehicles } from "../../src/features/fleet/api";
 import { InvitesSection } from "../../src/features/identity/InvitesSection";
 import { InvoiceSettingsModal } from "../../src/features/invoices/InvoiceSettingsModal";
 import { useRole } from "../../src/features/auth/useRole";
+import { CareerProfileModal } from "../../src/features/career/CareerProfileModal";
 
 export default function Settings() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const signOut = useSignOut();
-  const { isOwner } = useRole();
+  const { isOwner, role } = useRole();
   const [invoiceSettings, setInvoiceSettings] = useState(false);
+  const [myCv, setMyCv] = useState(false);
 
   // Paket + iskorišćenost čita samo vlasnik (dispečer nema „Paket": owner-only).
   const planQ = useQuery({ queryKey: ["company-plan"], queryFn: getCompanyPlan, enabled: isOwner });
@@ -50,10 +52,22 @@ export default function Settings() {
         <Text style={{ color: colors.textMuted, fontSize: 12, marginTop: 2 }}>{t("invoice.settings.hint")}</Text>
       </Pressable>
 
+      {/* Dispečer: sopstveni karijerni CV (vlasnik nije radnik-građanin, pa mu se ne nudi). */}
+      {role === "dispatcher" && (
+        <Pressable
+          onPress={() => setMyCv(true)}
+          style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16 }}
+        >
+          <Text style={{ color: colors.text, fontWeight: "600" }}>{t("career.myCv")}</Text>
+          <Text style={{ color: colors.textMuted, fontSize: 12, marginTop: 2 }}>{t("career.myCvHint")}</Text>
+        </Pressable>
+      )}
+
       {/* Pozivnice: dispečer vidi/pravi SAMO vozačke (allowDispatcher=false) */}
       <InvitesSection allowDispatcher={isOwner} />
 
       {invoiceSettings && <InvoiceSettingsModal onClose={() => setInvoiceSettings(false)} />}
+      {myCv && <CareerProfileModal userId={null} onClose={() => setMyCv(false)} />}
 
       <Pressable
         onPress={signOut}

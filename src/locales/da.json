@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Chauffør-appen er kun mobil — åbn ETNOP-mobilappen."
+  },
+  "career": {
+    "title": "Karriere",
+    "open": "Karriere (CV)",
+    "myCv": "Mit CV",
+    "myCvHint": "Din arbejdshistorik og totaler",
+    "totalKm": "Km i alt",
+    "trips": "Ture",
+    "companies": "Virksomheder",
+    "tenure": "Anciennitet",
+    "yearShort": "å",
+    "monthShort": "m",
+    "employmentHistory": "Ansættelseshistorik",
+    "noEmployments": "Ingen ansættelser endnu.",
+    "now": "nu",
+    "statusActive": "Aktiv",
+    "statusEnded": "Afsluttet",
+    "role": {
+      "driver": "Chauffør",
+      "dispatcher": "Disponent"
+    },
+    "chart": {
+      "title": "km pr. måned",
+      "empty": "Ingen data endnu.",
+      "yearTotal": "I alt: {{km}}"
+    }
   }
 }

@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Vairuotojo programėlė veikia tik telefone — atidaryk ETNOP mobiliąją programėlę."
+  },
+  "career": {
+    "title": "Karjera",
+    "open": "Karjera (CV)",
+    "myCv": "Mano CV",
+    "myCvHint": "Tavo darbo istorija ir sumos",
+    "totalKm": "Iš viso km",
+    "trips": "Reisai",
+    "companies": "Įmonės",
+    "tenure": "Darbo stažas",
+    "yearShort": "m",
+    "monthShort": "mėn",
+    "employmentHistory": "Įdarbinimo istorija",
+    "noEmployments": "Kol kas nėra įdarbinimų.",
+    "now": "dabar",
+    "statusActive": "Aktyvus",
+    "statusEnded": "Baigta",
+    "role": {
+      "driver": "Vairuotojas",
+      "dispatcher": "Dispečeris"
+    },
+    "chart": {
+      "title": "km per mėnesį",
+      "empty": "Kol kas nėra duomenų.",
+      "yearTotal": "Iš viso: {{km}}"
+    }
   }
 }

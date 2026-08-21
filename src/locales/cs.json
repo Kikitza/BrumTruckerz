@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Aplikace pro řidiče je jen mobilní — otevři mobilní aplikaci ETNOP."
+  },
+  "career": {
+    "title": "Kariéra",
+    "open": "Kariéra (CV)",
+    "myCv": "Moje CV",
+    "myCvHint": "Tvoje pracovní historie a součty",
+    "totalKm": "Km celkem",
+    "trips": "Jízdy",
+    "companies": "Firmy",
+    "tenure": "Praxe",
+    "yearShort": "r",
+    "monthShort": "m",
+    "employmentHistory": "Historie zaměstnání",
+    "noEmployments": "Zatím žádná zaměstnání.",
+    "now": "nyní",
+    "statusActive": "Aktivní",
+    "statusEnded": "Ukončeno",
+    "role": {
+      "driver": "Řidič",
+      "dispatcher": "Dispečer"
+    },
+    "chart": {
+      "title": "km za měsíc",
+      "empty": "Zatím žádná data.",
+      "yearTotal": "Celkem: {{km}}"
+    }
   }
 }

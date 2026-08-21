@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "L'app autista è solo mobile — apri l'app mobile ETNOP."
+  },
+  "career": {
+    "title": "Carriera",
+    "open": "Carriera (CV)",
+    "myCv": "Il mio CV",
+    "myCvHint": "La tua storia lavorativa e i totali",
+    "totalKm": "Km totali",
+    "trips": "Viaggi",
+    "companies": "Aziende",
+    "tenure": "Anzianità",
+    "yearShort": "a",
+    "monthShort": "m",
+    "employmentHistory": "Storico impieghi",
+    "noEmployments": "Ancora nessun impiego.",
+    "now": "ora",
+    "statusActive": "Attivo",
+    "statusEnded": "Concluso",
+    "role": {
+      "driver": "Autista",
+      "dispatcher": "Spedizioniere"
+    },
+    "chart": {
+      "title": "km al mese",
+      "empty": "Ancora nessun dato.",
+      "yearTotal": "Totale: {{km}}"
+    }
   }
 }

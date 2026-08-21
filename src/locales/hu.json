@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "A sofőr alkalmazás csak mobilon működik — nyisd meg a ETNOP mobilalkalmazást."
+  },
+  "career": {
+    "title": "Karrier",
+    "open": "Karrier (CV)",
+    "myCv": "Önéletrajzom",
+    "myCvHint": "Munkatörténeted és összesítők",
+    "totalKm": "Összes km",
+    "trips": "Fuvarok",
+    "companies": "Cégek",
+    "tenure": "Munkaviszony",
+    "yearShort": "é",
+    "monthShort": "h",
+    "employmentHistory": "Munkaviszony-előzmények",
+    "noEmployments": "Még nincs munkaviszony.",
+    "now": "most",
+    "statusActive": "Aktív",
+    "statusEnded": "Lezárt",
+    "role": {
+      "driver": "Sofőr",
+      "dispatcher": "Diszpécser"
+    },
+    "chart": {
+      "title": "km havonta",
+      "empty": "Még nincs adat.",
+      "yearTotal": "Összesen: {{km}}"
+    }
   }
 }

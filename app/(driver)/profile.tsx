@@ -2,7 +2,7 @@
 // Dokaz kapije: promena broja NE dira identitet (BT-D/zaposlenje/ture) — v. IZVESTAJ.
 // Boje iz tokena (pravilo #8), stringovi kroz t() (pravilo #7); pristup bazi kroz api sloj.
 import { useState } from "react";
-import { View, Text, Pressable, ActivityIndicator } from "react-native";
+import { View, Text, Pressable, ActivityIndicator, ScrollView } from "react-native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Screen } from "../../src/components/Screen";
@@ -11,6 +11,7 @@ import { useSignOut } from "../../src/features/auth/signOut";
 import { getMyProfile } from "../../src/features/identity/api";
 import { PhoneChange } from "../../src/features/identity/PhoneChange";
 import { maskPhone } from "../../src/features/auth/phone";
+import { CareerProfileView } from "../../src/features/career/CareerProfileView";
 
 export default function DriverProfile() {
   const { t } = useTranslation();
@@ -29,7 +30,8 @@ export default function DriverProfile() {
   );
 
   return (
-    <Screen style={{ padding: 16, gap: 16 }} top={false}>
+    <Screen top={false}>
+      <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
       {q.isLoading ? (
         <ActivityIndicator color={colors.primary} style={{ marginTop: 24 }} />
       ) : (
@@ -62,12 +64,16 @@ export default function DriverProfile() {
         </View>
       )}
 
+      {/* Karijerni CV (self): zbirne brojke, grafikon km/mesec, istorija zaposlenja */}
+      <CareerProfileView showHeader={false} />
+
       <Pressable
         onPress={signOut}
         style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16, alignItems: "center" }}
       >
         <Text style={{ color: colors.danger, fontWeight: "600" }}>{t("settings.signOut")}</Text>
       </Pressable>
+      </ScrollView>
     </Screen>
   );
 }

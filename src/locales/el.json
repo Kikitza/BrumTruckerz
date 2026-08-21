@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Η εφαρμογή οδηγού είναι μόνο για κινητά — άνοιξε την εφαρμογή ETNOP στο κινητό."
+  },
+  "career": {
+    "title": "Καριέρα",
+    "open": "Καριέρα (CV)",
+    "myCv": "Το CV μου",
+    "myCvHint": "Το ιστορικό εργασίας και σύνολα",
+    "totalKm": "Σύνολο χλμ",
+    "trips": "Δρομολόγια",
+    "companies": "Εταιρείες",
+    "tenure": "Προϋπηρεσία",
+    "yearShort": "έ",
+    "monthShort": "μ",
+    "employmentHistory": "Ιστορικό απασχόλησης",
+    "noEmployments": "Καμία απασχόληση ακόμη.",
+    "now": "τώρα",
+    "statusActive": "Ενεργό",
+    "statusEnded": "Έληξε",
+    "role": {
+      "driver": "Οδηγός",
+      "dispatcher": "Διαχειριστής"
+    },
+    "chart": {
+      "title": "χλμ ανά μήνα",
+      "empty": "Χωρίς δεδομένα ακόμη.",
+      "yearTotal": "Σύνολο: {{km}}"
+    }
   }
 }

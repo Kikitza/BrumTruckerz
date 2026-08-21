@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Aplikacioni i shoferit është vetëm për celular — hap aplikacionin celular ETNOP."
+  },
+  "career": {
+    "title": "Karriera",
+    "open": "Karriera (CV)",
+    "myCv": "CV-ja ime",
+    "myCvHint": "Historiku yt i punës dhe totalet",
+    "totalKm": "Km gjithsej",
+    "trips": "Udhëtimet",
+    "companies": "Kompanitë",
+    "tenure": "Vjetërsia",
+    "yearShort": "v",
+    "monthShort": "m",
+    "employmentHistory": "Historiku i punësimit",
+    "noEmployments": "Ende s'ka punësime.",
+    "now": "tani",
+    "statusActive": "Aktiv",
+    "statusEnded": "Përfunduar",
+    "role": {
+      "driver": "Shofer",
+      "dispatcher": "Dispeçer"
+    },
+    "chart": {
+      "title": "km në muaj",
+      "empty": "Ende s'ka të dhëna.",
+      "yearTotal": "Gjithsej: {{km}}"
+    }
   }
 }

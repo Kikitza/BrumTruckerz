@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Juhi rakendus on ainult mobiilne — ava ETNOPi mobiilirakendus."
+  },
+  "career": {
+    "title": "Karjäär",
+    "open": "Karjäär (CV)",
+    "myCv": "Minu CV",
+    "myCvHint": "Sinu töölugu ja kokkuvõtted",
+    "totalKm": "Km kokku",
+    "trips": "Reisid",
+    "companies": "Ettevõtted",
+    "tenure": "Tööstaaž",
+    "yearShort": "a",
+    "monthShort": "k",
+    "employmentHistory": "Töösuhete ajalugu",
+    "noEmployments": "Töösuhteid veel pole.",
+    "now": "praegu",
+    "statusActive": "Aktiivne",
+    "statusEnded": "Lõppenud",
+    "role": {
+      "driver": "Juht",
+      "dispatcher": "Dispetšer"
+    },
+    "chart": {
+      "title": "km kuus",
+      "empty": "Andmeid veel pole.",
+      "yearTotal": "Kokku: {{km}}"
+    }
   }
 }

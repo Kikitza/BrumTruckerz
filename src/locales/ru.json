@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Приложение водителя только мобильное — откройте мобильное приложение ETNOP."
+  },
+  "career": {
+    "title": "Карьера",
+    "open": "Карьера (CV)",
+    "myCv": "Моё резюме",
+    "myCvHint": "Твоя трудовая история и итоги",
+    "totalKm": "Всего км",
+    "trips": "Рейсы",
+    "companies": "Компании",
+    "tenure": "Стаж",
+    "yearShort": "г",
+    "monthShort": "м",
+    "employmentHistory": "История занятости",
+    "noEmployments": "Пока нет занятости.",
+    "now": "сейчас",
+    "statusActive": "Активно",
+    "statusEnded": "Завершено",
+    "role": {
+      "driver": "Водитель",
+      "dispatcher": "Диспетчер"
+    },
+    "chart": {
+      "title": "км в месяц",
+      "empty": "Пока нет данных.",
+      "yearTotal": "Всего: {{km}}"
+    }
   }
 }

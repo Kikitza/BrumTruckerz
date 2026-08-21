@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Šofera lietotne darbojas tikai mobilajā — atver ETNOP mobilo lietotni."
+  },
+  "career": {
+    "title": "Karjera",
+    "open": "Karjera (CV)",
+    "myCv": "Mans CV",
+    "myCvHint": "Tava darba vēsture un kopsummas",
+    "totalKm": "Kopā km",
+    "trips": "Reisi",
+    "companies": "Uzņēmumi",
+    "tenure": "Darba stāžs",
+    "yearShort": "g",
+    "monthShort": "m",
+    "employmentHistory": "Nodarbinātības vēsture",
+    "noEmployments": "Vēl nav nodarbinātību.",
+    "now": "tagad",
+    "statusActive": "Aktīvs",
+    "statusEnded": "Pabeigts",
+    "role": {
+      "driver": "Vadītājs",
+      "dispatcher": "Dispečers"
+    },
+    "chart": {
+      "title": "km mēnesī",
+      "empty": "Vēl nav datu.",
+      "yearTotal": "Kopā: {{km}}"
+    }
   }
 }

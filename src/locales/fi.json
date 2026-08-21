@@ -597,5 +597,31 @@
   },
   "web": {
     "driverUseMobile": "Kuljettajasovellus toimii vain mobiilissa — avaa ETNOP-mobiilisovellus."
+  },
+  "career": {
+    "title": "Ura",
+    "open": "Ura (CV)",
+    "myCv": "Ansioluetteloni",
+    "myCvHint": "Työhistoriasi ja summat",
+    "totalKm": "Km yhteensä",
+    "trips": "Ajot",
+    "companies": "Yritykset",
+    "tenure": "Työsuhteen kesto",
+    "yearShort": "v",
+    "monthShort": "kk",
+    "employmentHistory": "Työhistoria",
+    "noEmployments": "Ei vielä työsuhteita.",
+    "now": "nyt",
+    "statusActive": "Aktiivinen",
+    "statusEnded": "Päättynyt",
+    "role": {
+      "driver": "Kuljettaja",
+      "dispatcher": "Ajojärjestelijä"
+    },
+    "chart": {
+      "title": "km kuukaudessa",
+      "empty": "Ei vielä tietoja.",
+      "yearTotal": "Yhteensä: {{km}}"
+    }
   }
 }
