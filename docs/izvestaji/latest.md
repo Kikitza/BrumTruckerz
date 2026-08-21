@@ -1,50 +1,43 @@
-# IZVEŠTAJ — F3 „WEB DOVRŠETAK": kompresija slika + desktop poliranje
+# IZVEŠTAJ — v2.0 GAP MAPA (samo dokument; kod/šema NisU dirani)
 
-> Web = uvek online, kancelarija. **Native netaknut** (sve web grane su iza `isWeb`). Commit `072a8a6` (push-ovan).
+> **Napomena (činjenica):** traženi `docs/ETNOP-Senior-Projektni-Zadatak-v2.0.pdf` **NE postoji u repou** (nema nijednog
+> PDF-a). Zahtev-strana je uzeta iz **spiska nabrojanog u zadatku** (v2.0 skup), stvarnost-strana iz koda (migracije
+> 0001–0026, `src/features/`, Edge, `app.config`, ADR). Ako dodaš PDF — pass se pooštrava.
 
-## 1) Kompresija slika na webu ✅
-- **Novo:** `src/lib/webFile.ts` → `compressImageForUpload(file, {maxEdge, quality})` — ugrađeni `<canvas>` (bez teških biblioteka):
-  smanji na **dužu stranu ≤ 1600px**, **JPEG ~0.8**, **zadrži odnos stranica**; samo smanjuje (nikad ne uvećava).
-  Ako slika već staje / dekodovanje ne uspe / rezultat NIJE manji → **vrati original** (bez gubitka). GIF/SVG se ne diraju.
-- **Ugrađeno u** `AttachmentsSection.addFromComputer` (web upload) pre `uploadAttachmentWeb`. `storage_key` ostaje
-  `company_id/trip_id/uuid.jpg`, `contentType` sada **stvarno** `image/jpeg` (doslednije nego pre — ranije se npr. PNG
-  slao pod `.jpg` ključem). 8MB gard na izvorni fajl ostaje.
+**Dokument:** `docs/izvestaji/V2-GAP.md` (51 redova zahteva, po oblastima, sa referencama na fajl/tabelu/migraciju).
 
-### Pre/posle (isti algoritam: duža strana 1600 + JPEG q80; ImageMagick analog canvas puta)
-| Primer | Pre | Posle | Ušteda |
+## Skor po oblasti (✓ IMAMO / ~ DELIMIČNO / ✗ NEMA)
+| Oblast | ✓ | ~ | ✗ |
 |---|---|---|---|
-| Telefonska foto dokumenta 4032×3024 | 3843 KB | 1600×1200, **323 KB** | ~**92%** |
-| Skenirana A4 2480×3508 | 104 KB | 1131×1600, **9 KB** | ~**91%** |
+| 1. Identitet & role | 2 | 1 | 2 |
+| 2. Onboarding & OTP | 3 | – | – |
+| 3. Trips & dispatch | 5 | 1 | – |
+| 4. Troškovi & P&L | 3 | – | – |
+| 5. Dokumenti | 2 | – | 1 |
+| 6. Fleet & compliance | 4 | – | – |
+| 7. Naručioci/fakture/VIES | 3 | – | – |
+| 8. Offline & sync | 2 | – | – |
+| 9. Notifikacije (push) | 3 | – | – |
+| 10. WEB portal (moduli) | 1 | 2 | 2 |
+| 11. Event/outbox sloj | – | – | 1 |
+| 12. Network/marketplace | – | – | 3 |
+| 13. Telematika/GPS (zamrznuto) | – | – | 1 |
+| 14. Bezbednost & RLS | 2 | 1 | – |
+| 15. i18n (30 jezika) | 1 | – | – |
+| 16. Monetizacija | 1 | – | 1 |
+| 17. Skala & observability | 2 | – | 1 |
+| **UKUPNO** | **34** | **5** | **12** |
 
-> Napomena: brojevi su iz reprezentativnog merenja (browser canvas nije dostupan u CI-u); algoritam je identičan onome u kodu.
+## „PREOSTALO ZA v2.0" (u dokumentu, sortirano, S/M/L + ⛩ jednosmerna vrata)
+Neispunjeno (bez ponavljanja isporučenog), ključne ⛩ jednosmerne odluke: **event/outbox** (L), **role v2 + multi-firma/union**
+(L), **portal podela Dispatch/Fleet/Finance/Documents/Analytics** (L), **marketplace/mrežni profil** (L), **GPS** (L, svesno
+poslednje). Ostalo bez ⛩: Analytics/Reports (M), Finance modul (M), Documents modul (M), monetizacija RevenueCat (M),
+Sentry (S), zatvaranje audit High A1–A4 (S–M).
 
-## 2) Desktop poliranje (DesktopContainer / tamna tema) ✅
-| Ekran | Šta je urađeno |
+## Provere
+| Stavka | Rezultat |
 |---|---|
-| **Rokovi** (`(owner)/reminders.tsx`) | umotan u `DesktopContainer maxWidth=900` (prazan + lista) — bez razvučenih kartica; puna širina nosi boju teme (bez belih ivica) |
-| **Podešavanja** (`(owner)/settings.tsx`) | umotan u `DesktopContainer maxWidth=720` — uža, centrirana kolona (paket, izdavalac, pozivnice, odjava) |
-| **SVI modali** (`components/form.tsx` → `ModalScaffold`) | na webu sadržaj **centriran, `maxWidth 640`** — jedna izmena doteruje: **Izdavalac** (`InvoiceSettingsModal`), **Naručilac detalj/forma** (`CustomerFormModal`), forme rokova/tura/troška/firme — polja se više ne razvlače preko celog ekrana |
-
-- **DRY:** umesto po-ekran doterivanja modala, jedna izmena u `ModalScaffold` pokriva sve (KVALITET #1).
-- **Funkcionalnost nedirana** — samo raspored/širine na širokom webu; native je providan (`isWeb` gard).
-
-## 3) Sitno / izlistano (bez širenja obima)
-- `reports.tsx` je **stub** („reports — TODO"), bez sadržaja za poliranje — ostavljen; kad dobije sadržaj, umotati u `DesktopContainer`.
-- **Hover/cursor-pointer** na klik-elementima na webu: nije sistemski uveden (bio bi rasut zahvat kroz mnoge `Pressable`).
-  Predlog za zaseban prolog: dodati deljeni web `cursor: "pointer"` sloj (npr. u `Screen`/reusable dugme) umesto po komponenti.
-
-## Provere (ritual)
-| Provera | Rezultat |
-|---|---|
-| `npm run typecheck` | ✅ |
-| `npm test` | ✅ 125/125 (18 suita) |
-| `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
-| `expo export --platform web` | ✅ build prolazi (exit 0) |
-| Native (Expo Go) | ✅ nedirano (sve web grane iza `isWeb`) |
-| i18n | ✅ nije diran (nema novih ključeva u ovom zadatku) |
-| KVALITET KODA | ✅ jedan helper za kompresiju, jedna izmena za sve modale (bez dupliranja) |
-| Commit + push | ✅ `072a8a6` na `main` |
-
-## Šta ostaje (F3)
-- `reports.tsx` sadržaj (poseban zadatak) + njegov desktop-pass.
-- Opcioni web „mikro-utisak": hover/cursor sloj (gore).
+| Izmene koda/šeme | **nema** (samo docs) |
+| Nov fajl | `docs/izvestaji/V2-GAP.md` |
+| Izvor v2.0 PDF | **nije nađen** — korišćen spisak iz zadatka (jasno naznačeno u dokumentu) |
+| i18n | nije diran |
