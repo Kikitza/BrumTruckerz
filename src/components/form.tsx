@@ -320,7 +320,11 @@ export function ModalScaffold({
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={{ flex: 1, backgroundColor: colors.bg }}
       >
-        <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>{children}</View>
+        {/* WEB (F3): centriran, ograničen sadržaj modala (bez razvučenih polja preko celog ekrana);
+            native: providno (children direktno) — ponašanje 1:1. */}
+        <View style={[{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }, isWeb && { width: "100%", maxWidth: 640, alignSelf: "center" }]}>
+          {children}
+        </View>
       </KeyboardAvoidingView>
     </Modal>
   );

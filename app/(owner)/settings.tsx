@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useSignOut } from "../../src/features/auth/signOut";
 import { useTheme } from "../../src/lib/theme";
+import { DesktopContainer } from "../../src/components/DesktopContainer";
 import { getCompanyPlan, countVehicles } from "../../src/features/fleet/api";
 import { InvitesSection } from "../../src/features/identity/InvitesSection";
 import { InvoiceSettingsModal } from "../../src/features/invoices/InvoiceSettingsModal";
@@ -22,7 +23,8 @@ export default function Settings() {
   const vehCountQ = useQuery({ queryKey: ["vehicle-count"], queryFn: countVehicles, enabled: isOwner });
 
   return (
-    <ScrollView
+    <DesktopContainer maxWidth={720}>
+     <ScrollView
       style={{ flex: 1, backgroundColor: colors.bg }}
       contentContainerStyle={{ padding: 16, gap: 16 }}
     >
@@ -62,6 +64,7 @@ export default function Settings() {
       >
         <Text style={{ color: colors.danger, fontWeight: "600" }}>{t("settings.signOut")}</Text>
       </Pressable>
-    </ScrollView>
+     </ScrollView>
+    </DesktopContainer>
   );
 }

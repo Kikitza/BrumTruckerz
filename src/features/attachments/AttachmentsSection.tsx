@@ -17,7 +17,7 @@ import { pickAndCompress, type ImageSource } from "../../lib/image";
 import { uuidv4 } from "../../lib/uuid";
 import { isWeb } from "../../lib/platform";
 import { confirmAction, notify } from "../../lib/confirm";
-import { pickImageFile } from "../../lib/webFile";
+import { pickImageFile, compressImageForUpload } from "../../lib/webFile";
 import {
   listAttachments, listPendingAttachments, enqueueAttachment, uploadAttachmentWeb, signDownload,
   deleteAttachment, deletePendingAttachment,
@@ -89,9 +89,10 @@ export function AttachmentsSection({
     if (file.size > MAX_WEB_MB * 1024 * 1024) { notify({ title: t("attachment.tooLarge", { mb: MAX_WEB_MB }) }); return; }
     setBusy(true);
     try {
-      const bytes = new Uint8Array(await file.arrayBuffer());
+      // Kompresija na uređaju pre uploada (duža strana ~1600px, JPEG ~0.8) — kao mobilni tok, lakši fajl.
+      const { bytes, contentType } = await compressImageForUpload(file, { maxEdge: 1600, quality: 0.8 });
       const effectiveKind: AttachmentKind = pickKind ? selectedKind : (kind ?? "other");
-      await uploadAttachmentWeb({ id: uuidv4(), trip_id: tripId ?? null, expense_id: expenseId ?? null, kind: effectiveKind, bytes, contentType: file.type });
+      await uploadAttachmentWeb({ id: uuidv4(), trip_id: tripId ?? null, expense_id: expenseId ?? null, kind: effectiveKind, bytes, contentType });
       qc.invalidateQueries({ queryKey: key });
     } catch (e) {
       notify({ title: t("common.error"), message: String((e as Error).message ?? e) });

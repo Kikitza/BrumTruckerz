@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme, type Palette } from "../../src/lib/theme";
 import { Collapsible } from "../../src/components/Collapsible";
+import { DesktopContainer } from "../../src/components/DesktopContainer";
 import { ModalScaffold } from "../../src/components/form";
 import { fmtDate } from "../../src/lib/format";
 import { listAllReminders, type ReminderRow, type ReminderSubjectType } from "../../src/features/reminders/api";
@@ -98,17 +99,17 @@ export default function RemindersScreen() {
 
   if (rows.length === 0) {
     return (
-      <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <DesktopContainer maxWidth={900}>
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
           refreshControl={<RefreshControl refreshing={q.isRefetching} onRefresh={() => q.refetch()} tintColor={colors.primary} />}>
           <Text style={{ textAlign: "center", color: colors.textMuted }}>{t("reminders.empty")}</Text>
         </ScrollView>
-      </View>
+      </DesktopContainer>
     );
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+    <DesktopContainer maxWidth={900}>
       <ScrollView contentContainerStyle={{ padding: 12, gap: 10 }}
         refreshControl={<RefreshControl refreshing={q.isRefetching} onRefresh={() => q.refetch()} tintColor={colors.primary} />}>
         {SUBJECTS.map((subject) => {
@@ -130,7 +131,7 @@ export default function RemindersScreen() {
       </ScrollView>
 
       {selected && <SubjectRemindersModal group={selected} colors={colors} onClose={() => setSelectedId(null)} />}
-    </View>
+    </DesktopContainer>
   );
 }
 
