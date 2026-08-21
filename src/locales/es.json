@@ -23,7 +23,11 @@
       "phoneInvalid": "Introduce un número de teléfono válido.",
       "otpInvalid": "Código incorrecto o caducado — verifícalo o solicita uno nuevo.",
       "otpExpired": "Este código ha caducado. Solicita uno nuevo.",
-      "otpTooMany": "Demasiados intentos. Espera un momento e inténtalo de nuevo."
+      "otpTooMany": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+      "invalidCredentials": "Correo electrónico o contraseña incorrectos.",
+      "network": "Sin conexión a internet. Comprueba tu conexión e inténtalo de nuevo.",
+      "emailNotConfirmed": "Correo no confirmado. Revisa tu bandeja de entrada para confirmar tu cuenta.",
+      "signInFailed": "Error al iniciar sesión. Inténtalo de nuevo."
     },
     "register": "Registrarse",
     "noAccount": "¿No tienes cuenta? Regístrate",

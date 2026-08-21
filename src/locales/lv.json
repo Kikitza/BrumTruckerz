@@ -23,7 +23,11 @@
       "phoneInvalid": "Ievadi derīgu tālruņa numuru.",
       "otpInvalid": "Nepareizs vai beidzies kods — pārbaudi to vai pieprasi jaunu.",
       "otpExpired": "Šis kods ir beidzies. Pieprasi jaunu.",
-      "otpTooMany": "Pārāk daudz mēģinājumu. Uzgaidi brīdi un mēģini vēlreiz."
+      "otpTooMany": "Pārāk daudz mēģinājumu. Uzgaidi brīdi un mēģini vēlreiz.",
+      "invalidCredentials": "Nepareizs e-pasts vai parole.",
+      "network": "Nav interneta savienojuma. Pārbaudi savienojumu un mēģini vēlreiz.",
+      "emailNotConfirmed": "E-pasts nav apstiprināts. Pārbaudi savu iesūtni, lai apstiprinātu kontu.",
+      "signInFailed": "Pieteikšanās neizdevās. Mēģini vēlreiz."
     },
     "register": "Reģistrēties",
     "noAccount": "Nav konta? Reģistrējies",

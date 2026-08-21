@@ -23,7 +23,11 @@
       "phoneInvalid": "Unesi ispravan broj telefona.",
       "otpInvalid": "Pogrešan ili istekao kod — provjeri ga ili zatraži novi.",
       "otpExpired": "Ovaj kod je istekao. Zatraži novi.",
-      "otpTooMany": "Previše pokušaja. Pričekaj trenutak pa pokušaj ponovno."
+      "otpTooMany": "Previše pokušaja. Pričekaj trenutak pa pokušaj ponovno.",
+      "invalidCredentials": "Netočan e-mail ili lozinka.",
+      "network": "Nema internetske veze. Provjeri vezu i pokušaj ponovno.",
+      "emailNotConfirmed": "E-mail nije potvrđen. Provjeri sandučić da potvrdiš račun.",
+      "signInFailed": "Prijava nije uspjela. Pokušaj ponovno."
     },
     "register": "Registriraj se",
     "noAccount": "Nemaš račun? Registriraj se",

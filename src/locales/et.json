@@ -23,7 +23,11 @@
       "phoneInvalid": "Sisesta kehtiv telefoninumber.",
       "otpInvalid": "Vale või aegunud kood — kontrolli seda või küsi uus.",
       "otpExpired": "See kood on aegunud. Küsi uus.",
-      "otpTooMany": "Liiga palju katseid. Oota hetk ja proovi uuesti."
+      "otpTooMany": "Liiga palju katseid. Oota hetk ja proovi uuesti.",
+      "invalidCredentials": "Vale e-post või parool.",
+      "network": "Interneti-ühendus puudub. Kontrolli ühendust ja proovi uuesti.",
+      "emailNotConfirmed": "E-post on kinnitamata. Konto kinnitamiseks kontrolli oma postkasti.",
+      "signInFailed": "Sisselogimine ebaõnnestus. Proovi uuesti."
     },
     "register": "Registreeru",
     "noAccount": "Kontot pole? Registreeru",

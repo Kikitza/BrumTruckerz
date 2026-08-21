@@ -23,7 +23,11 @@
       "phoneInvalid": "Įvesk galiojantį telefono numerį.",
       "otpInvalid": "Neteisingas arba nebegaliojantis kodas — patikrink jį arba paprašyk naujo.",
       "otpExpired": "Šis kodas nebegalioja. Paprašyk naujo.",
-      "otpTooMany": "Per daug bandymų. Palauk akimirką ir bandyk dar kartą."
+      "otpTooMany": "Per daug bandymų. Palauk akimirką ir bandyk dar kartą.",
+      "invalidCredentials": "Neteisingas el. paštas arba slaptažodis.",
+      "network": "Nėra interneto ryšio. Patikrink ryšį ir bandyk dar kartą.",
+      "emailNotConfirmed": "El. paštas nepatvirtintas. Patikrink pašto dėžutę, kad patvirtintum paskyrą.",
+      "signInFailed": "Prisijungti nepavyko. Bandyk dar kartą."
     },
     "register": "Registruotis",
     "noAccount": "Neturi paskyros? Registruokis",

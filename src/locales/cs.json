@@ -23,7 +23,11 @@
       "phoneInvalid": "Zadej platné telefonní číslo.",
       "otpInvalid": "Nesprávný nebo vypršený kód — zkontroluj ho nebo si vyžádej nový.",
       "otpExpired": "Tento kód vypršel. Vyžádej si nový.",
-      "otpTooMany": "Příliš mnoho pokusů. Chvíli počkej a zkus to znovu."
+      "otpTooMany": "Příliš mnoho pokusů. Chvíli počkej a zkus to znovu.",
+      "invalidCredentials": "Nesprávný e-mail nebo heslo.",
+      "network": "Není připojení k internetu. Zkontroluj připojení a zkus to znovu.",
+      "emailNotConfirmed": "E-mail nebyl potvrzen. Zkontroluj schránku a potvrď účet.",
+      "signInFailed": "Přihlášení selhalo. Zkus to znovu."
     },
     "register": "Registrovat se",
     "noAccount": "Nemáš účet? Zaregistruj se",

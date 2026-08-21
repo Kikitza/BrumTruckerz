@@ -23,7 +23,11 @@
       "phoneInvalid": "Wpisz prawidłowy numer telefonu.",
       "otpInvalid": "Nieprawidłowy lub wygasły kod — sprawdź go lub poproś o nowy.",
       "otpExpired": "Ten kod wygasł. Poproś o nowy.",
-      "otpTooMany": "Zbyt wiele prób. Poczekaj chwilę i spróbuj ponownie."
+      "otpTooMany": "Zbyt wiele prób. Poczekaj chwilę i spróbuj ponownie.",
+      "invalidCredentials": "Nieprawidłowy e-mail lub hasło.",
+      "network": "Brak połączenia z internetem. Sprawdź połączenie i spróbuj ponownie.",
+      "emailNotConfirmed": "E-mail nie został potwierdzony. Sprawdź skrzynkę, aby potwierdzić konto.",
+      "signInFailed": "Logowanie nie powiodło się. Spróbuj ponownie."
     },
     "register": "Zarejestruj się",
     "noAccount": "Nie masz konta? Zarejestruj się",

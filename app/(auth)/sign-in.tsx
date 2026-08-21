@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
 import { router } from "expo-router";
-import { notify } from "../../src/lib/confirm";
+import { emailAuthErrorKey } from "../../src/features/auth/emailAuth";
 import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { supabase } from "../../src/lib/supabase";
@@ -33,6 +33,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [errKey, setErrKey] = useState<string | null>(null); // inline greška prijave (radi na webu i native-u)
 
   // Prefill poslednjim unetim emailom (samo email — nikad lozinka).
   useEffect(() => {
@@ -41,10 +42,11 @@ export default function SignIn() {
 
   const signIn = async () => {
     setBusy(true);
+    setErrKey(null); // očisti prethodnu grešku pri novom pokušaju
     const mail = email.trim();
     const { error } = await supabase.auth.signInWithPassword({ email: mail, password });
     setBusy(false);
-    if (error) return void notify({ title: t("common.error"), message: error.message });
+    if (error) { setErrKey(emailAuthErrorKey(error.message)); return; } // inline crveni tekst
     AsyncStorage.setItem(LAST_EMAIL_KEY, mail).catch(() => {}); // zapamti email za sledeći put
     router.replace("/");
   };
@@ -95,14 +97,14 @@ export default function SignIn() {
         <>
           <TextInput placeholder={t("auth.email")} autoCapitalize="none" keyboardType="email-address"
             autoComplete="email" textContentType="emailAddress"
-            value={email} onChangeText={setEmail} placeholderTextColor={colors.textMuted} style={input} />
+            value={email} onChangeText={(v) => { setEmail(v); if (errKey) setErrKey(null); }} placeholderTextColor={colors.textMuted} style={input} />
 
           {/* Lozinka + oko za prikaži/sakrij; sistemski menadžer lozinki kroz autoComplete/textContentType */}
           <View style={{ flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: colors.border, borderRadius: 8, backgroundColor: colors.surface }}>
             <TextInput
               placeholder={t("auth.password")} secureTextEntry={!showPassword}
               autoCapitalize="none" autoComplete="current-password" textContentType="password"
-              value={password} onChangeText={setPassword} placeholderTextColor={colors.textMuted}
+              value={password} onChangeText={(v) => { setPassword(v); if (errKey) setErrKey(null); }} placeholderTextColor={colors.textMuted}
               style={{ flex: 1, padding: 12, color: colors.text }}
             />
             <Pressable
@@ -115,6 +117,11 @@ export default function SignIn() {
               <Text style={{ fontSize: 18 }}>{showPassword ? "🙈" : "👁"}</Text>
             </Pressable>
           </View>
+
+          {/* Inline greška prijave (crveno) — vidljiva na webu i native-u; zamena za Alert (no-op na webu) */}
+          {errKey ? (
+            <Text style={{ color: colors.danger, fontSize: 14 }}>{t(errKey)}</Text>
+          ) : null}
 
           <Pressable onPress={signIn} disabled={busy || !email.includes("@") || password.length < 6}
             style={{ backgroundColor: colors.primary, borderRadius: 8, padding: 14, alignItems: "center", opacity: busy ? 0.6 : 1 }}>

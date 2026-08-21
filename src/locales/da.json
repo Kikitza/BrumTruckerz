@@ -23,7 +23,11 @@
       "phoneInvalid": "Indtast et gyldigt telefonnummer.",
       "otpInvalid": "Forkert eller udløbet kode — tjek den, eller bed om en ny.",
       "otpExpired": "Denne kode er udløbet. Bed om en ny.",
-      "otpTooMany": "For mange forsøg. Vent et øjeblik, og prøv igen."
+      "otpTooMany": "For mange forsøg. Vent et øjeblik, og prøv igen.",
+      "invalidCredentials": "Forkert e-mail eller adgangskode.",
+      "network": "Ingen internetforbindelse. Tjek din forbindelse, og prøv igen.",
+      "emailNotConfirmed": "E-mail er ikke bekræftet. Tjek din indbakke for at bekræfte din konto.",
+      "signInFailed": "Login mislykkedes. Prøv igen."
     },
     "register": "Opret konto",
     "noAccount": "Ingen konto? Opret dig",

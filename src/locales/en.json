@@ -21,7 +21,11 @@
       "phoneInvalid": "Enter a valid phone number.",
       "otpInvalid": "Incorrect or expired code — check it or request a new one.",
       "otpExpired": "This code has expired. Request a new one.",
-      "otpTooMany": "Too many attempts. Please wait a moment and try again."
+      "otpTooMany": "Too many attempts. Please wait a moment and try again.",
+      "invalidCredentials": "Incorrect email or password.",
+      "network": "No internet connection. Check your connection and try again.",
+      "emailNotConfirmed": "Email not confirmed. Check your inbox to confirm your account.",
+      "signInFailed": "Sign-in failed. Please try again."
     },
     "register": "Sign up",
     "noAccount": "Don't have an account? Sign up",

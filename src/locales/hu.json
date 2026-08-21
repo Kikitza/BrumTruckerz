@@ -23,7 +23,11 @@
       "phoneInvalid": "Adj meg érvényes telefonszámot.",
       "otpInvalid": "Hibás vagy lejárt kód — ellenőrizd, vagy kérj újat.",
       "otpExpired": "Ez a kód lejárt. Kérj újat.",
-      "otpTooMany": "Túl sok próbálkozás. Várj egy kicsit, és próbáld újra."
+      "otpTooMany": "Túl sok próbálkozás. Várj egy kicsit, és próbáld újra.",
+      "invalidCredentials": "Hibás e-mail vagy jelszó.",
+      "network": "Nincs internetkapcsolat. Ellenőrizd a kapcsolatot, és próbáld újra.",
+      "emailNotConfirmed": "Az e-mail nincs megerősítve. Ellenőrizd a postaládád a fiók megerősítéséhez.",
+      "signInFailed": "A bejelentkezés sikertelen. Próbáld újra."
     },
     "register": "Regisztráció",
     "noAccount": "Nincs fiókod? Regisztrálj",

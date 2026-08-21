@@ -23,7 +23,11 @@
       "phoneInvalid": "Skriv inn et gyldig telefonnummer.",
       "otpInvalid": "Feil eller utløpt kode — sjekk den eller be om en ny.",
       "otpExpired": "Denne koden er utløpt. Be om en ny.",
-      "otpTooMany": "For mange forsøk. Vent litt og prøv igjen."
+      "otpTooMany": "For mange forsøk. Vent litt og prøv igjen.",
+      "invalidCredentials": "Feil e-post eller passord.",
+      "network": "Ingen internettforbindelse. Sjekk forbindelsen og prøv igjen.",
+      "emailNotConfirmed": "E-post er ikke bekreftet. Sjekk innboksen for å bekrefte kontoen.",
+      "signInFailed": "Innlogging mislyktes. Prøv igjen."
     },
     "register": "Registrer deg",
     "noAccount": "Ingen konto? Registrer deg",

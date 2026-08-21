@@ -23,7 +23,11 @@
       "phoneInvalid": "Geçerli bir telefon numarası gir.",
       "otpInvalid": "Yanlış veya süresi dolmuş kod — kontrol et ya da yeni bir tane iste.",
       "otpExpired": "Bu kodun süresi doldu. Yeni bir tane iste.",
-      "otpTooMany": "Çok fazla deneme. Lütfen biraz bekle ve tekrar dene."
+      "otpTooMany": "Çok fazla deneme. Lütfen biraz bekle ve tekrar dene.",
+      "invalidCredentials": "Hatalı e-posta veya şifre.",
+      "network": "İnternet bağlantısı yok. Bağlantını kontrol edip tekrar dene.",
+      "emailNotConfirmed": "E-posta onaylanmadı. Hesabını onaylamak için gelen kutunu kontrol et.",
+      "signInFailed": "Giriş başarısız. Tekrar dene."
     },
     "register": "Kaydol",
     "noAccount": "Hesabın yok mu? Kaydol",

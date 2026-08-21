@@ -23,7 +23,11 @@
       "phoneInvalid": "Gib eine gültige Telefonnummer ein.",
       "otpInvalid": "Falscher oder abgelaufener Code — prüfe ihn oder fordere einen neuen an.",
       "otpExpired": "Dieser Code ist abgelaufen. Fordere einen neuen an.",
-      "otpTooMany": "Zu viele Versuche. Bitte warte einen Moment und versuche es erneut."
+      "otpTooMany": "Zu viele Versuche. Bitte warte einen Moment und versuche es erneut.",
+      "invalidCredentials": "Falsche E-Mail oder falsches Passwort.",
+      "network": "Keine Internetverbindung. Prüfe deine Verbindung und versuche es erneut.",
+      "emailNotConfirmed": "E-Mail nicht bestätigt. Prüfe dein Postfach, um dein Konto zu bestätigen.",
+      "signInFailed": "Anmeldung fehlgeschlagen. Bitte versuche es erneut."
     },
     "register": "Registrieren",
     "noAccount": "Kein Konto? Registrieren",

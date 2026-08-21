@@ -23,7 +23,11 @@
       "phoneInvalid": "Anna kelvollinen puhelinnumero.",
       "otpInvalid": "Väärä tai vanhentunut koodi — tarkista se tai pyydä uusi.",
       "otpExpired": "Tämä koodi on vanhentunut. Pyydä uusi.",
-      "otpTooMany": "Liian monta yritystä. Odota hetki ja yritä uudelleen."
+      "otpTooMany": "Liian monta yritystä. Odota hetki ja yritä uudelleen.",
+      "invalidCredentials": "Väärä sähköposti tai salasana.",
+      "network": "Ei internetyhteyttä. Tarkista yhteys ja yritä uudelleen.",
+      "emailNotConfirmed": "Sähköpostia ei ole vahvistettu. Tarkista postilaatikkosi vahvistaaksesi tilin.",
+      "signInFailed": "Kirjautuminen epäonnistui. Yritä uudelleen."
     },
     "register": "Rekisteröidy",
     "noAccount": "Eikö sinulla ole tiliä? Rekisteröidy",

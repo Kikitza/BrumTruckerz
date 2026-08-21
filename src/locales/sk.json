@@ -23,7 +23,11 @@
       "phoneInvalid": "Zadaj platné telefónne číslo.",
       "otpInvalid": "Nesprávny alebo expirovaný kód — skontroluj ho alebo si vyžiadaj nový.",
       "otpExpired": "Tento kód expiroval. Vyžiadaj si nový.",
-      "otpTooMany": "Priveľa pokusov. Chvíľu počkaj a skús to znova."
+      "otpTooMany": "Priveľa pokusov. Chvíľu počkaj a skús to znova.",
+      "invalidCredentials": "Nesprávny e-mail alebo heslo.",
+      "network": "Žiadne pripojenie na internet. Skontroluj pripojenie a skús to znova.",
+      "emailNotConfirmed": "E-mail nie je potvrdený. Skontroluj schránku a potvrď účet.",
+      "signInFailed": "Prihlásenie zlyhalo. Skús to znova."
     },
     "register": "Registrovať sa",
     "noAccount": "Nemáš účet? Zaregistruj sa",

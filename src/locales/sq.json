@@ -23,7 +23,11 @@
       "phoneInvalid": "Fut një numër telefoni të vlefshëm.",
       "otpInvalid": "Kod i gabuar ose i skaduar — kontrolloje ose kërko një të ri.",
       "otpExpired": "Ky kod ka skaduar. Kërko një të ri.",
-      "otpTooMany": "Shumë përpjekje. Prit një çast dhe provo sërish."
+      "otpTooMany": "Shumë përpjekje. Prit një çast dhe provo sërish.",
+      "invalidCredentials": "Email ose fjalëkalim i gabuar.",
+      "network": "Nuk ka lidhje interneti. Kontrollo lidhjen dhe provo përsëri.",
+      "emailNotConfirmed": "Email-i nuk është konfirmuar. Kontrollo kutinë tënde për të konfirmuar llogarinë.",
+      "signInFailed": "Hyrja dështoi. Provo përsëri."
     },
     "register": "Regjistrohu",
     "noAccount": "S'ke llogari? Regjistrohu",

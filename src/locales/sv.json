@@ -23,7 +23,11 @@
       "phoneInvalid": "Ange ett giltigt telefonnummer.",
       "otpInvalid": "Felaktig eller utgången kod — kontrollera den eller begär en ny.",
       "otpExpired": "Den här koden har gått ut. Begär en ny.",
-      "otpTooMany": "För många försök. Vänta en stund och försök igen."
+      "otpTooMany": "För många försök. Vänta en stund och försök igen.",
+      "invalidCredentials": "Fel e-post eller lösenord.",
+      "network": "Ingen internetanslutning. Kontrollera anslutningen och försök igen.",
+      "emailNotConfirmed": "E-posten är inte bekräftad. Kontrollera inkorgen för att bekräfta kontot.",
+      "signInFailed": "Inloggningen misslyckades. Försök igen."
     },
     "register": "Registrera dig",
     "noAccount": "Inget konto? Registrera dig",

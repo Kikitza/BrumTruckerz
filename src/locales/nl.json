@@ -23,7 +23,11 @@
       "phoneInvalid": "Voer een geldig telefoonnummer in.",
       "otpInvalid": "Onjuiste of verlopen code — controleer die of vraag een nieuwe aan.",
       "otpExpired": "Deze code is verlopen. Vraag een nieuwe aan.",
-      "otpTooMany": "Te veel pogingen. Wacht even en probeer opnieuw."
+      "otpTooMany": "Te veel pogingen. Wacht even en probeer opnieuw.",
+      "invalidCredentials": "Onjuist e-mailadres of wachtwoord.",
+      "network": "Geen internetverbinding. Controleer je verbinding en probeer het opnieuw.",
+      "emailNotConfirmed": "E-mail niet bevestigd. Controleer je inbox om je account te bevestigen.",
+      "signInFailed": "Aanmelden mislukt. Probeer het opnieuw."
     },
     "register": "Registreren",
     "noAccount": "Nog geen account? Registreer",

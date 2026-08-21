@@ -23,7 +23,11 @@
       "phoneInvalid": "Introdu un număr de telefon valid.",
       "otpInvalid": "Cod incorect sau expirat — verifică-l sau cere unul nou.",
       "otpExpired": "Acest cod a expirat. Cere unul nou.",
-      "otpTooMany": "Prea multe încercări. Așteaptă un moment și încearcă din nou."
+      "otpTooMany": "Prea multe încercări. Așteaptă un moment și încearcă din nou.",
+      "invalidCredentials": "E-mail sau parolă incorecte.",
+      "network": "Fără conexiune la internet. Verifică conexiunea și încearcă din nou.",
+      "emailNotConfirmed": "E-mail neconfirmat. Verifică-ți inboxul pentru a confirma contul.",
+      "signInFailed": "Autentificare eșuată. Încearcă din nou."
     },
     "register": "Înregistrează-te",
     "noAccount": "Nu ai cont? Înregistrează-te",

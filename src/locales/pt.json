@@ -23,7 +23,11 @@
       "phoneInvalid": "Introduz um número de telefone válido.",
       "otpInvalid": "Código incorreto ou expirado — verifica-o ou pede um novo.",
       "otpExpired": "Este código expirou. Pede um novo.",
-      "otpTooMany": "Demasiadas tentativas. Aguarda um momento e tenta de novo."
+      "otpTooMany": "Demasiadas tentativas. Aguarda um momento e tenta de novo.",
+      "invalidCredentials": "E-mail ou senha incorretos.",
+      "network": "Sem ligação à internet. Verifica a tua ligação e tenta novamente.",
+      "emailNotConfirmed": "E-mail não confirmado. Verifica a tua caixa de entrada para confirmar a conta.",
+      "signInFailed": "Falha ao iniciar sessão. Tenta novamente."
     },
     "register": "Registar",
     "noAccount": "Não tens conta? Regista-te",
