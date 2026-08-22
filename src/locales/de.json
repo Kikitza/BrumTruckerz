@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Abmelden",
-    "signOutConfirm": "Von Ihrem Konto abmelden?"
+    "signOutConfirm": "Von Ihrem Konto abmelden?",
+    "activeCompany": {
+      "title": "Aktive Firma",
+      "hint": "Wechsle zwischen den Firmen, für die du arbeitest",
+      "current": "aktiv",
+      "role": {
+        "owner": "Inhaber",
+        "dispatcher": "Disponent",
+        "driver": "Fahrer"
+      }
+    }
   },
   "language": {
     "title": "Sprache",
@@ -364,7 +374,8 @@
       "otherCompany": "Dein Konto gehört bereits zu einem anderen Unternehmen.",
       "suspended": "Dieses Unternehmen ist gesperrt.",
       "dispatcherNotReady": "Disponenten-Konten werden noch nicht unterstützt — bitte den Eigentümer, dich als Fahrer einzuladen.",
-      "roleCannotAccept": "Dieses Konto kann keine Einladungen annehmen."
+      "roleCannotAccept": "Dieses Konto kann keine Einladungen annehmen.",
+      "driverAlreadyEngaged": "Du bist bereits aktiver Fahrer bei einer anderen Firma. Ein Fahrer kann nur bei einer Firma aktiv sein."
     }
   },
   "sync": {

@@ -45,5 +45,6 @@ export function inviteErrorKey(message: string | null | undefined): string {
   if (m.includes("INVITE_COMPANY_SUSPENDED")) return "invite.err.suspended";
   if (m.includes("INVITE_DISPATCHER_NOT_READY")) return "invite.err.dispatcherNotReady";
   if (m.includes("INVITE_ROLE_CANNOT_ACCEPT")) return "invite.err.roleCannotAccept";
+  if (m.includes("INVITE_DRIVER_ALREADY_ENGAGED")) return "invite.err.driverAlreadyEngaged";
   return "common.error";
 }

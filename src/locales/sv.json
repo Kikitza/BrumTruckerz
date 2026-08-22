@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Logga ut",
-    "signOutConfirm": "Logga ut från ditt konto?"
+    "signOutConfirm": "Logga ut från ditt konto?",
+    "activeCompany": {
+      "title": "Aktivt företag",
+      "hint": "Växla mellan företagen du jobbar med",
+      "current": "aktivt",
+      "role": {
+        "owner": "Ägare",
+        "dispatcher": "Transportledare",
+        "driver": "Förare"
+      }
+    }
   },
   "language": {
     "title": "Språk",
@@ -364,7 +374,8 @@
       "otherCompany": "Ditt konto tillhör redan ett annat företag.",
       "suspended": "Det här företaget är avstängt.",
       "dispatcherNotReady": "Konton för transportledare stöds inte ännu — be ägaren att bjuda in dig som förare.",
-      "roleCannotAccept": "Det här kontot kan inte acceptera inbjudningar."
+      "roleCannotAccept": "Det här kontot kan inte acceptera inbjudningar.",
+      "driverAlreadyEngaged": "Du är redan aktiv förare hos ett annat företag. En förare kan bara vara aktiv hos ett företag."
     }
   },
   "sync": {

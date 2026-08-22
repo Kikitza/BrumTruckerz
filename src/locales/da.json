@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Log ud",
-    "signOutConfirm": "Log ud af din konto?"
+    "signOutConfirm": "Log ud af din konto?",
+    "activeCompany": {
+      "title": "Aktivt firma",
+      "hint": "Skift mellem de firmaer, du arbejder med",
+      "current": "aktivt",
+      "role": {
+        "owner": "Ejer",
+        "dispatcher": "Disponent",
+        "driver": "Chauffør"
+      }
+    }
   },
   "language": {
     "title": "Sprog",
@@ -364,7 +374,8 @@
       "otherCompany": "Din konto tilhører allerede en anden virksomhed.",
       "suspended": "Denne virksomhed er suspenderet.",
       "dispatcherNotReady": "Disponentkonti understøttes ikke endnu — bed ejeren om at invitere dig som chauffør.",
-      "roleCannotAccept": "Denne konto kan ikke acceptere invitationer."
+      "roleCannotAccept": "Denne konto kan ikke acceptere invitationer.",
+      "driverAlreadyEngaged": "Du er allerede aktiv chauffør hos et andet firma. En chauffør kan kun være aktiv hos ét firma."
     }
   },
   "sync": {

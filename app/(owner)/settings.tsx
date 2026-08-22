@@ -11,6 +11,7 @@ import { InvitesSection } from "../../src/features/identity/InvitesSection";
 import { InvoiceSettingsModal } from "../../src/features/invoices/InvoiceSettingsModal";
 import { useRole } from "../../src/features/auth/useRole";
 import { CareerProfileModal } from "../../src/features/career/CareerProfileModal";
+import { ActiveCompanySwitcher } from "../../src/features/company/ActiveCompanySwitcher";
 
 export default function Settings() {
   const { colors } = useTheme();
@@ -30,6 +31,9 @@ export default function Settings() {
       style={{ flex: 1, backgroundColor: colors.bg }}
       contentContainerStyle={{ padding: 16, gap: 16 }}
     >
+      {/* Aktivna firma (ADR 0013) — vidljivo SAMO uz više članstava (multi-firma) */}
+      <ActiveCompanySwitcher />
+
       {/* Paket firme (menja samo platforma) — OWNER-only (matrica: paket/podešavanja firme) */}
       {isOwner && (
         <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16, gap: 6 }}>

@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Iziet",
-    "signOutConfirm": "Iziet no sava konta?"
+    "signOutConfirm": "Iziet no sava konta?",
+    "activeCompany": {
+      "title": "Aktīvais uzņēmums",
+      "hint": "Pārslēdzies starp uzņēmumiem, ar kuriem strādā",
+      "current": "aktīvs",
+      "role": {
+        "owner": "Īpašnieks",
+        "dispatcher": "Dispečers",
+        "driver": "Vadītājs"
+      }
+    }
   },
   "language": {
     "title": "Valoda",
@@ -364,7 +374,8 @@
       "otherCompany": "Tavs konts jau pieder citam uzņēmumam.",
       "suspended": "Šis uzņēmums ir apturēts.",
       "dispatcherNotReady": "Dispečera konti vēl netiek atbalstīti — palūdz īpašniekam uzaicināt tevi kā šoferi.",
-      "roleCannotAccept": "Šis konts nevar pieņemt ielūgumus."
+      "roleCannotAccept": "Šis konts nevar pieņemt ielūgumus.",
+      "driverAlreadyEngaged": "Tu jau esi aktīvs vadītājs citā uzņēmumā. Vadītājs var būt aktīvs tikai vienā uzņēmumā."
     }
   },
   "sync": {

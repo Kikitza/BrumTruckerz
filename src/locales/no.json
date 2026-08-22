@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Logg ut",
-    "signOutConfirm": "Logge ut av kontoen din?"
+    "signOutConfirm": "Logge ut av kontoen din?",
+    "activeCompany": {
+      "title": "Aktivt firma",
+      "hint": "Bytt mellom firmaene du jobber med",
+      "current": "aktivt",
+      "role": {
+        "owner": "Eier",
+        "dispatcher": "Disponent",
+        "driver": "Sjåfør"
+      }
+    }
   },
   "language": {
     "title": "Språk",
@@ -364,7 +374,8 @@
       "otherCompany": "Kontoen din tilhører allerede et annet firma.",
       "suspended": "Dette firmaet er suspendert.",
       "dispatcherNotReady": "Transportleder-kontoer støttes ikke ennå — be eieren invitere deg som sjåfør.",
-      "roleCannotAccept": "Denne kontoen kan ikke godta invitasjoner."
+      "roleCannotAccept": "Denne kontoen kan ikke godta invitasjoner.",
+      "driverAlreadyEngaged": "Du er allerede aktiv sjåfør hos et annet firma. En sjåfør kan bare være aktiv hos ett firma."
     }
   },
   "sync": {

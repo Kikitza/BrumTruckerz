@@ -72,6 +72,7 @@ describe("inviteErrorKey", () => {
     expect(inviteErrorKey("INVITE_OTHER_COMPANY")).toBe("invite.err.otherCompany");
     expect(inviteErrorKey("INVITE_COMPANY_SUSPENDED")).toBe("invite.err.suspended");
     expect(inviteErrorKey("INVITE_DISPATCHER_NOT_READY")).toBe("invite.err.dispatcherNotReady");
+    expect(inviteErrorKey("INVITE_DRIVER_ALREADY_ENGAGED")).toBe("invite.err.driverAlreadyEngaged");
   });
   it("nepoznata poruka -> common.error", () => {
     expect(inviteErrorKey("random db error")).toBe("common.error");

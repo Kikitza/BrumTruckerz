@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Çıkış yap",
-    "signOutConfirm": "Hesabınızdan çıkış yapılsın mı?"
+    "signOutConfirm": "Hesabınızdan çıkış yapılsın mı?",
+    "activeCompany": {
+      "title": "Aktif şirket",
+      "hint": "Çalıştığın şirketler arasında geçiş yap",
+      "current": "aktif",
+      "role": {
+        "owner": "Sahip",
+        "dispatcher": "Sevkiyatçı",
+        "driver": "Sürücü"
+      }
+    }
   },
   "language": {
     "title": "Dil",
@@ -364,7 +374,8 @@
       "otherCompany": "Hesabın zaten başka bir şirkete ait.",
       "suspended": "Bu şirket askıya alındı.",
       "dispatcherNotReady": "Sevkiyatçı hesapları henüz desteklenmiyor — sahibinden seni şoför olarak davet etmesini iste.",
-      "roleCannotAccept": "Bu hesap davetleri kabul edemez."
+      "roleCannotAccept": "Bu hesap davetleri kabul edemez.",
+      "driverAlreadyEngaged": "Zaten başka bir şirkette aktif sürücüsün. Bir sürücü yalnızca bir şirkette aktif olabilir."
     }
   },
   "sync": {

@@ -1,6 +1,6 @@
 # ADR 0013 — Nalozi u više firmi (membership + union dozvole)
 
-**STATUS: PREDLOG** (22.8.2026). Jednosmerna vrata (⛩) — vlasnik potpisuje **pre** implementacije. Temelj marketplace-a (v2-3), gradi na event sloju (v2-2). PDF §4.
+**STATUS: PRIHVAĆENO** (22.8.2026, potpis vlasnika kroz savetnika). (Predlog: 22.8.2026.) Temelj marketplace-a (v2-3), gradi na event sloju (v2-2). PDF §4. Implementacija: v2-3 kriška 1 (migracija `0034`).
 
 ## KONTEKST (danas u kodu)
 - `app_users` = **1 nalog → 1 firma → 1 rola** (`company_id`, `role`). Svi RLS helperi zavise od toga: `current_company_id()`, `current_role_name()`, `is_office_role()` čitaju taj JEDAN red.

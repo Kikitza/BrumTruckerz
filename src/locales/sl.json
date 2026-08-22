@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Odjava",
-    "signOutConfirm": "Se odjavim iz računa?"
+    "signOutConfirm": "Se odjavim iz računa?",
+    "activeCompany": {
+      "title": "Aktivno podjetje",
+      "hint": "Preklapljaj med podjetji, s katerimi delaš",
+      "current": "aktivno",
+      "role": {
+        "owner": "Lastnik",
+        "dispatcher": "Dispečer",
+        "driver": "Voznik"
+      }
+    }
   },
   "language": {
     "title": "Jezik",
@@ -364,7 +374,8 @@
       "otherCompany": "Tvoj račun že pripada drugemu podjetju.",
       "suspended": "To podjetje je začasno ustavljeno.",
       "dispatcherNotReady": "Računi disponenta še niso podprti — prosi lastnika, da te povabi kot voznika.",
-      "roleCannotAccept": "Ta račun ne more sprejemati vabil."
+      "roleCannotAccept": "Ta račun ne more sprejemati vabil.",
+      "driverAlreadyEngaged": "Že si aktivni voznik v drugem podjetju. Voznik je lahko aktiven le v enem podjetju."
     }
   },
   "sync": {

@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Logi välja",
-    "signOutConfirm": "Logida oma kontolt välja?"
+    "signOutConfirm": "Logida oma kontolt välja?",
+    "activeCompany": {
+      "title": "Aktiivne ettevõte",
+      "hint": "Vaheta ettevõtete vahel, kellega töötad",
+      "current": "aktiivne",
+      "role": {
+        "owner": "Omanik",
+        "dispatcher": "Dispetšer",
+        "driver": "Juht"
+      }
+    }
   },
   "language": {
     "title": "Keel",
@@ -364,7 +374,8 @@
       "otherCompany": "Sinu konto kuulub juba teisele ettevõttele.",
       "suspended": "See ettevõte on peatatud.",
       "dispatcherNotReady": "Dispetšeri kontosid veel ei toetata — palu omanikul kutsuda sind juhina.",
-      "roleCannotAccept": "See konto ei saa kutseid vastu võtta."
+      "roleCannotAccept": "See konto ei saa kutseid vastu võtta.",
+      "driverAlreadyEngaged": "Oled juba aktiivne juht teises ettevõttes. Juht saab olla aktiivne vaid ühes ettevõttes."
     }
   },
   "sync": {

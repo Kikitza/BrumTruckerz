@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Terminar sessão",
-    "signOutConfirm": "Terminar sessão da sua conta?"
+    "signOutConfirm": "Terminar sessão da sua conta?",
+    "activeCompany": {
+      "title": "Empresa ativa",
+      "hint": "Alterne entre as empresas com que trabalha",
+      "current": "ativa",
+      "role": {
+        "owner": "Proprietário",
+        "dispatcher": "Despachante",
+        "driver": "Motorista"
+      }
+    }
   },
   "language": {
     "title": "Idioma",
@@ -364,7 +374,8 @@
       "otherCompany": "A sua conta já pertence a outra empresa.",
       "suspended": "Esta empresa está suspensa.",
       "dispatcherNotReady": "As contas de despachante ainda não são suportadas — peça ao proprietário para o convidar como motorista.",
-      "roleCannotAccept": "Esta conta não pode aceitar convites."
+      "roleCannotAccept": "Esta conta não pode aceitar convites.",
+      "driverAlreadyEngaged": "Já é motorista ativo noutra empresa. Um motorista só pode estar ativo numa empresa."
     }
   },
   "sync": {

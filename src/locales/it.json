@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Esci",
-    "signOutConfirm": "Uscire dal tuo account?"
+    "signOutConfirm": "Uscire dal tuo account?",
+    "activeCompany": {
+      "title": "Azienda attiva",
+      "hint": "Passa tra le aziende con cui lavori",
+      "current": "attiva",
+      "role": {
+        "owner": "Titolare",
+        "dispatcher": "Spedizioniere",
+        "driver": "Autista"
+      }
+    }
   },
   "language": {
     "title": "Lingua",
@@ -364,7 +374,8 @@
       "otherCompany": "Il tuo account appartiene già a un'altra azienda.",
       "suspended": "Questa azienda è sospesa.",
       "dispatcherNotReady": "Gli account dispatcher non sono ancora supportati — chiedi al titolare di invitarti come autista.",
-      "roleCannotAccept": "Questo account non può accettare inviti."
+      "roleCannotAccept": "Questo account non può accettare inviti.",
+      "driverAlreadyEngaged": "Sei già autista attivo in un'altra azienda. Un autista può essere attivo in una sola azienda."
     }
   },
   "sync": {

@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Kijelentkezés",
-    "signOutConfirm": "Kijelentkezel a fiókodból?"
+    "signOutConfirm": "Kijelentkezel a fiókodból?",
+    "activeCompany": {
+      "title": "Aktív cég",
+      "hint": "Válts a cégek között, amelyeknek dolgozol",
+      "current": "aktív",
+      "role": {
+        "owner": "Tulajdonos",
+        "dispatcher": "Diszpécser",
+        "driver": "Sofőr"
+      }
+    }
   },
   "language": {
     "title": "Nyelv",
@@ -364,7 +374,8 @@
       "otherCompany": "A fiókod már egy másik céghez tartozik.",
       "suspended": "Ez a cég fel van függesztve.",
       "dispatcherNotReady": "A diszpécser fiókok még nem támogatottak — kérd meg a tulajdonost, hogy sofőrként hívjon meg.",
-      "roleCannotAccept": "Ez a fiók nem fogadhat el meghívókat."
+      "roleCannotAccept": "Ez a fiók nem fogadhat el meghívókat.",
+      "driverAlreadyEngaged": "Már aktív sofőr vagy egy másik cégnél. Egy sofőr csak egy cégnél lehet aktív."
     }
   },
   "sync": {

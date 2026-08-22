@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Kirjaudu ulos",
-    "signOutConfirm": "Kirjaudutaanko ulos tililtäsi?"
+    "signOutConfirm": "Kirjaudutaanko ulos tililtäsi?",
+    "activeCompany": {
+      "title": "Aktiivinen yritys",
+      "hint": "Vaihda yritysten välillä, joiden kanssa työskentelet",
+      "current": "aktiivinen",
+      "role": {
+        "owner": "Omistaja",
+        "dispatcher": "Ajojärjestelijä",
+        "driver": "Kuljettaja"
+      }
+    }
   },
   "language": {
     "title": "Kieli",
@@ -364,7 +374,8 @@
       "otherCompany": "Tilisi kuuluu jo toiseen yritykseen.",
       "suspended": "Tämä yritys on jäädytetty.",
       "dispatcherNotReady": "Ajojärjestelijän tilejä ei vielä tueta — pyydä omistajaa kutsumaan sinut kuljettajaksi.",
-      "roleCannotAccept": "Tämä tili ei voi hyväksyä kutsuja."
+      "roleCannotAccept": "Tämä tili ei voi hyväksyä kutsuja.",
+      "driverAlreadyEngaged": "Olet jo aktiivinen kuljettaja toisessa yrityksessä. Kuljettaja voi olla aktiivinen vain yhdessä yrityksessä."
     }
   },
   "sync": {

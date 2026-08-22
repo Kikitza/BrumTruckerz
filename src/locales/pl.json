@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Wyloguj się",
-    "signOutConfirm": "Wylogować się z konta?"
+    "signOutConfirm": "Wylogować się z konta?",
+    "activeCompany": {
+      "title": "Aktywna firma",
+      "hint": "Przełączaj się między firmami, z którymi pracujesz",
+      "current": "aktywna",
+      "role": {
+        "owner": "Właściciel",
+        "dispatcher": "Dyspozytor",
+        "driver": "Kierowca"
+      }
+    }
   },
   "language": {
     "title": "Język",
@@ -364,7 +374,8 @@
       "otherCompany": "Twoje konto należy już do innej firmy.",
       "suspended": "Ta firma jest zawieszona.",
       "dispatcherNotReady": "Konta dyspozytora nie są jeszcze obsługiwane — poproś właściciela, aby zaprosił Cię jako kierowcę.",
-      "roleCannotAccept": "To konto nie może przyjmować zaproszeń."
+      "roleCannotAccept": "To konto nie może przyjmować zaproszeń.",
+      "driverAlreadyEngaged": "Jesteś już aktywnym kierowcą w innej firmie. Kierowca może być aktywny tylko w jednej firmie."
     }
   },
   "sync": {

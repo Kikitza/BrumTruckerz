@@ -293,7 +293,17 @@
   },
   "settings": {
     "signOut": "Sign out",
-    "signOutConfirm": "Sign out of your account?"
+    "signOutConfirm": "Sign out of your account?",
+    "activeCompany": {
+      "title": "Active company",
+      "hint": "Switch between the companies you work with",
+      "current": "active",
+      "role": {
+        "owner": "Owner",
+        "dispatcher": "Dispatcher",
+        "driver": "Driver"
+      }
+    }
   },
   "language": {
     "title": "Language",
@@ -362,7 +372,8 @@
       "otherCompany": "Your account already belongs to another company.",
       "suspended": "This company is suspended.",
       "dispatcherNotReady": "Dispatcher accounts aren't supported yet — ask the owner to invite you as a driver.",
-      "roleCannotAccept": "This account can't accept invitations."
+      "roleCannotAccept": "This account can't accept invitations.",
+      "driverAlreadyEngaged": "You're already an active driver at another company. A driver can be active at only one company."
     }
   },
   "sync": {

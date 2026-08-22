@@ -32,5 +32,6 @@ run supabase/tests/company_self_test.sql       ALL_COMPANY_SELF_TESTS_PASSED
 run supabase/tests/career_test.sql             ALL_CAREER_TESTS_PASSED
 run supabase/tests/outbox_test.sql             ALL_OUTBOX_TESTS_PASSED
 run supabase/tests/outbox_worker_test.sql      ALL_OUTBOX_WORKER_TESTS_PASSED
+run supabase/tests/memberships_test.sql        ALL_MEMBERSHIPS_TESTS_PASSED
 [ "$fail" -eq 0 ] && echo "DB tests: ALL PASSED" || echo "DB tests: FAILURES ABOVE"
 exit $fail

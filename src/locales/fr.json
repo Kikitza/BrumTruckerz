@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Se déconnecter",
-    "signOutConfirm": "Se déconnecter de votre compte ?"
+    "signOutConfirm": "Se déconnecter de votre compte ?",
+    "activeCompany": {
+      "title": "Société active",
+      "hint": "Basculez entre les sociétés pour lesquelles vous travaillez",
+      "current": "active",
+      "role": {
+        "owner": "Propriétaire",
+        "dispatcher": "Répartiteur",
+        "driver": "Chauffeur"
+      }
+    }
   },
   "language": {
     "title": "Langue",
@@ -364,7 +374,8 @@
       "otherCompany": "Votre compte appartient déjà à une autre entreprise.",
       "suspended": "Cette entreprise est suspendue.",
       "dispatcherNotReady": "Les comptes répartiteur ne sont pas encore pris en charge — demandez au propriétaire de vous inviter comme chauffeur.",
-      "roleCannotAccept": "Ce compte ne peut pas accepter d'invitations."
+      "roleCannotAccept": "Ce compte ne peut pas accepter d'invitations.",
+      "driverAlreadyEngaged": "Vous êtes déjà chauffeur actif dans une autre société. Un chauffeur ne peut être actif que dans une seule société."
     }
   },
   "sync": {

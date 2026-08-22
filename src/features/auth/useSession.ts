@@ -11,6 +11,13 @@ import { supabase } from "../../lib/supabase";
 
 export type Role = "platform_admin" | "owner" | "dispatcher" | "driver";
 
+// Globalni signal „ponovo pročitaj nalog" — koristi ga prekidač aktivne firme (ADR 0013),
+// koji živi van gate stabla, da natera useSession da preračuna ulogu/firmu.
+let appUserListeners: (() => void)[] = [];
+export function reloadAppUser() {
+  for (const fn of appUserListeners) fn();
+}
+
 export function useSession() {
   const qc = useQueryClient();
   const [session, setSession] = useState<Session | null>(null);
@@ -62,6 +69,13 @@ export function useSession() {
   // / dobija company_id, pa gate treba da se preračuna (fail-closed ostaje: loading=true
   // dok se ne učita, nikad na owner ekrane sa polovičnim stanjem).
   const reloadRole = () => setRoleBump((b) => b + 1);
+
+  // Pretplata na globalni signal (prebacivanje aktivne firme) — preračunaj ulogu/firmu.
+  useEffect(() => {
+    const fn = () => setRoleBump((b) => b + 1);
+    appUserListeners.push(fn);
+    return () => { appUserListeners = appUserListeners.filter((f) => f !== fn); };
+  }, []);
 
   return { session, role, loading, reloadRole };
 }

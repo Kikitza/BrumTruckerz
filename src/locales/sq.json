@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Dil",
-    "signOutConfirm": "Të dilni nga llogaria juaj?"
+    "signOutConfirm": "Të dilni nga llogaria juaj?",
+    "activeCompany": {
+      "title": "Kompania aktive",
+      "hint": "Kalo mes kompanive me të cilat punon",
+      "current": "aktive",
+      "role": {
+        "owner": "Pronar",
+        "dispatcher": "Dispeçer",
+        "driver": "Shofer"
+      }
+    }
   },
   "language": {
     "title": "Gjuha",
@@ -364,7 +374,8 @@
       "otherCompany": "Llogaria jote i përket tashmë një kompanie tjetër.",
       "suspended": "Kjo kompani është pezulluar.",
       "dispatcherNotReady": "Llogaritë e dispeçerit nuk mbështeten ende — kërko nga pronari të të ftojë si shofer.",
-      "roleCannotAccept": "Kjo llogari nuk mund të pranojë ftesa."
+      "roleCannotAccept": "Kjo llogari nuk mund të pranojë ftesa.",
+      "driverAlreadyEngaged": "Je tashmë shofer aktiv në një kompani tjetër. Një shofer mund të jetë aktiv vetëm në një kompani."
     }
   },
   "sync": {

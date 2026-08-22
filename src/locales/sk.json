@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Odhlásiť sa",
-    "signOutConfirm": "Odhlásiť sa z účtu?"
+    "signOutConfirm": "Odhlásiť sa z účtu?",
+    "activeCompany": {
+      "title": "Aktívna firma",
+      "hint": "Prepínaj medzi firmami, s ktorými pracuješ",
+      "current": "aktívna",
+      "role": {
+        "owner": "Majiteľ",
+        "dispatcher": "Dispečer",
+        "driver": "Vodič"
+      }
+    }
   },
   "language": {
     "title": "Jazyk",
@@ -364,7 +374,8 @@
       "otherCompany": "Tvoj účet už patrí inej firme.",
       "suspended": "Táto firma je pozastavená.",
       "dispatcherNotReady": "Účty dispečera zatiaľ nie sú podporované — požiadaj majiteľa, aby ťa pozval ako vodiča.",
-      "roleCannotAccept": "Tento účet nemôže prijímať pozvánky."
+      "roleCannotAccept": "Tento účet nemôže prijímať pozvánky.",
+      "driverAlreadyEngaged": "Už si aktívnym vodičom v inej firme. Vodič môže byť aktívny len v jednej firme."
     }
   },
   "sync": {

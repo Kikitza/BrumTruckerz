@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Uitloggen",
-    "signOutConfirm": "Uitloggen bij uw account?"
+    "signOutConfirm": "Uitloggen bij uw account?",
+    "activeCompany": {
+      "title": "Actief bedrijf",
+      "hint": "Wissel tussen de bedrijven waarvoor je werkt",
+      "current": "actief",
+      "role": {
+        "owner": "Eigenaar",
+        "dispatcher": "Planner",
+        "driver": "Chauffeur"
+      }
+    }
   },
   "language": {
     "title": "Taal",
@@ -364,7 +374,8 @@
       "otherCompany": "Je account hoort al bij een ander bedrijf.",
       "suspended": "Dit bedrijf is opgeschort.",
       "dispatcherNotReady": "Planner-accounts worden nog niet ondersteund — vraag de eigenaar je als chauffeur uit te nodigen.",
-      "roleCannotAccept": "Dit account kan geen uitnodigingen accepteren."
+      "roleCannotAccept": "Dit account kan geen uitnodigingen accepteren.",
+      "driverAlreadyEngaged": "Je bent al actief chauffeur bij een ander bedrijf. Een chauffeur kan maar bij één bedrijf actief zijn."
     }
   },
   "sync": {

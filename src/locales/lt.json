@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Atsijungti",
-    "signOutConfirm": "Atsijungti nuo paskyros?"
+    "signOutConfirm": "Atsijungti nuo paskyros?",
+    "activeCompany": {
+      "title": "Aktyvi įmonė",
+      "hint": "Perjunk tarp įmonių, su kuriomis dirbi",
+      "current": "aktyvi",
+      "role": {
+        "owner": "Savininkas",
+        "dispatcher": "Dispečeris",
+        "driver": "Vairuotojas"
+      }
+    }
   },
   "language": {
     "title": "Kalba",
@@ -364,7 +374,8 @@
       "otherCompany": "Tavo paskyra jau priklauso kitai įmonei.",
       "suspended": "Ši įmonė yra sustabdyta.",
       "dispatcherNotReady": "Dispečerio paskyros dar nepalaikomos — paprašyk savininko pakviesti tave kaip vairuotoją.",
-      "roleCannotAccept": "Ši paskyra negali priimti kvietimų."
+      "roleCannotAccept": "Ši paskyra negali priimti kvietimų.",
+      "driverAlreadyEngaged": "Jau esi aktyvus vairuotojas kitoje įmonėje. Vairuotojas gali būti aktyvus tik vienoje įmonėje."
     }
   },
   "sync": {

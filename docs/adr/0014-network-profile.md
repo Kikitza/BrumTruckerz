@@ -1,6 +1,6 @@
 # ADR 0014 — Mrežni profil radnika (marketplace identitet)
 
-**STATUS: PREDLOG** (22.8.2026). Jednosmerna vrata (⛩) — vlasnik potpisuje **pre** implementacije. Deo marketplace-a (v2-3); gradi na članstvu ([[0013-memberships-union-permissions]]) i event sloju (v2-2). PDF §6.
+**STATUS: PRIHVAĆENO** (22.8.2026, potpis vlasnika kroz savetnika). (Predlog: 22.8.2026.) Deo marketplace-a (v2-3); gradi na članstvu ([[0013-memberships-union-permissions]]) i event sloju (v2-2). PDF §6. Implementacija: kasnija kriška (posle članstva).
 
 ## KONTEKST (danas u kodu)
 - Nalog radnika danas **nastaje samo pozivom firme** (`invitations` + `accept_invitation`, 0018/0019); radnik bez firme ne postoji u sistemu.

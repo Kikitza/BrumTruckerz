@@ -295,7 +295,17 @@
   },
   "settings": {
     "signOut": "Deconectare",
-    "signOutConfirm": "Te deconectezi de la cont?"
+    "signOutConfirm": "Te deconectezi de la cont?",
+    "activeCompany": {
+      "title": "Firmă activă",
+      "hint": "Comută între firmele cu care lucrezi",
+      "current": "activă",
+      "role": {
+        "owner": "Proprietar",
+        "dispatcher": "Dispecer",
+        "driver": "Șofer"
+      }
+    }
   },
   "language": {
     "title": "Limbă",
@@ -364,7 +374,8 @@
       "otherCompany": "Contul tău aparține deja altei firme.",
       "suspended": "Această firmă este suspendată.",
       "dispatcherNotReady": "Conturile de dispecer nu sunt încă acceptate — roagă proprietarul să te invite ca șofer.",
-      "roleCannotAccept": "Acest cont nu poate accepta invitații."
+      "roleCannotAccept": "Acest cont nu poate accepta invitații.",
+      "driverAlreadyEngaged": "Ești deja șofer activ la altă firmă. Un șofer poate fi activ la o singură firmă."
     }
   },
   "sync": {

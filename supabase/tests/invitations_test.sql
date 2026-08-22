@@ -14,7 +14,7 @@
 --          (c) istekla / otkazana / pogrešan kod → jasne greške;
 --          (d) izolacija firmi (owner B ne vidi pozivnice firme A);
 --          (e) suspend-gate: owner obustavljene firme NE pravi pozivnicu;
---          (f) već član DRUGE firme → INVITE_OTHER_COMPANY;
+--          (f) već aktivan vozač DRUGE firme + vozačka pozivnica → INVITE_DRIVER_ALREADY_ENGAGED (ADR 0013);
 --          (g) dispečerska pozivnica: svež nalog → app_users(role dispatcher)+profil+zaposlenje (0020).
 -- ─────────────────────────────────────────────────────────────────────────────
 
@@ -54,6 +54,9 @@ begin
     (u_oa, c_a,'owner'), (u_ob, c_b,'owner'), (u_os, c_s,'owner'),
     (u_admin, null,'platform_admin'), (u_other, c_b,'driver');
   insert into drivers (id, company_id, user_id, full_name) values (d_other, c_b, u_other, 'Other Drv');
+  -- u_other je AKTIVAN vozač firme B (posle 0034 svaki vozač ima članstvo) → vozačko pravilo (ADR 0013).
+  insert into memberships (user_id, company_id, role, status) values (u_other, c_b, 'driver', 'active');
+  update app_users set active_company_id = c_b where id = u_other;
   -- Dispečer se registrovao email+ime → ime u auth metadata (0020: fallback u display_name).
   update auth.users set raw_user_meta_data = jsonb_build_object('full_name', 'Dis Pečer') where id = u_ddisp;
   -- NAPOMENA: u_dfresh / u_dfresh2 NEMAJU app_users red (to je „nalog nije povezan sa firmom").
@@ -104,14 +107,15 @@ begin
   end;
   if not ok then raise exception 'FAIL: pozivnica u OBUSTAVLJENU firmu NIJE blokirana'; end if;
 
-  -- ═══ (f) VEĆ ČLAN DRUGE FIRME → odbij ═══
+  -- ═══ (f) VEĆ AKTIVAN VOZAČ DRUGE FIRME + vozačka pozivnica → odbij (ADR 0013 v1 pravilo) ═══
+  -- (Office multi-firma je sada DOZVOLJENO; vozač je ograničen na jedno aktivno vozačko članstvo.)
   perform set_config('request.jwt.claims', json_build_object('sub', u_other)::text, true);
   begin
     v_result := accept_invitation(code_other); v_err := 'NONE';
   exception when others then v_err := SQLERRM;
   end;
-  if v_err not like '%INVITE_OTHER_COMPANY%' then
-    raise exception 'FAIL: član firme B prihvatio pozivnicu firme A (err=%)', v_err;
+  if v_err not like '%INVITE_DRIVER_ALREADY_ENGAGED%' then
+    raise exception 'FAIL: vozač firme B prihvatio vozačku pozivnicu firme A (err=%)', v_err;
   end if;
 
   -- ═══ (a) HAPPY PATH VOZAČA: svež nalog prihvata kod ═══

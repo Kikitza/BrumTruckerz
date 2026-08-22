@@ -296,7 +296,17 @@
   },
   "settings": {
     "signOut": "Odjava",
-    "signOutConfirm": "Odjaviti se sa naloga?"
+    "signOutConfirm": "Odjaviti se sa naloga?",
+    "activeCompany": {
+      "title": "Aktivna firma",
+      "hint": "Prebaci se između firmi u kojima radiš",
+      "current": "aktivna",
+      "role": {
+        "owner": "Vlasnik",
+        "dispatcher": "Dispečer",
+        "driver": "Vozač"
+      }
+    }
   },
   "language": {
     "title": "Jezik",
@@ -365,7 +375,8 @@
       "otherCompany": "Tvoj nalog već pripada drugoj firmi.",
       "suspended": "Ova firma je obustavljena.",
       "dispatcherNotReady": "Dispečerski nalozi još nisu podržani — zamoli vlasnika da te pozove kao vozača.",
-      "roleCannotAccept": "Ovaj nalog ne može da prihvata pozivnice."
+      "roleCannotAccept": "Ovaj nalog ne može da prihvata pozivnice.",
+      "driverAlreadyEngaged": "Već si aktivni vozač u drugoj firmi. Vozač može biti aktivan samo u jednoj firmi."
     }
   },
   "sync": {
