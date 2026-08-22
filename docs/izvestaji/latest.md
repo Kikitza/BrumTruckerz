@@ -1,90 +1,66 @@
-# IZVEŠTAJ — v2-2 FINALE: GENERALNA PROBA ZBIRNOG SYNC-a NA STAGINGU
+# IZVEŠTAJ — v2-2 ZBIRNI SYNC NA PROD (uwphmxxeuggitssdmgcz)
 
-> Odobreno lepljenjem (vlasnik). Meta: **STAGING** `webquovijioxmouvuiko`. **PROD nije diran.** Link vraćen na DEV na kraju (dokaz dole).
+> Izričito odobrenje vlasnika (lepljenjem). Izvršen „TAČAN RECEPT ZA PROD" doslovno, sa STOP-kapijama. Link vraćen na DEV (dokaz dole). **Nijedna tajna-vrednost nije u ovom izveštaju.**
 
-## 1) Stanje + dry-run (bez odstupanja)
-- Staging remote pre probe: istorija do **0026** (od perf testa) — kako je očekivano.
+## 1) Kapija: stanje + dry-run (bez odstupanja) → push
+- PROD remote pre: istorija do **0026** (očekivano).
 - `db push --dry-run` → **TAČNO**: `0027, 0028, 0029, 0030, 0031, 0032, 0033`. Bez odstupanja → nastavljeno.
+- Push: svih 7 migracija primenjeno bez greške.
 
-## 2) Push + PRE/POSLE (sve aditivno, seed netaknut)
-Svih 7 migracija primenjeno na staging bez greške.
-
+### PRE/POSLE (aditivnost; pravi podaci netaknuti)
 | Tabela | PRE | POSLE |
 |---|---:|---:|
-| companies | 2 | 2 |
-| app_users | 2 | 2 |
-| drivers | 11 | 11 |
-| vehicles | 25 | 25 |
-| trips | 1200 | 1200 |
-| customers | 30 | 30 |
-| invoices | 300 | 300 |
-| reminders | 64 | 64 |
+| companies | 1 | 1 |
+| app_users | 1 | 1 |
+| drivers | 1 | 1 |
+| vehicles | 5 | 5 |
+| trips | 0 | 0 |
+| customers | 0 | 0 |
+| invoices | 0 | 0 |
+| reminders | 4 | 4 |
 | **outbox_events** (nova) | — | **0** |
 | **audit_log** (nova) | — | **0** |
 
-[SEED] podaci netaknuti; nove tabele prazne. **Aditivno potvrđeno.**
+Pravi podaci firme netaknuti; nove tabele prazne. **Aditivnost potvrđena.**
 
-## 3) Edge na staging
-- `reminders-cron` (nova verzija sa `reminder.due` emisijom) + `outbox-worker` deploy-ovani na staging.
-- Staging `CRON_SECRET` postavljen (vrednost **samo u sesiji**, u scratchpad-u — nikad u repo/izveštaj).
+## 2) CRON_SECRET + Edge funkcije
+- `CRON_SECRET` **već postoji na PROD** (od „push finala", 2026-08-20) — nije menjan. (`secrets list` prikazuje digeste, ne plaintext; plaintext NIJE u ovoj sesiji.)
+- `functions deploy` na PROD (`--no-verify-jwt`): **`reminders-cron`** (nova verzija sa `reminder.due` emisijom) + **`outbox-worker`** (nov). Obe potvrđene „Deployed".
 
-## 4) SMOKE end-to-end na stagingu — ishodi
-- **Promena statusa [SEED] ture** (finished→driving) → **1 red u `outbox_events` I 1 u `audit_log`** (`trip.status_changed`, payload `prev/status`, actor null jer je SQL kontekst).
-- **Worker ručno** (POST + `x-cron-secret`) → `{"claimed":1,"processed":1}`; event dobio `processed_at`. **Guard:** poziv bez tajne → **401** (fail-closed).
-- **Dead-letter** (`test.boom` + jedan `test.ok`), 6 ciklusa worker-a:
-  | ciklus | claimed | processed | failed |
-  |---|---:|---:|---:|
-  | 1 | 2 | **1** (test.ok teče) | 1 |
-  | 2–5 | 1 | 0 | 1 (retry test.boom) |
-  | 6 | **0** | 0 | 0 (test.boom na 5 → **preskočen**) |
-  Završno: `test.boom` → `attempts=5`, `processed_at=null`, `error` zapisan, **red i dalje prisutan** (prune ne dira neobrađene); `test.ok` processed. „Zaglavljen" upit (`attempts>=5`) vraća 1.
+## 3) Smoke posle primene (PROD)
+- `test.ok` kroz `emit_outbox_event` → **dospeo u `outbox_events` I `audit_log`** (emit puni obe tabele — potvrđeno).
+- Pipeline do „processed": `outbox_claim_batch` uzeo red → `outbox_mark_processed` → **`processed_at` postavljen**; upit „zaglavljenih" (`attempts>=5`) = **0** (prazan).
+- **Napomena o smoke-u:** HTTP POST na worker (`.../functions/v1/outbox-worker` sa `x-cron-secret`) je **vlasnikov korak** — plaintext tajne nije u sesiji; identičan deploy je uživo dokazan HTTP-om na STAGING-u (prethodni izveštaj: claimed/processed/dead-letter/401). Na PROD-u je DB pipeline (`emit → claim → processed`) dokazan direktno preko istih RPC-ova koje worker zove.
+- **Test red OČIŠĆEN:** `test.ok` obrisan iz `outbox_events` i `audit_log` → obe tabele nazad na **0**; pravi podaci netaknuti (companies 1 / drivers 1 / vehicles 5 / reminders 4).
 
-## 5) test:db PROTIV STAGINGA
-Svih **13 svita PROŠLO** na kopiji pravih podataka (rollback čist): rls_audit, correct_event_chain, identity, invitations, dispatcher, phone_change, customers, invoices, reminder_types, company_self, career, outbox, outbox_worker.
-
-## 6) Link vraćen na DEV (dokaz) + staging očišćen
-- Rehearsal artefakti obrisani sa staginga: seed tura vraćena na `finished`; `outbox_events`/`audit_log` ispražnjene → **outbox=0, audit=0**, seed netaknut (trips 1200 / invoices 300 / customers 30). (Napomena: restore ture kroz trigere je stvorio dodatne evente → očišćeni zasebnim sweep-om jer sibling-DELETE u istom upitu ne vidi trigerom-ubačene redove.)
-- **Link: `icbjagubaftoqcwfcbwf` (DEV)**, DEV potvrđen na `0033`.
+## 4) Link vraćen na DEV (dokaz)
+- `supabase link --project-ref icbjagubaftoqcwfcbwf` → **LINK: `icbjagubaftoqcwfcbwf` (DEV)**, DEV potvrđen na `0033`.
 
 ---
 
-## TAČAN RECEPT ZA PROD
-> Izvršava se TEK uz zaseban, izričit „kreni PROD" od vlasnika. PROD = `uwphmxxeuggitssdmgcz`. Isti koraci potvrđeni na stagingu.
+## ČEKA VLASNIKA — jedan klik (Dashboard PROD → Cron)
+> Baza + funkcije su na PROD-u. Ostaje samo raspored worker-a (isti mehanizam kao postojeći reminders-cron job).
 
-**A. Migracije (baza)**
-1. `supabase link --project-ref uwphmxxeuggitssdmgcz`
-2. `supabase migration list --linked` → potvrdi remote do **0026**.
-3. `supabase db push --linked --dry-run` → mora dati **TAČNO 0027–0033**. Odstupanje → STANI.
-4. `supabase db push --linked` → primeni 7 migracija (sve aditivno; nove tabele prazne; seed/podaci netaknuti — proveri PRE/POSLE brojeve).
+1. Dashboard PROD (`uwphmxxeuggitssdmgcz`) → **Cron** → **New job**.
+2. Raspored: **`*/5 * * * *`** (na 5 minuta).
+3. Akcija: **POST** na
+   `https://uwphmxxeuggitssdmgcz.supabase.co/functions/v1/outbox-worker`
+   sa headerom **`x-cron-secret: <PROD CRON_SECRET>`** (vrednost je ona koju si postavio na „push finalu"; asistent ti je pokazuje u terminalu, nikad u izveštaj).
+4. Proveri da **postojeći `reminders-cron` job i dalje stoji** (ostaje kako jeste; sad dodatno emituje `reminder.due`).
 
-**B. Tajna + Edge funkcije**
-5. `supabase secrets set CRON_SECRET=<PROD tajna>` (ako PROD još nema; vrednost van repo-a).
-6. `supabase functions deploy reminders-cron --no-verify-jwt` (nosi `reminder.due`).
-7. `supabase functions deploy outbox-worker --no-verify-jwt`.
-
-**C. Rasporedi (vlasnik klikće u Dashboard-u PROD projekta → Cron)**
-8. **Nov cron job za worker:** raspored `*/5 * * * *`, akcija **POST** na
-   `https://uwphmxxeuggitssdmgcz.supabase.co/functions/v1/outbox-worker`,
-   header `x-cron-secret: <PROD CRON_SECRET>`. (Isti mehanizam kao postojeći reminders-cron job.)
-9. Proveri da `reminders-cron` job i dalje postoji (ostaje kako jeste).
-
-**D. Provera posle primene (PROD)**
-10. Smoke (opciono, van radnih sati): jedna promena → red u `outbox_events`+`audit_log`; ručni POST na worker → `processed`.
-11. Nadzor „zaglavljenih": `select id, event_type, attempts, error from outbox_events where processed_at is null and attempts>=5;`
-
-**Rollback (po potrebi, obrnutim redom):** `drop trigger *_outbox` + `drop function tg_*`, vrati `emit_outbox_event` na 0029 verziju, `drop table audit_log`, `drop table outbox_events` (kolone u trips/trip_stops su aditivne/nullable — mogu ostati); `supabase functions delete outbox-worker`; ukloni worker cron job.
+Posle uključenja cron-a, worker svakih 5 min obrađuje evente. Provera „zaglavljenih" (kad zatreba):
+`select id, event_type, attempts, error from outbox_events where processed_at is null and attempts>=5;`
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
-| Dry-run staging = 0027–0033 | ✅ tačno, bez odstupanja |
-| Push staging (7 migracija) | ✅ aditivno; seed netaknut; nove tabele prazne |
-| Edge deploy staging (2 fn) + secret | ✅ |
-| Smoke: event→outbox+audit→worker→processed | ✅ |
-| Smoke: dead-letter (5→preskočen), ostali teku | ✅ |
-| Smoke: auth guard 401 bez tajne | ✅ |
-| `test:db` 13 svita PROTIV STAGINGA | ✅ ALL PASSED |
-| Staging očišćen (outbox/audit prazne, seed ok) | ✅ |
+| Dry-run PROD = 0027–0033 | ✅ tačno, bez odstupanja |
+| Push PROD (7 migracija) | ✅ aditivno; pravi podaci netaknuti; nove tabele prazne |
+| CRON_SECRET na PROD | ✅ postoji (nije menjan) |
+| Edge deploy PROD (2 fn) | ✅ reminders-cron + outbox-worker |
+| Smoke: emit → outbox + audit | ✅ |
+| Smoke: claim → processed; stuck prazan | ✅ |
+| Test red očišćen (tabele = 0) | ✅ |
 | **Link vraćen na DEV** | ✅ `icbjagubaftoqcwfcbwf` (0033) |
-| PROD diran? | ❌ NE (samo staging + dev) |
-| Tajne u izveštaju? | ❌ NE (samo imena/mesta) |
+| Tajne-vrednosti u izveštaju | ❌ NE (samo imena/mesta) |
+| Preostaje vlasniku | Cron job `*/5` za worker (jedan klik) |
