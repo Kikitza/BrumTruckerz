@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Пройденные страны",
     "noCountries": "Пока нет стран."
+  },
+  "activity": {
+    "title": "Активность (в реальном времени)",
+    "empty": "Активности пока нет.",
+    "event": {
+      "trip_created": "Рейс создан",
+      "driver_assigned": "Назначение изменено",
+      "route_changed": "Маршрут изменён",
+      "document_uploaded": "Документ загружен"
+    }
   }
 }

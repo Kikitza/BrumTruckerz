@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Shtetet e përshkuara",
     "noCountries": "Ende s'ka shtete."
+  },
+  "activity": {
+    "title": "Aktiviteti (drejtpërdrejt)",
+    "empty": "Ende asnjë aktivitet.",
+    "event": {
+      "trip_created": "Udhëtimi u krijua",
+      "driver_assigned": "Caktimi ndryshoi",
+      "route_changed": "Itinerari ndryshoi",
+      "document_uploaded": "Dokumenti u ngarkua"
+    }
   }
 }

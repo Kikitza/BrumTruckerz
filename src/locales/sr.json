@@ -628,5 +628,15 @@
     },
     "countriesVisited": "Zemlje kroz koje je vozio",
     "noCountries": "Još nema zemalja."
+  },
+  "activity": {
+    "title": "Aktivnost (uživo)",
+    "empty": "Još nema aktivnosti.",
+    "event": {
+      "trip_created": "Nova tura",
+      "driver_assigned": "Dodela izmenjena",
+      "route_changed": "Ruta izmenjena",
+      "document_uploaded": "Dokument dodat"
+    }
   }
 }

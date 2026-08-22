@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Przejechane kraje",
     "noCountries": "Brak krajów."
+  },
+  "activity": {
+    "title": "Aktywność (na żywo)",
+    "empty": "Brak aktywności.",
+    "event": {
+      "trip_created": "Utworzono trasę",
+      "driver_assigned": "Zmieniono przydział",
+      "route_changed": "Zmieniono trasę",
+      "document_uploaded": "Przesłano dokument"
+    }
   }
 }

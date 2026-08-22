@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Pays traversés",
     "noCountries": "Aucun pays pour le moment."
+  },
+  "activity": {
+    "title": "Activité (en direct)",
+    "empty": "Aucune activité pour le moment.",
+    "event": {
+      "trip_created": "Trajet créé",
+      "driver_assigned": "Affectation modifiée",
+      "route_changed": "Itinéraire modifié",
+      "document_uploaded": "Document téléversé"
+    }
   }
 }

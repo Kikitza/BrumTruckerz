@@ -15,6 +15,7 @@ import { LoadMore } from "../../../src/components/LoadMore";
 import { ownerListActiveTrips, ownerListArchivedTrips, ownerListTripsRich, tripTitle, type TripListItem, type TripRichRow } from "../../../src/features/trips/api";
 import { NewTripModal } from "../../../src/features/trips/NewTripModal";
 import { TripDetailModal } from "../../../src/features/trips/TripDetailModal";
+import { ActivityFeed } from "../../../src/features/activity/ActivityFeed";
 
 type ModalState = { mode: "none" | "new" | "detail"; tripId?: string };
 const PAGE = 50;
@@ -66,6 +67,7 @@ export default function OwnerTrips() {
           <Pressable onPress={() => setModal({ mode: "new" })} style={{ alignSelf: "flex-start", backgroundColor: colors.primary, borderRadius: 8, paddingVertical: 10, paddingHorizontal: 16 }}>
             <Text style={{ color: colors.onPrimary, fontWeight: "600" }}>{t("trip.newTrip")}</Text>
           </Pressable>
+          <ActivityFeed />
           {tripsRich.isLoading ? <ActivityIndicator color={colors.primary} /> : (
             <>
               <DataTable columns={cols} rows={tripsRich.data ?? []} keyExtractor={(r) => r.id} onRowPress={(r) => open(r.id)} />
@@ -93,6 +95,8 @@ export default function OwnerTrips() {
         <ActivityIndicator style={{ marginTop: 24 }} color={colors.primary} />
       ) : (
         <ScrollView contentContainerStyle={{ paddingBottom: 24 }}>
+          {/* Živi feed aktivnosti (dokaz event/outbox sloja) */}
+          <ActivityFeed />
           {/* AKTIVNE (server paginacija) */}
           <SectionLabel colors={colors} text={t("trip.active")} />
           {active.length === 0 ? (

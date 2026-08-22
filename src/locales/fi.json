@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Ajetut maat",
     "noCountries": "Ei vielä maita."
+  },
+  "activity": {
+    "title": "Toiminta (live)",
+    "empty": "Ei vielä toimintaa.",
+    "event": {
+      "trip_created": "Matka luotu",
+      "driver_assigned": "Määritys muutettu",
+      "route_changed": "Reitti muutettu",
+      "document_uploaded": "Asiakirja ladattu"
+    }
   }
 }

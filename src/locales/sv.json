@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Körda länder",
     "noCountries": "Inga länder ännu."
+  },
+  "activity": {
+    "title": "Aktivitet (live)",
+    "empty": "Ingen aktivitet ännu.",
+    "event": {
+      "trip_created": "Resa skapad",
+      "driver_assigned": "Tilldelning ändrad",
+      "route_changed": "Rutt ändrad",
+      "document_uploaded": "Dokument uppladdat"
+    }
   }
 }

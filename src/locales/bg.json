@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Изминати държави",
     "noCountries": "Още няма държави."
+  },
+  "activity": {
+    "title": "Активност (на живо)",
+    "empty": "Все още няма активност.",
+    "event": {
+      "trip_created": "Курсът е създаден",
+      "driver_assigned": "Назначението е променено",
+      "route_changed": "Маршрутът е променен",
+      "document_uploaded": "Документът е качен"
+    }
   }
 }

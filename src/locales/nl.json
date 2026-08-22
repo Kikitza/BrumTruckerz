@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Bereden landen",
     "noCountries": "Nog geen landen."
+  },
+  "activity": {
+    "title": "Activiteit (live)",
+    "empty": "Nog geen activiteit.",
+    "event": {
+      "trip_created": "Rit aangemaakt",
+      "driver_assigned": "Toewijzing gewijzigd",
+      "route_changed": "Route gewijzigd",
+      "document_uploaded": "Document geüpload"
+    }
   }
 }

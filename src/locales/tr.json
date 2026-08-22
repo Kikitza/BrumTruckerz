@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Geçilen ülkeler",
     "noCountries": "Henüz ülke yok."
+  },
+  "activity": {
+    "title": "Etkinlik (canlı)",
+    "empty": "Henüz etkinlik yok.",
+    "event": {
+      "trip_created": "Sefer oluşturuldu",
+      "driver_assigned": "Atama değişti",
+      "route_changed": "Rota değişti",
+      "document_uploaded": "Belge yüklendi"
+    }
   }
 }

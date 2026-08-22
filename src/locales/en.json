@@ -625,5 +625,15 @@
     },
     "countriesVisited": "Countries driven through",
     "noCountries": "No countries yet."
+  },
+  "activity": {
+    "title": "Activity (live)",
+    "empty": "No activity yet.",
+    "event": {
+      "trip_created": "Trip created",
+      "driver_assigned": "Assignment changed",
+      "route_changed": "Route changed",
+      "document_uploaded": "Document uploaded"
+    }
   }
 }

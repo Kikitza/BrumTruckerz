@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Пройдені країни",
     "noCountries": "Ще немає країн."
+  },
+  "activity": {
+    "title": "Активність (наживо)",
+    "empty": "Активності ще немає.",
+    "event": {
+      "trip_created": "Рейс створено",
+      "driver_assigned": "Призначення змінено",
+      "route_changed": "Маршрут змінено",
+      "document_uploaded": "Документ завантажено"
+    }
   }
 }

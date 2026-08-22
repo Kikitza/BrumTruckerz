@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Pravažiuotos šalys",
     "noCountries": "Kol kas nėra šalių."
+  },
+  "activity": {
+    "title": "Veikla (tiesiogiai)",
+    "empty": "Veiklos dar nėra.",
+    "event": {
+      "trip_created": "Reisas sukurtas",
+      "driver_assigned": "Priskyrimas pakeistas",
+      "route_changed": "Maršrutas pakeistas",
+      "document_uploaded": "Dokumentas įkeltas"
+    }
   }
 }

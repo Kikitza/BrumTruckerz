@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Kjørte land",
     "noCountries": "Ingen land ennå."
+  },
+  "activity": {
+    "title": "Aktivitet (live)",
+    "empty": "Ingen aktivitet ennå.",
+    "event": {
+      "trip_created": "Tur opprettet",
+      "driver_assigned": "Tildeling endret",
+      "route_changed": "Rute endret",
+      "document_uploaded": "Dokument lastet opp"
+    }
   }
 }

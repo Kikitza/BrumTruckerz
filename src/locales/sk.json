@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Prejazdené krajiny",
     "noCountries": "Zatiaľ žiadne krajiny."
+  },
+  "activity": {
+    "title": "Aktivita (naživo)",
+    "empty": "Zatiaľ žiadna aktivita.",
+    "event": {
+      "trip_created": "Jazda vytvorená",
+      "driver_assigned": "Priradenie zmenené",
+      "route_changed": "Trasa zmenená",
+      "document_uploaded": "Dokument nahraný"
+    }
   }
 }

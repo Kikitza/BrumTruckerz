@@ -1,29 +1,45 @@
-# IZVEŠTAJ — v2-2: ADR 0012 „EVENT / OUTBOX SLOJ" (PREDLOG)
+# IZVEŠTAJ — v2-2 kriška 1: EVENT / OUTBOX temelj
 
-> Samo dokument — **kod i šema se NE diraju**. Jednosmerna vrata (⛩): traži **potpis vlasnika pre** implementacije. Putanja: `docs/adr/0012-event-outbox.md` (STATUS: **PREDLOG**).
+> Prva kriška faze v2-2 (ADR 0012 PRIHVAĆENO). Durable outbox + prvi trigeri + prvi potrošač (živa tabla). **Sve na DEV.**
 
-## Predložene odluke — prostim jezikom (za potpis)
-1. **Šta je događaj:** nepromenjiv zapis „desilo se" (npr. `trip.created`, `driver.assigned`, `invoice.paid`), sa `payload` i verzijom radi buduće evolucije.
-2. **Outbox (temelj):** događaj se upisuje **u istoj transakciji** sa poslovnom promenom → nikad se ne gubi i nikad ne nastaje za nešto što se nije desilo. Obrada (notifikacije, marketplace) ide **kasnije, asinhrono** — razdvajamo „primi" od „obradi".
-3. **Ko upisuje:** **trigeri na tabelama** kao osnova (hvataju i direktan RLS upis kao kod `trips`, i RPC upis kao kod `invoices` — pokriveni SVI putevi); samo računati eventi (`reminder.due`) emituju se eksplicitno iz cron-a.
-4. **Ko troši (v1):** (a) **Supabase Realtime** → živa kancelarijska tabla bez osvežavanja; (b) **worker/cron** koji obrađuje + retry/dead-letter + retencija (čišćenje obrađenih posle ~30 dana).
-5. **`audit_log` (§11):** sestrinska **trajna** tabela („ko je šta uradio"), puni je isti trigeri; outbox je prolazni red koji se čisti, audit ostaje.
-6. **Šta NE radimo v1:** ne event sourcing (tabele ostaju izvor istine), ne replay infrastruktura, ne spoljni broker (Postgres dovoljan — duh ADR 0011).
-7. **Put:** aditivno (`0029` tabela+RLS, `0030` trigeri), bez diranja postojećih podataka; prvi potrošač = jedna živa lista kao dokaz.
+## 1) Migracija 0029 — `outbox_events` (na DEV)
+- Tabela: `id, occurred_at, event_type, event_version, aggregate_type, aggregate_id, company_id, actor_user_id, payload jsonb, idempotency_key (unique), processed_at, attempts, error`.
+- Indeksi: **parcijalni** `(occurred_at) where processed_at is null` (brzo uzimanje neobrađenih — budući worker) + `(company_id, occurred_at desc)` (živa tabla po firmi).
+- **RLS:** office (owner/dispatcher) čita SAMO svoju firmu; **nema** insert/update/delete politike za `authenticated` → upis samo kroz SECURITY DEFINER helper (bez forging-a).
+- `emit_outbox_event(...)` = jedini put upisa (SECURITY DEFINER, `revoke ... from public`); idempotency_key default = svež uuid (stabilan identitet reda za dedup kod potrošača) → **outbox insert nikad ne pada na ključu, pa nikad ne ugrožava poslovnu transakciju**.
+- `outbox_prune(days=30)` retencija (briše OBRAĐENE starije od N dana; grant samo `service_role`). `audit_log` (§11) je sestrinska **trajna** tabela — dolazi u kasnijoj kriški.
+- Realtime: `outbox_events` dodat u `supabase_realtime` publikaciju (idempotentno; Realtime poštuje RLS).
 
-## ADR sadrži (šablon)
-KONTEKST → ODLUKA (7 presuda) → ODBAČENE ALTERNATIVE (5, sa razlogom) → SKICA ŠEME (`outbox_events` + indeksi + RLS + retencija) → MIGRACIONI PUT (0029/0030) → TESTOVI ČUVARI (atomičnost, pokrivenost oba puta upisa, tenant izolacija, idempotencija, retry/dead-letter, realtime≠istina). 65 redova.
+## 2) Migracija 0030 — trigeri (na DEV)
+- **Presuda ADR §4:** trigeri na tabelama (ne emit-po-RPC) → pokrivaju **oba** puta upisa: direktan RLS upis **i** RPC/SECURITY DEFINER upis; budući RPC-ovi ne moraju ništa da pamte.
+- `trips`: **trip.created** (INSERT) + **driver.assigned** (UPDATE kad se promeni vozač/kamion/prikolica; payload nosi prev/new).
+- `trip_stops`: **route.changed** (INSERT/UPDATE/DELETE; `company_id` iz `trips`; kod CASCADE brisanja ture roditelj je već obrisan → preskače se, bez spama).
+- `attachments`: **document.uploaded** (INSERT).
+- Ostali eventi (`trip.status_changed`, `trip.completed`, `invoice.*`, `employment.*`, `reminder.due`) → sledeće kriške.
 
-## Sledeći korak (čeka vlasnika)
-- **Potpis** ovog ADR-a (STATUS → PRIHVAĆENO) je uslov za početak implementacije faze v2-2. Do potpisa se **ništa** ne menja u kodu/šemi.
-- I dalje otvoreno iz ranijih kriški: primena migracija **0027 + 0028 na STAGING/PROD** (tek uz izričito odobrenje).
+## 3) Prvi POTROŠAČ — živa tabla (dokaz kraj-na-kraj)
+- `src/features/activity/api.ts`: `listRecentActivity()` (čita outbox, RLS scope) + `subscribeActivity()` (Realtime INSERT → cleanup).
+- `src/features/activity/ActivityFeed.tsx`: sklopiva kartica „Aktivnost (uživo)" na **Turama** (owner, oba layout-a). Nov event → lista se **sama osvežava** (React Query invalidacija na Realtime insert). Nepoznat tip → sirov `event_type` (bez pada).
+- Time je dokazan pun lanac: **poslovna promena → outbox (trigeri) → Realtime → UI**.
+
+## 4) Testovi čuvari
+- **test:db** — nova svita `outbox_test.sql` (u `run.sh`): (1) direktan RLS upis → `trip.created` (payload/actor/company); (2) **atomičnost** — rollback poslovne promene ⇒ event NE preživi (subtransakcija); (3) **RPC put** (SECURITY DEFINER menja vozača) → `driver.assigned` (prev/new); (4) `route.changed` insert/delete + `document.uploaded`; (5) **tenant izolacija** (A ne vidi B i obrnuto); (6) **vozač** ne vidi outbox (0 redova). → **ALL PASSED** (cela svita 12/12).
+- **jest 136/136**, **typecheck ✓**, **lint 0 grešaka** (4 baseline upozorenja), **web export exit 0**.
+
+## PODSETNIK — ručna primena migracija
+- **0029 + 0030 su SAMO na DEV** (`db push --linked`). **PROD/STAGING tek uz izričito odobrenje** (ritual). Sada su **na čekanju za PROD**: 0027, 0028, 0029, 0030.
+- Rollback 0030: `drop trigger` + `drop function tg_*`. Rollback 0029: `drop function outbox_prune, emit_outbox_event`; `drop table outbox_events` (aditivno, bez uticaja na postojeće podatke); po potrebi izbaci tabelu iz `supabase_realtime` publikacije.
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
-| Izmene u kodu/šemi | ✅ nema (samo `docs/`) |
-| typecheck / test / lint | ✅ nedirano (nema promene koda) |
-| i18n | ✅ nedirano (nema novih ključeva) |
-| Migracije | ✅ nema (ADR je predlog, ne migracija) |
-| Pravila kvaliteta | ✅ ispoštovana — dokument, bez koda; ⛩ ADR pre implementacije po pravilu 12 |
+| `npm run typecheck` | ✅ |
+| `npm test` | ✅ 136/136 (20 suita) |
+| `npm run test:db` (DEV) | ✅ ALL PASSED (12 suita, uklj. outbox) |
+| `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
+| `expo export --platform web` | ✅ exit 0 |
+| i18n 30/30 | ✅ `activity.*` u svih 30 (sr/en autorski, ostali prevod); en fallback pun |
+| Tenant izolacija (RLS) | ✅ dokazano u outbox_test |
+| Append-only / bez event sourcing (ADR §7) | ✅ tabele ostaju izvor istine; outbox = tok obaveštavanja |
+| Kvalitet: slojevi razdvojeni | ✅ ekran → `features/activity/api.ts`; nema Supabase u ekranu; nema duplikata logike |
 | Link ostao na DEV | ✅ |

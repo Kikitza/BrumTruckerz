@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Χώρες διέλευσης",
     "noCountries": "Καμία χώρα ακόμη."
+  },
+  "activity": {
+    "title": "Δραστηριότητα (ζωντανά)",
+    "empty": "Καμία δραστηριότητα ακόμη.",
+    "event": {
+      "trip_created": "Δρομολόγιο δημιουργήθηκε",
+      "driver_assigned": "Η ανάθεση άλλαξε",
+      "route_changed": "Η διαδρομή άλλαξε",
+      "document_uploaded": "Το έγγραφο ανέβηκε"
+    }
   }
 }

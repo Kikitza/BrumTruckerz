@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Țări parcurse",
     "noCountries": "Încă nicio țară."
+  },
+  "activity": {
+    "title": "Activitate (live)",
+    "empty": "Încă nicio activitate.",
+    "event": {
+      "trip_created": "Cursă creată",
+      "driver_assigned": "Atribuire modificată",
+      "route_changed": "Rută modificată",
+      "document_uploaded": "Document încărcat"
+    }
   }
 }

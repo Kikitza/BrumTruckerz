@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Поминати држави",
     "noCountries": "Сè уште нема држави."
+  },
+  "activity": {
+    "title": "Активност (во живо)",
+    "empty": "Сè уште нема активност.",
+    "event": {
+      "trip_created": "Патувањето е креирано",
+      "driver_assigned": "Доделувањето е сменето",
+      "route_changed": "Рутата е сменета",
+      "document_uploaded": "Документот е поставен"
+    }
   }
 }

@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Läbitud riigid",
     "noCountries": "Veel pole riike."
+  },
+  "activity": {
+    "title": "Tegevus (otse)",
+    "empty": "Tegevust veel pole.",
+    "event": {
+      "trip_created": "Reis loodud",
+      "driver_assigned": "Määrang muudetud",
+      "route_changed": "Marsruut muudetud",
+      "document_uploaded": "Dokument üles laaditud"
+    }
   }
 }

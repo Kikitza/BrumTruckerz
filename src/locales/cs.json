@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Projeté země",
     "noCountries": "Zatím žádné země."
+  },
+  "activity": {
+    "title": "Aktivita (živě)",
+    "empty": "Zatím žádná aktivita.",
+    "event": {
+      "trip_created": "Jízda vytvořena",
+      "driver_assigned": "Přiřazení změněno",
+      "route_changed": "Trasa změněna",
+      "document_uploaded": "Dokument nahrán"
+    }
   }
 }

@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Izbrauktās valstis",
     "noCountries": "Vēl nav valstu."
+  },
+  "activity": {
+    "title": "Aktivitāte (tiešraidē)",
+    "empty": "Vēl nav aktivitātes.",
+    "event": {
+      "trip_created": "Brauciens izveidots",
+      "driver_assigned": "Piešķīrums mainīts",
+      "route_changed": "Maršruts mainīts",
+      "document_uploaded": "Dokuments augšupielādēts"
+    }
   }
 }

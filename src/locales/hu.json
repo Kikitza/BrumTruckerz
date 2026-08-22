@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Bejárt országok",
     "noCountries": "Még nincsenek országok."
+  },
+  "activity": {
+    "title": "Tevékenység (élő)",
+    "empty": "Még nincs tevékenység.",
+    "event": {
+      "trip_created": "Fuvar létrehozva",
+      "driver_assigned": "Hozzárendelés módosítva",
+      "route_changed": "Útvonal módosítva",
+      "document_uploaded": "Dokumentum feltöltve"
+    }
   }
 }

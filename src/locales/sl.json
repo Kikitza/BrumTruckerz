@@ -627,5 +627,15 @@
     },
     "countriesVisited": "Prevožene države",
     "noCountries": "Še ni držav."
+  },
+  "activity": {
+    "title": "Aktivnost (v živo)",
+    "empty": "Še ni aktivnosti.",
+    "event": {
+      "trip_created": "Vožnja ustvarjena",
+      "driver_assigned": "Dodelitev spremenjena",
+      "route_changed": "Pot spremenjena",
+      "document_uploaded": "Dokument naložen"
+    }
   }
 }
