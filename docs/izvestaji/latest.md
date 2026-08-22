@@ -1,25 +1,31 @@
-# IZVEŠTAJ — PROD: outbox-worker CRON zakazan SQL-om (pg_cron)
+# IZVEŠTAJ — v2-3: DVA ADR-a ZA MARKETPLACE (PREDLOZI)
 
-> Umesto vlasnikovog ručnog klika — zakazano `cron.schedule` SQL-om (odobreno). PROD `uwphmxxeuggitssdmgcz`. Link vraćen na DEV. **Bez tajni** (samo ime vault unosa).
+> Samo dokumenti — **kod i šema se NE diraju**. Oba ⛩ (jednosmerna vrata): traže **potpis vlasnika pre** implementacije. Putanje: `docs/adr/0013-*.md`, `docs/adr/0014-*.md` (oba STATUS: **PREDLOG**).
 
-## Šta je urađeno
-1. Pročitan postojeći posao `reminders-cron-daily` (jobid 1, `0 5 * * *`) → prekopiran oblik: `net.http_post` + `x-cron-secret` iz **`vault.decrypted_secrets` name `cron_reminders_secret`** (isti vault unos — worker čita istu tajnu iz `CRON_SECRET` env-a, pa nema 401).
-2. `cron.schedule('outbox-worker-every-5min', '*/5 * * * *', …POST .../functions/v1/outbox-worker…)` (jobid 2) — identičan obrazac, header iz istog vault secret-a. **Nigde plaintext tajne.**
+## ADR 0013 — Nalozi u više firmi (presude, prostim jezikom)
+1. **Nova tabela `memberships`** (osoba × firma × rola) = jedini izvor „ko sme šta, sada"; `app_users` ostaje identitet + pokazivač aktivne firme; `employments` ostaje istorija/CV. (Razdvajamo „sme sada" od „radio kad".)
+2. **Aktivna firma po sesiji (prekidač)**, NE „vidi sve firme odjednom" — jer ceo sistem radi u kontekstu jedne firme; prekidač je mala izmena, union bi tražio prepisivanje svih pravila.
+3. **RLS se menja na JEDNOM mestu:** samo tela helpera (`current_company_id`/`current_role_name`/`is_office_role`) čitaju aktivno članstvo — **nijedna politika se ne prepisuje**.
+4. **Migracija bez gubitka:** aditivno; svaki postojeći nalog dobija tačno jedno članstvo = današnje stanje; stare kolone ostaju kao fallback.
+5. **v1 pravilo (pošteno):** najviše **jedno aktivno vozačko** članstvo po osobi (tura = jedna firma); **kancelarijske role smeju u više firmi**.
 
-## Verifikacija
-- `select jobname, schedule from cron.job` → **OBA posla stoje, aktivna:** `reminders-cron-daily` (`0 5 * * *`, netaknut) + `outbox-worker-every-5min` (`*/5 * * * *`).
-- Prvi ciklus odradio (10:25:00 UTC): `cron.job_run_details` status **succeeded**; HTTP odgovor **200** (BEZ 401 — vault auth radi); `outbox_unprocessed=0`, „zaglavljenih"=0.
+## ADR 0014 — Mrežni profil radnika (presude, prostim jezikom)
+1. **Sadržaj v1:** preferencije (zemlje interesa — odvojene od rute; relacije), dostupnost (+datum), jezici, tražena rola, sertifikati **samodeklarisani** (neprovereno).
+2. **Privatnost = PRIVATAN po defaultu** (opt-in): u pretrazi firma vidi samo **javnu karticu bez PII**; ime/kontakt tek posle radnikovog prihvatanja; **CV se deli ISKLJUČIVO uz izričit pristanak** radnika (po firmi).
+3. **Poziv firma→radnik ide kroz POSTOJEĆI `accept_invitation`** (marketplace = nov izvor iste kapije → kreira članstvo iz ADR 0013); radnik uvek prihvata.
+4. **Anti-scope v1:** bez plaćanja, ocena, chata — samo discover→invite→accept.
+5. **Data-collision guard (tvrdo):** „zemlje interesa" su odvojena kolona od zemalja rute / prebivališta / firme — nikad se ne mešaju (PDF §6).
 
-## Stanje
-- Worker se sada poziva **svakih 5 min** na PROD-u i obrađuje evente; retencija (`outbox_prune(30)`) ide u svakom ciklusu.
-- **Link: DEV** (`icbjagubaftoqcwfcbwf`, 0033).
-- Zaustavljanje (kad zatreba): `select cron.unschedule('outbox-worker-every-5min');`.
+## Napomene
+- Oba ADR-a: naš šablon (KONTEKST → ODLUKA/presude → ODBAČENE ALTERNATIVE → SKICA ŠEME → MIGRACIONI PUT/TESTOVI), srpski, ≤150 redova (39 / 48). `0014` referiše `0013` (članstvo je temelj).
+- **Redosled implementacije** (ako se potpišu): prvo **0013** (članstvo — temelj dozvola), pa **0014** (mrežni profil koristi članstvo + `accept_invitation`).
 
+## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
-| Nov posao `*/5` kreiran | ✅ jobid 2 |
-| `reminders-cron-daily` netaknut | ✅ `0 5 * * *` |
-| Prvi ciklus: worker 200 (ne 401) | ✅ succeeded |
-| outbox prazan / stuck 0 | ✅ |
-| Link vraćen na DEV | ✅ |
-| Tajne u izveštaju | ❌ NE (samo ime vault unosa) |
+| Izmene u kodu/šemi | ✅ nema (samo `docs/adr/`) |
+| typecheck / test / lint | ✅ nedirano (nema koda) |
+| i18n | ✅ nedirano (nema ključeva) |
+| Migracije | ✅ nema (ADR-ovi su predlozi) |
+| Pravila kvaliteta / rule 12 (⛩ ADR pre implementacije) | ✅ ispoštovano |
+| Link ostao na DEV | ✅ `icbjagubaftoqcwfcbwf` |
