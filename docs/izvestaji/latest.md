@@ -1,75 +1,69 @@
-# IZVEŠTAJ — v2-3 FINALE: GENERALNA PROBA ZBIRNOG SYNC-a NA STAGINGU
+# IZVEŠTAJ — v2-3 PROD ZBIRNI SYNC (0034→0037)
 
-> STAGING `webquovijioxmouvuiko`. **PROD NIJE diran.** Cilj: dokazati zbirni sync 0034→0037 na kopiji pravih podataka pre PROD-a. Link vraćen na DEV na kraju.
+> PROD `uwphmxxeuggitssdmgcz`. Izvršeno uz **izričito odobrenje vlasnika** (lepljenje). Recept iz generalne probe primenjen doslovno, sa STOP-kapijama. Link vraćen na DEV. **Bez ijedne tajne u izveštaju.**
 
-## 1) Link + stanje + DRY-RUN (kapija)
-- Link staging → **istorija: 33 migracije, latest `0033`** (kako se očekivalo).
-- `db push --linked --dry-run` → **TAČNO 4 migracije**, bez odstupanja:
-  - `0034_memberships.sql`, `0035_network_profiles.sql`, `0036_firmless_worker_identity.sql`, `0037_cv_consents.sql`
-- Nema odstupanja → nastavljeno.
+## 1) Sync 0034→0037
 
-## 2) Push + PRE/POSLE (paritet + [SEED] netaknut)
+### Kapije (obe prošle)
+- Link PROD → istorija **33 migracije, latest `0033`** (očekivano).
+- `db push --linked --dry-run` → **TAČNO 4**: `0034_memberships`, `0035_network_profiles`, `0036_firmless_worker_identity`, `0037_cv_consents`. Bez odstupanja → nastavljeno.
+
+### PRE / POSLE (paritet + prava firma netaknuta)
 | Metrika | PRE | POSLE |
 |---|---|---|
 | latest migracija | 0033 | **0037** |
-| app_users total | 2 | 2 |
-| app_users sa firmom | 2 | 2 |
-| active_company_id set | — | 2 |
-| **memberships (aktivna)** | tabela ne postoji | **2** |
+| app_users total | 1 | **1** |
+| app_users sa firmom | 1 | 1 |
+| active_company_id set | — | 1 |
+| **memberships (aktivna)** | tabela ne postoji | **1** |
+| companies | 1 | **1** |
+| drivers | 1 | **1** |
+| trips | 0 | **0** |
 | network_profiles | ne postoji | **0** |
 | cv_consents | ne postoji | **0** |
 | cv_requests | ne postoji | **0** |
-| [SEED] nalozi | 1 | **1 (netaknut)** |
 
-- **BACKFILL PARITET:** memberships (2) **=** app_users sa firmom (2) ✓ — svaki postojeći nalog dobio tačno jedno aktivno članstvo = današnje stanje.
-- Nove tabele prazne (0/0/0), pravi/[SEED] podaci netaknuti.
+- **BACKFILL PARITET:** memberships aktivna (1) **=** app_users sa firmom (1) ✓ — postojeći nalog dobio tačno jedno aktivno članstvo = zatečeno stanje.
+- **Prava firma netaknuta:** app_users/companies/drivers/trips brojevi **nepromenjeni**; nove tabele prazne (0/0/0).
+- Push izlaz: 4 migracije primenjene (`0034,0035,0036,0037`).
 
-## 3) Edge funkcije
-- Git provera: **nijedna funkcija u `supabase/functions/` nije menjana od poslednjeg staging deploya** (`f3caf7d`). → **NEMA redeploya.**
-- Razlog bez posledica: kriška 3 eventi (`cv.request.sent`/`cv.consent.granted`/`cv.consent.revoked`) idu kroz POSTOJEĆI `emit_outbox_event`; outbox-worker neregistrovan tip tretira kao **no-op processed** (potvrđeno u kodu).
+## 2) Edge funkcije
+- Git: **nijedna funkcija u `supabase/functions/` nije menjana od poslednjeg PROD deploya** (`43e08cf`). → **PRESKOČEN deploy.**
+- Bez posledica: cv.* eventi (`cv.request.sent`/`cv.consent.granted`/`cv.consent.revoked`) idu kroz POSTOJEĆI `emit_outbox_event`; outbox-worker neregistrovan tip = **no-op processed**. PROD cron (`outbox-worker-every-5min` `*/5`, `reminders-cron-daily`) netaknut.
 
-## 4) SMOKE (RPC nivo) — jedna transakcija sa ROLLBACK-om (sentinel)
-- **Metod (namerno, strože bezbedno):** ceo smoke u jednoj transakciji poništenoj sentinel-om → **realni podaci 100% netaknuti, NULA ostatka** (zato nije trebao outbox/audit sweep — sve se poništi). Bezbednije od perzistentnih [SEED] redova + čišćenja.
-- Ishodi (svi prošli — dostignut sentinel `SMOKE_STAGING_OK`, svaki neuspeh bi ranije prekinuo):
-  - `SMOKE_IDENTITY_OK` — `ensure_identity` za svež nalog → čist identitet (role/company NULL);
+## 3) SMOKE (RPC nivo) — jedna transakcija sa ROLLBACK-om (sentinel)
+- **Metod:** ceo smoke poništen sentinel-om `SMOKE_PROD_OK` → **prava firma 100% netaknuta, NULA ostatka** (nema outbox/audit sweep-a jer se sve poništi).
+- Ishodi (svih 5 prošlo — dostignut sentinel; svaki neuspeh bi ranije prekinuo):
+  - `SMOKE_IDENTITY_OK` — `ensure_identity` → čist identitet (role/company NULL);
   - `SMOKE_BTD_OK` — `ensure_worker_public_no('driver')` → BT-D;
-  - `SMOKE_SEARCH_NOPII_OK` — mrežni profil visible → `network_search` vraća karticu sa javnim brojem, BEZ PII;
-  - `SMOKE_CONSENTED_OK` — `cv_request` → `respond_cv_request(approve)` → `career_view_mode`=`consented`, `career_summary` prolazi (pun);
+  - `SMOKE_SEARCH_NOPII_OK` — visible mrežni profil → `network_search` kartica sa javnim brojem, BEZ PII;
+  - `SMOKE_CONSENTED_OK` — `cv_request` → `respond_cv_request(approve)` → `career_view_mode`=`consented`, `career_summary` prolazi;
   - `SMOKE_REVOKE_OK` — `revoke_cv_consent` → `career_view_mode`=`none`, `career_summary` → 42501 **momentalno**.
-- Post-smoke provera: 0 [SEED] firmi, 0 smoke naloga, tabele i dalje 0/0/0, memberships 2, app_users 2 — **potvrđeno bez ostatka**.
+- Post-smoke: 0 [SEED] firmi, 0 smoke naloga; app_users 1, companies 1, drivers 1, memberships 1, nove tabele 0/0/0 — **potvrđeno bez ostatka**.
 
-## 5) test:db PROTIV STAGINGA
-- **Svih 17 svita PASS** (rollback-based, protiv kopije pravih podataka): rls_audit, correct_event_chain, identity, invitations, dispatcher, phone_change, customers, invoices, reminder_types, company_self, career, outbox, outbox_worker, memberships, network, firmless_worker, cv_consent.
+## 4) test:db na PROD-u — PRESKOČEN (namerno)
+- Svih **17 svita već dokazano na STAGING kopiji pravih podataka** (generalna proba, prethodni izveštaj) → manje diranja prave baze. Smoke (§3) potvrđuje ključni tok na samom PROD-u.
 
-## 6) Link vraćen na DEV (dokaz)
+## 5) Link vraćen na DEV (dokaz)
 - `supabase link --project-ref icbjagubaftoqcwfcbwf` → OK; `.temp/project-ref` = `icbjagubaftoqcwfcbwf`.
-- Dokaz razlike: DEV `app_users = 6` (staging = 2), latest `0037`. **Aktivan link = DEV.**
+- Dokaz razlike: DEV `app_users = 6` (PROD = 1), latest `0037`. **Aktivan link = DEV.**
 
----
-
-## TAČAN RECEPT ZA PROD (uwphmxxeuggitssdmgcz) — SAMO uz izričito odobrenje vlasnika
-> Isti tok kao staging; STOP na svakom odstupanju. **Edge deploy NIJE potreban** (funkcije nepromenjene od poslednjeg PROD deploya `43e08cf`; cv.* eventi = no-op processed).
-
-1. **Link + kapija:** `supabase link --project-ref uwphmxxeuggitssdmgcz` → potvrdi istoriju **latest `0033`**. `supabase db push --linked --dry-run` → mora **TAČNO** `0034,0035,0036,0037`. **Odstupanje → STANI.**
-2. **PRE snimak:** zabeleži `app_users` total i `app_users where company_id is not null` (= očekivani backfill), i da nove tabele ne postoje.
-3. **Push:** `supabase db push --linked`.
-4. **POSLE (paritet):** `memberships (active)` **mora = app_users sa firmom** (PRE broj); `network_profiles/cv_consents/cv_requests = 0`; `app_users` total nepromenjen; pravi podaci netaknuti; latest `0037`.
-5. **Edge:** preskoči (nepromenjeno). *(Ako bi ubuduće bila promena — `supabase functions deploy <ime>`.)*
-6. **(Opciono) SMOKE:** isti rollback-sentinel blok kao u §4 (ništa ne persistira). Preskočivo — test:db pokriva.
-7. **test:db protiv PROD-a (opciono, rollback-safe):** `npm run test:db` — svih 17 PASS.
-8. **OBAVEZNO link nazad na DEV:** `supabase link --project-ref icbjagubaftoqcwfcbwf` + dokaz (`current_database`/broj app_users razlikuje PROD od DEV).
+## Stanje okruženja (posle sync-a)
+- **DEV, STAGING, PROD svi na `0037`.** v2-3 marketplace v1 (kriške 1, 2, 2b, 3) uživo na PROD-u.
+- Edge (reminders-cron, outbox-worker) nepromenjen na sve tri; PROD cron aktivan.
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
 | Dry-run = tačno 0034–0037 | ✅ |
-| Push staging | ✅ 4 primenjene |
-| Backfill paritet (memberships = app_users/firma) | ✅ 2 = 2 |
-| Nove tabele prazne, [SEED] netaknut | ✅ |
+| Push PROD | ✅ 4 primenjene |
+| Backfill paritet (memberships = app_users/firma) | ✅ 1 = 1 |
+| Prava firma netaknuta (app_users/companies/drivers/trips) | ✅ nepromenjeno |
+| Nove tabele prazne | ✅ 0/0/0 |
 | Edge nepromenjen → bez deploya | ✅ |
 | SMOKE (rollback, bez ostatka) | ✅ svih 5 tačaka |
-| test:db protiv staginga | ✅ 17/17 |
+| test:db na PROD | ⏭️ preskočen (dokazano na stagingu) |
 | Link vraćen na DEV + dokaz | ✅ `icbjagubaftoqcwfcbwf` |
-| PROD diran? | ❌ NE |
+| Tajne u izveštaju | ❌ nijedna |
 
-**Kvalitet:** staging generalna proba prošla kraj-na-kraj; realni podaci netaknuti (smoke rollback, nula ostatka); PROD recept spreman i uslovljen izričitim odobrenjem.
+**Kvalitet:** PROD sync po receptu, sve kapije prošle; prava firma netaknuta (smoke rollback, nula ostatka); backfill paritet dokazan brojevima; link vraćen na DEV sa dokazom.
