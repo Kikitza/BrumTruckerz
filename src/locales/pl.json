@@ -718,5 +718,10 @@
       "decline": "Odrzuć",
       "declineConfirm": "Odrzucić zaproszenie od {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Witaj",
+    "subtitle": "Utwórz profil lub dołącz do firmy.",
+    "orJoin": "Albo dołącz do firmy"
   }
 }

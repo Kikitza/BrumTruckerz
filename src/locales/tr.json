@@ -718,5 +718,10 @@
       "decline": "Reddet",
       "declineConfirm": "{{company}} şirketinin davetini reddetmek istiyor musun?"
     }
+  },
+  "onboarding": {
+    "title": "Hoş geldin",
+    "subtitle": "Profilini oluştur ya da bir şirkete katıl.",
+    "orJoin": "Ya da bir şirkete katıl"
   }
 }

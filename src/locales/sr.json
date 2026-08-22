@@ -719,5 +719,10 @@
       "decline": "Odbij",
       "declineConfirm": "Odbiti poziv firme {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Dobrodošao",
+    "subtitle": "Napravi svoj profil ili se pridruži firmi.",
+    "orJoin": "Ili se pridruži firmi"
   }
 }

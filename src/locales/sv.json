@@ -718,5 +718,10 @@
       "decline": "Avböj",
       "declineConfirm": "Avböja inbjudan från {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Välkommen",
+    "subtitle": "Skapa din profil eller gå med i ett företag.",
+    "orJoin": "Eller gå med i ett företag"
   }
 }

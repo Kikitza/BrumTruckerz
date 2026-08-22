@@ -718,5 +718,10 @@
       "decline": "Elutasítás",
       "declineConfirm": "Elutasítod {{company}} meghívóját?"
     }
+  },
+  "onboarding": {
+    "title": "Üdvözlünk",
+    "subtitle": "Hozd létre a profilod, vagy csatlakozz egy céghez.",
+    "orJoin": "Vagy csatlakozz egy céghez"
   }
 }

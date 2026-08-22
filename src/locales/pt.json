@@ -718,5 +718,10 @@
       "decline": "Recusar",
       "declineConfirm": "Recusar o convite de {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Bem-vindo",
+    "subtitle": "Cria o teu perfil ou junta-te a uma empresa.",
+    "orJoin": "Ou junta-te a uma empresa"
   }
 }

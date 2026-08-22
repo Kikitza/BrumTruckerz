@@ -718,5 +718,10 @@
       "decline": "Refuză",
       "declineConfirm": "Refuzi invitația de la {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Bine ai venit",
+    "subtitle": "Creează-ți profilul sau alătură-te unei firme.",
+    "orJoin": "Sau alătură-te unei firme"
   }
 }

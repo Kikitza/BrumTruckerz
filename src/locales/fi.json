@@ -718,5 +718,10 @@
       "decline": "Hylkää",
       "declineConfirm": "Hylätäänkö kutsu yritykseltä {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Tervetuloa",
+    "subtitle": "Luo profiilisi tai liity yritykseen.",
+    "orJoin": "Tai liity yritykseen"
   }
 }

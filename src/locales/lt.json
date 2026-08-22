@@ -718,5 +718,10 @@
       "decline": "Atmesti",
       "declineConfirm": "Atmesti kvietimą iš {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Sveiki",
+    "subtitle": "Sukurk profilį arba prisijunk prie įmonės.",
+    "orJoin": "Arba prisijunk prie įmonės"
   }
 }

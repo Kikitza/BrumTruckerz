@@ -718,5 +718,10 @@
       "decline": "Afvis",
       "declineConfirm": "Afvis invitationen fra {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Velkommen",
+    "subtitle": "Opret din profil eller tilslut dig en virksomhed.",
+    "orJoin": "Eller tilslut dig en virksomhed"
   }
 }

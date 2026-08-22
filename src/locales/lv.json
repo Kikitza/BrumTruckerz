@@ -718,5 +718,10 @@
       "decline": "Noraidīt",
       "declineConfirm": "Noraidīt uzaicinājumu no {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Laipni lūdzam",
+    "subtitle": "Izveido savu profilu vai pievienojies uzņēmumam.",
+    "orJoin": "Vai pievienojies uzņēmumam"
   }
 }

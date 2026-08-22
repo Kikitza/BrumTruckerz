@@ -718,5 +718,10 @@
       "decline": "Weigeren",
       "declineConfirm": "Uitnodiging van {{company}} weigeren?"
     }
+  },
+  "onboarding": {
+    "title": "Welkom",
+    "subtitle": "Maak je profiel of word lid van een bedrijf.",
+    "orJoin": "Of word lid van een bedrijf"
   }
 }

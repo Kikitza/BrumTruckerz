@@ -716,5 +716,10 @@
       "decline": "Decline",
       "declineConfirm": "Decline the invitation from {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Welcome",
+    "subtitle": "Build your profile or join a company.",
+    "orJoin": "Or join a company"
   }
 }

@@ -718,5 +718,10 @@
       "decline": "Rifiuta",
       "declineConfirm": "Rifiutare l’invito di {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Benvenuto",
+    "subtitle": "Crea il tuo profilo o unisciti a un’azienda.",
+    "orJoin": "Oppure unisciti a un’azienda"
   }
 }

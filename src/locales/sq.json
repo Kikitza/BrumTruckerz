@@ -718,5 +718,10 @@
       "decline": "Refuzo",
       "declineConfirm": "Të refuzosh ftesën nga {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Mirë se erdhe",
+    "subtitle": "Krijo profilin ose bashkohu një kompanie.",
+    "orJoin": "Ose bashkohu një kompanie"
   }
 }

@@ -14,7 +14,7 @@ import { LANGUAGES } from "../../i18n/languages";
 import { notify } from "../../lib/confirm";
 import { Tag } from "./Tag";
 import { certList } from "./searchParams";
-import { getMyNetworkProfile, upsertMyNetworkProfile, type NetworkProfile, type SeekingRole } from "./api";
+import { getMyNetworkProfile, upsertMyNetworkProfile, ensureWorkerPublicNo, getMyWorkerPublicNo, type NetworkProfile, type SeekingRole } from "./api";
 
 const EMPTY: NetworkProfile = {
   visibility: "private", seeking_role: null, countries_of_interest: [],
@@ -27,6 +27,7 @@ export function NetworkProfileEditor() {
   const qc = useQueryClient();
   const q = useQuery({ queryKey: ["my-network-profile"], queryFn: getMyNetworkProfile });
   const countriesQ = useQuery({ queryKey: ["countries"], queryFn: listCountries });
+  const publicNoQ = useQuery({ queryKey: ["my-worker-public-no"], queryFn: getMyWorkerPublicNo });
 
   const [draft, setDraft] = useState<NetworkProfile>(EMPTY);
   const [certInput, setCertInput] = useState("");
@@ -63,6 +64,11 @@ export function NetworkProfileEditor() {
     setSaving(true);
     try {
       await upsertMyNetworkProfile({ ...draft, certificates: certs });
+      // Dodeli trajni javni broj po traženoj roli (radnik bez firme dobija BT na profilu).
+      if (draft.seeking_role) {
+        await ensureWorkerPublicNo(draft.seeking_role);
+        qc.invalidateQueries({ queryKey: ["my-worker-public-no"] });
+      }
       qc.invalidateQueries({ queryKey: ["my-network-profile"] });
       await notify({ title: t("network.profile.saved"), okLabel: t("common.done") });
     } catch (e) {
@@ -80,6 +86,11 @@ export function NetworkProfileEditor() {
       <View style={{ gap: 4 }}>
         <Text style={{ color: colors.textMuted, fontSize: 13, fontWeight: "700", textTransform: "uppercase" }}>{t("network.profile.title")}</Text>
         <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("network.profile.hint")}</Text>
+        {publicNoQ.data ? (
+          <Text selectable style={{ color: colors.text, fontSize: 13, marginTop: 4 }}>
+            {t("profile.publicNo")}: <Text style={{ fontWeight: "700" }}>{publicNoQ.data}</Text>
+          </Text>
+        ) : null}
       </View>
 
       {/* Vidljivost — jasan prekidač, PRIVATNO podrazumevano, objašnjenje šta firma vidi. */}

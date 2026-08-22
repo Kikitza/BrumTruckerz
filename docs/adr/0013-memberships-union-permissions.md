@@ -1,6 +1,9 @@
 # ADR 0013 — Nalozi u više firmi (membership + union dozvole)
 
-**STATUS: PRIHVAĆENO** (22.8.2026, potpis vlasnika kroz savetnika). (Predlog: 22.8.2026.) Temelj marketplace-a (v2-3), gradi na event sloju (v2-2). PDF §4. Implementacija: v2-3 kriška 1 (migracija `0034`).
+**STATUS: PRIHVAĆENO** (22.8.2026, potpis vlasnika kroz savetnika). (Predlog: 22.8.2026.) Temelj marketplace-a (v2-3), gradi na event sloju (v2-2). PDF §4. Implementacija: v2-3 kriška 1 (migracija `0034`); kriška 2b (migracija `0036`).
+
+## DOPUNA (22.8.2026, kriška 2b — potpis vlasnika kroz savetnika; STATUS ostaje PRIHVAĆENO)
+**Identitet sme postojati bez ijednog članstva.** `app_users` = **čist identitet** (1 red po auth nalogu); `company_id`/`role` su **legacy fallback**, sada **nullable za ne-admina**. **Rola izvire iz ČLANSTVA (`memberships`), ne iz identiteta.** „Radnik bez firme" = identitet sa **nula aktivnih članstava** — otključava ključnu marketplace personu (radnik gradi profil i prima pozive pre nego što uđe u ijednu firmu). Bootstrap identiteta ide kroz `ensure_identity()` RPC (bez signup trigera — poziv iz klijenta na prvom ulasku; obrazloženje u migraciji `0036`). Invarijanta constraint-a: ne-admin ili ima firmu, ili je potpuno prazan identitet (nikad „rola bez firme").
 
 ## KONTEKST (danas u kodu)
 - `app_users` = **1 nalog → 1 firma → 1 rola** (`company_id`, `role`). Svi RLS helperi zavise od toga: `current_company_id()`, `current_role_name()`, `is_office_role()` čitaju taj JEDAN red.

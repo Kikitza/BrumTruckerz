@@ -89,3 +89,18 @@ export async function declineNetworkInvite(inviteId: string): Promise<void> {
   const { error } = await supabase.rpc("decline_network_invite", { p_invite: inviteId });
   if (error) throw error;
 }
+
+// Dodela TRAJNOG javnog broja po traženoj roli (radnik bez firme, 0036). Vozač → BT-D;
+// dispečer → profil osiguran, broj „po potrebi" (može null). Idempotentno.
+export async function ensureWorkerPublicNo(role: SeekingRole): Promise<string | null> {
+  const { data, error } = await supabase.rpc("ensure_worker_public_no", { p_role: role });
+  if (error) throw error;
+  return (data as string | null) ?? null;
+}
+
+// Radnikov dodeljeni javni broj (za prikaz u domu). Null ako još nije dodeljen.
+export async function getMyWorkerPublicNo(): Promise<string | null> {
+  const { data, error } = await supabase.rpc("my_worker_public_no");
+  if (error) throw error;
+  return (data as string | null) ?? null;
+}

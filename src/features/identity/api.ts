@@ -103,3 +103,10 @@ export async function acceptInvitation(code: string): Promise<AcceptResult> {
   if (error) throw error;
   return data as AcceptResult;
 }
+
+// Bootstrap ČISTOG identiteta (radnik bez firme, ADR 0013 dopuna / 0036). Idempotentno.
+// Zove se na prvom ulasku kad nalog nema app_users red (nema signup trigera).
+export async function ensureIdentity(): Promise<void> {
+  const { error } = await supabase.rpc("ensure_identity");
+  if (error) throw error;
+}

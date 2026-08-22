@@ -718,5 +718,10 @@
       "decline": "Zavrni",
       "declineConfirm": "Zavrniti vabilo podjetja {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Dobrodošel",
+    "subtitle": "Ustvari profil ali se pridruži podjetju.",
+    "orJoin": "Ali se pridruži podjetju"
   }
 }

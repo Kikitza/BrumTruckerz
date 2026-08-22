@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../../lib/supabase";
+import { ensureIdentity } from "../identity/api";
 
 export type Role = "platform_admin" | "owner" | "dispatcher" | "driver";
 
@@ -54,12 +55,21 @@ export function useSession() {
 
     let active = true;
     setLoading(true);
-    // Uloga iz app_users (profil). Red mora prethodno postojati (bootstrap service-role/ručno).
-    supabase.from("app_users").select("role").eq("id", uid).single()
-      .then(({ data, error }) => {
+    // Uloga iz app_users (identitet). Ako reda NEMA (nov nalog bez firme) → bootstrap čistog
+    // identiteta (ensure_identity, ADR 0013 dopuna / 0036), pa rola ostaje null (radnik bez firme).
+    supabase.from("app_users").select("role").eq("id", uid).maybeSingle()
+      .then(async ({ data, error }) => {
         if (!active) return;
+        if (!error && !data) {
+          // Nema identiteta → napravi ga (idempotentno), da mrežni profil/pozivi mogu da rade.
+          try { await ensureIdentity(); } catch { /* fail-closed: rola ostaje null */ }
+          if (!active) return;
+          setRole(null); setLoading(false);
+          return;
+        }
         // Fail-closed: greška ili nepoznata rola -> null (gate NE sme na owner).
-        setRole(!error && data ? (data.role as Role) : null);
+        // role može biti null (identitet bez firme) → gate vodi na onboarding dom.
+        setRole(!error && data ? ((data.role as Role | null) ?? null) : null);
         setLoading(false);
       });
     return () => { active = false; };

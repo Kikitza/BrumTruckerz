@@ -718,5 +718,10 @@
       "decline": "Odmietnuť",
       "declineConfirm": "Odmietnuť pozvánku od {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Vitaj",
+    "subtitle": "Vytvor si profil alebo sa pripoj k firme.",
+    "orJoin": "Alebo sa pripoj k firme"
   }
 }

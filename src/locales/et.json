@@ -718,5 +718,10 @@
       "decline": "Keeldu",
       "declineConfirm": "Kas keelduda ettevõtte {{company}} kutsest?"
     }
+  },
+  "onboarding": {
+    "title": "Tere tulemast",
+    "subtitle": "Loo oma profiil või liitu ettevõttega.",
+    "orJoin": "Või liitu ettevõttega"
   }
 }

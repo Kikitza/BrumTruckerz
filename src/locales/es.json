@@ -718,5 +718,10 @@
       "decline": "Rechazar",
       "declineConfirm": "¿Rechazar la invitación de {{company}}?"
     }
+  },
+  "onboarding": {
+    "title": "Bienvenido",
+    "subtitle": "Crea tu perfil o únete a una empresa.",
+    "orJoin": "O únete a una empresa"
   }
 }
