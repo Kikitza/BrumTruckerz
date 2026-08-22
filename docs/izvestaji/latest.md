@@ -1,46 +1,29 @@
-# IZVEŠTAJ — v2-1b: „ZEMLJE KROZ KOJE JE VOZIO" (geografija ture → CV mapa)
+# IZVEŠTAJ — v2-2: ADR 0012 „EVENT / OUTBOX SLOJ" (PREDLOG)
 
-> Nastavak karijernog profila. Pristup: **AUTO pokušaj + RUČNA potvrda**. Commit `9d07c4d` (push-ovan).
+> Samo dokument — **kod i šema se NE diraju**. Jednosmerna vrata (⛩): traži **potpis vlasnika pre** implementacije. Putanja: `docs/adr/0012-event-outbox.md` (STATUS: **PREDLOG**).
 
-## 1) Migracija 0028 (na DEV)
-- **`trip_stops.country_code`** + **`trip_stops.country_source`** (`'auto'|'manual'|null`) — zemlja svake stanice.
-- **`trips.origin_country_code`** + **`trips.origin_country_source`** — zemlja **polaznog mesta** (origin je tekst na `trips`, nije stanica; destinacija = poslednji istovar → njena zemlja je u `trip_stops`).
-- FK → `countries(code)` (41 ISO kod, `0025`). **Postojeće ture ostaju `null`** (legalno; CV pokazuje samo poznato).
-- **`career_countries(p_user)`** RPC (SECURITY DEFINER): distinct zemlje iz origin+stanica tura radnika, sa brojem tura po zemlji; **ista privatnost** kao ostatak CV-a (self = sve firme; office = samo svoja firma).
+## Predložene odluke — prostim jezikom (za potpis)
+1. **Šta je događaj:** nepromenjiv zapis „desilo se" (npr. `trip.created`, `driver.assigned`, `invoice.paid`), sa `payload` i verzijom radi buduće evolucije.
+2. **Outbox (temelj):** događaj se upisuje **u istoj transakciji** sa poslovnom promenom → nikad se ne gubi i nikad ne nastaje za nešto što se nije desilo. Obrada (notifikacije, marketplace) ide **kasnije, asinhrono** — razdvajamo „primi" od „obradi".
+3. **Ko upisuje:** **trigeri na tabelama** kao osnova (hvataju i direktan RLS upis kao kod `trips`, i RPC upis kao kod `invoices` — pokriveni SVI putevi); samo računati eventi (`reminder.due`) emituju se eksplicitno iz cron-a.
+4. **Ko troši (v1):** (a) **Supabase Realtime** → živa kancelarijska tabla bez osvežavanja; (b) **worker/cron** koji obrađuje + retry/dead-letter + retencija (čišćenje obrađenih posle ~30 dana).
+5. **`audit_log` (§11):** sestrinska **trajna** tabela („ko je šta uradio"), puni je isti trigeri; outbox je prolazni red koji se čisti, audit ostaje.
+6. **Šta NE radimo v1:** ne event sourcing (tabele ostaju izvor istine), ne replay infrastruktura, ne spoljni broker (Postgres dovoljan — duh ADR 0011).
+7. **Put:** aditivno (`0029` tabela+RLS, `0030` trigeri), bez diranja postojećih podataka; prvi potrošač = jedna živa lista kao dokaz.
 
-## 2) Auto-detekcija (čista fn, bez plaćenih servisa) — `src/features/trips/countryDetect.ts`
-- `detectCountry(place) → { code, confident }`. Redosled: (1) eksplicitan kod na kraju („…, DE" / „(IT)" / „Beograd - RS"); (2) ime zemlje (varijante sr/en/de, bez dijakritike); (3) poznat veliki grad (rečnik ~200 gradova EU/Balkan).
-- **NE nagađa na silu:** kad nije jasno → `{ null, false }` (ostaje za ručnu potvrdu). `country_source='auto'` se upisuje **samo** za `confident`.
+## ADR sadrži (šablon)
+KONTEKST → ODLUKA (7 presuda) → ODBAČENE ALTERNATIVE (5, sa razlogom) → SKICA ŠEME (`outbox_events` + indeksi + RLS + retencija) → MIGRACIONI PUT (0029/0030) → TESTOVI ČUVARI (atomičnost, pokrivenost oba puta upisa, tenant izolacija, idempotencija, retry/dead-letter, realtime≠istina). 65 redova.
 
-## 3) UI na turi (Nova/Izmeni) — auto-predlog + ručni izbor
-- Svaka stanica (`StopsEditor`) i **polazno mesto** (`NewTripModal`, `TripDetailModal` route-edit) dobijaju polje **„Zemlja"** (`CountryPickerField` sa pretragom).
-- Kucanje mesta → auto-predlog (source `auto`); korisnik može promeniti (→ `manual`, konačno — ne pregazuje se). Nesiguran predlog → prazno + suptilni nagoveštaj „Izaberi zemlju".
-- **Prazno NE blokira čuvanje** ture. Provučeno kroz `StopDraft → TripStopInput/StopDraftLike → reconcileStops → create/route api` (uklj. `trips.origin_country_*`).
-
-## 4) Backfill istorije
-- Dopuna zemalja postojećim turama ide kroz **redovni „Izmeni rutu"** na turi (sada ima country picker po stanici + za polazak) — office lako dopunjava.
-- **Zaseban masovni „Ture bez zemlje" ekran je ODLOŽEN** (opciono po zadatku; ne forsiram masovni upis / ne uvodim mrtav kod). Može kao sledeća sitna kriška ako zatreba.
-
-## 5) CV dopuna — „Zemlje kroz koje je vozio"
-- `CareerProfileView`: kartica sa zastavicama (`flagEmoji`, XK bez zvanične → 🏳️) + naziv zemlje (`t(countries.<CODE>)`) + broj tura. Ljubazno prazno stanje.
-
-## 6) Testovi
-- **jest**: `countryDetect.test.ts` (eksplicitan kod / ime / grad / nejasno→prazno), `calc.test.ts` (+`flagEmoji`), `stopsMath.test.ts` (redovi dopunjeni `country_code/source`). → **136/136**.
-- **test:db**: `career_test.sql` proširen — zemlje: self=4 (DE,AT,IT,SI); office B=2 (IT,SI, **ne** DE iz firme A); office A=2 (DE,AT); izolacija. → **ALL PASSED**.
-- **i18n**: `trip.stops.country`, `trip.stops.countryHint`, `career.countriesVisited`, `career.noCountries` u **svih 30** (sr/en autorski).
-
-## PODSETNIK — ručna primena migracije
-- **0028 je samo na DEV** (`db push --linked`). **PROD/STAGING** tek uz izričito odobrenje (ritual). Rollback: `drop function career_countries`; kolone (`trip_stops.country_*`, `trips.origin_country_*`) su aditivne/nullable (mogu ostati bez štete, ili `drop column`).
+## Sledeći korak (čeka vlasnika)
+- **Potpis** ovog ADR-a (STATUS → PRIHVAĆENO) je uslov za početak implementacije faze v2-2. Do potpisa se **ništa** ne menja u kodu/šemi.
+- I dalje otvoreno iz ranijih kriški: primena migracija **0027 + 0028 na STAGING/PROD** (tek uz izričito odobrenje).
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
-| `npm run typecheck` | ✅ |
-| `npm test` | ✅ 136/136 (20 suita) |
-| `npm run test:db` (DEV) | ✅ ALL PASSED |
-| `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
-| `expo export --platform web` | ✅ build prolazi |
-| Postojeći tokovi (create/edit ture) | ✅ nedirani (country je aditivan, prazno dozvoljeno) |
-| i18n 30/30 | ✅ |
-| Data-collision guard (§6) | ✅ zemlja rute = odvojeno polje (ne meša se sa interesom/prebivalištem) |
+| Izmene u kodu/šemi | ✅ nema (samo `docs/`) |
+| typecheck / test / lint | ✅ nedirano (nema promene koda) |
+| i18n | ✅ nedirano (nema novih ključeva) |
+| Migracije | ✅ nema (ADR je predlog, ne migracija) |
+| Pravila kvaliteta | ✅ ispoštovana — dokument, bez koda; ⛩ ADR pre implementacije po pravilu 12 |
 | Link ostao na DEV | ✅ |
