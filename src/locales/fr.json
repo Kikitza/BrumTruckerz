@@ -635,7 +635,16 @@
       "trip_created": "Trajet créé",
       "driver_assigned": "Affectation modifiée",
       "route_changed": "Itinéraire modifié",
-      "document_uploaded": "Document téléversé"
+      "document_uploaded": "Document téléversé",
+      "trip_status_changed": "Statut du trajet modifié",
+      "trip_completed": "Trajet terminé",
+      "invoice_issued": "Facture émise",
+      "invoice_paid": "Facture payée",
+      "invoice_cancelled": "Facture annulée",
+      "employment_started": "Emploi commencé",
+      "employment_ended": "Emploi terminé",
+      "customer_created": "Client ajouté",
+      "reminder_due": "Échéance due"
     }
   }
 }

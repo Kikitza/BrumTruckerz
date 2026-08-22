@@ -635,7 +635,16 @@
       "trip_created": "Δρομολόγιο δημιουργήθηκε",
       "driver_assigned": "Η ανάθεση άλλαξε",
       "route_changed": "Η διαδρομή άλλαξε",
-      "document_uploaded": "Το έγγραφο ανέβηκε"
+      "document_uploaded": "Το έγγραφο ανέβηκε",
+      "trip_status_changed": "Η κατάσταση δρομολογίου άλλαξε",
+      "trip_completed": "Το δρομολόγιο ολοκληρώθηκε",
+      "invoice_issued": "Το τιμολόγιο εκδόθηκε",
+      "invoice_paid": "Το τιμολόγιο πληρώθηκε",
+      "invoice_cancelled": "Το τιμολόγιο ακυρώθηκε",
+      "employment_started": "Η απασχόληση ξεκίνησε",
+      "employment_ended": "Η απασχόληση έληξε",
+      "customer_created": "Ο πελάτης προστέθηκε",
+      "reminder_due": "Λήξη προθεσμίας"
     }
   }
 }

@@ -635,7 +635,16 @@
       "trip_created": "Fuvar létrehozva",
       "driver_assigned": "Hozzárendelés módosítva",
       "route_changed": "Útvonal módosítva",
-      "document_uploaded": "Dokumentum feltöltve"
+      "document_uploaded": "Dokumentum feltöltve",
+      "trip_status_changed": "Fuvar státusza módosítva",
+      "trip_completed": "Fuvar befejezve",
+      "invoice_issued": "Számla kiállítva",
+      "invoice_paid": "Számla kifizetve",
+      "invoice_cancelled": "Számla törölve",
+      "employment_started": "Foglalkoztatás megkezdve",
+      "employment_ended": "Foglalkoztatás befejezve",
+      "customer_created": "Ügyfél hozzáadva",
+      "reminder_due": "Határidő esedékes"
     }
   }
 }

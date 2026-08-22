@@ -635,7 +635,16 @@
       "trip_created": "Cursă creată",
       "driver_assigned": "Atribuire modificată",
       "route_changed": "Rută modificată",
-      "document_uploaded": "Document încărcat"
+      "document_uploaded": "Document încărcat",
+      "trip_status_changed": "Stare cursă modificată",
+      "trip_completed": "Cursă finalizată",
+      "invoice_issued": "Factură emisă",
+      "invoice_paid": "Factură plătită",
+      "invoice_cancelled": "Factură anulată",
+      "employment_started": "Angajare începută",
+      "employment_ended": "Angajare încheiată",
+      "customer_created": "Client adăugat",
+      "reminder_due": "Scadență apropiată"
     }
   }
 }

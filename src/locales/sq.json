@@ -635,7 +635,16 @@
       "trip_created": "Udhëtimi u krijua",
       "driver_assigned": "Caktimi ndryshoi",
       "route_changed": "Itinerari ndryshoi",
-      "document_uploaded": "Dokumenti u ngarkua"
+      "document_uploaded": "Dokumenti u ngarkua",
+      "trip_status_changed": "Statusi i udhëtimit ndryshoi",
+      "trip_completed": "Udhëtimi përfundoi",
+      "invoice_issued": "Fatura u lëshua",
+      "invoice_paid": "Fatura u pagua",
+      "invoice_cancelled": "Fatura u anulua",
+      "employment_started": "Punësimi filloi",
+      "employment_ended": "Punësimi përfundoi",
+      "customer_created": "Klienti u shtua",
+      "reminder_due": "Afati po afron"
     }
   }
 }

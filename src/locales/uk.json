@@ -635,7 +635,16 @@
       "trip_created": "Рейс створено",
       "driver_assigned": "Призначення змінено",
       "route_changed": "Маршрут змінено",
-      "document_uploaded": "Документ завантажено"
+      "document_uploaded": "Документ завантажено",
+      "trip_status_changed": "Статус рейсу змінено",
+      "trip_completed": "Рейс завершено",
+      "invoice_issued": "Рахунок виставлено",
+      "invoice_paid": "Рахунок оплачено",
+      "invoice_cancelled": "Рахунок скасовано",
+      "employment_started": "Працевлаштування розпочато",
+      "employment_ended": "Працевлаштування завершено",
+      "customer_created": "Клієнта додано",
+      "reminder_due": "Наближається термін"
     }
   }
 }

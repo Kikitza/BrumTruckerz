@@ -1,45 +1,47 @@
-# IZVEŠTAJ — v2-2 kriška 1: EVENT / OUTBOX temelj
+# IZVEŠTAJ — v2-2 kriška 2: PUNA POKRIVENOST EVENATA + audit_log (trajna knjiga)
 
-> Prva kriška faze v2-2 (ADR 0012 PRIHVAĆENO). Durable outbox + prvi trigeri + prvi potrošač (živa tabla). **Sve na DEV.**
+> Nastavak event/outbox sloja (ADR 0012). Svi domenski eventi + **trajna nepromenjiva knjiga** `audit_log`. **Sve na DEV.**
 
-## 1) Migracija 0029 — `outbox_events` (na DEV)
-- Tabela: `id, occurred_at, event_type, event_version, aggregate_type, aggregate_id, company_id, actor_user_id, payload jsonb, idempotency_key (unique), processed_at, attempts, error`.
-- Indeksi: **parcijalni** `(occurred_at) where processed_at is null` (brzo uzimanje neobrađenih — budući worker) + `(company_id, occurred_at desc)` (živa tabla po firmi).
-- **RLS:** office (owner/dispatcher) čita SAMO svoju firmu; **nema** insert/update/delete politike za `authenticated` → upis samo kroz SECURITY DEFINER helper (bez forging-a).
-- `emit_outbox_event(...)` = jedini put upisa (SECURITY DEFINER, `revoke ... from public`); idempotency_key default = svež uuid (stabilan identitet reda za dedup kod potrošača) → **outbox insert nikad ne pada na ključu, pa nikad ne ugrožava poslovnu transakciju**.
-- `outbox_prune(days=30)` retencija (briše OBRAĐENE starije od N dana; grant samo `service_role`). `audit_log` (§11) je sestrinska **trajna** tabela — dolazi u kasnijoj kriški.
-- Realtime: `outbox_events` dodat u `supabase_realtime` publikaciju (idempotentno; Realtime poštuje RLS).
+## 1) Migracija 0031 — puna pokrivenost emisija (na DEV)
+Dopuna trigera (isti obrazac 0030 — pokriva RLS **i** RPC put):
+- **trips:** + `trip.status_changed` (payload prev/new) + `trip.completed` (prelaz u `finished`).
+- **invoices:** `invoice.issued` (INSERT — pokriva `issue_invoice` RPC put), `invoice.paid`, `invoice.cancelled` (UPDATE prelaz statusa).
+- **employments:** `employment.started` (INSERT active), `employment.ended` (`ended_at` postavljen / status→ended).
+- **customers:** `customer.created` (INSERT).
+- **`reminder.due`:** RAČUNATI event (ADR §3) — nema originalnog upisa reda, pa ga **`reminders-cron` emituje eksplicitno** kroz `emit_outbox_event` (grant za `service_role`). Cron dopunjen + **redeploy na DEV** (best-effort: greška emisije ne ruši cron).
 
-## 2) Migracija 0030 — trigeri (na DEV)
-- **Presuda ADR §4:** trigeri na tabelama (ne emit-po-RPC) → pokrivaju **oba** puta upisa: direktan RLS upis **i** RPC/SECURITY DEFINER upis; budući RPC-ovi ne moraju ništa da pamte.
-- `trips`: **trip.created** (INSERT) + **driver.assigned** (UPDATE kad se promeni vozač/kamion/prikolica; payload nosi prev/new).
-- `trip_stops`: **route.changed** (INSERT/UPDATE/DELETE; `company_id` iz `trips`; kod CASCADE brisanja ture roditelj je već obrisan → preskače se, bez spama).
-- `attachments`: **document.uploaded** (INSERT).
-- Ostali eventi (`trip.status_changed`, `trip.completed`, `invoice.*`, `employment.*`, `reminder.due`) → sledeće kriške.
+## 2) Migracija 0032 — `audit_log` (trajna sestrinska knjiga, §11)
+- Kolone: `id, occurred_at, company_id, actor_user_id, action (=event_type), aggregate_type, aggregate_id, summary jsonb`.
+- **Pune je ISTI put:** `emit_outbox_event` sada upisuje u **obe** tabele (outbox + audit) u jednom pozivu → jedan izvor istine „desilo se"; svi trigeri i cron automatski pišu i audit, **bez dodatnog koda**.
+- **RLS:** office čita SVOJU firmu; `platform_admin` **NE** (poslovni sadržaj, duh audita A2); direktan upis nemoguć (samo definer put); **BEZ update/delete politika → knjiga je nepromenjiva**; indeks `(company_id, occurred_at desc)`.
+- **Retencije NEMA** (za razliku od outbox-a koji se čisti posle 30 dana) — trajni zapis.
 
-## 3) Prvi POTROŠAČ — živa tabla (dokaz kraj-na-kraj)
-- `src/features/activity/api.ts`: `listRecentActivity()` (čita outbox, RLS scope) + `subscribeActivity()` (Realtime INSERT → cleanup).
-- `src/features/activity/ActivityFeed.tsx`: sklopiva kartica „Aktivnost (uživo)" na **Turama** (owner, oba layout-a). Nov event → lista se **sama osvežava** (React Query invalidacija na Realtime insert). Nepoznat tip → sirov `event_type` (bez pada).
-- Time je dokazan pun lanac: **poslovna promena → outbox (trigeri) → Realtime → UI**.
+## 3) ActivityFeed — novi tipovi
+- `LABEL_KEY` proširen na svih 13 tipova (status_changed, completed, invoice.*, employment.*, customer.created, reminder.due); **nepoznat tip i dalje sirov, bez pada**.
+- i18n: `activity.event.*` 9 novih ključeva u **svih 30** (sr/en autorski, ostali prevod); paritet 13/13 potvrđen; en fallback pun.
 
-## 4) Testovi čuvari
-- **test:db** — nova svita `outbox_test.sql` (u `run.sh`): (1) direktan RLS upis → `trip.created` (payload/actor/company); (2) **atomičnost** — rollback poslovne promene ⇒ event NE preživi (subtransakcija); (3) **RPC put** (SECURITY DEFINER menja vozača) → `driver.assigned` (prev/new); (4) `route.changed` insert/delete + `document.uploaded`; (5) **tenant izolacija** (A ne vidi B i obrnuto); (6) **vozač** ne vidi outbox (0 redova). → **ALL PASSED** (cela svita 12/12).
-- **jest 136/136**, **typecheck ✓**, **lint 0 grešaka** (4 baseline upozorenja), **web export exit 0**.
+## 4) Testovi čuvari (`outbox_test.sql` prošireni)
+- `trip.status_changed` (prev=draft/new=loading) + `trip.completed`; `invoice.issued` (fixture INSERT = RPC put) + `invoice.paid`; `customer.created`; `employment.started` + `employment.ended`.
+- **audit paritet:** `audit_log` dobija red uz svaki event (trip.created, document.uploaded provereni).
+- **audit RLS:** office svoja firma (A vidi svoje, ne vidi B; B ne vidi A); **vozač 0**; **platform_admin 0** (audit i outbox); firma A≠B.
+- **audit nepromenjiv:** UPDATE i DELETE ne diraju nijedan red (0 rows — nema politike).
+- → `npm run test:db` **ALL PASSED** (12 suita).
 
 ## PODSETNIK — ručna primena migracija
-- **0029 + 0030 su SAMO na DEV** (`db push --linked`). **PROD/STAGING tek uz izričito odobrenje** (ritual). Sada su **na čekanju za PROD**: 0027, 0028, 0029, 0030.
-- Rollback 0030: `drop trigger` + `drop function tg_*`. Rollback 0029: `drop function outbox_prune, emit_outbox_event`; `drop table outbox_events` (aditivno, bez uticaja na postojeće podatke); po potrebi izbaci tabelu iz `supabase_realtime` publikacije.
+- **0031 + 0032 su SAMO na DEV** (`db push --linked`). **reminders-cron** redeploy-ovan na **DEV**. PROD/STAGING tek uz izričito odobrenje.
+- Na čekanju za PROD sada: **0027, 0028, 0029, 0030, 0031, 0032** (+ cron redeploy + `emit_outbox_event` grant za service_role).
+- Rollback 0032: `drop function` (vratiti 0029 verziju emit-a) + `drop table audit_log`. Rollback 0031: `drop trigger invoices/employments/customers_outbox` + vratiti 0030 verziju `tg_trips_outbox` + `revoke ... from service_role`.
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ |
 | `npm test` | ✅ 136/136 (20 suita) |
-| `npm run test:db` (DEV) | ✅ ALL PASSED (12 suita, uklj. outbox) |
+| `npm run test:db` (DEV) | ✅ ALL PASSED (12 suita) |
 | `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
 | `expo export --platform web` | ✅ exit 0 |
-| i18n 30/30 | ✅ `activity.*` u svih 30 (sr/en autorski, ostali prevod); en fallback pun |
-| Tenant izolacija (RLS) | ✅ dokazano u outbox_test |
-| Append-only / bez event sourcing (ADR §7) | ✅ tabele ostaju izvor istine; outbox = tok obaveštavanja |
-| Kvalitet: slojevi razdvojeni | ✅ ekran → `features/activity/api.ts`; nema Supabase u ekranu; nema duplikata logike |
+| i18n 30/30 | ✅ `activity.event.*` 13/13 u svih 30; en fallback pun |
+| Jedan izvor „desilo se" | ✅ emit puni outbox + audit; trigeri/cron bez duplikata |
+| audit nepromenjiv / bez retencije | ✅ dokazano u testu (update/delete=0) |
+| Tenant izolacija (outbox + audit) | ✅ A≠B; admin/vozač 0 |
 | Link ostao na DEV | ✅ |

@@ -635,7 +635,16 @@
       "trip_created": "Sefer oluşturuldu",
       "driver_assigned": "Atama değişti",
       "route_changed": "Rota değişti",
-      "document_uploaded": "Belge yüklendi"
+      "document_uploaded": "Belge yüklendi",
+      "trip_status_changed": "Sefer durumu değişti",
+      "trip_completed": "Sefer tamamlandı",
+      "invoice_issued": "Fatura kesildi",
+      "invoice_paid": "Fatura ödendi",
+      "invoice_cancelled": "Fatura iptal edildi",
+      "employment_started": "İstihdam başladı",
+      "employment_ended": "İstihdam sona erdi",
+      "customer_created": "Müşteri eklendi",
+      "reminder_due": "Son tarih yaklaşıyor"
     }
   }
 }

@@ -635,7 +635,16 @@
       "trip_created": "Jazda vytvorená",
       "driver_assigned": "Priradenie zmenené",
       "route_changed": "Trasa zmenená",
-      "document_uploaded": "Dokument nahraný"
+      "document_uploaded": "Dokument nahraný",
+      "trip_status_changed": "Stav jazdy zmenený",
+      "trip_completed": "Jazda dokončená",
+      "invoice_issued": "Faktúra vystavená",
+      "invoice_paid": "Faktúra zaplatená",
+      "invoice_cancelled": "Faktúra zrušená",
+      "employment_started": "Zamestnanie začaté",
+      "employment_ended": "Zamestnanie ukončené",
+      "customer_created": "Zákazník pridaný",
+      "reminder_due": "Termín sa blíži"
     }
   }
 }

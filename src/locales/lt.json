@@ -635,7 +635,16 @@
       "trip_created": "Reisas sukurtas",
       "driver_assigned": "Priskyrimas pakeistas",
       "route_changed": "Maršrutas pakeistas",
-      "document_uploaded": "Dokumentas įkeltas"
+      "document_uploaded": "Dokumentas įkeltas",
+      "trip_status_changed": "Reiso būsena pakeista",
+      "trip_completed": "Reisas baigtas",
+      "invoice_issued": "Sąskaita išrašyta",
+      "invoice_paid": "Sąskaita apmokėta",
+      "invoice_cancelled": "Sąskaita atšaukta",
+      "employment_started": "Įdarbinimas pradėtas",
+      "employment_ended": "Įdarbinimas baigtas",
+      "customer_created": "Klientas pridėtas",
+      "reminder_due": "Artėja terminas"
     }
   }
 }

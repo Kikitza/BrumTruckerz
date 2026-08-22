@@ -635,7 +635,16 @@
       "trip_created": "Курсът е създаден",
       "driver_assigned": "Назначението е променено",
       "route_changed": "Маршрутът е променен",
-      "document_uploaded": "Документът е качен"
+      "document_uploaded": "Документът е качен",
+      "trip_status_changed": "Статусът на курса е променен",
+      "trip_completed": "Курсът е завършен",
+      "invoice_issued": "Фактурата е издадена",
+      "invoice_paid": "Фактурата е платена",
+      "invoice_cancelled": "Фактурата е анулирана",
+      "employment_started": "Заетостта е започната",
+      "employment_ended": "Заетостта е приключена",
+      "customer_created": "Клиентът е добавен",
+      "reminder_due": "Наближава краен срок"
     }
   }
 }

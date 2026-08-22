@@ -635,7 +635,16 @@
       "trip_created": "Viagem criada",
       "driver_assigned": "Atribuição alterada",
       "route_changed": "Rota alterada",
-      "document_uploaded": "Documento enviado"
+      "document_uploaded": "Documento enviado",
+      "trip_status_changed": "Estado da viagem alterado",
+      "trip_completed": "Viagem concluída",
+      "invoice_issued": "Fatura emitida",
+      "invoice_paid": "Fatura paga",
+      "invoice_cancelled": "Fatura cancelada",
+      "employment_started": "Emprego iniciado",
+      "employment_ended": "Emprego terminado",
+      "customer_created": "Cliente adicionado",
+      "reminder_due": "Prazo a vencer"
     }
   }
 }

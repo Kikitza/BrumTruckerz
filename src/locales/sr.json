@@ -636,7 +636,16 @@
       "trip_created": "Nova tura",
       "driver_assigned": "Dodela izmenjena",
       "route_changed": "Ruta izmenjena",
-      "document_uploaded": "Dokument dodat"
+      "document_uploaded": "Dokument dodat",
+      "trip_status_changed": "Status ture izmenjen",
+      "trip_completed": "Tura završena",
+      "invoice_issued": "Faktura izdata",
+      "invoice_paid": "Faktura plaćena",
+      "invoice_cancelled": "Faktura stornirana",
+      "employment_started": "Zaposlenje počelo",
+      "employment_ended": "Zaposlenje završeno",
+      "customer_created": "Novi naručilac",
+      "reminder_due": "Rok ističe"
     }
   }
 }

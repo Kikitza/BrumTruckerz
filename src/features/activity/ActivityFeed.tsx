@@ -14,7 +14,16 @@ const LABEL_KEY: Record<string, string> = {
   "trip.created": "activity.event.trip_created",
   "driver.assigned": "activity.event.driver_assigned",
   "route.changed": "activity.event.route_changed",
+  "trip.status_changed": "activity.event.trip_status_changed",
+  "trip.completed": "activity.event.trip_completed",
   "document.uploaded": "activity.event.document_uploaded",
+  "invoice.issued": "activity.event.invoice_issued",
+  "invoice.paid": "activity.event.invoice_paid",
+  "invoice.cancelled": "activity.event.invoice_cancelled",
+  "employment.started": "activity.event.employment_started",
+  "employment.ended": "activity.event.employment_ended",
+  "customer.created": "activity.event.customer_created",
+  "reminder.due": "activity.event.reminder_due",
 };
 
 export function ActivityFeed() {

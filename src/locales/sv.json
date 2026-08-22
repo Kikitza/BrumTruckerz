@@ -635,7 +635,16 @@
       "trip_created": "Resa skapad",
       "driver_assigned": "Tilldelning ändrad",
       "route_changed": "Rutt ändrad",
-      "document_uploaded": "Dokument uppladdat"
+      "document_uploaded": "Dokument uppladdat",
+      "trip_status_changed": "Resestatus ändrad",
+      "trip_completed": "Resa slutförd",
+      "invoice_issued": "Faktura utfärdad",
+      "invoice_paid": "Faktura betald",
+      "invoice_cancelled": "Faktura annullerad",
+      "employment_started": "Anställning påbörjad",
+      "employment_ended": "Anställning avslutad",
+      "customer_created": "Kund tillagd",
+      "reminder_due": "Påminnelse förfaller"
     }
   }
 }

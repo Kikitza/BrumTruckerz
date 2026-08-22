@@ -635,7 +635,16 @@
       "trip_created": "Brauciens izveidots",
       "driver_assigned": "Piešķīrums mainīts",
       "route_changed": "Maršruts mainīts",
-      "document_uploaded": "Dokuments augšupielādēts"
+      "document_uploaded": "Dokuments augšupielādēts",
+      "trip_status_changed": "Brauciena statuss mainīts",
+      "trip_completed": "Brauciens pabeigts",
+      "invoice_issued": "Rēķins izrakstīts",
+      "invoice_paid": "Rēķins apmaksāts",
+      "invoice_cancelled": "Rēķins atcelts",
+      "employment_started": "Nodarbinātība sākta",
+      "employment_ended": "Nodarbinātība beigta",
+      "customer_created": "Klients pievienots",
+      "reminder_due": "Tuvojas termiņš"
     }
   }
 }

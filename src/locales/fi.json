@@ -635,7 +635,16 @@
       "trip_created": "Matka luotu",
       "driver_assigned": "Määritys muutettu",
       "route_changed": "Reitti muutettu",
-      "document_uploaded": "Asiakirja ladattu"
+      "document_uploaded": "Asiakirja ladattu",
+      "trip_status_changed": "Matkan tila muuttui",
+      "trip_completed": "Matka valmis",
+      "invoice_issued": "Lasku laadittu",
+      "invoice_paid": "Lasku maksettu",
+      "invoice_cancelled": "Lasku peruutettu",
+      "employment_started": "Työsuhde alkoi",
+      "employment_ended": "Työsuhde päättyi",
+      "customer_created": "Asiakas lisätty",
+      "reminder_due": "Muistutus erääntyy"
     }
   }
 }

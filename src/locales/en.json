@@ -633,7 +633,16 @@
       "trip_created": "Trip created",
       "driver_assigned": "Assignment changed",
       "route_changed": "Route changed",
-      "document_uploaded": "Document uploaded"
+      "document_uploaded": "Document uploaded",
+      "trip_status_changed": "Trip status changed",
+      "trip_completed": "Trip completed",
+      "invoice_issued": "Invoice issued",
+      "invoice_paid": "Invoice paid",
+      "invoice_cancelled": "Invoice cancelled",
+      "employment_started": "Employment started",
+      "employment_ended": "Employment ended",
+      "customer_created": "Customer added",
+      "reminder_due": "Reminder due"
     }
   }
 }

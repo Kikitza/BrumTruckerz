@@ -635,7 +635,16 @@
       "trip_created": "Utworzono trasę",
       "driver_assigned": "Zmieniono przydział",
       "route_changed": "Zmieniono trasę",
-      "document_uploaded": "Przesłano dokument"
+      "document_uploaded": "Przesłano dokument",
+      "trip_status_changed": "Zmieniono status trasy",
+      "trip_completed": "Trasa zakończona",
+      "invoice_issued": "Faktura wystawiona",
+      "invoice_paid": "Faktura opłacona",
+      "invoice_cancelled": "Faktura anulowana",
+      "employment_started": "Rozpoczęto zatrudnienie",
+      "employment_ended": "Zakończono zatrudnienie",
+      "customer_created": "Dodano klienta",
+      "reminder_due": "Termin nadchodzi"
     }
   }
 }

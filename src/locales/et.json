@@ -635,7 +635,16 @@
       "trip_created": "Reis loodud",
       "driver_assigned": "Määrang muudetud",
       "route_changed": "Marsruut muudetud",
-      "document_uploaded": "Dokument üles laaditud"
+      "document_uploaded": "Dokument üles laaditud",
+      "trip_status_changed": "Reisi olek muudetud",
+      "trip_completed": "Reis lõpetatud",
+      "invoice_issued": "Arve väljastatud",
+      "invoice_paid": "Arve makstud",
+      "invoice_cancelled": "Arve tühistatud",
+      "employment_started": "Töösuhe alanud",
+      "employment_ended": "Töösuhe lõppenud",
+      "customer_created": "Klient lisatud",
+      "reminder_due": "Tähtaeg saabumas"
     }
   }
 }

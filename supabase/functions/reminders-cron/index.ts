@@ -164,5 +164,23 @@ Deno.serve(async (req) => {
     await supabase.from("reminders").update({ notified_stage: x.stage }).eq("id", x.r.id);
   }
 
+  // reminder.due = RAČUNATI domenski event (ADR 0012 §3) — nema originalnog upisa reda,
+  // pa ga emituje cron eksplicitno (za razliku od status-evenata koji idu kroz trigere).
+  // emit_outbox_event puni i outbox i audit_log (0032). Greška emisije NE ruši cron (best-effort).
+  for (const x of due) {
+    await supabase.rpc("emit_outbox_event", {
+      p_event_type: "reminder.due", p_aggregate_type: "reminder", p_aggregate_id: x.r.id,
+      p_company_id: x.r.company_id,
+      p_payload: { stage: x.stage, kind: "date", days: x.days, subject_type: x.r.subject_type, subject_id: x.r.subject_id, category: x.r.category },
+    });
+  }
+  for (const x of dueKm) {
+    await supabase.rpc("emit_outbox_event", {
+      p_event_type: "reminder.due", p_aggregate_type: "reminder", p_aggregate_id: x.r.id,
+      p_company_id: x.r.company_id,
+      p_payload: { stage: x.stage, kind: "km", remaining: x.remaining, subject_type: x.r.subject_type, subject_id: x.r.subject_id, category: x.r.category },
+    });
+  }
+
   return Response.json({ scanned: (reminders?.length ?? 0) + (kmRem?.length ?? 0), due: due.length + dueKm.length, sent });
 });

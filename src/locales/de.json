@@ -635,7 +635,16 @@
       "trip_created": "Fahrt erstellt",
       "driver_assigned": "Zuordnung geändert",
       "route_changed": "Route geändert",
-      "document_uploaded": "Dokument hochgeladen"
+      "document_uploaded": "Dokument hochgeladen",
+      "trip_status_changed": "Fahrtstatus geändert",
+      "trip_completed": "Fahrt abgeschlossen",
+      "invoice_issued": "Rechnung erstellt",
+      "invoice_paid": "Rechnung bezahlt",
+      "invoice_cancelled": "Rechnung storniert",
+      "employment_started": "Beschäftigung begonnen",
+      "employment_ended": "Beschäftigung beendet",
+      "customer_created": "Kunde hinzugefügt",
+      "reminder_due": "Frist fällig"
     }
   }
 }

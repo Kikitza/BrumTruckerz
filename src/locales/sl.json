@@ -635,7 +635,16 @@
       "trip_created": "Vožnja ustvarjena",
       "driver_assigned": "Dodelitev spremenjena",
       "route_changed": "Pot spremenjena",
-      "document_uploaded": "Dokument naložen"
+      "document_uploaded": "Dokument naložen",
+      "trip_status_changed": "Status vožnje spremenjen",
+      "trip_completed": "Vožnja zaključena",
+      "invoice_issued": "Račun izdan",
+      "invoice_paid": "Račun plačan",
+      "invoice_cancelled": "Račun preklican",
+      "employment_started": "Zaposlitev začeta",
+      "employment_ended": "Zaposlitev končana",
+      "customer_created": "Stranka dodana",
+      "reminder_due": "Rok se izteka"
     }
   }
 }

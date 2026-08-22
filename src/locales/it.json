@@ -635,7 +635,16 @@
       "trip_created": "Viaggio creato",
       "driver_assigned": "Assegnazione modificata",
       "route_changed": "Percorso modificato",
-      "document_uploaded": "Documento caricato"
+      "document_uploaded": "Documento caricato",
+      "trip_status_changed": "Stato del viaggio cambiato",
+      "trip_completed": "Viaggio completato",
+      "invoice_issued": "Fattura emessa",
+      "invoice_paid": "Fattura pagata",
+      "invoice_cancelled": "Fattura annullata",
+      "employment_started": "Impiego iniziato",
+      "employment_ended": "Impiego terminato",
+      "customer_created": "Cliente aggiunto",
+      "reminder_due": "Scadenza in arrivo"
     }
   }
 }

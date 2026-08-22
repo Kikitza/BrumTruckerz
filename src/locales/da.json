@@ -635,7 +635,16 @@
       "trip_created": "Tur oprettet",
       "driver_assigned": "Tildeling ændret",
       "route_changed": "Rute ændret",
-      "document_uploaded": "Dokument uploadet"
+      "document_uploaded": "Dokument uploadet",
+      "trip_status_changed": "Turstatus ændret",
+      "trip_completed": "Tur fuldført",
+      "invoice_issued": "Faktura udstedt",
+      "invoice_paid": "Faktura betalt",
+      "invoice_cancelled": "Faktura annulleret",
+      "employment_started": "Ansættelse startet",
+      "employment_ended": "Ansættelse afsluttet",
+      "customer_created": "Kunde tilføjet",
+      "reminder_due": "Frist forfalder"
     }
   }
 }

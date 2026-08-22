@@ -635,7 +635,16 @@
       "trip_created": "Rit aangemaakt",
       "driver_assigned": "Toewijzing gewijzigd",
       "route_changed": "Route gewijzigd",
-      "document_uploaded": "Document geüpload"
+      "document_uploaded": "Document geüpload",
+      "trip_status_changed": "Ritstatus gewijzigd",
+      "trip_completed": "Rit voltooid",
+      "invoice_issued": "Factuur uitgegeven",
+      "invoice_paid": "Factuur betaald",
+      "invoice_cancelled": "Factuur geannuleerd",
+      "employment_started": "Dienstverband gestart",
+      "employment_ended": "Dienstverband beëindigd",
+      "customer_created": "Klant toegevoegd",
+      "reminder_due": "Herinnering verschuldigd"
     }
   }
 }

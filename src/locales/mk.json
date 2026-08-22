@@ -635,7 +635,16 @@
       "trip_created": "Патувањето е креирано",
       "driver_assigned": "Доделувањето е сменето",
       "route_changed": "Рутата е сменета",
-      "document_uploaded": "Документот е поставен"
+      "document_uploaded": "Документот е поставен",
+      "trip_status_changed": "Статусот на патувањето е сменет",
+      "trip_completed": "Патувањето е завршено",
+      "invoice_issued": "Фактурата е издадена",
+      "invoice_paid": "Фактурата е платена",
+      "invoice_cancelled": "Фактурата е откажана",
+      "employment_started": "Вработувањето започна",
+      "employment_ended": "Вработувањето заврши",
+      "customer_created": "Клиентот е додаден",
+      "reminder_due": "Рокот се приближува"
     }
   }
 }
