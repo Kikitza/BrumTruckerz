@@ -46,7 +46,8 @@
     "resources": "Resursi",
     "profile": "Profil",
     "customers": "Naručitelji",
-    "invoices": "Računi"
+    "invoices": "Računi",
+    "network": "Mreža"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispečer",
         "driver": "Vozač"
       }
+    },
+    "joinCompany": {
+      "title": "Pridruži se tvrtki kodom",
+      "hint": "Unesi kod pozivnice za pridruživanje drugoj tvrtki."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Ulaziš kao vlasnik u svoju novu praznu tvrtku."
   },
   "web": {
-    "driverUseMobile": "Vozačka aplikacija radi samo na mobitelu — otvori mobilnu ETNOP aplikaciju."
+    "driverUseMobile": "Vozačka aplikacija radi samo na mobitelu — otvori mobilnu ETNOP aplikaciju.",
+    "driverOperativaMobile": "Operativa vožnje (statusi, kilometraža, slike) radi u mobilnoj aplikaciji. Tvoj profil, životopis, mrežni profil i pozivi rade i ovdje na webu."
   },
   "career": {
     "title": "Karijera",
@@ -655,7 +661,62 @@
       "employment_started": "Zaposlenje započelo",
       "employment_ended": "Zaposlenje završeno",
       "customer_created": "Kupac dodan",
-      "reminder_due": "Rok dospijeva"
+      "reminder_due": "Rok dospijeva",
+      "marketplace_invite_sent": "Mrežni poziv poslan"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Vozač",
+      "dispatcher": "Otpremnik"
+    },
+    "profile": {
+      "title": "Mrežni profil",
+      "hint": "Izradi profil kako bi te tvrtke pronašle. Vidljivost je prema zadanome isključena.",
+      "saved": "Mrežni profil spremljen",
+      "invalidCountry": "Jedna od odabranih zemalja nije valjana.",
+      "visibility": {
+        "private": "Privatno",
+        "visible": "Vidljivo",
+        "explainPrivate": "Tvoj je profil privatan — nijedna ga tvrtka ne vidi u pretraživanju.",
+        "explainVisible": "Tvrtke te mogu pronaći u pretraživanju i vidjeti ovu karticu bez tvojeg imena i kontakta: javni broj, tražena uloga, zemlje interesa, jezici, dostupnost i samodeklarirani certifikati."
+      },
+      "seekingRole": "Tražena uloga",
+      "seekingRolePlaceholder": "Odaberi ulogu",
+      "countriesOfInterest": "Zemlje interesa",
+      "languages": "Jezici",
+      "addLanguage": "Dodaj jezik",
+      "availableFrom": "Dostupan od",
+      "availableFromPlaceholder": "Bilo kada",
+      "certificates": "Certifikati",
+      "selfDeclared": "Samodeklarirano",
+      "certPlaceholder": "npr. ADR, CPC",
+      "note": "Napomena",
+      "notePlaceholder": "Kratka napomena (neobavezno)"
+    },
+    "search": {
+      "filters": "Filtri",
+      "role": "Uloga",
+      "anyRole": "Bilo koja uloga",
+      "country": "Zemlja interesa",
+      "language": "Jezik",
+      "anyLanguage": "Bilo koji jezik",
+      "availableOnly": "Samo dostupni sada",
+      "search": "Pretraži",
+      "empty": "Nijedan radnik ne odgovara ovim filtrima.",
+      "countriesOfInterest": "Zemlje interesa",
+      "availableFrom": "Dostupan od {{date}}",
+      "invite": "Pozovi",
+      "invited": "Poziv poslan",
+      "invitePending": "Poziv već čeka"
+    },
+    "invites": {
+      "title": "Pozivi",
+      "empty": "Nema poziva.",
+      "role": "Uloga: {{role}}",
+      "accept": "Prihvati",
+      "decline": "Odbij",
+      "declineConfirm": "Odbiti poziv tvrtke {{company}}?"
     }
   }
 }

@@ -46,7 +46,8 @@
     "resources": "Recursos",
     "profile": "Perfil",
     "customers": "Clientes",
-    "invoices": "Facturas"
+    "invoices": "Facturas",
+    "network": "Red"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Despachador",
         "driver": "Conductor"
       }
+    },
+    "joinCompany": {
+      "title": "Unirse a una empresa con código",
+      "hint": "Introduce un código de invitación para unirte a otra empresa."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Entrarás como propietario en tu nueva empresa vacía."
   },
   "web": {
-    "driverUseMobile": "La app del conductor es solo móvil — abre la app móvil ETNOP."
+    "driverUseMobile": "La app del conductor es solo móvil — abre la app móvil ETNOP.",
+    "driverOperativaMobile": "Las operaciones de viaje (estados, kilómetros, fotos) se realizan en la app móvil. Tu perfil, CV, perfil de red e invitaciones funcionan aquí en la web."
   },
   "career": {
     "title": "Carrera",
@@ -655,7 +661,62 @@
       "employment_started": "Empleo iniciado",
       "employment_ended": "Empleo finalizado",
       "customer_created": "Cliente añadido",
-      "reminder_due": "Recordatorio vencido"
+      "reminder_due": "Recordatorio vencido",
+      "marketplace_invite_sent": "Invitación de red enviada"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Conductor",
+      "dispatcher": "Despachador"
+    },
+    "profile": {
+      "title": "Perfil de red",
+      "hint": "Crea tu perfil para que las empresas te encuentren. La visibilidad está desactivada por defecto.",
+      "saved": "Perfil de red guardado",
+      "invalidCountry": "Uno de los países seleccionados no es válido.",
+      "visibility": {
+        "private": "Privado",
+        "visible": "Visible",
+        "explainPrivate": "Tu perfil es privado — ninguna empresa lo ve en la búsqueda.",
+        "explainVisible": "Las empresas pueden encontrarte en la búsqueda y ver esta tarjeta sin tu nombre ni contacto: número público, rol buscado, países de interés, idiomas, disponibilidad y certificados autodeclarados."
+      },
+      "seekingRole": "Rol buscado",
+      "seekingRolePlaceholder": "Elegir un rol",
+      "countriesOfInterest": "Países de interés",
+      "languages": "Idiomas",
+      "addLanguage": "Añadir un idioma",
+      "availableFrom": "Disponible desde",
+      "availableFromPlaceholder": "En cualquier momento",
+      "certificates": "Certificados",
+      "selfDeclared": "Autodeclarado",
+      "certPlaceholder": "p. ej. ADR, CPC",
+      "note": "Nota",
+      "notePlaceholder": "Nota breve (opcional)"
+    },
+    "search": {
+      "filters": "Filtros",
+      "role": "Rol",
+      "anyRole": "Cualquier rol",
+      "country": "País de interés",
+      "language": "Idioma",
+      "anyLanguage": "Cualquier idioma",
+      "availableOnly": "Solo disponibles ahora",
+      "search": "Buscar",
+      "empty": "Ningún trabajador coincide con estos filtros.",
+      "countriesOfInterest": "Países de interés",
+      "availableFrom": "Disponible desde {{date}}",
+      "invite": "Invitar",
+      "invited": "Invitación enviada",
+      "invitePending": "Invitación ya pendiente"
+    },
+    "invites": {
+      "title": "Invitaciones",
+      "empty": "Sin invitaciones.",
+      "role": "Rol: {{role}}",
+      "accept": "Aceptar",
+      "decline": "Rechazar",
+      "declineConfirm": "¿Rechazar la invitación de {{company}}?"
     }
   }
 }

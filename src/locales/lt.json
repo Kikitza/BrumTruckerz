@@ -46,7 +46,8 @@
     "resources": "Ištekliai",
     "profile": "Profilis",
     "customers": "Klientai",
-    "invoices": "Sąskaitos"
+    "invoices": "Sąskaitos",
+    "network": "Tinklas"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispečeris",
         "driver": "Vairuotojas"
       }
+    },
+    "joinCompany": {
+      "title": "Prisijunk prie įmonės su kodu",
+      "hint": "Įvesk kvietimo kodą, kad prisijungtum prie kitos įmonės."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Įeisi kaip savininkas į savo naują tuščią įmonę."
   },
   "web": {
-    "driverUseMobile": "Vairuotojo programėlė veikia tik telefone — atidaryk ETNOP mobiliąją programėlę."
+    "driverUseMobile": "Vairuotojo programėlė veikia tik telefone — atidaryk ETNOP mobiliąją programėlę.",
+    "driverOperativaMobile": "Reiso operacijos (būsenos, kilometrai, nuotraukos) veikia mobiliojoje programėlėje. Tavo profilis, CV, tinklo profilis ir kvietimai veikia čia, žiniatinklyje."
   },
   "career": {
     "title": "Karjera",
@@ -655,7 +661,62 @@
       "employment_started": "Įdarbinimas pradėtas",
       "employment_ended": "Įdarbinimas baigtas",
       "customer_created": "Klientas pridėtas",
-      "reminder_due": "Artėja terminas"
+      "reminder_due": "Artėja terminas",
+      "marketplace_invite_sent": "Tinklo kvietimas išsiųstas"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Vairuotojas",
+      "dispatcher": "Dispečeris"
+    },
+    "profile": {
+      "title": "Tinklo profilis",
+      "hint": "Sukurk profilį, kad įmonės tave rastų. Matomumas pagal numatytuosius nustatymus išjungtas.",
+      "saved": "Tinklo profilis išsaugotas",
+      "invalidCountry": "Viena iš pasirinktų šalių netinkama.",
+      "visibility": {
+        "private": "Privatus",
+        "visible": "Matomas",
+        "explainPrivate": "Tavo profilis privatus — jokia įmonė jo nemato paieškoje.",
+        "explainVisible": "Įmonės gali tave rasti paieškoje ir matyti šią kortelę be tavo vardo ir kontakto: viešasis numeris, ieškomas vaidmuo, dominančios šalys, kalbos, pasiekiamumas ir savarankiškai deklaruoti sertifikatai."
+      },
+      "seekingRole": "Ieškomas vaidmuo",
+      "seekingRolePlaceholder": "Pasirink vaidmenį",
+      "countriesOfInterest": "Dominančios šalys",
+      "languages": "Kalbos",
+      "addLanguage": "Pridėti kalbą",
+      "availableFrom": "Pasiekiamas nuo",
+      "availableFromPlaceholder": "Bet kada",
+      "certificates": "Sertifikatai",
+      "selfDeclared": "Savarankiškai deklaruota",
+      "certPlaceholder": "pvz. ADR, CPC",
+      "note": "Pastaba",
+      "notePlaceholder": "Trumpa pastaba (neprivaloma)"
+    },
+    "search": {
+      "filters": "Filtrai",
+      "role": "Vaidmuo",
+      "anyRole": "Bet koks vaidmuo",
+      "country": "Dominanti šalis",
+      "language": "Kalba",
+      "anyLanguage": "Bet kokia kalba",
+      "availableOnly": "Tik pasiekiami dabar",
+      "search": "Ieškoti",
+      "empty": "Nė vienas darbuotojas neatitinka šių filtrų.",
+      "countriesOfInterest": "Dominančios šalys",
+      "availableFrom": "Pasiekiamas nuo {{date}}",
+      "invite": "Pakviesti",
+      "invited": "Kvietimas išsiųstas",
+      "invitePending": "Kvietimas jau laukia"
+    },
+    "invites": {
+      "title": "Kvietimai",
+      "empty": "Kvietimų nėra.",
+      "role": "Vaidmuo: {{role}}",
+      "accept": "Priimti",
+      "decline": "Atmesti",
+      "declineConfirm": "Atmesti kvietimą iš {{company}}?"
     }
   }
 }

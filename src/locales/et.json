@@ -46,7 +46,8 @@
     "resources": "Ressursid",
     "profile": "Profiil",
     "customers": "Kliendid",
-    "invoices": "Arved"
+    "invoices": "Arved",
+    "network": "Võrgustik"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispetšer",
         "driver": "Juht"
       }
+    },
+    "joinCompany": {
+      "title": "Liitu ettevõttega koodiga",
+      "hint": "Sisesta kutsekood, et liituda teise ettevõttega."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Sisened omanikuna oma uude tühja ettevõttesse."
   },
   "web": {
-    "driverUseMobile": "Juhi rakendus on ainult mobiilne — ava ETNOPi mobiilirakendus."
+    "driverUseMobile": "Juhi rakendus on ainult mobiilne — ava ETNOPi mobiilirakendus.",
+    "driverOperativaMobile": "Reisi toimingud (olekud, kilomeetrid, fotod) töötavad mobiilirakenduses. Sinu profiil, CV, võrguprofiil ja kutsed töötavad siin veebis."
   },
   "career": {
     "title": "Karjäär",
@@ -655,7 +661,62 @@
       "employment_started": "Töösuhe alanud",
       "employment_ended": "Töösuhe lõppenud",
       "customer_created": "Klient lisatud",
-      "reminder_due": "Tähtaeg saabumas"
+      "reminder_due": "Tähtaeg saabumas",
+      "marketplace_invite_sent": "Võrgukutse saadetud"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Juht",
+      "dispatcher": "Dispetšer"
+    },
+    "profile": {
+      "title": "Võrguprofiil",
+      "hint": "Loo oma profiil, et ettevõtted sind leiaksid. Nähtavus on vaikimisi väljas.",
+      "saved": "Võrguprofiil salvestatud",
+      "invalidCountry": "Üks valitud riikidest ei ole kehtiv.",
+      "visibility": {
+        "private": "Privaatne",
+        "visible": "Nähtav",
+        "explainPrivate": "Sinu profiil on privaatne — ükski ettevõte ei näe seda otsingus.",
+        "explainVisible": "Ettevõtted saavad sind otsingus leida ja näha seda kaarti ilma sinu nime ja kontaktita: avalik number, otsitav roll, huviriigid, keeled, saadavus ja ise deklareeritud sertifikaadid."
+      },
+      "seekingRole": "Otsitav roll",
+      "seekingRolePlaceholder": "Vali roll",
+      "countriesOfInterest": "Huviriigid",
+      "languages": "Keeled",
+      "addLanguage": "Lisa keel",
+      "availableFrom": "Saadaval alates",
+      "availableFromPlaceholder": "Igal ajal",
+      "certificates": "Sertifikaadid",
+      "selfDeclared": "Ise deklareeritud",
+      "certPlaceholder": "nt ADR, CPC",
+      "note": "Märkus",
+      "notePlaceholder": "Lühike märkus (valikuline)"
+    },
+    "search": {
+      "filters": "Filtrid",
+      "role": "Roll",
+      "anyRole": "Mis tahes roll",
+      "country": "Huviriik",
+      "language": "Keel",
+      "anyLanguage": "Mis tahes keel",
+      "availableOnly": "Ainult praegu saadaval",
+      "search": "Otsi",
+      "empty": "Ükski töötaja ei vasta neile filtritele.",
+      "countriesOfInterest": "Huviriigid",
+      "availableFrom": "Saadaval alates {{date}}",
+      "invite": "Kutsu",
+      "invited": "Kutse saadetud",
+      "invitePending": "Kutse juba ootel"
+    },
+    "invites": {
+      "title": "Kutsed",
+      "empty": "Kutseid pole.",
+      "role": "Roll: {{role}}",
+      "accept": "Nõustu",
+      "decline": "Keeldu",
+      "declineConfirm": "Kas keelduda ettevõtte {{company}} kutsest?"
     }
   }
 }

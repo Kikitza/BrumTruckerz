@@ -46,7 +46,8 @@
     "resources": "Bronnen",
     "profile": "Profiel",
     "customers": "Klanten",
-    "invoices": "Facturen"
+    "invoices": "Facturen",
+    "network": "Netwerk"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Planner",
         "driver": "Chauffeur"
       }
+    },
+    "joinCompany": {
+      "title": "Word lid van een bedrijf met code",
+      "hint": "Voer een uitnodigingscode in om lid te worden van een ander bedrijf."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Je komt als eigenaar in je nieuwe lege bedrijf."
   },
   "web": {
-    "driverUseMobile": "De chauffeurs-app is alleen mobiel — open de mobiele ETNOP-app."
+    "driverUseMobile": "De chauffeurs-app is alleen mobiel — open de mobiele ETNOP-app.",
+    "driverOperativaMobile": "Ritbewerkingen (statussen, kilometers, foto’s) werken in de mobiele app. Je profiel, cv, netwerkprofiel en uitnodigingen werken hier op het web."
   },
   "career": {
     "title": "Loopbaan",
@@ -655,7 +661,62 @@
       "employment_started": "Dienstverband gestart",
       "employment_ended": "Dienstverband beëindigd",
       "customer_created": "Klant toegevoegd",
-      "reminder_due": "Herinnering verschuldigd"
+      "reminder_due": "Herinnering verschuldigd",
+      "marketplace_invite_sent": "Netwerkuitnodiging verzonden"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Chauffeur",
+      "dispatcher": "Planner"
+    },
+    "profile": {
+      "title": "Netwerkprofiel",
+      "hint": "Maak je profiel zodat bedrijven je kunnen vinden. Zichtbaarheid staat standaard uit.",
+      "saved": "Netwerkprofiel opgeslagen",
+      "invalidCountry": "Een van de gekozen landen is ongeldig.",
+      "visibility": {
+        "private": "Privé",
+        "visible": "Zichtbaar",
+        "explainPrivate": "Je profiel is privé — geen enkel bedrijf ziet het in de zoekopdracht.",
+        "explainVisible": "Bedrijven kunnen je vinden in de zoekopdracht en deze kaart zien zonder je naam en contact: openbaar nummer, gezochte rol, landen van interesse, talen, beschikbaarheid en zelf opgegeven certificaten."
+      },
+      "seekingRole": "Gezochte rol",
+      "seekingRolePlaceholder": "Kies een rol",
+      "countriesOfInterest": "Landen van interesse",
+      "languages": "Talen",
+      "addLanguage": "Taal toevoegen",
+      "availableFrom": "Beschikbaar vanaf",
+      "availableFromPlaceholder": "Op elk moment",
+      "certificates": "Certificaten",
+      "selfDeclared": "Zelf opgegeven",
+      "certPlaceholder": "bijv. ADR, CPC",
+      "note": "Notitie",
+      "notePlaceholder": "Korte notitie (optioneel)"
+    },
+    "search": {
+      "filters": "Filters",
+      "role": "Rol",
+      "anyRole": "Elke rol",
+      "country": "Land van interesse",
+      "language": "Taal",
+      "anyLanguage": "Elke taal",
+      "availableOnly": "Alleen nu beschikbaar",
+      "search": "Zoeken",
+      "empty": "Geen werknemers voldoen aan deze filters.",
+      "countriesOfInterest": "Landen van interesse",
+      "availableFrom": "Beschikbaar vanaf {{date}}",
+      "invite": "Uitnodigen",
+      "invited": "Uitnodiging verzonden",
+      "invitePending": "Uitnodiging al in behandeling"
+    },
+    "invites": {
+      "title": "Uitnodigingen",
+      "empty": "Geen uitnodigingen.",
+      "role": "Rol: {{role}}",
+      "accept": "Accepteren",
+      "decline": "Weigeren",
+      "declineConfirm": "Uitnodiging van {{company}} weigeren?"
     }
   }
 }

@@ -46,7 +46,8 @@
     "resources": "Ressurser",
     "profile": "Profil",
     "customers": "Kunder",
-    "invoices": "Fakturaer"
+    "invoices": "Fakturaer",
+    "network": "Nettverk"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Disponent",
         "driver": "Sjåfør"
       }
+    },
+    "joinCompany": {
+      "title": "Bli med i et firma med kode",
+      "hint": "Skriv inn en invitasjonskode for å bli med i et annet firma."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Du går inn som eier i ditt nye tomme firma."
   },
   "web": {
-    "driverUseMobile": "Sjåfør-appen er kun mobil — åpne ETNOP-mobilappen."
+    "driverUseMobile": "Sjåfør-appen er kun mobil — åpne ETNOP-mobilappen.",
+    "driverOperativaMobile": "Turoperasjoner (statuser, kilometer, bilder) kjører i mobilappen. Profilen, CV-en, nettverksprofilen og invitasjonene dine fungerer her på nettet."
   },
   "career": {
     "title": "Karriere",
@@ -655,7 +661,62 @@
       "employment_started": "Ansettelse startet",
       "employment_ended": "Ansettelse avsluttet",
       "customer_created": "Kunde lagt til",
-      "reminder_due": "Frist forfaller"
+      "reminder_due": "Frist forfaller",
+      "marketplace_invite_sent": "Nettverksinvitasjon sendt"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Sjåfør",
+      "dispatcher": "Transportleder"
+    },
+    "profile": {
+      "title": "Nettverksprofil",
+      "hint": "Lag profilen din slik at firmaer kan finne deg. Synlighet er av som standard.",
+      "saved": "Nettverksprofil lagret",
+      "invalidCountry": "Ett av de valgte landene er ugyldig.",
+      "visibility": {
+        "private": "Privat",
+        "visible": "Synlig",
+        "explainPrivate": "Profilen din er privat — ingen firma ser den i søket.",
+        "explainVisible": "Firmaer kan finne deg i søket og se dette kortet uten navnet og kontakten din: offentlig nummer, ønsket rolle, interesseland, språk, tilgjengelighet og selvrapporterte sertifikater."
+      },
+      "seekingRole": "Ønsket rolle",
+      "seekingRolePlaceholder": "Velg en rolle",
+      "countriesOfInterest": "Interesseland",
+      "languages": "Språk",
+      "addLanguage": "Legg til et språk",
+      "availableFrom": "Tilgjengelig fra",
+      "availableFromPlaceholder": "Når som helst",
+      "certificates": "Sertifikater",
+      "selfDeclared": "Selvrapportert",
+      "certPlaceholder": "f.eks. ADR, CPC",
+      "note": "Notat",
+      "notePlaceholder": "Kort notat (valgfritt)"
+    },
+    "search": {
+      "filters": "Filtre",
+      "role": "Rolle",
+      "anyRole": "Enhver rolle",
+      "country": "Interesseland",
+      "language": "Språk",
+      "anyLanguage": "Ethvert språk",
+      "availableOnly": "Bare tilgjengelige nå",
+      "search": "Søk",
+      "empty": "Ingen arbeidere samsvarer med disse filtrene.",
+      "countriesOfInterest": "Interesseland",
+      "availableFrom": "Tilgjengelig fra {{date}}",
+      "invite": "Inviter",
+      "invited": "Invitasjon sendt",
+      "invitePending": "Invitasjon venter allerede"
+    },
+    "invites": {
+      "title": "Invitasjoner",
+      "empty": "Ingen invitasjoner.",
+      "role": "Rolle: {{role}}",
+      "accept": "Godta",
+      "decline": "Avslå",
+      "declineConfirm": "Avslå invitasjonen fra {{company}}?"
     }
   }
 }

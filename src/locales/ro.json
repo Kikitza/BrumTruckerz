@@ -46,7 +46,8 @@
     "resources": "Resurse",
     "profile": "Profil",
     "customers": "Clienți",
-    "invoices": "Facturi"
+    "invoices": "Facturi",
+    "network": "Rețea"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispecer",
         "driver": "Șofer"
       }
+    },
+    "joinCompany": {
+      "title": "Alătură-te unei firme prin cod",
+      "hint": "Introdu un cod de invitație pentru a te alătura altei firme."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Vei intra ca proprietar în noua ta firmă goală."
   },
   "web": {
-    "driverUseMobile": "Aplicația pentru șofer este doar mobilă — deschide aplicația mobilă ETNOP."
+    "driverUseMobile": "Aplicația pentru șofer este doar mobilă — deschide aplicația mobilă ETNOP.",
+    "driverOperativaMobile": "Operațiunile de cursă (stări, kilometri, fotografii) rulează în aplicația mobilă. Profilul, CV-ul, profilul de rețea și invitațiile funcționează aici pe web."
   },
   "career": {
     "title": "Carieră",
@@ -655,7 +661,62 @@
       "employment_started": "Angajare începută",
       "employment_ended": "Angajare încheiată",
       "customer_created": "Client adăugat",
-      "reminder_due": "Scadență apropiată"
+      "reminder_due": "Scadență apropiată",
+      "marketplace_invite_sent": "Invitație de rețea trimisă"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Șofer",
+      "dispatcher": "Dispecer"
+    },
+    "profile": {
+      "title": "Profil de rețea",
+      "hint": "Creează-ți profilul pentru ca firmele să te găsească. Vizibilitatea este dezactivată implicit.",
+      "saved": "Profil de rețea salvat",
+      "invalidCountry": "Una dintre țările selectate nu este validă.",
+      "visibility": {
+        "private": "Privat",
+        "visible": "Vizibil",
+        "explainPrivate": "Profilul tău este privat — nicio firmă nu îl vede în căutare.",
+        "explainVisible": "Firmele te pot găsi în căutare și pot vedea acest card fără numele și contactul tău: număr public, rol căutat, țări de interes, limbi, disponibilitate și certificate autodeclarate."
+      },
+      "seekingRole": "Rol căutat",
+      "seekingRolePlaceholder": "Alege un rol",
+      "countriesOfInterest": "Țări de interes",
+      "languages": "Limbi",
+      "addLanguage": "Adaugă o limbă",
+      "availableFrom": "Disponibil din",
+      "availableFromPlaceholder": "Oricând",
+      "certificates": "Certificate",
+      "selfDeclared": "Autodeclarat",
+      "certPlaceholder": "ex. ADR, CPC",
+      "note": "Notă",
+      "notePlaceholder": "Notă scurtă (opțional)"
+    },
+    "search": {
+      "filters": "Filtre",
+      "role": "Rol",
+      "anyRole": "Orice rol",
+      "country": "Țară de interes",
+      "language": "Limbă",
+      "anyLanguage": "Orice limbă",
+      "availableOnly": "Doar disponibili acum",
+      "search": "Caută",
+      "empty": "Niciun lucrător nu corespunde acestor filtre.",
+      "countriesOfInterest": "Țări de interes",
+      "availableFrom": "Disponibil din {{date}}",
+      "invite": "Invită",
+      "invited": "Invitație trimisă",
+      "invitePending": "Invitație deja în așteptare"
+    },
+    "invites": {
+      "title": "Invitații",
+      "empty": "Nicio invitație.",
+      "role": "Rol: {{role}}",
+      "accept": "Acceptă",
+      "decline": "Refuză",
+      "declineConfirm": "Refuzi invitația de la {{company}}?"
     }
   }
 }

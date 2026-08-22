@@ -46,7 +46,8 @@
     "resources": "Risorse",
     "profile": "Profilo",
     "customers": "Clienti",
-    "invoices": "Fatture"
+    "invoices": "Fatture",
+    "network": "Rete"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Spedizioniere",
         "driver": "Autista"
       }
+    },
+    "joinCompany": {
+      "title": "Unisciti a un’azienda con codice",
+      "hint": "Inserisci un codice di invito per unirti a un’altra azienda."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Entrerai come titolare nella tua nuova azienda vuota."
   },
   "web": {
-    "driverUseMobile": "L'app autista è solo mobile — apri l'app mobile ETNOP."
+    "driverUseMobile": "L'app autista è solo mobile — apri l'app mobile ETNOP.",
+    "driverOperativaMobile": "Le operazioni di viaggio (stati, chilometri, foto) avvengono nell’app mobile. Il tuo profilo, CV, profilo di rete e inviti funzionano qui sul web."
   },
   "career": {
     "title": "Carriera",
@@ -655,7 +661,62 @@
       "employment_started": "Impiego iniziato",
       "employment_ended": "Impiego terminato",
       "customer_created": "Cliente aggiunto",
-      "reminder_due": "Scadenza in arrivo"
+      "reminder_due": "Scadenza in arrivo",
+      "marketplace_invite_sent": "Invito di rete inviato"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Autista",
+      "dispatcher": "Spedizioniere"
+    },
+    "profile": {
+      "title": "Profilo di rete",
+      "hint": "Crea il tuo profilo così le aziende ti trovano. La visibilità è disattivata per impostazione predefinita.",
+      "saved": "Profilo di rete salvato",
+      "invalidCountry": "Uno dei paesi selezionati non è valido.",
+      "visibility": {
+        "private": "Privato",
+        "visible": "Visibile",
+        "explainPrivate": "Il tuo profilo è privato — nessuna azienda lo vede nella ricerca.",
+        "explainVisible": "Le aziende possono trovarti nella ricerca e vedere questa scheda senza nome e contatto: numero pubblico, ruolo cercato, paesi di interesse, lingue, disponibilità e certificati autodichiarati."
+      },
+      "seekingRole": "Ruolo cercato",
+      "seekingRolePlaceholder": "Scegli un ruolo",
+      "countriesOfInterest": "Paesi di interesse",
+      "languages": "Lingue",
+      "addLanguage": "Aggiungi una lingua",
+      "availableFrom": "Disponibile dal",
+      "availableFromPlaceholder": "In qualsiasi momento",
+      "certificates": "Certificati",
+      "selfDeclared": "Autodichiarato",
+      "certPlaceholder": "es. ADR, CPC",
+      "note": "Nota",
+      "notePlaceholder": "Nota breve (facoltativa)"
+    },
+    "search": {
+      "filters": "Filtri",
+      "role": "Ruolo",
+      "anyRole": "Qualsiasi ruolo",
+      "country": "Paese di interesse",
+      "language": "Lingua",
+      "anyLanguage": "Qualsiasi lingua",
+      "availableOnly": "Solo disponibili ora",
+      "search": "Cerca",
+      "empty": "Nessun lavoratore corrisponde a questi filtri.",
+      "countriesOfInterest": "Paesi di interesse",
+      "availableFrom": "Disponibile dal {{date}}",
+      "invite": "Invita",
+      "invited": "Invito inviato",
+      "invitePending": "Invito già in sospeso"
+    },
+    "invites": {
+      "title": "Inviti",
+      "empty": "Nessun invito.",
+      "role": "Ruolo: {{role}}",
+      "accept": "Accetta",
+      "decline": "Rifiuta",
+      "declineConfirm": "Rifiutare l’invito di {{company}}?"
     }
   }
 }

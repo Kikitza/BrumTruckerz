@@ -44,7 +44,8 @@
     "resources": "Resources",
     "profile": "Profile",
     "customers": "Customers",
-    "invoices": "Invoices"
+    "invoices": "Invoices",
+    "network": "Network"
   },
   "trip": {
     "status": {
@@ -303,6 +304,10 @@
         "dispatcher": "Dispatcher",
         "driver": "Driver"
       }
+    },
+    "joinCompany": {
+      "title": "Join a company by code",
+      "hint": "Enter an invitation code to join another company."
     }
   },
   "language": {
@@ -607,7 +612,8 @@
     "reviewHint": "You'll enter your new empty company as owner."
   },
   "web": {
-    "driverUseMobile": "The driver app is mobile only — please open the ETNOP mobile app."
+    "driverUseMobile": "The driver app is mobile only — please open the ETNOP mobile app.",
+    "driverOperativaMobile": "Trip operations (statuses, kilometres, photos) run in the mobile app. Your profile, CV, network profile and invitations work here on the web."
   },
   "career": {
     "title": "Career",
@@ -653,7 +659,62 @@
       "employment_started": "Employment started",
       "employment_ended": "Employment ended",
       "customer_created": "Customer added",
-      "reminder_due": "Reminder due"
+      "reminder_due": "Reminder due",
+      "marketplace_invite_sent": "Network invitation sent"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Driver",
+      "dispatcher": "Dispatcher"
+    },
+    "profile": {
+      "title": "Network profile",
+      "hint": "Build your profile so companies can find you. Visibility is off by default.",
+      "saved": "Network profile saved",
+      "invalidCountry": "One of the selected countries is not valid.",
+      "visibility": {
+        "private": "Private",
+        "visible": "Visible",
+        "explainPrivate": "Your profile is private — no company can see it in search.",
+        "explainVisible": "Companies can find you in search and see this card without your name or contact: public number, sought role, countries of interest, languages, availability and self-declared certificates."
+      },
+      "seekingRole": "Sought role",
+      "seekingRolePlaceholder": "Choose a role",
+      "countriesOfInterest": "Countries of interest",
+      "languages": "Languages",
+      "addLanguage": "Add a language",
+      "availableFrom": "Available from",
+      "availableFromPlaceholder": "Any time",
+      "certificates": "Certificates",
+      "selfDeclared": "Self-declared",
+      "certPlaceholder": "e.g. ADR, CPC",
+      "note": "Note",
+      "notePlaceholder": "Short note (optional)"
+    },
+    "search": {
+      "filters": "Filters",
+      "role": "Role",
+      "anyRole": "Any role",
+      "country": "Country of interest",
+      "language": "Language",
+      "anyLanguage": "Any language",
+      "availableOnly": "Available now only",
+      "search": "Search",
+      "empty": "No workers match these filters.",
+      "countriesOfInterest": "Countries of interest",
+      "availableFrom": "Available from {{date}}",
+      "invite": "Invite",
+      "invited": "Invitation sent",
+      "invitePending": "Invitation already pending"
+    },
+    "invites": {
+      "title": "Invitations",
+      "empty": "No invitations.",
+      "role": "Role: {{role}}",
+      "accept": "Accept",
+      "decline": "Decline",
+      "declineConfirm": "Decline the invitation from {{company}}?"
     }
   }
 }

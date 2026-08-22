@@ -46,7 +46,8 @@
     "resources": "Resurser",
     "profile": "Profil",
     "customers": "Kunder",
-    "invoices": "Fakturor"
+    "invoices": "Fakturor",
+    "network": "Nätverk"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Transportledare",
         "driver": "Förare"
       }
+    },
+    "joinCompany": {
+      "title": "Gå med i ett företag med kod",
+      "hint": "Ange en inbjudningskod för att gå med i ett annat företag."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Du går in som ägare i ditt nya tomma företag."
   },
   "web": {
-    "driverUseMobile": "Förar-appen är endast mobil — öppna ETNOP mobilapp."
+    "driverUseMobile": "Förar-appen är endast mobil — öppna ETNOP mobilapp.",
+    "driverOperativaMobile": "Turhantering (statusar, kilometer, foton) körs i mobilappen. Din profil, ditt CV, din nätverksprofil och dina inbjudningar fungerar här på webben."
   },
   "career": {
     "title": "Karriär",
@@ -655,7 +661,62 @@
       "employment_started": "Anställning påbörjad",
       "employment_ended": "Anställning avslutad",
       "customer_created": "Kund tillagd",
-      "reminder_due": "Påminnelse förfaller"
+      "reminder_due": "Påminnelse förfaller",
+      "marketplace_invite_sent": "Nätverksinbjudan skickad"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Förare",
+      "dispatcher": "Transportledare"
+    },
+    "profile": {
+      "title": "Nätverksprofil",
+      "hint": "Skapa din profil så att företag kan hitta dig. Synlighet är avstängd som standard.",
+      "saved": "Nätverksprofil sparad",
+      "invalidCountry": "Ett av de valda länderna är ogiltigt.",
+      "visibility": {
+        "private": "Privat",
+        "visible": "Synlig",
+        "explainPrivate": "Din profil är privat — inget företag ser den i sökningen.",
+        "explainVisible": "Företag kan hitta dig i sökningen och se det här kortet utan ditt namn och kontakt: offentligt nummer, sökt roll, intresseländer, språk, tillgänglighet och självdeklarerade certifikat."
+      },
+      "seekingRole": "Sökt roll",
+      "seekingRolePlaceholder": "Välj en roll",
+      "countriesOfInterest": "Intresseländer",
+      "languages": "Språk",
+      "addLanguage": "Lägg till ett språk",
+      "availableFrom": "Tillgänglig från",
+      "availableFromPlaceholder": "När som helst",
+      "certificates": "Certifikat",
+      "selfDeclared": "Självdeklarerad",
+      "certPlaceholder": "t.ex. ADR, CPC",
+      "note": "Anteckning",
+      "notePlaceholder": "Kort anteckning (valfritt)"
+    },
+    "search": {
+      "filters": "Filter",
+      "role": "Roll",
+      "anyRole": "Valfri roll",
+      "country": "Intresseland",
+      "language": "Språk",
+      "anyLanguage": "Valfritt språk",
+      "availableOnly": "Endast tillgängliga nu",
+      "search": "Sök",
+      "empty": "Inga arbetare matchar dessa filter.",
+      "countriesOfInterest": "Intresseländer",
+      "availableFrom": "Tillgänglig från {{date}}",
+      "invite": "Bjud in",
+      "invited": "Inbjudan skickad",
+      "invitePending": "Inbjudan väntar redan"
+    },
+    "invites": {
+      "title": "Inbjudningar",
+      "empty": "Inga inbjudningar.",
+      "role": "Roll: {{role}}",
+      "accept": "Acceptera",
+      "decline": "Avböj",
+      "declineConfirm": "Avböja inbjudan från {{company}}?"
     }
   }
 }

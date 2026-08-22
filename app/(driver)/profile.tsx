@@ -12,6 +12,8 @@ import { getMyProfile } from "../../src/features/identity/api";
 import { PhoneChange } from "../../src/features/identity/PhoneChange";
 import { maskPhone } from "../../src/features/auth/phone";
 import { CareerProfileView } from "../../src/features/career/CareerProfileView";
+import { NetworkProfileEditor } from "../../src/features/network/NetworkProfileEditor";
+import { NetworkInvites } from "../../src/features/network/NetworkInvites";
 
 export default function DriverProfile() {
   const { t } = useTranslation();
@@ -66,6 +68,10 @@ export default function DriverProfile() {
 
       {/* Karijerni CV (self): zbirne brojke, grafikon km/mesec, istorija zaposlenja */}
       <CareerProfileView showHeader={false} />
+
+      {/* Mrežni profil (ADR 0014): vidljivost tržištu (opt-in) + pozivi firmi */}
+      <NetworkInvites />
+      <NetworkProfileEditor />
 
       <Pressable
         onPress={signOut}

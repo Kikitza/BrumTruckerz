@@ -46,7 +46,8 @@
     "resources": "Resursi",
     "profile": "Profils",
     "customers": "Klienti",
-    "invoices": "Rēķini"
+    "invoices": "Rēķini",
+    "network": "Tīkls"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispečers",
         "driver": "Vadītājs"
       }
+    },
+    "joinCompany": {
+      "title": "Pievienoties uzņēmumam ar kodu",
+      "hint": "Ievadi uzaicinājuma kodu, lai pievienotos citam uzņēmumam."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Tu ieiesi kā īpašnieks savā jaunajā tukšajā uzņēmumā."
   },
   "web": {
-    "driverUseMobile": "Šofera lietotne darbojas tikai mobilajā — atver ETNOP mobilo lietotni."
+    "driverUseMobile": "Šofera lietotne darbojas tikai mobilajā — atver ETNOP mobilo lietotni.",
+    "driverOperativaMobile": "Brauciena darbības (statusi, kilometri, fotoattēli) darbojas mobilajā lietotnē. Tavs profils, CV, tīkla profils un uzaicinājumi darbojas šeit tīmeklī."
   },
   "career": {
     "title": "Karjera",
@@ -655,7 +661,62 @@
       "employment_started": "Nodarbinātība sākta",
       "employment_ended": "Nodarbinātība beigta",
       "customer_created": "Klients pievienots",
-      "reminder_due": "Tuvojas termiņš"
+      "reminder_due": "Tuvojas termiņš",
+      "marketplace_invite_sent": "Tīkla uzaicinājums nosūtīts"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Šoferis",
+      "dispatcher": "Dispečers"
+    },
+    "profile": {
+      "title": "Tīkla profils",
+      "hint": "Izveido savu profilu, lai uzņēmumi tevi atrastu. Redzamība pēc noklusējuma ir izslēgta.",
+      "saved": "Tīkla profils saglabāts",
+      "invalidCountry": "Viena no izvēlētajām valstīm nav derīga.",
+      "visibility": {
+        "private": "Privāts",
+        "visible": "Redzams",
+        "explainPrivate": "Tavs profils ir privāts — neviens uzņēmums to neredz meklēšanā.",
+        "explainVisible": "Uzņēmumi var tevi atrast meklēšanā un redzēt šo kartīti bez tava vārda un kontakta: publiskais numurs, meklētā loma, interešu valstis, valodas, pieejamība un pašdeklarēti sertifikāti."
+      },
+      "seekingRole": "Meklētā loma",
+      "seekingRolePlaceholder": "Izvēlies lomu",
+      "countriesOfInterest": "Interešu valstis",
+      "languages": "Valodas",
+      "addLanguage": "Pievienot valodu",
+      "availableFrom": "Pieejams no",
+      "availableFromPlaceholder": "Jebkurā laikā",
+      "certificates": "Sertifikāti",
+      "selfDeclared": "Pašdeklarēts",
+      "certPlaceholder": "piem. ADR, CPC",
+      "note": "Piezīme",
+      "notePlaceholder": "Īsa piezīme (neobligāti)"
+    },
+    "search": {
+      "filters": "Filtri",
+      "role": "Loma",
+      "anyRole": "Jebkura loma",
+      "country": "Interešu valsts",
+      "language": "Valoda",
+      "anyLanguage": "Jebkura valoda",
+      "availableOnly": "Tikai tagad pieejamie",
+      "search": "Meklēt",
+      "empty": "Neviens darbinieks neatbilst šiem filtriem.",
+      "countriesOfInterest": "Interešu valstis",
+      "availableFrom": "Pieejams no {{date}}",
+      "invite": "Uzaicināt",
+      "invited": "Uzaicinājums nosūtīts",
+      "invitePending": "Uzaicinājums jau gaida"
+    },
+    "invites": {
+      "title": "Uzaicinājumi",
+      "empty": "Nav uzaicinājumu.",
+      "role": "Loma: {{role}}",
+      "accept": "Pieņemt",
+      "decline": "Noraidīt",
+      "declineConfirm": "Noraidīt uzaicinājumu no {{company}}?"
     }
   }
 }

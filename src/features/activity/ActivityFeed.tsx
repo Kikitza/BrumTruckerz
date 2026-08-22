@@ -24,6 +24,7 @@ const LABEL_KEY: Record<string, string> = {
   "employment.ended": "activity.event.employment_ended",
   "customer.created": "activity.event.customer_created",
   "reminder.due": "activity.event.reminder_due",
+  "marketplace.invite.sent": "activity.event.marketplace_invite_sent",
 };
 
 export function ActivityFeed() {

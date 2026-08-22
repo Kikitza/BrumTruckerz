@@ -1,49 +1,52 @@
-# IZVEŠTAJ — v2-3 kriška 1: ČLANSTVA (memberships) — temelj
+# IZVEŠTAJ — v2-3 kriška 2: MREŽNI PROFIL RADNIKA (ADR 0014)
 
-> Implementacija ADR 0013 (PRIHVAĆENO 22.8.2026). Nalozi u više firmi kroz `memberships` + prekidač aktivne firme. **Sve na DEV.**
+> Tanak kraj-na-kraj: **profil → pretraga → poziv → prihvatanje**. Radnik gradi vidljivost tržištu (opt-in), firma pretražuje JAVNE KARTICE bez PII i poziva kroz POSTOJEĆU kapiju (`accept_invitation`). **Sve na DEV.**
 
-## KORAK 0
-- `docs/adr/0013` i `docs/adr/0014` → **STATUS: PRIHVAĆENO** (22.8.2026, potpis vlasnika kroz savetnika).
+## 1) Migracija 0035 (na DEV, primenjena i verifikovana)
+- **`network_profiles`** (`user_id` PK→app_users, `visibility` private|visible **default private**, `seeking_role` driver|dispatcher, `countries_of_interest text[]`, `languages text[]`, `available_from date`, `certificates jsonb` — SAMODEKLARISANO, `note`, `updated_at`). Parcijalni indeks `(visibility, seeking_role) where visibility='visible'`.
+- **DATA-COLLISION GUARD (ADR 0014 §5):** `countries_of_interest` je **ODVOJENA** kolona; triger `tg_network_profiles_validate` validira ISO ⊆ `countries` (`INVALID_COUNTRY` 23514) + postavlja `updated_at`. NIKAD se ne meša sa zemljama rute/prebivališta/firme.
+- **RLS `np_self`:** radnik čita/menja SAMO svoj profil (`user_id = auth.uid()`). **Office NEMA politiku** → tabelu ne čita direktno; pretraga isključivo kroz RPC.
+- `invitations.target_user_id` (nova kolona) — marketplace pozivi ciljaju konkretnog korisnika (ista kapija, nov izvor).
+- **RPC-ovi (SECURITY DEFINER):**
+  - `network_search(role,country,language,available_only,limit,offset)` → **JAVNE KARTICE BEZ PII** (bez imena/kontakta/mejla); vraća **javni broj** (BT-D/BT-T — trajni javni identifikator po dizajnu). Samo `visibility='visible'`. Ne-office → `NOT_OFFICE` (42501). Paging.
+  - `network_invite(target, role)` → ciljana pozivnica + event `marketplace.invite.sent` (handler no-op v1). Idempotentno (postojeći pending → vrati ga).
+  - `my_network_invites()` → radnikovi pozivi (firma + rola + kod). `decline_network_invite(id)` → status `cancelled` (`INVITE_NOT_FOUND` 42704 ako nije njegov/pending).
 
-## 1) Migracija 0034 (na DEV)
-- **`memberships`** (id, user_id, company_id, role, status active|ended, created_at, ended_at) + ograničenja: **jedno aktivno članstvo po (osoba, firma)**; **najviše JEDNO aktivno VOZAČKO** članstvo po osobi (partial unique); office role smeju u više firmi.
-- **`app_users.active_company_id`** — pokazivač aktivne firme.
-- **BACKFILL (paritet dokazan brojevima na DEV):** app_users sa firmom = **4**, aktivnih članstava = **4**, active_company_id set = **4**, role-match = **4**, orphans = **0**. Svaki postojeći nalog = tačno jedno aktivno članstvo = današnje stanje. Stare kolone (`company_id`, `role`) OSTAJU kao fallback.
+## 2) Klijent — radnik (MOBILNI + WEB)
+- **`src/features/network/`**: `api.ts` (jedini Supabase sloj), `searchParams.ts` (čiste fn — jest), `Tag.tsx`, `NetworkProfileEditor.tsx`, `NetworkInvites.tsx`, `NetworkSearchView.tsx`.
+- **„Mrežni profil"** (`NetworkProfileEditor`): vidljivost — **jasan prekidač, PRIVATNO podrazumevano**, uz objašnjenje **šta firma vidi** kad je uključeno; sertifikati **izričito označeni „samodeklarisano"**; zemlje interesa kroz `CountryPickerField` (odvojeno), jezici iz `LANGUAGES`, `available_from` kroz `DateField`.
+- **„Pozivi"** (`NetworkInvites`): firma+rola → **Prihvati** (ista kapija `accept_invitation`; v1 pravila iz 0034 — drugi aktivni vozač → jasna greška) / **Odbij** (potvrda).
+- Dodato na **`app/(driver)/profile.tsx`** (radi i na webu).
 
-## 2) RLS „mozak" — SAMO tela helpera (nijedna politika se ne prepisuje)
-- `current_company_id` / `current_role_name` / `is_office_role` sada čitaju **aktivno članstvo** (preko `active_company_id`), uz **fallback na stare kolone** ako članstva/pokazivača nema (prelazni period + kompatibilnost postojećih testova). `profile_company_id` ne postoji u kodu — nije bilo šta da se menja.
-- Ključ pariteta: politike zovu iste helpere → autorizacija se menja na jednom mestu; postojeće ponašanje očuvano (fallback).
+## 3) Klijent — office
+- **`app/(owner)/network.tsx`** („Mreža", `DesktopContainer`) + tab `tabs.network`; owner i dispečer. Filteri (uloga/zemlja/jezik/„dostupni sada") → kartice (javni broj, tražena rola, zemlje/jezici, dostupnost, samodeklarisani sertifikati, napomena) → **„Pozovi"** sa statusom „poslato / već čeka".
 
-## 3) `set_active_company(company)` — prekidač (definer RPC)
-- Validira da pozivalac IMA aktivno članstvo u firmi → postavi pokazivač + sinhronizuje stare kolone. Bez članstva → **`NO_ACTIVE_MEMBERSHIP` (42501)**. `my_memberships()` RPC lista firme za prekidač (definer — zaobilazi companies RLS za imena svojih firmi).
+## 4) Vozač na WEB-u (ADR 0011 DODATAK)
+- Skinuta **blanket blokada** vozača na webu. Vozač na webu dobija **lični sloj** (Profil/CV + **Mrežni profil** + **Pozivi**); gate ga na webu vodi na **Profil**. **OPERATIVA ture/km ostaje mobilna** — operativni ekran (`app/(driver)/index.tsx`) na webu prikazuje poruku „u mobilnoj aplikaciji". Jedna linija dodata u **ADR 0011**.
+- **Podešavanja → „Pridruži se firmi kodom"** (reuse `AcceptInviteBox`): postojeći član ulazi u DRUGU firmu (office multi radi; vozač već angažovan → jasna greška). Po uspehu: osveži članstva + preračunaj gate.
+- `marketplace.invite.sent` dobio labelu u `ActivityFeed` + `activity.event.marketplace_invite_sent` u i18n.
 
-## 4) `accept_invitation` dopuna
-- Prihvatanje sada **kreira ČLANSTVO** (+ sinhronizuje `active_company_id`/stare kolone; idempotentno).
-- **Vozačka pozivnica** dok osoba već ima drugo aktivno vozačko članstvo → **`INVITE_DRIVER_ALREADY_ENGAGED`** (42501). **Office (dispatcher) u drugu firmu SME** (uklonjen tvrdi `INVITE_OTHER_COMPANY` blok).
-- `drivers` (globalno jedinstven, 0007): ako red postoji → prebaci na firmu; inače insert (bez kršenja jedinstvenosti).
+## 5) Testovi
+- **Nova `network_test.sql` (15. svita):** privatan NEVIDLJIV / vidljiv se pojavljuje **sa javnim brojem (bez PII)**; filteri uloga/zemlja/jezik; **radnik menja SAMO svoj** (izmena tuđeg = 0 redova); **office NE čita tabelu direktno** (0 redova); ne-office `network_search` → `NOT_OFFICE`; **poziv→accept KREIRA članstvo**; **već angažovan vozač → `INVITE_DRIVER_ALREADY_ENGAGED`**. Svih **prethodnih 14 svita zeleno**.
+- **jest:** `searchParams.test.ts` (`buildSearchParams` — trim/null/paginacija; `certList` — jsonb normalizacija). +6 novih testova.
+- **i18n svih 30:** novi top-level `network.*` (role/profile/search/invites) + `tabs.network` + `settings.joinCompany.*` + `web.driverOperativaMobile` + `activity.event.marketplace_invite_sent`. `sr`/`en` autorski, ostalih 28 mašinski; **`en` fallback — nula MISS**; statusi fajlova nedirani.
 
-## 5) UI (nulta smetnja postojećima)
-- `ActiveCompanySwitcher` u Podešavanjima: prikazan **samo uz >1 članstva** (korisnik sa jednim članstvom ne vidi ništa novo). Prebacivanje → `set_active_company` → `qc.clear()` + `reloadAppUser()` (novi globalni signal u `useSession`) + `router.replace('/')` (gate se preračuna).
-
-## 6) Testovi
-- **Nova `memberships_test.sql`** (14. svita): helper čita aktivno članstvo; **prekidač menja vidljivi svet** (A→B, izolacija: u B ne vidi Cust A); `set_active_company` bez članstva → 42501; **drugo vozačko odbijeno** (accept → 42501); **office multi dozvoljeno** (2 dispečerska članstva); **accept kreira članstvo** (nov nalog + druga firma).
-- **`invitations_test` ažuriran** (namerna promena ponašanja): scenario „već član druge firme" sada je vozač-sa-članstvom → očekuje `INVITE_DRIVER_ALREADY_ENGAGED` (office multi je sad dozvoljen). Ostalih **13 svita ostalo zeleno** (dokaz da se ništa nije pomerilo — zahvaljujući fallback-u).
-- **jest**: `inviteErrorKey` dopunjen (`driverAlreadyEngaged`) + test. **i18n svih 30**: `settings.activeCompany.*` (title/hint/current/role.{owner,dispatcher,driver}) + `invite.err.driverAlreadyEngaged`.
+## OBIM (namerno van ove kriške)
+- Deljenje **PUNOG CV-a** preko granica firmi (uz izričit pristanak po firmi) — **kriška 3**. Office i dalje vidi SAMO CV svoje firme.
 
 ## PODSETNIK — ručna primena
-- **0034 je samo na DEV.** PROD/STAGING tek uz izričito odobrenje (ritual).
-- Rollback: `drop function my_memberships, set_active_company`; vrati helpere na 0020/0001 verzije; vrati `accept_invitation` na 0020 verziju; `alter table app_users drop column active_company_id`; `drop table memberships`. (Backfill je aditivan; stare kolone nikad nisu dirane.)
+- **0035 je samo na DEV.** PROD/STAGING (trenutno `0033`) i **0034** čekaju STAGING/PROD uz izričito odobrenje.
+- Rollback 0035: `drop function network_search, network_invite, my_network_invites, decline_network_invite;` `alter table invitations drop column target_user_id;` `drop table network_profiles;` (aditivno; ništa postojeće nije menjano).
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ |
-| `npm test` | ✅ 136/136 |
-| `npm run test:db` (DEV) | ✅ ALL PASSED (14 svita) |
+| `npm test` (jest) | ✅ 142/142 (21 svita) |
+| `npm run test:db` (DEV) | ✅ ALL PASSED (15 svita) |
 | `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
 | `expo export --platform web` | ✅ exit 0 |
-| Backfill paritet | ✅ 4/4, orphans 0 |
-| Postojećih 13 svita zeleno | ✅ (fallback čuva staro ponašanje) |
-| i18n 30/30 | ✅ |
-| Kvalitet: politike NISU prepisivane | ✅ samo tela helpera |
+| i18n 30/30 (en fallback, 0 MISS) | ✅ |
 | Link ostao na DEV | ✅ `icbjagubaftoqcwfcbwf` |
+
+**Kvalitet:** slojevi razdvojeni (ekrani → `features/network/api.ts`); čista logika (`searchParams.ts`) deljena i testirana; boje iz tokena, stringovi kroz `t()`; reusable `Tag`; bez dupliranja (reuse `AcceptInviteBox`, `CountryPickerField`, `PickerField`, `DateField`). Pravila ispoštovana.

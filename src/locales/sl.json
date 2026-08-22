@@ -46,7 +46,8 @@
     "resources": "Viri",
     "profile": "Profil",
     "customers": "Naročniki",
-    "invoices": "Računi"
+    "invoices": "Računi",
+    "network": "Omrežje"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispečer",
         "driver": "Voznik"
       }
+    },
+    "joinCompany": {
+      "title": "Pridruži se podjetju s kodo",
+      "hint": "Vnesi kodo vabila za pridružitev drugemu podjetju."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Vstopil boš kot lastnik v svoje novo prazno podjetje."
   },
   "web": {
-    "driverUseMobile": "Aplikacija za voznika deluje samo na telefonu — odpri mobilno aplikacijo ETNOP."
+    "driverUseMobile": "Aplikacija za voznika deluje samo na telefonu — odpri mobilno aplikacijo ETNOP.",
+    "driverOperativaMobile": "Operativa vožnje (statusi, kilometri, fotografije) deluje v mobilni aplikaciji. Tvoj profil, življenjepis, omrežni profil in vabila delujejo tukaj na spletu."
   },
   "career": {
     "title": "Kariera",
@@ -655,7 +661,62 @@
       "employment_started": "Zaposlitev začeta",
       "employment_ended": "Zaposlitev končana",
       "customer_created": "Stranka dodana",
-      "reminder_due": "Rok se izteka"
+      "reminder_due": "Rok se izteka",
+      "marketplace_invite_sent": "Omrežno vabilo poslano"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Voznik",
+      "dispatcher": "Odpravnik"
+    },
+    "profile": {
+      "title": "Omrežni profil",
+      "hint": "Ustvari profil, da te podjetja najdejo. Vidnost je privzeto izklopljena.",
+      "saved": "Omrežni profil shranjen",
+      "invalidCountry": "Ena od izbranih držav ni veljavna.",
+      "visibility": {
+        "private": "Zasebno",
+        "visible": "Vidno",
+        "explainPrivate": "Tvoj profil je zaseben — nobeno podjetje ga ne vidi v iskanju.",
+        "explainVisible": "Podjetja te lahko najdejo v iskanju in vidijo to kartico brez tvojega imena in stika: javna številka, iskana vloga, države zanimanja, jeziki, razpoložljivost in samodeklarirani certifikati."
+      },
+      "seekingRole": "Iskana vloga",
+      "seekingRolePlaceholder": "Izberi vlogo",
+      "countriesOfInterest": "Države zanimanja",
+      "languages": "Jeziki",
+      "addLanguage": "Dodaj jezik",
+      "availableFrom": "Na voljo od",
+      "availableFromPlaceholder": "Kadar koli",
+      "certificates": "Certifikati",
+      "selfDeclared": "Samodeklarirano",
+      "certPlaceholder": "npr. ADR, CPC",
+      "note": "Opomba",
+      "notePlaceholder": "Kratka opomba (izbirno)"
+    },
+    "search": {
+      "filters": "Filtri",
+      "role": "Vloga",
+      "anyRole": "Katera koli vloga",
+      "country": "Država zanimanja",
+      "language": "Jezik",
+      "anyLanguage": "Kateri koli jezik",
+      "availableOnly": "Samo zdaj na voljo",
+      "search": "Išči",
+      "empty": "Noben delavec ne ustreza tem filtrom.",
+      "countriesOfInterest": "Države zanimanja",
+      "availableFrom": "Na voljo od {{date}}",
+      "invite": "Povabi",
+      "invited": "Vabilo poslano",
+      "invitePending": "Vabilo že čaka"
+    },
+    "invites": {
+      "title": "Vabila",
+      "empty": "Ni vabil.",
+      "role": "Vloga: {{role}}",
+      "accept": "Sprejmi",
+      "decline": "Zavrni",
+      "declineConfirm": "Zavrniti vabilo podjetja {{company}}?"
     }
   }
 }

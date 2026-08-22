@@ -14,6 +14,9 @@
 - **Platformske grane** za native-only module preko `src/lib/platform.ts` (`isWeb`/`isNative`): gde funkcija još nije za web → **ljubazna poruka** umesto pada (npr. PDF: „dostupno u mobilnoj aplikaciji").
 - **Responsive v1 = max-width kontejner** (centriran sadržaj na širokom ekranu, kartice se ne razvlače). **Prave tabele/grid** (gušći prikaz kolona) dolaze kasnije, ekran po ekran.
 
+### DODATAK (v2-3 kriška 2, ADR 0014 — mrežni profil) — 22.8.2026
+- **Vozač NIJE više potpuno blokiran na webu:** dobija svoj **lični sloj** (Profil/CV + **Mrežni profil** + **Pozivi**) i na webu — to je online, RLS-om zaštićen tok (nema offline/kamere/km). **OPERATIVA ture/km ostaje mobilna** — operativni ekran na webu prikazuje poruku „u mobilnoj aplikaciji". (Time se ODBAČENA ALTERNATIVA 2 „Web za vozača v1" precizira: osakaćen je bio SAMO operativni tok; lični/mrežni sloj je legitiman i na webu.)
+
 ## POSLEDICE
 - (+) Nula duplikata poslovne logike; svaka F1/F2 funkcija odmah „stiže" i na web (uz platform-grane).
 - (+) Kancelarija radi za stolom bez instalacije; deljenje linka, brža obuka.

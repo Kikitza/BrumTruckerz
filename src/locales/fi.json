@@ -46,7 +46,8 @@
     "resources": "Resurssit",
     "profile": "Profiili",
     "customers": "Asiakkaat",
-    "invoices": "Laskut"
+    "invoices": "Laskut",
+    "network": "Verkosto"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Ajojärjestelijä",
         "driver": "Kuljettaja"
       }
+    },
+    "joinCompany": {
+      "title": "Liity yritykseen koodilla",
+      "hint": "Anna kutsukoodi liittyäksesi toiseen yritykseen."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Liityt omistajana uuteen tyhjään yritykseesi."
   },
   "web": {
-    "driverUseMobile": "Kuljettajasovellus toimii vain mobiilissa — avaa ETNOP-mobiilisovellus."
+    "driverUseMobile": "Kuljettajasovellus toimii vain mobiilissa — avaa ETNOP-mobiilisovellus.",
+    "driverOperativaMobile": "Matkatoiminnot (tilat, kilometrit, valokuvat) toimivat mobiilisovelluksessa. Profiilisi, ansioluettelosi, verkostoprofiilisi ja kutsusi toimivat täällä verkossa."
   },
   "career": {
     "title": "Ura",
@@ -655,7 +661,62 @@
       "employment_started": "Työsuhde alkoi",
       "employment_ended": "Työsuhde päättyi",
       "customer_created": "Asiakas lisätty",
-      "reminder_due": "Muistutus erääntyy"
+      "reminder_due": "Muistutus erääntyy",
+      "marketplace_invite_sent": "Verkostokutsu lähetetty"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Kuljettaja",
+      "dispatcher": "Ajojärjestelijä"
+    },
+    "profile": {
+      "title": "Verkostoprofiili",
+      "hint": "Luo profiilisi, jotta yritykset löytävät sinut. Näkyvyys on oletuksena pois päältä.",
+      "saved": "Verkostoprofiili tallennettu",
+      "invalidCountry": "Yksi valituista maista ei ole kelvollinen.",
+      "visibility": {
+        "private": "Yksityinen",
+        "visible": "Näkyvä",
+        "explainPrivate": "Profiilisi on yksityinen — mikään yritys ei näe sitä haussa.",
+        "explainVisible": "Yritykset voivat löytää sinut haussa ja nähdä tämän kortin ilman nimeäsi ja yhteystietojasi: julkinen numero, haettu rooli, kiinnostuksen maat, kielet, saatavuus ja itse ilmoitetut todistukset."
+      },
+      "seekingRole": "Haettu rooli",
+      "seekingRolePlaceholder": "Valitse rooli",
+      "countriesOfInterest": "Kiinnostuksen maat",
+      "languages": "Kielet",
+      "addLanguage": "Lisää kieli",
+      "availableFrom": "Saatavilla alkaen",
+      "availableFromPlaceholder": "Milloin tahansa",
+      "certificates": "Todistukset",
+      "selfDeclared": "Itse ilmoitettu",
+      "certPlaceholder": "esim. ADR, CPC",
+      "note": "Muistiinpano",
+      "notePlaceholder": "Lyhyt muistiinpano (valinnainen)"
+    },
+    "search": {
+      "filters": "Suodattimet",
+      "role": "Rooli",
+      "anyRole": "Mikä tahansa rooli",
+      "country": "Kiinnostuksen maa",
+      "language": "Kieli",
+      "anyLanguage": "Mikä tahansa kieli",
+      "availableOnly": "Vain nyt saatavilla",
+      "search": "Hae",
+      "empty": "Yksikään työntekijä ei vastaa näitä suodattimia.",
+      "countriesOfInterest": "Kiinnostuksen maat",
+      "availableFrom": "Saatavilla alkaen {{date}}",
+      "invite": "Kutsu",
+      "invited": "Kutsu lähetetty",
+      "invitePending": "Kutsu jo odottaa"
+    },
+    "invites": {
+      "title": "Kutsut",
+      "empty": "Ei kutsuja.",
+      "role": "Rooli: {{role}}",
+      "accept": "Hyväksy",
+      "decline": "Hylkää",
+      "declineConfirm": "Hylätäänkö kutsu yritykseltä {{company}}?"
     }
   }
 }

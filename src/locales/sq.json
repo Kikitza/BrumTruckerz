@@ -46,7 +46,8 @@
     "resources": "Burimet",
     "profile": "Profili",
     "customers": "Klientët",
-    "invoices": "Faturat"
+    "invoices": "Faturat",
+    "network": "Rrjeti"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispeçer",
         "driver": "Shofer"
       }
+    },
+    "joinCompany": {
+      "title": "Bashkohu një kompanie me kod",
+      "hint": "Fut një kod ftese për t’u bashkuar me një kompani tjetër."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Do të hysh si pronar në kompaninë tënde të re bosh."
   },
   "web": {
-    "driverUseMobile": "Aplikacioni i shoferit është vetëm për celular — hap aplikacionin celular ETNOP."
+    "driverUseMobile": "Aplikacioni i shoferit është vetëm për celular — hap aplikacionin celular ETNOP.",
+    "driverOperativaMobile": "Operacionet e udhëtimit (statuset, kilometrat, fotot) funksionojnë në aplikacionin celular. Profili, CV-ja, profili i rrjetit dhe ftesat funksionojnë këtu në web."
   },
   "career": {
     "title": "Karriera",
@@ -655,7 +661,62 @@
       "employment_started": "Punësimi filloi",
       "employment_ended": "Punësimi përfundoi",
       "customer_created": "Klienti u shtua",
-      "reminder_due": "Afati po afron"
+      "reminder_due": "Afati po afron",
+      "marketplace_invite_sent": "Ftesa e rrjetit u dërgua"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Shofer",
+      "dispatcher": "Dispeçer"
+    },
+    "profile": {
+      "title": "Profili i rrjetit",
+      "hint": "Krijo profilin që kompanitë të të gjejnë. Dukshmëria është e çaktivizuar si parazgjedhje.",
+      "saved": "Profili i rrjetit u ruajt",
+      "invalidCountry": "Një nga vendet e zgjedhura nuk është i vlefshëm.",
+      "visibility": {
+        "private": "Privat",
+        "visible": "I dukshëm",
+        "explainPrivate": "Profili yt është privat — asnjë kompani nuk e sheh në kërkim.",
+        "explainVisible": "Kompanitë mund të të gjejnë në kërkim dhe të shohin këtë kartë pa emrin dhe kontaktin tënd: numri publik, roli i kërkuar, vendet me interes, gjuhët, disponueshmëria dhe certifikatat e vetëdeklaruara."
+      },
+      "seekingRole": "Roli i kërkuar",
+      "seekingRolePlaceholder": "Zgjidh një rol",
+      "countriesOfInterest": "Vendet me interes",
+      "languages": "Gjuhët",
+      "addLanguage": "Shto një gjuhë",
+      "availableFrom": "I disponueshëm nga",
+      "availableFromPlaceholder": "Në çdo kohë",
+      "certificates": "Certifikatat",
+      "selfDeclared": "E vetëdeklaruar",
+      "certPlaceholder": "p.sh. ADR, CPC",
+      "note": "Shënim",
+      "notePlaceholder": "Shënim i shkurtër (opsional)"
+    },
+    "search": {
+      "filters": "Filtrat",
+      "role": "Roli",
+      "anyRole": "Çdo rol",
+      "country": "Vendi me interes",
+      "language": "Gjuha",
+      "anyLanguage": "Çdo gjuhë",
+      "availableOnly": "Vetëm të disponueshëm tani",
+      "search": "Kërko",
+      "empty": "Asnjë punëtor nuk përputhet me këta filtra.",
+      "countriesOfInterest": "Vendet me interes",
+      "availableFrom": "I disponueshëm nga {{date}}",
+      "invite": "Fto",
+      "invited": "Ftesa u dërgua",
+      "invitePending": "Ftesa është tashmë në pritje"
+    },
+    "invites": {
+      "title": "Ftesat",
+      "empty": "Asnjë ftesë.",
+      "role": "Roli: {{role}}",
+      "accept": "Prano",
+      "decline": "Refuzo",
+      "declineConfirm": "Të refuzosh ftesën nga {{company}}?"
     }
   }
 }

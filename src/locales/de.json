@@ -46,7 +46,8 @@
     "resources": "Ressourcen",
     "profile": "Profil",
     "customers": "Kunden",
-    "invoices": "Rechnungen"
+    "invoices": "Rechnungen",
+    "network": "Netzwerk"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Disponent",
         "driver": "Fahrer"
       }
+    },
+    "joinCompany": {
+      "title": "Firma per Code beitreten",
+      "hint": "Gib einen Einladungscode ein, um einer anderen Firma beizutreten."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Du trittst als Eigentümer deinem neuen leeren Unternehmen bei."
   },
   "web": {
-    "driverUseMobile": "Die Fahrer-App ist nur mobil — bitte öffne die ETNOP-Mobil-App."
+    "driverUseMobile": "Die Fahrer-App ist nur mobil — bitte öffne die ETNOP-Mobil-App.",
+    "driverOperativaMobile": "Der Tourbetrieb (Status, Kilometer, Fotos) läuft in der mobilen App. Dein Profil, Lebenslauf, Netzwerkprofil und Einladungen funktionieren hier im Web."
   },
   "career": {
     "title": "Karriere",
@@ -655,7 +661,62 @@
       "employment_started": "Beschäftigung begonnen",
       "employment_ended": "Beschäftigung beendet",
       "customer_created": "Kunde hinzugefügt",
-      "reminder_due": "Frist fällig"
+      "reminder_due": "Frist fällig",
+      "marketplace_invite_sent": "Netzwerk-Einladung gesendet"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Fahrer",
+      "dispatcher": "Disponent"
+    },
+    "profile": {
+      "title": "Netzwerkprofil",
+      "hint": "Erstelle dein Profil, damit Firmen dich finden. Sichtbarkeit ist standardmäßig aus.",
+      "saved": "Netzwerkprofil gespeichert",
+      "invalidCountry": "Eines der gewählten Länder ist ungültig.",
+      "visibility": {
+        "private": "Privat",
+        "visible": "Sichtbar",
+        "explainPrivate": "Dein Profil ist privat — keine Firma sieht es in der Suche.",
+        "explainVisible": "Firmen können dich in der Suche finden und diese Karte ohne Namen und Kontakt sehen: öffentliche Nummer, gesuchte Rolle, Länder von Interesse, Sprachen, Verfügbarkeit und selbst angegebene Zertifikate."
+      },
+      "seekingRole": "Gesuchte Rolle",
+      "seekingRolePlaceholder": "Rolle wählen",
+      "countriesOfInterest": "Länder von Interesse",
+      "languages": "Sprachen",
+      "addLanguage": "Sprache hinzufügen",
+      "availableFrom": "Verfügbar ab",
+      "availableFromPlaceholder": "Jederzeit",
+      "certificates": "Zertifikate",
+      "selfDeclared": "Selbst angegeben",
+      "certPlaceholder": "z. B. ADR, CPC",
+      "note": "Notiz",
+      "notePlaceholder": "Kurze Notiz (optional)"
+    },
+    "search": {
+      "filters": "Filter",
+      "role": "Rolle",
+      "anyRole": "Beliebige Rolle",
+      "country": "Land von Interesse",
+      "language": "Sprache",
+      "anyLanguage": "Beliebige Sprache",
+      "availableOnly": "Nur jetzt verfügbar",
+      "search": "Suchen",
+      "empty": "Keine Arbeiter passen zu diesen Filtern.",
+      "countriesOfInterest": "Länder von Interesse",
+      "availableFrom": "Verfügbar ab {{date}}",
+      "invite": "Einladen",
+      "invited": "Einladung gesendet",
+      "invitePending": "Einladung bereits offen"
+    },
+    "invites": {
+      "title": "Einladungen",
+      "empty": "Keine Einladungen.",
+      "role": "Rolle: {{role}}",
+      "accept": "Annehmen",
+      "decline": "Ablehnen",
+      "declineConfirm": "Einladung von {{company}} ablehnen?"
     }
   }
 }

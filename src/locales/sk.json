@@ -46,7 +46,8 @@
     "resources": "Zdroje",
     "profile": "Profil",
     "customers": "Zákazníci",
-    "invoices": "Faktúry"
+    "invoices": "Faktúry",
+    "network": "Sieť"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispečer",
         "driver": "Vodič"
       }
+    },
+    "joinCompany": {
+      "title": "Pripojiť sa k firme pomocou kódu",
+      "hint": "Zadajte kód pozvánky na pripojenie k inej firme."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Vstúpiš ako majiteľ do svojej novej prázdnej firmy."
   },
   "web": {
-    "driverUseMobile": "Aplikácia pre vodiča je len mobilná — otvor mobilnú aplikáciu ETNOP."
+    "driverUseMobile": "Aplikácia pre vodiča je len mobilná — otvor mobilnú aplikáciu ETNOP.",
+    "driverOperativaMobile": "Operácie jazdy (stavy, kilometre, fotky) bežia v mobilnej aplikácii. Váš profil, životopis, sieťový profil a pozvánky fungujú tu na webe."
   },
   "career": {
     "title": "Kariéra",
@@ -655,7 +661,62 @@
       "employment_started": "Zamestnanie začaté",
       "employment_ended": "Zamestnanie ukončené",
       "customer_created": "Zákazník pridaný",
-      "reminder_due": "Termín sa blíži"
+      "reminder_due": "Termín sa blíži",
+      "marketplace_invite_sent": "Sieťová pozvánka odoslaná"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Vodič",
+      "dispatcher": "Dispečer"
+    },
+    "profile": {
+      "title": "Sieťový profil",
+      "hint": "Vytvorte si profil, aby vás firmy našli. Viditeľnosť je predvolene vypnutá.",
+      "saved": "Sieťový profil uložený",
+      "invalidCountry": "Jedna z vybraných krajín nie je platná.",
+      "visibility": {
+        "private": "Súkromný",
+        "visible": "Viditeľný",
+        "explainPrivate": "Váš profil je súkromný — žiadna firma ho vo vyhľadávaní nevidí.",
+        "explainVisible": "Firmy vás môžu nájsť vo vyhľadávaní a vidieť túto kartu bez vášho mena a kontaktu: verejné číslo, hľadaná rola, krajiny záujmu, jazyky, dostupnosť a samodeklarované certifikáty."
+      },
+      "seekingRole": "Hľadaná rola",
+      "seekingRolePlaceholder": "Vyberte rolu",
+      "countriesOfInterest": "Krajiny záujmu",
+      "languages": "Jazyky",
+      "addLanguage": "Pridať jazyk",
+      "availableFrom": "Dostupný od",
+      "availableFromPlaceholder": "Kedykoľvek",
+      "certificates": "Certifikáty",
+      "selfDeclared": "Samodeklarované",
+      "certPlaceholder": "napr. ADR, CPC",
+      "note": "Poznámka",
+      "notePlaceholder": "Krátka poznámka (voliteľné)"
+    },
+    "search": {
+      "filters": "Filtre",
+      "role": "Rola",
+      "anyRole": "Akákoľvek rola",
+      "country": "Krajina záujmu",
+      "language": "Jazyk",
+      "anyLanguage": "Akýkoľvek jazyk",
+      "availableOnly": "Iba dostupní teraz",
+      "search": "Hľadať",
+      "empty": "Žiadni pracovníci nezodpovedajú týmto filtrom.",
+      "countriesOfInterest": "Krajiny záujmu",
+      "availableFrom": "Dostupný od {{date}}",
+      "invite": "Pozvať",
+      "invited": "Pozvánka odoslaná",
+      "invitePending": "Pozvánka už čaká"
+    },
+    "invites": {
+      "title": "Pozvánky",
+      "empty": "Žiadne pozvánky.",
+      "role": "Rola: {{role}}",
+      "accept": "Prijať",
+      "decline": "Odmietnuť",
+      "declineConfirm": "Odmietnuť pozvánku od {{company}}?"
     }
   }
 }

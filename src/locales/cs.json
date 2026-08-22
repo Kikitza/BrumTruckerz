@@ -46,7 +46,8 @@
     "resources": "Zdroje",
     "profile": "Profil",
     "customers": "Zákazníci",
-    "invoices": "Faktury"
+    "invoices": "Faktury",
+    "network": "Síť"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Dispečer",
         "driver": "Řidič"
       }
+    },
+    "joinCompany": {
+      "title": "Připojit se k firmě pomocí kódu",
+      "hint": "Zadejte kód pozvánky pro připojení k jiné firmě."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Vstoupíš jako majitel do své nové prázdné firmy."
   },
   "web": {
-    "driverUseMobile": "Aplikace pro řidiče je jen mobilní — otevři mobilní aplikaci ETNOP."
+    "driverUseMobile": "Aplikace pro řidiče je jen mobilní — otevři mobilní aplikaci ETNOP.",
+    "driverOperativaMobile": "Operace jízdy (stavy, kilometry, fotky) běží v mobilní aplikaci. Váš profil, životopis, síťový profil a pozvánky fungují zde na webu."
   },
   "career": {
     "title": "Kariéra",
@@ -655,7 +661,62 @@
       "employment_started": "Zaměstnání zahájeno",
       "employment_ended": "Zaměstnání ukončeno",
       "customer_created": "Zákazník přidán",
-      "reminder_due": "Termín se blíží"
+      "reminder_due": "Termín se blíží",
+      "marketplace_invite_sent": "Síťová pozvánka odeslána"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Řidič",
+      "dispatcher": "Dispečer"
+    },
+    "profile": {
+      "title": "Síťový profil",
+      "hint": "Vytvořte si profil, aby vás firmy našly. Viditelnost je ve výchozím nastavení vypnutá.",
+      "saved": "Síťový profil uložen",
+      "invalidCountry": "Jedna z vybraných zemí není platná.",
+      "visibility": {
+        "private": "Soukromý",
+        "visible": "Viditelný",
+        "explainPrivate": "Váš profil je soukromý — žádná firma jej ve vyhledávání nevidí.",
+        "explainVisible": "Firmy vás mohou najít ve vyhledávání a vidět tuto kartu bez vašeho jména a kontaktu: veřejné číslo, hledaná role, země zájmu, jazyky, dostupnost a samodeklarované certifikáty."
+      },
+      "seekingRole": "Hledaná role",
+      "seekingRolePlaceholder": "Vyberte roli",
+      "countriesOfInterest": "Země zájmu",
+      "languages": "Jazyky",
+      "addLanguage": "Přidat jazyk",
+      "availableFrom": "Dostupný od",
+      "availableFromPlaceholder": "Kdykoli",
+      "certificates": "Certifikáty",
+      "selfDeclared": "Samodeklarované",
+      "certPlaceholder": "např. ADR, CPC",
+      "note": "Poznámka",
+      "notePlaceholder": "Krátká poznámka (nepovinné)"
+    },
+    "search": {
+      "filters": "Filtry",
+      "role": "Role",
+      "anyRole": "Jakákoli role",
+      "country": "Země zájmu",
+      "language": "Jazyk",
+      "anyLanguage": "Jakýkoli jazyk",
+      "availableOnly": "Pouze dostupní nyní",
+      "search": "Hledat",
+      "empty": "Žádní pracovníci neodpovídají těmto filtrům.",
+      "countriesOfInterest": "Země zájmu",
+      "availableFrom": "Dostupný od {{date}}",
+      "invite": "Pozvat",
+      "invited": "Pozvánka odeslána",
+      "invitePending": "Pozvánka již čeká"
+    },
+    "invites": {
+      "title": "Pozvánky",
+      "empty": "Žádné pozvánky.",
+      "role": "Role: {{role}}",
+      "accept": "Přijmout",
+      "decline": "Odmítnout",
+      "declineConfirm": "Odmítnout pozvánku od {{company}}?"
     }
   }
 }

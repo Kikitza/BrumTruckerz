@@ -23,6 +23,7 @@ import { useTheme, type Palette } from "../../src/lib/theme";
 import { Field } from "../../src/components/form";
 import { toInt } from "../../src/lib/num";
 import { fmtDate, fmtMoney } from "../../src/lib/format";
+import { isWeb } from "../../src/lib/platform";
 
 const STATUSES = ["loading", "driving", "border", "unloading", "finished"] as const;
 type Status = (typeof STATUSES)[number];
@@ -36,8 +37,20 @@ export default function DriverHome() {
   const { colors } = useTheme();
   const qc = useQueryClient();
   const signOut = useSignOut();
-  const { data } = useQuery({ queryKey: ["driver-trips"], queryFn: driverListTrips });
+  // WEB (ADR 0011 dodatak): OPERATIVA ture/km je mobilna (offline red / kamera / km-unos su
+  // native) — na webu ljubazna poruka; lični sloj (Profil/CV/Mreža/Pozivi) radi i na webu.
+  const webNotice = isWeb;
+  const { data } = useQuery({ queryKey: ["driver-trips"], queryFn: driverListTrips, enabled: !webNotice });
   const active = data?.find((x: any) => x.status !== "finished");
+
+  if (webNotice) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", gap: 20, padding: 24, backgroundColor: colors.bg }}>
+        <Text style={{ color: colors.text, fontSize: 16, textAlign: "center" }}>{t("web.driverOperativaMobile")}</Text>
+        <SignOutButton colors={colors} onPress={signOut} label={t("settings.signOut")} />
+      </View>
+    );
+  }
 
   const setStatus = async (s: Status) => {
     if (!active) return;

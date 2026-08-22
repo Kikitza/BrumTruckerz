@@ -46,7 +46,8 @@
     "resources": "Erőforrások",
     "profile": "Profil",
     "customers": "Ügyfelek",
-    "invoices": "Számlák"
+    "invoices": "Számlák",
+    "network": "Hálózat"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Diszpécser",
         "driver": "Sofőr"
       }
+    },
+    "joinCompany": {
+      "title": "Csatlakozás céghez kóddal",
+      "hint": "Adj meg egy meghívókódot, hogy csatlakozz egy másik céghez."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Tulajdonosként lépsz be az új üres cégedbe."
   },
   "web": {
-    "driverUseMobile": "A sofőr alkalmazás csak mobilon működik — nyisd meg a ETNOP mobilalkalmazást."
+    "driverUseMobile": "A sofőr alkalmazás csak mobilon működik — nyisd meg a ETNOP mobilalkalmazást.",
+    "driverOperativaMobile": "A fuvarműveletek (állapotok, kilométerek, fotók) a mobilalkalmazásban futnak. A profilod, önéletrajzod, hálózati profilod és meghívóid itt a weben működnek."
   },
   "career": {
     "title": "Karrier",
@@ -655,7 +661,62 @@
       "employment_started": "Foglalkoztatás megkezdve",
       "employment_ended": "Foglalkoztatás befejezve",
       "customer_created": "Ügyfél hozzáadva",
-      "reminder_due": "Határidő esedékes"
+      "reminder_due": "Határidő esedékes",
+      "marketplace_invite_sent": "Hálózati meghívó elküldve"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Sofőr",
+      "dispatcher": "Diszpécser"
+    },
+    "profile": {
+      "title": "Hálózati profil",
+      "hint": "Hozd létre a profilodat, hogy a cégek megtaláljanak. A láthatóság alapból ki van kapcsolva.",
+      "saved": "Hálózati profil mentve",
+      "invalidCountry": "A kiválasztott országok egyike nem érvényes.",
+      "visibility": {
+        "private": "Privát",
+        "visible": "Látható",
+        "explainPrivate": "A profilod privát — egyetlen cég sem látja a keresésben.",
+        "explainVisible": "A cégek megtalálhatnak a keresésben, és láthatják ezt a kártyát a neved és elérhetőséged nélkül: nyilvános szám, keresett szerep, érdeklődési országok, nyelvek, elérhetőség és önbevallott tanúsítványok."
+      },
+      "seekingRole": "Keresett szerep",
+      "seekingRolePlaceholder": "Válassz szerepet",
+      "countriesOfInterest": "Érdeklődési országok",
+      "languages": "Nyelvek",
+      "addLanguage": "Nyelv hozzáadása",
+      "availableFrom": "Elérhető ettől",
+      "availableFromPlaceholder": "Bármikor",
+      "certificates": "Tanúsítványok",
+      "selfDeclared": "Önbevallott",
+      "certPlaceholder": "pl. ADR, CPC",
+      "note": "Megjegyzés",
+      "notePlaceholder": "Rövid megjegyzés (opcionális)"
+    },
+    "search": {
+      "filters": "Szűrők",
+      "role": "Szerep",
+      "anyRole": "Bármely szerep",
+      "country": "Érdeklődési ország",
+      "language": "Nyelv",
+      "anyLanguage": "Bármely nyelv",
+      "availableOnly": "Csak most elérhetők",
+      "search": "Keresés",
+      "empty": "Egyetlen munkás sem felel meg ezeknek a szűrőknek.",
+      "countriesOfInterest": "Érdeklődési országok",
+      "availableFrom": "Elérhető ettől: {{date}}",
+      "invite": "Meghívás",
+      "invited": "Meghívó elküldve",
+      "invitePending": "Meghívó már függőben"
+    },
+    "invites": {
+      "title": "Meghívók",
+      "empty": "Nincsenek meghívók.",
+      "role": "Szerep: {{role}}",
+      "accept": "Elfogadás",
+      "decline": "Elutasítás",
+      "declineConfirm": "Elutasítod {{company}} meghívóját?"
     }
   }
 }

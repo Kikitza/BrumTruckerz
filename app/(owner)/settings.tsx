@@ -1,25 +1,35 @@
 // Podešavanja (vlasnik/dispečer): paket + iskorišćenost vozila, podaci izdavaoca, pozivnice, odjava.
 import { useState } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useSignOut } from "../../src/features/auth/signOut";
 import { useTheme } from "../../src/lib/theme";
 import { DesktopContainer } from "../../src/components/DesktopContainer";
 import { getCompanyPlan, countVehicles } from "../../src/features/fleet/api";
 import { InvitesSection } from "../../src/features/identity/InvitesSection";
+import { AcceptInviteBox } from "../../src/features/identity/AcceptInviteBox";
 import { InvoiceSettingsModal } from "../../src/features/invoices/InvoiceSettingsModal";
 import { useRole } from "../../src/features/auth/useRole";
 import { CareerProfileModal } from "../../src/features/career/CareerProfileModal";
 import { ActiveCompanySwitcher } from "../../src/features/company/ActiveCompanySwitcher";
+import { reloadAppUser } from "../../src/features/auth/useSession";
 
 export default function Settings() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const signOut = useSignOut();
+  const qc = useQueryClient();
   const { isOwner, role } = useRole();
   const [invoiceSettings, setInvoiceSettings] = useState(false);
   const [myCv, setMyCv] = useState(false);
+
+  // Postojeći član unosi kod DRUGE firme (ADR 0013): office → novo članstvo (multi);
+  // vozač → jasna greška ako je već angažovan. Posle uspeha: osveži članstva + gate.
+  const onJoinedByCode = () => {
+    qc.invalidateQueries({ queryKey: ["my-memberships"] });
+    reloadAppUser();
+  };
 
   // Paket + iskorišćenost čita samo vlasnik (dispečer nema „Paket": owner-only).
   const planQ = useQuery({ queryKey: ["company-plan"], queryFn: getCompanyPlan, enabled: isOwner });
@@ -66,6 +76,13 @@ export default function Settings() {
           <Text style={{ color: colors.textMuted, fontSize: 12, marginTop: 2 }}>{t("career.myCvHint")}</Text>
         </Pressable>
       )}
+
+      {/* Pridruži se firmi kodom (ADR 0013): postojeći član ulazi u DRUGU firmu kroz istu kapiju. */}
+      <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16, gap: 10 }}>
+        <Text style={{ color: colors.textMuted, fontSize: 13, fontWeight: "700", textTransform: "uppercase" }}>{t("settings.joinCompany.title")}</Text>
+        <Text style={{ color: colors.textMuted, fontSize: 12 }}>{t("settings.joinCompany.hint")}</Text>
+        <AcceptInviteBox onJoined={onJoinedByCode} />
+      </View>
 
       {/* Pozivnice: dispečer vidi/pravi SAMO vozačke (allowDispatcher=false) */}
       <InvitesSection allowDispatcher={isOwner} />

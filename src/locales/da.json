@@ -46,7 +46,8 @@
     "resources": "Ressourcer",
     "profile": "Profil",
     "customers": "Kunder",
-    "invoices": "Fakturaer"
+    "invoices": "Fakturaer",
+    "network": "Netværk"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Disponent",
         "driver": "Chauffør"
       }
+    },
+    "joinCompany": {
+      "title": "Tilslut dig en virksomhed med kode",
+      "hint": "Indtast en invitationskode for at tilslutte dig en anden virksomhed."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Du træder ind som ejer i din nye tomme virksomhed."
   },
   "web": {
-    "driverUseMobile": "Chauffør-appen er kun mobil — åbn ETNOP-mobilappen."
+    "driverUseMobile": "Chauffør-appen er kun mobil — åbn ETNOP-mobilappen.",
+    "driverOperativaMobile": "Turhandlinger (statusser, kilometer, fotos) kører i mobilappen. Din profil, dit CV, din netværksprofil og dine invitationer fungerer her på nettet."
   },
   "career": {
     "title": "Karriere",
@@ -655,7 +661,62 @@
       "employment_started": "Ansættelse startet",
       "employment_ended": "Ansættelse afsluttet",
       "customer_created": "Kunde tilføjet",
-      "reminder_due": "Frist forfalder"
+      "reminder_due": "Frist forfalder",
+      "marketplace_invite_sent": "Netværksinvitation sendt"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Chauffør",
+      "dispatcher": "Disponent"
+    },
+    "profile": {
+      "title": "Netværksprofil",
+      "hint": "Opret din profil, så virksomheder kan finde dig. Synlighed er slået fra som standard.",
+      "saved": "Netværksprofil gemt",
+      "invalidCountry": "Et af de valgte lande er ugyldigt.",
+      "visibility": {
+        "private": "Privat",
+        "visible": "Synlig",
+        "explainPrivate": "Din profil er privat — ingen virksomhed ser den i søgningen.",
+        "explainVisible": "Virksomheder kan finde dig i søgningen og se dette kort uden dit navn og kontakt: offentligt nummer, søgt rolle, interesselande, sprog, tilgængelighed og selvangivne certifikater."
+      },
+      "seekingRole": "Søgt rolle",
+      "seekingRolePlaceholder": "Vælg en rolle",
+      "countriesOfInterest": "Interesselande",
+      "languages": "Sprog",
+      "addLanguage": "Tilføj et sprog",
+      "availableFrom": "Tilgængelig fra",
+      "availableFromPlaceholder": "Når som helst",
+      "certificates": "Certifikater",
+      "selfDeclared": "Selvangivet",
+      "certPlaceholder": "f.eks. ADR, CPC",
+      "note": "Note",
+      "notePlaceholder": "Kort note (valgfrit)"
+    },
+    "search": {
+      "filters": "Filtre",
+      "role": "Rolle",
+      "anyRole": "Enhver rolle",
+      "country": "Interesseland",
+      "language": "Sprog",
+      "anyLanguage": "Ethvert sprog",
+      "availableOnly": "Kun tilgængelige nu",
+      "search": "Søg",
+      "empty": "Ingen arbejdere matcher disse filtre.",
+      "countriesOfInterest": "Interesselande",
+      "availableFrom": "Tilgængelig fra {{date}}",
+      "invite": "Inviter",
+      "invited": "Invitation sendt",
+      "invitePending": "Invitation afventer allerede"
+    },
+    "invites": {
+      "title": "Invitationer",
+      "empty": "Ingen invitationer.",
+      "role": "Rolle: {{role}}",
+      "accept": "Accepter",
+      "decline": "Afvis",
+      "declineConfirm": "Afvis invitationen fra {{company}}?"
     }
   }
 }

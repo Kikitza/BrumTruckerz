@@ -46,7 +46,8 @@
     "resources": "Kaynaklar",
     "profile": "Profil",
     "customers": "Müşteriler",
-    "invoices": "Faturalar"
+    "invoices": "Faturalar",
+    "network": "Ağ"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Sevkiyatçı",
         "driver": "Sürücü"
       }
+    },
+    "joinCompany": {
+      "title": "Kodla bir şirkete katıl",
+      "hint": "Başka bir şirkete katılmak için bir davet kodu gir."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Yeni boş şirketine sahip olarak gireceksin."
   },
   "web": {
-    "driverUseMobile": "Sürücü uygulaması yalnızca mobildir — ETNOP mobil uygulamasını aç."
+    "driverUseMobile": "Sürücü uygulaması yalnızca mobildir — ETNOP mobil uygulamasını aç.",
+    "driverOperativaMobile": "Sefer işlemleri (durumlar, kilometreler, fotoğraflar) mobil uygulamada çalışır. Profilin, özgeçmişin, ağ profilin ve davetlerin burada web'de çalışır."
   },
   "career": {
     "title": "Kariyer",
@@ -655,7 +661,62 @@
       "employment_started": "İstihdam başladı",
       "employment_ended": "İstihdam sona erdi",
       "customer_created": "Müşteri eklendi",
-      "reminder_due": "Son tarih yaklaşıyor"
+      "reminder_due": "Son tarih yaklaşıyor",
+      "marketplace_invite_sent": "Ağ daveti gönderildi"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Sürücü",
+      "dispatcher": "Sevkiyatçı"
+    },
+    "profile": {
+      "title": "Ağ profili",
+      "hint": "Şirketlerin seni bulabilmesi için profilini oluştur. Görünürlük varsayılan olarak kapalıdır.",
+      "saved": "Ağ profili kaydedildi",
+      "invalidCountry": "Seçili ülkelerden biri geçerli değil.",
+      "visibility": {
+        "private": "Özel",
+        "visible": "Görünür",
+        "explainPrivate": "Profilin özel — hiçbir şirket onu aramada göremez.",
+        "explainVisible": "Şirketler seni aramada bulabilir ve bu kartı adın ve iletişim bilgin olmadan görebilir: genel numara, aranan rol, ilgi ülkeleri, diller, uygunluk ve kendi beyan ettiğin sertifikalar."
+      },
+      "seekingRole": "Aranan rol",
+      "seekingRolePlaceholder": "Bir rol seç",
+      "countriesOfInterest": "İlgi ülkeleri",
+      "languages": "Diller",
+      "addLanguage": "Dil ekle",
+      "availableFrom": "Şu tarihten itibaren müsait",
+      "availableFromPlaceholder": "Herhangi bir zaman",
+      "certificates": "Sertifikalar",
+      "selfDeclared": "Kendi beyanı",
+      "certPlaceholder": "örn. ADR, CPC",
+      "note": "Not",
+      "notePlaceholder": "Kısa not (isteğe bağlı)"
+    },
+    "search": {
+      "filters": "Filtreler",
+      "role": "Rol",
+      "anyRole": "Herhangi bir rol",
+      "country": "İlgi ülkesi",
+      "language": "Dil",
+      "anyLanguage": "Herhangi bir dil",
+      "availableOnly": "Yalnızca şimdi müsait",
+      "search": "Ara",
+      "empty": "Bu filtrelere uyan işçi yok.",
+      "countriesOfInterest": "İlgi ülkeleri",
+      "availableFrom": "{{date}} tarihinden itibaren müsait",
+      "invite": "Davet et",
+      "invited": "Davet gönderildi",
+      "invitePending": "Davet zaten bekliyor"
+    },
+    "invites": {
+      "title": "Davetler",
+      "empty": "Davet yok.",
+      "role": "Rol: {{role}}",
+      "accept": "Kabul et",
+      "decline": "Reddet",
+      "declineConfirm": "{{company}} şirketinin davetini reddetmek istiyor musun?"
     }
   }
 }

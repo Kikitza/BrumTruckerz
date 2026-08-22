@@ -46,7 +46,8 @@
     "resources": "Recursos",
     "profile": "Perfil",
     "customers": "Clientes",
-    "invoices": "Faturas"
+    "invoices": "Faturas",
+    "network": "Rede"
   },
   "trip": {
     "status": {
@@ -305,6 +306,10 @@
         "dispatcher": "Despachante",
         "driver": "Motorista"
       }
+    },
+    "joinCompany": {
+      "title": "Juntar-se a uma empresa por código",
+      "hint": "Introduza um código de convite para se juntar a outra empresa."
     }
   },
   "language": {
@@ -609,7 +614,8 @@
     "reviewHint": "Entrarás como proprietário na tua nova empresa vazia."
   },
   "web": {
-    "driverUseMobile": "A app do motorista é apenas móvel — abre a app móvel ETNOP."
+    "driverUseMobile": "A app do motorista é apenas móvel — abre a app móvel ETNOP.",
+    "driverOperativaMobile": "As operações de viagem (estados, quilómetros, fotos) funcionam na aplicação móvel. O seu perfil, CV, perfil de rede e convites funcionam aqui na web."
   },
   "career": {
     "title": "Carreira",
@@ -655,7 +661,62 @@
       "employment_started": "Emprego iniciado",
       "employment_ended": "Emprego terminado",
       "customer_created": "Cliente adicionado",
-      "reminder_due": "Prazo a vencer"
+      "reminder_due": "Prazo a vencer",
+      "marketplace_invite_sent": "Convite de rede enviado"
+    }
+  },
+  "network": {
+    "role": {
+      "driver": "Motorista",
+      "dispatcher": "Despachante"
+    },
+    "profile": {
+      "title": "Perfil de rede",
+      "hint": "Crie o seu perfil para que as empresas o encontrem. A visibilidade está desativada por predefinição.",
+      "saved": "Perfil de rede guardado",
+      "invalidCountry": "Um dos países selecionados não é válido.",
+      "visibility": {
+        "private": "Privado",
+        "visible": "Visível",
+        "explainPrivate": "O seu perfil é privado — nenhuma empresa o vê na pesquisa.",
+        "explainVisible": "As empresas podem encontrá-lo na pesquisa e ver este cartão sem o seu nome e contacto: número público, função procurada, países de interesse, idiomas, disponibilidade e certificados autodeclarados."
+      },
+      "seekingRole": "Função procurada",
+      "seekingRolePlaceholder": "Escolher uma função",
+      "countriesOfInterest": "Países de interesse",
+      "languages": "Idiomas",
+      "addLanguage": "Adicionar um idioma",
+      "availableFrom": "Disponível a partir de",
+      "availableFromPlaceholder": "A qualquer momento",
+      "certificates": "Certificados",
+      "selfDeclared": "Autodeclarado",
+      "certPlaceholder": "ex. ADR, CPC",
+      "note": "Nota",
+      "notePlaceholder": "Nota breve (opcional)"
+    },
+    "search": {
+      "filters": "Filtros",
+      "role": "Função",
+      "anyRole": "Qualquer função",
+      "country": "País de interesse",
+      "language": "Idioma",
+      "anyLanguage": "Qualquer idioma",
+      "availableOnly": "Apenas disponíveis agora",
+      "search": "Pesquisar",
+      "empty": "Nenhum trabalhador corresponde a estes filtros.",
+      "countriesOfInterest": "Países de interesse",
+      "availableFrom": "Disponível a partir de {{date}}",
+      "invite": "Convidar",
+      "invited": "Convite enviado",
+      "invitePending": "Convite já pendente"
+    },
+    "invites": {
+      "title": "Convites",
+      "empty": "Sem convites.",
+      "role": "Função: {{role}}",
+      "accept": "Aceitar",
+      "decline": "Recusar",
+      "declineConfirm": "Recusar o convite de {{company}}?"
     }
   }
 }
