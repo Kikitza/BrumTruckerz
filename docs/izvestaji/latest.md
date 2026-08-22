@@ -1,56 +1,36 @@
-# IZVEŠTAJ — v2-3 kriška 2: MREŽNI PROFIL RADNIKA (ADR 0014)
+# IZVEŠTAJ — PROVERA: radnik BEZ ijedne firme i pristup „Mrežni profil"/„Pozivi"
 
-> Tanak kraj-na-kraj: **profil → pretraga → poziv → prihvatanje**. Radnik gradi vidljivost tržištu (opt-in), firma pretražuje JAVNE KARTICE bez PII i poziva kroz POSTOJEĆU kapiju (`accept_invitation`). **Sve na DEV.**
+> **Tip zadatka:** PROVERA (dijagnostika, **BEZ izmena koda/šeme/i18n**). Pitanje: nov nalog bez ijednog članstva (email registracija, nema firmu) — može li da otvori „Mrežni profil" i „Pozivi"? Kuda ga gate vodi? Ako ne — gde je prirodno mesto da radnik-bez-firme gradi profil i prima pozive.
 
-## 1) Migracija 0035 (na DEV, primenjena i verifikovana)
-- **`network_profiles`** (`user_id` PK→app_users, `visibility` private|visible **default private**, `seeking_role` driver|dispatcher, `countries_of_interest text[]`, `languages text[]`, `available_from date`, `certificates jsonb` — SAMODEKLARISANO, `note`, `updated_at`). Parcijalni indeks `(visibility, seeking_role) where visibility='visible'`.
-- **DATA-COLLISION GUARD (ADR 0014 §5):** `countries_of_interest` je **ODVOJENA** kolona; triger `tg_network_profiles_validate` validira ISO ⊆ `countries` (`INVALID_COUNTRY` 23514) + postavlja `updated_at`. NIKAD se ne meša sa zemljama rute/prebivališta/firme.
-- **RLS `np_self`:** radnik čita/menja SAMO svoj profil (`user_id = auth.uid()`). **Office NEMA politiku** → tabelu ne čita direktno; pretraga isključivo kroz RPC.
-- `invitations.target_user_id` (nova kolona) — marketplace pozivi ciljaju konkretnog korisnika (ista kapija, nov izvor).
-- **RPC-ovi (SECURITY DEFINER):**
-  - `network_search(role,country,language,available_only,limit,offset)` → **JAVNE KARTICE BEZ PII** (bez imena/kontakta/mejla); vraća **javni broj** (BT-D/BT-T — trajni javni identifikator po dizajnu). Samo `visibility='visible'`. Ne-office → `NOT_OFFICE` (42501). Paging.
-  - `network_invite(target, role)` → ciljana pozivnica + event `marketplace.invite.sent` (handler no-op v1). Idempotentno (postojeći pending → vrati ga).
-  - `my_network_invites()` → radnikovi pozivi (firma + rola + kod). `decline_network_invite(id)` → status `cancelled` (`INVITE_NOT_FOUND` 42704 ako nije njegov/pending).
+## ODGOVOR: NE MOŽE
+Nov nalog bez ijedne firme **ne može** da otvori „Mrežni profil" ni „Pozivi".
 
-## 2) Klijent — radnik (MOBILNI + WEB)
-- **`src/features/network/`**: `api.ts` (jedini Supabase sloj), `searchParams.ts` (čiste fn — jest), `Tag.tsx`, `NetworkProfileEditor.tsx`, `NetworkInvites.tsx`, `NetworkSearchView.tsx`.
-- **„Mrežni profil"** (`NetworkProfileEditor`): vidljivost — **jasan prekidač, PRIVATNO podrazumevano**, uz objašnjenje **šta firma vidi** kad je uključeno; sertifikati **izričito označeni „samodeklarisano"**; zemlje interesa kroz `CountryPickerField` (odvojeno), jezici iz `LANGUAGES`, `available_from` kroz `DateField`.
-- **„Pozivi"** (`NetworkInvites`): firma+rola → **Prihvati** (ista kapija `accept_invitation`; v1 pravila iz 0034 — drugi aktivni vozač → jasna greška) / **Odbij** (potvrda).
-- Dodato na **`app/(driver)/profile.tsx`** (radi i na webu).
+## Tačan trag gate-a (kod)
+1. **Nema `app_users` reda.** Ne postoji signup triger (`on auth.users` / `handle_new_user`) — provereno u migracijama. `app_users` red nastaje ISKLJUČIVO uz firmu: `accept_invitation` (0018/0019/0034), `createCompanySelf` (0025), kreiranje dispečera (0020). Klijent nema INSERT politiku na `app_users` (samo `users_read` select) → ne može sam da napravi red.
+2. **`useSession`** (`src/features/auth/useSession.ts`): `app_users.select("role").eq("id", uid).single()` → 0 redova → greška → `role = null` (fail-closed po dizajnu).
+3. **`app/index.tsx`**: nije `platform_admin`, nije `owner/dispatcher/driver` → propada na **`NoRole`** ekran.
+4. **`NoRole`** nudi SAMO: poruku `auth.noRole` + **`AcceptInviteBox`** (unesi kod firme) + čarobnjak „Otvori novu firmu" + Odjava. **Nema** „Mrežni profil" ni „Pozivi".
 
-## 3) Klijent — office
-- **`app/(owner)/network.tsx`** („Mreža", `DesktopContainer`) + tab `tabs.network`; owner i dispečer. Filteri (uloga/zemlja/jezik/„dostupni sada") → kartice (javni broj, tražena rola, zemlje/jezici, dostupnost, samodeklarisani sertifikati, napomena) → **„Pozovi"** sa statusom „poslato / već čeka".
+„Mrežni profil"/„Pozivi" žive na **vozačevom Profil tabu** (`app/(driver)/profile.tsx`), do koga se stiže tek kroz `CompanyGate` za rolu `driver` — a to zahteva postojeći `app_users` red **sa firmom**.
 
-## 4) Vozač na WEB-u (ADR 0011 DODATAK)
-- Skinuta **blanket blokada** vozača na webu. Vozač na webu dobija **lični sloj** (Profil/CV + **Mrežni profil** + **Pozivi**); gate ga na webu vodi na **Profil**. **OPERATIVA ture/km ostaje mobilna** — operativni ekran (`app/(driver)/index.tsx`) na webu prikazuje poruku „u mobilnoj aplikaciji". Jedna linija dodata u **ADR 0011**.
-- **Podešavanja → „Pridruži se firmi kodom"** (reuse `AcceptInviteBox`): postojeći član ulazi u DRUGU firmu (office multi radi; vozač već angažovan → jasna greška). Po uspehu: osveži članstva + preračunaj gate.
-- `marketplace.invite.sent` dobio labelu u `ActivityFeed` + `activity.event.marketplace_invite_sent` u i18n.
+## Zabetonirano i na nivou baze
+- `network_profiles.user_id` → **FK na `app_users(id)`**; a constraint **`app_users_company_by_role`** (0014) traži `company_id IS NOT NULL` za svaku ne-admin rolu.
+- Zaključak: radnik **bez firme ne može ni da ima** `app_users` red → **ni `network_profiles` red**. Trenutni marketplace opslužuje samo radnika koji **već ima ili je imao** firmu (u `network_test.sql` `u_new` = vozač sa *završenim* članstvom, `company_id` postavljen). „Slobodan agent koji se nikad nije zaposlio" je arhitektonski isključen.
 
-## 5) Testovi
-- **Nova `network_test.sql` (15. svita):** privatan NEVIDLJIV / vidljiv se pojavljuje **sa javnim brojem (bez PII)**; filteri uloga/zemlja/jezik; **radnik menja SAMO svoj** (izmena tuđeg = 0 redova); **office NE čita tabelu direktno** (0 redova); ne-office `network_search` → `NOT_OFFICE`; **poziv→accept KREIRA članstvo**; **već angažovan vozač → `INVITE_DRIVER_ALREADY_ENGAGED`**. Svih **prethodnih 14 svita zeleno**.
-- **jest:** `searchParams.test.ts` (`buildSearchParams` — trim/null/paginacija; `certList` — jsonb normalizacija). +6 novih testova.
-- **i18n svih 30:** novi top-level `network.*` (role/profile/search/invites) + `tabs.network` + `settings.joinCompany.*` + `web.driverOperativaMobile` + `activity.event.marketplace_invite_sent`. `sr`/`en` autorski, ostalih 28 mašinski; **`en` fallback — nula MISS**; statusi fajlova nedirani.
+## Prirodno mesto (predlog, NIJE rađeno)
+- **`NoRole` ekran** (prijavljen, bez firme) JESTE prirodni „welcome/onboarding" dom za **Mrežni profil editor + Pozive**.
+- Uslov: **identitet koji sme da postoji bez firme**, što današnja šema zabranjuje (constraint 0014). Odluka nivoa **ADR** — dve opcije:
+  - (a) omekšati `app_users_company_by_role` uz novo stanje „radnik bez firme" (nullable `company_id` za ne-admina), ili
+  - (b) `network_profiles` vezati direktno za `auth.uid()` (umesto `app_users(id)`) + bootstrap laganog identiteta na `NoRole`.
+- Predlog obima: zasebna tanka kriška „onboarding radnika-bez-firme", ili deo **kriške 3**.
 
-## OBIM (namerno van ove kriške)
-- Deljenje **PUNOG CV-a** preko granica firmi (uz izričit pristanak po firmi) — **kriška 3**. Office i dalje vidi SAMO CV svoje firme.
+## Izmene
+- **NIJEDNA.** Bez izmena koda, migracija, i18n, testova. Ništa nije primenjeno ni na jednu bazu. Link ostaje na DEV (`icbjagubaftoqcwfcbwf`).
 
-## POZNATI JAZ (iz naknadne PROVERE — ulaz za krišku 3)
-- **Radnik BEZ ijedne firme** (nov email nalog) **ne može** da otvori „Mrežni profil"/„Pozivi". Nema signup trigera → nema `app_users` reda; `useSession` dobija `role=null` → gate ga vodi na **`NoRole`** ekran (samo „unesi kod" + „otvori firmu" + odjava). Na nivou baze dodatno zabetonirano: `network_profiles.user_id`→`app_users(id)` FK + constraint `app_users_company_by_role` (0014) zabranjuje ne-admin red bez `company_id`. Marketplace zato sad opslužuje samo radnika koji **ima/je imao** firmu (u testu `u_new` = vozač sa *završenim* članstvom, `company_id` postavljen).
-- **Prirodno mesto:** `NoRole` (prijavljen, bez firme) kao „welcome/onboarding" dom za Mrežni profil + Pozive — ali traži **identitet bez firme** (odluka nivoa ADR: omekšati `app_users_company_by_role` uz stanje „radnik bez firme", ili vezati `network_profiles` direktno za `auth.uid()` + bootstrap laganog identiteta). Predlog: zasebna tanka kriška „onboarding radnika-bez-firme" ili deo kriške 3.
-
-## PODSETNIK — ručna primena
-- **0035 je samo na DEV.** PROD/STAGING (trenutno `0033`) i **0034** čekaju STAGING/PROD uz izričito odobrenje.
-- Rollback 0035: `drop function network_search, network_invite, my_network_invites, decline_network_invite;` `alter table invitations drop column target_user_id;` `drop table network_profiles;` (aditivno; ništa postojeće nije menjano).
+## i18n
+- **Nije diran** (PROVERA bez izmena).
 
 ## Provere (ritual)
-| Provera | Rezultat |
-|---|---|
-| `npm run typecheck` | ✅ |
-| `npm test` (jest) | ✅ 142/142 (21 svita) |
-| `npm run test:db` (DEV) | ✅ ALL PASSED (15 svita) |
-| `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
-| `expo export --platform web` | ✅ exit 0 |
-| i18n 30/30 (en fallback, 0 MISS) | ✅ |
-| Link ostao na DEV | ✅ `icbjagubaftoqcwfcbwf` |
+- Nije pokretano — read-only dijagnostika (nema promena za tipizaciju/testiranje/lint). Stanje repoa nepromenjeno u odnosu na commit `f00dff4` (v2-3 kriška 2).
 
-**Kvalitet:** slojevi razdvojeni (ekrani → `features/network/api.ts`); čista logika (`searchParams.ts`) deljena i testirana; boje iz tokena, stringovi kroz `t()`; reusable `Tag`; bez dupliranja (reuse `AcceptInviteBox`, `CountryPickerField`, `PickerField`, `DateField`). Pravila ispoštovana.
+**Kvalitet:** pravila ispoštovana — PROVERA je dijagnostička; zaključci potkrepljeni tačnim mestima u kodu/migracijama (bez nagađanja).
