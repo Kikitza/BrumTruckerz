@@ -1,6 +1,6 @@
 # ADR 0012 — Event / Outbox sloj
 
-**STATUS: PREDLOG** (22.8.2026). Jednosmerna vrata (⛩) — vlasnik potpisuje **pre** implementacije. Sledi posle v2-1 (karijerni profil), pre marketplace-a (MASTER-PLAN-v2 §49–58, PDF §8/§10).
+**STATUS: PRIHVAĆENO** (22.8.2026, potpis vlasnika). (Predlog: 22.8.2026; jednosmerna vrata ⛩ — potpisano **pre** implementacije.) Sledi posle v2-1 (karijerni profil), pre marketplace-a (MASTER-PLAN-v2 §49–58, PDF §8/§10). Implementacija: faza **v2-2** (migracije `0029`+).
 
 ## KONTEKST (danas u kodu)
 - Poslovne promene se upisuju u tabele (trips, expenses, attachments, invoices…). **Kad se nešto desi, niko ne biva obavešten** osim ako ekran ručno ne osveži (React Query invalidacija). Kancelarija „gleda pa F5“.

@@ -55,7 +55,7 @@ North Star v1 (P&L ture) je isporučen (`trip_pnl` view, `security_invoker`).
 4. Prvi consumer: notifikacije (`notifications` tabela + tipovi) i rollup okidači.
 5. (opciono) Realtime kanal za owner/dispatch osvežavanje.
 **IZLAZNA KAPIJA:** kreiranje/dodela ture emituje event; consumer ga obradi idempotentno; retry/dead-letter dokazani testom; nema dvostruke obrade.
-**ADR pre početka (⛩):** „**event/outbox model**" (oblik envelope-a, idempotency ključ, at-least-once + idempotent consumer, verzionisanje event šeme); „**realtime pristup**" (Supabase realtime kao osvežavanje, ne izvor istine).
+**ADR pre početka (⛩):** ✅ **`0012-event-outbox` PRIHVAĆEN** (22.8.2026, potpis vlasnika) — pokriva oblik envelope-a, idempotency ključ, at-least-once + idempotent consumer, verzionisanje event šeme, i realtime kao osvežavanje (ne izvor istine). Kapija otvorena: implementacija sme da počne.
 
 ### FAZA v2-3 — MARKETPLACE / MREŽNI PROFIL  ·  **L**  ·  **⛩ DA**
 **Cilj:** nezavisna registracija vozača/dispečera; firme ih nalaze i pozivaju. Gradi na event sloju (v2-2).
