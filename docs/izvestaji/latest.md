@@ -1,37 +1,75 @@
-# IZVEŠTAJ — v2-3 kriška 3: PUN CV UZ IZRIČIT PRISTANAK (ADR 0014)
+# IZVEŠTAJ — v2-3 FINALE: GENERALNA PROBA ZBIRNOG SYNC-a NA STAGINGU
 
-> Završna marketplace v1 kockica: firma van zaposlenja može ZATRAŽITI pun CV; radnik EKSPLICITNO odobri (per-firma) i može OPOZVATI bilo kad → pristup se momentalno gasi. **Sve na DEV.**
+> STAGING `webquovijioxmouvuiko`. **PROD NIJE diran.** Cilj: dokazati zbirni sync 0034→0037 na kopiji pravih podataka pre PROD-a. Link vraćen na DEV na kraju.
 
-## 1) Migracija 0037 (na DEV, primenjena i verifikovana)
-- **`cv_consents`** (ledger: `worker_user_id`, `company_id`, `status` granted|revoked, `granted_at`, `revoked_at`) — **jedinstven AKTIVAN pristanak** po (radnik, firma) (partial unique). **`cv_requests`** (prelazni zahtev: pending|approved|denied|cancelled) — „inbox" radnika; **jedan otvoren zahtev** po (radnik, firma) → idempotentno. **Dve tabele namerno razdvojene** (KVALITET #1): audit-ledger pristanaka ≠ prolazni zahtev.
-- **RLS:** radnik vidi SVOJE (`worker_user_id = auth.uid()`); office **read-only** vidi date SVOJOJ firmi (`is_office_role() and company_id = current_company_id()`); **niko treći**. Upis isključivo kroz definer RPC (obrazac accept/decline).
-- **`career_view_mode` dopunjen režimom `consented`** (ISPRED `company` — pristanak daje VIŠE): office sa aktivnim pristankom radnika → **pun CV**; bez pristanka SVE ostaje kao dosad (`company` scope / `none`). Svih 6 `career_*` RPC-ova (`header/summary/employments/km_series/countries`) redefinisano: `mode = 'self'` → `mode in ('self','consented')`.
-- **RPC-ovi toka (definer):** `cv_request(worker)` (office → pending + event, idempotentno), `cv_access(worker)` (granted|requested|none — za karticu), `my_cv_requests()` / `respond_cv_request(id, approve)` (radnik odgovara → approve upiše granted + event), `my_cv_consents()` / `revoke_cv_consent(company)` (radnik upravlja → opoziv + event).
-- **Eventi (outbox):** `cv.request.sent` / `cv.consent.granted` / `cv.consent.revoked` (handleri **no-op v1** — worker već tretira neregistrovan tip kao no-op processed) + labele u `ActivityFeed`.
+## 1) Link + stanje + DRY-RUN (kapija)
+- Link staging → **istorija: 33 migracije, latest `0033`** (kako se očekivalo).
+- `db push --linked --dry-run` → **TAČNO 4 migracije**, bez odstupanja:
+  - `0034_memberships.sql`, `0035_network_profiles.sql`, `0036_firmless_worker_identity.sql`, `0037_cv_consents.sql`
+- Nema odstupanja → nastavljeno.
 
-## 2) UI
-- **Office (Mreža kartica):** `CardCvAction` — „Zatraži CV" (none) / „CV zatražen" (requested) / **„Pogledaj CV"** (granted → reuse `CareerProfileModal`; RPC vraća consented pun pogled).
-- **Radnik:** `CvRequestsList` (zahtevi → Odobri/Odbij, uz JASAN tekst šta firma dobija: cela istorija kroz sve firme, ne samo njena) + `CvConsentsSection` („Ko vidi moj CV" — lista firmi + **Opozovi** bilo kad, uz potvrdu). Dodato na **vozačev Profil** i **onboarding dom radnika-bez-firme** (`WorkerOnboardingHome`).
-- Novi `src/features/cv/` (`api.ts`, `CvRequestsList.tsx`, `CvConsentsSection.tsx`).
+## 2) Push + PRE/POSLE (paritet + [SEED] netaknut)
+| Metrika | PRE | POSLE |
+|---|---|---|
+| latest migracija | 0033 | **0037** |
+| app_users total | 2 | 2 |
+| app_users sa firmom | 2 | 2 |
+| active_company_id set | — | 2 |
+| **memberships (aktivna)** | tabela ne postoji | **2** |
+| network_profiles | ne postoji | **0** |
+| cv_consents | ne postoji | **0** |
+| cv_requests | ne postoji | **0** |
+| [SEED] nalozi | 1 | **1 (netaknut)** |
 
-## 3) Testovi
-- **Nova `cv_consent_test.sql` (17. svita):** bez pristanka office vidi SAMO svoju firmu (company-scope, nepromenjeno); firma van zaposlenja bez pristanka → `none` (career 42501); „Zatraži CV" idempotentno + `cv_access='requested'`; radnik odobri → granted; **granted → PUN CV** (2 firme/1500 km vs 1 firma/1000 km); **pristanak > company** (firma zaposlenja sa pristankom vidi pun CV); **izolacija** (firma A ne vidi pristanke firme B; office ne može direktan upis); **radnik upravlja samo svojim** (office ne može opozvati tuđi); **OPOZIV momentalno gasi** pristup (career → 42501).
-- **Svih prethodnih 16 svita zeleno** (0037 aditivno; `career_*` redefinicije čuvaju self/company ponašanje — `career_test` zelen).
-- **i18n svih 30:** `cv.*` (card/requests/consents) + `activity.event.cv_*` (`sr`/`en` autorski, ostali mašinski); `en` fallback — **0 MISS**.
+- **BACKFILL PARITET:** memberships (2) **=** app_users sa firmom (2) ✓ — svaki postojeći nalog dobio tačno jedno aktivno članstvo = današnje stanje.
+- Nove tabele prazne (0/0/0), pravi/[SEED] podaci netaknuti.
 
-## PODSETNIK — ručna primena
-- **0037 je samo na DEV.** PROD/STAGING (na `0033`) i **0034/0035/0036/0037** čekaju STAGING/PROD uz izričito odobrenje.
-- Rollback 0037: `drop function cv_request, cv_access, my_cv_requests, respond_cv_request, my_cv_consents, revoke_cv_consent;` vrati `career_view_mode` + 6 `career_*` na verzije 0027/0028 (bez `consented` grane); `drop table cv_requests, cv_consents;` (aditivno; ništa postojeće nije menjano osim tela career RPC-ova — vraćaju se 1:1).
+## 3) Edge funkcije
+- Git provera: **nijedna funkcija u `supabase/functions/` nije menjana od poslednjeg staging deploya** (`f3caf7d`). → **NEMA redeploya.**
+- Razlog bez posledica: kriška 3 eventi (`cv.request.sent`/`cv.consent.granted`/`cv.consent.revoked`) idu kroz POSTOJEĆI `emit_outbox_event`; outbox-worker neregistrovan tip tretira kao **no-op processed** (potvrđeno u kodu).
+
+## 4) SMOKE (RPC nivo) — jedna transakcija sa ROLLBACK-om (sentinel)
+- **Metod (namerno, strože bezbedno):** ceo smoke u jednoj transakciji poništenoj sentinel-om → **realni podaci 100% netaknuti, NULA ostatka** (zato nije trebao outbox/audit sweep — sve se poništi). Bezbednije od perzistentnih [SEED] redova + čišćenja.
+- Ishodi (svi prošli — dostignut sentinel `SMOKE_STAGING_OK`, svaki neuspeh bi ranije prekinuo):
+  - `SMOKE_IDENTITY_OK` — `ensure_identity` za svež nalog → čist identitet (role/company NULL);
+  - `SMOKE_BTD_OK` — `ensure_worker_public_no('driver')` → BT-D;
+  - `SMOKE_SEARCH_NOPII_OK` — mrežni profil visible → `network_search` vraća karticu sa javnim brojem, BEZ PII;
+  - `SMOKE_CONSENTED_OK` — `cv_request` → `respond_cv_request(approve)` → `career_view_mode`=`consented`, `career_summary` prolazi (pun);
+  - `SMOKE_REVOKE_OK` — `revoke_cv_consent` → `career_view_mode`=`none`, `career_summary` → 42501 **momentalno**.
+- Post-smoke provera: 0 [SEED] firmi, 0 smoke naloga, tabele i dalje 0/0/0, memberships 2, app_users 2 — **potvrđeno bez ostatka**.
+
+## 5) test:db PROTIV STAGINGA
+- **Svih 17 svita PASS** (rollback-based, protiv kopije pravih podataka): rls_audit, correct_event_chain, identity, invitations, dispatcher, phone_change, customers, invoices, reminder_types, company_self, career, outbox, outbox_worker, memberships, network, firmless_worker, cv_consent.
+
+## 6) Link vraćen na DEV (dokaz)
+- `supabase link --project-ref icbjagubaftoqcwfcbwf` → OK; `.temp/project-ref` = `icbjagubaftoqcwfcbwf`.
+- Dokaz razlike: DEV `app_users = 6` (staging = 2), latest `0037`. **Aktivan link = DEV.**
+
+---
+
+## TAČAN RECEPT ZA PROD (uwphmxxeuggitssdmgcz) — SAMO uz izričito odobrenje vlasnika
+> Isti tok kao staging; STOP na svakom odstupanju. **Edge deploy NIJE potreban** (funkcije nepromenjene od poslednjeg PROD deploya `43e08cf`; cv.* eventi = no-op processed).
+
+1. **Link + kapija:** `supabase link --project-ref uwphmxxeuggitssdmgcz` → potvrdi istoriju **latest `0033`**. `supabase db push --linked --dry-run` → mora **TAČNO** `0034,0035,0036,0037`. **Odstupanje → STANI.**
+2. **PRE snimak:** zabeleži `app_users` total i `app_users where company_id is not null` (= očekivani backfill), i da nove tabele ne postoje.
+3. **Push:** `supabase db push --linked`.
+4. **POSLE (paritet):** `memberships (active)` **mora = app_users sa firmom** (PRE broj); `network_profiles/cv_consents/cv_requests = 0`; `app_users` total nepromenjen; pravi podaci netaknuti; latest `0037`.
+5. **Edge:** preskoči (nepromenjeno). *(Ako bi ubuduće bila promena — `supabase functions deploy <ime>`.)*
+6. **(Opciono) SMOKE:** isti rollback-sentinel blok kao u §4 (ništa ne persistira). Preskočivo — test:db pokriva.
+7. **test:db protiv PROD-a (opciono, rollback-safe):** `npm run test:db` — svih 17 PASS.
+8. **OBAVEZNO link nazad na DEV:** `supabase link --project-ref icbjagubaftoqcwfcbwf` + dokaz (`current_database`/broj app_users razlikuje PROD od DEV).
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
-| `npm run typecheck` | ✅ |
-| `npm test` (jest) | ✅ 142/142 (21 svita) |
-| `npm run test:db` (DEV) | ✅ ALL PASSED (17 svita) |
-| `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
-| `expo export --platform web` | ✅ exit 0 |
-| i18n 30/30 (en fallback, 0 MISS) | ✅ |
-| Link ostao na DEV | ✅ `icbjagubaftoqcwfcbwf` |
+| Dry-run = tačno 0034–0037 | ✅ |
+| Push staging | ✅ 4 primenjene |
+| Backfill paritet (memberships = app_users/firma) | ✅ 2 = 2 |
+| Nove tabele prazne, [SEED] netaknut | ✅ |
+| Edge nepromenjen → bez deploya | ✅ |
+| SMOKE (rollback, bez ostatka) | ✅ svih 5 tačaka |
+| test:db protiv staginga | ✅ 17/17 |
+| Link vraćen na DEV + dokaz | ✅ `icbjagubaftoqcwfcbwf` |
+| PROD diran? | ❌ NE |
 
-**Kvalitet:** slojevi razdvojeni (ekrani → `features/cv/api.ts`); dve tabele razdvajaju ledger od zahteva (bez mešanja audita i prolaznog stanja); consented mod = jedna izmena u `career_view_mode` + mehanička dopuna 6 RPC-ova (bez duplirane logike); reuse `CareerProfileModal`/`CareerProfileView` za prikaz; upis kroz definer RPC (RLS bez insert/update politike); privatnost — radnik jedini upravlja pristankom, opoziv trenutan. Pravila ispoštovana.
+**Kvalitet:** staging generalna proba prošla kraj-na-kraj; realni podaci netaknuti (smoke rollback, nula ostatka); PROD recept spreman i uslovljen izričitim odobrenjem.
