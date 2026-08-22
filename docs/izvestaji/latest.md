@@ -34,6 +34,10 @@
 ## OBIM (namerno van ove kriške)
 - Deljenje **PUNOG CV-a** preko granica firmi (uz izričit pristanak po firmi) — **kriška 3**. Office i dalje vidi SAMO CV svoje firme.
 
+## POZNATI JAZ (iz naknadne PROVERE — ulaz za krišku 3)
+- **Radnik BEZ ijedne firme** (nov email nalog) **ne može** da otvori „Mrežni profil"/„Pozivi". Nema signup trigera → nema `app_users` reda; `useSession` dobija `role=null` → gate ga vodi na **`NoRole`** ekran (samo „unesi kod" + „otvori firmu" + odjava). Na nivou baze dodatno zabetonirano: `network_profiles.user_id`→`app_users(id)` FK + constraint `app_users_company_by_role` (0014) zabranjuje ne-admin red bez `company_id`. Marketplace zato sad opslužuje samo radnika koji **ima/je imao** firmu (u testu `u_new` = vozač sa *završenim* članstvom, `company_id` postavljen).
+- **Prirodno mesto:** `NoRole` (prijavljen, bez firme) kao „welcome/onboarding" dom za Mrežni profil + Pozive — ali traži **identitet bez firme** (odluka nivoa ADR: omekšati `app_users_company_by_role` uz stanje „radnik bez firme", ili vezati `network_profiles` direktno za `auth.uid()` + bootstrap laganog identiteta). Predlog: zasebna tanka kriška „onboarding radnika-bez-firme" ili deo kriške 3.
+
 ## PODSETNIK — ručna primena
 - **0035 je samo na DEV.** PROD/STAGING (trenutno `0033`) i **0034** čekaju STAGING/PROD uz izričito odobrenje.
 - Rollback 0035: `drop function network_search, network_invite, my_network_invites, decline_network_invite;` `alter table invitations drop column target_user_id;` `drop table network_profiles;` (aditivno; ništa postojeće nije menjano).
