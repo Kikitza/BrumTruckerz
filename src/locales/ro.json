@@ -662,7 +662,10 @@
       "employment_ended": "Angajare încheiată",
       "customer_created": "Client adăugat",
       "reminder_due": "Scadență apropiată",
-      "marketplace_invite_sent": "Invitație de rețea trimisă"
+      "marketplace_invite_sent": "Invitație de rețea trimisă",
+      "cv_request_sent": "CV solicitat",
+      "cv_consent_granted": "Acces la CV acordat",
+      "cv_consent_revoked": "Acces la CV revocat"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Bine ai venit",
     "subtitle": "Creează-ți profilul sau alătură-te unei firme.",
     "orJoin": "Sau alătură-te unei firme"
+  },
+  "cv": {
+    "card": {
+      "request": "Solicită CV",
+      "requested": "CV solicitat",
+      "view": "Vezi CV"
+    },
+    "requests": {
+      "title": "Solicitări de CV",
+      "explain": "Dacă accepți, firma vede tot istoricul tău de muncă din toate firmele — nu doar al ei.",
+      "approve": "Acceptă",
+      "deny": "Refuză",
+      "denyConfirm": "Refuzi solicitarea de CV de la {{company}}?"
+    },
+    "consents": {
+      "title": "Cine vede CV-ul meu",
+      "hint": "Aceste firme văd CV-ul tău complet. Poți revoca accesul oricând.",
+      "empty": "Nicio firmă nu are acces la CV-ul tău complet.",
+      "since": "Din {{date}}",
+      "revoke": "Revocă",
+      "revokeConfirm": "Revoci accesul firmei {{company}} la CV-ul tău complet?"
+    }
   }
 }

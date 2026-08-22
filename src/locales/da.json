@@ -662,7 +662,10 @@
       "employment_ended": "Ansættelse afsluttet",
       "customer_created": "Kunde tilføjet",
       "reminder_due": "Frist forfalder",
-      "marketplace_invite_sent": "Netværksinvitation sendt"
+      "marketplace_invite_sent": "Netværksinvitation sendt",
+      "cv_request_sent": "CV anmodet",
+      "cv_consent_granted": "CV-adgang givet",
+      "cv_consent_revoked": "CV-adgang tilbagekaldt"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Velkommen",
     "subtitle": "Opret din profil eller tilslut dig en virksomhed.",
     "orJoin": "Eller tilslut dig en virksomhed"
+  },
+  "cv": {
+    "card": {
+      "request": "Anmod om CV",
+      "requested": "CV anmodet",
+      "view": "Se CV"
+    },
+    "requests": {
+      "title": "CV-anmodninger",
+      "explain": "Hvis du godkender, ser virksomheden hele din arbejdshistorik på tværs af alle virksomheder — ikke kun sin egen.",
+      "approve": "Godkend",
+      "deny": "Afvis",
+      "denyConfirm": "Afvis CV-anmodningen fra {{company}}?"
+    },
+    "consents": {
+      "title": "Hvem ser mit CV",
+      "hint": "Disse virksomheder ser hele dit CV. Du kan tilbagekalde adgangen når som helst.",
+      "empty": "Ingen virksomhed har adgang til hele dit CV.",
+      "since": "Siden {{date}}",
+      "revoke": "Tilbagekald",
+      "revokeConfirm": "Tilbagekald {{company}}s adgang til hele dit CV?"
+    }
   }
 }

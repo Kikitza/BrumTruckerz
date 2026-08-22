@@ -662,7 +662,10 @@
       "employment_ended": "Zaposlenje završeno",
       "customer_created": "Kupac dodan",
       "reminder_due": "Rok dospijeva",
-      "marketplace_invite_sent": "Mrežni poziv poslan"
+      "marketplace_invite_sent": "Mrežni poziv poslan",
+      "cv_request_sent": "CV zatražen",
+      "cv_consent_granted": "Pristup CV-u odobren",
+      "cv_consent_revoked": "Pristup CV-u opozvan"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Dobrodošao",
     "subtitle": "Izradi profil ili se pridruži tvrtki.",
     "orJoin": "Ili se pridruži tvrtki"
+  },
+  "cv": {
+    "card": {
+      "request": "Zatraži CV",
+      "requested": "CV zatražen",
+      "view": "Pogledaj CV"
+    },
+    "requests": {
+      "title": "Zahtjevi za CV",
+      "explain": "Ako odobriš, tvrtka vidi cijelu tvoju radnu povijest kroz sve tvrtke — ne samo svoju.",
+      "approve": "Odobri",
+      "deny": "Odbij",
+      "denyConfirm": "Odbiti zahtjev za CV od {{company}}?"
+    },
+    "consents": {
+      "title": "Tko vidi moj CV",
+      "hint": "Ove tvrtke vide tvoj puni CV. Pristup možeš opozvati bilo kad.",
+      "empty": "Nijedna tvrtka nema pristup tvom punom CV-u.",
+      "since": "Od {{date}}",
+      "revoke": "Opozovi",
+      "revokeConfirm": "Opozvati tvrtki {{company}} pristup tvom punom CV-u?"
+    }
   }
 }

@@ -662,7 +662,10 @@
       "employment_ended": "Anställning avslutad",
       "customer_created": "Kund tillagd",
       "reminder_due": "Påminnelse förfaller",
-      "marketplace_invite_sent": "Nätverksinbjudan skickad"
+      "marketplace_invite_sent": "Nätverksinbjudan skickad",
+      "cv_request_sent": "CV begärt",
+      "cv_consent_granted": "CV-åtkomst beviljad",
+      "cv_consent_revoked": "CV-åtkomst återkallad"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Välkommen",
     "subtitle": "Skapa din profil eller gå med i ett företag.",
     "orJoin": "Eller gå med i ett företag"
+  },
+  "cv": {
+    "card": {
+      "request": "Begär CV",
+      "requested": "CV begärt",
+      "view": "Visa CV"
+    },
+    "requests": {
+      "title": "CV-förfrågningar",
+      "explain": "Om du godkänner ser företaget hela din arbetshistorik hos alla företag — inte bara sitt eget.",
+      "approve": "Godkänn",
+      "deny": "Avböj",
+      "denyConfirm": "Avböja CV-förfrågan från {{company}}?"
+    },
+    "consents": {
+      "title": "Vem ser mitt CV",
+      "hint": "Dessa företag ser hela ditt CV. Du kan återkalla åtkomsten när som helst.",
+      "empty": "Inget företag har åtkomst till hela ditt CV.",
+      "since": "Sedan {{date}}",
+      "revoke": "Återkalla",
+      "revokeConfirm": "Återkalla {{company}}s åtkomst till hela ditt CV?"
+    }
   }
 }

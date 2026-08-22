@@ -662,7 +662,10 @@
       "employment_ended": "Nodarbinātība beigta",
       "customer_created": "Klients pievienots",
       "reminder_due": "Tuvojas termiņš",
-      "marketplace_invite_sent": "Tīkla uzaicinājums nosūtīts"
+      "marketplace_invite_sent": "Tīkla uzaicinājums nosūtīts",
+      "cv_request_sent": "CV pieprasīts",
+      "cv_consent_granted": "CV piekļuve piešķirta",
+      "cv_consent_revoked": "CV piekļuve atsaukta"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Laipni lūdzam",
     "subtitle": "Izveido savu profilu vai pievienojies uzņēmumam.",
     "orJoin": "Vai pievienojies uzņēmumam"
+  },
+  "cv": {
+    "card": {
+      "request": "Pieprasīt CV",
+      "requested": "CV pieprasīts",
+      "view": "Skatīt CV"
+    },
+    "requests": {
+      "title": "CV pieprasījumi",
+      "explain": "Ja apstiprināsi, uzņēmums redzēs visu tavu darba vēsturi visos uzņēmumos — ne tikai savā.",
+      "approve": "Apstiprināt",
+      "deny": "Noraidīt",
+      "denyConfirm": "Noraidīt {{company}} CV pieprasījumu?"
+    },
+    "consents": {
+      "title": "Kas redz manu CV",
+      "hint": "Šie uzņēmumi redz tavu pilno CV. Piekļuvi vari atsaukt jebkurā laikā.",
+      "empty": "Nevienam uzņēmumam nav piekļuves tavam pilnajam CV.",
+      "since": "Kopš {{date}}",
+      "revoke": "Atsaukt",
+      "revokeConfirm": "Atsaukt {{company}} piekļuvi tavam pilnajam CV?"
+    }
   }
 }

@@ -662,7 +662,10 @@
       "employment_ended": "İstihdam sona erdi",
       "customer_created": "Müşteri eklendi",
       "reminder_due": "Son tarih yaklaşıyor",
-      "marketplace_invite_sent": "Ağ daveti gönderildi"
+      "marketplace_invite_sent": "Ağ daveti gönderildi",
+      "cv_request_sent": "CV istendi",
+      "cv_consent_granted": "CV erişimi verildi",
+      "cv_consent_revoked": "CV erişimi geri alındı"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Hoş geldin",
     "subtitle": "Profilini oluştur ya da bir şirkete katıl.",
     "orJoin": "Ya da bir şirkete katıl"
+  },
+  "cv": {
+    "card": {
+      "request": "CV iste",
+      "requested": "CV istendi",
+      "view": "CV’yi gör"
+    },
+    "requests": {
+      "title": "CV istekleri",
+      "explain": "Onaylarsan, şirket tüm şirketlerdeki bütün iş geçmişini görür — yalnızca kendi şirketini değil.",
+      "approve": "Onayla",
+      "deny": "Reddet",
+      "denyConfirm": "{{company}} şirketinin CV isteğini reddetmek istiyor musun?"
+    },
+    "consents": {
+      "title": "CV’mi kim görüyor",
+      "hint": "Bu şirketler tam CV’ni görür. Erişimi istediğin zaman geri alabilirsin.",
+      "empty": "Hiçbir şirketin tam CV’ne erişimi yok.",
+      "since": "{{date}} tarihinden beri",
+      "revoke": "Geri al",
+      "revokeConfirm": "{{company}} şirketinin tam CV’ne erişimini geri almak istiyor musun?"
+    }
   }
 }

@@ -25,6 +25,9 @@ const LABEL_KEY: Record<string, string> = {
   "customer.created": "activity.event.customer_created",
   "reminder.due": "activity.event.reminder_due",
   "marketplace.invite.sent": "activity.event.marketplace_invite_sent",
+  "cv.request.sent": "activity.event.cv_request_sent",
+  "cv.consent.granted": "activity.event.cv_consent_granted",
+  "cv.consent.revoked": "activity.event.cv_consent_revoked",
 };
 
 export function ActivityFeed() {

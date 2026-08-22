@@ -662,7 +662,10 @@
       "employment_ended": "Töösuhe lõppenud",
       "customer_created": "Klient lisatud",
       "reminder_due": "Tähtaeg saabumas",
-      "marketplace_invite_sent": "Võrgukutse saadetud"
+      "marketplace_invite_sent": "Võrgukutse saadetud",
+      "cv_request_sent": "CV-d küsiti",
+      "cv_consent_granted": "CV juurdepääs antud",
+      "cv_consent_revoked": "CV juurdepääs tühistatud"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Tere tulemast",
     "subtitle": "Loo oma profiil või liitu ettevõttega.",
     "orJoin": "Või liitu ettevõttega"
+  },
+  "cv": {
+    "card": {
+      "request": "Küsi CV-d",
+      "requested": "CV-d küsiti",
+      "view": "Vaata CV-d"
+    },
+    "requests": {
+      "title": "CV päringud",
+      "explain": "Kui nõustud, näeb ettevõte kogu su töökäiku kõigis ettevõtetes — mitte ainult enda oma.",
+      "approve": "Nõustu",
+      "deny": "Keeldu",
+      "denyConfirm": "Kas keelduda {{company}} CV-päringust?"
+    },
+    "consents": {
+      "title": "Kes näeb mu CV-d",
+      "hint": "Need ettevõtted näevad su täielikku CV-d. Võid juurdepääsu igal ajal tühistada.",
+      "empty": "Ühelgi ettevõttel pole juurdepääsu su täielikule CV-le.",
+      "since": "Alates {{date}}",
+      "revoke": "Tühista",
+      "revokeConfirm": "Kas tühistada {{company}} juurdepääs su täielikule CV-le?"
+    }
   }
 }

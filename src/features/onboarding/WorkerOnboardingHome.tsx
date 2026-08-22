@@ -13,6 +13,8 @@ import { AcceptInviteBox } from "../identity/AcceptInviteBox";
 import { NewCompanyWizard } from "../company/NewCompanyWizard";
 import { NetworkInvites } from "../network/NetworkInvites";
 import { NetworkProfileEditor } from "../network/NetworkProfileEditor";
+import { CvRequestsList } from "../cv/CvRequestsList";
+import { CvConsentsSection } from "../cv/CvConsentsSection";
 
 // onJoined: po prihvatanju koda / otvaranju firme → osveži gate (reloadRole u app/index).
 export function WorkerOnboardingHome({ onJoined }: { onJoined: () => void }) {
@@ -33,8 +35,14 @@ export function WorkerOnboardingHome({ onJoined }: { onJoined: () => void }) {
           {/* Pozivi mogu stići i PRE ulaska u firmu (firma poziva po javnom broju). */}
           <NetworkInvites />
 
+          {/* Zahtevi firmi za pun CV (radnik odobrava/odbija). */}
+          <CvRequestsList />
+
           {/* Mrežni profil — gradi vidljivost tržištu; pri deklarisanju role dobija javni broj. */}
           <NetworkProfileEditor />
+
+          {/* Ko vidi moj CV — lista firmi sa pristankom + opoziv. */}
+          <CvConsentsSection />
 
           {/* Alternativni ulazi: kod firme ili otvaranje sopstvene firme. */}
           <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 16, gap: 12 }}>

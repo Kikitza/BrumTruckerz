@@ -662,7 +662,10 @@
       "employment_ended": "Ansettelse avsluttet",
       "customer_created": "Kunde lagt til",
       "reminder_due": "Frist forfaller",
-      "marketplace_invite_sent": "Nettverksinvitasjon sendt"
+      "marketplace_invite_sent": "Nettverksinvitasjon sendt",
+      "cv_request_sent": "CV forespurt",
+      "cv_consent_granted": "CV-tilgang gitt",
+      "cv_consent_revoked": "CV-tilgang trukket tilbake"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Velkommen",
     "subtitle": "Lag profilen din eller bli med i et firma.",
     "orJoin": "Eller bli med i et firma"
+  },
+  "cv": {
+    "card": {
+      "request": "Be om CV",
+      "requested": "CV forespurt",
+      "view": "Se CV"
+    },
+    "requests": {
+      "title": "CV-forespørsler",
+      "explain": "Hvis du godkjenner, ser firmaet hele arbeidshistorikken din på tvers av alle firmaer — ikke bare sitt eget.",
+      "approve": "Godkjenn",
+      "deny": "Avslå",
+      "denyConfirm": "Avslå CV-forespørselen fra {{company}}?"
+    },
+    "consents": {
+      "title": "Hvem ser CV-en min",
+      "hint": "Disse firmaene ser hele CV-en din. Du kan trekke tilbake tilgangen når som helst.",
+      "empty": "Ingen firma har tilgang til hele CV-en din.",
+      "since": "Siden {{date}}",
+      "revoke": "Trekk tilbake",
+      "revokeConfirm": "Trekke tilbake {{company}} sin tilgang til hele CV-en din?"
+    }
   }
 }

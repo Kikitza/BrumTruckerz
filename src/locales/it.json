@@ -662,7 +662,10 @@
       "employment_ended": "Impiego terminato",
       "customer_created": "Cliente aggiunto",
       "reminder_due": "Scadenza in arrivo",
-      "marketplace_invite_sent": "Invito di rete inviato"
+      "marketplace_invite_sent": "Invito di rete inviato",
+      "cv_request_sent": "CV richiesto",
+      "cv_consent_granted": "Accesso al CV concesso",
+      "cv_consent_revoked": "Accesso al CV revocato"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Benvenuto",
     "subtitle": "Crea il tuo profilo o unisciti a un’azienda.",
     "orJoin": "Oppure unisciti a un’azienda"
+  },
+  "cv": {
+    "card": {
+      "request": "Richiedi CV",
+      "requested": "CV richiesto",
+      "view": "Vedi CV"
+    },
+    "requests": {
+      "title": "Richieste di CV",
+      "explain": "Se accetti, l’azienda vede tutta la tua storia lavorativa in tutte le aziende, non solo la propria.",
+      "approve": "Accetta",
+      "deny": "Rifiuta",
+      "denyConfirm": "Rifiutare la richiesta di CV da {{company}}?"
+    },
+    "consents": {
+      "title": "Chi vede il mio CV",
+      "hint": "Queste aziende vedono il tuo CV completo. Puoi revocare l’accesso in qualsiasi momento.",
+      "empty": "Nessuna azienda ha accesso al tuo CV completo.",
+      "since": "Dal {{date}}",
+      "revoke": "Revoca",
+      "revokeConfirm": "Revocare l’accesso di {{company}} al tuo CV completo?"
+    }
   }
 }

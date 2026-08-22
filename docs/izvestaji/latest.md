@@ -1,53 +1,37 @@
-# IZVEŠTAJ — v2-3 kriška 2b: RADNIK BEZ FIRME — IDENTITET I DOM (ADR 0013 dopuna)
+# IZVEŠTAJ — v2-3 kriška 3: PUN CV UZ IZRIČIT PRISTANAK (ADR 0014)
 
-> Otključava ključnu marketplace personu: radnik gradi mrežni profil i prima pozive **pre** nego što uđe u ijednu firmu. **Sve na DEV.**
+> Završna marketplace v1 kockica: firma van zaposlenja može ZATRAŽITI pun CV; radnik EKSPLICITNO odobri (per-firma) i može OPOZVATI bilo kad → pristup se momentalno gasi. **Sve na DEV.**
 
-## KORAK 0 — ADR 0013 DOPUNA
-- U `docs/adr/0013` dodata sekcija **DOPUNA (22.8, kriška 2b)**, STATUS ostaje **PRIHVAĆENO**: identitet sme postojati bez ijednog članstva; `app_users` = čist identitet; `company_id`/`role` legacy fallback, **nullable za ne-admina**; rola izvire iz `memberships`. „Radnik bez firme" = identitet sa 0 aktivnih članstava.
+## 1) Migracija 0037 (na DEV, primenjena i verifikovana)
+- **`cv_consents`** (ledger: `worker_user_id`, `company_id`, `status` granted|revoked, `granted_at`, `revoked_at`) — **jedinstven AKTIVAN pristanak** po (radnik, firma) (partial unique). **`cv_requests`** (prelazni zahtev: pending|approved|denied|cancelled) — „inbox" radnika; **jedan otvoren zahtev** po (radnik, firma) → idempotentno. **Dve tabele namerno razdvojene** (KVALITET #1): audit-ledger pristanaka ≠ prolazni zahtev.
+- **RLS:** radnik vidi SVOJE (`worker_user_id = auth.uid()`); office **read-only** vidi date SVOJOJ firmi (`is_office_role() and company_id = current_company_id()`); **niko treći**. Upis isključivo kroz definer RPC (obrazac accept/decline).
+- **`career_view_mode` dopunjen režimom `consented`** (ISPRED `company` — pristanak daje VIŠE): office sa aktivnim pristankom radnika → **pun CV**; bez pristanka SVE ostaje kao dosad (`company` scope / `none`). Svih 6 `career_*` RPC-ova (`header/summary/employments/km_series/countries`) redefinisano: `mode = 'self'` → `mode in ('self','consented')`.
+- **RPC-ovi toka (definer):** `cv_request(worker)` (office → pending + event, idempotentno), `cv_access(worker)` (granted|requested|none — za karticu), `my_cv_requests()` / `respond_cv_request(id, approve)` (radnik odgovara → approve upiše granted + event), `my_cv_consents()` / `revoke_cv_consent(company)` (radnik upravlja → opoziv + event).
+- **Eventi (outbox):** `cv.request.sent` / `cv.consent.granted` / `cv.consent.revoked` (handleri **no-op v1** — worker već tretira neregistrovan tip kao no-op processed) + labele u `ActivityFeed`.
 
-## 1) Migracija 0036 (na DEV, primenjena i verifikovana)
-- **Omekšan `app_users_company_by_role`** + `role` sada **nullable**: dozvoljen čist identitet (`role NULL` + `company_id NULL`). Invarijanta ostaje: ne-admin ili ima firmu, ili je potpuno prazan identitet (**nikad „rola bez firme"**). Postojeći podaci netaknuti (svi imaju firmu → zadovoljavaju i novi constraint).
-- **`ensure_identity()`** (definer): bootstrap čistog identiteta za `auth.uid()` bez reda; idempotentno; ime iz auth metapodataka. **RPC a NE triger** (obrazloženo u migraciji: `auth` šemom upravlja Supabase — triger krhak kroz nadogradnje; RPC drži bootstrap u našoj šemi, klijent ga zove na prvom ulasku).
-- **`ensure_worker_public_no(role)`** (definer): pri deklarisanju role dodeli **trajni javni broj** radniku bez firme — vozač → **BT-D** (auto sekvenca); dispečer → profil osiguran, broj „po potrebi" (ADR 0001; **ne uvodimo novu šemu bez ADR-a** — `BT-T` je broj TURE po ADR 0006, ne dispečera). Idempotentno.
-- **`my_worker_public_no()`** (definer): radnik čita svoj dodeljeni broj (za prikaz u domu).
-- Profili (`driver_profiles`/`dispatcher_profiles`) rade za korisnika BEZ firme — FK je na `app_users(id)` (identitet), ne na firmu; dodela ide kroz definer RPC (tabele nemaju INSERT politiku za obične uloge).
+## 2) UI
+- **Office (Mreža kartica):** `CardCvAction` — „Zatraži CV" (none) / „CV zatražen" (requested) / **„Pogledaj CV"** (granted → reuse `CareerProfileModal`; RPC vraća consented pun pogled).
+- **Radnik:** `CvRequestsList` (zahtevi → Odobri/Odbij, uz JASAN tekst šta firma dobija: cela istorija kroz sve firme, ne samo njena) + `CvConsentsSection` („Ko vidi moj CV" — lista firmi + **Opozovi** bilo kad, uz potvrdu). Dodato na **vozačev Profil** i **onboarding dom radnika-bez-firme** (`WorkerOnboardingHome`).
+- Novi `src/features/cv/` (`api.ts`, `CvRequestsList.tsx`, `CvConsentsSection.tsx`).
 
-## 2) useSession / gate
-- `useSession`: `single()` → **`maybeSingle()`**; kad nema `app_users` reda → **`ensure_identity()`** (idempotentno) pa rola ostaje `null`. `role` sme biti `null` (identitet bez firme) — fail-closed očuvan (nikad na owner).
-- `app/index.tsx`: rola `null` → **onboarding dom radnika** (umesto starog skromnog `NoRole`).
-
-## 3) Onboarding DOM radnika-bez-firme
-- **`src/features/onboarding/WorkerOnboardingHome.tsx`** (novi; `DesktopContainer`, radi na MOBILNOM i WEBU — web = kapija akvizicije):
-  - naslov/priča „Dobrodošao — napravi svoj profil ili se pridruži firmi";
-  - **MREŽNI PROFIL editor + POZIVI** (reuse iz kriške 2); pri čuvanju profila sa traženom rolom → dodela BT broja (`ensure_worker_public_no`) i prikaz broja u editoru;
-  - postojeće opcije ostaju: **„Imam kod firme"** (`AcceptInviteBox`) i **„Otvori novu firmu"** (čarobnjak) + Odjava.
-- `NetworkProfileEditor`: novi prikaz javnog broja (`profile.publicNo`) + dodela pri čuvanju.
-
-## 4) Prelazak u firmu
-- Kad radnik-bez-firme **prihvati poziv/kod** → `accept_invitation` (postojeći tok iz 0034: identitet sa `company_id NULL` → ažurira `role`+`company`) → kreira članstvo → gate ga preusmeri u firmu (`reloadRole`/`reloadAppUser`). **Mrežni profil ostaje njegov; vidljivost se NE menja sama** (dokazano testom).
-
-## 5) Pretraga i career
-- `network_search`: kartice rade i za radnike **bez ijedne firme** (imaju BT-D). Dokazano testom.
-- Career RPC-ovi (`career_header/summary/km_series/employments`) **ne pucaju** za identitet bez employments — vraćaju prazno stanje (dokazano testom).
-
-## 6) Testovi
-- **Nova `firmless_worker_test.sql` (16. svita):** constraint invarijanta (rola-bez-firme odbijena, prazan identitet dozvoljen); `ensure_identity` idempotentan (čist identitet); `ensure_worker_public_no('driver')` → BT-D (idempotentno) + `my_worker_public_no`; mrežni profil + **vidljiv u pretrazi bez firme**; **career ne puca** za prazan identitet; **poziv→accept kreira članstvo + rola izvire** (`app_users.role`=driver, company set); vidljivost mrežnog profila nepromenjena posle accept.
-- **Svih prethodnih 15 svita zeleno** (0036 aditivno/omekšavajuće — ništa se ne pomera).
-- **i18n svih 30:** novi `onboarding.{title,subtitle,orJoin}` (`sr`/`en` autorski, ostali mašinski); `en` fallback — **0 MISS**.
+## 3) Testovi
+- **Nova `cv_consent_test.sql` (17. svita):** bez pristanka office vidi SAMO svoju firmu (company-scope, nepromenjeno); firma van zaposlenja bez pristanka → `none` (career 42501); „Zatraži CV" idempotentno + `cv_access='requested'`; radnik odobri → granted; **granted → PUN CV** (2 firme/1500 km vs 1 firma/1000 km); **pristanak > company** (firma zaposlenja sa pristankom vidi pun CV); **izolacija** (firma A ne vidi pristanke firme B; office ne može direktan upis); **radnik upravlja samo svojim** (office ne može opozvati tuđi); **OPOZIV momentalno gasi** pristup (career → 42501).
+- **Svih prethodnih 16 svita zeleno** (0037 aditivno; `career_*` redefinicije čuvaju self/company ponašanje — `career_test` zelen).
+- **i18n svih 30:** `cv.*` (card/requests/consents) + `activity.event.cv_*` (`sr`/`en` autorski, ostali mašinski); `en` fallback — **0 MISS**.
 
 ## PODSETNIK — ručna primena
-- **0036 je samo na DEV.** PROD/STAGING (na `0033`) i **0034/0035/0036** čekaju STAGING/PROD uz izričito odobrenje.
-- Rollback 0036: `drop function ensure_identity, ensure_worker_public_no, my_worker_public_no;` vrati `app_users_company_by_role` na verziju 0014 (`role='platform_admin' or company_id is not null`); `alter table app_users alter column role set not null;` (uz uslov da nema čistih identiteta — inače ih prvo očisti). Aditivno; stare kolone/politike nedirane.
+- **0037 je samo na DEV.** PROD/STAGING (na `0033`) i **0034/0035/0036/0037** čekaju STAGING/PROD uz izričito odobrenje.
+- Rollback 0037: `drop function cv_request, cv_access, my_cv_requests, respond_cv_request, my_cv_consents, revoke_cv_consent;` vrati `career_view_mode` + 6 `career_*` na verzije 0027/0028 (bez `consented` grane); `drop table cv_requests, cv_consents;` (aditivno; ništa postojeće nije menjano osim tela career RPC-ova — vraćaju se 1:1).
 
 ## Provere (ritual)
 | Provera | Rezultat |
 |---|---|
 | `npm run typecheck` | ✅ |
 | `npm test` (jest) | ✅ 142/142 (21 svita) |
-| `npm run test:db` (DEV) | ✅ ALL PASSED (16 svita) |
+| `npm run test:db` (DEV) | ✅ ALL PASSED (17 svita) |
 | `npm run lint` | ✅ 0 grešaka (4 upozorenja, baseline) |
 | `expo export --platform web` | ✅ exit 0 |
 | i18n 30/30 (en fallback, 0 MISS) | ✅ |
 | Link ostao na DEV | ✅ `icbjagubaftoqcwfcbwf` |
 
-**Kvalitet:** slojevi razdvojeni (onboarding dom = tanki kompozit reusable komponenti; pristup bazi kroz api sloj); bez dupliranja (reuse `NetworkProfileEditor`/`NetworkInvites`/`AcceptInviteBox`/`NewCompanyWizard`); definer RPC-ovi jer profili nemaju INSERT politiku; brend/identitet netaknut (BT-D auto, dispečerski broj „po potrebi" — bez izmišljanja `BT-T`, koji je broj ture). Pravila ispoštovana.
+**Kvalitet:** slojevi razdvojeni (ekrani → `features/cv/api.ts`); dve tabele razdvajaju ledger od zahteva (bez mešanja audita i prolaznog stanja); consented mod = jedna izmena u `career_view_mode` + mehanička dopuna 6 RPC-ova (bez duplirane logike); reuse `CareerProfileModal`/`CareerProfileView` za prikaz; upis kroz definer RPC (RLS bez insert/update politike); privatnost — radnik jedini upravlja pristankom, opoziv trenutan. Pravila ispoštovana.

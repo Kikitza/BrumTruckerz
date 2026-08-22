@@ -662,7 +662,10 @@
       "employment_ended": "Punësimi përfundoi",
       "customer_created": "Klienti u shtua",
       "reminder_due": "Afati po afron",
-      "marketplace_invite_sent": "Ftesa e rrjetit u dërgua"
+      "marketplace_invite_sent": "Ftesa e rrjetit u dërgua",
+      "cv_request_sent": "CV u kërkua",
+      "cv_consent_granted": "Aksesi në CV u dha",
+      "cv_consent_revoked": "Aksesi në CV u hoq"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Mirë se erdhe",
     "subtitle": "Krijo profilin ose bashkohu një kompanie.",
     "orJoin": "Ose bashkohu një kompanie"
+  },
+  "cv": {
+    "card": {
+      "request": "Kërko CV",
+      "requested": "CV u kërkua",
+      "view": "Shiko CV"
+    },
+    "requests": {
+      "title": "Kërkesat për CV",
+      "explain": "Nëse miraton, kompania sheh të gjithë historikun tënd të punës në të gjitha kompanitë — jo vetëm të sajën.",
+      "approve": "Mirato",
+      "deny": "Refuzo",
+      "denyConfirm": "Të refuzosh kërkesën për CV nga {{company}}?"
+    },
+    "consents": {
+      "title": "Kush e sheh CV-në time",
+      "hint": "Këto kompani e shohin CV-në tënde të plotë. Mund ta heqësh aksesin në çdo kohë.",
+      "empty": "Asnjë kompani nuk ka akses në CV-në tënde të plotë.",
+      "since": "Që nga {{date}}",
+      "revoke": "Hiq aksesin",
+      "revokeConfirm": "Të heqësh aksesin e {{company}} në CV-në tënde të plotë?"
+    }
   }
 }

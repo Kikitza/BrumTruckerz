@@ -662,7 +662,10 @@
       "employment_ended": "Įdarbinimas baigtas",
       "customer_created": "Klientas pridėtas",
       "reminder_due": "Artėja terminas",
-      "marketplace_invite_sent": "Tinklo kvietimas išsiųstas"
+      "marketplace_invite_sent": "Tinklo kvietimas išsiųstas",
+      "cv_request_sent": "CV paprašyta",
+      "cv_consent_granted": "CV prieiga suteikta",
+      "cv_consent_revoked": "CV prieiga atšaukta"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Sveiki",
     "subtitle": "Sukurk profilį arba prisijunk prie įmonės.",
     "orJoin": "Arba prisijunk prie įmonės"
+  },
+  "cv": {
+    "card": {
+      "request": "Prašyti CV",
+      "requested": "CV paprašyta",
+      "view": "Peržiūrėti CV"
+    },
+    "requests": {
+      "title": "CV prašymai",
+      "explain": "Jei patvirtinsi, įmonė matys visą tavo darbo istoriją visose įmonėse — ne tik savo.",
+      "approve": "Patvirtinti",
+      "deny": "Atmesti",
+      "denyConfirm": "Atmesti {{company}} CV prašymą?"
+    },
+    "consents": {
+      "title": "Kas mato mano CV",
+      "hint": "Šios įmonės mato visą tavo CV. Prieigą gali atšaukti bet kada.",
+      "empty": "Nė viena įmonė neturi prieigos prie viso tavo CV.",
+      "since": "Nuo {{date}}",
+      "revoke": "Atšaukti",
+      "revokeConfirm": "Atšaukti {{company}} prieigą prie viso tavo CV?"
+    }
   }
 }

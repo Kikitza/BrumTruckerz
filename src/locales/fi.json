@@ -662,7 +662,10 @@
       "employment_ended": "Työsuhde päättyi",
       "customer_created": "Asiakas lisätty",
       "reminder_due": "Muistutus erääntyy",
-      "marketplace_invite_sent": "Verkostokutsu lähetetty"
+      "marketplace_invite_sent": "Verkostokutsu lähetetty",
+      "cv_request_sent": "CV pyydetty",
+      "cv_consent_granted": "CV-pääsy myönnetty",
+      "cv_consent_revoked": "CV-pääsy peruutettu"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Tervetuloa",
     "subtitle": "Luo profiilisi tai liity yritykseen.",
     "orJoin": "Tai liity yritykseen"
+  },
+  "cv": {
+    "card": {
+      "request": "Pyydä CV",
+      "requested": "CV pyydetty",
+      "view": "Näytä CV"
+    },
+    "requests": {
+      "title": "CV-pyynnöt",
+      "explain": "Jos hyväksyt, yritys näkee koko työhistoriasi kaikissa yrityksissä — ei vain omaansa.",
+      "approve": "Hyväksy",
+      "deny": "Hylkää",
+      "denyConfirm": "Hylätäänkö {{company}} CV-pyyntö?"
+    },
+    "consents": {
+      "title": "Kuka näkee CV:ni",
+      "hint": "Nämä yritykset näkevät koko CV:si. Voit peruuttaa pääsyn milloin tahansa.",
+      "empty": "Yhdelläkään yrityksellä ei ole pääsyä koko CV:hesi.",
+      "since": "Alkaen {{date}}",
+      "revoke": "Peruuta",
+      "revokeConfirm": "Peruutetaanko {{company}} pääsy koko CV:hesi?"
+    }
   }
 }

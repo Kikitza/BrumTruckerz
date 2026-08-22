@@ -662,7 +662,10 @@
       "employment_ended": "Zakończono zatrudnienie",
       "customer_created": "Dodano klienta",
       "reminder_due": "Termin nadchodzi",
-      "marketplace_invite_sent": "Zaproszenie sieciowe wysłane"
+      "marketplace_invite_sent": "Zaproszenie sieciowe wysłane",
+      "cv_request_sent": "Poproszono o CV",
+      "cv_consent_granted": "Przyznano dostęp do CV",
+      "cv_consent_revoked": "Cofnięto dostęp do CV"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Witaj",
     "subtitle": "Utwórz profil lub dołącz do firmy.",
     "orJoin": "Albo dołącz do firmy"
+  },
+  "cv": {
+    "card": {
+      "request": "Poproś o CV",
+      "requested": "Poproszono o CV",
+      "view": "Zobacz CV"
+    },
+    "requests": {
+      "title": "Prośby o CV",
+      "explain": "Jeśli zaakceptujesz, firma zobaczy całą twoją historię pracy we wszystkich firmach — nie tylko własną.",
+      "approve": "Zaakceptuj",
+      "deny": "Odrzuć",
+      "denyConfirm": "Odrzucić prośbę o CV od {{company}}?"
+    },
+    "consents": {
+      "title": "Kto widzi moje CV",
+      "hint": "Te firmy widzą twoje pełne CV. Możesz cofnąć dostęp w każdej chwili.",
+      "empty": "Żadna firma nie ma dostępu do twojego pełnego CV.",
+      "since": "Od {{date}}",
+      "revoke": "Cofnij",
+      "revokeConfirm": "Cofnąć firmie {{company}} dostęp do twojego pełnego CV?"
+    }
   }
 }

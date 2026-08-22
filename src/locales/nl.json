@@ -662,7 +662,10 @@
       "employment_ended": "Dienstverband beëindigd",
       "customer_created": "Klant toegevoegd",
       "reminder_due": "Herinnering verschuldigd",
-      "marketplace_invite_sent": "Netwerkuitnodiging verzonden"
+      "marketplace_invite_sent": "Netwerkuitnodiging verzonden",
+      "cv_request_sent": "CV opgevraagd",
+      "cv_consent_granted": "CV-toegang verleend",
+      "cv_consent_revoked": "CV-toegang ingetrokken"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Welkom",
     "subtitle": "Maak je profiel of word lid van een bedrijf.",
     "orJoin": "Of word lid van een bedrijf"
+  },
+  "cv": {
+    "card": {
+      "request": "CV opvragen",
+      "requested": "CV opgevraagd",
+      "view": "CV bekijken"
+    },
+    "requests": {
+      "title": "CV-verzoeken",
+      "explain": "Als je akkoord gaat, ziet het bedrijf je volledige werkverleden bij alle bedrijven — niet alleen dat van hen.",
+      "approve": "Goedkeuren",
+      "deny": "Weigeren",
+      "denyConfirm": "Het CV-verzoek van {{company}} weigeren?"
+    },
+    "consents": {
+      "title": "Wie ziet mijn CV",
+      "hint": "Deze bedrijven zien je volledige CV. Je kunt de toegang op elk moment intrekken.",
+      "empty": "Geen enkel bedrijf heeft toegang tot je volledige CV.",
+      "since": "Sinds {{date}}",
+      "revoke": "Intrekken",
+      "revokeConfirm": "Toegang van {{company}} tot je volledige CV intrekken?"
+    }
   }
 }

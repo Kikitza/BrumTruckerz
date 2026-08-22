@@ -660,7 +660,10 @@
       "employment_ended": "Employment ended",
       "customer_created": "Customer added",
       "reminder_due": "Reminder due",
-      "marketplace_invite_sent": "Network invitation sent"
+      "marketplace_invite_sent": "Network invitation sent",
+      "cv_request_sent": "CV requested",
+      "cv_consent_granted": "CV access granted",
+      "cv_consent_revoked": "CV access revoked"
     }
   },
   "network": {
@@ -721,5 +724,27 @@
     "title": "Welcome",
     "subtitle": "Build your profile or join a company.",
     "orJoin": "Or join a company"
+  },
+  "cv": {
+    "card": {
+      "request": "Request CV",
+      "requested": "CV requested",
+      "view": "View CV"
+    },
+    "requests": {
+      "title": "CV requests",
+      "explain": "If you approve, the company sees your full work history across all companies — not only its own.",
+      "approve": "Approve",
+      "deny": "Decline",
+      "denyConfirm": "Decline the CV request from {{company}}?"
+    },
+    "consents": {
+      "title": "Who sees my CV",
+      "hint": "These companies can see your full CV. You can revoke access anytime.",
+      "empty": "No company has access to your full CV.",
+      "since": "Since {{date}}",
+      "revoke": "Revoke",
+      "revokeConfirm": "Revoke {{company}}’s access to your full CV?"
+    }
   }
 }

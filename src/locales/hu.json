@@ -662,7 +662,10 @@
       "employment_ended": "Foglalkoztatás befejezve",
       "customer_created": "Ügyfél hozzáadva",
       "reminder_due": "Határidő esedékes",
-      "marketplace_invite_sent": "Hálózati meghívó elküldve"
+      "marketplace_invite_sent": "Hálózati meghívó elküldve",
+      "cv_request_sent": "CV kérve",
+      "cv_consent_granted": "CV-hozzáférés megadva",
+      "cv_consent_revoked": "CV-hozzáférés visszavonva"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Üdvözlünk",
     "subtitle": "Hozd létre a profilod, vagy csatlakozz egy céghez.",
     "orJoin": "Vagy csatlakozz egy céghez"
+  },
+  "cv": {
+    "card": {
+      "request": "CV kérése",
+      "requested": "CV kérve",
+      "view": "CV megtekintése"
+    },
+    "requests": {
+      "title": "CV-kérések",
+      "explain": "Ha jóváhagyod, a cég a teljes munkatörténetedet látja minden cégnél — nem csak a sajátjánál.",
+      "approve": "Jóváhagyás",
+      "deny": "Elutasítás",
+      "denyConfirm": "Elutasítod {{company}} CV-kérését?"
+    },
+    "consents": {
+      "title": "Ki látja a CV-met",
+      "hint": "Ezek a cégek látják a teljes CV-det. A hozzáférést bármikor visszavonhatod.",
+      "empty": "Egyetlen cégnek sincs hozzáférése a teljes CV-dhez.",
+      "since": "{{date}} óta",
+      "revoke": "Visszavonás",
+      "revokeConfirm": "Visszavonod {{company}} hozzáférését a teljes CV-dhez?"
+    }
   }
 }

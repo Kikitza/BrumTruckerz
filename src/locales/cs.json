@@ -662,7 +662,10 @@
       "employment_ended": "Zaměstnání ukončeno",
       "customer_created": "Zákazník přidán",
       "reminder_due": "Termín se blíží",
-      "marketplace_invite_sent": "Síťová pozvánka odeslána"
+      "marketplace_invite_sent": "Síťová pozvánka odeslána",
+      "cv_request_sent": "CV vyžádáno",
+      "cv_consent_granted": "Přístup k CV udělen",
+      "cv_consent_revoked": "Přístup k CV odvolán"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Vítej",
     "subtitle": "Vytvoř si profil nebo se připoj k firmě.",
     "orJoin": "Nebo se připoj k firmě"
+  },
+  "cv": {
+    "card": {
+      "request": "Vyžádat CV",
+      "requested": "CV vyžádáno",
+      "view": "Zobrazit CV"
+    },
+    "requests": {
+      "title": "Žádosti o CV",
+      "explain": "Pokud schválíš, firma uvidí celou tvou pracovní historii ve všech firmách — ne jen svou.",
+      "approve": "Schválit",
+      "deny": "Odmítnout",
+      "denyConfirm": "Odmítnout žádost o CV od {{company}}?"
+    },
+    "consents": {
+      "title": "Kdo vidí mé CV",
+      "hint": "Tyto firmy vidí tvé úplné CV. Přístup můžeš kdykoli odvolat.",
+      "empty": "Žádná firma nemá přístup k tvému úplnému CV.",
+      "since": "Od {{date}}",
+      "revoke": "Odvolat",
+      "revokeConfirm": "Odvolat firmě {{company}} přístup k tvému úplnému CV?"
+    }
   }
 }

@@ -3,7 +3,7 @@
 // sertifikati. „Pozovi" kreira ciljanu pozivnicu (ista kapija). Sav pristup bazi kroz api sloj.
 import { useState } from "react";
 import { View, Text, Pressable, ActivityIndicator } from "react-native";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme";
 import { PickerField } from "../../components/form";
@@ -15,6 +15,8 @@ import { notify } from "../../lib/confirm";
 import { Tag } from "./Tag";
 import { certList, type NetworkFilters } from "./searchParams";
 import { searchNetwork, inviteWorker, type NetworkCard, type SeekingRole } from "./api";
+import { cvAccess, cvRequest } from "../cv/api";
+import { CareerProfileModal } from "../career/CareerProfileModal";
 
 const EMPTY_FILTERS: NetworkFilters = { role: null, country: null, language: null, availableOnly: false };
 
@@ -147,6 +149,8 @@ function NetworkCardView({
           <Text style={{ color: colors.onPrimary, fontWeight: "700" }}>{t("network.search.invite")}</Text>
         </Pressable>
       )}
+
+      <CardCvAction workerUserId={card.user_id} />
     </View>
   );
 }
@@ -158,5 +162,49 @@ function Labeled({ label, children }: { label: string; children: React.ReactNode
       <Text style={{ color: colors.textMuted, fontSize: 12 }}>{label}</Text>
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>{children}</View>
     </View>
+  );
+}
+
+// CV akcija na kartici: „Zatraži CV" (none) / „CV zatražen" (requested) / „Pogledaj CV" (granted).
+// Pun CV se prikazuje kroz reuse CareerProfileModal — RPC-ovi vraćaju consented pun pogled.
+function CardCvAction({ workerUserId }: { workerUserId: string }) {
+  const { colors } = useTheme();
+  const { t } = useTranslation();
+  const qc = useQueryClient();
+  const [viewCv, setViewCv] = useState(false);
+  const q = useQuery({ queryKey: ["cv-access", workerUserId], queryFn: () => cvAccess(workerUserId) });
+
+  const request = useMutation({
+    mutationFn: () => cvRequest(workerUserId),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["cv-access", workerUserId] }),
+    onError: () => notify({ title: t("common.error") }),
+  });
+
+  const access = q.data ?? "none";
+  if (q.isLoading) return null;
+
+  if (access === "granted") {
+    return (
+      <>
+        <Pressable onPress={() => setViewCv(true)}
+          style={{ borderWidth: 1, borderColor: colors.primary, borderRadius: 8, padding: 12, alignItems: "center" }}>
+          <Text style={{ color: colors.primary, fontWeight: "700" }}>{t("cv.card.view")}</Text>
+        </Pressable>
+        {viewCv && <CareerProfileModal userId={workerUserId} onClose={() => setViewCv(false)} />}
+      </>
+    );
+  }
+  if (access === "requested") {
+    return (
+      <View style={{ borderRadius: 8, padding: 12, alignItems: "center", backgroundColor: colors.bg, borderWidth: 1, borderColor: colors.border }}>
+        <Text style={{ color: colors.textMuted, fontWeight: "700" }}>{t("cv.card.requested")}</Text>
+      </View>
+    );
+  }
+  return (
+    <Pressable onPress={() => request.mutate()} disabled={request.isPending}
+      style={{ borderWidth: 1, borderColor: colors.border, borderRadius: 8, padding: 12, alignItems: "center", opacity: request.isPending ? 0.5 : 1 }}>
+      <Text style={{ color: colors.text, fontWeight: "700" }}>{t("cv.card.request")}</Text>
+    </Pressable>
   );
 }

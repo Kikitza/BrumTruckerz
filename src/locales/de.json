@@ -662,7 +662,10 @@
       "employment_ended": "Beschäftigung beendet",
       "customer_created": "Kunde hinzugefügt",
       "reminder_due": "Frist fällig",
-      "marketplace_invite_sent": "Netzwerk-Einladung gesendet"
+      "marketplace_invite_sent": "Netzwerk-Einladung gesendet",
+      "cv_request_sent": "CV angefragt",
+      "cv_consent_granted": "CV-Zugriff gewährt",
+      "cv_consent_revoked": "CV-Zugriff widerrufen"
     }
   },
   "network": {
@@ -723,5 +726,27 @@
     "title": "Willkommen",
     "subtitle": "Erstelle dein Profil oder tritt einer Firma bei.",
     "orJoin": "Oder tritt einer Firma bei"
+  },
+  "cv": {
+    "card": {
+      "request": "CV anfragen",
+      "requested": "CV angefragt",
+      "view": "CV ansehen"
+    },
+    "requests": {
+      "title": "CV-Anfragen",
+      "explain": "Wenn du zustimmst, sieht die Firma deinen gesamten Werdegang über alle Firmen — nicht nur ihren eigenen.",
+      "approve": "Zustimmen",
+      "deny": "Ablehnen",
+      "denyConfirm": "CV-Anfrage von {{company}} ablehnen?"
+    },
+    "consents": {
+      "title": "Wer sieht meinen CV",
+      "hint": "Diese Firmen sehen deinen vollständigen CV. Du kannst den Zugriff jederzeit widerrufen.",
+      "empty": "Keine Firma hat Zugriff auf deinen vollständigen CV.",
+      "since": "Seit {{date}}",
+      "revoke": "Widerrufen",
+      "revokeConfirm": "{{company}} den Zugriff auf deinen vollständigen CV widerrufen?"
+    }
   }
 }
